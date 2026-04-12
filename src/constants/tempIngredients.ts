@@ -1,0 +1,195 @@
+import type { Ingredient } from "../stores/useIngredientStore";
+import milk from "../assets/fridge/milk.svg";
+
+export const TEMP_DATA: Ingredient[] = [
+  // 만료 (D+)
+  {
+    id: 1,
+    name: "오래된우유",
+    image: milk,
+    category: "냉동",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-01-01",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 60,
+    dDay: -45,
+    memo: "이미 만료",
+  },
+
+  // 오늘까지
+  {
+    id: 2,
+    name: "냉동우유",
+    image: milk,
+    category: "냉동",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-12",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 5,
+    dDay: 0,
+    memo: "",
+  },
+
+  // 임박 (D-1)
+  {
+    id: 3,
+    name: "우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-13",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 3,
+    dDay: 1,
+    memo: "",
+  },
+
+  // 임박 (D-2)
+  {
+    id: 4,
+    name: "우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-14",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 2,
+    dDay: 2,
+    memo: "",
+  },
+
+  // 임박 (D-3) + tip
+  {
+    id: 5,
+    name: "우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-15",
+    createdAt: Date.now() - 1000 * 60 * 60 * 24 * 1,
+    dDay: 3,
+    memo: "",
+    tip: "우유는 냉장고 안쪽 깊숙이 보관하는 것이 가장 좋아요!",
+  },
+
+  // 여유 (D-4)
+  {
+    id: 6,
+    name: "우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-16",
+    createdAt: Date.now(),
+    dDay: 4,
+    memo: "",
+    tip: "우유는 냉장고 안쪽 깊숙이 보관하는 것이 가장 좋아요!우유는 냉장고 안쪽 깊숙이 보관하는 것이 가장 좋아요!우유는 냉장고 안쪽 깊숙이 보관하는 것이 가장 좋아요!우유는 냉장고 안쪽 깊숙이 보관하는 것이 가장 좋아요!",
+  },
+
+  // 여유 (D-7)
+  {
+    id: 7,
+    name: "우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-19",
+    createdAt: Date.now(),
+    dDay: 7,
+    memo: "",
+    tip: "우유는 냉장고 안쪽 깊숙이 보관하는 것이 가장 좋아요!우유는 냉장고 안쪽 깊숙이 보관하는 것이 가장 좋아요!",
+  },
+
+  // 여유 (D-9)
+  {
+    id: 8,
+    name: "우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-21",
+    createdAt: Date.now(),
+    dDay: 9,
+    memo: "",
+  },
+
+  // 동일 dDay 여러 개 (정렬 테스트)
+  {
+    id: 9,
+    name: "우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-19",
+    createdAt: Date.now(),
+    dDay: 7,
+    memo: "",
+  },
+  {
+    id: 10,
+    name: "이름이정말로긴우유",
+    image: milk,
+    category: "냉동",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-19",
+    createdAt: Date.now(),
+    dDay: 7,
+    memo: "텍스트 오버플로우 테스트",
+  },
+
+  // 이름 다른 우유들 (UI 반복 테스트)
+  {
+    id: 11,
+    name: "딸기우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-19",
+    createdAt: Date.now(),
+    dDay: 7,
+    memo: "",
+  },
+  {
+    id: 12,
+    name: "바나나우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-19",
+    createdAt: Date.now(),
+    dDay: 7,
+    memo: "",
+  },
+  {
+    id: 13,
+    name: "초코우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-19",
+    createdAt: Date.now(),
+    dDay: 7,
+    memo: "",
+  },
+  {
+    id: 14,
+    name: "두바이초코우유",
+    image: milk,
+    category: "냉장",
+    quantity: 1,
+    unit: "개",
+    expiryDate: "2025-02-19",
+    createdAt: Date.now(),
+    dDay: 7,
+    memo: "",
+  },
+];

@@ -1,0 +1,64 @@
+/* global.css or recipe.css */
+
+@keyframes floatY {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -8px);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+}
+
+.floating-notice {
+  position: fixed;
+  top: 106px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  height: 44px;
+  padding: 12px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  border-radius: 10px;
+  border: 1px solid #33e389;
+  background: rgba(255, 255, 255, 0.76);
+
+  color: #1fc16f;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+
+  /* 추가 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+  width: fit-content; /* 내용만큼 너비 */
+  max-width: calc(100vw - 32px); /* 좌우 여백 확보 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 정말 길면 … 처리 */
+
+  animation: floatY 2s ease-in-out infinite;
+  z-index: 50;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.step-message {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+/* 
+.animate-fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+} */
