@@ -16,6 +16,7 @@ export default function Initial() {
     const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&prompt=consent`;
     window.location.href = KAKAO_AUTH_URL;
   };
+
   const handleGoogleLogin = () => {
     const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
     const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
