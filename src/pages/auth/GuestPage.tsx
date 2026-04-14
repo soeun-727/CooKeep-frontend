@@ -45,8 +45,8 @@ export default function GuestPage() {
 
   return (
     <div className="relative w-full h-dvh bg-[#FAFAFA] overflow-hidden">
-      <div className="flex flex-col items-center w-full h-full">
-        <div className="w-full flex justify-center mt-[62px]">
+      <div className="flex flex-col items-center w-full">
+        <div className="w-full flex justify-center mt-[62px] pb-10 shrink-0">
           {renderSlide()}
         </div>
       </div>
