@@ -56,7 +56,7 @@ export default function GuestPage() {
           e.stopPropagation();
           navigate("/");
         }}
-        className="absolute top-5 right-4 z-50
+        className="absolute top-5 right-4 z-200
                    inline-flex py-2 px-[22px]
                    items-center justify-center gap-[8px]
                    rounded-full bg-[rgba(235,235,235,0.8)]

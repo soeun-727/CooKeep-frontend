@@ -3,7 +3,7 @@ import RecipeTitle from "../../recipe/main/result/RecipeTitle";
 import RecipeContentSection from "../../recipe/main/result/RecipeContentSection";
 import RecipeYoutubeCard from "../../recipe/main/result/RecipeYoutubeCard";
 import notice from "../../../assets/guest/recipe_notice.svg";
-import DoublecheckModal from "../../ui/DoublecheckModal";
+import OnboardingRewardModal from "../../ui/OnboardingRewardModal";
 
 interface GuestRecipeResultProps {
   onNext: () => void;
@@ -114,22 +114,24 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
             />
           )}
           <button
-            onClick={handleButtonClick}
-            className="w-full rounded-[10px] h-[38px] typo-button text-white bg-[#32E389] active:scale-95 transition-transform"
+            onClick={(e) => {
+              if (!isDimmed) {
+                setIsDimmed(true);
+              } else {
+                handleButtonClick(e);
+              }
+            }}
+            className="w-full rounded-[10px] h-[38px] typo-button text-white bg-[#32E389]"
           >
             이 레시피대로 요리할래요
           </button>
         </div>
       </div>
 
-      <DoublecheckModal
-        variant="singular"
+      <OnboardingRewardModal
         isOpen={isModalOpen}
         onClose={onNext}
-        title="🍪 쿠키 1개"
-        description={"첫 요리 완료!\n쿠키 선물이 도착했어요"}
-        onConfirm={onNext}
-        confirmText="확인"
+        type={"INGREDIENT"}
       />
     </div>
   );
