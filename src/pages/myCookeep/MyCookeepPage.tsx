@@ -39,8 +39,6 @@ export default function MyCookeepPage() {
       .split("T")[0];
   };
 
-  const setLoading = useLoadingStore((s) => s.setLoading);
-
   const fetchDailyData = useCallback(
     async (dateStr: string) => {
       try {
