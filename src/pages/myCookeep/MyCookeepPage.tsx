@@ -11,7 +11,6 @@ import RecordCard from "../../components/myCookeep/record/RecordCard";
 import { getDailyRecipesByDate } from "../../api/myRecipe";
 import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
 import { useCookeepsStore } from "../../stores/useCookeepsStore";
-import { useLoadingStore } from "../../stores/useLoadingStore";
 
 type TabType = "record" | "calendar" | "statistics";
 
