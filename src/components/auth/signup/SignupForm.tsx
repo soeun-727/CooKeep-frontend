@@ -8,6 +8,7 @@ import { saveTokens } from "../../../utils/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PhoneAuthModal from "./PhoneAuthModal";
+import { registerPushNotification } from "../../../api/push";
 
 interface Agreements {
   terms: boolean;
@@ -62,14 +63,13 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
   const [emailAlreadyModal, setEmailAlreadyModal] = useState(false);
 
   const handleSubmit = async () => {
-    // 중복 클릭 + 조건 체크
     if (!isSignupEnabled || loading) {
       setServerError("모든 필수 항목을 확인해주세요.");
       return;
     }
 
     setServerError(undefined);
-    setLoading(true); // 로딩 시작
+    setLoading(true);
 
     try {
       const res = await signup({
@@ -80,23 +80,22 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
         marketingConsent: agreements.marketing,
       });
 
-      // 토큰 저장
+      // 1. 토큰 저장
       saveTokens({
         accessToken: res.data.accessToken,
         refreshToken: res.data.refreshToken,
       });
 
-      // 성공 UI
       setIsFinished(true);
 
-      // 명세: 회원가입 성공 → 무조건 온보딩
-      // setTimeout(() => {
-      //   navigate("/onboarding");
-      // }, 500);
+      if (agreements.marketing) {
+        registerPushNotification().catch((err) => {
+          console.error("회원가입 후 푸시 등록 실패 (비필수):", err);
+        });
+      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const code = err.response?.data?.code;
-
         if (code === "USER-002") {
           setServerError("이미 사용 중인 전화번호입니다.");
         } else if (code === "USER-003") {
@@ -111,7 +110,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
         setServerError("알 수 없는 오류가 발생했습니다.");
       }
     } finally {
-      setLoading(false); // 성공/실패 상관없이 반드시 실행
+      setLoading(false);
     }
   };
 
