@@ -1,5 +1,11 @@
 import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching";
+// sw.ts 최상단
+console.log("서비스 워커 로드됨: " + new Date().toLocaleTimeString());
 
+self.addEventListener("push", (event) => {
+  // 여기에 중단점을 걸거나 무조건 alert 대신 로그를 찍어야 합니다.
+  console.log("푸시 수신 성공!!", event.data?.text());
+});
 declare const self: ServiceWorkerGlobalScope & {
   __WB_MANIFEST: Array<any>;
 };

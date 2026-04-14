@@ -14,8 +14,18 @@ import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
 import { getRefrigeratorHome } from "../../../api/ingredient";
 import { getPushEligibility } from "../../../api/user";
+import { testExpirationPush } from "../../../api/push";
 
 export default function FridgeTab() {
+  const handleTestPush = async () => {
+    try {
+      await testExpirationPush();
+      alert("푸시 전송 요청을 보냈습니다. 잠시만 기다려주세요!");
+    } catch (error) {
+      console.error("테스트 푸시 실패:", error);
+      alert("푸시 전송에 실패했습니다. 구독 등록 여부를 확인해주세요.");
+    }
+  };
   const { ingredients, setIngredients, searchTerm, viewCategory } =
     useIngredientStore();
   const { selectedIngredientId, closeDetail } = useIngredientStore();
@@ -129,6 +139,12 @@ export default function FridgeTab() {
             image={pantryIcon}
             ingredients={ingredients.filter((i) => i.category === "상온")}
           />
+          <button
+            onClick={handleTestPush}
+            className="p-2 bg-blue-500 text-white rounded mt-4"
+          >
+            🔔 푸시 알림 즉시 테스트
+          </button>
         </div>
       )}
       <ItemOption />

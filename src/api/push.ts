@@ -89,3 +89,13 @@ export const unsubscribePush = async () => {
     return false;
   }
 };
+
+// src/api/push.ts
+
+/**
+ * 4. 웹 푸시 즉시 전송 테스트 (EXPIRATION)
+ */
+export const testExpirationPush = async () => {
+  // 로그인한 유저 본인에게 푸시를 쏘는 것이므로 별도의 body는 필요 없을 것입니다.
+  return await api.post("/api/users/me/web/push/test/expiration");
+};
