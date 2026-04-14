@@ -12,7 +12,6 @@ import { getDailyRecipesByDate } from "../../api/myRecipe";
 import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
 import { useCookeepsStore } from "../../stores/useCookeepsStore";
 import { useLoadingStore } from "../../stores/useLoadingStore";
-// import { startLoading, stopLoading } from "../../utils/loading";
 
 type TabType = "record" | "calendar" | "statistics";
 
@@ -40,23 +39,10 @@ export default function MyCookeepPage() {
       .split("T")[0];
   };
 
-  // const fetchDailyData = async (dateStr: string) => {
-  //   try {
-  //     const response = await getDailyRecipesByDate(dateStr);
-  //     if (response.status === "OK") {
-  //       setRecords(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.error("레시피 조회 실패:", error);
-  //     setRecords([]);
-  //   }
-  // };
   const setLoading = useLoadingStore((s) => s.setLoading);
 
   const fetchDailyData = useCallback(
     async (dateStr: string) => {
-      setLoading(true);
-
       try {
         const response = await getDailyRecipesByDate(dateStr);
         if (response.status === "OK") {
@@ -65,24 +51,11 @@ export default function MyCookeepPage() {
       } catch (error) {
         console.error("레시피 조회 실패:", error);
         setRecords([]);
-      } finally {
-        setLoading(false);
       }
     },
     [setRecords],
   );
 
-  // useEffect(() => {
-  //   if (activeTab === "record") {
-  //     fetchDailyData(getKstToday());
-  //   }
-  // }, [activeTab]); // 여기서 fetchDailyData 의존성 에러가 나면 useCallback으로 감싸거나 일단 이대로 진행하세요.
-
-  // useEffect(() => {
-  //   if (activeTab === "record" && records.length === 0) {
-  //     fetchDailyData(getKstToday());
-  //   }
-  // }, [activeTab, records.length, fetchDailyData]);
   useEffect(() => {
     if (activeTab === "record") {
       fetchDailyData(getKstToday());
@@ -100,6 +73,11 @@ export default function MyCookeepPage() {
       setActiveTab(tab);
       setDismissed(false);
       setEnteredByBottomTab(false);
+    }
+  };
+  const handleActiveTabClick = (tab: string) => {
+    if (tab === "calendar") {
+      setRecords([]);
     }
   };
 
@@ -141,6 +119,7 @@ export default function MyCookeepPage() {
           <MyCookeepTabBar
             activeTab={activeTab}
             onTabChange={handleTabChange}
+            onActiveTabClick={handleActiveTabClick}
           />
         </div>
       </div>
