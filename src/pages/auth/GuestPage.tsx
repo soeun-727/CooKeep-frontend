@@ -8,6 +8,7 @@ import GuestRecipeIntro from "../../components/auth/guest/GuestRecipeIntro";
 import GuestRecipeLevel from "../../components/auth/guest/GuestRecipeLevel";
 import GuestRecipeLoading from "../../components/auth/guest/GuestRecipeLoading";
 import GuestRecipe from "../../components/auth/guest/GuestRecipe";
+import GuestLast from "../../components/auth/guest/GuestLast";
 
 export default function GuestPage() {
   const navigate = useNavigate();
@@ -37,6 +38,8 @@ export default function GuestPage() {
         return <GuestRecipeLoading onNext={handleNext} />;
       case 7:
         return <GuestRecipe onNext={handleNext} />;
+      case 8:
+        return <GuestLast onNext={handleNext} />;
       default:
         navigate("/");
         return null;
