@@ -9,6 +9,7 @@ import ConfirmModal from "../ui/ConfirmModal";
 import { getMyProfile, MyProfileResponse } from "../../api/user";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { loadingChar } from "../../assets";
+import { unsubscribePush } from "../../api/push";
 
 export default function SettingsMain() {
   const navigate = useNavigate();
@@ -35,17 +36,21 @@ export default function SettingsMain() {
 
   const handleLogoutConfirm = async () => {
     setOpenLogoutModal(false);
+    try {
+      await unsubscribePush();
+    } catch (err) {
+      console.error("로그아웃 중 푸시 구독 해제 실패:", err);
+    }
 
-    // 1. 스토어의 logout 실행 (API 호출 + 토큰 삭제 + 상태 초기화)
     await logout();
-
-    // 2. [추가] 현재 컴포넌트의 로컬 상태도 비워주기
-    // 이렇게 하면 아래 if (loading || !profile) return null; 로직에 걸려
-    // 화면이 즉시 비워지거나 스켈레톤/로딩 상태로 전환됩니다.
     setProfile(null);
-
-    // 3. 홈 또는 로그인 페이지로 이동
     navigate("/", { replace: true });
+  };
+
+  const handleNotificationChange = (isAgreed: boolean) => {
+    if (profile) {
+      setProfile({ ...profile, marketingPush: isAgreed });
+    }
   };
 
   if (loading || !profile)
@@ -63,7 +68,10 @@ export default function SettingsMain() {
       <main className="pt-[103px] px-4">
         <div className="space-y-6">
           <ProfileSection profile={profile} />
-          <NotificationSection marketingPush={profile.marketingPush} />
+          <NotificationSection
+            marketingPush={profile.marketingPush}
+            onStateChange={handleNotificationChange}
+          />
           <SupportSection />
         </div>
 
