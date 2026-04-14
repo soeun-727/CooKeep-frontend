@@ -3,6 +3,7 @@ import Button from "../../ui/Button";
 import ExampleNotification from "./ExampleNotification";
 import char from "../../../assets/character/noti_char.svg";
 import { updatePushConsent } from "../../../api/onboarding";
+import { registerPushNotification } from "../../../api/push";
 
 const EXAMPLE_DATA = [
   {
@@ -38,6 +39,14 @@ export default function Notification({ onNext }: Props) {
     setIsLoading(true);
     try {
       await updatePushConsent(isAgreed);
+      if (isAgreed) {
+        const isSuccess = await registerPushNotification();
+        if (!isSuccess) {
+          console.warn(
+            "브라우저 알림 권한이 거부되었거나 등록에 실패했습니다.",
+          );
+        }
+      }
     } catch (error) {
       console.error("알림 설정 실패:", error);
     } finally {
