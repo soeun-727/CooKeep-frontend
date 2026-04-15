@@ -8,6 +8,7 @@ import GuestRecipeIntro from "../../components/auth/guest/GuestRecipeIntro";
 import GuestRecipeLevel from "../../components/auth/guest/GuestRecipeLevel";
 import GuestRecipeLoading from "../../components/auth/guest/GuestRecipeLoading";
 import GuestRecipe from "../../components/auth/guest/GuestRecipe";
+import GuestLast from "../../components/auth/guest/GuestLast";
 
 export default function GuestPage() {
   const navigate = useNavigate();
@@ -37,6 +38,8 @@ export default function GuestPage() {
         return <GuestRecipeLoading onNext={handleNext} />;
       case 7:
         return <GuestRecipe onNext={handleNext} />;
+      case 8:
+        return <GuestLast onNext={handleNext} />;
       default:
         navigate("/");
         return null;
@@ -45,8 +48,8 @@ export default function GuestPage() {
 
   return (
     <div className="relative w-full h-dvh bg-[#FAFAFA] overflow-hidden">
-      <div className="flex flex-col items-center w-full h-full">
-        <div className="w-full flex justify-center mt-[62px]">
+      <div className="flex flex-col items-center w-full">
+        <div className="w-full flex justify-center mt-[62px] pb-10 shrink-0">
           {renderSlide()}
         </div>
       </div>
@@ -56,7 +59,7 @@ export default function GuestPage() {
           e.stopPropagation();
           navigate("/");
         }}
-        className="absolute top-5 right-4 z-50
+        className="absolute top-5 right-4 z-200
                    inline-flex py-2 px-[22px]
                    items-center justify-center gap-[8px]
                    rounded-full bg-[rgba(235,235,235,0.8)]
