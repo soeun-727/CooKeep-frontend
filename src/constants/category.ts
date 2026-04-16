@@ -10,6 +10,7 @@ import simple from "../assets/fridge/items/simple.svg";
 import candy from "../assets/fridge/items/candy.svg";
 import drink from "../assets/fridge/items/drink.svg";
 import ferment from "../assets/fridge/items/fermented.svg";
+import bean from "../assets/fridge/items/bean.svg";
 import elseIcon from "../assets/fridge/items/else.svg";
 
 export interface CategoryItem {
@@ -42,7 +43,8 @@ export const INGREDIENT_CATEGORIES: CategoryItem[] = [
   { id: 10, name: "과자 · 디저트", image: candy, serverKey: "SNACK_DESSERT" },
   { id: 11, name: "음료", image: drink, serverKey: "BEVERAGE" },
   { id: 12, name: "절임 · 발효", image: ferment, serverKey: "FERMENTED" },
-  { id: 13, name: "기타", image: elseIcon, serverKey: "ETC" },
+  { id: 13, name: "콩류", image: bean, serverKey: "BEANS" },
+  { id: 14, name: "기타", image: elseIcon, serverKey: "ETC" },
 ];
 
 export const CATEGORY_ID_TO_SERVER_KEY = Object.fromEntries(

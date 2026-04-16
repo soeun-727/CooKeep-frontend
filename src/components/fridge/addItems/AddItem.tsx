@@ -104,7 +104,7 @@ export default function AddItem() {
                 name: ing.name,
                 image: ing.imageUrl,
                 type: ing.type as IngredientType,
-                categoryId: fullInfo?.categoryId || 13,
+                categoryId: fullInfo?.categoryId || 14,
                 storageType: fullInfo?.storageType || ("FRIDGE" as StorageType),
                 unit: fullInfo?.unit || ("PIECE" as UnitType),
                 expiration: fullInfo?.expiration || calculateExpiryDate(7),
@@ -159,7 +159,7 @@ export default function AddItem() {
           />
         </div>
         <div className="mt-4 pl-[31px] w-[401px] shrink-0">
-          <div className="flex gap-[6px] overflow-x-auto no-scrollbar scroll-smooth pb-2">
+          <div className="flex gap-[6px] overflow-x-auto no-scrollbar scroll-smooth pb-2 pr-8">
             {INGREDIENT_CATEGORIES.map((category) => (
               <div key={category.id} className="flex-shrink-0">
                 <Category
