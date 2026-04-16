@@ -1,5 +1,6 @@
 import { useState, TouchEvent } from "react";
 import image1 from "../../../assets/onboarding/guide_1.svg";
+import image1_2 from "../../../assets/onboarding/guide_1_2.svg";
 import image2 from "../../../assets/onboarding/guide_2.svg";
 import image3 from "../../../assets/onboarding/guide_3.svg";
 import image4 from "../../../assets/onboarding/guide_4.svg";
@@ -103,6 +104,7 @@ export default function Guide({ onNext }: Props) {
   return (
     <div
       className="flex flex-col h-full items-center justify-end select-none mb-4 overflow-hidden"
+      style={{ transform: "translateY(-21px)" }}
       onClick={() => currentIndex < 3 && handleNext()}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -132,16 +134,24 @@ export default function Guide({ onNext }: Props) {
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {ONBOARDING_DATA.map((data) => (
+          {ONBOARDING_DATA.map((data, index) => (
             <div
               key={data.id}
-              className="min-w-full flex flex-col items-center"
+              className="min-w-full flex flex-col items-center relative"
             >
               <img
                 className="h-131 pointer-events-none drop-shadow-[0px_3px_12px_rgba(156,156,156,0.2)]"
                 src={data.img}
                 alt="guide"
               />
+
+              {/* 첫 번째 페이지만 추가 이미지 */}
+              {index === 0 && (
+                <img
+                  src={image1_2}
+                  className="absolute z-10 w-[38%] right-[8%] bottom-[17%]"
+                />
+              )}
             </div>
           ))}
         </div>
