@@ -35,16 +35,17 @@ api.interceptors.response.use(
       error.response?.status === 401 ||
       error.response?.data?.code === "AUTH-001";
 
-    if (isUnauthorized && !originalRequest._retry) {
+    if (originalRequest.url?.includes("refresh") || originalRequest._retry) {
+      return Promise.reject(error);
+    }
+
+    if (isUnauthorized) {
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })
           .then((token) => {
-            const hasBearer = (token as string).startsWith("Bearer ");
-            originalRequest.headers.Authorization = hasBearer
-              ? token
-              : `Bearer ${token}`;
+            originalRequest.headers.Authorization = `Bearer ${token}`;
             return api(originalRequest);
           })
           .catch((err) => Promise.reject(err));
@@ -57,12 +58,7 @@ api.interceptors.response.use(
         const newAccessToken = await refreshAccessToken();
         processQueue(null, newAccessToken);
 
-        if (originalRequest.headers) {
-          const hasBearer = newAccessToken.startsWith("Bearer ");
-          originalRequest.headers.Authorization = hasBearer
-            ? newAccessToken
-            : `Bearer ${newAccessToken}`;
-        }
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
 
         if (originalRequest.data && typeof originalRequest.data === "string") {
           try {
@@ -73,16 +69,13 @@ api.interceptors.response.use(
         return api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError, null);
-
         clearTokens();
-        import("../stores/useAuthStore").then((module) => {
-          module.useAuthStore.getState().logout();
-        });
 
-        if (
-          !window.location.pathname.includes("/login") &&
-          !window.location.pathname.includes("/auth")
-        ) {
+        const { useAuthStore } = await import("../stores/useAuthStore");
+        useAuthStore.getState().logout();
+
+        const publicPaths = ["/", "/login", "/signup", "/onboarding"];
+        if (!publicPaths.includes(window.location.pathname)) {
           window.location.href = "/";
         }
 

@@ -101,7 +101,10 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
   );
 
   return (
-    <div className="relative w-full h-[100dvh] overflow-hidden">
+    <div
+      onClick={() => setIsDimmed(true)}
+      className="relative w-full h-[100dvh] overflow-hidden"
+    >
       {isDimmed && (
         <div className="fixed inset-0 z-90 bg-neutral-900/50 left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
       )}
@@ -115,10 +118,7 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
             </div>
           )}
           {!isDimmed && (
-            <div
-              className="absolute inset-0 z-[120] cursor-pointer"
-              onClick={() => setIsDimmed(true)}
-            />
+            <div className="absolute inset-0 z-[120] cursor-pointer" />
           )}
 
           <div className="flex flex-col gap-[10px] w-full relative z-0">
@@ -189,16 +189,19 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
       </div>
 
       {mode === "fridge" ? (
-        <div className="absolute flex flex-col items-end bottom-35 z-[130] right-[31px]">
+        <div className="absolute flex flex-col items-end bottom-20 z-[130] right-[31px]">
           {isDimmed && (
             <img src={notice} alt="click notice" className="w-[270px] -mr-2" />
           )}
           <button
             onClick={(e) => {
-              e.stopPropagation();
-              onNext();
+              if (!isDimmed) {
+                setIsDimmed(true);
+              } else {
+                e.stopPropagation();
+                onNext();
+              }
             }}
-            className="active:scale-95 transition-transform"
           >
             <img src={FAB} alt="add button" />
           </button>

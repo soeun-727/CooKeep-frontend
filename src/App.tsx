@@ -103,8 +103,11 @@ export default function App() {
       if (path === "/" || path === "/login") {
         navigate("/fridge", { replace: true });
       }
-    } else if (!isPublic) {
-      navigate("/", { replace: true });
+    } else {
+      if (!isPublic) {
+        console.log("Not logged in, redirecting to /");
+        navigate("/", { replace: true });
+      }
     }
   }, [
     initialized,

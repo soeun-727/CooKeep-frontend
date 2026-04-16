@@ -4,7 +4,7 @@ import Button from "../../ui/Button";
 import bagel from "../../../assets/guest/bagel_card.svg";
 import bagelSelected from "../../../assets/guest/bagel_selected.svg";
 import notice from "../../../assets/guest/item_notice.svg";
-
+import categories from "../../../assets/guest/categories.svg";
 interface GuestAddItemProps {
   onNext: () => void;
 }
@@ -14,22 +14,23 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
   const [isSelected, setIsSelected] = useState(false);
 
   return (
-    <div className="relative w-full h-[100dvh] flex flex-col items-center bg-[#FAFAFA] overflow-hidden">
+    <div
+      onClick={() => !isSelected && setIsDimmed(true)}
+      className="relative w-full h-[100dvh] flex flex-col items-center bg-[#FAFAFA] overflow-hidden"
+    >
       {/* 딤드: z-10 */}
       {isDimmed && (
         <div className="fixed inset-0 z-10 bg-neutral-900/50 transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
       )}
 
       {/* 헤더 영역 */}
-      <div className="shrink-0 flex justify-center">
+      <div className="shrink-0 flex flex-col items-center gap-4">
         <img src={header} alt="header" className="w-[361px]" />
+        <img src={categories} />
       </div>
 
       {/* 그리드 영역 */}
-      <div
-        className="flex-1 w-full flex justify-center items-start mt-4 overflow-y-auto"
-        onClick={() => !isSelected && setIsDimmed(true)}
-      >
+      <div className="flex-1 w-full flex justify-center items-start mt-4 overflow-y-auto">
         <div className="flex w-[294px] pb-40 relative z-20">
           {/* 베이글 이미지 */}
           <img
@@ -37,8 +38,12 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
             alt="bagel"
             className={`cursor-pointer transition-all ${isDimmed && !isSelected ? "relative z-20" : ""}`}
             onClick={(e) => {
-              e.stopPropagation();
-              setIsSelected(!isSelected);
+              if (!isDimmed) {
+                setIsDimmed(true);
+              } else {
+                e.stopPropagation();
+                setIsSelected(!isSelected);
+              }
             }}
           />
 

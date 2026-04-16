@@ -12,7 +12,7 @@ export default function GuestRecipeLevel({ onNext }: Props) {
     <div className="flex flex-col items-center">
       <img src={header} />
       <img src={contents} className="mt-[38px]" />
-      <div className="w-full -mt-[50px]">
+      <div className="w-full -mt-[50px] pb-20">
         <DifficultySelector />
       </div>
       <div className="fixed bottom-[34px] left-1/2 -translate-x-1/2 z-[130]">

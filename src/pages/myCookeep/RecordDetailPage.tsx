@@ -275,45 +275,47 @@ export default function RecordDetailPage() {
           )}
         </div>
 
-        {/* 공개 여부 수정 컨트롤 */}
-        <div className="mt-[32px] flex justify-center gap-[9px] pb-9">
-          {/* 나만 보기 버튼 */}
-          <button
-            disabled={!isEditing}
-            onClick={() => setTempIsPublic(false)} // ← 즉시 API 말고 임시저장
-            className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
-              ${tempIsPublic === false ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
-          >
-            <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
-              <img src={privateIcon} className="w-[24px]" alt="private" />
-            </div>
-            <span className="typo-label text-[#202020]">나만 보기</span>
-          </button>
-
-          {/* 쿠킵스 공개 버튼 */}
-          <button
-            disabled={!isEditing}
-            onClick={() => setTempIsPublic(true)} // ← 즉시 API 말고 임시저장
-            className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
-              ${tempIsPublic === true ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
-          >
-            <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
-              <img src={publicIcon} className="w-[36px]" alt="public" />
-            </div>
-            <span className="typo-label text-[#202020]">쿠킵스 공개</span>
-          </button>
-        </div>
         {isEditing && (
-          <div className=" flex mt-2 mb-2">
-            <Button
-              size="L"
-              variant="black"
-              onClick={handleUpdateClick}
-              className="w-full"
-            >
-              수정 완료
-            </Button>
-          </div>
+          <>
+            {/* 공개 여부 수정 컨트롤 */}
+            <div className="mt-[32px] flex justify-center gap-[9px] pb-9">
+              {/* 나만 보기 버튼 */}
+              <button
+                disabled={!isEditing}
+                onClick={() => setTempIsPublic(false)} // ← 즉시 API 말고 임시저장
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
+              ${tempIsPublic === false ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+              >
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                  <img src={privateIcon} className="w-[24px]" alt="private" />
+                </div>
+                <span className="typo-label text-[#202020]">나만 보기</span>
+              </button>
+
+              {/* 쿠킵스 공개 버튼 */}
+              <button
+                disabled={!isEditing}
+                onClick={() => setTempIsPublic(true)} // ← 즉시 API 말고 임시저장
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
+              ${tempIsPublic === true ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+              >
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                  <img src={publicIcon} className="w-[36px]" alt="public" />
+                </div>
+                <span className="typo-label text-[#202020]">쿠킵스 공개</span>
+              </button>
+            </div>
+            <div className=" flex mt-2 mb-2">
+              <Button
+                size="L"
+                variant="black"
+                onClick={handleUpdateClick}
+                className="w-full"
+              >
+                수정 완료
+              </Button>
+            </div>
+          </>
         )}
         {showPhotoRewardModal && (
           <PhotoRewardModal
