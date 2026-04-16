@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TextField from "../../ui/TextField";
 import searchIcon from "../../../assets/fridge/search_on.svg";
 import Category from "./components/Category";
@@ -126,15 +126,18 @@ export default function AddItem() {
     fetchData();
   }, [setHistoryItems]);
 
-  const filteredItems = masterItems.filter((item) => {
-    const matchesSearch = item.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    if (searchTerm.trim().length > 0) {
-      return matchesSearch;
+  const filteredItems = useMemo(() => {
+    const trimmedSearch = searchTerm.trim().toLowerCase();
+
+    if (trimmedSearch.length > 0) {
+      return masterItems.filter((item) =>
+        item.name.toLowerCase().includes(trimmedSearch),
+      );
     }
-    return item.categoryId === selectedCategoryId;
-  });
+    return masterItems.filter(
+      (item) => Number(item.categoryId) === Number(selectedCategoryId),
+    );
+  }, [masterItems, searchTerm, selectedCategoryId]);
 
   if (isLoading)
     return (
