@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TextField from "../../ui/TextField";
 import searchIcon from "../../../assets/fridge/search_on.svg";
 import Category from "./components/Category";
@@ -104,7 +104,7 @@ export default function AddItem() {
                 name: ing.name,
                 image: ing.imageUrl,
                 type: ing.type as IngredientType,
-                categoryId: fullInfo?.categoryId || 13,
+                categoryId: fullInfo?.categoryId || 14,
                 storageType: fullInfo?.storageType || ("FRIDGE" as StorageType),
                 unit: fullInfo?.unit || ("PIECE" as UnitType),
                 expiration: fullInfo?.expiration || calculateExpiryDate(7),
@@ -126,15 +126,18 @@ export default function AddItem() {
     fetchData();
   }, [setHistoryItems]);
 
-  const filteredItems = masterItems.filter((item) => {
-    const matchesSearch = item.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    if (searchTerm.trim().length > 0) {
-      return matchesSearch;
+  const filteredItems = useMemo(() => {
+    const trimmedSearch = searchTerm.trim().toLowerCase();
+
+    if (trimmedSearch.length > 0) {
+      return masterItems.filter((item) =>
+        item.name.toLowerCase().includes(trimmedSearch),
+      );
     }
-    return item.categoryId === selectedCategoryId;
-  });
+    return masterItems.filter(
+      (item) => Number(item.categoryId) === Number(selectedCategoryId),
+    );
+  }, [masterItems, searchTerm, selectedCategoryId]);
 
   if (isLoading)
     return (
@@ -156,7 +159,7 @@ export default function AddItem() {
           />
         </div>
         <div className="mt-4 pl-[31px] w-[401px] shrink-0">
-          <div className="flex gap-[6px] overflow-x-auto no-scrollbar scroll-smooth pb-2">
+          <div className="flex gap-[6px] overflow-x-auto no-scrollbar scroll-smooth pb-2 pr-8">
             {INGREDIENT_CATEGORIES.map((category) => (
               <div key={category.id} className="flex-shrink-0">
                 <Category
