@@ -43,7 +43,7 @@ interface SelectedPlant {
 export default function CookeepsPage() {
   const [toastVisible, setToastVisible] = useState(false);
   const [activeModal, setActiveModal] = useState<ActiveModal>(null);
-  const [isOnboarded, setIsOnboarded] = useState(true);
+  const [isOnboarded, setIsOnboarded] = useState<boolean | null>(null);
   const [isCheckLoading, setIsCheckLoading] = useState(true);
   const [selectedPlantData, setSelectedPlantData] =
     useState<SelectedPlant | null>(null);
@@ -113,7 +113,7 @@ export default function CookeepsPage() {
       try {
         const res = await getOnboardingStatus();
         if (res.data && res.data.data) {
-          setIsOnboarded(res.data.data.isCookeepsOnboarded);
+          setIsOnboarded(res.data.data.cookeepsOnboarded);
         }
       } catch (error) {
         console.error("온보딩 상태 로드 실패:", error);
@@ -157,7 +157,11 @@ export default function CookeepsPage() {
 
   const derivedModal = ((): ActiveModal => {
     if (showHarvestModal || isCheckLoading) return null;
-    if (!isOnboarded && !currentPlant && !isPlantLoading) return "onboarding";
+    // 아직 API 안왔으면 아무것도 안띄움
+    if (isOnboarded === null || isPlantLoading) return null;
+
+    // 온보딩 안한 사람만
+    if (!isOnboarded) return "onboarding";
     if (activeModal === "free") return "free";
     if (activeModal === "selected") return "selected";
     if (activeModal === "harvest") return "harvest";
