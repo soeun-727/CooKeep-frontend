@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../../ui/Button";
 import { getKoreanUnit } from "../../../../../utils/mapping";
 
@@ -10,11 +10,15 @@ interface QuantityEditorProps {
 export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
   const [isCustomInput, setIsCustomInput] = useState(false);
   const [customValue, setCustomValue] = useState(getKoreanUnit(value));
-  const [selectedUnit, setSelectedUnit] = useState<string | null>(value);
+  const [selectedUnit, setSelectedUnit] = useState<string | null>(
+    getKoreanUnit(value),
+  );
   const units = ["개", "묶음", "봉지", "팩", "캔", "병"];
 
+  const koreanValue = getKoreanUnit(value);
+
   const handleQuickSelect = (unit: string) => {
-    if (unit == value) return;
+    if (unit === koreanValue) return;
     setSelectedUnit(unit);
     setTimeout(() => {
       onSave(unit);
@@ -26,13 +30,18 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
     onSave(customValue);
   };
 
+  useEffect(() => {
+    setSelectedUnit(getKoreanUnit(value));
+    setCustomValue(getKoreanUnit(value));
+  }, [value]);
+
   return (
     <div className="flex flex-col gap-[18px] items-center mt-[18px]">
       {!isCustomInput ? (
         <>
           <div className="flex flex-col gap-3">
             {units.map((unit) => {
-              const isInitialValue = unit === value;
+              const isInitialValue = unit === koreanValue;
               const isNewlySelected = selectedUnit === unit && !isInitialValue;
               return (
                 <button

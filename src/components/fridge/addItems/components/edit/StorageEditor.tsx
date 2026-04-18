@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import fridgeIcon from "../../../../../assets/fridge/addItem/fridge.svg";
 import freezerIcon from "../../../../../assets/fridge/addItem/freezer.svg";
 import pantryIcon from "../../../../../assets/fridge/addItem/pantry.svg";
 import fridgeSelected from "../../../../../assets/fridge/addItem/fridge_selected.svg";
 import freezerSelected from "../../../../../assets/fridge/addItem/freezer_selected.svg";
 import pantrySelected from "../../../../../assets/fridge/addItem/pantry_selected.svg";
+import { getKoreanStorage } from "../../../../../utils/mapping";
 
 interface StorageEditorProps {
   value: string;
@@ -17,8 +18,11 @@ const STORAGE_CONFIG: Record<string, { default: string; selected: string }> = {
 };
 
 export default function StorageEditor({ value, onSave }: StorageEditorProps) {
-  const [selectedStorage, setSelectedStorage] = useState<string | null>(null);
+  const [selectedStorage, setSelectedStorage] = useState<string | null>(
+    getKoreanStorage(value),
+  );
   const storage = ["냉장", "냉동", "상온"];
+  const koreanValue = getKoreanStorage(value);
 
   const handleQuickSelect = (storageName: string) => {
     setSelectedStorage(storageName);
@@ -27,12 +31,16 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
     }, 250);
   };
 
+  useEffect(() => {
+    setSelectedStorage(getKoreanStorage(value));
+  }, [value]);
+
   return (
     <div className="flex flex-col gap-[18px] items-center mt-[18px] mb-16">
       <>
         <div className="flex flex-col gap-3">
           {storage.map((storage) => {
-            const isInitialValue = storage === value;
+            const isInitialValue = storage === koreanValue;
             const isNewlySelected =
               selectedStorage === storage && !isInitialValue;
             const iconSrc = isNewlySelected

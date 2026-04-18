@@ -14,6 +14,7 @@ import StorageEditor from "./components/edit/StorageEditor";
 import ExpiryEditor from "./components/edit/ExpiryEditor";
 import MemoEditor from "./components/edit/MemoEditor";
 import { calculateExpiryDate } from "../../../utils/expiryDate";
+import DeleteConfirmModal from "../modals/DeleteConfirmModal";
 
 interface DetailedItemProps extends MasterItem {}
 
@@ -100,6 +101,12 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
   };
 
   const { title, component } = renderEditor();
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const handleDeleteConfirm = () => {
+    toggleItem(item);
+    setIsDeleteModalOpen(false);
+  };
 
   return (
     <div className="relative w-[345px] h-[198px] rounded-[6px] bg-[#FFFFFF] shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
@@ -192,7 +199,10 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
       </div>
 
       <button
-        onClick={() => toggleItem(item)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsDeleteModalOpen(true);
+        }}
         className="absolute bottom-1 right-1 z-30 p-1 transition-all active:scale-90"
       >
         <img alt="deleteButton" src={deleteIcon} className="w-10" />
@@ -206,6 +216,13 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
       >
         {component}
       </EditModal>
+      {isDeleteModalOpen && (
+        <DeleteConfirmModal
+          ingredientName={item.name}
+          onConfirm={handleDeleteConfirm}
+          onCancel={() => setIsDeleteModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

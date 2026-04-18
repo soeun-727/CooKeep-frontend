@@ -1,4 +1,4 @@
-// src/utils/ingredientMapper.ts
+// src/utils/mapping.ts
 
 export const UNIT_MAP: Record<string, string> = {
   PIECE: "개",
