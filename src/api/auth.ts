@@ -14,6 +14,7 @@ interface LoginResponse {
     accessToken: string;
     refreshToken: string;
     userStatus: "CREATED" | "ACTIVE";
+    isRewarded: boolean;
   };
 }
 
