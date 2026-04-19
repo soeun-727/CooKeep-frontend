@@ -118,6 +118,15 @@ export default function App() {
     showSplash,
   ]);
 
+  // GA tracking 페이지 이동 추적
+  useEffect(() => {
+    if (!window.gtag) return;
+
+    window.gtag("config", "G-RT9D555519", {
+      page_path: location.pathname + location.search,
+    });
+  }, [location.pathname, location.search]);
+
   if (showSplash && !isCallback) {
     return <SplashPage />;
   }
