@@ -253,13 +253,13 @@ export default function CookeepsPage() {
 
       <WiltingModal
         isOpen={status === "wilting" && !hideWiltingModal}
-        plant={selectedPlantData?.text ?? ""}
+        plant={currentPlant?.plantName ?? ""}
         onClose={() => setHideWiltingModal(true)}
       />
 
       <WiltedModal
         isOpen={status === "wilted"}
-        plant={selectedPlantData?.text ?? ""}
+        plant={currentPlant?.plantName ?? ""}
         onClose={() => setActiveModal(null)}
         onAbandon={async () => {
           try {
