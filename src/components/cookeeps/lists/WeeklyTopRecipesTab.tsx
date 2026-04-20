@@ -78,15 +78,15 @@ export default function WeeklyTopRecipesTab() {
             <div
               className="h-[160px] rounded-[6px] bg-cover bg-center relative"
               style={{
-                backgroundImage: `linear-gradient(180deg, rgba(17,17,17,0.4) 0%, rgba(17,17,17,0) 24%), url(${item.recipeImageUrl || tempImage})`,
+                backgroundImage: `url(${item.recipeImageUrl || tempImage})`,
               }}
             >
               {/* 유저 뱃지 */}
-              <div className="absolute top-2 left-2 flex items-center h-[20px] px-[12px] rounded-full bg-black/60">
+              <div className="absolute top-2 left-2 flex items-center h-[20px] gap-[4px]  px-[12px] rounded-full bg-black/60">
                 <span className="text-[#32E389] text-[12px] font-medium">
-                  {item.nickname}
+                  {item.nickname || "user 01"}
                 </span>
-                <span className="text-white text-[12px] font-medium">
+                <span className="text-white text-[12px] font-medium ">
                   님의 레시피
                 </span>
               </div>
