@@ -2,15 +2,17 @@ type DeleteConfirmModalProps = {
   ingredientName: string;
   onConfirm: () => void;
   onCancel: () => void;
+  confirmColor?: "black" | "green"; // 추가
 };
 
 export default function DeleteConfirmModal({
   ingredientName,
   onConfirm,
   onCancel,
+  confirmColor = "black",
 }: DeleteConfirmModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-60 flex items-center justify-center">
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-[rgba(17,17,17,0.5)]"
@@ -30,7 +32,7 @@ export default function DeleteConfirmModal({
 
             {/* 메시지 */}
             <p className="w-full text-center text-[14px] font-medium leading-[20px] text-[#202020]">
-              재료를 삭제하시겠습니까?
+              재료를 삭제하시겠어요?
             </p>
           </div>
 
@@ -39,7 +41,9 @@ export default function DeleteConfirmModal({
             {/* 네 */}
             <button
               onClick={onConfirm}
-              className="flex-1 h-[44px] rounded-[10px] bg-[#202020] flex items-center justify-center"
+              className={`flex-1 h-[44px] rounded-[10px] flex items-center justify-center
+    ${confirmColor === "green" ? "bg-[#32E389]" : "bg-[#202020]"}
+  `}
             >
               <span className="text-white text-[14px] font-semibold leading-[24px]">
                 네
