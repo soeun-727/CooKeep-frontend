@@ -7,11 +7,18 @@ export interface OnboardingIngredient {
   ingredient: string; // 재료 이름
 }
 
+export interface RawIngredient {
+  ingredientId: number;
+  name: string;
+  leftDays: number;
+  imageUrl: string;
+}
+
 export interface OnboardingResponse {
   status: string;
   timestamp: string;
   data: {
-    ingredients: OnboardingIngredient[];
+    ingredients: RawIngredient[];
   };
 }
 
