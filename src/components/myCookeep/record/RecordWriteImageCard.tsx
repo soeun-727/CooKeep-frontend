@@ -1,31 +1,34 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import tempFoodPhoto from "../../../assets/mycookeep/record/temp_food_photo.svg";
 import editIcon from "../../../assets/fridge/edit_memo.svg";
 
 interface RecordWriteImageCardProps {
   title: string;
   imageSrc?: string;
-  onClickAddImage: () => void;
+  // onClickAddImage: () => void;
+  onImageChange: (file: File) => void; // onClickAddImage 대신
   onChangeTitle: (title: string) => void;
-  // ✅ 이거 추가
+  // 이거 추가
   onDeleteImage: () => void;
 }
 
 export default function RecordWriteImageCard({
   title,
   imageSrc,
-  onClickAddImage,
+  // onClickAddImage,
+  onImageChange, // 변경
   onChangeTitle,
   onDeleteImage,
 }: RecordWriteImageCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [localTitle, setLocalTitle] = useState(title);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null); // 여기로 이동
 
   const handleBlur = () => {
     setIsEditing(false);
     onChangeTitle(localTitle.trim() || title);
   };
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   return (
     <>
@@ -34,7 +37,7 @@ export default function RecordWriteImageCard({
         <div
           onClick={() => {
             if (!imageSrc) {
-              onClickAddImage();
+              fileInputRef.current?.click(); // 직접 호출
             }
           }}
           className="relative
@@ -70,7 +73,7 @@ export default function RecordWriteImageCard({
                 <div className="flex gap-2 w-full">
                   {/* 변경 */}
                   <button
-                    onClick={onClickAddImage}
+                    onClick={() => fileInputRef.current?.click()} // 직접 호출
                     className="flex-1 h-[44px] rounded-[10px] bg-[#32E389] text-white font-semibold"
                   >
                     변경
@@ -87,6 +90,19 @@ export default function RecordWriteImageCard({
               </div>
             </div>
           )}
+
+          {/* input을 카드 내부로 이동 */}
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            hidden
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) onImageChange(file); // File 객체를 부모로 전달
+              e.target.value = "";
+            }}
+          />
         </div>
 
         {/* 제목 영역 */}
