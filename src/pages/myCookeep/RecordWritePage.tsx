@@ -26,7 +26,9 @@ export default function RecordWritePage() {
   // const [showUploadModal, setShowUploadModal] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isUploaded, setIsUploaded] = useState(false); // 추가
+  // isUploaded state를 ref로 교체
+  const isUploadedRef = useRef(false); // ← 추가
+  // const [isUploaded, setIsUploaded] = useState(false); // 제거
   const [rewardQueue, setRewardQueue] = useState<string[]>([]);
 
   const {
@@ -172,7 +174,7 @@ export default function RecordWritePage() {
         setRewardQueue(rewards);
 
         setIsSuccess(true);
-        setIsUploaded(true);
+        isUploadedRef.current = true; // ← setIsUploaded(true) 대신
       } else {
         alert("업로드에 실패했습니다.");
       }
@@ -191,15 +193,33 @@ export default function RecordWritePage() {
   };
 
   // 추가
+  // useEffect(() => {
+  //   return () => {
+  //     if (!isUploaded && image?.url) {
+  //       deleteImage(image.url).catch(() => {
+  //         console.warn("페이지 이탈 시 이미지 삭제 실패");
+  //       });
+  //     }
+  //   };
+  // }, [image?.url, isUploaded]);
+
+  const imageUrlRef = useRef<string | undefined>(undefined);
+
+  // image가 바뀔 때마다 ref 동기화
+  useEffect(() => {
+    imageUrlRef.current = image?.url;
+  }, [image?.url]);
+
+  // cleanup은 언마운트 시에만 한 번만 실행
   useEffect(() => {
     return () => {
-      if (!isUploaded && image?.url) {
-        deleteImage(image.url).catch(() => {
+      if (!isUploadedRef.current && imageUrlRef.current) {
+        deleteImage(imageUrlRef.current).catch(() => {
           console.warn("페이지 이탈 시 이미지 삭제 실패");
         });
       }
     };
-  }, [image?.url, isUploaded]);
+  }, []); // ← 빈 배열로 마운트/언마운트 시에만
 
   if (!recipeDetail) {
     return (
