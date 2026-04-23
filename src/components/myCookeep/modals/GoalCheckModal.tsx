@@ -27,10 +27,7 @@ const GoalcheckModal: React.FC<Props> = ({
         </p>
         <div className="flex gap-2">
           <button
-            onClick={() => {
-              onConfirm();
-              onClose();
-            }}
+            onClick={onConfirm}
             className="typo-label w-[95px] h-11 text-white bg-(--color-green) rounded-[10px]"
           >
             네

@@ -7,6 +7,7 @@ import Button from "../../components/ui/Button";
 import GoalcheckModal from "../../components/myCookeep/modals/GoalCheckModal";
 import { GOAL_TYPE_MAP } from "../../utils/mapping";
 import { updateWeeklyGoal } from "../../api/user";
+import axios from "axios";
 
 export default function SetGoalPage() {
   const navigate = useNavigate();
@@ -57,12 +58,23 @@ export default function SetGoalPage() {
 
       const response = await updateWeeklyGoal(requestBody);
 
-      if (response.status === "OK" || response.status === 200) {
+      if (response.status === "OK") {
         navigate("/mycookeep", { replace: true });
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("목표 수정 실패:", error);
-      alert("이번 주 목표가 이미 설정되어 있습니다");
+
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status;
+
+        if (status === 409) {
+          alert("이번 주 목표가 이미 설정되어 있습니다");
+        } else {
+          alert("목표 설정 중 오류가 발생했습니다");
+        }
+      } else {
+        alert("알 수 없는 오류가 발생했습니다");
+      }
     } finally {
       setIsLoading(false);
       setIsModalOpen(false);
