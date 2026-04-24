@@ -4,7 +4,8 @@ export type RewardType =
   | "ONBOARDING_INGREDIENT"
   | "ONBOARDING_RECIPE"
   | "WEEKLY"
-  | "EXPIRING";
+  | "EXPIRING"
+  | "COMEBACK";
 
 interface RewardState {
   queue: RewardType[];
@@ -27,7 +28,12 @@ export const useRewardStore = create<RewardState>((set, get) => ({
     let newQueue;
 
     // 핵심: 온보딩은 무조건 맨 앞
-    if (type === "ONBOARDING_INGREDIENT" || type === "ONBOARDING_RECIPE") {
+    if (type === "COMEBACK") {
+      newQueue = [type, ...queue];
+    } else if (
+      type === "ONBOARDING_INGREDIENT" ||
+      type === "ONBOARDING_RECIPE"
+    ) {
       newQueue = [type, ...queue];
     } else {
       newQueue = [...queue, type];
