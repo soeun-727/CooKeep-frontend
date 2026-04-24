@@ -7,6 +7,7 @@ import { useSignupStore } from "./useSignupStore";
 import { usePhoneUpdateStore } from "./usePhoneUpdateStore";
 import { useFindPasswordStore } from "./useFindPasswordStore";
 import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
+import { useRewardStore } from "./useRewardStore";
 
 interface SocialLoginPayload {
   userId: number;
@@ -14,6 +15,7 @@ interface SocialLoginPayload {
   refreshToken: string;
   nextStep: "TERMS" | "ONBOARDING" | "HOME" | string;
   userStatus: string;
+  isRewarded: boolean;
 }
 
 interface LoginResponse {
@@ -92,6 +94,10 @@ export const useAuthStore = create<AuthState>()(
             accessToken: data.accessToken,
             refreshToken: data.refreshToken,
           });
+
+          if (data.isRewarded) {
+            useRewardStore.getState().enqueue("COMEBACK");
+          }
 
           set({
             isLoggedIn: true,
@@ -183,6 +189,10 @@ export const useAuthStore = create<AuthState>()(
           initialized: true,
           lastLoginAt: Date.now(),
         });
+
+        if (data.isRewarded) {
+          useRewardStore.getState().enqueue("COMEBACK");
+        }
       },
     }),
     {
