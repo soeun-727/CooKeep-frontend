@@ -57,14 +57,14 @@ export default function NotificationSection({ marketingPush }: Props) {
   return (
     <section className="px-4 mt-[26px]">
       <SettingsToggleItem
-        label="Push 수신 동의"
+        label="PUSH 수신 동의"
         checked={enabled}
         onChange={handleToggle}
       />
 
       {showConfirm && (
         <ConfirmModal
-          message="Push 수신에 동의하시겠습니까?"
+          message="마케팅 수신에 동의하시겠습니까?"
           onConfirm={handleConfirm}
           onCancel={handleCancel}
         />

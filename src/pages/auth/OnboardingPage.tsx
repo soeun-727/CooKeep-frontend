@@ -14,6 +14,7 @@ import Preference from "../../components/auth/onboarding/Preference";
 
 import { saveOnboardingData } from "../../api/onboarding";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
+import { GOAL_TYPE_MAP } from "../../utils/mapping";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -63,7 +64,7 @@ export default function Onboarding() {
         // 건너뛰기일 경우 null 또는 백엔드가 원하는 빈 값 처리
         goalActionType: isForcedSkip
           ? null // 또는 "" (백엔드 명세에 따라 결정)
-          : selectedGoal.id.toUpperCase(),
+          : GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
         targetCount: isForcedSkip
           ? null // 또는 0 (건너뛰기 시 값이 없음을 명시)
           : parseInt(goalCount || "0", 10),
