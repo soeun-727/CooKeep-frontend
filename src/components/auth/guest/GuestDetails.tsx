@@ -35,7 +35,7 @@ export default function GuestDetails({ onNext }: Props) {
         </div>
 
         <div
-          className="mt-[43px] w-full flex justify-center px-5"
+          className="mt-[43px] w-full flex justify-center px-5 pointer-events-none"
           onClick={(e) => e.stopPropagation()}
         >
           <DetailedItem {...(guestItem as any)} />
