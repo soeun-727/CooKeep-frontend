@@ -14,12 +14,10 @@ export default function GuestPage() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
 
-  // 다음 단계로 넘기는 공통 함수
   const handleNext = () => {
     setIndex((prev) => prev + 1);
   };
 
-  // 0: 냉장고 가이드, 1: 재료 추가 가이드, 2: ... 순서대로 배치
   const renderSlide = () => {
     switch (index) {
       case 0:
@@ -47,11 +45,10 @@ export default function GuestPage() {
   };
 
   return (
-    <div className="relative w-full h-dvh bg-[#FAFAFA] overflow-hidden">
-      <div className="flex flex-col items-center w-full">
-        <div className="w-full flex justify-center mt-[62px] pb-10 shrink-0">
-          {renderSlide()}
-        </div>
+    <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden">
+      <div className="w-full shrink-0 mt-[62px]" />
+      <div className="flex-1 w-full overflow-y-auto no-scrollbar">
+        <div className="w-full flex justify-center">{renderSlide()}</div>
       </div>
 
       <button
@@ -59,7 +56,7 @@ export default function GuestPage() {
           e.stopPropagation();
           navigate("/");
         }}
-        className="absolute top-5 right-4 z-200
+        className="absolute top-5 right-4 z-[200]
                    inline-flex py-2 px-[22px]
                    items-center justify-center gap-[8px]
                    rounded-full bg-[rgba(235,235,235,0.8)]

@@ -62,7 +62,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
 
   return (
     <div
-      className="flex flex-col h-screen bg-gray-50 overflow-hidden items-center"
+      className="flex flex-col bg-gray-50 overflow-hidden items-center"
       onClick={() => setIsDimmed(true)}
     >
       {isDimmed && (
@@ -72,7 +72,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
       {/* 스크롤 영역 */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-9 px-4 pt-[21px] pb-10"
+        className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-9 px-4 pt-[21px]"
       >
         <div className="flex flex-col gap-2 w-full max-w-[361px] mx-auto">
           {/* 레시피 제목 */}
@@ -104,7 +104,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
         </div>
 
         {/* 하단 버튼 영역 */}
-        <div className="relative flex p-4 w-full max-w-[450px] mx-auto mb-10 z-20 items-center justify-center">
+        <div className="relative flex p-4 w-full max-w-[450px] mx-auto z-20 items-center justify-center">
           {isDimmed && (
             <img
               src={notice}
