@@ -16,7 +16,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
   return (
     <div
       onClick={() => !isSelected && setIsDimmed(true)}
-      className="relative w-full h-[100dvh] flex flex-col items-center bg-[#FAFAFA] overflow-hidden"
+      className="relative w-full h-[calc(100dvh-62px)] flex flex-col items-center bg-[#FAFAFA] overflow-hidden"
     >
       {/* 딤드: z-10 */}
       {isDimmed && (
@@ -61,7 +61,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
       {/* 하단 버튼 영역: z-20 */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="absolute pb-[62px] bottom-[calc(32px+env(safe-area-inset-bottom))] flex justify-center w-full z-20"
+        className="absolute bottom-[calc(32px+env(safe-area-inset-bottom))] flex justify-center w-full z-20"
       >
         <div className="flex gap-[6px] w-[300px]">
           <div className="flex-1">

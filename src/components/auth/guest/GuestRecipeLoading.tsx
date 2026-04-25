@@ -39,7 +39,7 @@ export default function GuestRecipeLoading({
   }, [step, onComplete, onNext, messages.length]);
 
   return (
-    <div className="flex flex-col items-center h-screen pt-[139px] text-center bg-[#FAFAFA]">
+    <div className="flex flex-col items-center pt-[139px] text-center bg-[#FAFAFA]">
       <RecipeLoadingSpinner />
 
       <div className="flex flex-col items-center w-[361px] gap-2 mb-[49px]">
