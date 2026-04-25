@@ -9,12 +9,12 @@ export default function SupportSection() {
       <div
         className="
           grid
-          grid-cols-[auto_auto]
+          grid-cols-2
           gap-2
         "
       >
         <SettingsLinkItem label="고객센터" to="/support" />
-        <SettingsLinkItem label="FAQ" to="/settings/faq" />
+        <SettingsLinkItem label="자주 하는 질문 FAQ" to="/settings/faq" />
         <SettingsLinkItem label="공지사항" to="/settings/notice" />
         <SettingsLinkItem label="이용약관" to="/settings/terms" />
       </div>

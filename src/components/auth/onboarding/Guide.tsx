@@ -1,5 +1,6 @@
 import { useState, TouchEvent } from "react";
 import image1 from "../../../assets/onboarding/guide_1.svg";
+import image1_2 from "../../../assets/onboarding/guide_1_2.svg";
 import image2 from "../../../assets/onboarding/guide_2.svg";
 import image3 from "../../../assets/onboarding/guide_3.svg";
 import image4 from "../../../assets/onboarding/guide_4.svg";
@@ -102,67 +103,78 @@ export default function Guide({ onNext }: Props) {
 
   return (
     <div
-      className="flex flex-col h-full items-center justify-end select-none mb-4 overflow-hidden"
+      className="flex flex-col h-full overflow-hidden select-none"
       onClick={() => currentIndex < 3 && handleNext()}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* 인디케이터 */}
-      <div className="flex justify-center items-center gap-2">
-        {ONBOARDING_DATA.map((_, index) => (
-          <div
-            key={index}
-            className={`w-1.5 h-1.5 rounded-full transition-colors ${
-              currentIndex === index ? "bg-(--color-green)" : "bg-stone-100"
-            }`}
-          />
-        ))}
-      </div>
-
-      {/* 텍스트 영역 */}
-      <div className="gap-[6px] h-[82px] mt-10 mb-15 text-center px-4">
-        <div className="typo-h1 !text-[22px]">{title}</div>
-        <p className="whitespace-pre-wrap typo-body text-zinc-500">{text}</p>
-      </div>
-
-      {/* 이미지 및 버튼 영역 */}
-      <div className="relative w-full overflow-hidden">
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-        >
-          {ONBOARDING_DATA.map((data) => (
+      {/* 상단 영역 */}
+      <div className="pt-24">
+        {/* 인디케이터 */}
+        <div className="flex justify-center gap-2">
+          {ONBOARDING_DATA.map((_, index) => (
             <div
-              key={data.id}
-              className="min-w-full flex flex-col items-center"
-            >
-              <img
-                className="h-131 pointer-events-none drop-shadow-[0px_3px_12px_rgba(156,156,156,0.2)]"
-                src={data.img}
-                alt="guide"
-              />
-            </div>
+              key={index}
+              className={`w-1.5 h-1.5 rounded-full ${
+                currentIndex === index ? "bg-(--color-green)" : "bg-stone-100"
+              }`}
+            />
           ))}
         </div>
 
-        {/* 그라데이션 오버레이 */}
-        <div className="absolute bottom-0 w-full h-56 bg-gradient-to-b from-white/0 to-white pointer-events-none" />
+        {/* 텍스트 */}
+        <div className="mt-10 text-center px-4">
+          <div className="typo-h1 !text-[22px]">{title}</div>
+          <p className="whitespace-pre-wrap typo-body text-zinc-500 mt-2">
+            {text}
+          </p>
+        </div>
+      </div>
 
-        {/* 버튼 영역 */}
+      {/* 중간 여백 (핵심) */}
+      <div className="flex-1" />
+
+      {/* 하단 영역 */}
+      <div className="pb-8 relative">
+        {/* 이미지 */}
+        <div className="overflow-hidden">
+          <div
+            className="flex items-end transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {ONBOARDING_DATA.map((data, index) => (
+              <div
+                key={data.id}
+                className="min-w-full flex justify-center items-end relative"
+              >
+                <img
+                  className="h-[61.6vh] max-h-[524px] min-h-[320px] object-contain pointer-events-none drop-shadow-[0px_3px_12px_rgba(156,156,156,0.2)]"
+                  src={data.img}
+                  alt="guide"
+                />
+
+                {index === 0 && (
+                  <img
+                    src={image1_2}
+                    className="absolute z-10 w-[38%] right-[8%] bottom-[17%]"
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 그라데이션 */}
+        <div className="absolute bottom-0 w-full h-56 bg-gradient-to-b from-white/0 to-white pointer-events-none z-10" />
+
+        {/* 버튼 */}
         <div
-          className={`absolute bottom-10 w-full px-6 z-10 transition-opacity duration-300 ${
+          className={`absolute bottom-10 w-full px-6 z-20 transition-opacity duration-300 ${
             currentIndex === 3 ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <Button
-            onClick={() => {
-              onNext();
-            }}
-            variant="black"
-            size="L"
-            className="w-full"
-          >
+          <Button onClick={onNext} variant="black" size="L" className="w-full">
             쿠킵 시작하기
           </Button>
         </div>

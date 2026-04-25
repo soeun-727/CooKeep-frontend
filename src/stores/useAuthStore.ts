@@ -7,6 +7,7 @@ import { useSignupStore } from "./useSignupStore";
 import { usePhoneUpdateStore } from "./usePhoneUpdateStore";
 import { useFindPasswordStore } from "./useFindPasswordStore";
 import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
+import { useRewardStore } from "./useRewardStore";
 
 interface SocialLoginPayload {
   userId: number;
@@ -14,6 +15,7 @@ interface SocialLoginPayload {
   refreshToken: string;
   nextStep: "TERMS" | "ONBOARDING" | "HOME" | string;
   userStatus: string;
+  isRewarded: boolean;
 }
 
 interface LoginResponse {
@@ -35,7 +37,6 @@ interface AuthState {
   initialized: boolean;
   lastLoginAt: number | null;
   initializeAuth: () => void;
-  checkAuth: () => void;
   setPhoneNumber: (phone: string) => void;
   setPassword: (pw: string) => void;
   login: () => Promise<LoginResponse | null>;
@@ -59,52 +60,22 @@ export const useAuthStore = create<AuthState>()(
       initialized: false,
       lastLoginAt: null,
 
-      checkAuth: () => {
-        const token = localStorage.getItem("accessToken");
-        set({ isLoggedIn: !!token });
-      },
-
       initializeAuth: () => {
-        const { lastLoginAt, logout } = get();
-        const token = localStorage.getItem("accessToken");
+        const accessToken = localStorage.getItem("accessToken");
+        const refreshToken = localStorage.getItem("refreshToken");
 
-        const FOURTEEN_DAYS_MS = 14 * 24 * 60 * 60 * 1000;
-        const now = Date.now();
-
-        if (lastLoginAt && now - lastLoginAt > FOURTEEN_DAYS_MS) {
-          clearTokens();
-          logout();
+        // 토큰이 둘 다 없다면 확실히 로그아웃 상태
+        if (!accessToken || !refreshToken) {
+          get().logout();
           set({ initialized: true });
           return;
         }
 
-        if (token) {
-          set({
-            isLoggedIn: true,
-            initialized: true,
-            lastLoginAt: now,
-          });
-        } else {
-          set({ initialized: true });
-        }
-      },
-
-      setPhoneNumber: (phoneNumber) => {
-        const isValidPhone = /^010-\d{3,4}-\d{4}$/.test(phoneNumber);
-        set((state) => ({
-          phoneNumber,
-          isValidPhone,
-          canLogin: isValidPhone && state.isValidPW,
-        }));
-      },
-
-      setPassword: (password) => {
-        const isValidPW = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password);
-        set((state) => ({
-          password,
-          isValidPW,
-          canLogin: state.isValidPhone && isValidPW,
-        }));
+        // 토큰이 있다면 일단 로그인 상태로 간주 (실제 만료 여부는 API 요청 시 Axios Interceptor가 처리)
+        set({
+          isLoggedIn: true,
+          initialized: true,
+        });
       },
 
       login: async () => {
@@ -124,13 +95,16 @@ export const useAuthStore = create<AuthState>()(
             refreshToken: data.refreshToken,
           });
 
+          if (data.isRewarded) {
+            useRewardStore.getState().enqueue("COMEBACK");
+          }
+
           set({
             isLoggedIn: true,
             userId: data.userId,
             userStatus: data.userStatus,
             isSubmitting: false,
             initialized: true,
-            lastLoginAt: Date.now(),
           });
 
           return {
@@ -157,6 +131,50 @@ export const useAuthStore = create<AuthState>()(
         }
       },
 
+      logout: async () => {
+        try {
+          if (localStorage.getItem("accessToken")) {
+            await logoutApi();
+          }
+        } catch (error) {
+          console.error("Logout API error:", error);
+        } finally {
+          clearTokens();
+          set({
+            isLoggedIn: false,
+            userId: null,
+            userStatus: null,
+            nextStep: null,
+            phoneNumber: "",
+            password: "",
+            canLogin: false,
+            initialized: true,
+          });
+          useSignupStore.getState().resetSignup?.();
+          usePhoneUpdateStore.getState().reset?.();
+          useFindPasswordStore.getState().reset?.();
+          useEditPasswordAuthStore.getState().reset?.();
+        }
+      },
+
+      setPhoneNumber: (phoneNumber) => {
+        const isValidPhone = /^010-\d{3,4}-\d{4}$/.test(phoneNumber);
+        set((state) => ({
+          phoneNumber,
+          isValidPhone,
+          canLogin: isValidPhone && state.isValidPW,
+        }));
+      },
+
+      setPassword: (password) => {
+        const isValidPW = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password);
+        set((state) => ({
+          password,
+          isValidPW,
+          canLogin: state.isValidPhone && isValidPW,
+        }));
+      },
+
       loginSocial: (data) => {
         saveTokens({
           accessToken: data.accessToken,
@@ -171,30 +189,9 @@ export const useAuthStore = create<AuthState>()(
           initialized: true,
           lastLoginAt: Date.now(),
         });
-      },
 
-      logout: async () => {
-        try {
-          await logoutApi();
-        } catch (error) {
-          console.error("Logout API error:", error);
-        } finally {
-          clearTokens();
-          set({
-            isLoggedIn: false,
-            userId: null,
-            userStatus: null,
-            nextStep: null,
-            phoneNumber: "",
-            password: "",
-            canLogin: false,
-            initialized: true,
-            lastLoginAt: null,
-          });
-          useSignupStore.getState().resetSignup?.();
-          usePhoneUpdateStore.getState().reset?.();
-          useFindPasswordStore.getState().reset?.();
-          useEditPasswordAuthStore.getState().reset?.();
+        if (data.isRewarded) {
+          useRewardStore.getState().enqueue("COMEBACK");
         }
       },
     }),
@@ -205,7 +202,6 @@ export const useAuthStore = create<AuthState>()(
         userId: state.userId,
         userStatus: state.userStatus,
         nextStep: state.nextStep,
-        lastLoginAt: state.lastLoginAt,
       }),
     },
   ),

@@ -14,6 +14,7 @@ import Preference from "../../components/auth/onboarding/Preference";
 
 import { saveOnboardingData } from "../../api/onboarding";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
+import { GOAL_TYPE_MAP } from "../../utils/mapping";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -49,9 +50,6 @@ export default function Onboarding() {
   // 1. 건너뛰기 클릭 시 처리 로직
   const skipStep = () => {
     if (step === 2 || step === 3) {
-      // 목표 설정을 건너뛸 경우 초기화 후 바로 저장
-      setSelectedGoal({ id: "COOKING", title: "주 n회 요리하기" }); // 기본값 혹은 서버 스펙에 따른 처리
-      setGoalCount("0");
       handleSaveOnboarding(true);
       return;
     }
@@ -63,10 +61,13 @@ export default function Onboarding() {
     try {
       const requestBody = {
         dislikedIngredients: selectedIngredients.map((item) => item.ingredient),
+        // 건너뛰기일 경우 null 또는 백엔드가 원하는 빈 값 처리
         goalActionType: isForcedSkip
-          ? "COOKING"
-          : selectedGoal.id.toUpperCase(),
-        targetCount: isForcedSkip ? 0 : parseInt(goalCount || "0", 10),
+          ? null // 또는 "" (백엔드 명세에 따라 결정)
+          : GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
+        targetCount: isForcedSkip
+          ? null // 또는 0 (건너뛰기 시 값이 없음을 명시)
+          : parseInt(goalCount || "0", 10),
       };
 
       const response = await saveOnboardingData(requestBody);

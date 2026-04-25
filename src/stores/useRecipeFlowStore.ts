@@ -42,6 +42,7 @@ const PRIORITY: Record<RewardType, number> = {
 
   WEEKLY: 1, // A
   EXPIRING: 2, // B
+  COMEBACK: -1, // 우선순위 제일 높음
 };
 
 type RecipeFlowState = {

@@ -14,11 +14,14 @@ import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
 import { getRefrigeratorHome } from "../../../api/ingredient";
 import { getPushEligibility } from "../../../api/user";
+import { loadingChar } from "../../../assets";
 
 export default function FridgeTab() {
   const { ingredients, setIngredients, searchTerm, viewCategory } =
     useIngredientStore();
   const { selectedIngredientId, closeDetail } = useIngredientStore();
+
+  const [isLoading, setIsLoading] = useState(true);
   const [isExpiryModalOpen, setIsExpiryModalOpen] = useState(false);
   const EXPIRY_MODAL_KEY = "expiry-alert-last-shown";
 
@@ -43,11 +46,14 @@ export default function FridgeTab() {
 
   const loadData = useCallback(async () => {
     try {
+      setIsLoading(true);
       const response = await getRefrigeratorHome();
       const targetData = response.data.data || response.data;
+
       if (targetData) {
         const parsed = parseServerData(targetData);
         setIngredients(parsed);
+
         const today = new Date().toISOString().slice(0, 10);
         const lastShown = localStorage.getItem(EXPIRY_MODAL_KEY);
         if (lastShown !== today) {
@@ -61,6 +67,8 @@ export default function FridgeTab() {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   }, [setIngredients, parseServerData]);
 
@@ -86,6 +94,15 @@ export default function FridgeTab() {
 
   const isSearching = searchTerm.trim().length > 0;
   const isListView = !!viewCategory && !isSearching;
+
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-50 flex flex-col items-center top-55 bg-[#FAFAFA]">
+        <img className="opacity-70 w-30 p-5" src={loadingChar} alt="loading" />
+        <div className="typo-body2 text-zinc-500">식재료 가져오는 중...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col transition-all">

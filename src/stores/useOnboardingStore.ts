@@ -24,7 +24,7 @@ interface OnboardingStore {
 }
 
 export const useOnboardingStore = create<OnboardingStore>((set) => ({
-  selectedGoal: { id: "COOKING", title: "주 n회 요리하기" },
+  selectedGoal: { id: "cook", title: "주 n회 요리하기" },
   goalCount: "3",
 
   // 초기값은 빈 배열
@@ -48,7 +48,7 @@ export const useOnboardingStore = create<OnboardingStore>((set) => ({
 
   resetOnboarding: () =>
     set({
-      selectedGoal: { id: "COOKING", title: "주 n회 요리하기" },
+      selectedGoal: { id: "cook", title: "주 n회 요리하기" },
       goalCount: "3",
       selectedIngredients: [], // 리셋 시 함께 초기화
       step: 0,

@@ -14,7 +14,7 @@ export default function SettingsLinkItem({ label, to }: SettingsLinkItemProps) {
       onClick={() => navigate(to)}
       className="
         flex justify-center items-center
-        w-full max-w-[164px]
+        w-full 
         pt-[12px] pb-[12px]
         rounded-[10px]
         bg-[var(--color-green)]

@@ -6,6 +6,7 @@ import WeeklyGoalModal from "../components/ui/WeeklyGoalModal"; // 추가
 import ExpiringRewardModal from "../components/recipe/ExpiringRewardModal";
 import { useRewardStore } from "../stores/useRewardStore";
 import OnboardingRewardModal from "../components/ui/OnboardingRewardModal";
+import ComebackRewardModal from "../components/ui/ComebackRewardModal";
 
 type Props = {
   children: React.ReactNode;
@@ -50,6 +51,10 @@ export default function AppLayout({ children }: Props) {
           </div>
         )}
         {/* 추가 - z-index를 LoadingScreen(50)보다 높게 */}
+        {current === "COMEBACK" && (
+          <ComebackRewardModal isOpen={true} onClose={dequeue} />
+        )}
+
         {current === "WEEKLY" && (
           <WeeklyGoalModal isOpen={true} onClose={dequeue} />
         )}

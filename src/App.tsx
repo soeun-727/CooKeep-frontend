@@ -103,8 +103,11 @@ export default function App() {
       if (path === "/" || path === "/login") {
         navigate("/fridge", { replace: true });
       }
-    } else if (!isPublic) {
-      navigate("/", { replace: true });
+    } else {
+      if (!isPublic) {
+        console.log("Not logged in, redirecting to /");
+        navigate("/", { replace: true });
+      }
     }
   }, [
     initialized,
@@ -114,6 +117,15 @@ export default function App() {
     isCallback,
     showSplash,
   ]);
+
+  // GA tracking 페이지 이동 추적
+  useEffect(() => {
+    if (!window.gtag) return;
+
+    window.gtag("config", "G-RT9D555519", {
+      page_path: location.pathname + location.search,
+    });
+  }, [location.pathname, location.search]);
 
   if (showSplash && !isCallback) {
     return <SplashPage />;
