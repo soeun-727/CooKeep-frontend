@@ -329,3 +329,17 @@ body,
     background-color: #7d7d7d;
   }
 }
+
+/* 글로벌 스타일 시트 */
+img[src$=".svg"] {
+  /* 1. 이미지 대비 최적화 (가장 효과적) */
+  image-rendering: -webkit-optimize-contrast;
+
+  /* 2. 하드웨어 가속 강제 (비트맵화를 막고 벡터 렌더링 유지 시도) */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+
+  /* 3. 뒷면 렌더링 생략 (깜빡임 방지) */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
