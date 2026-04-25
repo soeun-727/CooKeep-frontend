@@ -38,20 +38,30 @@ export default function Notification({ onNext }: Props) {
   const handlePushConsent = async (isAgreed: boolean) => {
     setIsLoading(true);
     try {
-      await updatePushConsent(isAgreed);
       if (isAgreed) {
+        // 1️⃣ 브라우저 푸시 구독을 먼저 시도합니다.
         const isSuccess = await registerPushNotification();
-        if (!isSuccess) {
-          console.warn(
-            "브라우저 알림 권한이 거부되었거나 등록에 실패했습니다.",
+
+        if (isSuccess) {
+          // 구독 성공 시에만 서버에 동의(true) 상태를 저장합니다.
+          await updatePushConsent(true);
+        } else {
+          // 권한 거절 등으로 실패 시, 서버에는 비동의(false) 상태로 저장하거나
+          // 알림을 띄워 사용자에게 알립니다.
+          await updatePushConsent(false);
+          alert(
+            "알림 권한이 거부되었습니다. 원활한 이용을 위해 브라우저 설정을 확인해주세요.",
           );
         }
+      } else {
+        // 2️⃣ 사용자가 '괜찮아요'를 누른 경우 바로 비동의 처리
+        await updatePushConsent(false);
       }
     } catch (error) {
-      console.error("알림 설정 실패:", error);
+      console.error("알림 설정 중 오류 발생:", error);
     } finally {
       setIsLoading(false);
-      onNext();
+      onNext(); // 성공하든 실패하든 다음 온보딩 단계로 이동
     }
   };
 
