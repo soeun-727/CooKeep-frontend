@@ -37,22 +37,21 @@ export default function NotificationSection({
     setLoading(true);
 
     try {
-      // DB 상태 업데이트
-      await updateMarketingPush(next);
-
+      // 1️⃣ [수정] 푸시 연동/해제를 먼저 시도합니다.
       if (next) {
         const isSuccess = await registerPushNotification();
         if (!isSuccess) {
           setEnabled(prev);
-          await updateMarketingPush(prev);
-          alert(
-            "알림 권한이 거부되었거나 등록에 실패했습니다. 브라우저 설정을 확인해주세요.",
-          );
+          alert("알림 권한이 거부되었거나 등록에 실패했습니다.");
           return;
         }
       } else {
+        // 🚀 토글을 끌 때 서버 DB에서 구독 정보를 먼저 확실히 지웁니다.
         await unsubscribePush();
       }
+
+      // 2️⃣ [수정] 위 작업이 성공했을 때만 마케팅 동의 상태를 업데이트합니다.
+      await updateMarketingPush(next);
 
       onStateChange(next);
     } catch (error) {
