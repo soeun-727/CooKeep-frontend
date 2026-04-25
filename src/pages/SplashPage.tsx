@@ -32,16 +32,17 @@ export default function SplashPage() {
         {/* 원형 배경 */}
         <div
           className={`
-          absolute
-          w-[300vmax] h-[300vmax]
-          rounded-full
-          bg-emerald-400
-          z-10
-          left-1/2 top-1/2
-          -translate-y-1/2
-          transition-all duration-700 ease-out
-          ${step >= 2 ? "scale-100 -translate-x-1/2" : "scale-0 -translate-x-1/2"}
-        `}
+    absolute
+    w-[300vmax] h-[300vmax]
+    rounded-full
+    bg-emerald-400
+    z-10
+    left-1/2 top-1/2
+    -translate-y-1/2
+    transition-all duration-700 ease-out
+    -translate-x-[calc(50%+50px)]
+    ${step >= 2 ? "scale-100" : "scale-0"}
+  `}
         />
 
         <div className="relative flex items-center justify-center">
