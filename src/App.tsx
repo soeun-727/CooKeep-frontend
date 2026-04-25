@@ -96,6 +96,8 @@ export default function App() {
       "/onboarding",
       "/guest",
       "/simplelogin",
+      "/findpw", // 추가
+      "/reset-password", // 추가
     ];
     const isPublic = publicPaths.includes(path);
 
