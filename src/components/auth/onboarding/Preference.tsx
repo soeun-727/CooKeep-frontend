@@ -7,6 +7,7 @@ import InputModal from "./InputModal";
 import {
   getOnboardingIngredients,
   OnboardingIngredient,
+  RawIngredient,
 } from "../../../api/onboarding";
 import { useOnboardingStore } from "../../../stores/useOnboardingStore";
 
@@ -20,16 +21,22 @@ export default function Preference() {
 
   const { selectedIngredients, setSelectedIngredients } = useOnboardingStore();
 
-  const hasText = searchTerm.length > 0;
+  const hasText = searchTerm.trim().length > 0;
 
   useEffect(() => {
     const fetchIngredients = async () => {
       try {
         setIsLoading(true);
         const res = await getOnboardingIngredients();
-        const ingredientsList = res.data?.data?.ingredients;
+        const ingredientsList: RawIngredient[] = res.data?.data?.ingredients;
+
         if (ingredientsList && Array.isArray(ingredientsList)) {
-          setAllIngredients(ingredientsList);
+          const mapped = ingredientsList.map((item) => ({
+            defaultIngredientId: item.ingredientId,
+            ingredient: item.name,
+          }));
+
+          setAllIngredients(mapped);
         }
       } catch (error) {
         console.error("재료 로드 실패:", error);
@@ -56,7 +63,7 @@ export default function Preference() {
     });
   }, [searchTerm, allIngredients, selectedIngredients]);
 
-  const isDropdownOpen = hasText && filteredIngredients.length > 0;
+  const isDropdownOpen = hasText;
 
   const handleSelect = (item: OnboardingIngredient) => {
     setSelectedIngredients([...selectedIngredients, item]);
@@ -167,7 +174,7 @@ export default function Preference() {
           ))}
         </div>
 
-        {hasText && filteredIngredients.length > 0 && (
+        {hasText && (
           <ul className="absolute top-12 w-[361px] bg-white border border-[#DDDDDD] !border-t-0 rounded-b-[6px] z-50 max-h-[200px] overflow-y-auto typo-body2">
             {filteredIngredients.map((item) => (
               <li

@@ -37,7 +37,11 @@ export default function Notification({ onNext }: Props) {
   const handlePushConsent = async (isAgreed: boolean) => {
     setIsLoading(true);
     try {
-      await updatePushConsent(isAgreed);
+      if (isAgreed) {
+        // 동의 → onboarding API
+        await updatePushConsent();
+      }
+      // false일 때는 아무 것도 안함
     } catch (error) {
       console.error("알림 설정 실패:", error);
     } finally {

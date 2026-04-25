@@ -22,6 +22,8 @@
 html,
 body,
 #root {
+  min-height: 100dvh;
+  margin: 0;
   background-color: #fafafa;
 }
 
@@ -45,6 +47,10 @@ body,
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  padding-top: env(safe-area-inset-top);
 }
 
 .scroll-container {

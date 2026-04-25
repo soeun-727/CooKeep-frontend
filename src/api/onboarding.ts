@@ -7,18 +7,25 @@ export interface OnboardingIngredient {
   ingredient: string; // 재료 이름
 }
 
+export interface RawIngredient {
+  ingredientId: number;
+  name: string;
+  leftDays: number;
+  imageUrl: string;
+}
+
 export interface OnboardingResponse {
   status: string;
   timestamp: string;
   data: {
-    ingredients: OnboardingIngredient[];
+    ingredients: RawIngredient[];
   };
 }
 
 export interface OnboardingSaveRequest {
   dislikedIngredients: string[]; // 기피 식재료 이름 리스트
-  goalActionType: string; // 예: "COOKING", "PHOTO" 등
-  targetCount: number; // 목표 횟수 (숫자)
+  goalActionType: string | null; // 예: "COOKING", "PHOTO" 등
+  targetCount: number | null; // 목표 횟수 (숫자)
 }
 
 /** --- API 함수들 --- */
@@ -42,6 +49,6 @@ export const updateAgreements = (marketingConsent: boolean) => {
 };
 
 /** 4. [PATCH] 온보딩 과정 중 푸시 알림 동의 수정 */
-export const updatePushConsent = (marketingConsent: boolean) => {
-  return api.patch("/api/users/me/onboarding/push", { marketingConsent });
+export const updatePushConsent = () => {
+  return api.patch("/api/users/me/onboarding/push");
 };

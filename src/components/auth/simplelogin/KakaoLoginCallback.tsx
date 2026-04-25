@@ -43,6 +43,7 @@ export default function KakaoLoginCallback() {
             refreshToken: data.refreshToken || "",
             nextStep: data.nextStep,
             userStatus: data.userStatus,
+            isRewarded: data.isRewarded,
           });
 
           if (data.userStatus === "BLOCKED") {

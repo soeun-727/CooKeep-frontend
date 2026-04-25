@@ -20,13 +20,15 @@ import WeeklyGoalModal from "../../components/ui/WeeklyGoalModal";
 
 export default function RecordWritePage() {
   const navigate = useNavigate();
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  // const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [recipeDetail, setRecipeDetail] = useState<AiRecipeDetail | null>(null);
   // const [showUploadModal, setShowUploadModal] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isUploaded, setIsUploaded] = useState(false); // 추가
+  // isUploaded state를 ref로 교체
+  const isUploadedRef = useRef(false); // ← 추가
+  // const [isUploaded, setIsUploaded] = useState(false); // 제거
   const [rewardQueue, setRewardQueue] = useState<string[]>([]);
 
   const {
@@ -84,51 +86,51 @@ export default function RecordWritePage() {
     alwaysKeepResolution: false,
   };
 
-  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files || files.length === 0 || isUploading) return;
+  // const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const files = e.target.files;
+  //   if (!files || files.length === 0 || isUploading) return;
 
-    const file = files[0];
+  //   const file = files[0];
 
-    // 초고용량 방어
-    if (file.size > 15 * 1024 * 1024) {
-      alert("이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.");
-      return;
-    }
+  //   // 초고용량 방어
+  //   if (file.size > 15 * 1024 * 1024) {
+  //     alert("이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.");
+  //     return;
+  //   }
 
-    setIsUploading(true);
+  //   setIsUploading(true);
 
-    try {
-      // 1️⃣ 이미지 압축
-      const compressedBlob = await imageCompression(file, compressionOptions);
+  //   try {
+  //     // 1️⃣ 이미지 압축
+  //     const compressedBlob = await imageCompression(file, compressionOptions);
 
-      const compressedFile = new File([compressedBlob], file.name, {
-        type: compressedBlob.type,
-      });
+  //     const compressedFile = new File([compressedBlob], file.name, {
+  //       type: compressedBlob.type,
+  //     });
 
-      // 2️⃣ 새 이미지 업로드
-      const response = await uploadImage(compressedFile);
-      const newUrl = response.data.imageUrl;
+  //     // 2️⃣ 새 이미지 업로드
+  //     const response = await uploadImage(compressedFile);
+  //     const newUrl = response.data.imageUrl;
 
-      // 3️⃣ 기존 이미지 삭제 (업로드 성공 후!)
-      if (image?.url) {
-        try {
-          await deleteImage(image.url);
-        } catch (err) {
-          console.warn("기존 이미지 삭제 실패 (무시)", err);
-        }
-      }
+  //     // 3️⃣ 기존 이미지 삭제 (업로드 성공 후!)
+  //     if (image?.url) {
+  //       try {
+  //         await deleteImage(image.url);
+  //       } catch (err) {
+  //         console.warn("기존 이미지 삭제 실패 (무시)", err);
+  //       }
+  //     }
 
-      // 4️⃣ 스토어 교체
-      setImage({ url: newUrl });
-    } catch (error) {
-      console.error("이미지 업로드 에러:", error);
-      alert("이미지 업로드 중 오류가 발생했습니다.");
-    } finally {
-      setIsUploading(false);
-      if (e.target) e.target.value = "";
-    }
-  };
+  //     // 4️⃣ 스토어 교체
+  //     setImage({ url: newUrl });
+  //   } catch (error) {
+  //     console.error("이미지 업로드 에러:", error);
+  //     alert("이미지 업로드 중 오류가 발생했습니다.");
+  //   } finally {
+  //     setIsUploading(false);
+  //     if (e.target) e.target.value = "";
+  //   }
+  // };
 
   const handleUpload = async () => {
     if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
@@ -172,7 +174,7 @@ export default function RecordWritePage() {
         setRewardQueue(rewards);
 
         setIsSuccess(true);
-        setIsUploaded(true);
+        isUploadedRef.current = true; // ← setIsUploaded(true) 대신
       } else {
         alert("업로드에 실패했습니다.");
       }
@@ -191,15 +193,33 @@ export default function RecordWritePage() {
   };
 
   // 추가
+  // useEffect(() => {
+  //   return () => {
+  //     if (!isUploaded && image?.url) {
+  //       deleteImage(image.url).catch(() => {
+  //         console.warn("페이지 이탈 시 이미지 삭제 실패");
+  //       });
+  //     }
+  //   };
+  // }, [image?.url, isUploaded]);
+
+  const imageUrlRef = useRef<string | undefined>(undefined);
+
+  // image가 바뀔 때마다 ref 동기화
+  useEffect(() => {
+    imageUrlRef.current = image?.url;
+  }, [image?.url]);
+
+  // cleanup은 언마운트 시에만 한 번만 실행
   useEffect(() => {
     return () => {
-      if (!isUploaded && image?.url) {
-        deleteImage(image.url).catch(() => {
+      if (!isUploadedRef.current && imageUrlRef.current) {
+        deleteImage(imageUrlRef.current).catch(() => {
           console.warn("페이지 이탈 시 이미지 삭제 실패");
         });
       }
     };
-  }, [image?.url, isUploaded]);
+  }, []); // ← 빈 배열로 마운트/언마운트 시에만
 
   if (!recipeDetail) {
     return (
@@ -218,7 +238,7 @@ export default function RecordWritePage() {
 
         <div className="flex-1 mx-auto w-full max-w-[450px] px-4 flex flex-col min-h-0 mt-10">
           <div className="pt-4 flex flex-col gap-[10px]">
-            <RecordWriteImageCard
+            {/* <RecordWriteImageCard
               title={title}
               // imageSrc={images[0]?.url}
               imageSrc={image?.url}
@@ -241,6 +261,54 @@ export default function RecordWritePage() {
               ref={fileInputRef}
               hidden
               onChange={handleImageChange}
+            /> */}
+            <RecordWriteImageCard
+              title={title}
+              imageSrc={image?.url}
+              onImageChange={async (file) => {
+                // onClickAddImage 대신
+                if (file.size > 15 * 1024 * 1024) {
+                  alert(
+                    "이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.",
+                  );
+                  return;
+                }
+                setIsUploading(true);
+                try {
+                  const compressedBlob = await imageCompression(
+                    file,
+                    compressionOptions,
+                  );
+                  const compressedFile = new File([compressedBlob], file.name, {
+                    type: compressedBlob.type,
+                  });
+                  const response = await uploadImage(compressedFile);
+                  const newUrl = response.data.imageUrl;
+                  if (image?.url) {
+                    try {
+                      await deleteImage(image.url);
+                    } catch (err) {
+                      console.warn("기존 이미지 삭제 실패", err);
+                    }
+                  }
+                  setImage({ url: newUrl });
+                } catch {
+                  alert("이미지 업로드 중 오류가 발생했습니다.");
+                } finally {
+                  setIsUploading(false);
+                }
+              }}
+              onChangeTitle={setTitle}
+              onDeleteImage={async () => {
+                if (image?.url) {
+                  try {
+                    await deleteImage(image.url);
+                  } catch (err) {
+                    console.warn("이미지 삭제 실패", err);
+                  }
+                }
+                setImage(null);
+              }}
             />
             <RecipeRecordContentSection
               recipe={{
