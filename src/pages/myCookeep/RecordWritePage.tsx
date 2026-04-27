@@ -28,7 +28,7 @@ export default function RecordWritePage() {
   const [isSuccess, setIsSuccess] = useState(false);
   // isUploaded state를 ref로 교체
   const isUploadedRef = useRef(false); // ← 추가
-  // const [isUploaded, setIsUploaded] = useState(false); // 제거
+  const imageUrlRef = useRef<string | undefined>(undefined);
   const [rewardQueue, setRewardQueue] = useState<string[]>([]);
 
   const {
@@ -132,6 +132,8 @@ export default function RecordWritePage() {
   //   }
   // };
 
+  // RecordWritePage.tsx
+
   const handleUpload = async () => {
     if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
       alert("레시피 정보가 로드되지 않았습니다.");
@@ -156,54 +158,95 @@ export default function RecordWritePage() {
           String(response.status) === "200" ||
           response.status === "OK")
       ) {
-        const rewards: string[] = [];
+        // 핵심: navigate 전에 ref를 true로 설정
+        isUploadedRef.current = true;
 
-        // 우선순위 A-3: 주간 목표 달성 (먼저 큐에 넣기)
+        const rewards: string[] = [];
         if (response.data?.weeklyGoalAchieved) {
           rewards.push("WEEKLY_GOAL");
         }
-
-        // 우선순위 C-1: 레시피 기록 보상 (항상)
         rewards.push("RECIPE_RECORD");
-
-        // 우선순위 C-2: 사진 있으면 추가
         if (image?.url) {
           rewards.push("PHOTO_UPLOAD");
         }
 
         setRewardQueue(rewards);
-
         setIsSuccess(true);
-        isUploadedRef.current = true; // ← setIsUploaded(true) 대신
+        // isUploadedRef.current = true; ← 여기서 아래로 올렸음
       } else {
         alert("업로드에 실패했습니다.");
       }
     } catch (error: unknown) {
       let errorMsg = "레시피 등록 실패";
-
       if (error && typeof error === "object") {
         const axiosError = error as AxiosError<{ message?: string }>;
         errorMsg = axiosError.response?.data?.message ?? errorMsg;
       }
-
       alert(errorMsg);
     } finally {
       setIsUploading(false);
     }
   };
 
-  // 추가
-  // useEffect(() => {
-  //   return () => {
-  //     if (!isUploaded && image?.url) {
-  //       deleteImage(image.url).catch(() => {
-  //         console.warn("페이지 이탈 시 이미지 삭제 실패");
-  //       });
-  //     }
-  //   };
-  // }, [image?.url, isUploaded]);
+  // const handleUpload = async () => {
+  //   if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
+  //     alert("레시피 정보가 로드되지 않았습니다.");
+  //     return;
+  //   }
 
-  const imageUrlRef = useRef<string | undefined>(undefined);
+  //   setIsUploading(true);
+
+  //   try {
+  //     const requestData = {
+  //       aiRecipeId: selectedRecipeId,
+  //       isPublic: isPublic,
+  //       title: title || recipeDetail.title,
+  //       description: memo,
+  //       recipeImageUrl: image?.url || "",
+  //     };
+
+  //     const response = await createDailyRecipe(requestData);
+  //     if (
+  //       response &&
+  //       (response.data ||
+  //         String(response.status) === "200" ||
+  //         response.status === "OK")
+  //     ) {
+  //       const rewards: string[] = [];
+
+  //       // 우선순위 A-3: 주간 목표 달성 (먼저 큐에 넣기)
+  //       if (response.data?.weeklyGoalAchieved) {
+  //         rewards.push("WEEKLY_GOAL");
+  //       }
+
+  //       // 우선순위 C-1: 레시피 기록 보상 (항상)
+  //       rewards.push("RECIPE_RECORD");
+
+  //       // 우선순위 C-2: 사진 있으면 추가
+  //       if (image?.url) {
+  //         rewards.push("PHOTO_UPLOAD");
+  //       }
+
+  //       setRewardQueue(rewards);
+
+  //       setIsSuccess(true);
+  //       isUploadedRef.current = true; // ← setIsUploaded(true) 대신
+  //     } else {
+  //       alert("업로드에 실패했습니다.");
+  //     }
+  //   } catch (error: unknown) {
+  //     let errorMsg = "레시피 등록 실패";
+
+  //     if (error && typeof error === "object") {
+  //       const axiosError = error as AxiosError<{ message?: string }>;
+  //       errorMsg = axiosError.response?.data?.message ?? errorMsg;
+  //     }
+
+  //     alert(errorMsg);
+  //   } finally {
+  //     setIsUploading(false);
+  //   }
+  // };
 
   // image가 바뀔 때마다 ref 동기화
   useEffect(() => {
@@ -213,13 +256,17 @@ export default function RecordWritePage() {
   // cleanup은 언마운트 시에만 한 번만 실행
   useEffect(() => {
     return () => {
-      if (!isUploadedRef.current && imageUrlRef.current) {
-        deleteImage(imageUrlRef.current).catch(() => {
+      // ref 값을 로컬 변수에 캡처해서 사용
+      const wasUploaded = isUploadedRef.current;
+      const currentUrl = imageUrlRef.current;
+
+      if (!wasUploaded && currentUrl) {
+        deleteImage(currentUrl).catch(() => {
           console.warn("페이지 이탈 시 이미지 삭제 실패");
         });
       }
     };
-  }, []); // ← 빈 배열로 마운트/언마운트 시에만
+  }, []);
 
   if (!recipeDetail) {
     return (
