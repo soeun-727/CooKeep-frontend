@@ -1,10 +1,17 @@
 import { useState } from "react";
 
+// const goals = [
+//   { id: "COOKING", title: "주 n회 요리하기" },
+//   { id: "PHOTO_RECORD", title: "요리 사진 n번 기록하기" },
+//   { id: "USE_EXPIRING_INGREDIENT", title: "유통기한 임박 재료 n개 사용하기" },
+//   { id: "RECIPE_LIKE", title: "레시피에 좋아요 n회 남기기" },
+// ];
+
 const goals = [
-  { id: "COOKING", title: "주 n회 요리하기" },
-  { id: "PHOTO_RECORD", title: "요리 사진 n번 기록하기" },
-  { id: "USE_EXPIRING_INGREDIENT", title: "유통기한 임박 재료 n개 사용하기" },
-  { id: "RECIPE_LIKE", title: "레시피에 좋아요 n회 남기기" },
+  { id: "cook", title: "주 n회 요리하기" },
+  { id: "photo", title: "요리 사진 n번 기록하기" },
+  { id: "expired", title: "유통기한 임박 재료 n개 사용하기" },
+  { id: "like", title: "레시피에 좋아요 n회 남기기" },
 ];
 
 interface GoalProps {

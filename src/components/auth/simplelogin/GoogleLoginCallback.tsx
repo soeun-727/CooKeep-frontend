@@ -36,6 +36,7 @@ export default function GoogleLoginCallback() {
           refreshToken: data.refreshToken,
           nextStep: data.nextStep,
           userStatus: data.userStatus,
+          isRewarded: data.isRewarded,
         });
 
         if (data.userStatus === "BLOCKED") {

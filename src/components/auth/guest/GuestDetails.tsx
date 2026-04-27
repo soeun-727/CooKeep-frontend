@@ -28,19 +28,19 @@ export default function GuestDetails({ onNext }: Props) {
   };
 
   return (
-    <div className="relative flex flex-col items-center w-full h-dvh bg-[#FAFAFA] overflow-hidden">
-      <div className="w-full h-full flex flex-col items-center">
+    <div className="relative flex flex-col items-center w-full h-[calc(100dvh-62px)] bg-[#FAFAFA] overflow-hidden">
+      <div className="w-full flex flex-col items-center">
         <div className="flex justify-center shrink-0">
           <img src={header} alt="header" className="w-[361px]" />
         </div>
 
         <div
-          className="mt-[43px] w-full flex justify-center px-5"
+          className="mt-[43px] w-full flex justify-center px-5 pointer-events-none"
           onClick={(e) => e.stopPropagation()}
         >
           <DetailedItem {...(guestItem as any)} />
         </div>
-        <div className="absolute pb-[62px] bottom-[calc(32px+env(safe-area-inset-bottom))] flex justify-center w-full z-20">
+        <div className="absolute bottom-[calc(32px+env(safe-area-inset-bottom))] flex justify-center w-full z-20">
           <Button size="L" variant="black" onClick={onNext}>
             등록 완료
           </Button>

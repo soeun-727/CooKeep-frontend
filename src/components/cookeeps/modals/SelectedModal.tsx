@@ -24,7 +24,7 @@ const SelectedModal: React.FC<Props> = ({
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       {/* modal */}
-      <div className="relative w-70 h-64 bg-white rounded-[10px] flex flex-col items-center pt-[35px] px-7 pb-[25x]">
+      <div className="relative w-70 h-64 bg-white rounded-[10px] flex flex-col items-center pt-[35px] px-7 pb-[25px]">
         <h2 className="typo-body text-center">
           <span className="text-(--color-green-deep)">{plant} </span>
           <span>을/를 키워볼까요?</span>
@@ -37,8 +37,8 @@ const SelectedModal: React.FC<Props> = ({
             border-r-[6px] border-r-transparent
             border-b-[8px] "
           />
-          <div className="bg-gray-200 rounded-[3px] h-[14px] flex items-center justify-center px-[10px]">
-            <span className="text-center text-zinc-500 text-[8px] h-[10px]">
+          <div className="bg-gray-200 rounded-[3px] px-[10px] py-[3px] flex items-center justify-center">
+            <span className="text-center text-zinc-500 text-[8px] leading-tight">
               {description}
             </span>
           </div>

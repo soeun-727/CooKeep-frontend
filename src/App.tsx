@@ -96,6 +96,8 @@ export default function App() {
       "/onboarding",
       "/guest",
       "/simplelogin",
+      "/findpw", // 추가
+      "/reset-password", // 추가
     ];
     const isPublic = publicPaths.includes(path);
 
@@ -117,6 +119,15 @@ export default function App() {
     isCallback,
     showSplash,
   ]);
+
+  // GA tracking 페이지 이동 추적
+  useEffect(() => {
+    if (!window.gtag) return;
+
+    window.gtag("config", "G-RT9D555519", {
+      page_path: location.pathname + location.search,
+    });
+  }, [location.pathname, location.search]);
 
   if (showSplash && !isCallback) {
     return <SplashPage />;

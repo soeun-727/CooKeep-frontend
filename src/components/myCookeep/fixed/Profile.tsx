@@ -50,7 +50,7 @@ function Profile() {
   }, [fetchProfile]);
 
   useEffect(() => {
-    if (profile && !profile.weeklyGoal) {
+    if (profile && !profile.weeklyGoal?.goalActionType) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowBubble(true);
       const timer = setTimeout(() => {
@@ -159,9 +159,9 @@ function Profile() {
           {/* 목표 요약 바 */}
           <div className="bg-[#1DAD64] p-3 w-[361px] h-12 flex items-center justify-between gap-3 rounded-[12px] shadow-[0px_4px_16px_-10px_rgba(0,0,0,0.25)]">
             <span
-              className={`typo-body2 truncate ${profile?.weeklyGoal ? "text-white" : "text-green-300"}`}
+              className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-white" : "text-green-300"}`}
             >
-              {profile?.weeklyGoal ? (
+              {profile?.weeklyGoal?.goalActionType ? (
                 <>
                   이번 주 목표는... 주 {targetCount}회 {goalLabel}!
                 </>
@@ -189,7 +189,7 @@ function Profile() {
           </div>
 
           {/* 말풍선 섹션: showBubble 여부에 따라 투명도만 조절 */}
-          {!profile?.weeklyGoal && (
+          {!profile?.weeklyGoal?.goalActionType && (
             <div
               className={`absolute top-[245px] flex justify-center animate-float-bubble shrink-0 transition-opacity duration-1000 ease-in-out ${
                 showBubble ? "opacity-100" : "opacity-0 pointer-events-none"

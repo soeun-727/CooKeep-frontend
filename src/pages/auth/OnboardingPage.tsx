@@ -14,6 +14,7 @@ import Preference from "../../components/auth/onboarding/Preference";
 
 import { saveOnboardingData } from "../../api/onboarding";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
+import { GOAL_TYPE_MAP } from "../../utils/mapping";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -35,12 +36,20 @@ export default function Onboarding() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const isValidCount = (count: string) => {
+    const num = Number(count);
+    return !Number.isNaN(num) && num >= 1 && num <= 10;
+  };
+
   // --- 유효성 검사 로직 ---
   const getIsValid = () => {
     if (step === 0) return true;
     if (step === 1) return true; // 기피 재료는 선택 사항
     if (step === 2) return selectedGoal.id !== "";
-    if (step === 3) return goalCount !== "";
+    // NaN 안되게 수정
+    if (step === 3) {
+      return isValidCount(goalCount);
+    }
     return false;
   };
 
@@ -58,16 +67,55 @@ export default function Onboarding() {
   const handleSaveOnboarding = async (isForcedSkip: boolean = false) => {
     setIsLoading(true);
     try {
-      const requestBody = {
-        dislikedIngredients: selectedIngredients.map((item) => item.ingredient),
-        // 건너뛰기일 경우 null 또는 백엔드가 원하는 빈 값 처리
-        goalActionType: isForcedSkip
-          ? null // 또는 "" (백엔드 명세에 따라 결정)
-          : selectedGoal.id.toUpperCase(),
-        targetCount: isForcedSkip
-          ? null // 또는 0 (건너뛰기 시 값이 없음을 명시)
-          : parseInt(goalCount || "0", 10),
-      };
+      // const requestBody = {
+      //   dislikedIngredients: selectedIngredients.map((item) => item.ingredient),
+      //   // 건너뛰기일 경우 null 또는 백엔드가 원하는 빈 값 처리
+      //   goalActionType: isForcedSkip
+      //     ? null // 또는 "" (백엔드 명세에 따라 결정)
+      //     : GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
+      //   targetCount: isForcedSkip
+      //     ? null // 또는 0 (건너뛰기 시 값이 없음을 명시)
+      //     : parseInt(goalCount || "0", 10),
+      // };
+
+      // NaN 안 생기게 수정
+      let requestBody;
+
+      if (isForcedSkip) {
+        // 건너뛰기: 둘 다 null
+        requestBody = {
+          dislikedIngredients: selectedIngredients.map(
+            (item) => item.ingredient,
+          ),
+          goalActionType: null,
+          targetCount: null,
+        };
+
+        // 여기서 바로 요청 보내도 됨 (아래 로직 타지 않게)
+        // 이렇게 단순하게 해도 됨
+        await saveOnboardingData(requestBody); // response 변수 제거
+        setSelectedGoal({ id: "", title: "" });
+        setGoalCount("");
+        setIsFinished(true);
+        return;
+      } else {
+        const count = Number(goalCount);
+
+        if (!isValidCount(goalCount)) {
+          alert("목표 횟수는 1~10 사이로 입력해주세요.");
+          setIsLoading(false);
+          return;
+        }
+
+        requestBody = {
+          dislikedIngredients: selectedIngredients.map(
+            (item) => item.ingredient,
+          ),
+          goalActionType:
+            GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
+          targetCount: count,
+        };
+      }
 
       const response = await saveOnboardingData(requestBody);
 

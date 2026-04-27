@@ -16,7 +16,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
   return (
     <div
       onClick={() => !isSelected && setIsDimmed(true)}
-      className="relative w-full h-[100dvh] flex flex-col items-center bg-[#FAFAFA] overflow-hidden"
+      className="relative w-full h-[calc(100dvh-62px)] flex flex-col items-center bg-[#FAFAFA] overflow-hidden"
     >
       {/* 딤드: z-10 */}
       {isDimmed && (
@@ -25,8 +25,8 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
 
       {/* 헤더 영역 */}
       <div className="shrink-0 flex flex-col items-center gap-4">
-        <img src={header} alt="header" className="w-[361px]" />
-        <img src={categories} />
+        <object data={header} className="w-[361px]" />
+        <object data={categories} />
       </div>
 
       {/* 그리드 영역 */}
@@ -49,9 +49,8 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
 
           {/* 안내 메시지: z-20 부여 및 위치 조정 */}
           {isDimmed && (
-            <img
-              src={notice}
-              alt="click notice"
+            <object
+              data={notice}
               className="absolute z-20 w-[270px] top-25 -left-5"
             />
           )}
@@ -61,7 +60,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
       {/* 하단 버튼 영역: z-20 */}
       <div
         onClick={(e) => e.stopPropagation()}
-        className="absolute pb-[62px] bottom-[calc(32px+env(safe-area-inset-bottom))] flex justify-center w-full z-20"
+        className="absolute bottom-[calc(32px+env(safe-area-inset-bottom))] flex justify-center w-full z-20"
       >
         <div className="flex gap-[6px] w-[300px]">
           <div className="flex-1">
