@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackHeader from "../../components/ui/BackHeader";
 import Button from "../../components/ui/Button";
@@ -26,9 +26,6 @@ export default function RecordWritePage() {
   // const [showUploadModal, setShowUploadModal] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  // isUploaded state를 ref로 교체
-  const isUploadedRef = useRef(false); // ← 추가
-  const imageUrlRef = useRef<string | undefined>(undefined);
   const [rewardQueue, setRewardQueue] = useState<string[]>([]);
 
   const {
@@ -159,7 +156,7 @@ export default function RecordWritePage() {
           response.status === "OK")
       ) {
         // 핵심: navigate 전에 ref를 true로 설정
-        isUploadedRef.current = true;
+        // isUploadedRef.current = true;
 
         const rewards: string[] = [];
         if (response.data?.weeklyGoalAchieved) {
@@ -247,26 +244,6 @@ export default function RecordWritePage() {
   //     setIsUploading(false);
   //   }
   // };
-
-  // image가 바뀔 때마다 ref 동기화
-  useEffect(() => {
-    imageUrlRef.current = image?.url;
-  }, [image?.url]);
-
-  // cleanup은 언마운트 시에만 한 번만 실행
-  useEffect(() => {
-    return () => {
-      // ref 값을 로컬 변수에 캡처해서 사용
-      const wasUploaded = isUploadedRef.current;
-      const currentUrl = imageUrlRef.current;
-
-      if (!wasUploaded && currentUrl) {
-        deleteImage(currentUrl).catch(() => {
-          console.warn("페이지 이탈 시 이미지 삭제 실패");
-        });
-      }
-    };
-  }, []);
 
   if (!recipeDetail) {
     return (
