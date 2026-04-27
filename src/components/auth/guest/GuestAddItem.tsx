@@ -25,8 +25,8 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
 
       {/* 헤더 영역 */}
       <div className="shrink-0 flex flex-col items-center gap-4">
-        <img src={header} alt="header" className="w-[361px]" />
-        <img src={categories} />
+        <object data={header} className="w-[361px]" />
+        <object data={categories} />
       </div>
 
       {/* 그리드 영역 */}
@@ -49,9 +49,8 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
 
           {/* 안내 메시지: z-20 부여 및 위치 조정 */}
           {isDimmed && (
-            <img
-              src={notice}
-              alt="click notice"
+            <object
+              data={notice}
               className="absolute z-20 w-[270px] top-25 -left-5"
             />
           )}
