@@ -103,13 +103,13 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
   return (
     <div onClick={() => setIsDimmed(true)} className="relative w-full">
       {isDimmed && (
-        <div className="fixed inset-0 z-90 bg-neutral-900/50 left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
+        <div className="absolute inset-0 z-90 bg-neutral-900/50 left-1/2 -translate-x-1/2 max-w-[450px] w-full h-full" />
       )}
 
       <div
         className={`flex flex-col w-full gap-7 relative ${mode === "recipe" ? "pb-20" : ""}`}
       >
-        <img src={header} className="w-full" />
+        <object data={header} className="w-full" />
         <div className="relative w-full">
           {mode === "recipe" && (
             <div className="absolute -top-[120px] left-1/2 -translate-x-1/2 z-[130] w-full flex justify-center">
@@ -191,9 +191,8 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
         <div className="absolute -bottom-15 right-[31px] flex flex-col items-end z-[130]">
           {isDimmed && (
             <div className="relative w-full">
-              <img
-                src={notice}
-                alt="click notice"
+              <object
+                data={notice}
                 className="absolute -bottom-4 right-[-8px] w-[270px] max-w-none"
               />
             </div>

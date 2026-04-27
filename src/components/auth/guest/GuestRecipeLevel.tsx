@@ -10,8 +10,8 @@ interface Props {
 export default function GuestRecipeLevel({ onNext }: Props) {
   return (
     <div className="flex flex-col items-center">
-      <img src={header} />
-      <img src={contents} className="mt-[38px]" />
+      <object data={header} />
+      <object data={contents} className="mt-[38px]" />
       <div className="w-full -mt-[50px] pb-20">
         <DifficultySelector />
       </div>

@@ -106,10 +106,8 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
         {/* 하단 버튼 영역 */}
         <div className="relative flex p-4 w-full max-w-[450px] mx-auto z-20 items-center justify-center">
           {isDimmed && (
-            <img
-              src={notice}
-              alt="click notice"
-              /* left-1/2와 -translate-x-1/2를 추가하여 가로 중앙 정렬 */
+            <object
+              data={notice}
               className="absolute w-[178px] bottom-15 left-1/2 -translate-x-1/2"
             />
           )}
