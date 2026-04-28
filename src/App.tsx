@@ -138,7 +138,6 @@ export default function App() {
     <AppLayout>
       <Routes>
         {/* auth */}
-        <Route path="/test" element={<SuccessSection />} />
         <Route path="/" element={<InitialPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/guest" element={<GuestPage />} />
