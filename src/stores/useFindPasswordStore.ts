@@ -4,50 +4,49 @@ import { sendPasswordCodeApi, verifyPasswordCodeApi } from "../api/auth";
 import axios from "axios";
 
 interface FindPasswordState {
-  phone: string;
+  email: string;
   isCodeSent: boolean;
   isVerified: boolean;
 
-  setPhone: (phone: string) => void;
+  setEmail: (email: string) => void;
   sendCode: () => Promise<void>;
   verifyCode: (code: string) => Promise<boolean>;
   reset: () => void;
 }
 
 export const useFindPasswordStore = create<FindPasswordState>((set, get) => ({
-  phone: "",
+  email: "",
   isCodeSent: false,
   isVerified: false,
 
-  setPhone: (phone) => set({ phone: phone.replace(/[^0-9]/g, "") }),
+  setEmail: (email) => set({ email }),
 
   sendCode: async () => {
-    const { phone } = get();
+    const { email } = get();
 
     try {
-      await sendPasswordCodeApi(phone);
+      await sendPasswordCodeApi(email);
       set({ isCodeSent: true });
     } catch (error) {
       if (axios.isAxiosError(error)) {
         const status = error.response?.status;
 
         if (status === 404) {
-          throw new Error("가입된 번호가 없습니다.");
+          throw new Error("가입된 이메일이 없습니다.");
         }
         if (status === 429) {
           throw new Error("인증 요청이 너무 빠릅니다.");
         }
       }
-
       throw new Error("인증번호 발송 실패");
     }
   },
 
   verifyCode: async (code) => {
-    const { phone } = get();
+    const { email } = get();
 
     try {
-      await verifyPasswordCodeApi(phone, code);
+      await verifyPasswordCodeApi(email, code);
       set({ isVerified: true });
       return true;
     } catch (error) {
@@ -55,7 +54,8 @@ export const useFindPasswordStore = create<FindPasswordState>((set, get) => ({
         const status = error.response?.status;
 
         if (status === 400) {
-          throw new Error("인증번호가 일치하지 않거나 만료되었습니다.");
+          // throw new Error("인증번호가 일치하지 않거나 만료되었습니다.");
+          throw new Error("인증번호가 일치하지 않습니다.");
         }
 
         if (status === 404) {
@@ -73,7 +73,7 @@ export const useFindPasswordStore = create<FindPasswordState>((set, get) => ({
 
   reset: () =>
     set({
-      phone: "",
+      email: "",
       isCodeSent: false,
       isVerified: false,
     }),

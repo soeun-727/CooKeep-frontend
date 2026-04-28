@@ -9,11 +9,11 @@ interface VerifyResult {
 }
 
 interface SignupState {
-  phone: string;
+  email: string;
   isCodeSent: boolean;
   isVerified: boolean;
 
-  setPhone: (phone: string) => void;
+  setEmail: (email: string) => void;
   setIsVerified: (value: boolean) => void;
   sendCode: () => Promise<void>;
   verifyCode: (code: string) => Promise<VerifyResult>;
@@ -21,13 +21,13 @@ interface SignupState {
 }
 
 export const useSignupStore = create<SignupState>((set, get) => ({
-  phone: "",
+  email: "",
   isCodeSent: false,
   isVerified: false,
 
-  setPhone: (phone) =>
+  setEmail: (email) =>
     set({
-      phone,
+      email,
       isVerified: false,
       isCodeSent: false,
     }),
@@ -35,29 +35,18 @@ export const useSignupStore = create<SignupState>((set, get) => ({
   setIsVerified: (value: boolean) => set({ isVerified: value }),
 
   sendCode: async () => {
-    const phone = get().phone;
+    const email = get().email;
+    if (!email) throw new Error("이메일이 없습니다.");
 
-    if (!phone) {
-      throw new Error("전화번호가 없습니다.");
-    }
-
-    const normalizedPhone = phone.replace(/-/g, "");
-
-    await sendSignupCodeApi(normalizedPhone);
-
-    set({
-      isCodeSent: true,
-      isVerified: false,
-    });
+    await sendSignupCodeApi(email);
+    set({ isCodeSent: true, isVerified: false });
   },
 
   verifyCode: async (code: string) => {
-    const phone = get().phone;
-    const normalizedPhone = phone.replace(/-/g, "");
+    const email = get().email;
 
     try {
-      await verifySignupCodeApi(normalizedPhone, code);
-      // set({ isVerified: true });
+      await verifySignupCodeApi(email, code);
       return { success: true };
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -82,7 +71,7 @@ export const useSignupStore = create<SignupState>((set, get) => ({
 
   resetSignup: () =>
     set({
-      phone: "",
+      email: "",
       isCodeSent: false,
       isVerified: false,
     }),

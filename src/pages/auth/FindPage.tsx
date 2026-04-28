@@ -1,7 +1,7 @@
 // src/pages/auth/SignupPage.tsx
 
-import FindPhoneSection from "../../components/auth/find/FindPhoneSection";
+import FindEmailSection from "../../components/auth/find/FindEmailSection";
 
 export default function FindPage() {
-  return <FindPhoneSection />;
+  return <FindEmailSection />;
 }
