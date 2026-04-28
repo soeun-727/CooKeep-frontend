@@ -62,7 +62,7 @@ const TextField = ({
     placeholder:text-stone-300
     disabled:bg-[#ECECEC]
     focus:outline-none
-    ${leftIcon ? "pl-10" : ""}
+    ${leftIcon ? "pl-11" : ""}
         ${rightIcon ? "pr-10" : ""}
     ${
       errorMessage

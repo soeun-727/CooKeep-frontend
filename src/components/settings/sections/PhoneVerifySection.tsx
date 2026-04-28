@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import TextField from "../../ui/TextField";
 import Button from "../../ui/Button";
-import PhoneAuthModal from "../../auth/signup/PhoneAuthModal";
+import PhoneAuthModal from "../../auth/signup/EmailAuthModal";
 import { usePhoneUpdateStore } from "../../../stores/usePhoneUpdateStore";
 
 type ModalType = "send" | "verify" | "help";
@@ -215,7 +215,7 @@ export default function PhoneVerifySection({
       {modalType && (
         <PhoneAuthModal
           type={modalType}
-          phone={phone}
+          // phone={phone}
           onConfirm={() => {
             if (modalType === "verify") {
               onSuccess(); // 부모(EditPhonePage)에게 성공 알림

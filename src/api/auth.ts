@@ -27,7 +27,6 @@ export const loginApi = async (payload: LoginRequest) => {
 
 // 회원가입부분
 export interface SignupRequest {
-  phoneNumber: string;
   email: string;
   password: string;
   passwordConfirm: string;
@@ -40,21 +39,18 @@ export const signup = async (payload: SignupRequest) => {
 };
 
 // 회원가입 - 인증번호 발송
-export const sendSignupCodeApi = async (phoneNumber: string) => {
+export const sendSignupCodeApi = async (email: string) => {
   const res = await api.post("/api/auth/signup/send-code", {
-    phoneNumber,
+    email,
   });
 
   return res.data;
 };
 
 // 회원가입 - 인증번호 확인
-export const verifySignupCodeApi = async (
-  phoneNumber: string,
-  code: string,
-) => {
+export const verifySignupCodeApi = async (email: string, code: string) => {
   const res = await api.post("/api/auth/signup/verify-code", {
-    phoneNumber,
+    email,
     code,
   });
 
