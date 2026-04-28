@@ -76,7 +76,7 @@ const EmailAuthModal = ({
         <p
           className={`text-center leading-[20px] typo-body2 whitespace-pre-wrap ${isHelp ? "-mt-[6px]" : ""}`}
         >
-          {isSend && "인증번호가 발송되었습니다."}
+          {isSend && "인증번호가 발송되었어요"}
           {isVerify && "인증에 성공하였습니다"}
           {isAlready && "이미 가입된 계정이 있어요"}
           {isHelp &&
