@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TextField from "../../ui/TextField";
 import Button from "../../ui/Button";
-import FindPhoneAuthModal from "../../auth/find/FindPhoneAuthModal";
 import { useEditPasswordAuthStore } from "../../../stores/useEditPasswordAuthStore";
 import { getMyProfile } from "../../../api/user";
+import FindEmailAuthModal from "../../auth/find/FindEmailAuthModal";
 
 export default function EditPasswordPhoneSection() {
   const navigate = useNavigate();
@@ -237,9 +237,8 @@ export default function EditPasswordPhoneSection() {
       )}
 
       {modalType && modalType !== "mismatch" && (
-        <FindPhoneAuthModal
+        <FindEmailAuthModal
           type={modalType}
-          phone={phone}
           onConfirm={() => {
             if (modalType === "verify") {
               reset();

@@ -12,7 +12,7 @@ import { resetPasswordApi } from "../../../api/auth";
 import axios from "axios";
 
 export default function ResetPassword() {
-  const { phone, isVerified, reset } = useFindPasswordStore();
+  const { email, isVerified, reset } = useFindPasswordStore();
   const navigate = useNavigate();
 
   const [password, setPassword] = useState("");
@@ -30,10 +30,10 @@ export default function ResetPassword() {
   //   }
   // }, [isVerified, phone, navigate]);
   useEffect(() => {
-    if (!isSuccess && (!isVerified || !phone)) {
+    if (!isSuccess && (!isVerified || !email)) {
       navigate("/find");
     }
-  }, [isVerified, phone, isSuccess, navigate]);
+  }, [isVerified, email, isSuccess, navigate]);
 
   const isPasswordValid = password ? validatePassword(password) : false;
   const isPasswordMatch =
@@ -63,7 +63,7 @@ export default function ResetPassword() {
     }
 
     try {
-      await resetPasswordApi(phone, password, confirmPassword);
+      await resetPasswordApi(email, password, confirmPassword);
 
       setError(undefined);
       setIsSuccess(true);
@@ -83,7 +83,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="pt-[241px] w-[352px] mx-auto">
+    <div className="pt-[241px] w-[361px] mx-auto">
       <div className="typo-h1">비밀번호 변경하기</div>
       <div className="mt-[12px]">
         <TextField

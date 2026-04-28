@@ -58,21 +58,18 @@ export const verifySignupCodeApi = async (email: string, code: string) => {
 };
 
 // 비밀번호 찾기 - 인증번호 발송
-export const sendPasswordCodeApi = async (phoneNumber: string) => {
+export const sendPasswordCodeApi = async (email: string) => {
   const res = await api.post("/api/auth/password/send-code", {
-    phoneNumber,
+    email,
   });
 
   return res.data;
 };
 
 // 인증번호 확인
-export const verifyPasswordCodeApi = async (
-  phoneNumber: string,
-  code: string,
-) => {
+export const verifyPasswordCodeApi = async (email: string, code: string) => {
   const res = await api.post("/api/auth/password/verify-code", {
-    phoneNumber,
+    email,
     code,
   });
 
@@ -81,12 +78,12 @@ export const verifyPasswordCodeApi = async (
 
 // 비밀번호 재설정
 export const resetPasswordApi = async (
-  phoneNumber: string,
+  email: string,
   password: string,
   passwordConfirm: string,
 ) => {
   const res = await api.patch("/api/auth/password/reset", {
-    phoneNumber,
+    email,
     password,
     passwordConfirm,
   });
