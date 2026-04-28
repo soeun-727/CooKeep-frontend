@@ -154,7 +154,7 @@ export default function EmailSection() {
           className="mt-[31px]"
         >
           <span className="typo-button">
-            인증 확인 {isCodeSent && !isVerified && `(${formatTime(timeLeft)})`}
+            인증하기 {isCodeSent && !isVerified && `(${formatTime(timeLeft)})`}
           </span>
         </Button>
 
