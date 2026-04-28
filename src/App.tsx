@@ -59,7 +59,6 @@ import { useAuthStore } from "./stores/useAuthStore";
 import { useEffect, useState } from "react";
 import SplashPage from "./pages/SplashPage";
 import { useThemeColor } from "./hooks/useThemeColor";
-import SuccessSection from "./components/auth/signup/SuccessSection";
 
 export default function App() {
   useThemeColor("#FAFAFA");
