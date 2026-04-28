@@ -2,7 +2,7 @@ import api from "./axios";
 
 // 로그인 부분
 interface LoginRequest {
-  phoneNumber: string;
+  email: string;
   password: string;
 }
 
