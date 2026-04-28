@@ -59,6 +59,7 @@ import { useAuthStore } from "./stores/useAuthStore";
 import { useEffect, useState } from "react";
 import SplashPage from "./pages/SplashPage";
 import { useThemeColor } from "./hooks/useThemeColor";
+import SuccessSection from "./components/auth/signup/SuccessSection";
 
 export default function App() {
   useThemeColor("#FAFAFA");
@@ -137,6 +138,7 @@ export default function App() {
     <AppLayout>
       <Routes>
         {/* auth */}
+        <Route path="/test" element={<SuccessSection />} />
         <Route path="/" element={<InitialPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/guest" element={<GuestPage />} />
