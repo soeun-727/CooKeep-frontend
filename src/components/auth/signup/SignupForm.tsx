@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import PhoneSection from "./PhoneSection";
 import AccountSection from "./AccountSection";
 import SuccessSection from "./SuccessSection";
 import { useSignupStore } from "../../../stores/useSignupStore";
@@ -7,8 +6,9 @@ import { signup } from "../../../api/auth";
 import { saveTokens } from "../../../utils/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import PhoneAuthModal from "./PhoneAuthModal";
 import { registerPushNotification } from "../../../api/push";
+import EmailSection from "./EmailSection";
+import EmailAuthModal from "./EmailAuthModal";
 
 interface Agreements {
   terms: boolean;
@@ -29,11 +29,11 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
     setHideHeader(isFinished);
   }, [isFinished, setHideHeader]);
 
-  // 전화 인증 결과만 구독
+  // 인증 결과만 구독
   const isVerified = useSignupStore((s) => s.isVerified);
+  const storeEmail = useSignupStore((s) => s.email); // store의 이메일 (인증에 사용된)
 
   // 계정 정보
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
@@ -55,8 +55,6 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
     isVerified && isPasswordValid && isPasswordMatch && isRequiredAgreed;
 
   const navigate = useNavigate();
-  const rawPhoneNumber = useSignupStore((s) => s.phone);
-  const phoneNumber = rawPhoneNumber.replace(/-/g, "");
 
   const [loading, setLoading] = useState(false);
 
@@ -73,8 +71,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
 
     try {
       const res = await signup({
-        phoneNumber,
-        email,
+        email: storeEmail,
         password,
         passwordConfirm,
         marketingConsent: agreements.marketing,
@@ -96,9 +93,10 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const code = err.response?.data?.code;
-        if (code === "USER-002") {
-          setServerError("이미 사용 중인 전화번호입니다.");
-        } else if (code === "USER-003") {
+        // if (code === "USER-002") {
+        //   setServerError("이미 사용 중인 전화번호입니다.");
+        // } else
+        if (code === "USER-003") {
           setServerError(undefined);
           setEmailAlreadyModal(true);
         } else {
@@ -122,13 +120,12 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
 
   return (
     <div className="flex-1 min-h-0 flex flex-col gap-4">
-      {!isVerified && <PhoneSection />}
+      {/* 이메일 인증 섹션 (전화번호 섹션 대체) */}
+      {!isVerified && <EmailSection />}
 
       {isVerified && (
         <>
           <AccountSection
-            email={email}
-            setEmail={setEmail}
             password={password}
             setPassword={setPassword}
             passwordConfirm={passwordConfirm}
@@ -147,10 +144,9 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
             </p>
           )}
           {emailAlreadyModal && (
-            <PhoneAuthModal
+            <EmailAuthModal
               type="already"
-              email={email}
-              authType="email"
+              email={storeEmail}
               onConfirm={() => setEmailAlreadyModal(false)}
               onLogin={() => navigate("/login")}
             />

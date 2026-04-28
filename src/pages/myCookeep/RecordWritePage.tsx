@@ -50,9 +50,7 @@ export default function RecordWritePage() {
         const response = await getAiRecipeDetail(selectedRecipeId);
         if (response.status === "OK") {
           setRecipeDetail(response.data);
-          if (!title) {
-            setTitle(response.data.title);
-          }
+          setTitle(response.data.title);
         }
       } catch (error) {
         console.error("레시피 상세 로드 실패", error);

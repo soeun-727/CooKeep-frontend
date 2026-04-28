@@ -2,7 +2,7 @@ import api from "./axios";
 
 // 로그인 부분
 interface LoginRequest {
-  phoneNumber: string;
+  email: string;
   password: string;
 }
 
@@ -27,7 +27,6 @@ export const loginApi = async (payload: LoginRequest) => {
 
 // 회원가입부분
 export interface SignupRequest {
-  phoneNumber: string;
   email: string;
   password: string;
   passwordConfirm: string;
@@ -40,21 +39,18 @@ export const signup = async (payload: SignupRequest) => {
 };
 
 // 회원가입 - 인증번호 발송
-export const sendSignupCodeApi = async (phoneNumber: string) => {
+export const sendSignupCodeApi = async (email: string) => {
   const res = await api.post("/api/auth/signup/send-code", {
-    phoneNumber,
+    email,
   });
 
   return res.data;
 };
 
 // 회원가입 - 인증번호 확인
-export const verifySignupCodeApi = async (
-  phoneNumber: string,
-  code: string,
-) => {
+export const verifySignupCodeApi = async (email: string, code: string) => {
   const res = await api.post("/api/auth/signup/verify-code", {
-    phoneNumber,
+    email,
     code,
   });
 
@@ -62,21 +58,18 @@ export const verifySignupCodeApi = async (
 };
 
 // 비밀번호 찾기 - 인증번호 발송
-export const sendPasswordCodeApi = async (phoneNumber: string) => {
+export const sendPasswordCodeApi = async (email: string) => {
   const res = await api.post("/api/auth/password/send-code", {
-    phoneNumber,
+    email,
   });
 
   return res.data;
 };
 
 // 인증번호 확인
-export const verifyPasswordCodeApi = async (
-  phoneNumber: string,
-  code: string,
-) => {
+export const verifyPasswordCodeApi = async (email: string, code: string) => {
   const res = await api.post("/api/auth/password/verify-code", {
-    phoneNumber,
+    email,
     code,
   });
 
@@ -85,12 +78,12 @@ export const verifyPasswordCodeApi = async (
 
 // 비밀번호 재설정
 export const resetPasswordApi = async (
-  phoneNumber: string,
+  email: string,
   password: string,
   passwordConfirm: string,
 ) => {
   const res = await api.patch("/api/auth/password/reset", {
-    phoneNumber,
+    email,
     password,
     passwordConfirm,
   });

@@ -3,7 +3,6 @@ import TextField from "../../ui/TextField";
 import Button from "../../ui/Button";
 import { AGREEMENTS, AGREEMENT_NOTICE } from "../../../constants/agreements";
 import { useSignupStore } from "../../../stores/useSignupStore";
-import phoneIcon from "../../../assets/login/phone.svg";
 import mailIcon from "../../../assets/signup/mail.svg";
 import pwIcon from "../../../assets/login/key.svg";
 import pwImage from "../../../assets/login/pw.svg";
@@ -22,8 +21,6 @@ interface Agreements {
 }
 
 interface AccountSectionProps {
-  email: string;
-  setEmail: (value: string) => void;
   password: string;
   setPassword: (value: string) => void;
   passwordConfirm: string;
@@ -37,8 +34,6 @@ interface AccountSectionProps {
 }
 
 export default function AccountSection({
-  email,
-  setEmail,
   password,
   setPassword,
   passwordConfirm,
@@ -53,11 +48,9 @@ export default function AccountSection({
   const [agreementPage, setAgreementPage] = useState<AgreementItem | null>(
     null,
   );
-  // Zustand에서 인증 완료된 번호 가져오기
-  const phoneNumber = useSignupStore((state) => state.phone);
-  const isPhoneVerified = useSignupStore((state) => state.isVerified);
+  // store에서 인증된 이메일 읽기
+  const verifiedEmail = useSignupStore((state) => state.email);
 
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isPasswordValid =
     password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
   const isPasswordMatch = password === passwordConfirm;
@@ -107,31 +100,13 @@ export default function AccountSection({
             {/* 제목 */}
             <div className="typo-h1">회원가입</div>
             <div className="mx-auto mt-[12px]">
-              {/* 휴대폰 번호 */}
-
-              <TextField
-                value={phoneNumber}
-                placeholder="휴대폰 번호(- 없이 숫자만 입력)"
-                onChange={() => {}}
-                disabled
-                leftIcon={<img src={phoneIcon} alt="휴대폰 아이콘" />}
-              />
               <div className="mt-[5px]">
-                {/* 이메일 */}
+                {/* 인증된 이메일 - 읽기 전용으로 표시 */}
                 <TextField
-                  value={email}
-                  onChange={setEmail}
-                  placeholder="이메일 주소 입력"
-                  errorMessage={
-                    email && !isEmailValid
-                      ? "이메일 주소를 다시 확인해 주세요"
-                      : undefined
-                  }
-                  successMessage={
-                    email && isEmailValid
-                      ? "사용 가능한 이메일입니다"
-                      : undefined
-                  }
+                  value={verifiedEmail}
+                  placeholder="이메일 주소"
+                  onChange={() => {}}
+                  disabled
                   leftIcon={<img src={mailIcon} alt="메일 아이콘" />}
                 />
 
@@ -199,7 +174,7 @@ export default function AccountSection({
                     />
 
                     {/* 약관 영역 */}
-                    <div className="mt-5">
+                    <div className="mt-[90px]">
                       {/* 전체 동의 */}
                       <label className="relative flex items-center px-3 h-[48px] w-full rounded-[6px] border border-[#D1D1D1] cursor-pointer">
                         <div className="relative w-6 h-6 flex-shrink-0 flex items-center justify-center">
@@ -297,10 +272,13 @@ export default function AccountSection({
                         type="submit"
                         size="L"
                         disabled={
-                          !isSignupEnabled || !isPhoneVerified || loading
+                          // !isSignupEnabled || !isPhoneVerified || loading
+                          !isSignupEnabled || loading
                         }
                         onClick={onSubmit}
-                        className=" mt-[8px] "
+                        className={`mt-[8px] ${
+                          !isSignupEnabled || loading ? "" : "!text-[#32E389]"
+                        }`}
                       >
                         {loading ? "가입 중..." : "회원가입"}
                       </Button>
