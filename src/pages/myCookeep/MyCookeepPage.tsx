@@ -20,6 +20,7 @@ export default function MyCookeepPage() {
 
   const [activeTab, setActiveTab] = useState<TabType>("record");
   const [dismissed, setDismissed] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<string>("");
   const records = useCookeepRecordStore((s) => s.records);
   const setRecords = useCookeepRecordStore((s) => s.setRecords);
   const [enteredByBottomTab, setEnteredByBottomTab] = useState(
@@ -66,12 +67,13 @@ export default function MyCookeepPage() {
 
   const handleTabChange = (tab: string) => {
     if (tab === "record" || tab === "calendar" || tab === "statistics") {
-      // setRecords([]);
       setActiveTab(tab);
+      setSelectedDate(""); // 추가: 상세 보기 상태 초기화
       setDismissed(false);
       setEnteredByBottomTab(false);
     }
   };
+
   const handleActiveTabClick = (tab: string) => {
     if (tab === "calendar") {
       setRecords([]);
@@ -87,16 +89,31 @@ export default function MyCookeepPage() {
   const renderContent = () => {
     switch (activeTab) {
       case "calendar":
-        if (records.length > 0) {
+        // 사용자가 날짜를 클릭해서 selectedDate가 생겼고, 데이터가 있을 때만 상세를 보여줌
+        if (selectedDate && records.length > 0) {
           return (
             <div className="flex flex-col items-center gap-6 px-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
+              {/* 뒤로가기 버튼 등이 있으면 더 좋겠네요! */}
+              <button
+                onClick={() => setSelectedDate("")}
+                className="self-start text-sm text-gray-500"
+              >
+                ← 캘린더로 돌아가기
+              </button>
               {records.map((record) => (
                 <RecordCard key={record.dailyRecipeId} record={record} />
               ))}
             </div>
           );
         }
-        return <Calendar onDateClick={handleDateClick} />;
+        return (
+          <Calendar
+            onDateClick={(date) => {
+              setSelectedDate(date);
+              handleDateClick(date);
+            }}
+          />
+        );
 
       case "statistics":
         return <Statistics />;
