@@ -106,6 +106,20 @@ export const updateEmail = async (email: string) => {
   return res.data;
 };
 
+// 이메일 변경 인증 관련 (신규)
+export const sendUpdateEmailCode = async (email: string) => {
+  const res = await api.post("/api/users/me/email/send-code", { email });
+  return res.data;
+};
+
+export const verifyUpdateEmailCode = async (email: string, code: string) => {
+  const res = await api.post("/api/users/me/email/verify-code", {
+    email,
+    code,
+  });
+  return res.data;
+};
+
 /** 전화번호 변경 인증 관련 */
 export const sendUpdatePhoneCode = async (phoneNumber: string) => {
   const res = await api.post("/api/users/me/phone/send-code", { phoneNumber });
