@@ -9,7 +9,6 @@ const MASKED_PASSWORD = "********";
 
 type ProfileInfo = {
   nickname: string;
-  phone: string;
   email: string;
 };
 
@@ -29,7 +28,6 @@ export default function ProfileSection({ profile }: Props) {
   // 최초 1회 초기화
   const [account, setAccount] = useState<ProfileInfo>(() => ({
     nickname: profile.Nickname || "",
-    phone: profile.phoneNumber || "",
     email: profile.email || "",
   }));
 

@@ -105,7 +105,7 @@ export default function EmailSection() {
         <div className="relative mt-[12px]">
           <TextField
             value={email}
-            onChange={setEmail} // setPhone → setEmail
+            onChange={setEmail}
             placeholder="이메일 주소 입력"
             disabled={isVerified || isCodeSent}
             errorMessage={
@@ -170,7 +170,7 @@ export default function EmailSection() {
       {modalType && (
         <EmailAuthModal
           type={modalType}
-          email={email} // phone → email
+          email={email}
           onConfirm={() => {
             if (modalType === "verify") {
               useSignupStore.getState().setIsVerified(true);

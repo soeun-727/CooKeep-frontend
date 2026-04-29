@@ -24,11 +24,6 @@ export default function ResetPassword() {
   const validatePassword = (pw: string) =>
     pw.length >= 8 && /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw);
 
-  // useEffect(() => {
-  //   if (!isVerified || !phone) {
-  //     navigate("/find");
-  //   }
-  // }, [isVerified, phone, navigate]);
   useEffect(() => {
     if (!isSuccess && (!isVerified || !email)) {
       navigate("/find");

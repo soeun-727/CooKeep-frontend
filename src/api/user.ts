@@ -35,7 +35,6 @@ export interface MyProfileResponse {
   timestamp: string;
   data: {
     Nickname: string;
-    phoneNumber: string;
     email: string;
     authProvider: "LOCAL" | "KAKAO" | "GOOGLE";
     marketingPush: boolean;
@@ -115,23 +114,6 @@ export const sendUpdateEmailCode = async (email: string) => {
 export const verifyUpdateEmailCode = async (email: string, code: string) => {
   const res = await api.post("/api/users/me/email/verify-code", {
     email,
-    code,
-  });
-  return res.data;
-};
-
-/** 전화번호 변경 인증 관련 */
-export const sendUpdatePhoneCode = async (phoneNumber: string) => {
-  const res = await api.post("/api/users/me/phone/send-code", { phoneNumber });
-  return res.data;
-};
-
-export const verifyUpdatePhoneCode = async (
-  phoneNumber: string,
-  code: string,
-) => {
-  const res = await api.post("/api/users/me/phone/verify-code", {
-    phoneNumber,
     code,
   });
   return res.data;
