@@ -90,7 +90,7 @@ const EmailAuthModal = ({
         )} */}
 
         {/* 마스킹된 이메일 표시 */}
-        {(isSend || isVerify || isAlready) && email && (
+        {(isVerify || isAlready) && email && (
           <p className="text-[12px] text-[#7D7D7D] text-center">
             {maskEmail(email)}
           </p>

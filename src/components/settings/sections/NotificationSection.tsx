@@ -54,7 +54,7 @@ export default function NotificationSection({
       await updateMarketingPush(next);
 
       onStateChange(next);
-    } catch (error) {
+    } catch {
       setEnabled(prev);
       alert("푸시 설정 변경에 실패했습니다.");
     } finally {
@@ -72,7 +72,7 @@ export default function NotificationSection({
   };
 
   return (
-    <section className="px-4 mt-[26px]">
+    <section className="px-4 mt-[128px]">
       <SettingsToggleItem
         label="PUSH 수신 동의"
         checked={enabled}

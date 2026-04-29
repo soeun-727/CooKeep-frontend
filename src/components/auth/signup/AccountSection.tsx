@@ -271,10 +271,7 @@ export default function AccountSection({
                       <Button
                         type="submit"
                         size="L"
-                        disabled={
-                          // !isSignupEnabled || !isPhoneVerified || loading
-                          !isSignupEnabled || loading
-                        }
+                        disabled={!isSignupEnabled || loading}
                         onClick={onSubmit}
                         className={`mt-[8px] ${
                           !isSignupEnabled || loading ? "" : "!text-[#32E389]"

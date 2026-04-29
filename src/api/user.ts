@@ -35,7 +35,6 @@ export interface MyProfileResponse {
   timestamp: string;
   data: {
     Nickname: string;
-    phoneNumber: string;
     email: string;
     authProvider: "LOCAL" | "KAKAO" | "GOOGLE";
     marketingPush: boolean;
@@ -106,18 +105,15 @@ export const updateEmail = async (email: string) => {
   return res.data;
 };
 
-/** 전화번호 변경 인증 관련 */
-export const sendUpdatePhoneCode = async (phoneNumber: string) => {
-  const res = await api.post("/api/users/me/phone/send-code", { phoneNumber });
+// 이메일 변경 인증 관련 (신규)
+export const sendUpdateEmailCode = async (email: string) => {
+  const res = await api.post("/api/users/me/email/send-code", { email });
   return res.data;
 };
 
-export const verifyUpdatePhoneCode = async (
-  phoneNumber: string,
-  code: string,
-) => {
-  const res = await api.post("/api/users/me/phone/verify-code", {
-    phoneNumber,
+export const verifyUpdateEmailCode = async (email: string, code: string) => {
+  const res = await api.post("/api/users/me/email/verify-code", {
+    email,
     code,
   });
   return res.data;
@@ -150,27 +146,24 @@ export const changePassword = async (
   return res.data;
 };
 
-export const sendPasswordChangeCode = async (phoneNumber: string) => {
+export const sendPasswordChangeCode = async (email: string) => {
   const res = await api.post<{
     status: string;
     timestamp: string;
     data: string;
   }>("/api/users/me/password/send-code", {
-    phoneNumber,
+    email,
   });
   return res.data;
 };
 
-export const verifyPasswordChangeCode = async (
-  phoneNumber: string,
-  code: string,
-) => {
+export const verifyPasswordChangeCode = async (email: string, code: string) => {
   const res = await api.post<{
     status: string;
     timestamp: string;
     data: string;
   }>("/api/users/me/password/verify-code", {
-    phoneNumber,
+    email,
     code,
   });
   return res.data;

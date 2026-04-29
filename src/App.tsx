@@ -11,12 +11,11 @@ import RequireFindAuth from "./components/auth/find/RequireFindAuth";
 import FindLayout from "./components/auth/find/FindLayout";
 
 import SettingsPage from "./pages/settings/SettingsPage";
-import EditPhonePage from "./pages/settings/EditPhonePage";
 import SettingsLayout from "./layouts/SettingsLayout";
 import EditEmailPage from "./pages/settings/EditEmailPage";
 import EditPasswordPage from "./pages/settings/EditPasswordPage";
 import VerifyLayout from "./layouts/VerifyLayout";
-import EditPasswordPhoneSection from "./components/settings/sections/EditPasswordPhoneSection";
+import EditPasswordEmailSection from "./components/settings/sections/EditPasswordEmailSection";
 
 import SimpleLoginAgreementPage from "./pages/auth/SimpleLoginAgreementPage";
 import SupportPage from "./pages/settings/SupportPage";
@@ -160,13 +159,12 @@ export default function App() {
         {/* settings */}
         <Route path="/settings" element={<SettingsLayout />}>
           <Route index element={<SettingsPage />} />
-          <Route path="phone" element={<EditPhonePage />} />
           <Route path="email" element={<EditEmailPage />} />
           <Route path="password" element={<EditPasswordPage />} />
           <Route element={<VerifyLayout />}>
             <Route
               path="password/verify"
-              element={<EditPasswordPhoneSection />}
+              element={<EditPasswordEmailSection />}
             />
           </Route>
           <Route path="faq" element={<FaqPage />} />

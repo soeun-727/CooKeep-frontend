@@ -105,7 +105,7 @@ export default function EmailSection() {
         <div className="relative mt-[12px]">
           <TextField
             value={email}
-            onChange={setEmail} // setPhone → setEmail
+            onChange={setEmail}
             placeholder="이메일 주소 입력"
             disabled={isVerified || isCodeSent}
             errorMessage={
@@ -161,7 +161,7 @@ export default function EmailSection() {
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="mt-3 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
+          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
         >
           인증 번호가 발송되지 않나요?
         </button>
@@ -170,7 +170,7 @@ export default function EmailSection() {
       {modalType && (
         <EmailAuthModal
           type={modalType}
-          email={email} // phone → email
+          email={email}
           onConfirm={() => {
             if (modalType === "verify") {
               useSignupStore.getState().setIsVerified(true);
