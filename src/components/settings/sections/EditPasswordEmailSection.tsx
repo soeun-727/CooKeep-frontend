@@ -180,7 +180,7 @@ export default function EditPasswordEmailSection() {
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="mt-3 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
+          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
         >
           인증 번호가 발송되지 않나요?
         </button>
