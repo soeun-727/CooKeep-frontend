@@ -150,27 +150,24 @@ export const changePassword = async (
   return res.data;
 };
 
-export const sendPasswordChangeCode = async (phoneNumber: string) => {
+export const sendPasswordChangeCode = async (email: string) => {
   const res = await api.post<{
     status: string;
     timestamp: string;
     data: string;
   }>("/api/users/me/password/send-code", {
-    phoneNumber,
+    email,
   });
   return res.data;
 };
 
-export const verifyPasswordChangeCode = async (
-  phoneNumber: string,
-  code: string,
-) => {
+export const verifyPasswordChangeCode = async (email: string, code: string) => {
   const res = await api.post<{
     status: string;
     timestamp: string;
     data: string;
   }>("/api/users/me/password/verify-code", {
-    phoneNumber,
+    email,
     code,
   });
   return res.data;

@@ -16,7 +16,7 @@ import SettingsLayout from "./layouts/SettingsLayout";
 import EditEmailPage from "./pages/settings/EditEmailPage";
 import EditPasswordPage from "./pages/settings/EditPasswordPage";
 import VerifyLayout from "./layouts/VerifyLayout";
-import EditPasswordPhoneSection from "./components/settings/sections/EditPasswordPhoneSection";
+import EditPasswordEmailSection from "./components/settings/sections/EditPasswordEmailSection";
 
 import SimpleLoginAgreementPage from "./pages/auth/SimpleLoginAgreementPage";
 import SupportPage from "./pages/settings/SupportPage";
@@ -166,7 +166,7 @@ export default function App() {
           <Route element={<VerifyLayout />}>
             <Route
               path="password/verify"
-              element={<EditPasswordPhoneSection />}
+              element={<EditPasswordEmailSection />}
             />
           </Route>
           <Route path="faq" element={<FaqPage />} />
