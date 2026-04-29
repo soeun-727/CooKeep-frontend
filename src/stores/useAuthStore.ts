@@ -4,7 +4,7 @@ import { saveTokens, clearTokens } from "../utils/auth";
 import { loginApi, logoutApi } from "../api/auth";
 import axios from "axios";
 import { useSignupStore } from "./useSignupStore";
-import { usePhoneUpdateStore } from "./usePhoneUpdateStore";
+import { useEmailUpdateStore } from "./useEmailUpdateStore";
 import { useFindPasswordStore } from "./useFindPasswordStore";
 import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
 import { useRewardStore } from "./useRewardStore";
@@ -151,7 +151,7 @@ export const useAuthStore = create<AuthState>()(
             initialized: true,
           });
           useSignupStore.getState().resetSignup?.();
-          usePhoneUpdateStore.getState().reset?.();
+          useEmailUpdateStore.getState().reset?.();
           useFindPasswordStore.getState().reset?.();
           useEditPasswordAuthStore.getState().reset?.();
         }
