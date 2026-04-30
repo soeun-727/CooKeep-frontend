@@ -7,9 +7,9 @@ export default function SuccessSection() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col items-center justify-start animate-fade-in">
+    <div className="flex flex-1 flex-col items-center justify-start animate-fade-in">
       {/* 상단 간격 */}
-      <div className="mt-[166px] flex flex-col items-center gap-[10px]  text-center">
+      <div className="mt-[102px] flex flex-col items-center gap-[10px]  text-center">
         <h1 className="w-[361px] typo-h1 !text-[28px] !leading-[36px] !font-bold text-center">
           반가워요! 오늘부터 지속 가능한 요리 루틴을 만들어볼까요?
         </h1>
@@ -20,7 +20,7 @@ export default function SuccessSection() {
       </div>
 
       {/* 이미지 */}
-      <img src={char} alt="임시" className="mt-[122px] w-[184px] h-[167px]" />
+      <img src={char} alt="임시" className="mt-20 w-49" />
       <img src={shadow} className="w-[154px] brightness-95 mt-3" />
 
       <img src={chatbox} className="fixed -left-5 bottom-35" />

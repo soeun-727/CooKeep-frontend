@@ -14,12 +14,12 @@ export default function EditPasswordPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const verifiedFromPhone = location.state?.verifiedBy === "phone";
+  const verifiedFromEmail = location.state?.verifiedBy === "email";
 
   // 기존 비밀번호
   const [currentPassword, setCurrentPassword] = useState("");
   const [isCurrentPwValid, setIsCurrentPwValid] = useState<boolean | null>(
-    verifiedFromPhone ? true : null,
+    verifiedFromEmail ? true : null,
   );
 
   // UI 상태
@@ -45,7 +45,7 @@ export default function EditPasswordPage() {
     password && confirmPassword ? password === confirmPassword : false;
 
   const isFormValid =
-    (isCurrentPwValid === true || verifiedFromPhone) &&
+    (isCurrentPwValid === true || verifiedFromEmail) &&
     isPasswordValid &&
     isPasswordMatch;
 
@@ -53,7 +53,7 @@ export default function EditPasswordPage() {
   const handleCurrentPasswordBlur = async () => {
     if (!currentPassword) return;
     if (isCurrentPwValid === true) return;
-    if (verifiedFromPhone) return; // 본인인증으로 이미 검증됨
+    if (verifiedFromEmail) return; // 본인인증으로 이미 검증됨
 
     if (currentPwFailCount >= MAX_ATTEMPTS) {
       setShowAuthModal(true);
@@ -114,14 +114,14 @@ export default function EditPasswordPage() {
   };
 
   useEffect(() => {
-    if (!location.state?.fromSettings && !verifiedFromPhone) {
+    if (!location.state?.fromSettings && !verifiedFromEmail) {
       navigate("/settings", { replace: true });
     }
-  }, [location.state, verifiedFromPhone, navigate]);
+  }, [location.state, verifiedFromEmail, navigate]);
 
   return (
     <div className="relative min-h-screen bg-[#FAFAFA]">
-      <div className="pt-[241px] w-[352px] mx-auto">
+      <div className="pt-[241px] w-[361px] mx-auto">
         <div className="typo-h1">비밀번호 변경</div>
 
         {/* 기존 비밀번호 */}
@@ -137,15 +137,15 @@ export default function EditPasswordPage() {
             onBlur={handleCurrentPasswordBlur}
             placeholder="기존 비밀번호"
             autoComplete="current-password"
-            disabled={verifiedFromPhone} // 본인인증 완료 시 비활성화
+            disabled={verifiedFromEmail} // 본인인증 완료 시 비활성화
             errorMessage={
               isCurrentPwValid === false
-                ? `기존 비밀번호가 일치하지 않습니다 (${currentPwFailCount}/${MAX_ATTEMPTS})`
+                ? `기존 비밀번호를 다시 확인해 주세요 (${currentPwFailCount}/${MAX_ATTEMPTS})`
                 : undefined
             }
             successMessage={
               isCurrentPwValid === true
-                ? verifiedFromPhone
+                ? verifiedFromEmail
                   ? "본인인증이 완료되었습니다"
                   : "기존 비밀번호가 확인되었습니다"
                 : undefined
@@ -155,7 +155,7 @@ export default function EditPasswordPage() {
               <button
                 type="button"
                 onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                disabled={verifiedFromPhone}
+                disabled={verifiedFromEmail}
               >
                 <img
                   src={
@@ -256,10 +256,10 @@ export default function EditPasswordPage() {
 
         <Button
           size="L"
-          variant="green"
+          variant="black"
           disabled={!isFormValid}
           onClick={handleSubmit}
-          className="mt-[31px]"
+          className={`mt-[31px] ${!isFormValid ? "" : "!text-[#32E389]"}`}
         >
           비밀번호 재설정
         </Button>
@@ -270,7 +270,7 @@ export default function EditPasswordPage() {
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40">
           <div className="w-[254px] flex flex-col items-center pt-[25px] px-[28px] pb-[25px] gap-[16px] rounded-[10px] bg-white">
             <p className="typo-label text-[#111] text-center self-stretch">
-              비밀번호가 5회 일치하지 않았어요.
+              비밀번호가 5회 일치하지 않았어요
               <br />
               본인인증을 진행해 주세요
             </p>
@@ -303,7 +303,7 @@ export default function EditPasswordPage() {
             <Button
               size="L"
               variant="black"
-              className="mt-[48px]"
+              className="mt-[48px] !text-[#32E389]"
               onClick={() => navigate("/settings")}
             >
               확인

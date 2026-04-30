@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import SettingsInputItem from "../components/SettingsInputItem";
 import axios from "axios";
 import { MyProfileResponse, updateNickname } from "../../../api/user";
+import SingleButtonModal from "../../ui/SingleButtonModal";
 
 const MASKED_PASSWORD = "********";
 
 type ProfileInfo = {
   nickname: string;
-  phone: string;
   email: string;
 };
 
@@ -21,13 +21,13 @@ export default function ProfileSection({ profile }: Props) {
 
   const [isEditingNickname, setIsEditingNickname] = useState(false);
   const nicknameInputRef = useRef<HTMLInputElement>(null);
+  const [openDuplicateModal, setOpenDuplicateModal] = useState(false);
 
   const isSocialLogin = profile.authProvider !== "LOCAL";
 
   // 최초 1회 초기화
   const [account, setAccount] = useState<ProfileInfo>(() => ({
     nickname: profile.Nickname || "",
-    phone: profile.phoneNumber || "",
     email: profile.email || "",
   }));
 
@@ -57,11 +57,12 @@ export default function ProfileSection({ profile }: Props) {
       setIsEditingNickname(false);
     } catch (err) {
       if (axios.isAxiosError(err)) {
+        const status = err.response?.status;
         const code = err.response?.data?.code;
 
-        if (code === "DUPLICATE_NICKNAME") {
-          alert("이미 사용 중인 닉네임입니다.");
-        } else if (code === "UNAUTHORIZED") {
+        if (status === 409 || code === "USER-001") {
+          setOpenDuplicateModal(true);
+        } else if (status === 401) {
           alert("로그인이 필요합니다.");
         } else {
           alert("닉네임 변경 중 오류가 발생했습니다.");
@@ -70,14 +71,6 @@ export default function ProfileSection({ profile }: Props) {
         alert("알 수 없는 오류가 발생했습니다.");
       }
     }
-  };
-
-  const formatPhoneNumber = (phone: string) => {
-    if (!phone) return "";
-    // 숫자만 남기기
-    const digits = phone.replace(/[^\d]/g, "");
-    // 11자리 기준 (010-1234-5678)
-    return digits.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
   };
 
   return (
@@ -159,7 +152,7 @@ export default function ProfileSection({ profile }: Props) {
                 {/* 1. 글자 수 초과 에러 */}
                 {isNicknameError && (
                   <span className="text-[#D91F1F] typo-caption leading-0">
-                    닉네임은 {MAX_NICKNAME_LENGTH}글자 이하로 입력해주세요
+                    {MAX_NICKNAME_LENGTH}글자 이내로 설정해주세요
                   </span>
                 )}
 
@@ -173,14 +166,6 @@ export default function ProfileSection({ profile }: Props) {
             )}
           </div>
         </div>
-
-        <SettingsInputItem
-          label="휴대전화"
-          value={isSocialLogin ? "" : formatPhoneNumber(account.phone)}
-          buttonText="휴대폰 번호 변경"
-          to="/settings/phone"
-          disabled={isSocialLogin}
-        />
 
         <SettingsInputItem
           label="이메일"
@@ -199,6 +184,12 @@ export default function ProfileSection({ profile }: Props) {
           disabled={isSocialLogin}
         />
       </div>
+      {openDuplicateModal && (
+        <SingleButtonModal
+          message="이미 사용 중인 닉네임입니다."
+          onClose={() => setOpenDuplicateModal(false)}
+        />
+      )}
     </section>
   );
 }

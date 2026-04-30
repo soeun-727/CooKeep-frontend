@@ -1,38 +1,40 @@
 import CautionIcon from "../../../assets/signup/icon_caution.svg";
 import Button from "../../ui/Button";
 
-export type PhoneAuthModalType = "send" | "verify" | "already" | "help";
+export type EmailAuthModalType = "send" | "verify" | "already" | "help";
 
-interface PhoneAuthModalProps {
-  type: PhoneAuthModalType;
-  phone?: string;
-  email?: string; // ✅ 추가
-  authType?: "phone" | "email"; // ✅ 추가
+interface EmailAuthModalProps {
+  type: EmailAuthModalType;
+  email?: string; // 추가
   onConfirm: () => void;
   onLogin?: () => void;
 }
 
-const PhoneAuthModal = ({
+// ex) hello@gmail.com → hel****@gmail.com
+const maskEmail = (email: string) => {
+  const [local, domain] = email.split("@");
+  if (!domain) return email;
+  const visible = local.slice(0, Math.max(1, local.length - 4));
+  return `${visible}****@${domain}`;
+};
+
+const EmailAuthModal = ({
   type,
-  phone,
   email,
-  authType = "phone", // 기본은 phone
   onConfirm,
   onLogin,
-}: PhoneAuthModalProps) => {
+}: EmailAuthModalProps) => {
   const isSend = type === "send";
   const isVerify = type === "verify";
   const isAlready = type === "already";
   const isHelp = type === "help";
 
-  const isBlackButton = isHelp || (isAlready && authType === "email");
+  const isBlackButton = isHelp;
 
   const buttonText = isHelp
     ? "채널 문의 바로가기"
     : isAlready
-      ? authType === "email"
-        ? "로그인하기"
-        : "로그인하기"
+      ? "로그인하기"
       : "확인";
   const KAKAO_CHANNEL_URL = "https://pf.kakao.com/_xfSKxhX";
 
@@ -74,7 +76,7 @@ const PhoneAuthModal = ({
         <p
           className={`text-center leading-[20px] typo-body2 whitespace-pre-wrap ${isHelp ? "-mt-[6px]" : ""}`}
         >
-          {isSend && "인증번호가 발송되었습니다."}
+          {isSend && "인증번호가 발송되었어요"}
           {isVerify && "인증에 성공하였습니다"}
           {isAlready && "이미 가입된 계정이 있어요"}
           {isHelp &&
@@ -82,21 +84,16 @@ const PhoneAuthModal = ({
         </p>
 
         {/* 부가 텍스트 */}
-        {/* verify일 때 전화번호 */}
-        {isVerify && authType === "phone" && phone && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">
-            {phone.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2")}
-          </p>
-        )}
-
-        {isAlready && authType === "phone" && phone && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">
-            {phone.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2")}
-          </p>
-        )}
-
-        {isAlready && authType === "email" && email && (
+        {/* 이메일 표시 - send / verify / already 모두 동일하게 */}
+        {/* {(isSend || isVerify || isAlready) && email && (
           <p className="text-[12px] text-[#7D7D7D] text-center">{email}</p>
+        )} */}
+
+        {/* 마스킹된 이메일 표시 */}
+        {(isVerify || isAlready) && email && (
+          <p className="text-[12px] text-[#7D7D7D] text-center">
+            {maskEmail(email)}
+          </p>
         )}
 
         {isHelp && (
@@ -120,4 +117,4 @@ const PhoneAuthModal = ({
   );
 };
 
-export default PhoneAuthModal;
+export default EmailAuthModal;

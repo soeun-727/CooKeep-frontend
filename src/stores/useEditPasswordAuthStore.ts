@@ -2,11 +2,11 @@ import { create } from "zustand";
 import { sendPasswordChangeCode, verifyPasswordChangeCode } from "../api/user";
 
 interface EditPasswordAuthState {
-  phone: string;
+  email: string;
   isCodeSent: boolean;
   isVerified: boolean;
 
-  setPhone: (phone: string) => void;
+  setEmail: (email: string) => void;
   sendCode: () => Promise<void>;
   verifyCode: (code: string) => Promise<boolean>;
   reset: () => void;
@@ -14,23 +14,23 @@ interface EditPasswordAuthState {
 
 export const useEditPasswordAuthStore = create<EditPasswordAuthState>(
   (set, get) => ({
-    phone: "",
+    email: "",
     isCodeSent: false,
     isVerified: false,
 
-    setPhone: (phone) => set({ phone: phone.replace(/[^0-9]/g, "") }),
+    setEmail: (email) => set({ email }),
 
     sendCode: async () => {
-      const { phone } = get();
-      await sendPasswordChangeCode(phone);
+      const { email } = get();
+      await sendPasswordChangeCode(email);
       set({ isCodeSent: true });
     },
 
     verifyCode: async (code: string) => {
-      const { phone } = get();
+      const { email } = get();
 
       try {
-        await verifyPasswordChangeCode(phone, code);
+        await verifyPasswordChangeCode(email, code);
         set({ isVerified: true });
         return true;
       } catch {
@@ -40,7 +40,7 @@ export const useEditPasswordAuthStore = create<EditPasswordAuthState>(
 
     reset: () =>
       set({
-        phone: "",
+        email: "",
         isCodeSent: false,
         isVerified: false,
       }),

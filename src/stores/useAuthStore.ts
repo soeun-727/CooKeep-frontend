@@ -4,7 +4,7 @@ import { saveTokens, clearTokens } from "../utils/auth";
 import { loginApi, logoutApi } from "../api/auth";
 import axios from "axios";
 import { useSignupStore } from "./useSignupStore";
-import { usePhoneUpdateStore } from "./usePhoneUpdateStore";
+import { useEmailUpdateStore } from "./useEmailUpdateStore";
 import { useFindPasswordStore } from "./useFindPasswordStore";
 import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
 import { useRewardStore } from "./useRewardStore";
@@ -24,9 +24,9 @@ interface LoginResponse {
 }
 
 interface AuthState {
-  phoneNumber: string;
+  email: string;
   password: string;
-  isValidPhone: boolean;
+  isValidEmail: boolean;
   isValidPW: boolean;
   canLogin: boolean;
   isSubmitting: boolean;
@@ -37,7 +37,7 @@ interface AuthState {
   initialized: boolean;
   lastLoginAt: number | null;
   initializeAuth: () => void;
-  setPhoneNumber: (phone: string) => void;
+  setEmail: (email: string) => void;
   setPassword: (pw: string) => void;
   login: () => Promise<LoginResponse | null>;
   loginSocial: (payload: SocialLoginPayload) => void;
@@ -47,9 +47,9 @@ interface AuthState {
 export const useAuthStore = create<AuthState>()(
   persist(
     (set, get) => ({
-      phoneNumber: "",
+      email: "",
       password: "",
-      isValidPhone: false,
+      isValidEmail: false,
       isValidPW: false,
       canLogin: false,
       isSubmitting: false,
@@ -79,14 +79,14 @@ export const useAuthStore = create<AuthState>()(
       },
 
       login: async () => {
-        const { phoneNumber, password, canLogin } = get();
+        const { email, password, canLogin } = get();
         if (!canLogin) return null;
 
         try {
           set({ isSubmitting: true });
-          const purePhoneNumber = phoneNumber.replace(/-/g, "");
+
           const data = await loginApi({
-            phoneNumber: purePhoneNumber,
+            email: email.trim(),
             password,
           });
 
@@ -116,7 +116,7 @@ export const useAuthStore = create<AuthState>()(
           if (axios.isAxiosError(err)) {
             const code = err.response?.data?.code;
             if (code === "AUTH-004") {
-              alert("가입되지 않은 전화번호입니다.");
+              alert("가입되지 않은 이메일입니다.");
             } else if (code === "AUTH-003") {
               alert("비밀번호가 올바르지 않습니다.");
             } else {
@@ -145,24 +145,27 @@ export const useAuthStore = create<AuthState>()(
             userId: null,
             userStatus: null,
             nextStep: null,
-            phoneNumber: "",
+            email: "",
             password: "",
             canLogin: false,
             initialized: true,
           });
           useSignupStore.getState().resetSignup?.();
-          usePhoneUpdateStore.getState().reset?.();
+          useEmailUpdateStore.getState().reset?.();
           useFindPasswordStore.getState().reset?.();
           useEditPasswordAuthStore.getState().reset?.();
         }
       },
 
-      setPhoneNumber: (phoneNumber) => {
-        const isValidPhone = /^010-\d{3,4}-\d{4}$/.test(phoneNumber);
+      setEmail: (email) => {
+        const trimmed = email.trim();
+
+        const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+
         set((state) => ({
-          phoneNumber,
-          isValidPhone,
-          canLogin: isValidPhone && state.isValidPW,
+          email: trimmed,
+          isValidEmail,
+          canLogin: isValidEmail && state.isValidPW,
         }));
       },
 
@@ -171,7 +174,7 @@ export const useAuthStore = create<AuthState>()(
         set((state) => ({
           password,
           isValidPW,
-          canLogin: state.isValidPhone && isValidPW,
+          canLogin: state.isValidEmail && isValidPW,
         }));
       },
 

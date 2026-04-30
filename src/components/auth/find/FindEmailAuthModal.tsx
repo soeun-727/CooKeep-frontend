@@ -1,25 +1,25 @@
 import CautionIcon from "../../../assets/signup/icon_caution.svg";
 import Button from "../../ui/Button";
 
-export type FindPhoneAuthModalType =
+export type FindEmailAuthModalType =
   | "send"
   | "verify"
   | "notRegistered"
   | "help";
 
-interface FindPhoneAuthModalProps {
-  type: FindPhoneAuthModalType;
-  phone?: string;
+interface FindEmailAuthModalProps {
+  type: FindEmailAuthModalType;
+  email?: string;
   onConfirm: () => void;
   onSignup?: () => void;
 }
 
-const FindPhoneAuthModal = ({
+const FindEmailAuthModal = ({
   type,
-  phone,
+  email,
   onConfirm,
   onSignup,
-}: FindPhoneAuthModalProps) => {
+}: FindEmailAuthModalProps) => {
   const isSend = type === "send";
   const isVerify = type === "verify";
   const isNotRegistered = type === "notRegistered";
@@ -29,6 +29,14 @@ const FindPhoneAuthModal = ({
   const handleOpenKakao = () => {
     window.open(KAKAO_CHANNEL_URL, "_blank", "noopener,noreferrer");
   };
+
+  const maskEmail = (email: string) => {
+    const [local, domain] = email.split("@");
+    if (!domain) return email;
+    const visible = local.slice(0, Math.max(1, local.length - 4));
+    return `${visible}****@${domain}`;
+  };
+
   return (
     <>
       {/* 배경 오버레이 */}
@@ -61,11 +69,11 @@ const FindPhoneAuthModal = ({
         )}
 
         <p className="text-[14px] font-medium text-center leading-[20px] text-[#111111]">
-          {isSend && "인증번호가 발송되었습니다."}
-          {isVerify && "인증에 성공하셨습니다."}
+          {isSend && "인증번호가 발송되었어요"}
+          {isVerify && "인증에 성공하셨습니다"}
           {isNotRegistered && (
             <>
-              해당 번호로 가입된 계정을 <br />
+              해당 이메일로 가입된 계정을 <br />
               찾을 수 없어요 <br />
               회원가입을 먼저 진행해 주세요
             </>
@@ -85,9 +93,9 @@ const FindPhoneAuthModal = ({
           )}
         </p>
 
-        {isVerify && phone && (
+        {isVerify && email && (
           <p className="text-[12px] text-[#7D7D7D] text-center">
-            {phone.replace(/^(\d{3})\d{4}(\d{4})$/, "$1****$2")}
+            {maskEmail(email)}
           </p>
         )}
 
@@ -117,4 +125,4 @@ const FindPhoneAuthModal = ({
   );
 };
 
-export default FindPhoneAuthModal;
+export default FindEmailAuthModal;

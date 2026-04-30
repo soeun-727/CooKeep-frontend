@@ -1,13 +1,14 @@
+// src/components/auth/signup/EmailSection.tsx
 import { useState, useEffect } from "react";
 import Button from "../../ui/Button";
 import TextField from "../../ui/TextField";
-import PhoneAuthModal from "./PhoneAuthModal";
 import { useNavigate } from "react-router-dom";
 import { useSignupStore } from "../../../stores/useSignupStore";
 import axios from "axios";
+import EmailAuthModal from "./EmailAuthModal";
 
-export default function PhoneSection() {
-  const { phone, setPhone, isCodeSent, isVerified, sendCode, verifyCode } =
+export default function EmailSection() {
+  const { email, setEmail, isCodeSent, isVerified, sendCode, verifyCode } =
     useSignupStore();
 
   const [code, setCode] = useState("");
@@ -18,13 +19,13 @@ export default function PhoneSection() {
   type ModalType = "send" | "verify" | "already" | "help";
   const [modalType, setModalType] = useState<ModalType | null>(null);
 
-  const isPhoneValid = /^010-\d{3,4}-\d{4}$/.test(phone);
+  // 이메일 유효성 검사
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const navigate = useNavigate();
 
   // 타이머
   useEffect(() => {
     if (!timerActive) return;
-
     const timer = setTimeout(() => {
       if (timeLeft <= 1) {
         setTimerActive(false);
@@ -34,7 +35,6 @@ export default function PhoneSection() {
         setTimeLeft(timeLeft - 1);
       }
     }, 1000);
-
     return () => clearTimeout(timer);
   }, [timeLeft, timerActive]);
 
@@ -49,26 +49,24 @@ export default function PhoneSection() {
   const [isSending, setIsSending] = useState(false);
 
   const handleSendCode = async () => {
-    if (!isPhoneValid || isSending) return;
+    if (!isEmailValid || isSending) return;
 
     try {
       setIsSending(true);
+      // 이거 추가
+      useSignupStore.getState().setEmail(email);
       setCode("");
       setCodeError(undefined);
-
       setTimeLeft(300);
       setTimerActive(true);
 
-      await sendCode(); // 실제 API 호출
-
+      await sendCode();
       setModalType("send");
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         const status = err.response?.status;
-
         if (status === 409) {
-          // 이미 가입된 번호
-          setModalType("already");
+          setModalType("already"); // 이미 가입된 이메일
         } else if (status === 429) {
           setCodeError("인증 요청이 너무 빠릅니다.");
         } else {
@@ -87,14 +85,12 @@ export default function PhoneSection() {
       setCodeError("인증번호가 만료되었습니다");
       return;
     }
-
     if (code.length !== 6) {
       setCodeError("인증번호를 다시 입력해 주세요");
       return;
     }
 
     const result = await verifyCode(code);
-
     if (result.success) {
       setModalType("verify");
     } else {
@@ -102,51 +98,29 @@ export default function PhoneSection() {
     }
   };
 
-  const handleResend = () => handleSendCode();
-
-  const handlePhoneChange = (value: string) => {
-    const input = value.replace(/\D/g, "");
-    const size = input.length;
-
-    let formatted = "";
-    if (size < 4) {
-      formatted = input;
-    } else if (size < 8) {
-      formatted = `${input.slice(0, 3)}-${input.slice(3)}`;
-    } else {
-      formatted = `${input.slice(0, 3)}-${input.slice(3, 7)}-${input.slice(7, 11)}`;
-    }
-    setPhone(formatted);
-  };
   return (
-    <div className="pt-[241px] w-[352px] mx-auto">
-      {/* 전화번호 입력 + 발송 버튼 */}
+    <div className="pt-[241px] w-[361px] mx-auto">
       <div className="relative w-[361px]">
-        <div className="typo-h1">휴대폰 인증</div>
+        <div className="typo-h1">이메일 인증</div>
         <div className="relative mt-[12px]">
           <TextField
-            value={phone}
-            onChange={handlePhoneChange}
-            placeholder="휴대폰 번호(- 없이 숫자만 입력)"
-            disabled={isVerified}
+            value={email}
+            onChange={setEmail}
+            placeholder="이메일 주소 입력"
+            disabled={isVerified || isCodeSent}
             errorMessage={
-              !isPhoneValid && phone
-                ? "휴대폰 번호를 다시 확인해주세요"
+              !isEmailValid && email
+                ? "이메일 주소를 다시 확인해 주세요"
                 : undefined
             }
             rightIcon={
               <button
                 type="button"
-                onClick={isCodeSent ? handleResend : handleSendCode}
-                disabled={!isPhoneValid || isSending} // disabled={!isPhoneValid || (isCodeSent && timeLeft > 0)}
-                className={`w-[102px] h-[24px] rounded-full  typo-caption text-white
-          ${
-            isPhoneValid // isPhoneValid && !(isCodeSent && timeLeft > 0)
-              ? "bg-[#202020] border-[#202020]"
-              : "bg-[#C3C3C3] border-[#C3C3C3]"
-          }
-          disabled:cursor-not-allowed
-        `}
+                onClick={isCodeSent ? handleSendCode : handleSendCode}
+                disabled={!isEmailValid || isSending}
+                className={`w-[102px] h-[24px] rounded-full typo-caption text-white
+                  ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"}
+                  disabled:cursor-not-allowed`}
               >
                 {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
               </button>
@@ -155,21 +129,16 @@ export default function PhoneSection() {
         </div>
       </div>
 
-      {/* 인증번호 입력 + 인증 확인 버튼 */}
       <div className="mt-[5px] w-[361px]">
         <TextField
           value={code}
           onChange={(value) => {
             const onlyNumber = value.replace(/[^0-9]/g, "");
             setCode(onlyNumber);
-
-            if (!onlyNumber) {
-              setCodeError(undefined);
-            } else if (onlyNumber.length !== 6) {
+            if (!onlyNumber) setCodeError(undefined);
+            else if (onlyNumber.length !== 6)
               setCodeError("인증번호를 다시 입력해 주세요");
-            } else {
-              setCodeError(undefined);
-            }
+            else setCodeError(undefined);
           }}
           placeholder="인증번호 입력"
           disabled={!isCodeSent || isVerified}
@@ -185,41 +154,30 @@ export default function PhoneSection() {
           className="mt-[31px]"
         >
           <span className="typo-button">
-            인증 확인 {isCodeSent && !isVerified && `(${formatTime(timeLeft)})`}
+            인증하기 {isCodeSent && !isVerified && `(${formatTime(timeLeft)})`}
           </span>
         </Button>
+
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="
-    mt-3
-    w-[361px]
-    typo-caption
-    text-[#7D7D7D]
-    text-center
-    underline
-    cursor-pointer
-    bg-transparent
-  "
+          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
         >
           인증 번호가 발송되지 않나요?
         </button>
       </div>
 
-      {/* 모달 (화면 암전 없이, 발송/인증 확인 분기) */}
       {modalType && (
-        <PhoneAuthModal
+        <EmailAuthModal
           type={modalType}
-          phone={phone}
+          email={email}
           onConfirm={() => {
             if (modalType === "verify") {
               useSignupStore.getState().setIsVerified(true);
             }
             setModalType(null);
           }}
-          onLogin={() => {
-            navigate("/login");
-          }}
+          onLogin={() => navigate("/login")}
         />
       )}
     </div>

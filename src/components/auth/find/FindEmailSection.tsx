@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import Button from "../../ui/Button";
 import TextField from "../../ui/TextField";
-import FindPhoneAuthModal from "./FindPhoneAuthModal";
 import { useNavigate } from "react-router-dom";
 import { useFindPasswordStore } from "../../../stores/useFindPasswordStore";
+import FindEmailAuthModal from "./FindEmailAuthModal";
 // import axios from "axios";
 
-export default function FindPhoneSection() {
-  const { phone, setPhone, isCodeSent, sendCode, verifyCode } =
+export default function FindEmailSection() {
+  const { email, setEmail, isCodeSent, sendCode, verifyCode } =
     useFindPasswordStore();
 
   const [code, setCode] = useState("");
@@ -18,12 +18,7 @@ export default function FindPhoneSection() {
   type ModalType = "send" | "verify" | "notRegistered" | "help";
   const [modalType, setModalType] = useState<ModalType | null>(null);
 
-  const isPhoneValid = /^01[0-9]{9}$/.test(phone);
-  const formatPhone = (value: string) => {
-    if (value.length <= 3) return value;
-    if (value.length <= 7) return `${value.slice(0, 3)}-${value.slice(3)}`;
-    return `${value.slice(0, 3)}-${value.slice(3, 7)}-${value.slice(7, 11)}`;
-  };
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const navigate = useNavigate();
 
@@ -63,7 +58,7 @@ export default function FindPhoneSection() {
       setModalType("send");
     } catch (error) {
       if (error instanceof Error) {
-        if (error.message === "가입된 번호가 없습니다.") {
+        if (error.message === "가입된 이메일이 없습니다.") {
           setModalType("notRegistered");
           return;
         }
@@ -100,28 +95,29 @@ export default function FindPhoneSection() {
   const handleResend = () => handleSendCode();
 
   return (
-    <div className="pt-[241px] w-[352px] mx-auto">
+    <div className="pt-[241px] w-[361px] mx-auto">
       {/* 전화번호 입력 */}
       <div className="relative w-[361px]">
-        <div className="typo-h1">휴대폰 인증</div>
+        <div className="typo-h1">이메일 인증</div>
         <div className="relative mt-[12px]">
           <TextField
-            value={formatPhone(phone)}
-            onChange={setPhone}
-            placeholder="휴대폰 번호(- 없이 숫자만 입력)"
+            value={email}
+            onChange={setEmail}
+            disabled={isCodeSent}
+            placeholder="이메일 주소 입력"
             errorMessage={
-              !isPhoneValid && phone
-                ? "휴대폰 번호를 다시 확인해주세요"
+              !isEmailValid && email
+                ? "이메일 주소를 다시 확인해주세요"
                 : undefined
             }
             rightIcon={
               <button
                 type="button"
                 onClick={isCodeSent ? handleResend : handleSendCode}
-                disabled={!isPhoneValid}
+                disabled={!isEmailValid}
                 className={`w-[102px] h-[24px] rounded-full  typo-caption text-white
           ${
-            isPhoneValid
+            isEmailValid
               ? "bg-[#202020] border-[#202020]"
               : "bg-[#C3C3C3] border-[#C3C3C3]"
           } disabled:cursor-not-allowed`}
@@ -158,13 +154,13 @@ export default function FindPhoneSection() {
           className="mt-[31px]"
         >
           <span className="typo-button">
-            인증 확인 {isCodeSent && `(${formatTime(timeLeft)})`}
+            인증하기 {isCodeSent && `(${formatTime(timeLeft)})`}
           </span>
         </Button>
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="mt-3 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
+          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
         >
           인증 번호가 발송되지 않나요?
         </button>
@@ -172,9 +168,9 @@ export default function FindPhoneSection() {
 
       {/* 모달 */}
       {modalType && (
-        <FindPhoneAuthModal
+        <FindEmailAuthModal
           type={modalType}
-          phone={phone}
+          email={email}
           onConfirm={() => {
             if (modalType === "verify") {
               navigate("/reset-password"); // 인증 완료 후 비밀번호 재설정 페이지로 이동
