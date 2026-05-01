@@ -24,11 +24,13 @@ export default function Last({ onStart }: LastProps) {
 
         <div className="fixed bottom-0 left-1/2 -translate-x-1/2 pb-[34px]">
           <div className="flex justify-end -mb-8 -mr-4">
-            <img src={calendarImage} className="" />
+            <img src={calendarImage} className="w-44" />
           </div>
-          <Button size="L" onClick={onStart}>
-            시작하기
-          </Button>
+          <div className="relative z-10">
+            <Button size="L" onClick={onStart}>
+              시작하기
+            </Button>
+          </div>
         </div>
       </div>
     </>
