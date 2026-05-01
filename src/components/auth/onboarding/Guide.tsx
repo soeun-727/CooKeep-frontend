@@ -148,15 +148,14 @@ export default function Guide({ onNext }: Props) {
                 key={data.id}
                 className="min-w-full flex justify-center items-end relative"
               >
-                <img
-                  className="h-[61.6vh] max-h-[524px] min-h-[320px] object-contain pointer-events-none drop-shadow-[0px_3px_12px_rgba(156,156,156,0.2)]"
-                  src={data.img}
-                  alt="guide"
+                <object
+                  className="h-[61.6vh] max-h-[524px] min-h-[320px] object-contain outline-none border-none pointer-events-none"
+                  data={data.img}
                 />
 
                 {index === 0 && (
-                  <img
-                    src={image1_2}
+                  <object
+                    data={image1_2}
                     className="absolute z-10 w-[38%] right-[8%] bottom-[17%]"
                   />
                 )}
