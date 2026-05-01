@@ -19,6 +19,12 @@
 /* =========================
    Global Base
 ========================= */
+:root {
+  /* iOS Safe Area 변수 정의 */
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
+}
+
 html,
 body,
 #root {
@@ -30,7 +36,6 @@ body,
 html {
   font-family: var(--font-sans);
   -webkit-text-size-adjust: 100%;
-  height: -webkit-fill-available;
 }
 
 body,
