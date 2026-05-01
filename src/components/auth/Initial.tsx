@@ -3,7 +3,7 @@ import chars from "../../assets/onboarding/Frame 781.svg";
 import { useNavigate } from "react-router-dom";
 import Line from "../../assets/login/Horizontal-Line.png";
 import Kakao from "../../assets/login/Kakao.svg";
-import Google from "../../assets/login/Google.svg";
+// import Google from "../../assets/login/Google.svg";
 
 const CHAR = [chars];
 const INFINITE_CHAR = [...CHAR, ...CHAR];
@@ -17,21 +17,21 @@ export default function Initial() {
     window.location.href = KAKAO_AUTH_URL;
   };
 
-  const handleGoogleLogin = () => {
-    const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-    const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
+  // const handleGoogleLogin = () => {
+  //   const CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+  //   const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
 
-    const GOOGLE_AUTH_URL =
-      `https://accounts.google.com/o/oauth2/v2/auth` +
-      `?client_id=${CLIENT_ID}` +
-      `&redirect_uri=${REDIRECT_URI}` +
-      `&response_type=code` +
-      `&scope=openid email profile` +
-      `&access_type=offline` +
-      `&prompt=consent`;
+  //   const GOOGLE_AUTH_URL =
+  //     `https://accounts.google.com/o/oauth2/v2/auth` +
+  //     `?client_id=${CLIENT_ID}` +
+  //     `&redirect_uri=${REDIRECT_URI}` +
+  //     `&response_type=code` +
+  //     `&scope=openid email profile` +
+  //     `&access_type=offline` +
+  //     `&prompt=consent`;
 
-    window.location.href = GOOGLE_AUTH_URL;
-  };
+  //   window.location.href = GOOGLE_AUTH_URL;
+  // };
   return (
     <div className="flex flex-col items-center bg-[#FAFAFA] h-full">
       <div className="absolute top-[3px] left-0 right-0 flex justify-center pointer-events-none z-0">
@@ -74,9 +74,9 @@ export default function Initial() {
 
         <div className="flex items-center justify-center gap-3 mt-4">
           {/* 간편 로그인 미구현  */}
-          <button onClick={handleGoogleLogin}>
+          {/* <button onClick={handleGoogleLogin}>
             <img src={Google} alt="구글 로고" className="" />
-          </button>
+          </button> */}
 
           <button onClick={handleKakaoLogin}>
             <img src={Kakao} alt="카카오 로고" className="" />

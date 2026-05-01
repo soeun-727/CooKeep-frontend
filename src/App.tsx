@@ -52,7 +52,7 @@ import RecordSelectPage from "./pages/myCookeep/RecordSelectPage";
 import RecordWritePage from "./pages/myCookeep/RecordWritePage";
 import RecordDetailPage from "./pages/myCookeep/RecordDetailPage";
 import KakaoLoginCallback from "./components/auth/simplelogin/KakaoLoginCallback";
-import GoogleLoginCallback from "./components/auth/simplelogin/GoogleLoginCallback";
+// import GoogleLoginCallback from "./components/auth/simplelogin/GoogleLoginCallback";
 import GuestPage from "./pages/auth/GuestPage";
 import { useAuthStore } from "./stores/useAuthStore";
 import { useEffect, useState } from "react";
@@ -143,7 +143,7 @@ export default function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/simplelogin" element={<SimpleLoginAgreementPage />} />
         <Route path="/kakao/callback" element={<KakaoLoginCallback />} />
-        <Route path="/google/callback" element={<GoogleLoginCallback />} />
+        {/* <Route path="/google/callback" element={<GoogleLoginCallback />} /> */}
         <Route element={<FindLayout />}>
           <Route path="/findpw" element={<FindPage />} />
           <Route
