@@ -77,6 +77,11 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
         marketingConsent: agreements.marketing,
       });
 
+      // GA 회원가입 이벤트
+      window.gtag?.("event", "sign_up", {
+        method: "email",
+      });
+
       // 1. 토큰 저장
       saveTokens({
         accessToken: res.data.accessToken,
