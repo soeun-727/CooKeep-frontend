@@ -9,7 +9,7 @@ import privateIcon from "../../assets/mycookeep/record/private_icon.svg";
 import publicIcon from "../../assets/mycookeep/record/public_icon.svg";
 import UploadCompleteModal from "../../components/myCookeep/record/UploadCompleteModal";
 import { useCookeepsStore } from "../../stores/useCookeepsStore";
-import { deleteImage, uploadImage } from "../../api/image";
+import { uploadImage } from "../../api/image";
 import { createDailyRecipe } from "../../api/myRecipe";
 import { AiRecipeDetail, getAiRecipeDetail } from "../../api/dailyAiRecipe";
 import imageCompression from "browser-image-compression";
@@ -157,10 +157,13 @@ export default function RecordWritePage() {
         // isUploadedRef.current = true;
 
         const rewards: string[] = [];
+        // 우선순위 A-3: 주간 목표 달성 (먼저 큐에 넣기)
         if (response.data?.weeklyGoalAchieved) {
           rewards.push("WEEKLY_GOAL");
         }
+        // 우선순위 C-1: 레시피 기록 보상 (항상)
         rewards.push("RECIPE_RECORD");
+        // 우선순위 C-2: 사진 있으면 추가
         if (image?.url) {
           rewards.push("PHOTO_UPLOAD");
         }
@@ -183,66 +186,6 @@ export default function RecordWritePage() {
     }
   };
 
-  // const handleUpload = async () => {
-  //   if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
-  //     alert("레시피 정보가 로드되지 않았습니다.");
-  //     return;
-  //   }
-
-  //   setIsUploading(true);
-
-  //   try {
-  //     const requestData = {
-  //       aiRecipeId: selectedRecipeId,
-  //       isPublic: isPublic,
-  //       title: title || recipeDetail.title,
-  //       description: memo,
-  //       recipeImageUrl: image?.url || "",
-  //     };
-
-  //     const response = await createDailyRecipe(requestData);
-  //     if (
-  //       response &&
-  //       (response.data ||
-  //         String(response.status) === "200" ||
-  //         response.status === "OK")
-  //     ) {
-  //       const rewards: string[] = [];
-
-  //       // 우선순위 A-3: 주간 목표 달성 (먼저 큐에 넣기)
-  //       if (response.data?.weeklyGoalAchieved) {
-  //         rewards.push("WEEKLY_GOAL");
-  //       }
-
-  //       // 우선순위 C-1: 레시피 기록 보상 (항상)
-  //       rewards.push("RECIPE_RECORD");
-
-  //       // 우선순위 C-2: 사진 있으면 추가
-  //       if (image?.url) {
-  //         rewards.push("PHOTO_UPLOAD");
-  //       }
-
-  //       setRewardQueue(rewards);
-
-  //       setIsSuccess(true);
-  //       isUploadedRef.current = true; // ← setIsUploaded(true) 대신
-  //     } else {
-  //       alert("업로드에 실패했습니다.");
-  //     }
-  //   } catch (error: unknown) {
-  //     let errorMsg = "레시피 등록 실패";
-
-  //     if (error && typeof error === "object") {
-  //       const axiosError = error as AxiosError<{ message?: string }>;
-  //       errorMsg = axiosError.response?.data?.message ?? errorMsg;
-  //     }
-
-  //     alert(errorMsg);
-  //   } finally {
-  //     setIsUploading(false);
-  //   }
-  // };
-
   if (!recipeDetail) {
     return (
       <div className="flex h-full items-center justify-center">
@@ -260,30 +203,6 @@ export default function RecordWritePage() {
 
         <div className="flex-1 mx-auto w-full max-w-[450px] px-4 flex flex-col min-h-0 mt-10">
           <div className="pt-4 flex flex-col gap-[10px]">
-            {/* <RecordWriteImageCard
-              title={title}
-              // imageSrc={images[0]?.url}
-              imageSrc={image?.url}
-              onClickAddImage={() => fileInputRef.current?.click()}
-              onChangeTitle={setTitle}
-              onDeleteImage={async () => {
-                if (image?.url) {
-                  try {
-                    await deleteImage(image.url);
-                  } catch (err) {
-                    console.warn("이미지 삭제 실패 (무시)", err);
-                  }
-                }
-                setImage(null);
-              }}
-            />
-            <input
-              type="file"
-              accept="image/*"
-              ref={fileInputRef}
-              hidden
-              onChange={handleImageChange}
-            /> */}
             <RecordWriteImageCard
               title={title}
               imageSrc={image?.url}
@@ -306,13 +225,13 @@ export default function RecordWritePage() {
                   });
                   const response = await uploadImage(compressedFile);
                   const newUrl = response.data.imageUrl;
-                  if (image?.url) {
-                    try {
-                      await deleteImage(image.url);
-                    } catch (err) {
-                      console.warn("기존 이미지 삭제 실패", err);
-                    }
-                  }
+                  // if (image?.url) {
+                  //   try {
+                  //     await deleteImage(image.url);
+                  //   } catch (err) {
+                  //     console.warn("기존 이미지 삭제 실패", err);
+                  //   }
+                  // }
                   setImage({ url: newUrl });
                 } catch {
                   alert("이미지 업로드 중 오류가 발생했습니다.");
@@ -322,13 +241,13 @@ export default function RecordWritePage() {
               }}
               onChangeTitle={setTitle}
               onDeleteImage={async () => {
-                if (image?.url) {
-                  try {
-                    await deleteImage(image.url);
-                  } catch (err) {
-                    console.warn("이미지 삭제 실패", err);
-                  }
-                }
+                // if (image?.url) {
+                //   try {
+                //     await deleteImage(image.url);
+                //   } catch (err) {
+                //     console.warn("이미지 삭제 실패", err);
+                //   }
+                // }
                 setImage(null);
               }}
             />
