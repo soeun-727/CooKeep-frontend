@@ -20,10 +20,16 @@ export default function SplashPage() {
   }, []);
 
   return (
-    <div className="fixed inset-0 h-dvh flex justify-center bg-[#FAFAFA] z-[9999]">
+    <div
+      className={`
+    fixed inset-0 flex justify-center z-[9999] overflow-hidden
+    transition-colors duration-700
+    ${step >= 2 ? "bg-emerald-400" : "bg-[#FAFAFA]"}
+  `}
+    >
       <div
         className={`
-        relative w-full h-full max-w-[450px] overflow-hidden flex items-center justify-center
+        relative w-full h-full max-w-[450px] flex items-center justify-center
         transition-opacity duration-500 ease-in-out
         ${isFadingOut ? "opacity-0" : "opacity-100"}
         ${isFadingOut ? "" : "pointer-events-auto"}

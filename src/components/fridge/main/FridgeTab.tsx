@@ -105,7 +105,7 @@ export default function FridgeTab() {
   }
 
   return (
-    <div className="w-full flex flex-col transition-all pt-12">
+    <div className="w-full flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
       <Search />
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal
