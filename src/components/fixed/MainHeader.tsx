@@ -1,4 +1,4 @@
-// src/components/auth/AuthHeader.tsx
+// src/components/auth/MainHeader.tsx
 import { mainLogo } from "../../assets";
 import settings from "../../assets/fixed/settings.svg";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
   return (
     <header className="pt-safe top-0 left-0 z-50 pointer-events-none w-full max-w-[450px]">
       <div className="mx-auto max-w-[450px] pointer-events-auto">
-        <div className="h-12 flex items-center justify-between pb-1 bg-[#FAFAFA]">
+        <div className="h-12 flex items-center justify-between bg-[#FAFAFA]">
           <div className="flex-1 flex">
             {isAllView ? (
               <button onClick={handleBack}>
@@ -32,7 +32,7 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
               <img
                 src={mainLogo}
                 alt="CooKeep logo"
-                className="w-24 object-contain pb-1 ml-[31px] mt-1"
+                className="w-24 object-contain pb-1 ml-[31px]"
               />
             )}
           </div>
