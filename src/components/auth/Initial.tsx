@@ -35,7 +35,7 @@ export default function Initial() {
   return (
     <div className="pt-safe flex flex-col items-center bg-[#FAFAFA] h-full overflow-hidden relative">
       <div className="absolute top-[3px] left-0 right-0 flex justify-center pointer-events-none z-0">
-        <img src={confetti} className="w-86" />
+        <img src={confetti} className="w-86 pt-safe" />
       </div>
       {/* 상단 텍스트 영역 */}
       <div className="flex-1 overflow-y-auto w-full flex flex-col mt-[86px] items-center">

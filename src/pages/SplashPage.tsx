@@ -20,7 +20,7 @@ export default function SplashPage() {
   }, []);
 
   return (
-    <div className="fixed inset-0 flex justify-center bg-transparent z-[9999] pointer-events-none">
+    <div className="pt-safe fixed inset-0 flex justify-center bg-transparent z-[9999] pointer-events-none">
       <div
         className={`
           relative w-full max-w-[450px] h-full overflow-hidden bg-[#FAFAFA]
@@ -45,7 +45,7 @@ export default function SplashPage() {
   `}
         />
 
-        <div className="pt-safe relative flex items-center justify-center">
+        <div className="relative flex items-center justify-center">
           {/* 캐릭터 */}
           <img
             src={logoChar}
