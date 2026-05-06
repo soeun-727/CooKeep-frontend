@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function RecipeFilterButtons() {
   const navigate = useNavigate();
   return (
-    <div className="flex justify-between items-center w-full h-7">
+    <div className="flex justify-between items-center w-full h-7 z-20">
       {/* 전체보기 */}
       <button
         onClick={() => navigate("/cookeeps/all")}

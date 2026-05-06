@@ -21,7 +21,7 @@ export default function RecipeHeader({
   return (
     <>
       <header
-        className={`
+        className={` pt-safe
     fixed top-0 left-0 right-0 z-50
     mx-auto max-w-[450px]
     h-[56px]

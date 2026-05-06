@@ -9,7 +9,7 @@ type BackHeaderProps = {
 const BackHeader = ({ title, onBack }: BackHeaderProps) => {
   return (
     <header
-      className="
+      className="pt-safe
     fixed top-0 z-50
     w-full max-w-[450px]
     h-12

@@ -45,7 +45,7 @@ export default function SplashPage() {
   `}
         />
 
-        <div className="relative flex items-center justify-center">
+        <div className="pt-safe relative flex items-center justify-center">
           {/* 캐릭터 */}
           <img
             src={logoChar}

@@ -27,7 +27,7 @@ export default function MyCookeepHeader() {
   }, [showTooltip]);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-10 flex h-12 items-center justify-between pr-4">
+    <header className="pt-safe absolute top-0 left-0 right-0 z-10 flex h-12 items-center justify-between pr-4">
       {/* 왼쪽 */}
       <div className="flex-1 px-[31px]">
         <img
