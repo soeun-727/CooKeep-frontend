@@ -20,9 +20,9 @@ export default function SplashPage() {
   }, []);
 
   return (
-    <div className="fixed inset-0 flex justify-center bg-transparent z-[9999] pointer-events-none">
+    <div className="pt-safe fixed inset-0 flex justify-center bg-transparent z-[9999] pointer-events-none">
       <div
-        className={`pt-safe
+        className={`
           relative w-full max-w-[450px] h-full overflow-hidden bg-[#FAFAFA]
           transition-opacity duration-500 ease-in-out flex items-center justify-center
           ${isFadingOut ? "opacity-0" : "opacity-100"}
