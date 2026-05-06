@@ -1,6 +1,5 @@
 // src/components/layout/Layout.tsx
 import { Outlet, useLocation } from "react-router-dom";
-import MainHeader from "../components/fixed/MainHeader";
 import TabBar from "../components/fixed/TabBar";
 import { useState, useEffect } from "react";
 import { useIngredientStore } from "../stores/useIngredientStore";
@@ -8,13 +7,9 @@ import { useRecipeFlowStore } from "../stores/useRecipeFlowStore";
 
 export default function Layout() {
   const location = useLocation();
-  const { viewCategory } = useIngredientStore();
   const [activeTab, setActiveTab] = useState("냉장고");
 
   const isRecipe = location.pathname.startsWith("/recipe");
-  const isCookeeps = location.pathname.startsWith("/cookeeps");
-  const isMyCookeep = location.pathname.startsWith("/mycookeep");
-  const showHeader = !isRecipe && !isCookeeps && !isMyCookeep;
   const isFridgeAdd = location.pathname.startsWith("/fridge/add");
   const hideTabBar =
     isFridgeAdd ||
@@ -24,7 +19,6 @@ export default function Layout() {
         location.pathname.startsWith("/recipe/loading")));
 
   const showTabBar = !hideTabBar;
-  const isAllViewMode = location.pathname.includes("fridge") && !!viewCategory;
   useEffect(() => {
     if (!location.pathname.startsWith("/recipe")) {
       useIngredientStore.getState().clearSelection();
@@ -42,7 +36,6 @@ export default function Layout() {
 
   return (
     <div className="flex flex-col w-full bg-[#FAFAFA] overflow-hidden">
-      {showHeader && <MainHeader isAllView={isAllViewMode} />}
       <main
         className={` flex-1 flex flex-col overflow-y-auto no-scrollbar
           ${showTabBar ? "pb-[56px]" : ""}
