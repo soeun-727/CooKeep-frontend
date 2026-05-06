@@ -57,10 +57,8 @@ import GuestPage from "./pages/auth/GuestPage";
 import { useAuthStore } from "./stores/useAuthStore";
 import { useEffect, useState } from "react";
 import SplashPage from "./pages/SplashPage";
-import { useThemeColor } from "./hooks/useThemeColor";
 
 export default function App() {
-  useThemeColor("#FAFAFA");
   const navigate = useNavigate();
   const location = useLocation();
   const { initializeAuth, isLoggedIn, initialized } = useAuthStore();
