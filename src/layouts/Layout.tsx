@@ -41,12 +41,11 @@ export default function Layout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col h-[100dvh] w-full bg-[#FAFAFA] overflow-hidden">
+    <div className="flex flex-col w-full bg-[#FAFAFA] overflow-hidden">
       {showHeader && <MainHeader isAllView={isAllViewMode} />}
       <main
         className={` flex-1 flex flex-col overflow-y-auto no-scrollbar
           ${showTabBar ? "pb-[56px]" : ""}
-          min-h-[100dvh]
         `}
       >
         <Outlet />

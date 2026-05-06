@@ -17,14 +17,13 @@ export default function AppLayout({ children }: Props) {
   const { current, dequeue } = useRewardStore();
 
   return (
-    <div className="flex justify-center bg-[#FAFAFA]">
+    <div className="flex justify-center bg-[#FAFAFA] min-h-dvh">
       <div
         className="
-          relative pt-safe
+          relative
           w-full
           max-w-[450px]
-          min-h-dvh
-          flex flex-col
+          flex flex-col flex-1
           transition-colors duration-300
         "
       >
