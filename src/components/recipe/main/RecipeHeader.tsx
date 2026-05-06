@@ -19,12 +19,12 @@ export default function RecipeHeader({
   };
 
   return (
-    <div className="pt-safe">
+    <>
       <header
-        className={`
+        className={`pt-safe
     fixed top-0 left-0 right-0 z-50
     mx-auto max-w-[450px]
-    h-[56px]
+    [height:calc(56px+env(safe-area-inset-top))]
     flex items-center
     px-4
     ${transparent ? "bg-transparent" : "bg-[#FAFAFA]"}
@@ -55,6 +55,6 @@ export default function RecipeHeader({
 
       {/* 사이드바 */}
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-    </div>
+    </>
   );
 }

@@ -20,9 +20,9 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
   };
 
   return (
-    <header className="pt-safe top-0 left-0 z-50 pointer-events-none w-full max-w-[450px]">
+    <header className="pt-safe top-0 left-0 z-50 pointer-events-none w-full max-w-[450px] h-12 ">
       <div className="mx-auto max-w-[450px] pointer-events-auto">
-        <div className="h-12 flex items-center justify-between bg-[#FAFAFA]">
+        <div className="flex items-center justify-between bg-[#FAFAFA]">
           <div className="flex-1 flex">
             {isAllView ? (
               <button onClick={handleBack}>
