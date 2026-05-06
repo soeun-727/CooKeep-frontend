@@ -47,6 +47,10 @@ export default function GoogleLoginCallback() {
 
         // 페이지 이동 로직
         if (data.nextStep === "TERMS") {
+          // 신규 회원가입 이벤트
+          window.gtag?.("event", "sign_up", {
+            method: "google",
+          });
           navigate("/simplelogin", { replace: true });
         } else if (data.nextStep === "ONBOARDING") {
           navigate("/onboarding", { replace: true });

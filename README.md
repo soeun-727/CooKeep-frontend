@@ -31,21 +31,19 @@
    프론트 내에선 PR 댓글로 소통
 
 5. version control
-   `git flow release start v1.0.0`과 같이 브랜치 생성 (대부분 파트장이 진행)
-   ```kotlin
+   ```bash
    //release 브랜치 생성 및 머지
    git switch develop
-   git pull
-   git checkout -b release/v1.0.0
+   git pull origin develop
+   git flow release start v1.0.0
    git push origin release/v1.0.0
    ```
-   ```kotlin
-   //main으로 배포
-   git checkout main
-   git pull
-   git merge release/v1.0.0
-   git tag -a v1.0.0 -m "Release version 1.0.0"  # 버전 태그 생성
-   git push origin main --tags
+   ```bash
+   //배포(main과 develop으로 머지)
+   git flow release finish v1.0.0 //i 입력 후 에디터모드 진입, Esc로 :wq
+   git push origin main
+   git push origin develop
+   git push origin --tags
    ```
 
 ## 👩‍💻Members

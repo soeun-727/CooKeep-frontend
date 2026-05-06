@@ -53,6 +53,10 @@ export default function KakaoLoginCallback() {
           }
 
           if (data.nextStep === "TERMS") {
+            // 신규 회원가입 이벤트
+            window.gtag?.("event", "sign_up", {
+              method: "kakao",
+            });
             navigate("/simplelogin", { replace: true });
           } else if (data.nextStep === "ONBOARDING") {
             navigate("/onboarding", { replace: true });
