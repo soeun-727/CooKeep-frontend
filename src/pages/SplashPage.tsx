@@ -20,7 +20,7 @@ export default function SplashPage() {
   }, []);
 
   return (
-    <div className="pt-safe fixed inset-0 flex justify-center bg-transparent z-[9999] pointer-events-none">
+    <div className="fixed inset-0 flex justify-center bg-transparent h-[100dvh] z-[9999] pointer-events-none">
       <div
         className={`
           relative w-full max-w-[450px] h-full overflow-hidden bg-[#FAFAFA]
