@@ -37,7 +37,12 @@ export default function CookeepsHeader() {
   };
 
   return (
-    <header className="pt-safe absolute top-[35px] left-1/2 -translate-x-1/2 z-50  w-full max-w-[450px] flex items-center h-12">
+    <header
+      style={{
+        top: "calc(env(safe-area-inset-top) + 8px)",
+      }}
+      className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50  w-full max-w-[450px] flex items-center h-12"
+    >
       {/* 왼쪽 */}
       <div className="flex-1">
         <img
