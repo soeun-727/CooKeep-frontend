@@ -23,7 +23,7 @@ export default function SplashPage() {
     <div className="fixed inset-0 h-dvh flex justify-center bg-[#FAFAFA] z-[9999]">
       <div
         className={`
-        relative w-full max-w-[450px] overflow-hidden flex items-center justify-center
+        relative w-full h-full max-w-[450px] overflow-hidden flex items-center justify-center
         transition-opacity duration-500 ease-in-out
         ${isFadingOut ? "opacity-0" : "opacity-100"}
         ${isFadingOut ? "" : "pointer-events-auto"}
