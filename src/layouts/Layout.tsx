@@ -35,7 +35,7 @@ export default function Layout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col w-full bg-[#FAFAFA] overflow-hidden">
+    <div className="flex flex-col w-full h-dvh bg-[#FAFAFA] overflow-hidden">
       <main
         className={` flex-1 flex flex-col overflow-y-auto no-scrollbar
           ${showTabBar ? "pb-[56px]" : ""}
