@@ -21,35 +21,26 @@ export default function RecipeHeader({
   return (
     <>
       <header
-        className={`pt-safe
+        className={`
     fixed top-0 left-0 right-0 z-50
+    pt-safe
+    h-[56px]
     mx-auto max-w-[450px]
-    [height:calc(56px+env(safe-area-inset-top))]
-    flex items-center
-    px-4
+    flex items-center px-4
     ${transparent ? "bg-transparent" : "bg-[#FAFAFA]"}
   `}
       >
         {/* 사이드바 버튼 */}
         <button
-          className="absolute top-[2px] left-[10px] w-[36px] h-[36px]"
           onClick={toggleSidebar}
+          className="w-[36px] h-[36px] flex items-center justify-center"
         >
-          <img
-            src={menuIcon}
-            alt="메뉴 버튼"
-            className="w-full h-full object-contain"
-          />
+          <img src={menuIcon} className="w-full h-full object-contain" />
         </button>
 
         {/* 제목: title props가 있을 때만 렌더링 */}
         {title && (
-          <h1
-            className="absolute left-1/2 -translate-x-1/2 text-[16px] leading-[24px] font-semibold text-[#202020]"
-            style={{ top: "8px" }}
-          >
-            {title}
-          </h1>
+          <h1 className="text-[16px] font-semibold text-[#202020]">{title}</h1>
         )}
       </header>
 
