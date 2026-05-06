@@ -20,7 +20,7 @@ export default function AppLayout({ children }: Props) {
     <div className="flex justify-center bg-[#FAFAFA]">
       <div
         className="
-          relative
+          relative pt-safe
           w-full
           max-w-[450px]
           min-h-dvh
