@@ -20,29 +20,26 @@ export default function SplashPage() {
   }, []);
 
   return (
-    <div className="fixed inset-0 flex justify-center bg-transparent h-[100dvh] z-[9999] pointer-events-none">
+    <div className="fixed inset-0 flex justify-center bg-[#FAFAFA] z-[9999]">
       <div
         className={`
-          relative w-full max-w-[450px] h-full overflow-hidden bg-[#FAFAFA]
-          transition-opacity duration-500 ease-in-out flex items-center justify-center
-          ${isFadingOut ? "opacity-0" : "opacity-100"}
-          ${isFadingOut ? "" : "pointer-events-auto"} // 페이드아웃 전에는 클릭 방지
-        `}
+        relative w-full max-w-[450px] overflow-hidden flex items-center justify-center
+        transition-opacity duration-500 ease-in-out
+        ${isFadingOut ? "opacity-0" : "opacity-100"}
+        ${isFadingOut ? "" : "pointer-events-auto"}
+      `}
       >
+        {/* safe-area 필요하면 overlay로만 */}
+        <div className="absolute top-0 left-0 right-0 h-[env(safe-area-inset-top)]" />
+
         {/* 원형 배경 */}
         <div
           className={`
-    absolute
-    w-[300vmax] h-[300vmax]
-    rounded-full
-    bg-emerald-400
-    z-10
-    left-1/2 top-1/2
-    -translate-y-1/2
-    transition-all duration-700 ease-out
-    -translate-x-[calc(50%+50px)]
-    ${step >= 2 ? "scale-100" : "scale-0"}
-  `}
+          absolute w-[300vmax] h-[300vmax] rounded-full bg-emerald-400 z-10
+          left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+          transition-all duration-700 ease-out
+          ${step >= 2 ? "scale-100" : "scale-0"}
+        `}
         />
 
         <div className="relative flex items-center justify-center">
