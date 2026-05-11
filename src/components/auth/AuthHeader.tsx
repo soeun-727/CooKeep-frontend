@@ -11,7 +11,7 @@ const AuthHeader = () => {
 
   return (
     <header
-      className=" pt-safe
+      className="
         absolute top-0 z-50
         w-full max-w-[450px]
         flex items-center justify-between
