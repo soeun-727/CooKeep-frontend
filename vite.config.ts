@@ -24,16 +24,26 @@ export default defineConfig({
         orientation: "portrait",
         scope: "/",
         start_url: "/",
+        prefer_related_applications: true,
+        related_applications: [
+          {
+            platform: "play",
+            url: "https://play.google.com/store/apps/details?id=kr.cookeep.app",
+            id: "kr.cookeep.app",
+          },
+        ],
         icons: [
           {
             src: "appIcon.png" /*파일 아직 없음 */,
             sizes: "192x192",
             type: "image/png",
+            purpose: "any",
           },
           {
             src: "icon-512.png",
             sizes: "512x512",
             type: "image/png",
+            purpose: "any maskable",
           },
           {
             src: "appIcon.png",
