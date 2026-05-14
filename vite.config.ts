@@ -23,14 +23,12 @@ export default defineConfig({
         theme_color: "#FAFAFA",
         background_color: "#FAFAFA",
         display: "standalone",
-        display_override: [
-          "window-controls-overlay",
-          "standalone",
-          "minimal-ui",
-        ],
         orientation: "portrait",
         scope: "/",
         start_url: "/",
+        launch_handler: {
+          client_mode: "focus-existing",
+        },
         prefer_related_applications: true,
         related_applications: [
           {
@@ -38,6 +36,11 @@ export default defineConfig({
             url: "https://play.google.com/store/apps/details?id=kr.cookeep.app",
             id: "kr.cookeep.app",
           },
+        ],
+        scope_extensions: [
+          { origin: "*.cookeep.kr" },
+          { origin: "accounts.google.com" },
+          { origin: "kauth.kakao.com" },
         ],
         icons: [
           {
