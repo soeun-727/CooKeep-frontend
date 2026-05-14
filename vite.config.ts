@@ -14,6 +14,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "appIcon.png", "appIcon.svg"],
       manifest: {
+        id: "https://cookeep.kr/",
         name: "CooKeep",
         short_name: "CooKeep",
         description: "재료 관리부터, 요리 기록까지! CooKeep",
