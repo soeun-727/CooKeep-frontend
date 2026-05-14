@@ -25,20 +25,19 @@ export default defineConfig({
         start_url: "/",
         icons: [
           {
-            src: "appIcon.png",
+            src: "appIcon.png" /*파일 아직 없음 */,
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "appIcon.png",
+            src: "icon-512.png",
             sizes: "512x512",
             type: "image/png",
           },
           {
             src: "appIcon.png",
-            sizes: "512x512",
+            sizes: "1024x1024",
             type: "image/png",
-            purpose: "any maskable",
           },
         ],
       },
