@@ -44,7 +44,7 @@ export default defineConfig({
         ],
         icons: [
           {
-            src: "appIcon.png" /*파일 아직 없음 */,
+            src: "icon-192.png",
             sizes: "192x192",
             type: "image/png",
             purpose: "any",
@@ -61,7 +61,45 @@ export default defineConfig({
             type: "image/png",
           },
         ],
+        screenshots: [
+          {
+            src: "/assets/screenshots/screenshot1.png",
+            sizes: "1080x1920",
+            type: "image/png",
+            form_factor: "narrow",
+            label: "쿠킵 표지",
+          },
+          {
+            src: "/assets/screenshots/screenshot2.png",
+            sizes: "1080x1920",
+            type: "image/png",
+            form_factor: "narrow",
+            label: "쿠킵 메인 화면",
+          },
+          {
+            src: "/assets/screenshots/screenshot3.png",
+            sizes: "1080x1920",
+            type: "image/png",
+            form_factor: "narrow",
+            label: "쿠킵 레시피탭",
+          },
+          {
+            src: "/assets/screenshots/screenshot4.png",
+            sizes: "1080x1920",
+            type: "image/png",
+            form_factor: "narrow",
+            label: "쿠킵 마이 페이지",
+          },
+          {
+            src: "/assets/screenshots/screenshot5.png",
+            sizes: "1080x1920",
+            type: "image/png",
+            form_factor: "narrow",
+            label: "쿠킵스 커뮤니티 페이지",
+          },
+        ],
       },
+
       injectManifest: {
         swDest: "dist/sw.js",
       },
