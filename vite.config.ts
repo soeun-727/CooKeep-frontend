@@ -42,6 +42,7 @@ export default defineConfig({
           { origin: "accounts.google.com" },
           { origin: "kauth.kakao.com" },
         ],
+        categories: ["food", "lifestyle", "utilities"],
         icons: [
           {
             src: "icon-192.png",
