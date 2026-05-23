@@ -55,3 +55,10 @@ self.addEventListener("notificationclick", (event) => {
     }),
   );
 });
+
+// 4. 업데이트 메시지 리스너 추가
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
+});
