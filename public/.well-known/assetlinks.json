@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "kr.cookeep.twa",
+        "sha256_cert_fingerprints": ["DB:EA:C3:60:C1:C3:66:81:92:5C:36:B1:56:16:B8:C4:B5:91:3A:29:B0:E5:F4:6B:BB:4E:84:CB:BA:DF:22:D3"]
+      }
+    }]
