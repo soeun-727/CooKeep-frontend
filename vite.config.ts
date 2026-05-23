@@ -34,7 +34,7 @@ export default defineConfig({
           {
             platform: "play",
             url: "https://play.google.com/store/apps/details?id=kr.cookeep.app",
-            id: "kr.cookeep.app",
+            id: "kr.cookeep.twa",
           },
         ],
         scope_extensions: [
