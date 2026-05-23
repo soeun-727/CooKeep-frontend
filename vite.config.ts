@@ -11,7 +11,7 @@ export default defineConfig({
       strategies: "injectManifest",
       srcDir: "src",
       filename: "sw.ts",
-      registerType: "autoUpdate",
+      registerType: "prompt", // registerType: "autoUpdate",
       includeAssets: ["favicon.ico", "appIcon.png", "appIcon.svg"],
       manifest: {
         id: "https://cookeep.kr/",
