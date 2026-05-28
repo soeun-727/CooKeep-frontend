@@ -116,7 +116,7 @@ export default function RecordWriteImageCard({
           px-3 py-[12px]
         "
         >
-          <div className="flex w-full items-center gap-2 px-2">
+          <div className="flex w-full items-center gap-2 px-2 min-w-0">
             {/* 제목 */}
             {isEditing ? (
               <input
@@ -127,6 +127,7 @@ export default function RecordWriteImageCard({
                 onKeyDown={(e) => e.key === "Enter" && handleBlur()}
                 className="
                 flex-1
+                min-w-0
                 text-[18px]
                 font-semibold
                 leading-[26px]
@@ -137,6 +138,7 @@ export default function RecordWriteImageCard({
               <h2
                 className="
                 flex-1
+                min-w-0
                 text-[#202020]
                 text-[18px]
                 font-semibold
