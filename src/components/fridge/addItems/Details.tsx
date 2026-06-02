@@ -76,7 +76,7 @@ export default function Details() {
       </div>
 
       {selectedItems.length > 0 && (
-        <div className="shrink-0 flex flex-col items-center w-full pt-2 pb-[57px] z-50 px-4">
+        <div className="shrink-0 flex flex-col items-center w-full pt-2 pb-[23px] z-50 px-4">
           <div className="w-full max-w-[345px] shadow-[0_-4px_10px_rgba(0,0,0,0.05)] pb-[11px]">
             <Button
               size="L"
