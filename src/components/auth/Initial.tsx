@@ -33,13 +33,11 @@ export default function Initial() {
     window.location.href = GOOGLE_AUTH_URL;
   };
   return (
-    // <div className="flex flex-col items-center bg-[#FAFAFA] h-full overflow-hidden relative">
     <div className="flex flex-col items-center bg-[#FAFAFA] min-h-screen relative">
       <div className="absolute top-[3px] left-0 right-0 flex justify-center pointer-events-none z-0">
         <img src={confetti} className="w-86" />
       </div>
       {/* 상단 텍스트 영역 */}
-      {/* <div className="flex-1 overflow-y-auto w-full flex flex-col mt-[86px] items-center"> */}
       <div className="w-full flex flex-col mt-[86px] items-center">
         <h1 className="text-[19px] font-semibold flex gap-1">
           <span className="text-(--color-green-deep)">재료 관리</span>
@@ -69,6 +67,9 @@ export default function Initial() {
         </div>
       </div>
 
+      {/* <div className="flex-1" /> */}
+
+      {/* <div className="flex flex-col items-center justify-center mb-[34px]"> */}
       <div className="flex flex-col items-center justify-center mt-[24px]">
         {/* SNS 로그인 */}
         <span className="typo-caption text-zinc-500">
