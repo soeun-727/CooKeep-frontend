@@ -105,7 +105,8 @@ export default function FridgeTab() {
   }
 
   return (
-    <div className="w-full flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
+    // <div className="w-full flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
+    <div className="w-full flex-1 flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
       <Search />
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal
@@ -118,7 +119,9 @@ export default function FridgeTab() {
         (filteredIngredients.length > 0 ? (
           <IngredientGrid items={filteredIngredients} />
         ) : (
-          <NoResultView />
+          <div className="h-[calc(100dvh-220px)] flex items-center justify-center pb-10">
+            <NoResultView />
+          </div>
         ))}
       {isListView && (
         <>
