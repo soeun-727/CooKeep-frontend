@@ -18,11 +18,11 @@ export default function LoadingScreen() {
         </div>
 
         {/* 점 애니메이션 */}
-        {/* <div className="flex items-center gap-[6px] h-[36px]">
-          <span className="dot dot1" />
-          <span className="dot dot2" />
-          <span className="dot dot3" />
-        </div> */}
+        <div className="flex items-end gap-[6px] h-[24px]">
+          <span className="wave-dot" />
+          <span className="wave-dot" />
+          <span className="wave-dot" />
+        </div>
       </div>
     </div>
   );
