@@ -10,6 +10,7 @@ import {
   RawIngredient,
 } from "../../../api/onboarding";
 import { useOnboardingStore } from "../../../stores/useOnboardingStore";
+import LoadingScreen from "../../ui/LoadingScreen";
 
 export default function Preference() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -107,13 +108,7 @@ export default function Preference() {
     );
   };
 
-  if (isLoading)
-    return (
-      <div className="flex flex-col items-center justify-center text-center mt-50">
-        <img className="opacity-70 w-30 p-5" src={loadingChar} />
-        <div className="typo-body2 text-zinc-500">로딩 중...</div>
-      </div>
-    );
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <div className="flex flex-col items-center w-full">

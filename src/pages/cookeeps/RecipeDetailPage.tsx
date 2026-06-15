@@ -15,6 +15,7 @@ import {
   checkRecipeBookmarkStatus,
   checkRecipeLikeStatus,
 } from "../../api/myRecipe";
+import LoadingScreen from "../../components/ui/LoadingScreen";
 
 export default function RecipeDetailPage() {
   const navigate = useNavigate();
@@ -129,12 +130,7 @@ export default function RecipeDetailPage() {
     fetchFullDetail();
   }, [id]);
 
-  if (isLoading)
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        로딩 중...
-      </div>
-    );
+  if (isLoading) return <LoadingScreen />;
   if (!recipe)
     return (
       <div className="min-h-screen flex items-center justify-center">

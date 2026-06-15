@@ -8,8 +8,8 @@ import logoutIcon from "../../assets/settings/logout.svg";
 import ConfirmModal from "../ui/ConfirmModal";
 import { getMyProfile, MyProfileResponse } from "../../api/user";
 import { useAuthStore } from "../../stores/useAuthStore";
-import { loadingChar } from "../../assets";
 import { unsubscribePush } from "../../api/push";
+import LoadingScreen from "../ui/LoadingScreen";
 
 export default function SettingsMain() {
   const navigate = useNavigate();
@@ -53,15 +53,7 @@ export default function SettingsMain() {
     }
   };
 
-  if (loading || !profile)
-    return (
-      <div className="flex flex-col items-center justify-center text-center mt-50">
-        <img className="opacity-70 w-30 p-5" src={loadingChar} />
-        <div className="typo-body2 text-zinc-500">
-          회원정보를 불러오는 중...
-        </div>
-      </div>
-    );
+  if (loading || !profile) return <LoadingScreen />;
 
   return (
     <>

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../../stores/useAuthStore";
-import { loadingChar } from "../../../assets";
+import LoadingScreen from "../../ui/LoadingScreen";
 
 export default function KakaoLoginCallback() {
   const navigate = useNavigate();
@@ -75,10 +75,5 @@ export default function KakaoLoginCallback() {
     handleLogin();
   }, [navigate, loginSocial]);
 
-  return (
-    <div className="flex flex-col items-center justify-center text-center mt-50">
-      <img className="opacity-70 w-30 p-5" src={loadingChar} alt="loading" />
-      <div className="typo-body2 text-zinc-500">로그인 중...</div>
-    </div>
-  );
+  return <LoadingScreen />;
 }

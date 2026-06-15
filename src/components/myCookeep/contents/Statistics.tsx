@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { carIcon, elecIcon, treeIcon, triButton } from "../../../assets";
 import CircleGraph from "./CircleGraph";
 import { ConsumptionReport, getConsumptionReport } from "../../../api/stats";
+import LoadingScreen from "../../ui/LoadingScreen";
 
 export default function Statistics() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -31,12 +32,7 @@ export default function Statistics() {
     consumedNearExpiry: report?.consumedNearExpiryCount || 0,
   };
 
-  if (isLoading)
-    return (
-      <div className="h-[354px] flex items-center justify-center">
-        데이터 로딩 중...
-      </div>
-    );
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <div className="h-[354px] py-6 w-full flex flex-col items-center bg-white overflow-hidden relative">

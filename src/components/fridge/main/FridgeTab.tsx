@@ -14,7 +14,7 @@ import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
 import { getRefrigeratorHome } from "../../../api/ingredient";
 import { getPushEligibility } from "../../../api/user";
-import { loadingChar } from "../../../assets";
+import LoadingScreen from "../../ui/LoadingScreen";
 
 export default function FridgeTab() {
   const { ingredients, setIngredients, searchTerm, viewCategory } =
@@ -95,14 +95,7 @@ export default function FridgeTab() {
   const isSearching = searchTerm.trim().length > 0;
   const isListView = !!viewCategory && !isSearching;
 
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center top-55 bg-[#FAFAFA]">
-        <img className="opacity-70 w-30 p-5" src={loadingChar} alt="loading" />
-        <div className="typo-body2 text-zinc-500">식재료 가져오는 중...</div>
-      </div>
-    );
-  }
+  if (isLoading) return <LoadingScreen />;
 
   return (
     // <div className="w-full flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
