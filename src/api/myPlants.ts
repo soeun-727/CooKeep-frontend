@@ -25,9 +25,23 @@ export const registerMyPlant = async (plantId: number) => {
   return res.data;
 };
 
-export const waterMyPlant = async (userPlantId: number) => {
+// export const waterMyPlant = async (userPlantId: number) => {
+//   const res = await axios.post(`/api/my-plants/${userPlantId}/water`);
+//   return res.data;
+// };
+export interface WaterResponseData {
+  pendingRewardId: number | null;
+  cookieCnt: number;
+  freeWatering: boolean;
+  justHarvested: boolean;
+  isJustHarvested?: boolean; // 백엔드가 실서버에서 이 키값으로 보내줄 경우를 대비
+}
+
+export const waterMyPlant = async (
+  userPlantId: number,
+): Promise<WaterResponseData> => {
   const res = await axios.post(`/api/my-plants/${userPlantId}/water`);
-  return res.data;
+  return res.data.data; // data 필드까지 바로 반환
 };
 
 export const deleteMyPlant = async (userPlantId: number) => {
