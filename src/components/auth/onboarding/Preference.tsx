@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { loadingChar, searchIcon } from "../../../assets";
+import { searchIcon } from "../../../assets";
 import searchOnIcon from "../../../assets/fridge/search_on.svg";
 import TextField from "../../ui/TextField";
 import xIcon from "../../../assets/onboarding/x.svg";
