@@ -98,7 +98,6 @@ export default function FridgeTab() {
   if (isLoading) return <LoadingScreen />;
 
   return (
-    // <div className="w-full flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
     <div className="w-full flex-1 flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
       <Search />
       {isExpiryModalOpen && todayIngredients.length > 0 && (
