@@ -99,6 +99,12 @@ export default function Guide({ onNext }: Props) {
     }
   };
 
+  const handleSliderClick = () => {
+    if (currentIndex < 3) {
+      handleNext();
+    }
+  };
+
   return (
     <div
       className="flex flex-col h-full overflow-hidden select-none"
@@ -136,7 +142,10 @@ export default function Guide({ onNext }: Props) {
       {/* 하단 영역 */}
       <div className="pb-8 relative">
         {/* 이미지 슬라이더 */}
-        <div className="overflow-hidden">
+        <div
+          onClick={handleSliderClick}
+          className={`overflow-hidden ${currentIndex < 3 ? "cursor-pointer" : "cursor-default"}`}
+        >
           <div
             className="flex items-end transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -166,7 +175,6 @@ export default function Guide({ onNext }: Props) {
           </div>
         </div>
 
-        {/* 그라데이션 */}
         <div className="absolute bottom-0 w-full h-56 bg-gradient-to-b from-white/0 to-white pointer-events-none z-10" />
 
         {/* 버튼 */}
