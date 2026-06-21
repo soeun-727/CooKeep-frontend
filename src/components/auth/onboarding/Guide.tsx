@@ -62,9 +62,7 @@ export default function Guide({ onNext }: Props) {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  // 🚀 수정: 미사용 변수 img 삭제
   const { title, text } = ONBOARDING_DATA[currentIndex];
-
   const minSwipeDistance = 50;
 
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
@@ -101,10 +99,15 @@ export default function Guide({ onNext }: Props) {
     }
   };
 
+  const handleSliderClick = () => {
+    if (currentIndex < 3) {
+      handleNext();
+    }
+  };
+
   return (
     <div
       className="flex flex-col h-full overflow-hidden select-none"
-      onClick={() => currentIndex < 3 && handleNext()}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -116,7 +119,8 @@ export default function Guide({ onNext }: Props) {
           {ONBOARDING_DATA.map((_, index) => (
             <div
               key={index}
-              className={`w-1.5 h-1.5 rounded-full ${
+              onClick={() => setCurrentIndex(index)}
+              className={`w-1.5 h-1.5 rounded-full cursor-pointer ${
                 currentIndex === index ? "bg-(--color-green)" : "bg-stone-100"
               }`}
             />
@@ -132,13 +136,16 @@ export default function Guide({ onNext }: Props) {
         </div>
       </div>
 
-      {/* 중간 여백 (핵심) */}
+      {/* 중간 여백 */}
       <div className="flex-1" />
 
       {/* 하단 영역 */}
       <div className="pb-8 relative">
-        {/* 이미지 */}
-        <div className="overflow-hidden">
+        {/* 이미지 슬라이더 */}
+        <div
+          onClick={handleSliderClick}
+          className={`overflow-hidden ${currentIndex < 3 ? "cursor-pointer" : "cursor-default"}`}
+        >
           <div
             className="flex items-end transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -148,15 +155,19 @@ export default function Guide({ onNext }: Props) {
                 key={data.id}
                 className="min-w-full flex justify-center items-end relative"
               >
-                <object
-                  className="h-[61.6vh] max-h-[524px] min-h-[320px] object-contain outline-none border-none pointer-events-none"
-                  data={data.img}
+                <img
+                  src={data.img}
+                  alt={`guide-${index}`}
+                  className="h-[61.6vh] max-h-[524px] min-h-[320px] object-contain pointer-events-none"
+                  loading={index === 0 ? "eager" : "lazy"}
                 />
 
                 {index === 0 && (
-                  <object
-                    data={image1_2}
-                    className="absolute z-10 w-[38%] right-[8%] bottom-[17%]"
+                  <img
+                    src={image1_2}
+                    alt="guide-sub"
+                    className="absolute z-10 w-[38%] right-[8%] bottom-[17%] pointer-events-none"
+                    loading="eager"
                   />
                 )}
               </div>
@@ -164,7 +175,6 @@ export default function Guide({ onNext }: Props) {
           </div>
         </div>
 
-        {/* 그라데이션 */}
         <div className="absolute bottom-0 w-full h-56 bg-gradient-to-b from-white/0 to-white pointer-events-none z-10" />
 
         {/* 버튼 */}
