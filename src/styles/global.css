@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-green-light: #e6fbeb;
+  --color-green-medium: #96e8be;
+  --color-green: #32e389;
+  --color-green-deep: #1fc16f;
+  --color-green-gradient: linear-to-b, #34d399, #22c55e;
+
+  --color-gray-100: #111111;
+  --color-gray-80: #202020;
+  --color-gray-50: #7d7d7d;
+  --color-gray-30: #c3c3c3;
+  --color-gray-10: #ebebeb;
+
+  --color-semantic-positive: #1fa43c;
+  --color-semantic-negative: #d91f1f;
+
+  --font-sans:
+    "Pretendard Variable", "Pretendard", ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
