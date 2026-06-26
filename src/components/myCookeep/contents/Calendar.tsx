@@ -92,8 +92,6 @@ export default function Calendar({ onDateClick }: Props) {
         {Array.from({ length: daysInMonth }).map((_, i) => {
           const day = i + 1;
           const dateStr = getFormattedDate(day);
-
-          // 🚀 데이터 존재 여부 확인
           const hasRecord = Object.prototype.hasOwnProperty.call(
             apiRecords,
             dateStr,
@@ -153,7 +151,6 @@ export default function Calendar({ onDateClick }: Props) {
           ${hasRecord && !photoUrl ? "bg-green-light" : ""} 
         `}
               >
-                {/* 🚀 사진이 있을 때만 이미지를 보여줌 */}
                 {photoUrl && (
                   <div className="absolute inset-0 rounded-full overflow-hidden">
                     <img
