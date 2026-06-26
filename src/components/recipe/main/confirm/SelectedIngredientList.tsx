@@ -15,7 +15,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
     <section className="flex flex-col items-center gap-4 w-full max-w-[361px] mx-auto px-4">
       {/* 제목 / 설명 */}
       <div className="flex flex-col items-center gap-[2px]">
-        <h2 className="text-[20px] font-semibold leading-[28px] text-[#1FC16F] text-center">
+        <h2 className="text-[20px] font-semibold leading-[28px] text-(--color-green-deep) text-center">
           내가 선택한 재료
         </h2>
         <p className="text-[12px] leading-[16px] text-[#7D7D7D] text-center">

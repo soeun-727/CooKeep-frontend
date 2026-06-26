@@ -107,7 +107,7 @@ const EmailAuthModal = ({
           size="S"
           onClick={isAlready ? onLogin : isHelp ? handleOpenKakao : onConfirm}
           className={`
-    ${isBlackButton ? "!w-[200px] !bg-[#202020]" : "!w-[184px] !bg-[#32E389]"}
+    ${isBlackButton ? "!w-[200px] !bg-[#202020]" : "!w-[184px] !bg-(--color-green)"}
   `}
         >
           {buttonText}

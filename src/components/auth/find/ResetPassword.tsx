@@ -151,7 +151,7 @@ export default function ResetPassword() {
         variant="black"
         disabled={!isFormValid}
         onClick={handleSubmit}
-        className="mt-[31px] !text-[#32E389] disabled:!text-white"
+        className="mt-[31px] !text-(--color-green) disabled:!text-white"
       >
         비밀번호 재설정
       </Button>
@@ -177,7 +177,7 @@ export default function ResetPassword() {
                 reset();
                 navigate("/login");
               }}
-              className="mt-[48px] !text-[#32E389]"
+              className="mt-[48px] !text-(--color-green)"
             >
               로그인하기
             </Button>

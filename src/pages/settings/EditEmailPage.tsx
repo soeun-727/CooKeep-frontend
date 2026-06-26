@@ -217,7 +217,7 @@ export default function EditEmailPage() {
             <Button
               size="L"
               variant="black"
-              className="mt-[48px] !text-[#32E389]"
+              className="mt-[48px] !text-(--color-green)"
               onClick={() => navigate("/settings")}
             >
               확인

@@ -259,7 +259,7 @@ export default function EditPasswordPage() {
           variant="black"
           disabled={!isFormValid}
           onClick={handleSubmit}
-          className={`mt-[31px] ${!isFormValid ? "" : "!text-[#32E389]"}`}
+          className={`mt-[31px] ${!isFormValid ? "" : "!text-(--color-green)"}`}
         >
           비밀번호 재설정
         </Button>
@@ -303,7 +303,7 @@ export default function EditPasswordPage() {
             <Button
               size="L"
               variant="black"
-              className="mt-[48px] !text-[#32E389]"
+              className="mt-[48px] !text-(--color-green)"
               onClick={() => navigate("/settings")}
             >
               확인

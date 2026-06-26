@@ -119,7 +119,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
                 handleButtonClick(e);
               }
             }}
-            className="w-full rounded-[10px] h-[38px] typo-button text-white bg-[#32E389]"
+            className="w-full rounded-[10px] h-[38px] typo-button text-white bg-(--color-green)"
           >
             이 레시피대로 요리할래요
           </button>

@@ -27,7 +27,7 @@ const OnboardingRewardModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
 
             {/* 텍스트 묶음 */}
             <div className="flex flex-col items-center gap-[2px] w-full">
-              <div className="text-center text-[16px] font-bold leading-[24px] text-[#1FC16F]">
+              <div className="text-center text-[16px] font-bold leading-[24px] text-(--color-green-deep)">
                 쿠키 1개
               </div>
 

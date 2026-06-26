@@ -91,7 +91,7 @@ function Profile() {
     : "목표를 설정해주세요";
   if (!profile) {
     return (
-      <div className="w-full h-[260px] bg-gradient-to-b from-[#32E389] to-[#1FC16F] rounded-b-[36px] animate-pulse" />
+      <div className="w-full h-[260px] bg-gradient-to-b from-(--color-green) to-(--color-green-deep) rounded-b-[36px] animate-pulse" />
     );
   }
   const goalId = currentGoalEntry ? currentGoalEntry[0] : "cook";
@@ -101,7 +101,7 @@ function Profile() {
     <>
       <div className="flex flex-col items-center justify-center">
         {/* 헤더 섹션 */}
-        <div className="w-full h-[260px] bg-gradient-to-b from-[#32E389] to-[#1FC16F] rounded-b-[36px] flex flex-col items-center justify-center">
+        <div className="w-full h-[260px] bg-gradient-to-b from-(--color-green) to-(--color-green-deep) rounded-b-[36px] flex flex-col items-center justify-center">
           <MyCookeepHeader />
 
           <div className="flex w-[361px] mt-5 items-center justify-start">
@@ -145,7 +145,7 @@ function Profile() {
                   지금은 {profile?.growingPlantName || "요리 실력을"} 키우는 중!
                 </span>
               </div>
-              <div className="flex -ml-[0.5px] items-center justify-center gap-[2px] h-5 px-3 bg-[#E6FBEB] rounded-[100px] mt-3 w-fit mx-auto">
+              <div className="flex -ml-[0.5px] items-center justify-center gap-[2px] h-5 px-3 bg-(--color-green-light) rounded-[100px] mt-3 w-fit mx-auto">
                 <span className="typo-caption text-(--color-green) leading-none flex items-center">
                   {profile?.daysSinceJoined}
                 </span>

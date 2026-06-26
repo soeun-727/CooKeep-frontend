@@ -44,7 +44,7 @@ export default function RecipeIngredientSection({
             {selectedIngredients.map((item, idx) => (
               <span
                 key={idx}
-                className="flex items-center justify-center h-[20px] px-[12px] rounded-full bg-[#1FC16F] text-white text-[12px] leading-[16px] font-medium"
+                className="flex items-center justify-center h-[20px] px-[12px] rounded-full bg-(--color-green-deep) text-white text-[12px] leading-[16px] font-medium"
               >
                 {formatIngredient(item)}
               </span>

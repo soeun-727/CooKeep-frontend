@@ -79,7 +79,7 @@ export default function RecordViewImageCard({
                     }}
                     className={`
       h-[44px] rounded-[10px] text-white text-[14px] font-semibold
-      ${imageSrc ? "flex-1 bg-[#32E389]" : "w-[160px] bg-[#32E389]"}
+      ${imageSrc ? "flex-1 bg-(--color-green)" : "w-[160px] bg-(--color-green)"}
     `}
                   >
                     {imageSrc ? "변경" : "추가"}

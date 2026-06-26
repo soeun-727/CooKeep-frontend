@@ -40,7 +40,7 @@ export default function RecipeDetailUserMeta({
   bg-[#202020]
 "
       >
-        <span className="text-[#32E389] text-[12px] font-medium">
+        <span className="text-(--color-green) text-[12px] font-medium">
           {userName}
         </span>
         <span className="text-white text-[12px] font-medium">님의 레시피</span>

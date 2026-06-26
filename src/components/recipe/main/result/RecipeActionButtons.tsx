@@ -74,7 +74,7 @@ export default function RecipeActionButtons({
         className={`w-full rounded-[10px] h-[38px] typo-button text-white ${
           !latestRecipe || isLoading || isCompleted
             ? "bg-gray-300"
-            : "bg-[#32E389]"
+            : "bg-(--color-green)"
         }`}
       >
         이 레시피대로 요리할래요

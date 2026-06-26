@@ -139,7 +139,7 @@ export default function Calendar({ onDateClick }: Props) {
               {isContinuous && (
                 <div
                   className={`
-            absolute top-1/2 -translate-y-1/2 h-12 bg-[#96E8BE] z-0
+            absolute top-1/2 -translate-y-1/2 h-12 bg-(--color-green-light) z-0
             ${hasPrev && hasNext ? "left-[-60%] right-[-60%] rounded-none" : ""}
             ${hasPrev && !hasNext ? "left-[-60%] right-[-2px] rounded-r-full" : ""}
             ${!hasPrev && hasNext ? "left-[-2px] right-[-60%] rounded-l-full" : ""}
@@ -153,7 +153,7 @@ export default function Calendar({ onDateClick }: Props) {
                 className={`
           relative z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all
           ${hasRecord ? "scale-105" : "hover:bg-zinc-50"}
-          ${hasRecord && !photoUrl ? "bg-[#96E8BE]" : ""} 
+          ${hasRecord && !photoUrl ? "bg-(--color-green-light)" : ""} 
         `}
               >
                 {/* 🚀 사진이 있을 때만 이미지를 보여줌 */}

@@ -66,7 +66,9 @@ export default function DifficultySelector() {
                   {/* 텍스트 */}
                   <div className="flex-1">
                     <p className="text-[16px] text-left font-medium leading-[24px] text-[#202020]">
-                      <span className="text-[#1FC16F]">{opt.time}</span>{" "}
+                      <span className="text-(--color-green-deep)">
+                        {opt.time}
+                      </span>{" "}
                       {opt.desc}
                     </p>
                   </div>
@@ -77,11 +79,11 @@ export default function DifficultySelector() {
                       className={`
       w-[24px] h-[24px] rounded-full
       border-2 flex items-center justify-center
-      ${selected ? "border-[#32E389]" : "border-[#C3C3C3]"}
+      ${selected ? "border-(--color-green)" : "border-[#C3C3C3]"}
     `}
                     >
                       {selected && (
-                        <div className="w-[14px] h-[14px] rounded-full bg-[#32E389]" />
+                        <div className="w-[14px] h-[14px] rounded-full bg-(--color-green)" />
                       )}
                     </div>
                   </div>

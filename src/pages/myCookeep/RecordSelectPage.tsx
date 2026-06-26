@@ -66,7 +66,7 @@ export default function RecordSelectPage() {
     flex-1
     truncate
     typo-body2
-    ${isSelected ? "text-[#1FC16F]" : "text-[#202020]"}
+    ${isSelected ? "text-(--color-green-deep)" : "text-[#202020]"}
   `}
           >
             {recipe.title}

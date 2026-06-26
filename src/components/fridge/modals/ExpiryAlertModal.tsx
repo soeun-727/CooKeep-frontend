@@ -40,7 +40,7 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
         <div className="w-full flex flex-col gap-2 mt-2">
           <Button
             variant="green"
-            className="!w-[224px] bg-[#32E389]"
+            className="!w-[224px] bg-(--color-green)"
             onClick={() => {
               onClose();
               navigate("/recipe/select");

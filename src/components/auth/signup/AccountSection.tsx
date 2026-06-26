@@ -274,7 +274,9 @@ export default function AccountSection({
                         disabled={!isSignupEnabled || loading}
                         onClick={onSubmit}
                         className={`mt-[8px] ${
-                          !isSignupEnabled || loading ? "" : "!text-[#32E389]"
+                          !isSignupEnabled || loading
+                            ? ""
+                            : "!text-(--color-green)"
                         }`}
                       >
                         {loading ? "가입 중..." : "회원가입"}

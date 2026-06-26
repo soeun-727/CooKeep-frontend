@@ -284,7 +284,7 @@ export default function RecordDetailPage() {
                 disabled={!isEditing}
                 onClick={() => setTempIsPublic(false)} // ← 즉시 API 말고 임시저장
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
-              ${tempIsPublic === false ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+              ${tempIsPublic === false ? "bg-(--color-green-light)" : "bg-[#EBEBEB]"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img src={privateIcon} className="w-[24px]" alt="private" />
@@ -297,7 +297,7 @@ export default function RecordDetailPage() {
                 disabled={!isEditing}
                 onClick={() => setTempIsPublic(true)} // ← 즉시 API 말고 임시저장
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
-              ${tempIsPublic === true ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+              ${tempIsPublic === true ? "bg-(--color-green-light)" : "bg-[#EBEBEB]"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img src={publicIcon} className="w-[36px]" alt="public" />

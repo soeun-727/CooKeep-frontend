@@ -197,7 +197,7 @@ export default function EditPasswordEmailSection() {
             <Button
               size="S"
               onClick={() => setModalType(null)}
-              className="!w-[184px] !bg-[#32E389]"
+              className="!w-[184px] !bg-(--color-green)"
             >
               확인
             </Button>

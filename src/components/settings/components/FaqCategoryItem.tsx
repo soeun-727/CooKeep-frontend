@@ -26,7 +26,7 @@ export default function FaqCategoryItem({ title, items, defaultOpen }: Props) {
         onClick={() => setOpen((prev) => !prev)}
       >
         <p
-          className={`typo-label ${open ? "text-[#1FC16F]" : "text-[#202020]"}`}
+          className={`typo-label ${open ? "text-(--color-green-deep)" : "text-[#202020]"}`}
         >
           {title}
         </p>

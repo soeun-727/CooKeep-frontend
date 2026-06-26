@@ -122,7 +122,7 @@ export default function IngredientDetailModal({
 
           <div className="flex flex-col items-center gap-4 self-stretch">
             <div className="flex w-full items-center gap-[14px]">
-              <div className="flex h-[86px] w-[86px] items-center justify-center rounded-[10px] bg-[#E6FBEB] flex-shrink-0">
+              <div className="flex h-[86px] w-[86px] items-center justify-center rounded-[10px] bg-(--color-green-light) flex-shrink-0">
                 <img
                   src={displayData.imageUrl || displayData.image}
                   alt={displayData.name}
@@ -257,7 +257,7 @@ export default function IngredientDetailModal({
                       className="absolute left-[-14px] bottom-[12px] w-[27.2px] z-20"
                     />
                     <div className="relative z-10 flex w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] border-[#D1D1D1] bg-white px-[17.6px] py-[10px] min-h-[56px] shadow-sm">
-                      <span className="text-[8px] font-semibold leading-[12px] text-[#32E389] self-stretch">
+                      <span className="text-[8px] font-semibold leading-[12px] text-(--color-green) self-stretch">
                         TIP
                       </span>
                       <p className="text-[10px] font-medium leading-[14px] text-[#202020] self-stretch break-words">

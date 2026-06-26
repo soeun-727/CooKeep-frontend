@@ -110,7 +110,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
         ${
           disabled
             ? "bg-gray-300 text-gray-400"
-            : "bg-[#202020] text-[#32E389] shadow active:scale-95"
+            : "bg-[#202020] text-(--color-green) shadow active:scale-95"
         }`}
         >
           물 주기( -{/* 2. 이모지 대신 img 태그 삽입 */}

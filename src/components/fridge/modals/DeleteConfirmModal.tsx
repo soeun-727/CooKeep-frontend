@@ -42,7 +42,7 @@ export default function DeleteConfirmModal({
             <button
               onClick={onConfirm}
               className={`flex-1 h-[44px] rounded-[10px] flex items-center justify-center
-    ${confirmColor === "green" ? "bg-[#32E389]" : "bg-[#202020]"}
+    ${confirmColor === "green" ? "bg-(--color-green)" : "bg-[#202020]"}
   `}
             >
               <span className="text-white text-[14px] font-semibold leading-[24px]">

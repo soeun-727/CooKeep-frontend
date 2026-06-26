@@ -20,7 +20,9 @@ export default function SelectViewTypeModal({
       {/* Modal */}
       <div className="relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
         {/* Text */}
-        <p className="typo-button text-center text-[#1FC16F]">{message}</p>
+        <p className="typo-button text-center text-(--color-green-deep)">
+          {message}
+        </p>
 
         {/* Text */}
         <p className="typo-body2 text-center text-[#7D7D7D]">
@@ -32,7 +34,7 @@ export default function SelectViewTypeModal({
           {/* 확인(아니오) */}
           <button
             onClick={onConfirm}
-            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#32E389]"
+            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-(--color-green)"
           >
             <span className="text-[14px] font-semibold leading-[24px] text-white">
               네

@@ -132,7 +132,7 @@ export default function WithdrawPage() {
       flex items-center justify-center
       border
       transition
-      ${agree ? "bg-[#1FC16F] border-[#1FC16F]" : "bg-white border-[#D1D1D1]"}
+      ${agree ? "bg-(--color-green-deep) border-(--color-green-deep)" : "bg-white border-[#D1D1D1]"}
     `}
           >
             {agree && (
@@ -271,7 +271,7 @@ export default function WithdrawPage() {
               <button
                 onClick={() => setOpenModal(false)}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-[#32E389] text-white"
+                className="w-[95px] h-[44px] rounded-[10px] bg-(--color-green) text-white"
               >
                 아니오
               </button>

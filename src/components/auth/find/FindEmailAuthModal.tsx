@@ -111,7 +111,9 @@ const FindEmailAuthModal = ({
             isNotRegistered ? onSignup : isHelp ? handleOpenKakao : onConfirm
           }
           className={`!h-[38px] ${
-            isHelp ? "!w-[200px] !bg-[#202020]" : "!w-[184px] !bg-[#32E389]"
+            isHelp
+              ? "!w-[200px] !bg-[#202020]"
+              : "!w-[184px] !bg-(--color-green)"
           }`}
         >
           {isHelp

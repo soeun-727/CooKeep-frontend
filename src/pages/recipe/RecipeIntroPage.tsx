@@ -30,7 +30,7 @@ export default function RecipeIntroPage() {
           w-[450px]
           h-[450px]
           rounded-full 
-         bg-[#1FC16F]/15 blur-[100px]
+         bg-(--color-green-deep)/15 blur-[100px]
           pointer-events-none
           z-0
         "

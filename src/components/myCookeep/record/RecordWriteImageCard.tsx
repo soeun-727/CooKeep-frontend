@@ -74,7 +74,7 @@ export default function RecordWriteImageCard({
                   {/* 변경 */}
                   <button
                     onClick={() => fileInputRef.current?.click()} // 직접 호출
-                    className="flex-1 h-[44px] rounded-[10px] bg-[#32E389] text-white font-semibold"
+                    className="flex-1 h-[44px] rounded-[10px] bg-(--color-green) text-white font-semibold"
                   >
                     변경
                   </button>

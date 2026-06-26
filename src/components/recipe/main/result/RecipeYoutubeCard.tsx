@@ -20,7 +20,7 @@ export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-x-2 gap-y-[2px]">
           {tags.map((tag, idx) => (
-            <span key={idx} className="text-[#32E389] typo-body2 ">
+            <span key={idx} className="text-(--color-green) typo-body2 ">
               {`# ${tag}`}
             </span>
           ))}
