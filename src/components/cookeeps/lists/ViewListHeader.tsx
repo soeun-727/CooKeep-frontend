@@ -21,7 +21,7 @@ export default function ViewListHeader({
       <div
         className={`mt-12 !w-[361px] [&_p]:hidden
           [&_input]:border-none [&_input]:focus:outline-none
-          [&_input::placeholder]:text-zinc-500
+          [&_input::placeholder]:text-gray-50
           shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
           ${searchTerm ? "[&_input]:bg-gray-0" : "[&_input]:bg-[#EBEDF1]"}`}
       >
@@ -37,7 +37,7 @@ export default function ViewListHeader({
       </div>
 
       {/* 제목 */}
-      <div className="w-[137px] h-8 rounded-[6px] py-[2px] px-2 flex gap-1 bg-black items-center justify-center mt-[29px]">
+      <div className="w-[137px] h-8 rounded-[6px] py-[2px] px-2 flex gap-1 bg-gray-80 items-center justify-center mt-[29px]">
         <img
           src={type === "좋아요 누른 레시피" ? like : bookmark}
           className="w-[18px]"
@@ -46,7 +46,7 @@ export default function ViewListHeader({
       </div>
 
       {/* 설명 */}
-      <span className="typo-caption text-zinc-500 mt-[6px]">{description}</span>
+      <span className="typo-caption text-gray-50 mt-[6px]">{description}</span>
     </div>
   );
 }

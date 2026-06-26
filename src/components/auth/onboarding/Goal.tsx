@@ -41,7 +41,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
             onClick={() => setIsOpen(!isOpen)}
             className="w-full h-[48px] px-5 flex items-center justify-between text-left"
           >
-            <span className="typo-body2 text-black">{currentGoal.title}</span>
+            <span className="typo-body2 text-gray-80">{currentGoal.title}</span>
             <svg
               className={`w-5 h-5 transition-transform duration-300 ${
                 isOpen ? "rotate-180" : ""

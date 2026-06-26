@@ -24,7 +24,7 @@ export default function WeeklyTopRecipesTab() {
 
   const getRankStyle = (rank: number) => {
     if (rank === 1) return "bg-green text-gray-0";
-    if (rank === 2 || rank === 3) return "bg-black text-gray-0";
+    if (rank === 2 || rank === 3) return "bg-gray-80 text-gray-0";
     return "bg-gray-200 text-gray-500";
   };
 
@@ -78,7 +78,7 @@ export default function WeeklyTopRecipesTab() {
                 }}
               >
                 {/* 유저 뱃지 */}
-                <div className="absolute top-2 left-2 flex items-center h-[20px] gap-[4px]  px-[12px] rounded-full bg-black/60">
+                <div className="absolute top-2 left-2 flex items-center h-[20px] gap-[4px]  px-[12px] rounded-full bg-gray-80">
                   <span className="text-green text-[12px] font-medium">
                     {item.nickname}
                   </span>

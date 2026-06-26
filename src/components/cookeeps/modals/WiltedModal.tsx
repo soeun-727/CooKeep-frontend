@@ -20,7 +20,7 @@ export default function WiltedModal({
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* modal */}
       <div
@@ -48,7 +48,7 @@ export default function WiltedModal({
 
           <Button
             variant="black"
-            className="!w-[224px] !bg-stone-300"
+            className="!w-[224px] !bg-gray-30"
             onClick={onAbandon} // 포기
           >
             포기하기

@@ -251,7 +251,9 @@ export default function EditPasswordPage() {
         </div>
 
         {error && (
-          <p className="text-red-500 text-sm text-center mt-[8px]">{error}</p>
+          <p className="text-semantic-negative text-sm text-center mt-[8px]">
+            {error}
+          </p>
         )}
 
         <Button
@@ -267,7 +269,7 @@ export default function EditPasswordPage() {
 
       {/* 5회 실패 모달 */}
       {showAuthModal && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40">
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-gray-80">
           <div className="w-[254px] flex flex-col items-center pt-[25px] px-[28px] pb-[25px] gap-[16px] rounded-[10px] bg-gray-0">
             <p className="typo-label text-[#111] text-center self-stretch">
               비밀번호가 5회 일치하지 않았어요

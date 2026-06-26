@@ -24,13 +24,6 @@ const AllItem = ({
     if (onIconClick) onIconClick(e);
   };
 
-  // 랭크별 배경색 및 글자색 결정
-  // const getRankStyle = () => {
-  //   if (rank === 1) return "bg-green text-gray-0";
-  //   if (rank === 2 || rank === 3) return "bg-black text-gray-0";
-  //   return "bg-gray-200 text-zinc-500"; // 회색 배경일 때 글자색 변경
-  // };
-
   return (
     <div
       onClick={onSelect}
@@ -40,7 +33,7 @@ const AllItem = ({
     >
       {/* 순위 배지 */}
       <div
-        className={`flex items-center justify-center w-[30px] h-5 rounded-[100px] typo-caption flex-shrink-0 font-bold bg-gray-200 text-zinc-500 `} // ${getRankStyle()}
+        className={`flex items-center justify-center w-[30px] h-5 rounded-[100px] typo-caption flex-shrink-0 font-bold bg-gray-200 text-gray-50 `} // ${getRankStyle()}
       >
         {rank}
       </div>
@@ -59,7 +52,7 @@ const AllItem = ({
           <img src={likeGray} alt="like" className="w-[13px] flex-shrink-0" />
 
           {/* 숫자 오른쪽 정렬 */}
-          <span className="flex-1 text-right ml-0.5 typo-caption text-zinc-500 whitespace-nowrap">
+          <span className="flex-1 text-right ml-0.5 typo-caption text-gray-50 whitespace-nowrap">
             {likes ?? 0}
           </span>
         </div>

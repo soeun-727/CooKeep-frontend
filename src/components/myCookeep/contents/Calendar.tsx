@@ -63,7 +63,7 @@ export default function Calendar({ onDateClick }: Props) {
     >
       {/* 1. 헤더 */}
       <div className="flex items-center justify-between w-full px-2 mt-[13px] mb-2">
-        <h2 className="typo-h3 text-neutral-900">
+        <h2 className="typo-h3 text-gray-80">
           {monthName} {year}
         </h2>
         <div className="flex gap-1">
@@ -149,7 +149,7 @@ export default function Calendar({ onDateClick }: Props) {
                 onClick={() => onDateClick(dateStr)}
                 className={`
           relative z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all
-          ${hasRecord ? "scale-105" : "hover:bg-zinc-50"}
+          ${hasRecord ? "scale-105" : "hover:bg-gray-10"}
           ${hasRecord && !photoUrl ? "bg-green-light" : ""} 
         `}
               >
@@ -166,7 +166,7 @@ export default function Calendar({ onDateClick }: Props) {
 
                 <span
                   className={`relative z-20 typo-h2 !font-normal ${
-                    hasRecord ? "text-gray-0" : "text-neutral-800"
+                    hasRecord ? "text-gray-0" : "text-gray-80"
                   }`}
                 >
                   {day}

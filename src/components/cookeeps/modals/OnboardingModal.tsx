@@ -41,7 +41,7 @@ const ONBOARDING_DATA = [
         ].map((item, i) => (
           <div key={i} className="flex flex-col items-center gap-[3px]">
             <img src={item.src} className="w-[37px]" alt={item.label} />
-            <span className="text-[8px] font-medium text-stone-500">
+            <span className="text-[8px] font-medium text-gray-50">
               {item.label}
             </span>
           </div>
@@ -78,7 +78,7 @@ export default function OnboardingModal({ isOpen, onClose }: Props) {
   return (
     <div className="fixed inset-0 z-60 flex items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* Modal Container */}
       <div
@@ -138,7 +138,7 @@ export default function OnboardingModal({ isOpen, onClose }: Props) {
                 <div
                   key={index}
                   className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                    currentIndex === index ? "bg-zinc-500" : "bg-stone-100"
+                    currentIndex === index ? "bg-gray-50" : "bg-gray-30"
                   }`}
                 />
               ))}

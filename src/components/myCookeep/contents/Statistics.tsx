@@ -49,13 +49,13 @@ export default function Statistics() {
           <div className="flex w-77 mt-6 justify-between pt-[6.5px]">
             <div className="flex flex-col gap-[6.5px] w-1/2 items-center justify-center">
               <CircleGraph percentage={stats.totalRate} />
-              <span className="typo-caption !text-[10px] text-zinc-500 text-center leading-tight">
+              <span className="typo-caption !text-[10px] text-gray-50 text-center leading-tight">
                 (실제 소비 음식/전체 음식) %
               </span>
             </div>
             <div className="flex flex-col gap-[6.5px] w-1/2 items-center justify-center">
               <CircleGraph percentage={stats.nearExpiryRate} />
-              <span className="typo-caption !text-[10px] text-zinc-500 text-center leading-tight">
+              <span className="typo-caption !text-[10px] text-gray-50 text-center leading-tight">
                 (실제 소비 음식/폐기 임박 음식) %
               </span>
             </div>
@@ -117,7 +117,7 @@ export default function Statistics() {
             </div>
           </div>
 
-          <span className="typo-caption text-zinc-400 text-[10px] text-center">
+          <span className="typo-caption text-gray-30 text-[10px] text-center">
             국제 평균 식품 폐기물 탄소 배출 계수 기준 추정치
           </span>
         </div>

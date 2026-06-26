@@ -17,7 +17,7 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* modal */}
       <div className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-gray-0 flex flex-col items-center gap-2">

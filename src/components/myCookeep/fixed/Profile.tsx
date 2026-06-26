@@ -149,7 +149,7 @@ function Profile() {
                 <span className="typo-caption text-green leading-none flex items-center">
                   {profile?.daysSinceJoined}
                 </span>
-                <span className="typo-caption text-zinc-500 leading-none flex items-center">
+                <span className="typo-caption text-gray-50 leading-none flex items-center">
                   일째 CooKeep
                 </span>
               </div>
@@ -196,7 +196,7 @@ function Profile() {
               }`}
             >
               <div
-                className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-gray-0 text-zinc-500 text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+                className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-gray-0 text-gray-50 text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
                 style={{ width: 227, height: 28 }}
               >
                 이번 주 달성하고 싶은 목표를 세워보세요!

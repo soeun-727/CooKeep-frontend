@@ -40,7 +40,7 @@ const ListItem: React.FC<ItemProps> = ({
           className="flex items-center justify-between w-[38px] active:scale-90 transition-transform"
         >
           <img src={likeGray} alt="like" className="w-4" />
-          <span className="typo-caption text-zinc-500">{likes}</span>
+          <span className="typo-caption text-gray-50">{likes}</span>
         </button>
       ) : (
         <button

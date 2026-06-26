@@ -27,7 +27,7 @@ export default function SettingsToggleItem({
           className={`
             absolute top-[2px]
             w-[22px] h-[22px] rounded-full  transition-transform
-            ${checked ? "translate-x-[26px] bg-green-deep" : "translate-x-[2px] bg-stone-300"}
+            ${checked ? "translate-x-[26px] bg-green-deep" : "translate-x-[2px] bg-gray-30"}
           `}
         />
       </button>

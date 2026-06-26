@@ -42,10 +42,10 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
                   className={`h-12 w-12 rounded-[6px] typo-body transition-all
                 ${
                   isInitialValue
-                    ? "bg-gray-200 text-zinc-500 cursor-not-allowed"
+                    ? "bg-gray-200 text-gray-50 cursor-not-allowed"
                     : isNewlySelected
                       ? "bg-green-light text-black border border-green-deep"
-                      : "text-zinc-500 active:bg-zinc-200"
+                      : "text-gray-50 active:bg-gray-30"
                 }`}
                 >
                   {num}

@@ -43,7 +43,7 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-black-overlay" onClick={onClose} />
 
       {/* modal */}
       <div className="relative w-70 h-44 bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center px-7 pt-[35px] pb-[25px]">
@@ -57,11 +57,11 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
               onBlur={() => setIsEditing(false)}
               onKeyDown={handleKeyDown}
               placeholder="직접 입력"
-              className="typo-body w-[180px] text-center font-bold text-neutral-900 border-b border-zinc-300 outline-none"
+              className="typo-body w-[180px] text-center font-bold text-gray-80 border-b border-gray-30 outline-none"
             />
           ) : (
             <div className="flex items-center justify-center gap-1 group">
-              <h2 className="typo-body max-w-[180px] text-center font-bold text-neutral-900 break-all truncate">
+              <h2 className="typo-body max-w-[180px] text-center font-bold text-gray-80 break-all truncate">
                 {inputValue || "직접 입력"}
               </h2>
               <button
@@ -74,7 +74,7 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
           )}
         </div>
 
-        <p className="text-[12px] text-zinc-500 mb-4 leading-none text-center">
+        <p className="text-[12px] text-gray-50 mb-4 leading-none text-center">
           재료명을 입력하세요
         </p>
 
@@ -85,7 +85,7 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
             ${
               inputValue.trim() && !isLoading
                 ? "bg-green"
-                : "bg-zinc-300 cursor-not-allowed"
+                : "bg-gray-30 cursor-not-allowed"
             }`}
         >
           추가

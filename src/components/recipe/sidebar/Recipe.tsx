@@ -74,7 +74,7 @@ const Recipe: React.FC<RecipeProps> = ({
               setIsEditing(false);
             }
           }}
-          className="flex-1 min-w-0 mx-2 px-1 typo-body2 border border-stone-300 outline-none bg-gray-0 rounded-sm"
+          className="flex-1 min-w-0 mx-2 px-1 typo-body2 border border-gray-30 outline-none bg-gray-0 rounded-sm"
         />
       ) : (
         <button onClick={onSelect} className="flex-1 min-w-0">

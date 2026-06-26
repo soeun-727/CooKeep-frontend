@@ -54,10 +54,10 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
                 className={`h-11 w-[361px] rounded-[10px] typo-body font-bold transition-all
                 ${
                   isInitialValue
-                    ? "bg-gray-200 text-zinc-500 cursor-not-allowed"
+                    ? "bg-gray-200 text-gray-50 cursor-not-allowed"
                     : isNewlySelected
                       ? "bg-green-light text-black border border-green-deep"
-                      : "border border-[#D1D1D1] text-zinc-500 active:bg-zinc-200"
+                      : "border border-[#D1D1D1] text-gray-50 active:bg-gray-30"
                 }`}
               >
                 <div className="flex justify-center gap-[6px]">

@@ -22,7 +22,7 @@ export default function Sort({ categoryIcon, viewCategory }: SortProps) {
     <>
       <div className="w-full flex flex-col items-center mt-[3px] mb-4">
         <div className="w-[353px] relative items-center justify-center flex">
-          <div className="flex items-center justify-center bg-neutral-800 rounded-[6px] h-[22px] w-[59px] px-2 gap-1 text-gray-0 text-3">
+          <div className="flex items-center justify-center bg-gray-80 rounded-[6px] h-[22px] w-[59px] px-2 gap-1 text-gray-0 text-3">
             <img src={categoryIcon} alt="category" className="w-3" />
             <span className="typo-caption">{viewCategory}</span>
           </div>

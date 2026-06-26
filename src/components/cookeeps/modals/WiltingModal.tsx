@@ -13,7 +13,7 @@ export default function WiltingModal({ plant, isOpen, onClose }: Props) {
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* modal */}
       <div

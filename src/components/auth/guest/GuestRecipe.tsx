@@ -66,7 +66,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
       onClick={() => setIsDimmed(true)}
     >
       {isDimmed && (
-        <div className="fixed inset-0 z-10 bg-neutral-900/50 transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
+        <div className="fixed inset-0 z-10 bg-black-overlay transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
       )}
       <div className="typo-body">오늘의 레시피</div>
       {/* 스크롤 영역 */}

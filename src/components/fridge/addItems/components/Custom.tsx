@@ -102,11 +102,11 @@ const Custom: React.FC<CustomProps> = ({
               onChange={(e) => setLocalName(e.target.value)}
               onBlur={finishEditing}
               onKeyDown={(e) => e.key === "Enter" && finishEditing()}
-              className="typo-body w-[180px] text-center font-bold text-neutral-900 border-b border-zinc-300 outline-none"
+              className="typo-body w-[180px] text-center font-bold text-gray-80 border-b border-gray-30 outline-none"
             />
           ) : (
             <div className="flex items-center justify-center gap-1 group">
-              <h2 className="typo-body max-w-[180px] text-center font-bold text-neutral-900 break-all truncate">
+              <h2 className="typo-body max-w-[180px] text-center font-bold text-gray-80 break-all truncate">
                 '{localName}'
               </h2>
               <button
@@ -119,7 +119,7 @@ const Custom: React.FC<CustomProps> = ({
           )}
         </div>
 
-        <p className="text-[12px] text-zinc-500 mb-4 leading-none text-center">
+        <p className="text-[12px] text-gray-50 mb-4 leading-none text-center">
           '{localName}'의 카테고리를 선택해주세요
         </p>
 
@@ -144,7 +144,7 @@ const Custom: React.FC<CustomProps> = ({
                   className="object-contain"
                 />
               </div>
-              <span className="w-[26px] truncate text-[10px] whitespace-nowrap leading-none font-semibold text-zinc-500">
+              <span className="w-[26px] truncate text-[10px] whitespace-nowrap leading-none font-semibold text-gray-50">
                 {cat.name}
               </span>
             </button>
@@ -158,7 +158,7 @@ const Custom: React.FC<CustomProps> = ({
             ${
               selectedCategoryId !== null && !isLoading
                 ? "bg-green-deep"
-                : "bg-zinc-300 cursor-not-allowed"
+                : "bg-gray-30 cursor-not-allowed"
             }`}
         >
           {confirmText}

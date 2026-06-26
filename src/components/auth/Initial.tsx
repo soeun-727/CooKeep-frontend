@@ -41,9 +41,9 @@ export default function Initial() {
       <div className="w-full flex flex-col mt-[86px] items-center">
         <h1 className="text-[19px] font-semibold flex gap-1">
           <span className="text-green-deep">재료 관리</span>
-          <span className="text-neutral-800">부터,</span>
+          <span className="text-gray-80">부터,</span>
           <span className="text-green-deep">요리 기록</span>
-          <span className="text-neutral-800">까지!</span>
+          <span className="text-gray-80">까지!</span>
         </h1>
       </div>
 
@@ -72,7 +72,7 @@ export default function Initial() {
       {/* <div className="flex flex-col items-center justify-center mb-[34px]"> */}
       <div className="flex flex-col items-center justify-center mt-[24px]">
         {/* SNS 로그인 */}
-        <span className="typo-caption text-zinc-500">
+        <span className="typo-caption text-gray-50">
           SNS 계정으로 로그인하기
         </span>
 
@@ -88,13 +88,11 @@ export default function Initial() {
         </div>
         <div className="flex justify-center items-center gap-[22px] py-[18px]">
           <img src={Line} alt="구분선" />
-          <span className="typo-caption text-zinc-500">또는</span>
+          <span className="typo-caption text-gray-50">또는</span>
           <img src={Line} alt="구분선" />
         </div>
         <button onClick={() => navigate("/login")}>
-          <span className="typo-caption text-zinc-500">
-            이메일로 로그인하기
-          </span>
+          <span className="typo-caption text-gray-50">이메일로 로그인하기</span>
         </button>
         <button
           onClick={() => navigate("/guest")}

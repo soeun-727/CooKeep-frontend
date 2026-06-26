@@ -71,7 +71,7 @@ export default function RecipeLoadingPage() {
       </div>
       {error && (
         <div className="mt-6 flex flex-col items-center gap-3">
-          <p className="text-red-500 text-sm">{error}</p>
+          <p className="text-semantic-negative text-sm">{error}</p>
 
           <button
             onClick={() => generateRecipe()}

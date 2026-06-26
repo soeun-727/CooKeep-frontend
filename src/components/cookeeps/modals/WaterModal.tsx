@@ -18,7 +18,7 @@ export default function WaterModal({
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* modal */}
       <div className="relative w-[254px] rounded-[10px] bg-gray-0 px-[28px] py-[25px]">

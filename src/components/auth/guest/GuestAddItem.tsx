@@ -20,7 +20,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
     >
       {/* 딤드: z-10 */}
       {isDimmed && (
-        <div className="fixed inset-0 z-10 bg-neutral-900/50 transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
+        <div className="fixed inset-0 z-10 bg-black-overlay transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
       )}
 
       {/* 헤더 영역 */}

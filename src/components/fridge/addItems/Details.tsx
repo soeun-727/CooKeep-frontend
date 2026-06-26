@@ -64,7 +64,7 @@ export default function Details() {
             ))
           ) : (
             <div className="mt-20 flex flex-col items-center gap-4">
-              <p className="text-zinc-400 typo-caption text-center">
+              <p className="text-gray-50 typo-caption text-center">
                 선택된 재료가 없습니다.
               </p>
               <Button size="S" variant="black" onClick={() => navigate(-1)}>

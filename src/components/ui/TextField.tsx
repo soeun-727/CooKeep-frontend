@@ -59,7 +59,7 @@ const TextField = ({
     text-gray-80 
     font-['Pretendard'] text-sm leading-5
     placeholder:font-medium
-    placeholder:text-stone-300
+    placeholder:text-gray-30
     disabled:bg-[#ECECEC]
     focus:outline-none
     ${leftIcon ? "pl-11" : ""}

@@ -129,7 +129,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
             }}
             className="w-full h-6 flex items-center justify-center pl-[2px] cursor-pointer relative z-[20] group"
           >
-            <span className="text-[10px] truncate flex-1 text-stone-300">
+            <span className="text-[10px] truncate flex-1 text-gray-30">
               {item.memo || "메모를 남겨주세요"}
             </span>
             <img src={memoIcon} alt="edit memo" className="w-6 flex-shrink-0" />

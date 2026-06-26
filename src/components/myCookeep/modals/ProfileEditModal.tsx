@@ -38,7 +38,7 @@ export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
         className="relative w-full max-w-[450px] bg-gray-0 rounded-t-[30px] py-[19px] px-4 animate-slide-up flex flex-col"
       >
         <div className="flex justify-center items-center h-10 p-2">
-          <h3 className="typo-body text-neutral-900">
+          <h3 className="typo-body text-gray-80">
             프로필로 설정할 식물을 선택해주세요
           </h3>
         </div>

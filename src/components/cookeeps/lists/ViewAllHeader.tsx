@@ -22,7 +22,7 @@ export default function ViewAllHeader({
       <div
         className={`mt-12 !w-[361px] [&_p]:hidden
           [&_input]:border-none [&_input]:focus:outline-none
-          [&_input::placeholder]:text-zinc-500
+          [&_input::placeholder]:text-gray-50
           shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
           ${searchTerm ? "[&_input]:bg-gray-0" : "[&_input]:bg-[#EBEDF1]"}`}
       >

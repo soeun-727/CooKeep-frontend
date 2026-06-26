@@ -43,7 +43,7 @@ const Item: React.FC<ItemProps> = ({
         </span>
         <span
           className={`text-left text-[10px] font-semibold leading-tight whitespace-nowrap mt-0.5 ${
-            leftDays < 3 ? "text-red-600" : "text-stone-300"
+            leftDays < 3 ? "text-red-600" : "text-gray-30"
           }`}
         >
           {leftDays >= 0 ? `D-${leftDays}` : `D+${Math.abs(leftDays)}`}

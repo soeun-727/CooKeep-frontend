@@ -117,7 +117,7 @@ export default function Guide({ onNext }: Props) {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-1.5 h-1.5 rounded-full cursor-pointer ${
-                currentIndex === index ? "bg-green" : "bg-stone-100"
+                currentIndex === index ? "bg-green" : "bg-gray-30"
               }`}
             />
           ))}
@@ -126,7 +126,7 @@ export default function Guide({ onNext }: Props) {
         {/* 텍스트 */}
         <div className="mt-10 text-center px-4">
           <div className="typo-h1 !text-[22px]">{title}</div>
-          <p className="whitespace-pre-wrap typo-body text-zinc-500 mt-2">
+          <p className="whitespace-pre-wrap typo-body text-gray-50 mt-2">
             {text}
           </p>
         </div>

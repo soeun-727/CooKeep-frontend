@@ -12,7 +12,7 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center">
       {/* dim */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* modal */}
       <div className="relative w-[258px] px-[28px] pt-[35px] pb-[25px] bg-gray-0 rounded-[10px] flex flex-col items-center gap-[18px]">

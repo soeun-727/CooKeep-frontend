@@ -41,7 +41,7 @@ export default function CircleGraph({ percentage }: { percentage: number }) {
 
       {/* 중앙 텍스트 */}
       <div className="absolute flex flex-col items-center">
-        <span className="typo-h2 text-neutral-900">{percentage}%</span>
+        <span className="typo-h2 text-gray-80">{percentage}%</span>
       </div>
     </div>
   );

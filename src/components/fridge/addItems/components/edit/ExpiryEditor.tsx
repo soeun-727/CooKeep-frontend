@@ -41,10 +41,10 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
           {monthName} {year}
         </h2>
         <div>
-          <button onClick={prevMonth} className="p-2 text-zinc-400">
+          <button onClick={prevMonth} className="p-2 text-gray-30">
             <img src={prevIcon} alt="back" />
           </button>
-          <button onClick={nextMonth} className="p-2 text-zinc-400">
+          <button onClick={nextMonth} className="p-2 text-gray-30">
             <img src={nextIcon} alt="next" />
           </button>
         </div>
@@ -84,13 +84,13 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
             <button
               key={day}
               onClick={() => handleDateClick(day)}
-              className={`h-10 w-10 mx-auto flex items-center justify-center rounded-full typo-h2 text-zinc-800 transition-all !font-normal
+              className={`h-10 w-10 mx-auto flex items-center justify-center rounded-full typo-h2 text-gray-80 transition-all !font-normal
                 ${
                   isNewlySelected
                     ? "!bg-green-light !border !border-green-deep !font-semibold"
                     : isNewlySelected || isCurrent
-                      ? "!bg-zinc-200 !text-zinc-500 !cursor-not-allowed"
-                      : "hover:bg-zinc-50"
+                      ? "!bg-gray-30 !text-gray-50 !cursor-not-allowed"
+                      : "hover:bg-gray-10"
                 }`}
             >
               {day}

@@ -143,7 +143,9 @@ export default function ResetPassword() {
         />
       </div>
 
-      {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+      {error && (
+        <p className="text-semantic-negative text-sm text-center">{error}</p>
+      )}
 
       <Button
         type="submit"

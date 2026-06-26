@@ -34,7 +34,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center">
-      <div className="absolute inset-0 bg-black/40" />
+      <div className="absolute inset-0 bg-gray-80" />
 
       {/* 모달 영역 */}
       <div className="relative w-[258px] bg-gray-0 rounded-[10px] flex flex-col items-center pt-[35px] pb-[25px] px-7 gap-4">
@@ -76,11 +76,11 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                     loading="lazy"
                   />
 
-                  <span className="h-4 text-[10px] font-semibold text-zinc-500">
+                  <span className="h-4 text-[10px] font-semibold text-gray-50">
                     {plant.text}
                   </span>
                   {isHarvested && (
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black-overlay flex items-center justify-center">
                       <div className="flex items-center justify-center w-[43px] h-5 bg-green-light/90 border-[0.5px] border-green-deep rounded-[3px]">
                         <span className="text-green-deep text-[10px] font-semibold leading-none">
                           수확완료

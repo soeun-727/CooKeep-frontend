@@ -98,7 +98,7 @@ export default function IngredientDetailModal({
 
   if (isLoading)
     return (
-      <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/40">
+      <div className="fixed inset-0 z-60 flex items-center justify-center bg-gray-80">
         <div className="bg-gray-0 p-6 rounded-lg text-sm">정보 로딩 중...</div>
       </div>
     );
@@ -107,10 +107,7 @@ export default function IngredientDetailModal({
 
   return (
     <div className="fixed inset-0 z-200 flex items-center justify-center p-4">
-      <div
-        className="absolute inset-0 bg-black/40"
-        onClick={handleModalClose}
-      />
+      <div className="absolute inset-0 bg-gray-80" onClick={handleModalClose} />
       <div className="relative z-10 w-full max-w-[330px] max-h-[90vh] overflow-y-auto no-scrollbar rounded-[6px] px-5 py-6 bg-gradient-to-b from-[#F5F5F5] to-white shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)] animate-fadeIn">
         <div className="flex w-full max-w-[290px] flex-col items-center gap-5 mx-auto">
           <div className="flex flex-col items-center gap-2 self-stretch">

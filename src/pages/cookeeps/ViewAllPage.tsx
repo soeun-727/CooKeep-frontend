@@ -127,13 +127,13 @@ export default function ViewAllPage() {
               className="h-10 w-full flex items-center justify-center"
             >
               {isLoading && (
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-green-500" />
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-semantic-positive" />
               )}
             </div>
           </div>
         ) : (
           !isLoading && (
-            <p className="mt-10 text-zinc-400 typo-body text-center">
+            <p className="mt-10 text-gray-30 typo-body text-center">
               검색 결과가 없습니다.
             </p>
           )

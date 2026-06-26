@@ -29,7 +29,7 @@ export default function GuestRecipeIntro({ onNext }: Props) {
 
       {/* 딤드 레이어 (z-90) */}
       {isDimmed && (
-        <div className="fixed inset-0 z-90 bg-neutral-900/50 left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
+        <div className="fixed inset-0 z-90 bg-black-overlay left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
       )}
 
       {/* 컨텐츠 영역: 부모의 z-index를 제거해야 자식의 z-index가 딤드(z-90)와 직접 경쟁할 수 있습니다. */}

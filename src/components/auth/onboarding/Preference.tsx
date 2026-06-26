@@ -162,7 +162,7 @@ export default function Preference() {
               className="bg-gray-200 px-3 px-1 h-7 flex gap-1 rounded-[100px] items-center"
             >
               <img src={xIcon} className="w-3 h-3" />
-              <span className="typo-caption !font-medium text-zinc-500">
+              <span className="typo-caption !font-medium text-gray-50">
                 {ingredient.ingredient}
               </span>
             </div>

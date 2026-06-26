@@ -47,7 +47,7 @@ export default function UploadCompleteModal({
             alt="congrats"
           />
 
-          <p className="typo-body text-center font-bold text-neutral-900">
+          <p className="typo-body text-center font-bold text-gray-80">
             오늘의 레시피 등록 완료!
           </p>
           <span className="typo-body text-green-deep !font-bold mb-4">

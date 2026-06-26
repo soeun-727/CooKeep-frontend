@@ -23,7 +23,7 @@ export default function RecentlyAdded() {
         >
           <span
             className={`typo-caption transition-colors duration-300 ${
-              isOpen ? "text-green-deep" : "text-zinc-500"
+              isOpen ? "text-green-deep" : "text-gray-50"
             }`}
           >
             최근 추가한 재료
@@ -32,7 +32,7 @@ export default function RecentlyAdded() {
             className={`w-2 h-2 border-b-2 border-r-2 transition-all duration-300 ${
               isOpen
                 ? "rotate-45 -translate-y-[1px] border-green-deep"
-                : "rotate-[225deg] translate-y-[2px] border-zinc-500"
+                : "rotate-[225deg] translate-y-[2px] border-gray-50"
             }`}
           />
         </button>
@@ -64,7 +64,7 @@ export default function RecentlyAdded() {
                       className="w-7 h-7 object-contain"
                     />
                   </div>
-                  <span className="text-[10px] truncate w-11 text-center text-zinc-600">
+                  <span className="text-[10px] truncate w-11 text-center text-gray-80">
                     {item.name}
                   </span>
                 </button>

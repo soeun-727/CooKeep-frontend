@@ -25,7 +25,7 @@ export default function AddButton() {
         w-12 h-12 bg-black
         rounded-full flex items-center justify-center
         active:scale-95 
-        active:bg-stone-300
+        active:bg-gray-30
         transition-all
         shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)]
       "

@@ -18,7 +18,7 @@ const Category: React.FC<CategoryProps> = React.memo(
       >
         <div className="flex gap-[6px] p-3 items-center justify-center">
           <img src={image} className="w-4 h-4" />
-          <span className="font-semibold text-[10px] text-zinc-500 whitespace-nowrap leading-none">
+          <span className="font-semibold text-[10px] text-gray-50 whitespace-nowrap leading-none">
             {name}
           </span>
         </div>

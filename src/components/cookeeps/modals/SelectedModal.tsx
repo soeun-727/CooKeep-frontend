@@ -22,7 +22,7 @@ const SelectedModal: React.FC<Props> = ({
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
       {/* modal */}
       <div className="relative w-70 h-64 bg-gray-0 rounded-[10px] flex flex-col items-center pt-[35px] px-7 pb-[25px]">
         <h2 className="typo-body text-center">
@@ -38,7 +38,7 @@ const SelectedModal: React.FC<Props> = ({
             border-b-[8px] "
           />
           <div className="bg-gray-200 rounded-[3px] px-[10px] py-[3px] flex items-center justify-center">
-            <span className="text-center text-zinc-500 text-[8px] leading-tight">
+            <span className="text-center text-gray-50 text-[8px] leading-tight">
               {description}
             </span>
           </div>
@@ -52,7 +52,7 @@ const SelectedModal: React.FC<Props> = ({
           </button>
           <button
             onClick={onClose}
-            className="typo-label w-27 h-11 text-gray-0 bg-black rounded-[10px]"
+            className="typo-label w-27 h-11 text-gray-0 bg-gray-80 rounded-[10px]"
           >
             다시 고를래요
           </button>

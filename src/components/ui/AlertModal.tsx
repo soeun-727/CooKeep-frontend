@@ -21,7 +21,7 @@ const AlertModal: React.FC<AlertModalProps> = ({
       <div className="absolute inset-0" onClick={onClose}></div>
       <div className="relative w-60 bg-gray-0 rounded-[10px] flex flex-col items-center text-center px-7 pt-[35px] pb-[25px] gap-4">
         <img src={icon} className="w-20" />
-        <div className="typo-body2 font-medium text-neutral-900">
+        <div className="typo-body2 font-medium text-gray-80">
           섭취완료!
           <br />
           냉장고가 가벼워졌어요!

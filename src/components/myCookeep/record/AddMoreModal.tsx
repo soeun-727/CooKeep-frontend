@@ -9,7 +9,7 @@ interface Props {
 export default function AddMoreModal({ onConfirm, onCancel }: Props) {
   return (
     <div
-      className="fixed inset-0 bg-black/40 flex items-center justify-center z-60"
+      className="fixed inset-0 bg-gray-80 flex items-center justify-center z-60"
       onClick={onCancel}
     >
       <div

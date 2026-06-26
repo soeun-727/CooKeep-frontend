@@ -41,7 +41,7 @@ export default function NoticePage() {
       <BackHeader title="공지사항" onBack={() => navigate(-1)} />
       <main className="pt-[75px] px-4 pb-[34px] flex flex-col gap-[14px] min-h-screen">
         {error ? (
-          <p className="text-center text-red-500">
+          <p className="text-center text-semantic-negative">
             공지사항을 불러오지 못했습니다.
           </p>
         ) : notices.length === 0 ? (
