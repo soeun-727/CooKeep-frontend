@@ -16,6 +16,8 @@
   --color-semantic-positive: #1fa43c;
   --color-semantic-negative: #d91f1f;
 
+  --background-image-blur-to-b: linear-to-b, transparent, #ffffff;
+
   --font-sans:
     "Pretendard Variable", "Pretendard", ui-sans-serif, system-ui,
     -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
