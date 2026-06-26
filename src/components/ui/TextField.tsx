@@ -55,7 +55,7 @@ const TextField = ({
     border
     rounded-[6px]
     px-3 py-2
-    bg-white
+    bg-gray-0
     text-gray-80 
     font-['Pretendard'] text-sm leading-5
     placeholder:font-medium

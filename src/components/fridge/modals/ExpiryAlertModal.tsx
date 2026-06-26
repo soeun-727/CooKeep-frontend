@@ -20,7 +20,7 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-white flex flex-col items-center gap-2">
+      <div className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-gray-0 flex flex-col items-center gap-2">
         {/* content */}
         <div className="w-full flex flex-col items-center gap-4">
           <img

@@ -30,7 +30,7 @@ function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
   const isEmpty = topRecipes.length === 0;
 
   return (
-    <div className="flex flex-col items-center w-full min-h-[259px] max-w-md mx-auto bg-white p-4 gap-4 rounded-lg shadow-md">
+    <div className="flex flex-col items-center w-full min-h-[259px] max-w-md mx-auto bg-gray-0 p-4 gap-4 rounded-lg shadow-md">
       {/* 제목 */}
       <h2 className="text-center font-semibold text-[18px] leading-[26px]">
         <span className="text-green-deep">이번 주</span>{" "}
@@ -55,7 +55,7 @@ function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
         </div>
 
         {isEmpty && (
-          <div className="absolute inset-0 flex justify-center items-center rounded-md bg-white/80">
+          <div className="absolute inset-0 flex justify-center items-center rounded-md bg-gray-0/80">
             <p className="text-center text-gray-80 text-[16px] font-semibold leading-[24px]">
               아직 등록된 레시피가 없어요
               <br />

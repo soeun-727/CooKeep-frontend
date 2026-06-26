@@ -21,7 +21,7 @@ export default function WaterModal({
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-[254px] rounded-[10px] bg-white px-[28px] py-[25px]">
+      <div className="relative w-[254px] rounded-[10px] bg-gray-0 px-[28px] py-[25px]">
         {/* 내용 */}
         <div className="flex flex-col items-center justify-center gap-[16px] self-stretch">
           {/* 이미지 + 텍스트 */}
@@ -53,7 +53,7 @@ export default function WaterModal({
     rounded-[10px]
     bg-green
     py-[12px] px-[12px]
-    text-white
+    text-gray-0
     text-[14px] font-semibold leading-[24px]
   "
             >
@@ -68,7 +68,7 @@ export default function WaterModal({
     rounded-[10px]
     bg-gray-30
     py-[12px] px-[12px]
-    text-white
+    text-gray-0
     text-[14px] font-semibold leading-[24px]
   "
             >

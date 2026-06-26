@@ -113,7 +113,7 @@ export default function RecordSelectPage() {
       <div className="w-full px-4 mt-7">
         <div className="mx-auto max-w-[361px] flex justify-center">
           <div className="h-[28px] px-2 rounded-[6px] bg-gray-80 flex items-center">
-            <span className="typo-caption text-white">
+            <span className="typo-caption text-gray-0">
               내가 요리한 레시피들이에요
             </span>
           </div>

@@ -45,7 +45,7 @@ const FindEmailAuthModal = ({
         onClick={onConfirm} // 배경 클릭 시 닫히게 하고 싶으면 유지
       />
       <div
-        className="fixed z-[110] left-1/2 -translate-x-1/2 bg-white rounded-[10px]"
+        className="fixed z-[110] left-1/2 -translate-x-1/2 bg-gray-0 rounded-[10px]"
         style={{
           top: isHelp ? 308 : isSend ? 359 : 343,
           width: isHelp ? 256 : 240,

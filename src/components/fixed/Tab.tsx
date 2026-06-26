@@ -17,8 +17,8 @@ const Tab: React.FC<TabProps> = ({
       onClick={onClick}
       className={`relative gap-[2px] flex flex-1 flex-col items-center justify-center transition-all h-14 ${
         isSelected
-          ? "bg-white shadow-[inset_0_0_2px_0_rgba(17,17,17,0.1)]"
-          : "bg-white border-t-transparent"
+          ? "bg-gray-0 shadow-[inset_0_0_2px_0_rgba(17,17,17,0.1)]"
+          : "bg-gray-0 border-t-transparent"
       }`}
     >
       {isSelected && (

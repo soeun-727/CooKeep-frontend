@@ -151,7 +151,7 @@ export default function ResetPassword() {
         variant="black"
         disabled={!isFormValid}
         onClick={handleSubmit}
-        className="mt-[31px] !text-green disabled:!text-white"
+        className="mt-[31px] !text-green disabled:!text-gray-0"
       >
         비밀번호 재설정
       </Button>

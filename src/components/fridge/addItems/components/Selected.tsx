@@ -8,7 +8,7 @@ export default function Selected() {
 
   return (
     <div
-      className="w-[361px] h-22 bg-white rounded-[10px] px-5 flex items-center justify-between 
+      className="w-[361px] h-22 bg-gray-0 rounded-[10px] px-5 flex items-center justify-between 
       shadow-[0_-1px_100px_-4px_rgba(17,17,17,0.15)]"
     >
       <div className="flex items-center justify-center w-full">

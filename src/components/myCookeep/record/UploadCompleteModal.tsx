@@ -39,7 +39,7 @@ export default function UploadCompleteModal({
       />
 
       {/* 모달 박스: DoublecheckModal과 동일한 규격 적용 */}
-      <div className="relative w-[254px] bg-white rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[25px] animate-popIn">
+      <div className="relative w-[254px] bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[25px] animate-popIn">
         <div className="flex flex-col items-center justify-center self-stretch">
           <img
             src={character}

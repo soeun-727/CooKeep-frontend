@@ -24,7 +24,7 @@ const Item: React.FC<ItemProps> = React.memo(
         type="button"
         onClick={onSelect}
         className={`relative flex flex-col w-[90px] h-[90px] rounded-[6px] border items-center justify-center px-4 py-[13px]
-        ${isSelected ? "bg-green-light border-green-deep" : "bg-white border-[#D1D1D1]"}`}
+        ${isSelected ? "bg-green-light border-green-deep" : "bg-gray-0 border-[#D1D1D1]"}`}
       >
         {isCustom && (
           <img

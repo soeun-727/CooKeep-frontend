@@ -99,7 +99,7 @@ export default function IngredientDetailModal({
   if (isLoading)
     return (
       <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/40">
-        <div className="bg-white p-6 rounded-lg text-sm">정보 로딩 중...</div>
+        <div className="bg-gray-0 p-6 rounded-lg text-sm">정보 로딩 중...</div>
       </div>
     );
 
@@ -159,7 +159,7 @@ export default function IngredientDetailModal({
             </div>
 
             <div className="flex flex-col items-start gap-[14px] self-stretch">
-              <div className="flex w-full items-center rounded-[6px] bg-white px-3 py-3 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] gap-2">
+              <div className="flex w-full items-center rounded-[6px] bg-gray-0 px-3 py-3 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] gap-2">
                 {isEditing ? (
                   <input
                     type="text"
@@ -256,7 +256,7 @@ export default function IngredientDetailModal({
                       alt=""
                       className="absolute left-[-14px] bottom-[12px] w-[27.2px] z-20"
                     />
-                    <div className="relative z-10 flex w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] border-[#D1D1D1] bg-white px-[17.6px] py-[10px] min-h-[56px] shadow-sm">
+                    <div className="relative z-10 flex w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] border-[#D1D1D1] bg-gray-0 px-[17.6px] py-[10px] min-h-[56px] shadow-sm">
                       <span className="text-[8px] font-semibold leading-[12px] text-green self-stretch">
                         TIP
                       </span>

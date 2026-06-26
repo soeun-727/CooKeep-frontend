@@ -57,7 +57,7 @@ export default function Calendar({ onDateClick }: Props) {
     <div
       className={`
     flex flex-col w-[357px] mx-auto items-center justify-center rounded-[6px] p-4 
-    bg-white/10 transition-opacity duration-200
+    bg-gray-0/10 transition-opacity duration-200
     ${isLoading ? "opacity-50 pointer-events-none" : "opacity-100"}
   `}
     >
@@ -166,7 +166,7 @@ export default function Calendar({ onDateClick }: Props) {
 
                 <span
                   className={`relative z-20 typo-h2 !font-normal ${
-                    hasRecord ? "text-white" : "text-neutral-800"
+                    hasRecord ? "text-gray-0" : "text-neutral-800"
                   }`}
                 >
                   {day}

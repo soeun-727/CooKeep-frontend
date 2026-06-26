@@ -18,7 +18,7 @@ export default function SettingsLinkItem({ label, to }: SettingsLinkItemProps) {
         pt-[12px] pb-[12px]
         rounded-[10px]
         bg-green
-        text-white
+        text-gray-0
         typo-body
       "
     >

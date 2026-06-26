@@ -23,8 +23,8 @@ export default function WeeklyTopRecipesTab() {
   const top3 = recipes.slice(0, 3);
 
   const getRankStyle = (rank: number) => {
-    if (rank === 1) return "bg-green text-white";
-    if (rank === 2 || rank === 3) return "bg-black text-white";
+    if (rank === 1) return "bg-green text-gray-0";
+    if (rank === 2 || rank === 3) return "bg-black text-gray-0";
     return "bg-gray-200 text-gray-500";
   };
 
@@ -82,7 +82,7 @@ export default function WeeklyTopRecipesTab() {
                   <span className="text-green text-[12px] font-medium">
                     {item.nickname}
                   </span>
-                  <span className="text-white text-[12px] font-medium ">
+                  <span className="text-gray-0 text-[12px] font-medium ">
                     님의 레시피
                   </span>
                 </div>

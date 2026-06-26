@@ -191,7 +191,7 @@ export default function RecordDetailPage() {
           </div>
           <div className="absolute right-2 top-2 flex items-center">
             {isMenuOpen && (
-              <div className="absolute right-2 top-10 flex flex-col items-center justify-center bg-white rounded-[10px] w-[130px] h-[72px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
+              <div className="absolute right-2 top-10 flex flex-col items-center justify-center bg-gray-0 rounded-[10px] w-[130px] h-[72px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
                 {/* 수정하기 버튼 */}
                 <button
                   onClick={handleEdit}
@@ -263,12 +263,12 @@ export default function RecordDetailPage() {
                 el.style.height = `${el.scrollHeight}px`;
               }}
               placeholder="글자 수 최대 500자"
-              className="overflow-hidden w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none"
+              className="overflow-hidden w-full rounded-[10px] bg-gray-0 px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none"
               rows={1}
             />
           ) : (
             record.description && (
-              <div className="w-full rounded-[10px] bg-white px-[15px] py-4 text-center typo-body text-gray-80 shadow-sm whitespace-pre-wrap break-words border border-gray-100">
+              <div className="w-full rounded-[10px] bg-gray-0 px-[15px] py-4 text-center typo-body text-gray-80 shadow-sm whitespace-pre-wrap break-words border border-gray-100">
                 {record.description}
               </div>
             )
@@ -286,7 +286,7 @@ export default function RecordDetailPage() {
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
               ${tempIsPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
                   <img src={privateIcon} className="w-[24px]" alt="private" />
                 </div>
                 <span className="typo-label text-gray-80">나만 보기</span>
@@ -299,7 +299,7 @@ export default function RecordDetailPage() {
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
               ${tempIsPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
                   <img src={publicIcon} className="w-[36px]" alt="public" />
                 </div>
                 <span className="typo-label text-gray-80">쿠킵스 공개</span>

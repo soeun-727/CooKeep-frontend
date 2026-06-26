@@ -145,7 +145,7 @@ export default function EditEmailPage() {
                 type="button"
                 onClick={handleSendCode}
                 disabled={!isEmailValid || isSending}
-                className={`w-[102px] h-[24px] rounded-full typo-caption text-white
+                className={`w-[102px] h-[24px] rounded-full typo-caption text-gray-0
                   ${isEmailValid ? "bg-gray-80" : "bg-gray-30"}`}
               >
                 {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}

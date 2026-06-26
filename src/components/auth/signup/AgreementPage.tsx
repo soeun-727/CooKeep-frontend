@@ -41,7 +41,7 @@ export default function AgreementPage({
       {/* 카드 + 버튼 영역 */}
       <div className="flex-1 flex flex-col  min-h-0">
         {/* 약관 카드 */}
-        <div className="w-full max-w-[361px] mx-auto bg-white border border-[#D1D1D1] rounded-[6px] flex flex-col overflow-hidden max-h-full">
+        <div className="w-full max-w-[361px] mx-auto bg-gray-0 border border-[#D1D1D1] rounded-[6px] flex flex-col overflow-hidden max-h-full">
           {/* 카드 상단 */}
           <div className="flex items-center gap-[16px] p-3 h-[48px] shrink-0">
             {!isPolicyOnly ? (
@@ -102,7 +102,7 @@ export default function AgreementPage({
                 // table 부분 크기 고정시키면 이상하게 나와서 뺌 그래서 피그마랑 구조 다름
                 table: ({ children }) => (
                   <div className="my-4">
-                    <table className="border border-[#D1D1D1] border-collapse bg-white">
+                    <table className="border border-[#D1D1D1] border-collapse bg-gray-0">
                       {children}
                     </table>
                   </div>
@@ -111,12 +111,12 @@ export default function AgreementPage({
                 tr: ({ children }) => <tr>{children}</tr>,
 
                 th: ({ children }) => (
-                  <th className="typo-caption text-gray-50 text-center px-[16.5px] py-[6px] border border-[#D1D1D1] bg-white">
+                  <th className="typo-caption text-gray-50 text-center px-[16.5px] py-[6px] border border-[#D1D1D1] bg-gray-0">
                     {children}
                   </th>
                 ),
                 td: ({ children }) => (
-                  <td className="typo-caption text-gray-50 text-center px-[16.5px] py-[6px] border border-[#D1D1D1] bg-white">
+                  <td className="typo-caption text-gray-50 text-center px-[16.5px] py-[6px] border border-[#D1D1D1] bg-gray-0">
                     {children}
                   </td>
                 ),

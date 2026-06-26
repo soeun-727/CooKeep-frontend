@@ -86,7 +86,7 @@ export default function LoginMain() {
           disabled={!canLogin || isSubmitting}
           onClick={handleLogin}
           className={`${
-            !canLogin || isSubmitting ? "!text-white" : "!text-green"
+            !canLogin || isSubmitting ? "!text-gray-0" : "!text-green"
           }`}
         >
           로그인

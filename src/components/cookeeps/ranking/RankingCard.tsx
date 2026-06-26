@@ -39,7 +39,7 @@ export default function RankingCard({
       {/* 카드 박스 */}
       <div
         className={`relative flex flex-col items-center gap-1 p-[11px_11px_10px_12px] rounded-[6px] shadow-md ${
-          isFirst ? "bg-green-light" : "bg-white"
+          isFirst ? "bg-green-light" : "bg-gray-0"
         }`}
       >
         <div className="flex flex-col items-center gap-[6px]">

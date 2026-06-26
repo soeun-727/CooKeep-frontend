@@ -16,7 +16,7 @@ const WeeklyGoalModal: React.FC<Props> = ({ isOpen, onClose }) => {
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* 모달 */}
-      <div className="relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
+      <div className="relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-gray-0 px-[28px] pt-[35px] pb-[25px]">
         {/* 내부 wrapper (gap 28) */}
         <div className="flex w-full flex-col items-center gap-[28px]">
           {/* 이미지 + 텍스트 */}

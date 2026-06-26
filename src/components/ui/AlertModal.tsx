@@ -19,7 +19,7 @@ const AlertModal: React.FC<AlertModalProps> = ({
   return (
     <div className="fixed inset-0 z-[160] flex items-center justify-center bg-[#11111180]">
       <div className="absolute inset-0" onClick={onClose}></div>
-      <div className="relative w-60 bg-white rounded-[10px] flex flex-col items-center text-center px-7 pt-[35px] pb-[25px] gap-4">
+      <div className="relative w-60 bg-gray-0 rounded-[10px] flex flex-col items-center text-center px-7 pt-[35px] pb-[25px] gap-4">
         <img src={icon} className="w-20" />
         <div className="typo-body2 font-medium text-neutral-900">
           섭취완료!
@@ -33,7 +33,7 @@ const AlertModal: React.FC<AlertModalProps> = ({
         </div>
         <button
           onClick={onClose}
-          className="w-46 h-11 typo-button text-white bg-green rounded-[10px]"
+          className="w-46 h-11 typo-button text-gray-0 bg-green rounded-[10px]"
         >
           {buttonText}
         </button>

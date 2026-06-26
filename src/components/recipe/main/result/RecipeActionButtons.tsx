@@ -71,7 +71,7 @@ export default function RecipeActionButtons({
       <button
         onClick={handleCookClick}
         disabled={!latestRecipe || isLoading || isCompleted}
-        className={`w-full rounded-[10px] h-[38px] typo-button text-white ${
+        className={`w-full rounded-[10px] h-[38px] typo-button text-gray-0 ${
           !latestRecipe || isLoading || isCompleted ? "bg-gray-300" : "bg-green"
         }`}
       >
@@ -86,7 +86,7 @@ export default function RecipeActionButtons({
           className={`w-full rounded-[10px] h-[38px] typo-button transition-colors ${
             isRetryDisabled
               ? "bg-gray-300 text-gray-50 cursor-not-allowed"
-              : "bg-gray-80 text-white"
+              : "bg-gray-80 text-gray-0"
           }`}
         >
           {retryBtnText}

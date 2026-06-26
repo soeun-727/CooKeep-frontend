@@ -13,7 +13,7 @@ export default function AddMoreModal({ onConfirm, onCancel }: Props) {
       onClick={onCancel}
     >
       <div
-        className="flex flex-col items-center gap-2 w-[240px] px-[28px] pt-[35px] pb-[25px] bg-white rounded-[10px]"
+        className="flex flex-col items-center gap-2 w-[240px] px-[28px] pt-[35px] pb-[25px] bg-gray-0 rounded-[10px]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center justify-center gap-4 self-stretch">

@@ -27,7 +27,7 @@ export default function RecipeStepSection({ steps }: Props) {
             key={step.order}
             className="flex justify-start items-start w-full gap-3"
           >
-            <div className="flex items-center justify-center w-[30px] h-[22px] px-3 rounded-full bg-gray-80 text-white text-[12px] font-semibold leading-[16px] flex-shrink-0 mt-[3px]">
+            <div className="flex items-center justify-center w-[30px] h-[22px] px-3 rounded-full bg-gray-80 text-gray-0 text-[12px] font-semibold leading-[16px] flex-shrink-0 mt-[3px]">
               {step.order}
             </div>
 
@@ -39,7 +39,7 @@ export default function RecipeStepSection({ steps }: Props) {
         {steps.map((step) => (
           <div key={step.order} className="flex items-start gap-3 w-full">
             {/* 번호 버튼 */}
-            <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-gray-80 text-white text-xs font-semibold flex-shrink-0 ">
+            <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-gray-80 text-gray-0 text-xs font-semibold flex-shrink-0 ">
               {step.order}
             </div>
 

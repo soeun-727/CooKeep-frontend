@@ -133,7 +133,7 @@ export default function WithdrawPage() {
       flex items-center justify-center
       border
       transition
-      ${agree ? "bg-green-deep border-green-deep" : "bg-white border-[#D1D1D1]"}
+      ${agree ? "bg-green-deep border-green-deep" : "bg-gray-0 border-[#D1D1D1]"}
     `}
           >
             {agree && (
@@ -161,7 +161,7 @@ export default function WithdrawPage() {
             aria-expanded={reasonOpen}
             className={`
     flex w-full h-[48px] items-center gap-3 px-3
-    border border-[#D1D1D1] bg-white
+    border border-[#D1D1D1] bg-gray-0
     ${reasonOpen ? "rounded-t-[6px] border-b-0" : "rounded-[6px]"}
   `}
           >
@@ -196,7 +196,7 @@ export default function WithdrawPage() {
       border border-[#D1D1D1]
       border-t-0
       rounded-b-[6px]
-      bg-white
+      bg-gray-0
       overflow-hidden
     "
             >
@@ -210,7 +210,7 @@ export default function WithdrawPage() {
                   className={`
           flex items-center px-3 py-3
           text-[14px] font-medium text-left
-          ${selectedReason === reason ? "bg-gray-10" : "bg-white"}
+          ${selectedReason === reason ? "bg-gray-10" : "bg-gray-0"}
         `}
                 >
                   {reason}
@@ -253,7 +253,7 @@ export default function WithdrawPage() {
             onClick={() => setOpenModal(false)}
           />
 
-          <div className="relative w-[254px] bg-white rounded-[10px] flex flex-col items-center">
+          <div className="relative w-[254px] bg-gray-0 rounded-[10px] flex flex-col items-center">
             <h2 className="mt-[35px] mb-4 font-bold text-[16px] text-gray-80">
               정말 탈퇴하시겠어요?
             </h2>
@@ -263,7 +263,7 @@ export default function WithdrawPage() {
               <button
                 onClick={handleWithdraw}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-gray-30 text-white"
+                className="w-[95px] h-[44px] rounded-[10px] bg-gray-30 text-gray-0"
               >
                 {isSubmitting ? "처리중" : "네"}
               </button>
@@ -272,7 +272,7 @@ export default function WithdrawPage() {
               <button
                 onClick={() => setOpenModal(false)}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-green text-white"
+                className="w-[95px] h-[44px] rounded-[10px] bg-green text-gray-0"
               >
                 아니오
               </button>

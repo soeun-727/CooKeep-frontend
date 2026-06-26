@@ -41,7 +41,7 @@ export default function RecipeDetailUserMeta({
 "
       >
         <span className="text-green text-[12px] font-medium">{userName}</span>
-        <span className="text-white text-[12px] font-medium">님의 레시피</span>
+        <span className="text-gray-0 text-[12px] font-medium">님의 레시피</span>
       </div>
 
       {/* 버튼 영역 */}

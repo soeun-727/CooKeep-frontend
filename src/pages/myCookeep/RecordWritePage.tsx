@@ -281,20 +281,20 @@ export default function RecordWritePage() {
               onChange={(e) => setMemo(e.target.value.slice(0, 500))}
               onInput={handleMemoInput}
               placeholder="글자 수 최대 500자"
-              className="w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none overflow-hidden"
+              className="w-full rounded-[10px] bg-gray-0 px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none overflow-hidden"
               rows={1}
             />
           </div>
 
           <div className="relative mt-[15px] flex justify-center animate-float-bubble shrink-0">
             <div
-              className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-white text-green text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+              className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-gray-0 text-green text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
               style={{ width: 206, height: 36 }}
             >
               나만의 팁 작성하기
             </div>
             <div
-              className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-white rotate-45 z-0"
+              className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-gray-0 rotate-45 z-0"
               style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
             />
           </div>
@@ -305,7 +305,7 @@ export default function RecordWritePage() {
                 onClick={() => setIsPublic(false)}
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
                   <img
                     src={privateIcon}
                     alt="private"
@@ -319,7 +319,7 @@ export default function RecordWritePage() {
                 onClick={() => setIsPublic(true)}
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
                   <img
                     src={publicIcon}
                     alt="public"
@@ -336,7 +336,7 @@ export default function RecordWritePage() {
               size="L"
               variant="black"
               disabled={isPublic === null || isUploading}
-              className={`${isPublic === null ? "text-white" : "!text-green"}`}
+              className={`${isPublic === null ? "text-gray-0" : "!text-green"}`}
               onClick={handleUpload}
             >
               레시피 업로드하기

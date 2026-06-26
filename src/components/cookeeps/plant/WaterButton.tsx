@@ -65,7 +65,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
               className="
         inline-flex items-center justify-center
         px-[10px] py-[3px]
-        bg-white rounded-[3px]
+        bg-gray-0 rounded-[3px]
         text-[8px] font-medium text-gray-50
         leading-[10px] text-center
         whitespace-nowrap

@@ -82,7 +82,7 @@ export default function OnboardingModal({ isOpen, onClose }: Props) {
 
       {/* Modal Container */}
       <div
-        className="relative box-border w-[258px] min-w-[258px] max-w-[258px] min-h-[246px] max-h-[267px] px-7 py-[25px] gap-3 rounded-[10px] bg-white flex flex-col shadow-xl overflow-hidden"
+        className="relative box-border w-[258px] min-w-[258px] max-w-[258px] min-h-[246px] max-h-[267px] px-7 py-[25px] gap-3 rounded-[10px] bg-gray-0 flex flex-col shadow-xl overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 1. Slider Content (상하 중앙 정렬을 위해 flex-1 사용) */}

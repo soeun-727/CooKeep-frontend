@@ -14,7 +14,7 @@ const Category: React.FC<CategoryProps> = React.memo(
         type="button"
         onClick={onSelect}
         className={`min-w-12 h-8 rounded-[6px] flex
-        ${isSelected ? "bg-gray-200" : "bg-white"}`}
+        ${isSelected ? "bg-gray-200" : "bg-gray-0"}`}
       >
         <div className="flex gap-[6px] p-3 items-center justify-center">
           <img src={image} className="w-4 h-4" />

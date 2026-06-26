@@ -19,7 +19,7 @@ export default function PlantShortcutTooltip({
             h-[10px] w-[10px]
             -translate-x-1/2
             rotate-45 z-5
-            bg-white
+            bg-gray-0
           "
         />
 
@@ -33,7 +33,7 @@ export default function PlantShortcutTooltip({
             pb-[2px]
             rounded-[3px]
             z-10
-            bg-white
+            bg-gray-0
           "
         >
           <span

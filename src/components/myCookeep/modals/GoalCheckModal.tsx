@@ -18,7 +18,7 @@ const GoalcheckModal: React.FC<Props> = ({
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
       <div className="absolute inset-0" onClick={onClose}></div>
-      <div className="relative w-[254px] h-43 bg-white rounded-[10px] shadow-xl flex flex-col items-center">
+      <div className="relative w-[254px] h-43 bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center">
         <h2 className="typo-body w-[198px] h-6 mb-2 text-center text-neutral-900 mt-[35px]">
           이번 주 목표, 이걸로 가볼까요?
         </h2>
@@ -28,13 +28,13 @@ const GoalcheckModal: React.FC<Props> = ({
         <div className="flex gap-2">
           <button
             onClick={onConfirm}
-            className="typo-label w-[95px] h-11 text-white bg-green rounded-[10px]"
+            className="typo-label w-[95px] h-11 text-gray-0 bg-green rounded-[10px]"
           >
             네
           </button>
           <button
             onClick={onClose}
-            className="typo-label w-[95px] h-11 text-white bg-stone-300 rounded-[10px]"
+            className="typo-label w-[95px] h-11 text-gray-0 bg-stone-300 rounded-[10px]"
           >
             아니오
           </button>

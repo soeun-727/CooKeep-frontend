@@ -133,7 +133,7 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
             >
               <img src={character} className="w-23" alt="no result" />
               <div className="bg-black rounded-[100px] h-6 py-1 px-[18px] flex justify-center items-center">
-                <span className="typo-caption text-white text-center py-1">
+                <span className="typo-caption text-gray-0 text-center py-1">
                   직접 재료 추가하기
                 </span>
               </div>

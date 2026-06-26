@@ -84,7 +84,7 @@ function RecordCard({ record: initialRecord }: Props) {
           <div className="pointer-events-none absolute top-0 left-0 right-0 h-[35%] bg-gradient-to-b from-black/25 to-transparent" />
 
           {/* 날짜 */}
-          <span className="absolute top-1 left-1 px-1 py-1 text-white text-[12px] font-medium">
+          <span className="absolute top-1 left-1 px-1 py-1 text-gray-0 text-[12px] font-medium">
             만든 날짜: {formatDateDot(record.createdAt)}
           </span>
 
@@ -99,7 +99,7 @@ function RecordCard({ record: initialRecord }: Props) {
               className={`
               mb-2
               w-9 h-9
-              rounded-full bg-white
+              rounded-full bg-gray-0
               shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
               flex items-center justify-center
               transition-all duration-200 ease-out
@@ -125,7 +125,7 @@ function RecordCard({ record: initialRecord }: Props) {
               }}
               className="
               w-9 h-9
-              rounded-full bg-white
+              rounded-full bg-gray-0
               shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
               flex items-center justify-center
             "

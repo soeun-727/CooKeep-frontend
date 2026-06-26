@@ -50,7 +50,7 @@ export default function CookeepsHeader() {
       {/* 오른쪽 */}
       <div className="flex items-center gap-2">
         {/* 쿠키 */}
-        <button className="flex h-[28px] items-center gap-1 rounded-full bg-gray-80 px-3 py-[2px] text-white shadow">
+        <button className="flex h-[28px] items-center gap-1 rounded-full bg-gray-80 px-3 py-[2px] text-gray-0 shadow">
           <img src={cookieIcon} alt="cookie" className="h-4 w-4" />
           <span className="text-[12px] font-medium leading-4">{cookie} </span>
         </button>

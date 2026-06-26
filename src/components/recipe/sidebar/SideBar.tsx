@@ -136,7 +136,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                   <div
                     className={`
     rounded-[6px]
-    bg-white
+    bg-gray-0
     shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
     
     [&_>_div]:!w-full
@@ -144,7 +144,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     
     [&_input]:outline-none
     [&_input]:border-none
-    [&_input]:bg-white
+    [&_input]:bg-gray-0
     
     [&_input]:text-gray-30
     [&_input]:text-[14px]

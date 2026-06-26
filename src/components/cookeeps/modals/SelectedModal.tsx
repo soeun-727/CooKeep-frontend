@@ -24,7 +24,7 @@ const SelectedModal: React.FC<Props> = ({
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
       {/* modal */}
-      <div className="relative w-70 h-64 bg-white rounded-[10px] flex flex-col items-center pt-[35px] px-7 pb-[25px]">
+      <div className="relative w-70 h-64 bg-gray-0 rounded-[10px] flex flex-col items-center pt-[35px] px-7 pb-[25px]">
         <h2 className="typo-body text-center">
           <span className="text-green-deep">{plant} </span>
           <span>을/를 키워볼까요?</span>
@@ -46,13 +46,13 @@ const SelectedModal: React.FC<Props> = ({
         <div className="flex gap-2 mt-4">
           <button
             onClick={onConfirm}
-            className="typo-label w-27 h-11 text-white bg-green rounded-[10px]"
+            className="typo-label w-27 h-11 text-gray-0 bg-green rounded-[10px]"
           >
             시작하기
           </button>
           <button
             onClick={onClose}
-            className="typo-label w-27 h-11 text-white bg-black rounded-[10px]"
+            className="typo-label w-27 h-11 text-gray-0 bg-black rounded-[10px]"
           >
             다시 고를래요
           </button>

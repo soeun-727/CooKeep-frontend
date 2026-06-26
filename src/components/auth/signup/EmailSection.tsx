@@ -118,7 +118,7 @@ export default function EmailSection() {
                 type="button"
                 onClick={isCodeSent ? handleSendCode : handleSendCode}
                 disabled={!isEmailValid || isSending}
-                className={`w-[102px] h-[24px] rounded-full typo-caption text-white
+                className={`w-[102px] h-[24px] rounded-full typo-caption text-gray-0
                   ${isEmailValid ? "bg-gray-80" : "bg-gray-30"}
                   disabled:cursor-not-allowed`}
               >

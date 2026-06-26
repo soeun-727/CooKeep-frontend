@@ -37,7 +37,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
       <div className="absolute inset-0 bg-black/40" />
 
       {/* 모달 영역 */}
-      <div className="relative w-[258px] bg-white rounded-[10px] flex flex-col items-center pt-[35px] pb-[25px] px-7 gap-4">
+      <div className="relative w-[258px] bg-gray-0 rounded-[10px] flex flex-col items-center pt-[35px] pb-[25px] px-7 gap-4">
         <h2 className="typo-body text-center">
           키우고 싶은 식재료를
           <br />
@@ -66,7 +66,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                 ${
                   selectedId === plant.id
                     ? "bg-green-light"
-                    : "bg-white group-hover:bg-gray-100"
+                    : "bg-gray-0 group-hover:bg-gray-100"
                 }`}
                 >
                   <img

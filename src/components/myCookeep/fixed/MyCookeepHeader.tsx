@@ -40,7 +40,7 @@ export default function MyCookeepHeader() {
       {/* 오른쪽 */}
       <div className="flex items-center gap-2">
         {/* 쿠키 */}
-        <button className="flex h-[28px] items-center gap-1 rounded-full bg-white px-3 py-[2px] text-black">
+        <button className="flex h-[28px] items-center gap-1 rounded-full bg-gray-0 px-3 py-[2px] text-black">
           <img src={cookieIcon} alt="cookie" className="h-4 w-4" />
           <span className="text-[12px] font-medium leading-4">{cookie} 개</span>
         </button>

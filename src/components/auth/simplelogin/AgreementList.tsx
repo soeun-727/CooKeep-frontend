@@ -64,7 +64,7 @@ export default function AgreementList({
           }
         />
         <span className="ml-[16px] typo-label text-gray-80">약관 전체동의</span>
-        <span className="absolute left-4 w-4 h-4 flex items-center justify-center pointer-events-none text-white text-lg font-bold peer-checked:visible invisible">
+        <span className="absolute left-4 w-4 h-4 flex items-center justify-center pointer-events-none text-gray-0 text-lg font-bold peer-checked:visible invisible">
           ✓
         </span>
       </label>

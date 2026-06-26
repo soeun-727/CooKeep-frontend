@@ -22,14 +22,14 @@ export default function Sort({ categoryIcon, viewCategory }: SortProps) {
     <>
       <div className="w-full flex flex-col items-center mt-[3px] mb-4">
         <div className="w-[353px] relative items-center justify-center flex">
-          <div className="flex items-center justify-center bg-neutral-800 rounded-[6px] h-[22px] w-[59px] px-2 gap-1 text-white text-3">
+          <div className="flex items-center justify-center bg-neutral-800 rounded-[6px] h-[22px] w-[59px] px-2 gap-1 text-gray-0 text-3">
             <img src={categoryIcon} alt="category" className="w-3" />
             <span className="typo-caption">{viewCategory}</span>
           </div>
 
           <div className="absolute right-0 flex items-center">
             {isMenuOpen && (
-              <div className="absolute right-[34px] bottom-0 flex flex-col items-center justify-center bg-white rounded-[10px] w-[130px] h-[104px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
+              <div className="absolute right-[34px] bottom-0 flex flex-col items-center justify-center bg-gray-0 rounded-[10px] w-[130px] h-[104px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
                 {options.map((option, index) => (
                   <div
                     key={option}

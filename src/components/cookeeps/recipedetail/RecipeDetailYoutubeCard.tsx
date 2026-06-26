@@ -22,7 +22,7 @@ export default function RecipeDetailYoutube({ videos, tags = [] }: Props) {
         p-[22px_15px]
         w-full
         rounded-[6px]
-        bg-white
+        bg-gray-0
         shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
       "
     >

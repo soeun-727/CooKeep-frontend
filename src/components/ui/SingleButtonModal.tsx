@@ -20,7 +20,7 @@ export default function SingleButtonModal({
           px-[28px]
           py-[25px]
           rounded-[10px]
-          bg-white
+          bg-gray-0
         "
       >
         <div

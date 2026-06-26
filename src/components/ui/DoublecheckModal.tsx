@@ -49,7 +49,7 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
       ></div>
 
       {/* 모달 박스 */}
-      <div className="relative w-[254px] bg-white rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[25px] animate-popIn">
+      <div className="relative w-[254px] bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[25px] animate-popIn">
         <h2 className="typo-body w-[198px] mb-2 text-center font-bold text-neutral-900">
           {title}
         </h2>
@@ -64,14 +64,14 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
               onConfirm();
               onClose();
             }}
-            className={`typo-label h-11 text-white rounded-[10px] transition-colors active:opacity-80 ${confirmBtnColor} ${buttonWidth}`}
+            className={`typo-label h-11 text-gray-0 rounded-[10px] transition-colors active:opacity-80 ${confirmBtnColor} ${buttonWidth}`}
           >
             {confirmText}
           </button>
           {!isSingular && (
             <button
               onClick={onClose}
-              className="typo-label w-[95px] h-11 text-white bg-stone-300 rounded-[10px] active:opacity-80"
+              className="typo-label w-[95px] h-11 text-gray-0 bg-stone-300 rounded-[10px] active:opacity-80"
             >
               {cancelText}
             </button>

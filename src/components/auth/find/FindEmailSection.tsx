@@ -115,7 +115,7 @@ export default function FindEmailSection() {
                 type="button"
                 onClick={isCodeSent ? handleResend : handleSendCode}
                 disabled={!isEmailValid}
-                className={`w-[102px] h-[24px] rounded-full  typo-caption text-white
+                className={`w-[102px] h-[24px] rounded-full  typo-caption text-gray-0
           ${
             isEmailValid
               ? "bg-gray-80 border-gray-80"

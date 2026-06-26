@@ -32,7 +32,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
     gap-y-2
     px-[5px] py-[9px]
     rounded-[10px]
-    bg-white
+    bg-gray-0
     shadow-[0_-1px_80px_-4px_rgba(32,32,32,0.1)]
   "
       >
@@ -49,7 +49,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
           inline-flex items-center justify-center
           px-[5px] py-[1px] whitespace-nowrap leading-2.5
           text-[8px]
-          rounded-full border bg-white
+          rounded-full border bg-gray-0
           ${
             isUrgent
               ? "border-semantic-negative text-semantic-negative"

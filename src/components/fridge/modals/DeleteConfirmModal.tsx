@@ -14,13 +14,10 @@ export default function DeleteConfirmModal({
   return (
     <div className="fixed inset-0 z-60 flex items-center justify-center">
       {/* Overlay */}
-      <div
-        className="absolute inset-0 bg-[rgba(17,17,17,0.5)]"
-        onClick={onCancel}
-      />
+      <div className="absolute inset-0 bg-black-overlay" onClick={onCancel} />
 
       {/* Modal */}
-      <div className="relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] bg-white px-[28px] py-[25px]">
+      <div className="relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] bg-gray-0 px-[28px] py-[25px]">
         {/* 내용 + 버튼 wrapper */}
         <div className="flex flex-col items-start gap-4 w-full">
           {/* 내용 */}
@@ -45,7 +42,7 @@ export default function DeleteConfirmModal({
     ${confirmColor === "green" ? "bg-green" : "bg-gray-80"}
   `}
             >
-              <span className="text-white text-[14px] font-semibold leading-[24px]">
+              <span className="text-gray-0 text-[14px] font-semibold leading-[24px]">
                 네
               </span>
             </button>
@@ -55,7 +52,7 @@ export default function DeleteConfirmModal({
               onClick={onCancel}
               className="flex-1 h-[44px] rounded-[10px] bg-gray-30 flex items-center justify-center"
             >
-              <span className="text-white text-[14px] font-semibold leading-[24px]">
+              <span className="text-gray-0 text-[14px] font-semibold leading-[24px]">
                 아니오
               </span>
             </button>

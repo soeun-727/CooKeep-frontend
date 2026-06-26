@@ -20,7 +20,7 @@ export default function RecipeDetailStepSection({ steps }: Props) {
             //   className="flex justify-start items-start w-full gap-3"
             // >
             //   {/* 번호 배지 */}
-            //   <div className="flex items-center justify-center min-w-[30px] h-[20px] px-[12px] rounded-full bg-gray-80 text-white text-[12px] font-semibold leading-[16px] flex-shrink-0">
+            //   <div className="flex items-center justify-center min-w-[30px] h-[20px] px-[12px] rounded-full bg-gray-80 text-gray-0 text-[12px] font-semibold leading-[16px] flex-shrink-0">
             //     {stepOrder}
             //   </div>
 
@@ -32,7 +32,7 @@ export default function RecipeDetailStepSection({ steps }: Props) {
             <div key={stepOrder} className="flex items-start gap-3 w-full">
               {/* 번호 */}
               <div className="flex items-start justify-center w-[30px] flex-shrink-0">
-                <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-gray-80 text-white text-xs font-semibold">
+                <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-gray-80 text-gray-0 text-xs font-semibold">
                   {stepOrder}
                 </div>
               </div>

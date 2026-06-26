@@ -35,7 +35,7 @@ export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
       {/* 모달 본체 */}
       <div
         key={selectedId ?? "modal"}
-        className="relative w-full max-w-[450px] bg-white rounded-t-[30px] py-[19px] px-4 animate-slide-up flex flex-col"
+        className="relative w-full max-w-[450px] bg-gray-0 rounded-t-[30px] py-[19px] px-4 animate-slide-up flex flex-col"
       >
         <div className="flex justify-center items-center h-10 p-2">
           <h3 className="typo-body text-neutral-900">

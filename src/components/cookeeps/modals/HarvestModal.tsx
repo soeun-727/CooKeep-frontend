@@ -15,7 +15,7 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-[258px] px-[28px] pt-[35px] pb-[25px] bg-white rounded-[10px] flex flex-col items-center gap-[18px]">
+      <div className="relative w-[258px] px-[28px] pt-[35px] pb-[25px] bg-gray-0 rounded-[10px] flex flex-col items-center gap-[18px]">
         {/* content */}
         <div className="flex flex-col items-center gap-[28px] w-full">
           {/* image + text */}

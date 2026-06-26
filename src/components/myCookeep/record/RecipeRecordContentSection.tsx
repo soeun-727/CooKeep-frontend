@@ -11,7 +11,7 @@ interface Props {
 
 export default function RecipeRecordContentSection({ recipe }: Props) {
   return (
-    <section className="flex flex-col w-full bg-white rounded-md shadow p-4">
+    <section className="flex flex-col w-full bg-gray-0 rounded-md shadow p-4">
       <div className="flex flex-col w-full gap-9">
         <RecipeDetailIngredientSection ingredients={recipe.ingredients} />
         <RecipeDetailStepSection steps={recipe.steps} />

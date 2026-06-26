@@ -24,7 +24,7 @@ export default function WiltedModal({
 
       {/* modal */}
       <div
-        className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-white flex flex-col items-center gap-7"
+        className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-gray-0 flex flex-col items-center gap-7"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col items-center gap-7">

@@ -31,7 +31,7 @@ export default function AppLayout({ children }: Props) {
 
         {/* overlay 방식으로 변경 */}
         {isLoading && (
-          <div className="absolute inset-0 z-50 bg-white">
+          <div className="absolute inset-0 z-50 bg-gray-0">
             <LoadingScreen />
           </div>
         )}

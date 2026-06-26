@@ -34,7 +34,7 @@ export default function RecipeTitle({ name }: Props) {
       className="
         flex items-center justify-center self-stretch
         w-full max-w-[361px]
-        bg-white
+        bg-gray-0
         rounded-[6px]
         shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
         p-4

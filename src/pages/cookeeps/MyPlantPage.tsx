@@ -28,7 +28,7 @@ export default function MyPlantPage() {
             {grownPlants.map((plant) => (
               <div
                 key={plant.userPlantId}
-                className="flex flex-col items-center justify-center w-[90px] p-[12.504px_16px_13.496px_16px] rounded-[6px] border border-[#D1D1D1] bg-white"
+                className="flex flex-col items-center justify-center w-[90px] p-[12.504px_16px_13.496px_16px] rounded-[6px] border border-[#D1D1D1] bg-gray-0"
               >
                 <div className="flex flex-col items-center gap-[4px] w-[58px]">
                   <img
@@ -54,7 +54,7 @@ export default function MyPlantPage() {
 
           {/* 카드와 하단 안내 간격 32px */}
           <div className="mt-[32px] flex justify-center items-center h-[32px] w-[137px] mx-auto rounded-[6px] bg-gray-30">
-            <span className="text-[12px] font-normal leading-[16px] text-white text-center">
+            <span className="text-[12px] font-normal leading-[16px] text-gray-0 text-center">
               키우기를 끝낸 식재료예요
             </span>
           </div>

@@ -51,7 +51,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
         {/* ================= 설명 영역 ================= */}
         <div className="mt-[27px] w-[362px] flex flex-col items-start gap-[7px]">
           {/* iOS */}
-          <div className="flex flex-col items-center gap-[4px] self-stretch px-[14px] py-[10px] bg-white rounded-[6px]">
+          <div className="flex flex-col items-center gap-[4px] self-stretch px-[14px] py-[10px] bg-gray-0 rounded-[6px]">
             {/* 내용 영역 */}
             <div className="flex flex-col items-center gap-[10px] self-stretch">
               {/* 아이콘 */}
@@ -75,7 +75,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
           </div>
 
           {/* Android */}
-          <div className="flex flex-col items-start gap-[4px] self-stretch px-[14px] py-[10px] bg-white rounded-[6px]">
+          <div className="flex flex-col items-start gap-[4px] self-stretch px-[14px] py-[10px] bg-gray-0 rounded-[6px]">
             {/* 내용 영역 */}
             <div className="flex flex-col items-center gap-[10px] self-stretch">
               {/* 아이콘 */}

@@ -59,7 +59,7 @@ export default function GuestPage() {
         className="absolute top-5 right-4 z-[200]
                    inline-flex py-2 px-[22px]
                    items-center justify-center gap-[8px]
-                   rounded-full bg-[rgba(235,235,235,0.8)]
+                   rounded-full bg-gray-10/80
                    text-gray-50 text-[14px] font-medium"
       >
         메인으로 돌아가기

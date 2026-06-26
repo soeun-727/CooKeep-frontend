@@ -35,7 +35,7 @@ export default function RecipeDetailIngredientSection({ ingredients }: Props) {
           {user_ingredients.map((item, idx) => (
             <span
               key={idx}
-              className="h-[20px] px-[12px] rounded-full bg-green-deep text-white text-[12px]"
+              className="h-[20px] px-[12px] rounded-full bg-green-deep text-gray-0 text-[12px]"
             >
               {formatIngredient(item)}
             </span>

@@ -33,7 +33,7 @@ export default function RecipeDetailImageCard({ images, title }: Props) {
         className="
           flex justify-center items-center self-stretch
           w-full
-          bg-white
+          bg-gray-0
           rounded-b-[6px]
           shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
           px-3 py-[12px]

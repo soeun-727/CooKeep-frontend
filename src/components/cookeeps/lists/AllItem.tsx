@@ -26,8 +26,8 @@ const AllItem = ({
 
   // 랭크별 배경색 및 글자색 결정
   // const getRankStyle = () => {
-  //   if (rank === 1) return "bg-green text-white";
-  //   if (rank === 2 || rank === 3) return "bg-black text-white";
+  //   if (rank === 1) return "bg-green text-gray-0";
+  //   if (rank === 2 || rank === 3) return "bg-black text-gray-0";
   //   return "bg-gray-200 text-zinc-500"; // 회색 배경일 때 글자색 변경
   // };
 

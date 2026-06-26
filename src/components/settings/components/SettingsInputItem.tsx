@@ -71,8 +71,8 @@ export default function SettingsInputItem({
             typo-caption
             ${
               disabled
-                ? "bg-stone-300 text-white cursor-not-allowed" // 비활성화 스타일
-                : "bg-gray-80 text-white cursor-pointer active:bg-[#404040]" // 활성화 스타일
+                ? "bg-stone-300 text-gray-0 cursor-not-allowed" // 비활성화 스타일
+                : "bg-gray-80 text-gray-0 cursor-pointer active:bg-[#404040]" // 활성화 스타일
             }
           `}
         >

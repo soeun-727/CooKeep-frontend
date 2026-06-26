@@ -35,14 +35,14 @@ export default function Statistics() {
   if (isLoading) return <LoadingScreen />;
 
   return (
-    <div className="h-[354px] py-6 w-full flex flex-col items-center bg-white overflow-hidden relative">
+    <div className="h-[354px] py-6 w-full flex flex-col items-center bg-gray-0 overflow-hidden relative">
       <div
         className={`flex flex-col items-center w-full transition-transform duration-500 ease-in-out ${
           isExpanded ? "-translate-y-[230px]" : "translate-y-0"
         }`}
       >
         <div className="flex flex-col items-center w-full h-[307px] shrink-0">
-          <div className="flex flex-col typo-caption text-white bg-black rounded-[6px] w-[157px] h-[26px] text-center justify-center mt-5">
+          <div className="flex flex-col typo-caption text-gray-0 bg-black rounded-[6px] w-[157px] h-[26px] text-center justify-center mt-5">
             나의 식재료 소비 달성 현황
           </div>
 

@@ -11,7 +11,7 @@ interface Props {
 
 export default function AgreementReadCard({ agreement, notice }: Props) {
   return (
-    <div className="w-full bg-white border border-[#D1D1D1] rounded-[6px] overflow-hidden">
+    <div className="w-full bg-gray-0 border border-[#D1D1D1] rounded-[6px] overflow-hidden">
       {/* 상단 제목 */}
       <div className="p-3 h-[48px] flex items-center">
         <span className="text-sm font-medium">{agreement.label}</span>
@@ -42,7 +42,7 @@ export default function AgreementReadCard({ agreement, notice }: Props) {
             ),
             table: ({ children }) => (
               <div className="my-4 overflow-x-auto">
-                <table className="border border-[#D1D1D1] border-collapse bg-white">
+                <table className="border border-[#D1D1D1] border-collapse bg-gray-0">
                   {children}
                 </table>
               </div>

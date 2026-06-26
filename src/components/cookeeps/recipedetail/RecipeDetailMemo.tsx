@@ -12,7 +12,7 @@ export default function RecipeDetailMemo({ userName, memo }: Props) {
           w-full max-w-[450px]
           px-4 py-3
           rounded-[10px]
-          bg-white
+          bg-gray-0
         "
       >
         <span className="text-gray-50 text-[16px] font-semibold whitespace-nowrap">

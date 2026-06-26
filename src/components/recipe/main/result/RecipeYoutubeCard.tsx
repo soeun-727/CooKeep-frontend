@@ -11,7 +11,7 @@ export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
   if (!videos || videos.length === 0) return null;
 
   return (
-    <section className="flex flex-col gap-2 p-[22px_15px] w-full rounded-[6px] bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] mx-auto">
+    <section className="flex flex-col gap-2 p-[22px_15px] w-full rounded-[6px] bg-gray-0 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] mx-auto">
       <span className="typo-body2 text-gray-50">
         비슷한 레시피 영상 참고하기
       </span>

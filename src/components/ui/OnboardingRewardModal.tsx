@@ -19,7 +19,7 @@ const OnboardingRewardModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* 모달 */}
-      <div className="relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
+      <div className="relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-gray-0 px-[28px] pt-[35px] pb-[25px]">
         <div className="flex w-full flex-col items-center gap-[16px]">
           {/* 이미지 + 텍스트 */}
           <div className="flex flex-col items-center gap-[12px]">

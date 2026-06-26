@@ -20,7 +20,7 @@ export default function RecordEntry({ records }: Props) {
 
   return (
     <div className="relative">
-      <div className="flex justify-center items-center px-4 pt-[50px] pb-[calc(72px+env(safe-area-inset-bottom))] bg-white rounded-b-[6px]">
+      <div className="flex justify-center items-center px-4 pt-[50px] pb-[calc(72px+env(safe-area-inset-bottom))] bg-gray-0 rounded-b-[6px]">
         <div className="flex flex-col w-full max-w-[361px] items-start gap-4">
           {records.length === 0 ? (
             <>

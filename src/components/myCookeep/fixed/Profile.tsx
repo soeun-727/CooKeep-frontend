@@ -137,10 +137,10 @@ function Profile() {
             </div>
             {/* 유저 정보 */}
             <div className="flex flex-col">
-              <p className="typo-h2 text-white">
+              <p className="typo-h2 text-gray-0">
                 {profile?.nickname || "쿠킵이"}
               </p>
-              <div className="typo-caption text-white">
+              <div className="typo-caption text-gray-0">
                 <span>
                   지금은 {profile?.growingPlantName || "요리 실력을"} 키우는 중!
                 </span>
@@ -159,7 +159,7 @@ function Profile() {
           {/* 목표 요약 바 */}
           <div className="bg-[#1DAD64] p-3 w-[361px] h-12 flex items-center justify-between gap-3 rounded-[12px] shadow-[0px_4px_16px_-10px_rgba(0,0,0,0.25)]">
             <span
-              className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-white" : "text-green-300"}`}
+              className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-gray-0" : "text-green-300"}`}
             >
               {profile?.weeklyGoal?.goalActionType ? (
                 <>
@@ -196,13 +196,13 @@ function Profile() {
               }`}
             >
               <div
-                className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-white text-zinc-500 text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+                className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-gray-0 text-zinc-500 text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
                 style={{ width: 227, height: 28 }}
               >
                 이번 주 달성하고 싶은 목표를 세워보세요!
               </div>
               <div
-                className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-white rotate-45 z-0"
+                className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-gray-0 rotate-45 z-0"
                 style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
               />
             </div>

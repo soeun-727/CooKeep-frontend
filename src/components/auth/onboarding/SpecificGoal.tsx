@@ -37,7 +37,7 @@ export default function SpecificGoal({
 
       <div className="w-[361px] mt-[46px] flex flex-col items-start">
         <div
-          className={`w-full h-12 px-3 flex items-center border rounded-md bg-white transition-all ${
+          className={`w-full h-12 px-3 flex items-center border rounded-md bg-gray-0 transition-all ${
             isError ? "border-red-500" : "border-[#D1D1D1]"
           }`}
         >

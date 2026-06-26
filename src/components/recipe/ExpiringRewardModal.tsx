@@ -10,7 +10,7 @@ export default function ExpiringRewardModal({
 }: ExpiringRewardModalProps) {
   return createPortal(
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#11111180]">
-      <div className="w-[258px] bg-white rounded-[10px] px-[28px] pt-[35px] pb-[25px] flex flex-col items-center gap-[18px]">
+      <div className="w-[258px] bg-gray-0 rounded-[10px] px-[28px] pt-[35px] pb-[25px] flex flex-col items-center gap-[18px]">
         <div className="flex flex-col items-center gap-[20px]">
           <p className="w-[202px] text-center text-[14px] font-medium leading-[20px] text-gray-80">
             유통기한 임박 재료를 살렸어요!

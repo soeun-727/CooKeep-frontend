@@ -23,7 +23,7 @@ export default function ViewListHeader({
           [&_input]:border-none [&_input]:focus:outline-none
           [&_input::placeholder]:text-zinc-500
           shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-          ${searchTerm ? "[&_input]:bg-white" : "[&_input]:bg-[#EBEDF1]"}`}
+          ${searchTerm ? "[&_input]:bg-gray-0" : "[&_input]:bg-[#EBEDF1]"}`}
       >
         <TextField
           value={searchTerm}
@@ -42,7 +42,7 @@ export default function ViewListHeader({
           src={type === "좋아요 누른 레시피" ? like : bookmark}
           className="w-[18px]"
         />
-        <span className="typo-caption text-white">{type}</span>
+        <span className="typo-caption text-gray-0">{type}</span>
       </div>
 
       {/* 설명 */}

@@ -92,7 +92,7 @@ const Custom: React.FC<CustomProps> = ({
     <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
       <div className="absolute inset-0" onClick={onClose}></div>
 
-      <div className="relative w-[280px] h-[316px] bg-white rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[35px]">
+      <div className="relative w-[280px] h-[316px] bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[35px]">
         <div className="w-full flex items-center justify-center gap-1 mb-4">
           {isEditing ? (
             <input
@@ -134,7 +134,7 @@ const Custom: React.FC<CustomProps> = ({
                 ${
                   selectedCategoryId === cat.id
                     ? "bg-gray-100 ring-1 ring-inset ring-gray-300"
-                    : "bg-white hover:bg-gray-50"
+                    : "bg-gray-0 hover:bg-gray-50"
                 } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <div className="w-[18px] flex items-center justify-center">
@@ -154,7 +154,7 @@ const Custom: React.FC<CustomProps> = ({
         <button
           onClick={handleConfirm}
           disabled={selectedCategoryId === null || isLoading}
-          className={`typo-label w-full h-11 text-white rounded-[10px] transition-colors
+          className={`typo-label w-full h-11 text-gray-0 rounded-[10px] transition-colors
             ${
               selectedCategoryId !== null && !isLoading
                 ? "bg-green-deep"

@@ -52,7 +52,7 @@ export default function DifficultySelector() {
             <button
               key={opt.key}
               onClick={() => setDifficulty(opt.key)}
-              className="w-full flex justify-center items-center rounded-[6px] bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+              className="w-full flex justify-center items-center rounded-[6px] bg-gray-0 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
             >
               <div className="w-full flex items-center gap-2 p-3">
                 <div className="w-full flex items-center gap-3">

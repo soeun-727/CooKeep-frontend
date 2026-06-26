@@ -8,7 +8,7 @@ interface Props {
 export default function ExampleNotification({ title, description }: Props) {
   return (
     <div
-      className="w-[259px] h-[81px] rounded-[4.32px] p-[7px] bg-white flex flex-col
+      className="w-[259px] h-[81px] rounded-[4.32px] p-[7px] bg-gray-0 flex flex-col
     shadow-[0px_1.4px_6.6px_0px_rgba(17,17,17,0.20)] gap-[5px]"
     >
       <div className="flex gap-[5px]">

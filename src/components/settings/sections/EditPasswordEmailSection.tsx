@@ -143,7 +143,7 @@ export default function EditPasswordEmailSection() {
               type="button"
               onClick={isCodeSent ? handleResend : handleSendCode}
               disabled={!isEmailValid || isSending || resendCount >= MAX_RESEND}
-              className={`w-[102px] h-[24px] rounded-full typo-caption text-white
+              className={`w-[102px] h-[24px] rounded-full typo-caption text-gray-0
                 ${isEmailValid ? "bg-gray-80" : "bg-gray-30"}
                 disabled:cursor-not-allowed`}
             >
@@ -189,8 +189,8 @@ export default function EditPasswordEmailSection() {
       {/* 불일치 모달 */}
       {modalType === "mismatch" && (
         <>
-          <div className="fixed inset-0 z-[100] bg-[rgba(17,17,17,0.5)]" />
-          <div className="fixed z-[110] left-1/2 -translate-x-1/2 top-[343px] bg-white rounded-[10px] w-[240px] pt-[35px] px-[28px] pb-[25px] flex flex-col items-center gap-4">
+          <div className="fixed inset-0 z-[100] bg-black-overlay" />
+          <div className="fixed z-[110] left-1/2 -translate-x-1/2 top-[343px] bg-gray-0 rounded-[10px] w-[240px] pt-[35px] px-[28px] pb-[25px] flex flex-col items-center gap-4">
             <p className="text-[14px] font-medium text-center leading-[20px] text-gray-100">
               등록된 이메일과 일치하지 않습니다
             </p>

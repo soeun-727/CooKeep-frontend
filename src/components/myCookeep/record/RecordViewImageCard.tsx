@@ -58,7 +58,7 @@ export default function RecordViewImageCard({
                 className="flex flex-col items-center gap-4 w-[208px]"
                 onClick={(e) => e.stopPropagation()} // 내부 클릭만 막기
               >
-                <p className="text-white text-[14px] font-medium text-center leading-[20px]">
+                <p className="text-gray-0 text-[14px] font-medium text-center leading-[20px]">
                   사진을{" "}
                   {imageSrc
                     ? "변경하거나 삭제할 수 있습니다"
@@ -78,7 +78,7 @@ export default function RecordViewImageCard({
                       // setShowImageOptions(false);
                     }}
                     className={`
-      h-[44px] rounded-[10px] text-white text-[14px] font-semibold
+      h-[44px] rounded-[10px] text-gray-0 text-[14px] font-semibold
       ${imageSrc ? "flex-1 bg-green" : "w-[160px] bg-green"}
     `}
                   >
@@ -92,7 +92,7 @@ export default function RecordViewImageCard({
                         // setShowImageOptions(false);
                         setIsDeleteModalOpen(true); // 🔥 바로 삭제 X → 모달
                       }}
-                      className="flex-1 h-[44px] rounded-[10px] bg-gray-30 text-white text-[14px] font-semibold"
+                      className="flex-1 h-[44px] rounded-[10px] bg-gray-30 text-gray-0 text-[14px] font-semibold"
                     >
                       삭제
                     </button>
@@ -127,7 +127,7 @@ export default function RecordViewImageCard({
           className="
           flex items-center
           w-full
-          bg-white
+          bg-gray-0
           rounded-b-[6px]
           shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
           px-3 py-[12px]
@@ -165,7 +165,7 @@ export default function RecordViewImageCard({
           onClick={() => setIsDeleteModalOpen(false)}
         >
           <div
-            className="w-[254px] bg-white rounded-[10px] px-[28px] py-[25px] flex flex-col items-center gap-4"
+            className="w-[254px] bg-gray-0 rounded-[10px] px-[28px] py-[25px] flex flex-col items-center gap-4"
             onClick={(e) => e.stopPropagation()}
           >
             <p className="text-gray-80 text-[14px] font-medium text-center">
@@ -178,14 +178,14 @@ export default function RecordViewImageCard({
                   onImageDelete?.();
                   setIsDeleteModalOpen(false);
                 }}
-                className="flex-1 h-[44px] rounded-[10px] bg-gray-80 text-white font-semibold"
+                className="flex-1 h-[44px] rounded-[10px] bg-gray-80 text-gray-0 font-semibold"
               >
                 네
               </button>
 
               <button
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="flex-1 h-[44px] rounded-[10px] bg-gray-30 text-white font-semibold"
+                className="flex-1 h-[44px] rounded-[10px] bg-gray-30 text-gray-0 font-semibold"
               >
                 아니오
               </button>

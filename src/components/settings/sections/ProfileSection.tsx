@@ -114,7 +114,7 @@ export default function ProfileSection({ profile }: Props) {
                     py-1
                     rounded-full
                     bg-gray-80
-                    text-white
+                    text-gray-0
                     typo-caption
                     font-medium
                   "
@@ -136,7 +136,7 @@ export default function ProfileSection({ profile }: Props) {
                     py-1
                     rounded-full
                     bg-gray-80
-                    text-white
+                    text-gray-0
                     typo-caption
                     font-medium
                   "
