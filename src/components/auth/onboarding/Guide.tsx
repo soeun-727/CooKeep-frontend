@@ -16,8 +16,7 @@ const ONBOARDING_DATA = [
     img: image1,
     title: (
       <div>
-        <span className="text-(--color-green)">냉장고</span> 식재료를 한눈에
-        관리해요
+        <span className="text-green">냉장고</span> 식재료를 한눈에 관리해요
       </div>
     ),
     text: "등록만 하면 유통기한을 알아서 챙겨드려요!",
@@ -27,8 +26,7 @@ const ONBOARDING_DATA = [
     img: image2,
     title: (
       <div>
-        나에게 딱 맞는 <span className="text-(--color-green)">AI 레시피</span>를
-        만들어요
+        나에게 딱 맞는 <span className="text-green">AI 레시피</span>를 만들어요
       </div>
     ),
     text: "가진 재료와 취향에 맞게 추천드릴게요!",
@@ -38,8 +36,7 @@ const ONBOARDING_DATA = [
     img: image3,
     title: (
       <div>
-        완성한 요리를 <span className="text-(--color-green)">MY 쿠킵</span>에
-        기록해요
+        완성한 요리를 <span className="text-green">MY 쿠킵</span>에 기록해요
       </div>
     ),
     text: "직접 만든 요리를 나만의 팁과 함께\n남기고, 관리할 수 있어요!",
@@ -49,8 +46,7 @@ const ONBOARDING_DATA = [
     img: image4,
     title: (
       <div>
-        <span className="text-(--color-green)">쿠킵스</span>에서 식재료를
-        키우고, 공유해요
+        <span className="text-green">쿠킵스</span>에서 식재료를 키우고, 공유해요
       </div>
     ),
     text: "쿠키로 식재료를 키우고,\n다른 쿠킵이들의 레시피를 구경해보세요!",
@@ -121,7 +117,7 @@ export default function Guide({ onNext }: Props) {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-1.5 h-1.5 rounded-full cursor-pointer ${
-                currentIndex === index ? "bg-(--color-green)" : "bg-stone-100"
+                currentIndex === index ? "bg-green" : "bg-stone-100"
               }`}
             />
           ))}

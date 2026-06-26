@@ -87,13 +87,12 @@ export default function WithdrawPage() {
         {/* ===== 상단 문구 ===== */}
         <div className="flex justify-between items-start">
           <div>
-            <p className="text-[22px] font-bold leading-[32px] text-(--color-gray-80)">
-              Cookeep을{" "}
-              <span className="text-(--color-semantic-negative)">탈퇴</span>
+            <p className="text-[22px] font-bold leading-[32px] text-gray-80">
+              Cookeep을 <span className="text-semantic-negative">탈퇴</span>
               하시나요?
             </p>
 
-            <p className="mt-1 text-[14px] font-medium leading-[20px] text-(--color-gray-50)">
+            <p className="mt-1 text-[14px] font-medium leading-[20px] text-gray-50">
               <span className="font-semibold">{username}</span> 님,
               이별인가요..?? 너무 아쉬워요...
             </p>
@@ -107,16 +106,16 @@ export default function WithdrawPage() {
         </div>
 
         {/* ===== 안내 박스 ===== */}
-        <div className="mt-[26px] rounded-[6px] border border-[#D1D1D1] bg-(--color-gray-10) p-[12px] space-y-[6px]">
-          <p className="text-[14px] font-medium leading-[20px] text-(--color-gray-80)">
+        <div className="mt-[26px] rounded-[6px] border border-[#D1D1D1] bg-gray-10 p-[12px] space-y-[6px]">
+          <p className="text-[14px] font-medium leading-[20px] text-gray-80">
             - 회원 탈퇴 시 함께 쌓아온 냉장고 재료, 레시피, 요리 기록이 모두
             삭제돼요. T_T
           </p>
-          <p className="text-[14px] font-medium leading-[20px] text-(--color-gray-80)">
+          <p className="text-[14px] font-medium leading-[20px] text-gray-80">
             - 탈퇴일 포함 30일동안 재가입이 불가하며, 재가입 시 사용자의 이전
             이용 내역은 복구되지 않습니다.
           </p>
-          <p className="text-[14px] font-medium leading-[20px] text-(--color-gray-80)">
+          <p className="text-[14px] font-medium leading-[20px] text-gray-80">
             - 탈퇴 고객의 개인정보는 관련 법령에 따라 일정 기간 보관 후 자동
             파기됩니다.
           </p>
@@ -134,7 +133,7 @@ export default function WithdrawPage() {
       flex items-center justify-center
       border
       transition
-      ${agree ? "bg-(--color-green-deep) border-(--color-green-deep)" : "bg-white border-[#D1D1D1]"}
+      ${agree ? "bg-green-deep border-green-deep" : "bg-white border-[#D1D1D1]"}
     `}
           >
             {agree && (
@@ -150,7 +149,7 @@ export default function WithdrawPage() {
             )}
           </span>
 
-          <span className="text-[14px] font-medium leading-[20px] text-(--color-gray-50) px-[12px]">
+          <span className="text-[14px] font-medium leading-[20px] text-gray-50 px-[12px]">
             유의사항을 전부 확인했습니다
           </span>
         </button>
@@ -211,7 +210,7 @@ export default function WithdrawPage() {
                   className={`
           flex items-center px-3 py-3
           text-[14px] font-medium text-left
-          ${selectedReason === reason ? "bg-(--color-gray-10)" : "bg-white"}
+          ${selectedReason === reason ? "bg-gray-10" : "bg-white"}
         `}
                 >
                   {reason}
@@ -255,7 +254,7 @@ export default function WithdrawPage() {
           />
 
           <div className="relative w-[254px] bg-white rounded-[10px] flex flex-col items-center">
-            <h2 className="mt-[35px] mb-4 font-bold text-[16px] text-(--color-gray-80)">
+            <h2 className="mt-[35px] mb-4 font-bold text-[16px] text-gray-80">
               정말 탈퇴하시겠어요?
             </h2>
 
@@ -264,7 +263,7 @@ export default function WithdrawPage() {
               <button
                 onClick={handleWithdraw}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-(--color-gray-30) text-white"
+                className="w-[95px] h-[44px] rounded-[10px] bg-gray-30 text-white"
               >
                 {isSubmitting ? "처리중" : "네"}
               </button>
@@ -273,7 +272,7 @@ export default function WithdrawPage() {
               <button
                 onClick={() => setOpenModal(false)}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-(--color-green) text-white"
+                className="w-[95px] h-[44px] rounded-[10px] bg-green text-white"
               >
                 아니오
               </button>

@@ -23,7 +23,7 @@ export default function WaterToast({ message, isVisible }: WaterToastProps) {
           px-5 py-1 rounded-full
           bg-white/75
           shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)]
-          text-(--color-green-deep) font-bold text-[12px]
+          text-green-deep font-bold text-[12px]
           animate-fade-in-out
         "
       >

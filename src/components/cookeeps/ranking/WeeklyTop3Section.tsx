@@ -36,11 +36,11 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   const isRankingEmpty = users.length === 0;
 
   return (
-    <div className="flex flex-col items-center gap-[26px] w-full min-h-[202px] py-[18px] rounded-[6px] bg-(--color-green-light) shadow-md">
+    <div className="flex flex-col items-center gap-[26px] w-full min-h-[202px] py-[18px] rounded-[6px] bg-green-light shadow-md">
       <div className="flex flex-col items-center gap-[2px]">
         <h2 className="text-[18px] font-semibold text-gray-800 text-center">
           {currentMonth}월 식물 돌봄
-          <span className="text-(--color-green-deep)"> TOP3 </span>쿠킵이
+          <span className="text-green-deep"> TOP3 </span>쿠킵이
         </h2>
       </div>
 
@@ -73,7 +73,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
                 className="w-[83px] h-[79px] flex-shrink-0"
               />
 
-              <div className="text-[16px] font-semibold leading-[24px] text-(--color-gray-80) text-center">
+              <div className="text-[16px] font-semibold leading-[24px] text-gray-80 text-center">
                 쿠킵이들의 식물 살펴보는 중..
                 <br />
                 순위가 곧 공개돼요
@@ -87,7 +87,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         <span>이번 달에 나는 총</span>
         <div className="flex gap-[2px]">
           <img src={plantChar} className="w-4.5" />
-          <span className="text-(--color-green-deep)">{myCount}회</span>
+          <span className="text-green-deep">{myCount}회</span>
         </div>
         <span>주었어요!</span>
       </div>

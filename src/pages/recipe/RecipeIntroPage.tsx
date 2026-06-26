@@ -30,7 +30,7 @@ export default function RecipeIntroPage() {
           w-[450px]
           h-[450px]
           rounded-full 
-         bg-(--color-green-deep)/15 blur-[100px]
+         bg-green-deep/15 blur-[100px]
           pointer-events-none
           z-0
         "
@@ -45,7 +45,7 @@ export default function RecipeIntroPage() {
         />
 
         <div className="flex flex-col items-center h-[144px] gap-[28px] self-stretch">
-          <h1 className="text-center text-[28px] font-semibold leading-[36px] text-(--color-gray-80)">
+          <h1 className="text-center text-[28px] font-semibold leading-[36px] text-gray-80">
             지금 있는 재료로
             <br />
             요리해볼까요?

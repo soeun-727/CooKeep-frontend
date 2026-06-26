@@ -157,7 +157,7 @@ const Custom: React.FC<CustomProps> = ({
           className={`typo-label w-full h-11 text-white rounded-[10px] transition-colors
             ${
               selectedCategoryId !== null && !isLoading
-                ? "bg-[var(--color-green-deep)]"
+                ? "bg-green-deep"
                 : "bg-zinc-300 cursor-not-allowed"
             }`}
         >

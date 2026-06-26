@@ -41,7 +41,7 @@ export default function PlantShortcutTooltip({
     text-[8px]
     font-medium
     leading-[10px]
-    text-(--color-gray-50)
+    text-gray-50
     text-center
     font-pretendard
     whitespace-nowrap

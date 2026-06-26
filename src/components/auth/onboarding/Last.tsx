@@ -16,7 +16,7 @@ export default function Last({ onStart }: LastProps) {
           <h1 className="">변경할 수 있어요</h1>
         </div>
 
-        <div className="typo-body text-[var(--color-green-deep)] !font-bold mt-[10px]">
+        <div className="typo-body text-green-deep !font-bold mt-[10px]">
           입력한 답변을 바탕으로 AI 레시피를 추천해드려요
         </div>
         <img src={checkChar} className="w-[184px] mt-[86px]" />

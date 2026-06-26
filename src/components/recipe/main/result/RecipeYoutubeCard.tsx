@@ -12,7 +12,7 @@ export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
 
   return (
     <section className="flex flex-col gap-2 p-[22px_15px] w-full rounded-[6px] bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] mx-auto">
-      <span className="typo-body2 text-(--color-gray-50)">
+      <span className="typo-body2 text-gray-50">
         비슷한 레시피 영상 참고하기
       </span>
 
@@ -20,7 +20,7 @@ export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-x-2 gap-y-[2px]">
           {tags.map((tag, idx) => (
-            <span key={idx} className="text-(--color-green) typo-body2 ">
+            <span key={idx} className="text-green typo-body2 ">
               {`# ${tag}`}
             </span>
           ))}

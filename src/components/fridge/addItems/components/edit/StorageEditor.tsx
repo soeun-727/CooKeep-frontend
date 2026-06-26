@@ -56,7 +56,7 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
                   isInitialValue
                     ? "bg-gray-200 text-zinc-500 cursor-not-allowed"
                     : isNewlySelected
-                      ? "bg-[var(--color-green-light)] text-black border border-[var(--color-green-deep)]"
+                      ? "bg-green-light text-black border border-green-deep"
                       : "border border-[#D1D1D1] text-zinc-500 active:bg-zinc-200"
                 }`}
               >

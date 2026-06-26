@@ -202,7 +202,7 @@ export default function AccountSection({
                           />
                         </div>
 
-                        <span className="ml-[12px] typo-label text-(--color-gray-80)">
+                        <span className="ml-[12px] typo-label text-gray-80">
                           약관 전체동의
                         </span>
                       </label>
@@ -242,7 +242,7 @@ export default function AccountSection({
                                 <span className="w-5 h-5 flex-shrink-0 inline-block" />
                               )}
 
-                              <span className="typo-label text-(--color-gray-50) truncate">
+                              <span className="typo-label text-gray-50 truncate">
                                 {item.label}
                               </span>
                             </label>
@@ -274,9 +274,7 @@ export default function AccountSection({
                         disabled={!isSignupEnabled || loading}
                         onClick={onSubmit}
                         className={`mt-[8px] ${
-                          !isSignupEnabled || loading
-                            ? ""
-                            : "!text-(--color-green)"
+                          !isSignupEnabled || loading ? "" : "!text-green"
                         }`}
                       >
                         {loading ? "가입 중..." : "회원가입"}

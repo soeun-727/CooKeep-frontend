@@ -189,7 +189,7 @@ export default function RecordWritePage() {
   if (!recipeDetail) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-(--color-green)"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green"></div>
       </div>
     );
   }
@@ -281,14 +281,14 @@ export default function RecordWritePage() {
               onChange={(e) => setMemo(e.target.value.slice(0, 500))}
               onInput={handleMemoInput}
               placeholder="글자 수 최대 500자"
-              className="w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-(--color-gray-80) placeholder:text-(--color-gray-50) resize-none outline-none overflow-hidden"
+              className="w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none overflow-hidden"
               rows={1}
             />
           </div>
 
           <div className="relative mt-[15px] flex justify-center animate-float-bubble shrink-0">
             <div
-              className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-white text-(--color-green) text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+              className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-white text-green text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
               style={{ width: 206, height: 36 }}
             >
               나만의 팁 작성하기
@@ -303,7 +303,7 @@ export default function RecordWritePage() {
             <div className="flex justify-center gap-[9px] w-full">
               <button
                 onClick={() => setIsPublic(false)}
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-(--color-green-light)" : "bg-(--color-gray-10)"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img
@@ -312,14 +312,12 @@ export default function RecordWritePage() {
                     className="h-[24px] w-[24px]"
                   />
                 </div>
-                <span className="typo-label text-(--color-gray-80)">
-                  나만 보기
-                </span>
+                <span className="typo-label text-gray-80">나만 보기</span>
               </button>
 
               <button
                 onClick={() => setIsPublic(true)}
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-(--color-green-light)" : "bg-(--color-gray-10)"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img
@@ -328,7 +326,7 @@ export default function RecordWritePage() {
                     className="h-[36px] w-[36px]"
                   />
                 </div>
-                <span className="typo-label text-(--color-gray-80)">
+                <span className="typo-label text-gray-80">
                   쿠킵스에 공개하기
                 </span>
               </button>
@@ -338,7 +336,7 @@ export default function RecordWritePage() {
               size="L"
               variant="black"
               disabled={isPublic === null || isUploading}
-              className={`${isPublic === null ? "text-white" : "!text-(--color-green)"}`}
+              className={`${isPublic === null ? "text-white" : "!text-green"}`}
               onClick={handleUpload}
             >
               레시피 업로드하기

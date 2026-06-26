@@ -14,7 +14,7 @@ export default function GrowthProgressBar({
 
   return (
     <div className="w-full h-[34px] flex items-center">
-      <div className="relative w-full h-[12px] bg-(--color-gray-10) rounded-full">
+      <div className="relative w-full h-[12px] bg-gray-10 rounded-full">
         {/* 진행 바 */}
         <div
           className="h-full rounded-full bg-green-gradient"

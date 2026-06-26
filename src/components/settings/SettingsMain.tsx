@@ -92,7 +92,7 @@ export default function SettingsMain() {
               } catch (e) {}
               navigate("/settings/withdraw");
             }}
-            className="mt-[42px] text-[12px] font-normal leading-[16px] text-(--color-gray-50) underline"
+            className="mt-[42px] text-[12px] font-normal leading-[16px] text-gray-50 underline"
           >
             탈퇴하기
           </button>

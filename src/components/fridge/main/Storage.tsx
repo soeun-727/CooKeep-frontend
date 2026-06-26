@@ -67,7 +67,7 @@ export default function Storage({
         <div className="relative z-10 px-[20px] pt-[5px] pb-[11px]">
           <div className="flex justify-between w-full h-10 items-center">
             {/* 카테고리 태그 */}
-            <div className="flex items-center justify-center bg-neutral-800 rounded-[6px] h-[22px] min-w-[59px] px-2 gap-1 text-(--color-green)">
+            <div className="flex items-center justify-center bg-neutral-800 rounded-[6px] h-[22px] min-w-[59px] px-2 gap-1 text-green">
               <img src={image} alt="category" className="w-3 h-3" />
               <span className="typo-caption leading-none whitespace-nowrap">
                 {category}
@@ -82,9 +82,7 @@ export default function Storage({
             >
               <span
                 className={`typo-caption !text-[13px] !font-semibold transition-colors ${
-                  isScrollable
-                    ? "text-[var(--color-green-deep)]"
-                    : "text-zinc-500"
+                  isScrollable ? "text-green-deep" : "text-zinc-500"
                 }`}
               >
                 전체보기

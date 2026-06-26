@@ -39,9 +39,7 @@ export default function RecipeHeader({
 
         {/* 제목: title props가 있을 때만 렌더링 */}
         {title && (
-          <h1 className="text-[16px] font-semibold text-(--color-gray-80)">
-            {title}
-          </h1>
+          <h1 className="text-[16px] font-semibold text-gray-80">{title}</h1>
         )}
       </header>
 

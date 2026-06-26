@@ -25,7 +25,7 @@ export default function NoticeCategoryItem({ category }: Props) {
         onClick={() => setOpen((prev) => !prev)}
       >
         <p
-          className={`typo-label ${open ? "text-(--color-green-deep)" : "text-(--color-gray-80)"}`}
+          className={`typo-label ${open ? "text-green-deep" : "text-gray-80"}`}
         >
           {category.title}
         </p>

@@ -148,7 +148,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
                 alt={item.storageType}
                 className="h-[15px]"
               />
-              <span className="text-[var(--color-green-deep)] whitespace-nowrap">
+              <span className="text-green-deep whitespace-nowrap">
                 {currentText}
               </span>
             </div>

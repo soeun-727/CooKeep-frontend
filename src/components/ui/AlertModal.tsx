@@ -26,14 +26,14 @@ const AlertModal: React.FC<AlertModalProps> = ({
           <br />
           냉장고가 가벼워졌어요!
           {rewardPoints !== undefined && rewardPoints !== null && (
-            <div className="typo-body text-(--color-green-deep) !font-bold">
+            <div className="typo-body text-green-deep !font-bold">
               쿠키 +{rewardPoints} 🍪
             </div>
           )}
         </div>
         <button
           onClick={onClose}
-          className="w-46 h-11 typo-button text-white bg-(--color-green) rounded-[10px]"
+          className="w-46 h-11 typo-button text-white bg-green rounded-[10px]"
         >
           {buttonText}
         </button>

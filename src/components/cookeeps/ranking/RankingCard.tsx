@@ -39,7 +39,7 @@ export default function RankingCard({
       {/* 카드 박스 */}
       <div
         className={`relative flex flex-col items-center gap-1 p-[11px_11px_10px_12px] rounded-[6px] shadow-md ${
-          isFirst ? "bg-(--color-green-light)" : "bg-white"
+          isFirst ? "bg-green-light" : "bg-white"
         }`}
       >
         <div className="flex flex-col items-center gap-[6px]">
@@ -64,7 +64,7 @@ export default function RankingCard({
             {/* 물 주기 횟수 */}
             <p
               className={`w-[86px] text-[12px] font-semibold text-center truncate leading-tight ${
-                isFirst ? "text-gray-800" : "text-(--color-green-deep)"
+                isFirst ? "text-gray-800" : "text-green-deep"
               }`}
             >
               {score}회

@@ -28,8 +28,8 @@ export default function WiltedModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="w-full flex flex-col items-center gap-7">
-          <p className="typo-body text-(--color-gray-80) text-center whitespace-pre-line">
-            <span className="text-(--color-green-deep)">{plant} </span>
+          <p className="typo-body text-gray-80 text-center whitespace-pre-line">
+            <span className="text-green-deep">{plant} </span>
             이/가 시들었어요 T.T
             {"\n"}
             다시 살려서 이어 키워볼까요?
@@ -40,7 +40,7 @@ export default function WiltedModal({
         <div className="w-full flex flex-col gap-2 font-semibold">
           <Button
             variant="green"
-            className="!w-[224px] !bg-(--color-green)"
+            className="!w-[224px] !bg-green"
             onClick={onRecover} // 회복
           >
             회복하기 (쿠키 5개 사용)

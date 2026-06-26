@@ -86,18 +86,18 @@ const EmailAuthModal = ({
         {/* 부가 텍스트 */}
         {/* 이메일 표시 - send / verify / already 모두 동일하게 */}
         {/* {(isSend || isVerify || isAlready) && email && (
-          <p className="text-[12px] text-(--color-gray-50) text-center">{email}</p>
+          <p className="text-[12px] text-gray-50 text-center">{email}</p>
         )} */}
 
         {/* 마스킹된 이메일 표시 */}
         {(isVerify || isAlready) && email && (
-          <p className="text-[12px] text-(--color-gray-50) text-center">
+          <p className="text-[12px] text-gray-50 text-center">
             {maskEmail(email)}
           </p>
         )}
 
         {isHelp && (
-          <p className="text-[12px] text-(--color-gray-50) text-center">
+          <p className="text-[12px] text-gray-50 text-center">
             문제가 지속되나요?
           </p>
         )}
@@ -107,7 +107,7 @@ const EmailAuthModal = ({
           size="S"
           onClick={isAlready ? onLogin : isHelp ? handleOpenKakao : onConfirm}
           className={`
-    ${isBlackButton ? "!w-[200px] !bg-(--color-gray-80)" : "!w-[184px] !bg-(--color-green)"}
+    ${isBlackButton ? "!w-[200px] !bg-gray-80" : "!w-[184px] !bg-green"}
   `}
         >
           {buttonText}

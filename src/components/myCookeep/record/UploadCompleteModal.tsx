@@ -50,7 +50,7 @@ export default function UploadCompleteModal({
           <p className="typo-body text-center font-bold text-neutral-900">
             오늘의 레시피 등록 완료!
           </p>
-          <span className="typo-body text-(--color-green-deep) !font-bold mb-4">
+          <span className="typo-body text-green-deep !font-bold mb-4">
             쿠키 +1 🍪
           </span>
 

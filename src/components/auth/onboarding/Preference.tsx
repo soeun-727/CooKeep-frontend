@@ -97,7 +97,7 @@ export default function Preference() {
             key={i}
             className={
               part.toLowerCase() === highlight.toLowerCase()
-                ? "text-(--color-green-deep)"
+                ? "text-green-deep"
                 : ""
             }
           >
@@ -128,7 +128,7 @@ export default function Preference() {
             [&_input]:w-full
             typo-body2
             [&_input]:outline-none 
-            [&_input::placeholder]:text-(--color-gray-50)
+            [&_input::placeholder]:text-gray-50
             ${
               isDropdownOpen
                 ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`

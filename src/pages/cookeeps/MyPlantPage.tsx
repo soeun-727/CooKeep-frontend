@@ -38,7 +38,7 @@ export default function MyPlantPage() {
                     loading="lazy"
                   />
                   <span
-                    className="text-[12px] font-bold leading-[16px] text-center text-(--color-gray-80) overflow-hidden"
+                    className="text-[12px] font-bold leading-[16px] text-center text-gray-80 overflow-hidden"
                     style={{
                       display: "-webkit-box",
                       WebkitLineClamp: 1,
@@ -53,7 +53,7 @@ export default function MyPlantPage() {
           </div>
 
           {/* 카드와 하단 안내 간격 32px */}
-          <div className="mt-[32px] flex justify-center items-center h-[32px] w-[137px] mx-auto rounded-[6px] bg-(--color-gray-30)">
+          <div className="mt-[32px] flex justify-center items-center h-[32px] w-[137px] mx-auto rounded-[6px] bg-gray-30">
             <span className="text-[12px] font-normal leading-[16px] text-white text-center">
               키우기를 끝낸 식재료예요
             </span>

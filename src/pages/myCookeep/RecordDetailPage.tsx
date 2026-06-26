@@ -263,12 +263,12 @@ export default function RecordDetailPage() {
                 el.style.height = `${el.scrollHeight}px`;
               }}
               placeholder="글자 수 최대 500자"
-              className="overflow-hidden w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-(--color-gray-80) placeholder:text-(--color-gray-50) resize-none outline-none"
+              className="overflow-hidden w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none"
               rows={1}
             />
           ) : (
             record.description && (
-              <div className="w-full rounded-[10px] bg-white px-[15px] py-4 text-center typo-body text-(--color-gray-80) shadow-sm whitespace-pre-wrap break-words border border-gray-100">
+              <div className="w-full rounded-[10px] bg-white px-[15px] py-4 text-center typo-body text-gray-80 shadow-sm whitespace-pre-wrap break-words border border-gray-100">
                 {record.description}
               </div>
             )
@@ -284,14 +284,12 @@ export default function RecordDetailPage() {
                 disabled={!isEditing}
                 onClick={() => setTempIsPublic(false)} // ← 즉시 API 말고 임시저장
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
-              ${tempIsPublic === false ? "bg-(--color-green-light)" : "bg-(--color-gray-10)"}`}
+              ${tempIsPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img src={privateIcon} className="w-[24px]" alt="private" />
                 </div>
-                <span className="typo-label text-(--color-gray-80)">
-                  나만 보기
-                </span>
+                <span className="typo-label text-gray-80">나만 보기</span>
               </button>
 
               {/* 쿠킵스 공개 버튼 */}
@@ -299,14 +297,12 @@ export default function RecordDetailPage() {
                 disabled={!isEditing}
                 onClick={() => setTempIsPublic(true)} // ← 즉시 API 말고 임시저장
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
-              ${tempIsPublic === true ? "bg-(--color-green-light)" : "bg-(--color-gray-10)"}`}
+              ${tempIsPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img src={publicIcon} className="w-[36px]" alt="public" />
                 </div>
-                <span className="typo-label text-(--color-gray-80)">
-                  쿠킵스 공개
-                </span>
+                <span className="typo-label text-gray-80">쿠킵스 공개</span>
               </button>
             </div>
             <div className=" flex mt-2 mb-2">

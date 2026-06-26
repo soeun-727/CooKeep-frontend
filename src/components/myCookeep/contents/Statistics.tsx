@@ -64,8 +64,8 @@ export default function Statistics() {
           <div className="mt-[31px] typo-body2 text-center">
             유통기한 임박 식재료 3개를 요리하면
             <br />
-            <span className="text-(--color-green) font-bold">0.8kg</span>의 CO₂
-            배출을 줄일 수 있어요
+            <span className="text-green font-bold">0.8kg</span>의 CO₂ 배출을
+            줄일 수 있어요
           </div>
 
           <button
@@ -91,7 +91,7 @@ export default function Statistics() {
                 alt="tree"
                 className="w-20 h-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-(--color-green-light) text-[#1DAD64] font-medium">
+              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-[#1DAD64] font-medium">
                 나무 0.03그루 심기
               </div>
             </div>
@@ -101,7 +101,7 @@ export default function Statistics() {
                 alt="car"
                 className="w-20 h-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-(--color-green-light) text-[#1DAD64] font-medium">
+              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-[#1DAD64] font-medium">
                 자동차 4km 미주행
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function Statistics() {
                 alt="elec"
                 className="w-20 h-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-(--color-green-light) text-[#1DAD64] font-medium">
+              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-[#1DAD64] font-medium">
                 자동차 4km 미주행
               </div>
             </div>

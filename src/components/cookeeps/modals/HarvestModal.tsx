@@ -28,13 +28,13 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
 
             {/* text */}
             <div className="flex flex-col items-center gap-[20px] w-full">
-              <p className="typo-body2 text-(--color-gray-80) text-center">
+              <p className="typo-body2 text-gray-80 text-center">
                 축하해요 🎉 <br />
                 정성 들여 키운 식물이 <br />
                 드디어 다 자랐어요
               </p>
 
-              <p className="font-bold text-[16px] leading-[24px] text-(--color-green-deep) text-center">
+              <p className="font-bold text-[16px] leading-[24px] text-green-deep text-center">
                 쿠키 +20 🍪
               </p>
             </div>

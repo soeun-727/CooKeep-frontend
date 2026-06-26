@@ -17,7 +17,7 @@ export default function AgreementReadCard({ agreement, notice }: Props) {
         <span className="text-sm font-medium">{agreement.label}</span>
       </div>
 
-      <div className="mx-auto w-[calc(100%-24px)] border-t border-(--color-gray-30)" />
+      <div className="mx-auto w-[calc(100%-24px)] border-t border-gray-30" />
 
       {/* 약관 내용 */}
       <div className="p-3">
@@ -25,22 +25,18 @@ export default function AgreementReadCard({ agreement, notice }: Props) {
           remarkPlugins={[remarkGfm]}
           components={{
             h2: ({ children }) => (
-              <h2 className="typo-body2 text-(--color-gray-80) mt-2 mb-2">
-                {children}
-              </h2>
+              <h2 className="typo-body2 text-gray-80 mt-2 mb-2">{children}</h2>
             ),
             p: ({ children }) => (
-              <p className="typo-body2 text-(--color-gray-50) mb-[6px]">
-                {children}
-              </p>
+              <p className="typo-body2 text-gray-50 mb-[6px]">{children}</p>
             ),
             li: ({ children }) => (
-              <li className="typo-body2 text-(--color-gray-50) ml-4 list-disc">
+              <li className="typo-body2 text-gray-50 ml-4 list-disc">
                 {children}
               </li>
             ),
             strong: ({ children }) => (
-              <strong className="typo-body2 font-medium text-(--color-semantic-negative)">
+              <strong className="typo-body2 font-medium text-semantic-negative">
                 {children}
               </strong>
             ),
@@ -52,20 +48,17 @@ export default function AgreementReadCard({ agreement, notice }: Props) {
               </div>
             ),
             th: ({ children }) => (
-              <th className="typo-caption text-(--color-gray-50) px-3 py-1 border">
+              <th className="typo-caption text-gray-50 px-3 py-1 border">
                 {children}
               </th>
             ),
             td: ({ children }) => (
-              <td className="typo-caption text-(--color-gray-50) px-3 py-1 border">
+              <td className="typo-caption text-gray-50 px-3 py-1 border">
                 {children}
               </td>
             ),
             a: ({ href, children }) => (
-              <a
-                href={href}
-                className="underline typo-body2 text-(--color-gray-50)"
-              >
+              <a href={href} className="underline typo-body2 text-gray-50">
                 {children}
               </a>
             ),

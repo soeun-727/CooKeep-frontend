@@ -76,7 +76,7 @@ export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
                       relative w-full aspect-square rounded-full transition-all flex items-center justify-center
                       ${
                         selectedId === plant.userPlantId
-                          ? "border-2 border-(--color-green)"
+                          ? "border-2 border-green"
                           : "border-2 border-transparent"
                       }
                     `}

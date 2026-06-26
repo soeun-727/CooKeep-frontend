@@ -26,7 +26,7 @@ const SelectedModal: React.FC<Props> = ({
       {/* modal */}
       <div className="relative w-70 h-64 bg-white rounded-[10px] flex flex-col items-center pt-[35px] px-7 pb-[25px]">
         <h2 className="typo-body text-center">
-          <span className="text-(--color-green-deep)">{plant} </span>
+          <span className="text-green-deep">{plant} </span>
           <span>을/를 키워볼까요?</span>
         </h2>
         <img src={image} alt={plant} className="w-25 object-contain" />
@@ -46,7 +46,7 @@ const SelectedModal: React.FC<Props> = ({
         <div className="flex gap-2 mt-4">
           <button
             onClick={onConfirm}
-            className="typo-label w-27 h-11 text-white bg-(--color-green) rounded-[10px]"
+            className="typo-label w-27 h-11 text-white bg-green rounded-[10px]"
           >
             시작하기
           </button>

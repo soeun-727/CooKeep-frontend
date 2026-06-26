@@ -114,15 +114,15 @@ export default function IngredientDetailModal({
       <div className="relative z-10 w-full max-w-[330px] max-h-[90vh] overflow-y-auto no-scrollbar rounded-[6px] px-5 py-6 bg-gradient-to-b from-[#F5F5F5] to-white shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)] animate-fadeIn">
         <div className="flex w-full max-w-[290px] flex-col items-center gap-5 mx-auto">
           <div className="flex flex-col items-center gap-2 self-stretch">
-            <span className="text-[16px] font-semibold leading-6 text-(--color-gray-80) text-center">
+            <span className="text-[16px] font-semibold leading-6 text-gray-80 text-center">
               상세정보
             </span>
-            <div className="w-full h-[0.5px] bg-(--color-gray-30)" />
+            <div className="w-full h-[0.5px] bg-gray-30" />
           </div>
 
           <div className="flex flex-col items-center gap-4 self-stretch">
             <div className="flex w-full items-center gap-[14px]">
-              <div className="flex h-[86px] w-[86px] items-center justify-center rounded-[10px] bg-(--color-green-light) flex-shrink-0">
+              <div className="flex h-[86px] w-[86px] items-center justify-center rounded-[10px] bg-green-light flex-shrink-0">
                 <img
                   src={displayData.imageUrl || displayData.image}
                   alt={displayData.name}
@@ -130,11 +130,11 @@ export default function IngredientDetailModal({
                 />
               </div>
               <div className="flex flex-1 flex-col items-start gap-1">
-                <span className="w-full truncate text-[16px] font-semibold leading-5 text-(--color-gray-80)">
+                <span className="w-full truncate text-[16px] font-semibold leading-5 text-gray-80">
                   {displayData.name}
                 </span>
                 <div className="flex flex-col items-start gap-2">
-                  <span className="text-[12px] text-(--color-gray-30) leading-4">
+                  <span className="text-[12px] text-gray-30 leading-4">
                     {displayData.leftDays < 0
                       ? `D+${Math.abs(displayData.leftDays)}`
                       : `D-${displayData.leftDays}`}
@@ -142,10 +142,10 @@ export default function IngredientDetailModal({
                   <span
                     className={`text-[12px] font-semibold leading-4 ${
                       displayData.leftDays < 0
-                        ? "text-(--color-semantic-negative)" // 지났을 때 빨간색
+                        ? "text-semantic-negative" // 지났을 때 빨간색
                         : displayData.leftDays > 3
-                          ? "text-(--color-semantic-positive)" // 넉넉할 때 초록색
-                          : "text-(--color-semantic-negative)" // 임박했을 때 빨간색
+                          ? "text-semantic-positive" // 넉넉할 때 초록색
+                          : "text-semantic-negative" // 임박했을 때 빨간색
                     }`}
                   >
                     {displayData.leftDays < 0
@@ -168,11 +168,11 @@ export default function IngredientDetailModal({
                     onChange={(e) => setMemo(e.target.value)}
                     onBlur={handleSaveMemo}
                     onKeyDown={(e) => e.key === "Enter" && handleSaveMemo()}
-                    className="flex-1 text-[14px] font-medium text-(--color-gray-80) border-b border-(--color-gray-30) focus:outline-none"
+                    className="flex-1 text-[14px] font-medium text-gray-80 border-b border-gray-30 focus:outline-none"
                   />
                 ) : (
                   <span
-                    className={`flex-1 truncate text-[14px] font-medium leading-5 ${memo ? "text-(--color-gray-80)" : "text-(--color-gray-30)"}`}
+                    className={`flex-1 truncate text-[14px] font-medium leading-5 ${memo ? "text-gray-80" : "text-gray-30"}`}
                   >
                     {memo || "메모를 입력해주세요"}
                   </span>
@@ -189,10 +189,10 @@ export default function IngredientDetailModal({
               <div className="flex flex-col items-start gap-[6px] self-stretch">
                 <div className="flex h-14 w-full gap-[3px] items-center">
                   <div
-                    className="flex-1 h-full flex flex-col justify-center items-center bg-(--color-gray-10) py-[5px] rounded-l-[6px] cursor-pointer"
+                    className="flex-1 h-full flex flex-col justify-center items-center bg-gray-10 py-[5px] rounded-l-[6px] cursor-pointer"
                     onClick={() => setOpenEditor("storage")}
                   >
-                    <span className="text-[12px] font-semibold text-(--color-gray-80) leading-4 truncate self-stretch text-center">
+                    <span className="text-[12px] font-semibold text-gray-80 leading-4 truncate self-stretch text-center">
                       보관장소
                     </span>
                     <img
@@ -206,24 +206,24 @@ export default function IngredientDetailModal({
                     />
                   </div>
                   <div
-                    className="flex-1 h-full flex flex-col justify-center items-center bg-(--color-gray-10) py-[5px] cursor-pointer"
+                    className="flex-1 h-full flex flex-col justify-center items-center bg-gray-10 py-[5px] cursor-pointer"
                     onClick={() => setOpenEditor("expiry")}
                   >
-                    <span className="text-[12px] font-semibold text-(--color-gray-80) leading-4 truncate self-stretch text-center">
+                    <span className="text-[12px] font-semibold text-gray-80 leading-4 truncate self-stretch text-center">
                       유통기한
                     </span>
-                    <span className="text-[12px] leading-4 text-(--color-gray-80)">
+                    <span className="text-[12px] leading-4 text-gray-80">
                       {displayData.expirationDate || displayData.expiryDate}
                     </span>
                   </div>
                   <div
-                    className="flex-1 h-full flex flex-col justify-center items-center bg-(--color-gray-10) py-[5px] rounded-r-[6px] cursor-pointer"
+                    className="flex-1 h-full flex flex-col justify-center items-center bg-gray-10 py-[5px] rounded-r-[6px] cursor-pointer"
                     onClick={() => setOpenEditor("quantity")}
                   >
-                    <span className="text-[12px] font-semibold text-(--color-gray-80) leading-4 truncate self-stretch text-center">
+                    <span className="text-[12px] font-semibold text-gray-80 leading-4 truncate self-stretch text-center">
                       수량/단위
                     </span>
-                    <span className="text-[12px] leading-4 text-(--color-gray-80)">
+                    <span className="text-[12px] leading-4 text-gray-80">
                       {displayData.quantity}
                       {getKoreanUnit(displayData.unit)}
                     </span>
@@ -231,7 +231,7 @@ export default function IngredientDetailModal({
                 </div>
                 <div className="flex flex-col items-end gap-1 self-stretch">
                   <div className="flex justify-end items-end gap-1">
-                    <span className="text-[10px] font-semibold text-(--color-gray-30) leading-4">
+                    <span className="text-[10px] font-semibold text-gray-30 leading-4">
                       등록일자{" "}
                       {displayData.createdAt
                         ? displayData.createdAt.replace(/-/g, ".")
@@ -257,17 +257,17 @@ export default function IngredientDetailModal({
                       className="absolute left-[-14px] bottom-[12px] w-[27.2px] z-20"
                     />
                     <div className="relative z-10 flex w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] border-[#D1D1D1] bg-white px-[17.6px] py-[10px] min-h-[56px] shadow-sm">
-                      <span className="text-[8px] font-semibold leading-[12px] text-(--color-green) self-stretch">
+                      <span className="text-[8px] font-semibold leading-[12px] text-green self-stretch">
                         TIP
                       </span>
-                      <p className="text-[10px] font-medium leading-[14px] text-(--color-gray-80) self-stretch break-words">
+                      <p className="text-[10px] font-medium leading-[14px] text-gray-80 self-stretch break-words">
                         {displayTip}
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-col items-center gap-1 self-stretch">
-                  <p className="text-center text-[10px] font-normal leading-[14px] text-(--color-gray-30)">
+                  <p className="text-center text-[10px] font-normal leading-[14px] text-gray-30">
                     AI가 제공하는 정보에는 실수가 있을 수 있습니다
                     <br />
                     관련 정보를 확인 후 활용해주세요

@@ -32,7 +32,7 @@ const Item: React.FC<ItemProps> = ({
       className={`w-[114px] h-20 rounded-[6px] border flex flex-col 
         items-start shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)] overflow-hidden pl-[11px] ${
           isSelected
-            ? "border-emerald-400 bg-[var(--color-green-light)]"
+            ? "border-emerald-400 bg-green-light"
             : "border-[#D1D1D1] bg-white"
         } ${className}`}
       style={style}

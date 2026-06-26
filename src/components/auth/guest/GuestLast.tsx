@@ -9,7 +9,7 @@ export default function GuestLast({ onNext }: { onNext: () => void }) {
         <br />
         저장하지 않으면 사라져요!
       </div>
-      <div className="typo-body text-(--color-green-deep) !font-bold">
+      <div className="typo-body text-green-deep !font-bold">
         마음에 드는 레시피, 그냥 놓치기 아쉽다면
       </div>
       <img src={char} className="h-64 mt-17" />
@@ -21,7 +21,7 @@ export default function GuestLast({ onNext }: { onNext: () => void }) {
           size="L"
           variant="black"
           onClick={onNext}
-          className="!text-(--color-green-deep)"
+          className="!text-green-deep"
         >
           시작하기
         </Button>

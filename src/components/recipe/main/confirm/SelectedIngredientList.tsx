@@ -15,10 +15,10 @@ export default function SelectedIngredientList({ ingredients }: Props) {
     <section className="flex flex-col items-center gap-4 w-full max-w-[361px] mx-auto px-4">
       {/* 제목 / 설명 */}
       <div className="flex flex-col items-center gap-[2px]">
-        <h2 className="text-[20px] font-semibold leading-[28px] text-(--color-green-deep) text-center">
+        <h2 className="text-[20px] font-semibold leading-[28px] text-green-deep text-center">
           내가 선택한 재료
         </h2>
-        <p className="text-[12px] leading-[16px] text-(--color-gray-50) text-center">
+        <p className="text-[12px] leading-[16px] text-gray-50 text-center">
           보유한 재료로 AI가 레시피를 추천해줘요
         </p>
       </div>
@@ -52,8 +52,8 @@ export default function SelectedIngredientList({ ingredients }: Props) {
           rounded-full border bg-white
           ${
             isUrgent
-              ? "border-(--color-semantic-negative) text-(--color-semantic-negative)"
-              : "border-[#D1D1D1] text-(--color-gray-50)"
+              ? "border-semantic-negative text-semantic-negative"
+              : "border-[#D1D1D1] text-gray-50"
           }
         `}
               >
@@ -68,7 +68,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
                     alt={item.name}
                     className="w-[44px] h-[44px] object-cover"
                   />
-                  <span className="text-[12px] font-medium leading-[16px] text-(--color-gray-80) text-center line-clamp-1">
+                  <span className="text-[12px] font-medium leading-[16px] text-gray-80 text-center line-clamp-1">
                     {item.name}
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
             key={`empty-${idx}`}
             className="w-[70px] h-[70px] flex items-center justify-center"
           >
-            <div className="w-[8px] h-[8px] rounded-full bg-(--color-gray-10) shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
+            <div className="w-[8px] h-[8px] rounded-full bg-gray-10 shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
           </div>
         ))}
       </div>

@@ -35,10 +35,10 @@ export default function DifficultySelector() {
     <section className="flex flex-col items-center gap-4 w-full max-w-[361px] mx-auto mt-[38px]">
       {/* 제목 영역 */}
       <div className="flex flex-col items-center gap-[2px] w-[188px]">
-        <h2 className="w-full text-center text-[20px] font-semibold leading-[28px] text-(--color-gray-80)">
+        <h2 className="w-full text-center text-[20px] font-semibold leading-[28px] text-gray-80">
           난이도 선택
         </h2>
-        <p className="text-[12px] leading-[16px] text-(--color-gray-50) text-center">
+        <p className="text-[12px] leading-[16px] text-gray-50 text-center">
           선택한 난이도에 따라 요리가 달라져요
         </p>
       </div>
@@ -65,10 +65,8 @@ export default function DifficultySelector() {
 
                   {/* 텍스트 */}
                   <div className="flex-1">
-                    <p className="text-[16px] text-left font-medium leading-[24px] text-(--color-gray-80)">
-                      <span className="text-(--color-green-deep)">
-                        {opt.time}
-                      </span>{" "}
+                    <p className="text-[16px] text-left font-medium leading-[24px] text-gray-80">
+                      <span className="text-green-deep">{opt.time}</span>{" "}
                       {opt.desc}
                     </p>
                   </div>
@@ -79,11 +77,11 @@ export default function DifficultySelector() {
                       className={`
       w-[24px] h-[24px] rounded-full
       border-2 flex items-center justify-center
-      ${selected ? "border-(--color-green)" : "border-(--color-gray-30)"}
+      ${selected ? "border-green" : "border-gray-30"}
     `}
                     >
                       {selected && (
-                        <div className="w-[14px] h-[14px] rounded-full bg-(--color-green)" />
+                        <div className="w-[14px] h-[14px] rounded-full bg-green" />
                       )}
                     </div>
                   </div>

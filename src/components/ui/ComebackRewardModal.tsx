@@ -21,7 +21,7 @@ const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
           {/* 내용 */}
           <div className="flex flex-col items-center gap-[20px]">
             {/* 🔥 텍스트1 (맨 위) */}
-            <div className="w-[202px] text-center typo-body2 text-(--color-gray-80)">
+            <div className="w-[202px] text-center typo-body2 text-gray-80">
               쿠킵은 기다리고 있었어요!
             </div>
 
@@ -29,7 +29,7 @@ const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
             <img src={icon} className="w-[60px] h-[56px]" alt="comeback" />
 
             {/* 🔥 텍스트2 */}
-            <div className="w-[202px] text-center typo-body2 text-(--color-gray-80)">
+            <div className="w-[202px] text-center typo-body2 text-gray-80">
               오랜만에 오신 기념으로
               <br />
               쿠키를 준비했어요

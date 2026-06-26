@@ -45,7 +45,7 @@ const Recipe: React.FC<RecipeProps> = ({
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, i) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
-        <span key={i} className="text-[var(--color-green-deep)] font-bold">
+        <span key={i} className="text-green-deep font-bold">
           {part}
         </span>
       ) : (

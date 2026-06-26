@@ -95,7 +95,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
 
           {/* AI 주의사항 문구 */}
           <div className="flex flex-col items-center gap-[2px] self-stretch mt-[10px]">
-            <div className="w-[361px] text-center text-[11px] leading-[14px] text-(--color-gray-50) font-pretendard">
+            <div className="w-[361px] text-center text-[11px] leading-[14px] text-gray-50 font-pretendard">
               AI가 제공하는 정보에는 실수가 있을 수 있습니다
               <br />
               관련 정보를 확인 후 활용해주세요
@@ -119,7 +119,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
                 handleButtonClick(e);
               }
             }}
-            className="w-full rounded-[10px] h-[38px] typo-button text-white bg-(--color-green)"
+            className="w-full rounded-[10px] h-[38px] typo-button text-white bg-green"
           >
             이 레시피대로 요리할래요
           </button>

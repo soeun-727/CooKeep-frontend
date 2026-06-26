@@ -33,7 +33,7 @@ function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
     <div className="flex flex-col items-center w-full min-h-[259px] max-w-md mx-auto bg-white p-4 gap-4 rounded-lg shadow-md">
       {/* 제목 */}
       <h2 className="text-center font-semibold text-[18px] leading-[26px]">
-        <span className="text-(--color-green-deep)">이번 주</span>{" "}
+        <span className="text-green-deep">이번 주</span>{" "}
         <span className="text-gray-800">쿠킵이들이 만든 레시피</span>
       </h2>
 
@@ -56,7 +56,7 @@ function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
 
         {isEmpty && (
           <div className="absolute inset-0 flex justify-center items-center rounded-md bg-white/80">
-            <p className="text-center text-(--color-gray-80) text-[16px] font-semibold leading-[24px]">
+            <p className="text-center text-gray-80 text-[16px] font-semibold leading-[24px]">
               아직 등록된 레시피가 없어요
               <br />
               이번 주 첫 레시피를 등록해보세요!

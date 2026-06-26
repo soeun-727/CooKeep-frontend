@@ -14,7 +14,7 @@ export default function SuccessSection() {
           반가워요! 오늘부터 지속 가능한 요리 루틴을 만들어볼까요?
         </h1>
 
-        <p className="typo-button text-[var(--color-green-deep)] text-center">
+        <p className="typo-button text-green-deep text-center">
           쿠킵과 함께 냉장고 속 재료부터 채워봐요
         </p>
       </div>

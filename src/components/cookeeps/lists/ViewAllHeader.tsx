@@ -44,8 +44,8 @@ export default function ViewAllHeader({
           onClick={() => onTabChange("weekly")}
           className={`flex-1 flex justify-center items-center py-2 gap-2 border-b-2 rounded-t-[6px] ${
             activeTab === "weekly"
-              ? "border-(--color-green-deep) text-(--color-green-deep)"
-              : "border-transparent text-(--color-gray-50)"
+              ? "border-green-deep text-green-deep"
+              : "border-transparent text-gray-50"
           }`}
         >
           <span className="text-[14px] font-semibold leading-[20px] truncate">
@@ -58,8 +58,8 @@ export default function ViewAllHeader({
           onClick={() => onTabChange("all")}
           className={`flex-1 flex justify-center items-center py-2 gap-2 border-b-2 rounded-t-[6px] ${
             activeTab === "all"
-              ? "border-(--color-green-deep) text-(--color-green-deep)"
-              : "border-transparent text-(--color-gray-50)"
+              ? "border-green-deep text-green-deep"
+              : "border-transparent text-gray-50"
           }`}
         >
           <span className="text-[14px] font-semibold leading-[20px] truncate">

@@ -23,7 +23,7 @@ export default function WeeklyTopRecipesTab() {
   const top3 = recipes.slice(0, 3);
 
   const getRankStyle = (rank: number) => {
-    if (rank === 1) return "bg-(--color-green) text-white";
+    if (rank === 1) return "bg-green text-white";
     if (rank === 2 || rank === 3) return "bg-black text-white";
     return "bg-gray-200 text-gray-500";
   };
@@ -33,7 +33,7 @@ export default function WeeklyTopRecipesTab() {
       <div className="w-[361px] flex flex-col  ">
         {recipes.length === 0 ? (
           // 레시피 없을 때
-          <div className="h-[200px] flex items-center justify-center text-[14px] text-(--color-gray-50)">
+          <div className="h-[200px] flex items-center justify-center text-[14px] text-gray-50">
             아직 등록된 레시피가 없어요
           </div>
         ) : (
@@ -57,13 +57,13 @@ export default function WeeklyTopRecipesTab() {
 
                 {/* 제목 + 좋아요 */}
                 <div className="flex justify-between items-center flex-1">
-                  <p className="truncate text-[14px] text-(--color-gray-80) font-medium">
+                  <p className="truncate text-[14px] text-gray-80 font-medium">
                     {item.title}
                   </p>
 
                   <div className="flex items-center gap-[4px]">
                     <img src={likeGray} className="w-[18px] h-[18px]" />
-                    <span className="text-[12px] text-(--color-gray-50)">
+                    <span className="text-[12px] text-gray-50">
                       {item.likeCount}
                     </span>
                   </div>
@@ -79,7 +79,7 @@ export default function WeeklyTopRecipesTab() {
               >
                 {/* 유저 뱃지 */}
                 <div className="absolute top-2 left-2 flex items-center h-[20px] gap-[4px]  px-[12px] rounded-full bg-black/60">
-                  <span className="text-(--color-green) text-[12px] font-medium">
+                  <span className="text-green text-[12px] font-medium">
                     {item.nickname}
                   </span>
                   <span className="text-white text-[12px] font-medium ">

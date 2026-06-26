@@ -53,10 +53,7 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
       {/* 2. 요일 표시 */}
       <div className="grid grid-cols-7 w-full mb-2">
         {daysOfWeek.map((day) => (
-          <div
-            key={day}
-            className="text-center typo-body2 text-[var(--color-green)] py-2"
-          >
+          <div key={day} className="text-center typo-body2 text-green py-2">
             {day}
           </div>
         ))}
@@ -90,7 +87,7 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
               className={`h-10 w-10 mx-auto flex items-center justify-center rounded-full typo-h2 text-zinc-800 transition-all !font-normal
                 ${
                   isNewlySelected
-                    ? "!bg-[var(--color-green-light)] !border !border-[var(--color-green-deep)] !font-semibold"
+                    ? "!bg-green-light !border !border-green-deep !font-semibold"
                     : isNewlySelected || isCurrent
                       ? "!bg-zinc-200 !text-zinc-500 !cursor-not-allowed"
                       : "hover:bg-zinc-50"

@@ -74,7 +74,7 @@ export default function RecordWriteImageCard({
                   {/* 변경 */}
                   <button
                     onClick={() => fileInputRef.current?.click()} // 직접 호출
-                    className="flex-1 h-[44px] rounded-[10px] bg-(--color-green) text-white font-semibold"
+                    className="flex-1 h-[44px] rounded-[10px] bg-green text-white font-semibold"
                   >
                     변경
                   </button>
@@ -82,7 +82,7 @@ export default function RecordWriteImageCard({
                   {/* 삭제 */}
                   <button
                     onClick={() => setIsDeleteModalOpen(true)}
-                    className="flex-1 h-[44px] rounded-[10px] bg-(--color-gray-30) text-white font-semibold"
+                    className="flex-1 h-[44px] rounded-[10px] bg-gray-30 text-white font-semibold"
                   >
                     삭제
                   </button>
@@ -139,7 +139,7 @@ export default function RecordWriteImageCard({
                 className="
                 flex-1
                 min-w-0
-                text-(--color-gray-80)
+                text-gray-80
                 text-[18px]
                 font-semibold
                 leading-[26px]
@@ -167,7 +167,7 @@ export default function RecordWriteImageCard({
             className="w-[254px] bg-white rounded-[10px] px-[28px] py-[25px] flex flex-col items-center gap-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="text-(--color-gray-80) text-[14px] font-medium text-center">
+            <p className="text-gray-80 text-[14px] font-medium text-center">
               사진을 삭제할까요?
             </p>
 
@@ -178,7 +178,7 @@ export default function RecordWriteImageCard({
                   onDeleteImage(); // 🔥 여기서 진짜 삭제
                   setIsDeleteModalOpen(false);
                 }}
-                className="flex-1 h-[44px] rounded-[10px] bg-(--color-gray-80) text-white font-semibold"
+                className="flex-1 h-[44px] rounded-[10px] bg-gray-80 text-white font-semibold"
               >
                 네
               </button>
@@ -186,7 +186,7 @@ export default function RecordWriteImageCard({
               {/* 취소 */}
               <button
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="flex-1 h-[44px] rounded-[10px] bg-(--color-gray-30) text-white font-semibold"
+                className="flex-1 h-[44px] rounded-[10px] bg-gray-30 text-white font-semibold"
               >
                 아니오
               </button>

@@ -31,7 +31,7 @@ const Tab: React.FC<TabProps> = ({
       />
       <span
         className={`font-semibold font-["Pretendard"] text-[10px] leading-3 tracking-[0.1px] text-center ${
-          isSelected ? "text-(--color-gray-80)" : "text-stone-300"
+          isSelected ? "text-gray-80" : "text-stone-300"
         }`}
       >
         {title}

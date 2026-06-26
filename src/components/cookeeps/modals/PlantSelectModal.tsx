@@ -65,7 +65,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                   className={`relative w-[60px] h-[60px] flex flex-col items-center justify-center rounded-[6px] transition-all gap-[2px] overflow-hidden
                 ${
                   selectedId === plant.id
-                    ? "bg-[var(--color-green-light)]"
+                    ? "bg-green-light"
                     : "bg-white group-hover:bg-gray-100"
                 }`}
                 >
@@ -81,8 +81,8 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                   </span>
                   {isHarvested && (
                     <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                      <div className="flex items-center justify-center w-[43px] h-5 bg-[var(--color-green-light)]/90 border-[0.5px] border-[var(--color-green-deep)] rounded-[3px]">
-                        <span className="text-[var(--color-green-deep)] text-[10px] font-semibold leading-none">
+                      <div className="flex items-center justify-center w-[43px] h-5 bg-green-light/90 border-[0.5px] border-green-deep rounded-[3px]">
+                        <span className="text-green-deep text-[10px] font-semibold leading-none">
                           수확완료
                         </span>
                       </div>

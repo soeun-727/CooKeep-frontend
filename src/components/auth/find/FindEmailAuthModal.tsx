@@ -41,7 +41,7 @@ const FindEmailAuthModal = ({
     <>
       {/* 배경 오버레이 */}
       <div
-        className="fixed inset-0 z-[100] bg-[rgba(17,17,17,0.5)]"
+        className="fixed inset-0 z-[100] bg-black-overlay"
         onClick={onConfirm} // 배경 클릭 시 닫히게 하고 싶으면 유지
       />
       <div
@@ -68,7 +68,7 @@ const FindEmailAuthModal = ({
           />
         )}
 
-        <p className="text-[14px] font-medium text-center leading-[20px] text-(--color-gray-100)">
+        <p className="text-[14px] font-medium text-center leading-[20px] text-gray-100">
           {isSend && "인증번호가 발송되었어요"}
           {isVerify && "인증에 성공하셨습니다"}
           {isNotRegistered && (
@@ -94,13 +94,13 @@ const FindEmailAuthModal = ({
         </p>
 
         {isVerify && email && (
-          <p className="text-[12px] text-(--color-gray-50) text-center">
+          <p className="text-[12px] text-gray-50 text-center">
             {maskEmail(email)}
           </p>
         )}
 
         {isHelp && (
-          <p className="text-[12px] text-(--color-gray-50) text-center">
+          <p className="text-[12px] text-gray-50 text-center">
             문제가 지속되나요?
           </p>
         )}
@@ -111,9 +111,7 @@ const FindEmailAuthModal = ({
             isNotRegistered ? onSignup : isHelp ? handleOpenKakao : onConfirm
           }
           className={`!h-[38px] ${
-            isHelp
-              ? "!w-[200px] !bg-(--color-gray-80)"
-              : "!w-[184px] !bg-(--color-green)"
+            isHelp ? "!w-[200px] !bg-gray-80" : "!w-[184px] !bg-green"
           }`}
         >
           {isHelp

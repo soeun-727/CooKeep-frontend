@@ -13,7 +13,7 @@ export default function SettingsToggleItem({
 }: SettingsToggleItemProps) {
   return (
     <div className="flex items-center justify-between w-full px-3">
-      <span className="typo-body text-(--color-gray-80)">{label}</span>
+      <span className="typo-body text-gray-80">{label}</span>
 
       <button
         onClick={() => onChange(!checked)}
@@ -27,7 +27,7 @@ export default function SettingsToggleItem({
           className={`
             absolute top-[2px]
             w-[22px] h-[22px] rounded-full  transition-transform
-            ${checked ? "translate-x-[26px] bg-(--color-green-deep)" : "translate-x-[2px] bg-stone-300"}
+            ${checked ? "translate-x-[26px] bg-green-deep" : "translate-x-[2px] bg-stone-300"}
           `}
         />
       </button>

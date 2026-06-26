@@ -40,9 +40,9 @@ export default function Initial() {
       {/* 상단 텍스트 영역 */}
       <div className="w-full flex flex-col mt-[86px] items-center">
         <h1 className="text-[19px] font-semibold flex gap-1">
-          <span className="text-(--color-green-deep)">재료 관리</span>
+          <span className="text-green-deep">재료 관리</span>
           <span className="text-neutral-800">부터,</span>
-          <span className="text-(--color-green-deep)">요리 기록</span>
+          <span className="text-green-deep">요리 기록</span>
           <span className="text-neutral-800">까지!</span>
         </h1>
       </div>
@@ -98,7 +98,7 @@ export default function Initial() {
         </button>
         <button
           onClick={() => navigate("/guest")}
-          className="mt-5 typo-body !font-bold text-[var(--color-green-deep)] mb-[50px]"
+          className="mt-5 typo-body !font-bold text-green-deep mb-[50px]"
         >
           쿠킵이 처음인가요? 둘러보기
         </button>

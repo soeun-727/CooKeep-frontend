@@ -23,7 +23,7 @@ export default function RecentlyAdded() {
         >
           <span
             className={`typo-caption transition-colors duration-300 ${
-              isOpen ? "text-[var(--color-green-deep)]" : "text-zinc-500"
+              isOpen ? "text-green-deep" : "text-zinc-500"
             }`}
           >
             최근 추가한 재료
@@ -31,7 +31,7 @@ export default function RecentlyAdded() {
           <div
             className={`w-2 h-2 border-b-2 border-r-2 transition-all duration-300 ${
               isOpen
-                ? "rotate-45 -translate-y-[1px] border-[var(--color-green-deep)]"
+                ? "rotate-45 -translate-y-[1px] border-green-deep"
                 : "rotate-[225deg] translate-y-[2px] border-zinc-500"
             }`}
           />

@@ -151,7 +151,7 @@ export default function ResetPassword() {
         variant="black"
         disabled={!isFormValid}
         onClick={handleSubmit}
-        className="mt-[31px] !text-(--color-green) disabled:!text-white"
+        className="mt-[31px] !text-green disabled:!text-white"
       >
         비밀번호 재설정
       </Button>
@@ -160,7 +160,7 @@ export default function ResetPassword() {
       {isSuccess && (
         <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
           <div className="w-[361px] flex flex-col items-center">
-            <p className="typo-h1 text-(--color-gray-80) text-center font-bold text-[28px] leading-[36px] pt-[241px] pb-[18px]">
+            <p className="typo-h1 text-gray-80 text-center font-bold text-[28px] leading-[36px] pt-[241px] pb-[18px]">
               비밀번호 변경 완료
             </p>
             {/*중앙정렬 안하고 피그마 기준으로 pt-[241px] 이걸로 맞춤*/}
@@ -177,7 +177,7 @@ export default function ResetPassword() {
                 reset();
                 navigate("/login");
               }}
-              className="mt-[48px] !text-(--color-green)"
+              className="mt-[48px] !text-green"
             >
               로그인하기
             </Button>

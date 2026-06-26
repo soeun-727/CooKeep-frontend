@@ -18,9 +18,7 @@ export default function RecipeStepSection({ steps }: Props) {
   return (
     <div className="flex flex-col items-start gap-[10px] w-full">
       {/* 제목 */}
-      <span className="typo-body2 text-(--color-gray-50) self-stretch">
-        레시피
-      </span>
+      <span className="typo-body2 text-gray-50 self-stretch">레시피</span>
 
       {/* 단계 리스트 */}
       <div className="flex flex-col items-start gap-[8px] w-full">
@@ -29,11 +27,11 @@ export default function RecipeStepSection({ steps }: Props) {
             key={step.order}
             className="flex justify-start items-start w-full gap-3"
           >
-            <div className="flex items-center justify-center w-[30px] h-[22px] px-3 rounded-full bg-(--color-gray-80) text-white text-[12px] font-semibold leading-[16px] flex-shrink-0 mt-[3px]">
+            <div className="flex items-center justify-center w-[30px] h-[22px] px-3 rounded-full bg-gray-80 text-white text-[12px] font-semibold leading-[16px] flex-shrink-0 mt-[3px]">
               {step.order}
             </div>
 
-            <p className="text-(--color-gray-80) typo-body2 max-w-[289px] leading-[22px]">
+            <p className="text-gray-80 typo-body2 max-w-[289px] leading-[22px]">
               {formatDescription(step.description)}
             </p>
           </div>
@@ -41,12 +39,12 @@ export default function RecipeStepSection({ steps }: Props) {
         {steps.map((step) => (
           <div key={step.order} className="flex items-start gap-3 w-full">
             {/* 번호 버튼 */}
-            <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-(--color-gray-80) text-white text-xs font-semibold flex-shrink-0 ">
+            <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-gray-80 text-white text-xs font-semibold flex-shrink-0 ">
               {step.order}
             </div>
 
             {/* 설명 */}
-            <p className="flex-1 text-(--color-gray-80) typo-body2 leading-[22px]">
+            <p className="flex-1 text-gray-80 typo-body2 leading-[22px]">
               {formatDescription(step.description)}
             </p>
           </div>

@@ -37,7 +37,7 @@ export default function RecipeDetailYoutube({ videos, tags = [] }: Props) {
       >
         {/* 텍스트 */}
         <div className="flex flex-col flex-1 items-start gap-1">
-          <span className="text-(--color-gray-50) text-[14px] font-medium leading-[20px]">
+          <span className="text-gray-50 text-[14px] font-medium leading-[20px]">
             비슷한 레시피 영상 참고하기
           </span>
         </div>
@@ -61,7 +61,7 @@ export default function RecipeDetailYoutube({ videos, tags = [] }: Props) {
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-x-2 gap-y-[2px]">
               {tags.map((tag, idx) => (
-                <span key={idx} className="text-(--color-green) text-[14px]">
+                <span key={idx} className="text-green text-[14px]">
                   {`# ${tag}`}
                 </span>
               ))}

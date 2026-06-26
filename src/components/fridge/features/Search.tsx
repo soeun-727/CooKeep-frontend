@@ -30,7 +30,7 @@ export default function Search() {
           [&_input]:w-full
           [&_input]:border-none 
           [&_input]:outline-none 
-          [&_input::placeholder]:text-(--color-gray-50)
+          [&_input::placeholder]:text-gray-50
           ${hasText ? "[&_input]: bg-white" : "[&_input]:bg-[#EBEDF1] "}
       `}
         >

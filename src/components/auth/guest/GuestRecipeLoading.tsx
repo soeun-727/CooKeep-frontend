@@ -44,7 +44,7 @@ export default function GuestRecipeLoading({
 
       <div className="flex flex-col items-center w-[361px] gap-2 mb-[49px]">
         <h1 className="typo-result-title">오늘의 요리 준비 중...</h1>
-        <p className="typo-button text-(--color-green-deep) font-bold">
+        <p className="typo-button text-green-deep font-bold">
           나에게 딱 맞는 레시피를 찾고 있어요
         </p>
       </div>

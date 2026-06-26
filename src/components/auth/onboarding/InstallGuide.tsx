@@ -43,7 +43,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
             </h1>
           </div>
 
-          <p className="w-full text-center typo-button text-[var(--color-green-deep)]">
+          <p className="w-full text-center typo-button text-green-deep">
             더 쉽고 빠르게 서비스를 이용할 수 있어요
           </p>
         </div>
@@ -63,11 +63,11 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
 
               {/* 텍스트 영역 */}
               <div className="flex flex-col items-start gap-[4px] self-stretch">
-                <p className="typo-body text-(--color-gray-80) text-center self-stretch font-semibold">
+                <p className="typo-body text-gray-80 text-center self-stretch font-semibold">
                   iOS 사용자는 Safari에서 열어주세요
                 </p>
 
-                <p className="text-[12px] font-medium leading-[20px] text-(--color-gray-80) text-center self-stretch">
+                <p className="text-[12px] font-medium leading-[20px] text-gray-80 text-center self-stretch">
                   Safari 공유 버튼 → ‘홈 화면에 추가’
                 </p>
               </div>
@@ -87,11 +87,11 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
 
               {/* 텍스트 영역 */}
               <div className="flex flex-col items-start gap-[4px] self-stretch">
-                <p className="text-[16px] font-semibold leading-[20px] text-(--color-gray-80) text-center self-stretch">
+                <p className="text-[16px] font-semibold leading-[20px] text-gray-80 text-center self-stretch">
                   Android 사용자는 Chrome을 추천드려요
                 </p>
 
-                <p className="text-[12px] font-medium leading-[20px] text-(--color-gray-80) text-center self-stretch">
+                <p className="text-[12px] font-medium leading-[20px] text-gray-80 text-center self-stretch">
                   우측 상단 메뉴 → ‘홈 화면에 추가’
                 </p>
               </div>
@@ -112,7 +112,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
                   state: { openCategoryId: 4 },
                 })
               }
-              className="typo-caption text-(--color-gray-50) underline"
+              className="typo-caption text-gray-50 underline"
             >
               자세한 설명 보기
             </button>

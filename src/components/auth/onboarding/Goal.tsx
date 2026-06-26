@@ -74,7 +74,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
                     setIsOpen(false);
                   }}
                   className={`w-full h-[48px] px-5 text-left typo-body2 transition-colors 
-                    ${goal.id === currentGoal.id ? "text-(--color-green) font-semibold bg-[#F9F9F9]" : "text-gray-500 bg-white hover:bg-gray-50"}
+                    ${goal.id === currentGoal.id ? "text-green font-semibold bg-[#F9F9F9]" : "text-gray-500 bg-white hover:bg-gray-50"}
                   `}
                 >
                   {goal.title}

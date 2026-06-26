@@ -29,7 +29,7 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
             className="w-[75px] h-[60px]"
           />
 
-          <p className="typo-body2 text-(--color-gray-80) text-center whitespace-pre-line">
+          <p className="typo-body2 text-gray-80 text-center whitespace-pre-line">
             유통기한이 오늘까지인 재료가 있어요!
             <br />
             지금 확인하고 요리해볼까요?
@@ -40,7 +40,7 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
         <div className="w-full flex flex-col gap-2 mt-2">
           <Button
             variant="green"
-            className="!w-[224px] bg-(--color-green)"
+            className="!w-[224px] bg-green"
             onClick={() => {
               onClose();
               navigate("/recipe/select");
@@ -51,7 +51,7 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
 
           <Button
             variant="black"
-            className="!w-[224px] bg-(--color-gray-30)"
+            className="!w-[224px] bg-gray-30"
             onClick={onClose}
           >
             나중에 요리할게요

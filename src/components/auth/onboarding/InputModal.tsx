@@ -84,7 +84,7 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
           className={`typo-label w-full h-11 text-white rounded-[10px] transition-colors
             ${
               inputValue.trim() && !isLoading
-                ? "bg-[var(--color-green)]"
+                ? "bg-green"
                 : "bg-zinc-300 cursor-not-allowed"
             }`}
         >

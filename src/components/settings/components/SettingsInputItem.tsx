@@ -35,7 +35,7 @@ export default function SettingsInputItem({
   return (
     <div className="flex flex-col gap-2 h-[80px] w-full">
       {/* label */}
-      <span className="typo-body text-(--color-gray-80) px-3">{label}</span>
+      <span className="typo-body text-gray-80 px-3">{label}</span>
 
       {/* input-like box */}
       <div
@@ -72,7 +72,7 @@ export default function SettingsInputItem({
             ${
               disabled
                 ? "bg-stone-300 text-white cursor-not-allowed" // 비활성화 스타일
-                : "bg-(--color-gray-80) text-white cursor-pointer active:bg-[#404040]" // 활성화 스타일
+                : "bg-gray-80 text-white cursor-pointer active:bg-[#404040]" // 활성화 스타일
             }
           `}
         >

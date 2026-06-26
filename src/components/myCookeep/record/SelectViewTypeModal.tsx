@@ -20,12 +20,10 @@ export default function SelectViewTypeModal({
       {/* Modal */}
       <div className="relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
         {/* Text */}
-        <p className="typo-button text-center text-(--color-green-deep)">
-          {message}
-        </p>
+        <p className="typo-button text-center text-green-deep">{message}</p>
 
         {/* Text */}
-        <p className="typo-body2 text-center text-(--color-gray-50)">
+        <p className="typo-body2 text-center text-gray-50">
           상태를 변경할까요?
         </p>
 
@@ -34,7 +32,7 @@ export default function SelectViewTypeModal({
           {/* 확인(아니오) */}
           <button
             onClick={onConfirm}
-            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-(--color-green)"
+            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-green"
           >
             <span className="text-[14px] font-semibold leading-[24px] text-white">
               네
@@ -43,7 +41,7 @@ export default function SelectViewTypeModal({
           {/* 취소(아니오) */}
           <button
             onClick={onCancel}
-            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-(--color-gray-30)"
+            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-gray-30"
           >
             <span className="text-[14px] font-semibold leading-[24px] text-white">
               아니오
