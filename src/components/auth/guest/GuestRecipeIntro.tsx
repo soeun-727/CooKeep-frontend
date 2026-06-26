@@ -41,7 +41,7 @@ export default function GuestRecipeIntro({ onNext }: Props) {
             alt="요리 캐릭터"
             className="w-[162.5px] h-[116.646px]"
           />
-          <h1 className="text-center text-[28px] font-semibold leading-[36px] text-[#202020]">
+          <h1 className="text-center text-[28px] font-semibold leading-[36px] text-(--color-gray-80)">
             지금 있는 재료로
             <br />
             요리해볼까요?

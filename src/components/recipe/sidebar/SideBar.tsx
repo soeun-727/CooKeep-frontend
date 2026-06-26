@@ -146,12 +146,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     [&_input]:border-none
     [&_input]:bg-white
     
-    [&_input]:text-[#C3C3C3]
+    [&_input]:text-(--color-gray-30)
     [&_input]:text-[14px]
     [&_input]:font-medium
     [&_input]:leading-[20px]
     
-    [&_input::placeholder]:text-[#C3C3C3]
+    [&_input::placeholder]:text-(--color-gray-30)
   `}
                   >
                     <TextField

@@ -26,12 +26,12 @@ export default function DeleteConfirmModal({
           {/* 내용 */}
           <div className="flex flex-col items-start gap-2 w-full">
             {/* 재료 이름 */}
-            <p className="w-full text-center text-[16px] font-bold leading-[24px] text-[#202020]">
+            <p className="w-full text-center text-[16px] font-bold leading-[24px] text-(--color-gray-80)">
               {ingredientName}
             </p>
 
             {/* 메시지 */}
-            <p className="w-full text-center text-[14px] font-medium leading-[20px] text-[#202020]">
+            <p className="w-full text-center text-[14px] font-medium leading-[20px] text-(--color-gray-80)">
               재료를 삭제하시겠어요?
             </p>
           </div>
@@ -42,7 +42,7 @@ export default function DeleteConfirmModal({
             <button
               onClick={onConfirm}
               className={`flex-1 h-[44px] rounded-[10px] flex items-center justify-center
-    ${confirmColor === "green" ? "bg-(--color-green)" : "bg-[#202020]"}
+    ${confirmColor === "green" ? "bg-(--color-green)" : "bg-(--color-gray-80)"}
   `}
             >
               <span className="text-white text-[14px] font-semibold leading-[24px]">
@@ -53,7 +53,7 @@ export default function DeleteConfirmModal({
             {/* 아니오 */}
             <button
               onClick={onCancel}
-              className="flex-1 h-[44px] rounded-[10px] bg-[#C3C3C3] flex items-center justify-center"
+              className="flex-1 h-[44px] rounded-[10px] bg-(--color-gray-30) flex items-center justify-center"
             >
               <span className="text-white text-[14px] font-semibold leading-[24px]">
                 아니오

@@ -18,7 +18,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
         <h2 className="text-[20px] font-semibold leading-[28px] text-(--color-green-deep) text-center">
           내가 선택한 재료
         </h2>
-        <p className="text-[12px] leading-[16px] text-[#7D7D7D] text-center">
+        <p className="text-[12px] leading-[16px] text-(--color-gray-50) text-center">
           보유한 재료로 AI가 레시피를 추천해줘요
         </p>
       </div>
@@ -52,8 +52,8 @@ export default function SelectedIngredientList({ ingredients }: Props) {
           rounded-full border bg-white
           ${
             isUrgent
-              ? "border-[#D91F1F] text-[#D91F1F]"
-              : "border-[#D1D1D1] text-[#7D7D7D]"
+              ? "border-(--color-semantic-negative) text-(--color-semantic-negative)"
+              : "border-[#D1D1D1] text-(--color-gray-50)"
           }
         `}
               >
@@ -68,7 +68,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
                     alt={item.name}
                     className="w-[44px] h-[44px] object-cover"
                   />
-                  <span className="text-[12px] font-medium leading-[16px] text-[#202020] text-center line-clamp-1">
+                  <span className="text-[12px] font-medium leading-[16px] text-(--color-gray-80) text-center line-clamp-1">
                     {item.name}
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
             key={`empty-${idx}`}
             className="w-[70px] h-[70px] flex items-center justify-center"
           >
-            <div className="w-[8px] h-[8px] rounded-full bg-[#EBEBEB] shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
+            <div className="w-[8px] h-[8px] rounded-full bg-(--color-gray-10) shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
           </div>
         ))}
       </div>

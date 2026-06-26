@@ -73,7 +73,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
                 className="w-[83px] h-[79px] flex-shrink-0"
               />
 
-              <div className="text-[16px] font-semibold leading-[24px] text-[#202020] text-center">
+              <div className="text-[16px] font-semibold leading-[24px] text-(--color-gray-80) text-center">
                 쿠킵이들의 식물 살펴보는 중..
                 <br />
                 순위가 곧 공개돼요

@@ -202,7 +202,7 @@ export default function AccountSection({
                           />
                         </div>
 
-                        <span className="ml-[12px] typo-label text-[#202020]">
+                        <span className="ml-[12px] typo-label text-(--color-gray-80)">
                           약관 전체동의
                         </span>
                       </label>
@@ -242,7 +242,7 @@ export default function AccountSection({
                                 <span className="w-5 h-5 flex-shrink-0 inline-block" />
                               )}
 
-                              <span className="typo-label text-[#7D7D7D] truncate">
+                              <span className="typo-label text-(--color-gray-50) truncate">
                                 {item.label}
                               </span>
                             </label>

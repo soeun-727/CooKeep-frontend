@@ -33,7 +33,7 @@ export default function WeeklyTopRecipesTab() {
       <div className="w-[361px] flex flex-col  ">
         {recipes.length === 0 ? (
           // 레시피 없을 때
-          <div className="h-[200px] flex items-center justify-center text-[14px] text-[#7D7D7D]">
+          <div className="h-[200px] flex items-center justify-center text-[14px] text-(--color-gray-50)">
             아직 등록된 레시피가 없어요
           </div>
         ) : (
@@ -57,13 +57,13 @@ export default function WeeklyTopRecipesTab() {
 
                 {/* 제목 + 좋아요 */}
                 <div className="flex justify-between items-center flex-1">
-                  <p className="truncate text-[14px] text-[#202020] font-medium">
+                  <p className="truncate text-[14px] text-(--color-gray-80) font-medium">
                     {item.title}
                   </p>
 
                   <div className="flex items-center gap-[4px]">
                     <img src={likeGray} className="w-[18px] h-[18px]" />
-                    <span className="text-[12px] text-[#7D7D7D]">
+                    <span className="text-[12px] text-(--color-gray-50)">
                       {item.likeCount}
                     </span>
                   </div>

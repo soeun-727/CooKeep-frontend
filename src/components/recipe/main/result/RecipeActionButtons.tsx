@@ -87,8 +87,8 @@ export default function RecipeActionButtons({
           disabled={isRetryDisabled}
           className={`w-full rounded-[10px] h-[38px] typo-button transition-colors ${
             isRetryDisabled
-              ? "bg-gray-300 text-[#7D7D7D] cursor-not-allowed"
-              : "bg-[#202020] text-white"
+              ? "bg-gray-300 text-(--color-gray-50) cursor-not-allowed"
+              : "bg-(--color-gray-80) text-white"
           }`}
         >
           {retryBtnText}

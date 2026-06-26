@@ -51,7 +51,7 @@ export default function RecipeDetailImageCard({ images, title }: Props) {
           <h2
             className="
               flex-1
-              text-[#202020]
+              text-(--color-gray-80)
               text-[18px]
               font-semibold
               leading-[26px]

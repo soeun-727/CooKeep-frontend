@@ -86,7 +86,7 @@ export default function Notification({ onNext }: Props) {
           height: "calc(100dvh - 500px)",
         }}
       >
-        <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-[#fafafa] to-transparent z-10" />
+        <div className="absolute top-0 left-0 w-full h-12 bg-blur-to-t z-10" />
         <div className="flex flex-col gap-[6px] animate-roll">
           {INFINITE_DATA.map((data, index) => (
             <ExampleNotification
@@ -96,7 +96,7 @@ export default function Notification({ onNext }: Props) {
             />
           ))}
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#fafafa] to-transparent z-10" />
+        <div className="absolute bottom-0 left-0 w-full h-12 bg-blur-to-b z-10" />
       </div>
 
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[361px] bg-[#fafafa] z-50 pb-[34px]">

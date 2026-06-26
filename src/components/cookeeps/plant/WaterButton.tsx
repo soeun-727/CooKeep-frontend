@@ -66,7 +66,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
         inline-flex items-center justify-center
         px-[10px] py-[3px]
         bg-white rounded-[3px]
-        text-[8px] font-medium text-[#7D7D7D]
+        text-[8px] font-medium text-(--color-gray-50)
         leading-[10px] text-center
         whitespace-nowrap
         shadow-sm
@@ -110,7 +110,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
         ${
           disabled
             ? "bg-gray-300 text-gray-400"
-            : "bg-[#202020] text-(--color-green) shadow active:scale-95"
+            : "bg-(--color-gray-80) text-(--color-green) shadow active:scale-95"
         }`}
         >
           물 주기( -{/* 2. 이모지 대신 img 태그 삽입 */}

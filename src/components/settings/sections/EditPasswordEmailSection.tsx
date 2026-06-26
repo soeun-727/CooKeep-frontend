@@ -144,7 +144,7 @@ export default function EditPasswordEmailSection() {
               onClick={isCodeSent ? handleResend : handleSendCode}
               disabled={!isEmailValid || isSending || resendCount >= MAX_RESEND}
               className={`w-[102px] h-[24px] rounded-full typo-caption text-white
-                ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"}
+                ${isEmailValid ? "bg-(--color-gray-80)" : "bg-(--color-gray-30)"}
                 disabled:cursor-not-allowed`}
             >
               {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
@@ -180,7 +180,7 @@ export default function EditPasswordEmailSection() {
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
+          className="mt-6 w-[361px] typo-caption text-(--color-gray-50) text-center underline cursor-pointer bg-transparent"
         >
           인증 번호가 발송되지 않나요?
         </button>
@@ -191,7 +191,7 @@ export default function EditPasswordEmailSection() {
         <>
           <div className="fixed inset-0 z-[100] bg-[rgba(17,17,17,0.5)]" />
           <div className="fixed z-[110] left-1/2 -translate-x-1/2 top-[343px] bg-white rounded-[10px] w-[240px] pt-[35px] px-[28px] pb-[25px] flex flex-col items-center gap-4">
-            <p className="text-[14px] font-medium text-center leading-[20px] text-[#111111]">
+            <p className="text-[14px] font-medium text-center leading-[20px] text-(--color-gray-100)">
               등록된 이메일과 일치하지 않습니다
             </p>
             <Button

@@ -37,7 +37,7 @@ export default function WaterModal({
               <span className="self-stretch text-[16px] font-bold leading-[24px] text-(--color-green-deep)">
                 쿠키 10개
               </span>
-              <span className="self-stretch typo-body2 text-[#202020]">
+              <span className="self-stretch typo-body2 text-(--color-gray-80)">
                 사용해서 물을 줄까요?
               </span>
             </div>
@@ -66,7 +66,7 @@ export default function WaterModal({
     flex flex-1 items-center justify-center
     h-[44px]
     rounded-[10px]
-    bg-[#C3C3C3]
+    bg-(--color-gray-30)
     py-[12px] px-[12px]
     text-white
     text-[14px] font-semibold leading-[24px]

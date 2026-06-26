@@ -15,7 +15,7 @@ const Progress = ({ currentStep }: ProgressProps) => {
       <div className="w-[361px] h-1 bg-gray-200 rounded-full overflow-hidden">
         {/* 실제 채워지는 게이지 */}
         <div
-          className="h-full bg-gradient-to-r from-emerald-400 to-green-400 transition-all duration-500 ease-out"
+          className="h-full bg-green-gradient transition-all duration-500 ease-out"
           style={{ width: `${progressWidth}%` }}
         />
       </div>

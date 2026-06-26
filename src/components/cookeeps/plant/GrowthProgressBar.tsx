@@ -14,10 +14,10 @@ export default function GrowthProgressBar({
 
   return (
     <div className="w-full h-[34px] flex items-center">
-      <div className="relative w-full h-[12px] bg-[#EBEBEB] rounded-full">
+      <div className="relative w-full h-[12px] bg-(--color-gray-10) rounded-full">
         {/* 진행 바 */}
         <div
-          className="h-full rounded-full bg-gradient-to-r from-(--color-green) to-[#1FBE6E]"
+          className="h-full rounded-full bg-green-gradient"
           style={{ width: `${percent}%` }}
         />
 

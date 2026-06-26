@@ -60,7 +60,7 @@ export default function GuestPage() {
                    inline-flex py-2 px-[22px]
                    items-center justify-center gap-[8px]
                    rounded-full bg-[rgba(235,235,235,0.8)]
-                   text-[#7D7D7D] text-[14px] font-medium"
+                   text-(--color-gray-50) text-[14px] font-medium"
       >
         메인으로 돌아가기
       </button>

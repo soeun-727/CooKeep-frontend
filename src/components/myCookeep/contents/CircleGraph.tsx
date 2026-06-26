@@ -12,20 +12,6 @@ export default function CircleGraph({ percentage }: { percentage: number }) {
         viewBox="0 0 94 94"
         style={{ transform: "rotate(125deg)" }}
       >
-        <defs>
-          <linearGradient
-            id="circleGradient"
-            x1="0%"
-            y1="0%"
-            x2="0%"
-            y2="100%"
-            gradientTransform="rotate(-125, 0.5, 0.5)"
-          >
-            <stop offset="0%" stopColor="#34d399" />
-            <stop offset="100%" stopColor="#22c55e" />
-          </linearGradient>
-        </defs>
-
         {/* 배경 원 (비어있는 가이드 라인) */}
         <circle
           cx="47"
@@ -34,7 +20,7 @@ export default function CircleGraph({ percentage }: { percentage: number }) {
           stroke="#F4F4F5"
           strokeWidth="8"
           fill="transparent"
-          strokeDasharray={`${openCircumference} ${circumference}`} // 75%만 보여줌
+          strokeDasharray={`${openCircumference} ${circumference}`}
           strokeLinecap="round"
         />
 
@@ -43,7 +29,7 @@ export default function CircleGraph({ percentage }: { percentage: number }) {
           cx="47"
           cy="47"
           r={radius}
-          stroke="url(#circleGradient)"
+          stroke="var(--background-image-green-gradient)"
           strokeWidth="8"
           fill="transparent"
           strokeDasharray={circumference}
@@ -53,7 +39,7 @@ export default function CircleGraph({ percentage }: { percentage: number }) {
         />
       </svg>
 
-      {/* 중앙 텍스트 (회전되지 않도록 별도 div 배치) */}
+      {/* 중앙 텍스트 */}
       <div className="absolute flex flex-col items-center">
         <span className="typo-h2 text-neutral-900">{percentage}%</span>
       </div>

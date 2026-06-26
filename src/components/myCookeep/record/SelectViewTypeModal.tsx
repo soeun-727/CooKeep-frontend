@@ -25,7 +25,7 @@ export default function SelectViewTypeModal({
         </p>
 
         {/* Text */}
-        <p className="typo-body2 text-center text-[#7D7D7D]">
+        <p className="typo-body2 text-center text-(--color-gray-50)">
           상태를 변경할까요?
         </p>
 
@@ -43,7 +43,7 @@ export default function SelectViewTypeModal({
           {/* 취소(아니오) */}
           <button
             onClick={onCancel}
-            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#C3C3C3]"
+            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-(--color-gray-30)"
           >
             <span className="text-[14px] font-semibold leading-[24px] text-white">
               아니오

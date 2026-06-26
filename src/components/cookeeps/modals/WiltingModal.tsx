@@ -22,7 +22,7 @@ export default function WiltingModal({ plant, isOpen, onClose }: Props) {
       >
         {/* content */}
         <div className="w-full flex flex-col items-center gap-7">
-          <p className="typo-body text-[#202020] text-center whitespace-pre-line">
+          <p className="typo-body text-(--color-gray-80) text-center whitespace-pre-line">
             <span className="text-(--color-green-deep)">{plant} </span>
             이/가 시들고 있어요
             {"\n"}

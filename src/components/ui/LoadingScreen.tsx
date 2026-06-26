@@ -12,7 +12,7 @@ export default function LoadingScreen() {
             className="w-[110.375px] h-[91px]"
           />
 
-          <p className="text-[#7D7D7D] text-center text-[12px] leading-[16px] font-medium">
+          <p className="text-(--color-gray-50) text-center text-[12px] leading-[16px] font-medium">
             로딩중... 잠시만 기다려주세요!
           </p>
         </div>

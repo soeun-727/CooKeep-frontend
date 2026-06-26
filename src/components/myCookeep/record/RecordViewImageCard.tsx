@@ -92,7 +92,7 @@ export default function RecordViewImageCard({
                         // setShowImageOptions(false);
                         setIsDeleteModalOpen(true); // 🔥 바로 삭제 X → 모달
                       }}
-                      className="flex-1 h-[44px] rounded-[10px] bg-[#C3C3C3] text-white text-[14px] font-semibold"
+                      className="flex-1 h-[44px] rounded-[10px] bg-(--color-gray-30) text-white text-[14px] font-semibold"
                     >
                       삭제
                     </button>
@@ -152,7 +152,7 @@ export default function RecordViewImageCard({
                 placeholder={title}
               />
             ) : (
-              <h2 className="flex-1 text-[#202020] text-[18px] font-semibold leading-[26px]">
+              <h2 className="flex-1 text-(--color-gray-80) text-[18px] font-semibold leading-[26px]">
                 {title}
               </h2>
             )}
@@ -168,7 +168,7 @@ export default function RecordViewImageCard({
             className="w-[254px] bg-white rounded-[10px] px-[28px] py-[25px] flex flex-col items-center gap-4"
             onClick={(e) => e.stopPropagation()}
           >
-            <p className="text-[#202020] text-[14px] font-medium text-center">
+            <p className="text-(--color-gray-80) text-[14px] font-medium text-center">
               사진을 삭제할까요?
             </p>
 
@@ -178,14 +178,14 @@ export default function RecordViewImageCard({
                   onImageDelete?.();
                   setIsDeleteModalOpen(false);
                 }}
-                className="flex-1 h-[44px] rounded-[10px] bg-[#202020] text-white font-semibold"
+                className="flex-1 h-[44px] rounded-[10px] bg-(--color-gray-80) text-white font-semibold"
               >
                 네
               </button>
 
               <button
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="flex-1 h-[44px] rounded-[10px] bg-[#C3C3C3] text-white font-semibold"
+                className="flex-1 h-[44px] rounded-[10px] bg-(--color-gray-30) text-white font-semibold"
               >
                 아니오
               </button>

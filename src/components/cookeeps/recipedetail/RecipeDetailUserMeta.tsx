@@ -37,7 +37,7 @@ export default function RecipeDetailUserMeta({
   px-3
   gap-1
   rounded-full
-  bg-[#202020]
+  bg-(--color-gray-80)
 "
       >
         <span className="text-(--color-green) text-[12px] font-medium">

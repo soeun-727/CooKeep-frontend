@@ -175,7 +175,7 @@ export default function Guide({ onNext }: Props) {
           </div>
         </div>
 
-        <div className="absolute bottom-0 w-full h-56 bg-gradient-to-b from-white/0 to-white pointer-events-none z-10" />
+        <div className="absolute bottom-0 w-full h-56 bg-blur-to-b pointer-events-none z-10" />
 
         {/* 버튼 */}
         <div

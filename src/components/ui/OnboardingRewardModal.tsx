@@ -31,7 +31,7 @@ const OnboardingRewardModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
                 쿠키 1개
               </div>
 
-              <div className="text-center text-[14px] font-medium leading-[20px] text-[#202020]">
+              <div className="text-center text-[14px] font-medium leading-[20px] text-(--color-gray-80)">
                 {title}
                 <br />
                 쿠키 선물이 도착했어요

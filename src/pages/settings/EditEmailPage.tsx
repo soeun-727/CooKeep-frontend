@@ -146,7 +146,7 @@ export default function EditEmailPage() {
                 onClick={handleSendCode}
                 disabled={!isEmailValid || isSending}
                 className={`w-[102px] h-[24px] rounded-full typo-caption text-white
-                  ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"}`}
+                  ${isEmailValid ? "bg-(--color-gray-80)" : "bg-(--color-gray-30)"}`}
               >
                 {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
               </button>
@@ -186,7 +186,7 @@ export default function EditEmailPage() {
         <button
           type="button"
           onClick={() => setModalType("help")} // 이제 동작함
-          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
+          className="mt-6 w-[361px] typo-caption text-(--color-gray-50) text-center underline cursor-pointer bg-transparent"
         >
           인증 번호가 발송되지 않나요?
         </button>

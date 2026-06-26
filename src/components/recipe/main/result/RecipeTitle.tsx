@@ -51,7 +51,7 @@ export default function RecipeTitle({ name }: Props) {
 
       {/* 레시피 이름 */}
       <h2
-        className="flex-1 text-[18px] font-semibold leading-[26px] text-[#202020]"
+        className="flex-1 text-[18px] font-semibold leading-[26px] text-(--color-gray-80)"
         style={{ flex: "1 0 0" }}
       >
         {name}

@@ -35,11 +35,11 @@ const Button: React.FC<ButtonProps> = ({
   `;
 
   const variantStyles = {
-    black: "bg-[#111111] text-white",
+    black: "bg-(--color-gray-100) text-white",
     green: "bg-(--color-green) text-white",
   };
 
-  const disabledStyle = "bg-[#C3C3C3] text-white cursor-not-allowed";
+  const disabledStyle = "bg-(--color-gray-30) text-white cursor-not-allowed";
 
   return (
     <button

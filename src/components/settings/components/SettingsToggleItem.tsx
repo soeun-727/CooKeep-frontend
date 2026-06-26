@@ -13,7 +13,7 @@ export default function SettingsToggleItem({
 }: SettingsToggleItemProps) {
   return (
     <div className="flex items-center justify-between w-full px-3">
-      <span className="typo-body text-[#202020]">{label}</span>
+      <span className="typo-body text-(--color-gray-80)">{label}</span>
 
       <button
         onClick={() => onChange(!checked)}

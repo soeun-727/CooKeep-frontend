@@ -281,7 +281,7 @@ export default function RecordWritePage() {
               onChange={(e) => setMemo(e.target.value.slice(0, 500))}
               onInput={handleMemoInput}
               placeholder="글자 수 최대 500자"
-              className="w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-[#202020] placeholder:text-[#7D7D7D] resize-none outline-none overflow-hidden"
+              className="w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-(--color-gray-80) placeholder:text-(--color-gray-50) resize-none outline-none overflow-hidden"
               rows={1}
             />
           </div>
@@ -303,7 +303,7 @@ export default function RecordWritePage() {
             <div className="flex justify-center gap-[9px] w-full">
               <button
                 onClick={() => setIsPublic(false)}
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-(--color-green-light)" : "bg-[#EBEBEB]"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-(--color-green-light)" : "bg-(--color-gray-10)"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img
@@ -312,12 +312,14 @@ export default function RecordWritePage() {
                     className="h-[24px] w-[24px]"
                   />
                 </div>
-                <span className="typo-label text-[#202020]">나만 보기</span>
+                <span className="typo-label text-(--color-gray-80)">
+                  나만 보기
+                </span>
               </button>
 
               <button
                 onClick={() => setIsPublic(true)}
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-(--color-green-light)" : "bg-[#EBEBEB]"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-(--color-green-light)" : "bg-(--color-gray-10)"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img
@@ -326,7 +328,7 @@ export default function RecordWritePage() {
                     className="h-[36px] w-[36px]"
                   />
                 </div>
-                <span className="typo-label text-[#202020]">
+                <span className="typo-label text-(--color-gray-80)">
                   쿠킵스에 공개하기
                 </span>
               </button>

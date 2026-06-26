@@ -148,20 +148,20 @@ function RecordCard({ record: initialRecord }: Props) {
             w-full
             px-4
             rounded-[10px]
-            bg-[#EBEBEB]
+            bg-(--color-gray-10)
             cursor-pointer
           "
             onClick={() =>
               navigate(`/mycookeep/record/${record.dailyRecipeId}`)
             }
           >
-            <span className="text-[#202020] text-[16px] font-bold leading-[24px] text-center line-clamp-2">
+            <span className="text-(--color-gray-80) text-[16px] font-bold leading-[24px] text-center line-clamp-2">
               {record.title}
             </span>
           </div>
 
           {/* <button
-            className="w-[77px] h-[30px] text-[#7D7D7D] text-[14px] font-medium"
+            className="w-[77px] h-[30px] text-(--color-gray-50) text-[14px] font-medium"
             onClick={() =>
               navigate(`/mycookeep/record/${record.dailyRecipeId}`)
             }

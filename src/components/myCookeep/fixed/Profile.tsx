@@ -91,7 +91,7 @@ function Profile() {
     : "목표를 설정해주세요";
   if (!profile) {
     return (
-      <div className="w-full h-[260px] bg-gradient-to-b from-(--color-green) to-(--color-green-deep) rounded-b-[36px] animate-pulse" />
+      <div className="w-full h-[260px] bg-green-gradient rounded-b-[36px] animate-pulse" />
     );
   }
   const goalId = currentGoalEntry ? currentGoalEntry[0] : "cook";

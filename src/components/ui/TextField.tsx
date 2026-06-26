@@ -56,7 +56,7 @@ const TextField = ({
     rounded-[6px]
     px-3 py-2
     bg-white
-    text-[#202020] 
+    text-(--color-gray-80) 
     font-['Pretendard'] text-sm leading-5
     placeholder:font-medium
     placeholder:text-stone-300
@@ -66,9 +66,9 @@ const TextField = ({
         ${rightIcon ? "pr-10" : ""}
     ${
       errorMessage
-        ? "border-[#D91F1F]"
+        ? "border-(--color-semantic-negative)"
         : successMessage
-          ? "border-[#1FA43C]"
+          ? "border-(--color-semantic-positive)"
           : "border-[#DDDDDD]"
     }
   `}
@@ -90,9 +90,9 @@ const TextField = ({
     min-h-[14px]
     ${
       errorMessage
-        ? "text-[#D91F1F]"
+        ? "text-(--color-semantic-negative)"
         : successMessage
-          ? "text-[#1FA43C]"
+          ? "text-(--color-semantic-positive)"
           : "text-transparent"
     }
   `}

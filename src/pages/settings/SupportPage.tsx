@@ -22,7 +22,7 @@ export default function SupportPage() {
             무엇을 도와드릴까요?
           </h2>
 
-          <p className="typo-body2 text-[#7D7D7D]">
+          <p className="typo-body2 text-(--color-gray-50)">
             아래 카카오톡 채널로 문의사항을 전송해 주시면
             <br />
             순차적으로 확인 후 안내드릴게요
@@ -36,7 +36,7 @@ export default function SupportPage() {
     flex items-center justify-center
     h-[56px]
     rounded-[10px]
-    bg-[#202020]
+    bg-(--color-gray-80)
     typo-body
     text-[white]
   "
@@ -45,7 +45,7 @@ export default function SupportPage() {
         </button>
 
         {/* 운영 시간 안내 */}
-        <p className="-mt-[23px] typo-caption text-[#7D7D7D]">
+        <p className="-mt-[23px] typo-caption text-(--color-gray-50)">
           운영 시간: 평일 10:00–18:00 (주말·공휴일 제외)
           <br />
           영업일 기준 2–3일 이내에 답변드려요

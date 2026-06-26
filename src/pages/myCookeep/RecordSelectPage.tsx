@@ -51,7 +51,7 @@ export default function RecordSelectPage() {
         rounded-[6px]
         cursor-pointer
         transition
-        ${isSelected ? "bg-[#EBEBEB]" : ""}
+        ${isSelected ? "bg-(--color-gray-10)" : ""}
       `}
       >
         {/* 왼쪽: 좋아요 + 제목 */}
@@ -66,7 +66,7 @@ export default function RecordSelectPage() {
     flex-1
     truncate
     typo-body2
-    ${isSelected ? "text-(--color-green-deep)" : "text-[#202020]"}
+    ${isSelected ? "text-(--color-green-deep)" : "text-(--color-gray-80)"}
   `}
           >
             {recipe.title}
@@ -102,7 +102,7 @@ export default function RecordSelectPage() {
           bg-transparent
           outline-none
           typo-body2
-          text-[#7D7D7D]
+          text-(--color-gray-50)
         "
             />
             <img src={searchIcon} alt="검색" className="w-6 h-6 shrink-0" />
@@ -112,7 +112,7 @@ export default function RecordSelectPage() {
 
       <div className="w-full px-4 mt-7">
         <div className="mx-auto max-w-[361px] flex justify-center">
-          <div className="h-[28px] px-2 rounded-[6px] bg-[#202020] flex items-center">
+          <div className="h-[28px] px-2 rounded-[6px] bg-(--color-gray-80) flex items-center">
             <span className="typo-caption text-white">
               내가 요리한 레시피들이에요
             </span>

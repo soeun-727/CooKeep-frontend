@@ -27,7 +27,7 @@ export default function ConfirmModal({
           {/* 확인(아니오) */}
           <button
             onClick={onConfirm}
-            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#202020]"
+            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-(--color-gray-80)"
           >
             <span className="text-[14px] font-semibold leading-[24px] text-white">
               네
@@ -36,7 +36,7 @@ export default function ConfirmModal({
           {/* 취소(아니오) */}
           <button
             onClick={onCancel}
-            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#C3C3C3]"
+            className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-(--color-gray-30)"
           >
             <span className="text-[14px] font-semibold leading-[24px] text-white">
               아니오

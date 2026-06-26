@@ -15,11 +15,11 @@ export default function RecipeDetailMemo({ userName, memo }: Props) {
           bg-white
         "
       >
-        <span className="text-[#7D7D7D] text-[16px] font-semibold whitespace-nowrap">
+        <span className="text-(--color-gray-50) text-[16px] font-semibold whitespace-nowrap">
           {userName}
         </span>
 
-        <span className="text-[#7D7D7D] text-[16px] font-semibold whitespace-pre-wrap break-words w-full text-center">
+        <span className="text-(--color-gray-50) text-[16px] font-semibold whitespace-pre-wrap break-words w-full text-center">
           “{memo}”
         </span>
       </div>

@@ -18,7 +18,7 @@
 //     //     const isListItem = trimmed.startsWith("-"); // 목록 여부
 //     //     const isGray50 = trimmed.includes(gray50Text); // Gray-50 여부
 
-//     //     const colorClass = isGray50 ? "text-[#7D7D7D]" : "text-[#202020]";
+//     //     const colorClass = isGray50 ? "text-(--color-gray-50)" : "text-(--color-gray-80)";
 
 //     //     return (
 //     //       <p
@@ -36,7 +36,7 @@
 //         const isListItem = trimmed.startsWith("-");
 //         const isGray50 = trimmed.includes(gray50Text);
 
-//         const colorClass = isGray50 ? "text-[#7D7D7D]" : "text-[#202020]";
+//         const colorClass = isGray50 ? "text-(--color-gray-50)" : "text-(--color-gray-80)";
 //         const marginBottom = isListItem ? "mb-[2px]" : "mb-[6px]"; // 목록은 좁게
 
 //         return (
@@ -85,7 +85,9 @@ export default function NoticeItem({ title, content }: Props) {
         const isGray =
           graySentence.includes(trimmed) && title === "서비스 소개";
 
-        const colorClass = isGray ? "text-[#7D7D7D]" : "text-[#202020]";
+        const colorClass = isGray
+          ? "text-(--color-gray-50)"
+          : "text-(--color-gray-80)";
 
         return (
           <p

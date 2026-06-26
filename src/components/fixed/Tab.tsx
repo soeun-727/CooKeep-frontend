@@ -22,7 +22,7 @@ const Tab: React.FC<TabProps> = ({
       }`}
     >
       {isSelected && (
-        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-emerald-400 to-green-500" />
+        <div className="absolute top-0 left-0 w-full h-[2px] bg-green-gradient" />
       )}
       <img
         className="w-[25px] h-[25px]"
@@ -31,7 +31,7 @@ const Tab: React.FC<TabProps> = ({
       />
       <span
         className={`font-semibold font-["Pretendard"] text-[10px] leading-3 tracking-[0.1px] text-center ${
-          isSelected ? "text-[#202020]" : "text-stone-300"
+          isSelected ? "text-(--color-gray-80)" : "text-stone-300"
         }`}
       >
         {title}

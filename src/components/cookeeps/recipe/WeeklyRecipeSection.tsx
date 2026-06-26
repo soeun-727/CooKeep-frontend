@@ -56,7 +56,7 @@ function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
 
         {isEmpty && (
           <div className="absolute inset-0 flex justify-center items-center rounded-md bg-white/80">
-            <p className="text-center text-[#202020] text-[16px] font-semibold leading-[24px]">
+            <p className="text-center text-(--color-gray-80) text-[16px] font-semibold leading-[24px]">
               아직 등록된 레시피가 없어요
               <br />
               이번 주 첫 레시피를 등록해보세요!

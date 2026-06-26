@@ -12,7 +12,7 @@ export default function StepMessage({ message, icon }: StepMessageProps) {
       }}
     >
       <img src={icon} className="w-6 h-6" alt="check" />
-      <span className="flex-1 text-[#202020] font-medium text-sm leading-5 text-left">
+      <span className="flex-1 text-(--color-gray-80) font-medium text-sm leading-5 text-left">
         {message}
       </span>
     </div>

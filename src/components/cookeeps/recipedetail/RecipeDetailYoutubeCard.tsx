@@ -37,7 +37,7 @@ export default function RecipeDetailYoutube({ videos, tags = [] }: Props) {
       >
         {/* 텍스트 */}
         <div className="flex flex-col flex-1 items-start gap-1">
-          <span className="text-[#7D7D7D] text-[14px] font-medium leading-[20px]">
+          <span className="text-(--color-gray-50) text-[14px] font-medium leading-[20px]">
             비슷한 레시피 영상 참고하기
           </span>
         </div>

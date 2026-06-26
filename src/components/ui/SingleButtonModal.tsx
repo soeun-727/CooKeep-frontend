@@ -33,7 +33,7 @@ export default function SingleButtonModal({
             className="
               self-stretch
               text-center
-              text-[#202020]
+              text-(--color-gray-80)
               typo-body2
             "
           >

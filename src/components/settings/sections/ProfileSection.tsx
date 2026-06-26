@@ -78,12 +78,12 @@ export default function ProfileSection({ profile }: Props) {
       <div className="flex flex-col gap-[22px]">
         {/* ===== 닉네임 (inline edit) ===== */}
         <div className="flex flex-col h-20 gap-2 w-full relative">
-          <span className="typo-body text-[#202020] px-3">닉네임</span>
+          <span className="typo-body text-(--color-gray-80) px-3">닉네임</span>
 
           <div
             className={`
             flex items-center justify-between w-full h-[44px] px-3 border rounded-[6px] transition-colors
-            ${isNicknameError ? "border-[#D91F1F]" : "border-[#DDD]"}
+            ${isNicknameError ? "border-(--color-semantic-negative)" : "border-[#DDD]"}
           `}
           >
             {isEditingNickname ? (
@@ -102,7 +102,7 @@ export default function ProfileSection({ profile }: Props) {
                     w-45
                     outline-none
                     typo-body2
-                    text-[#202020]
+                    text-(--color-gray-80)
                   "
                 />
                 <button
@@ -113,7 +113,7 @@ export default function ProfileSection({ profile }: Props) {
                     px-[18px]
                     py-1
                     rounded-full
-                    bg-[#202020]
+                    bg-(--color-gray-80)
                     text-white
                     typo-caption
                     font-medium
@@ -135,7 +135,7 @@ export default function ProfileSection({ profile }: Props) {
                     px-[18px]
                     py-1
                     rounded-full
-                    bg-[#202020]
+                    bg-(--color-gray-80)
                     text-white
                     typo-caption
                     font-medium
@@ -151,14 +151,14 @@ export default function ProfileSection({ profile }: Props) {
               <>
                 {/* 1. 글자 수 초과 에러 */}
                 {isNicknameError && (
-                  <span className="text-[#D91F1F] typo-caption leading-0">
+                  <span className="text-(--color-semantic-negative) typo-caption leading-0">
                     {MAX_NICKNAME_LENGTH}글자 이내로 설정해주세요
                   </span>
                 )}
 
                 {/* 2. 빈 값 에러 (추가) */}
                 {!account.nickname.trim() && (
-                  <span className="text-[#D91F1F] typo-caption leading-0">
+                  <span className="text-(--color-semantic-negative) typo-caption leading-0">
                     닉네임을 입력해주세요
                   </span>
                 )}

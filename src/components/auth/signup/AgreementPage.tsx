@@ -71,7 +71,7 @@ export default function AgreementPage({
             <span className="text-sm font-medium">{agreement.label}</span>
           </div>
 
-          <div className="mx-auto w-[332px] border-t-[1.5px] border-[#C3C3C3]" />
+          <div className="mx-auto w-[332px] border-t-[1.5px] border-(--color-gray-30)" />
 
           {/* 약관 전문만 스크롤 */}
           <div className="flex-1 overflow-y-auto p-3 min-h-0 no-scrollbar">
@@ -79,25 +79,25 @@ export default function AgreementPage({
               remarkPlugins={[remarkGfm]}
               components={{
                 h2: ({ children }) => (
-                  <h2 className="typo-body2 text-[#202020] mt-2 mb-2">
+                  <h2 className="typo-body2 text-(--color-gray-80) mt-2 mb-2">
                     {children}
                   </h2>
                 ),
 
                 p: ({ children }) => (
-                  <p className="typo-body2 text-[#7D7D7D] mb-[6px]">
+                  <p className="typo-body2 text-(--color-gray-50) mb-[6px]">
                     {children}
                   </p>
                 ),
 
                 li: ({ children }) => (
-                  <li className="typo-body2 text-[#7D7D7D] ml-4 list-disc">
+                  <li className="typo-body2 text-(--color-gray-50) ml-4 list-disc">
                     {children}
                   </li>
                 ),
 
                 strong: ({ children }) => (
-                  <strong className="typo-body2 font-medium text-[#D91F1F]">
+                  <strong className="typo-body2 font-medium text-(--color-semantic-negative)">
                     {children}
                   </strong>
                 ),
@@ -113,19 +113,19 @@ export default function AgreementPage({
                 tr: ({ children }) => <tr>{children}</tr>,
 
                 th: ({ children }) => (
-                  <th className="typo-caption text-[#7D7D7D] text-center px-[16.5px] py-[6px] border border-[#D1D1D1] bg-white">
+                  <th className="typo-caption text-(--color-gray-50) text-center px-[16.5px] py-[6px] border border-[#D1D1D1] bg-white">
                     {children}
                   </th>
                 ),
                 td: ({ children }) => (
-                  <td className="typo-caption text-[#7D7D7D] text-center px-[16.5px] py-[6px] border border-[#D1D1D1] bg-white">
+                  <td className="typo-caption text-(--color-gray-50) text-center px-[16.5px] py-[6px] border border-[#D1D1D1] bg-white">
                     {children}
                   </td>
                 ),
                 a: ({ children, href }) => (
                   <a
                     href={href}
-                    className="underline text-[#7D7D7D] typo-body2"
+                    className="underline text-(--color-gray-50) typo-body2"
                   >
                     {children}
                   </a>

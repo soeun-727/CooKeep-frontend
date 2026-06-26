@@ -53,7 +53,7 @@ export default function NoticePage() {
             <NoticeCategoryItem key={notice.id} category={notice} />
           ))
         )}
-        <p className="pt-[2px] text-center typo-label text-[#202020]">
+        <p className="pt-[2px] text-center typo-label text-(--color-gray-80)">
           오늘 한 끼부터, 쿠킵으로 이어가볼까요?
         </p>
       </main>

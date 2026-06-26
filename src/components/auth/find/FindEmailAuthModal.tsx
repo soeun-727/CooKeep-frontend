@@ -68,7 +68,7 @@ const FindEmailAuthModal = ({
           />
         )}
 
-        <p className="text-[14px] font-medium text-center leading-[20px] text-[#111111]">
+        <p className="text-[14px] font-medium text-center leading-[20px] text-(--color-gray-100)">
           {isSend && "인증번호가 발송되었어요"}
           {isVerify && "인증에 성공하셨습니다"}
           {isNotRegistered && (
@@ -94,13 +94,13 @@ const FindEmailAuthModal = ({
         </p>
 
         {isVerify && email && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">
+          <p className="text-[12px] text-(--color-gray-50) text-center">
             {maskEmail(email)}
           </p>
         )}
 
         {isHelp && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">
+          <p className="text-[12px] text-(--color-gray-50) text-center">
             문제가 지속되나요?
           </p>
         )}
@@ -112,7 +112,7 @@ const FindEmailAuthModal = ({
           }
           className={`!h-[38px] ${
             isHelp
-              ? "!w-[200px] !bg-[#202020]"
+              ? "!w-[200px] !bg-(--color-gray-80)"
               : "!w-[184px] !bg-(--color-green)"
           }`}
         >
