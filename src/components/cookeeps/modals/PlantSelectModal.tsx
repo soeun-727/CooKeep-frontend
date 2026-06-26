@@ -8,11 +8,11 @@ interface PlantSelectModalProps {
   harvestedPlantNames: string[];
 }
 
-const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
+export default function PlantSelectModal({
   isOpen,
   onConfirm,
   harvestedPlantNames,
-}) => {
+}: PlantSelectModalProps) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   // 모달이 열릴 때마다 선택 초기화
@@ -70,7 +70,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                 }`}
                 >
                   <img
-                    src={plant.img} // 이게 제일 깔끔
+                    src={plant.img}
                     alt={plant.text}
                     className="w-[48px] h-[48px]"
                     loading="lazy"
@@ -106,6 +106,4 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
       </div>
     </div>
   );
-};
-
-export default PlantSelectModal;
+}
