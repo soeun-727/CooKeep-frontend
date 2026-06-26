@@ -81,54 +81,6 @@ export default function RecordWritePage() {
     alwaysKeepResolution: false,
   };
 
-  // const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const files = e.target.files;
-  //   if (!files || files.length === 0 || isUploading) return;
-
-  //   const file = files[0];
-
-  //   // 초고용량 방어
-  //   if (file.size > 15 * 1024 * 1024) {
-  //     alert("이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.");
-  //     return;
-  //   }
-
-  //   setIsUploading(true);
-
-  //   try {
-  //     // 1️⃣ 이미지 압축
-  //     const compressedBlob = await imageCompression(file, compressionOptions);
-
-  //     const compressedFile = new File([compressedBlob], file.name, {
-  //       type: compressedBlob.type,
-  //     });
-
-  //     // 2️⃣ 새 이미지 업로드
-  //     const response = await uploadImage(compressedFile);
-  //     const newUrl = response.data.imageUrl;
-
-  //     // 3️⃣ 기존 이미지 삭제 (업로드 성공 후!)
-  //     if (image?.url) {
-  //       try {
-  //         await deleteImage(image.url);
-  //       } catch (err) {
-  //         console.warn("기존 이미지 삭제 실패 (무시)", err);
-  //       }
-  //     }
-
-  //     // 4️⃣ 스토어 교체
-  //     setImage({ url: newUrl });
-  //   } catch (error) {
-  //     console.error("이미지 업로드 에러:", error);
-  //     alert("이미지 업로드 중 오류가 발생했습니다.");
-  //   } finally {
-  //     setIsUploading(false);
-  //     if (e.target) e.target.value = "";
-  //   }
-  // };
-
-  // RecordWritePage.tsx
-
   const handleUpload = async () => {
     if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
       alert("레시피 정보가 로드되지 않았습니다.");
@@ -153,24 +105,17 @@ export default function RecordWritePage() {
           String(response.status) === "200" ||
           response.status === "OK")
       ) {
-        // 핵심: navigate 전에 ref를 true로 설정
-        // isUploadedRef.current = true;
-
         const rewards: string[] = [];
-        // 우선순위 A-3: 주간 목표 달성 (먼저 큐에 넣기)
         if (response.data?.weeklyGoalAchieved) {
           rewards.push("WEEKLY_GOAL");
         }
-        // 우선순위 C-1: 레시피 기록 보상 (항상)
         rewards.push("RECIPE_RECORD");
-        // 우선순위 C-2: 사진 있으면 추가
         if (image?.url) {
           rewards.push("PHOTO_UPLOAD");
         }
 
         setRewardQueue(rewards);
         setIsSuccess(true);
-        // isUploadedRef.current = true; ← 여기서 아래로 올렸음
       } else {
         alert("업로드에 실패했습니다.");
       }
@@ -207,7 +152,6 @@ export default function RecordWritePage() {
               title={title}
               imageSrc={image?.url}
               onImageChange={async (file) => {
-                // onClickAddImage 대신
                 if (file.size > 15 * 1024 * 1024) {
                   alert(
                     "이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.",
@@ -225,13 +169,6 @@ export default function RecordWritePage() {
                   });
                   const response = await uploadImage(compressedFile);
                   const newUrl = response.data.imageUrl;
-                  // if (image?.url) {
-                  //   try {
-                  //     await deleteImage(image.url);
-                  //   } catch (err) {
-                  //     console.warn("기존 이미지 삭제 실패", err);
-                  //   }
-                  // }
                   setImage({ url: newUrl });
                 } catch {
                   alert("이미지 업로드 중 오류가 발생했습니다.");
@@ -241,13 +178,6 @@ export default function RecordWritePage() {
               }}
               onChangeTitle={setTitle}
               onDeleteImage={async () => {
-                // if (image?.url) {
-                //   try {
-                //     await deleteImage(image.url);
-                //   } catch (err) {
-                //     console.warn("이미지 삭제 실패", err);
-                //   }
-                // }
                 setImage(null);
               }}
             />

@@ -10,7 +10,7 @@ interface Props {
 
 export default function Calendar({ onDateClick }: Props) {
   const [viewDate, setViewDate] = useState(new Date());
-  const [apiRecords, setApiRecords] = useState<Record<string, string>>({}); // 🚀 서버 데이터를 담을 상태
+  const [apiRecords, setApiRecords] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
   const year = viewDate.getFullYear();

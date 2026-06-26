@@ -10,7 +10,7 @@ interface DoublecheckModalProps {
   confirmText?: string;
   cancelText?: string;
   variant?: "black" | "green" | "singular";
-  closeOnOverlayClick?: boolean; // 🚀 배경 클릭 시 닫을지 여부 선택 옵션
+  closeOnOverlayClick?: boolean;
 }
 
 const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
