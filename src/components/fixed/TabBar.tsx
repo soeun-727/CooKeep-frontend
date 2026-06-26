@@ -16,6 +16,7 @@ interface TabBarProps {
 
 export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   const navigate = useNavigate();
+
   const handleSelect = (name: string) => {
     onSelect(name);
 
@@ -37,7 +38,7 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-150 mx-auto w-full max-w-[450px] bg-gray-0 border-t border-gray-100 pb-[env(safe-area-inset-bottom)]">
+    <nav className="fixed bottom-0 left-0 right-0 z-[150] mx-auto w-full max-w-[450px] bg-gray-0 border-t border-gray-0 pb-sab shadow-sm">
       <div className="h-14 flex justify-around items-center">
         {tabs.map((tab) => (
           <Tab

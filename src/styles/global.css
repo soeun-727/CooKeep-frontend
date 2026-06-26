@@ -17,10 +17,17 @@
   --color-semantic-positive: #1fa43c;
   --color-semantic-negative: #d91f1f;
 
-  --background-image-blur-to-b: linear-to-b, transparent, #ffffff;
-  --background-image-blur-to-t: linear-to-b, #ffffff, transparent;
-  --background-image-green-gradient: linear-to-b, #34d399, #22c55e;
-
+  --background-image-blur-to-b: linear-gradient(
+    to bottom,
+    transparent,
+    #fafafa
+  );
+  --background-image-blur-to-t: linear-gradient(to top, transparent, #fafafa);
+  --background-image-green-gradient: linear-gradient(
+    to bottom,
+    #34d399,
+    #22c55e
+  );
   --font-sans:
     "Pretendard Variable", "Pretendard", ui-sans-serif, system-ui,
     -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;

@@ -5,6 +5,7 @@ interface TabProps {
   isSelected?: boolean;
   onClick?: () => void;
 }
+
 const Tab: React.FC<TabProps> = ({
   image,
   selectedImage,
@@ -15,23 +16,23 @@ const Tab: React.FC<TabProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`relative gap-[2px] flex flex-1 flex-col items-center justify-center transition-all h-14 ${
-        isSelected
-          ? "bg-gray-0 shadow-[inset_0_0_2px_0_rgba(17,17,17,0.1)]"
-          : "bg-gray-0 border-t-transparent"
+      className={`relative gap-[2px] flex flex-1 flex-col items-center justify-center transition-all h-14 bg-gray-0 ${
+        isSelected ? "shadow-[inset_0_0_2px_0_rgba(17,17,17,0.1)]" : ""
       }`}
     >
       {isSelected && (
         <div className="absolute top-0 left-0 w-full h-[2px] bg-green-gradient" />
       )}
+
       <img
         className="w-[25px] h-[25px]"
         src={isSelected ? selectedImage : image}
         alt={title}
       />
+
       <span
-        className={`font-semibold font-["Pretendard"] text-[10px] leading-3 tracking-[0.1px] text-center ${
-          isSelected ? "text-gray-80" : "text-stone-300"
+        className={`font-semibold text-[10px] leading-3 tracking-[0.1px] text-center ${
+          isSelected ? "text-gray-80" : "text-gray-30"
         }`}
       >
         {title}
