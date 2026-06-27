@@ -1,10 +1,10 @@
 // src/pages/settings/components/FaqItem.tsx
-type Props = {
+interface FaqItemProps {
   question: string;
   answer: string | React.ReactNode;
-};
+}
 
-export default function FaqItem({ question, answer }: Props) {
+export default function FaqItem({ question, answer }: FaqItemProps) {
   return (
     <div className="flex flex-col gap-[6px]">
       <p className="typo-label text-[#202020]">Q. {question}</p>
