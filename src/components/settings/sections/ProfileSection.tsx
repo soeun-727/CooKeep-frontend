@@ -1,6 +1,6 @@
 // src/pages/settings/sections/ProfileSection.tsx
 import { useEffect, useRef, useState } from "react";
-import SettingsInputItem from "../components/SettingsInputItem";
+import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
 import axios from "axios";
 import { MyProfileResponse, updateNickname } from "@/api/user";
 import SingleButtonModal from "@/components/ui/SingleButtonModal";

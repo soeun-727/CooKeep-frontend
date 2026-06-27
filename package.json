@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
+    "migrate-paths": "node migrate-paths.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
@@ -37,6 +38,7 @@
     "globals": "^16.5.0",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "replace-in-file": "^8.4.0",
     "svgo": "^4.0.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",

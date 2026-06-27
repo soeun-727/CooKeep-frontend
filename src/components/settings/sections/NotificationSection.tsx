@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SettingsToggleItem from "../components/SettingsToggleItem";
+import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
 import ConfirmModal from "@/components/ui/ConfirmModal";
 import { updateMarketingPush } from "@/api/user";
 import { registerPushNotification, unsubscribePush } from "@/api/push";

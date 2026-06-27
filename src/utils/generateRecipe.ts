@@ -1,5 +1,5 @@
 import type { Ingredient } from "@/stores/useIngredientStore";
-// import type { Difficulty } from "../stores/useRecipeFlowStore";
+// import type { Difficulty } from "@/stores/useRecipeFlowStore";
 import type { Recipe } from "@/types/recipe";
 import { MOCK_RECIPES } from "@/constants/mockRecipes";
 
