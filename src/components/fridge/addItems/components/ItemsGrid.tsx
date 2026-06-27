@@ -1,12 +1,9 @@
 import Item from "./Item";
-import character from "../../../../assets/character/confused_char.svg";
-import {
-  AddSourceItem,
-  useAddIngredientStore,
-} from "../../../../stores/useAddIngredientStore";
-import { deleteCustomIngredient } from "../../../../api/ingredient";
+import character from "@assets/character/confused_char.svg";
+import { AddSourceItem, useAddIngredientStore } from "@stores/useAddIngredientStore";
+import { deleteCustomIngredient } from "@api/ingredient";
 import { useState } from "react";
-import DeleteConfirmModal from "../../modals/DeleteConfirmModal";
+import DeleteConfirmModal from @/componentsmodals/DeleteConfirmModal";
 import { AxiosError } from "axios";
 
 interface ItemsGridProps {

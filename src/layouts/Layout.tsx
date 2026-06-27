@@ -1,9 +1,9 @@
 // src/components/layout/Layout.tsx
 import { Outlet, useLocation } from "react-router-dom";
-import TabBar from "../components/fixed/TabBar";
+import TabBar from "@components/fixed/TabBar";
 import { useState, useEffect } from "react";
-import { useIngredientStore } from "../stores/useIngredientStore";
-import { useRecipeFlowStore } from "../stores/useRecipeFlowStore";
+import { useIngredientStore } from "@stores/useIngredientStore";
+import { useRecipeFlowStore } from "@stores/useRecipeFlowStore";
 
 export default function Layout() {
   const location = useLocation();

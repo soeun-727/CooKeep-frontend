@@ -1,6 +1,6 @@
 // src/components/headers/ViewListHeader.tsx
-import { searchIcon, like, bookmark } from "../../../assets";
-import TextField from "../../ui/TextField";
+import { searchIcon, like, bookmark } from "@assets";
+import TextField from "@/components/ui/TextField";
 
 interface Props {
   searchTerm: string;

@@ -1,9 +1,9 @@
-import { mainLogo, confetti } from "../../assets";
-import chars from "../../assets/onboarding/Frame 781.svg";
+import { mainLogo, confetti } from "@assets";
+import chars from "@assets/onboarding/Frame 781.svg";
 import { useNavigate } from "react-router-dom";
-import Line from "../../assets/login/Horizontal-Line.png";
-import Kakao from "../../assets/login/Kakao.svg";
-import Google from "../../assets/login/Google.svg";
+import Line from "@assets/login/Horizontal-Line.png";
+import Kakao from "@assets/login/Kakao.svg";
+import Google from "@assets/login/Google.svg";
 
 const CHAR = [chars];
 const INFINITE_CHAR = [...CHAR, ...CHAR];

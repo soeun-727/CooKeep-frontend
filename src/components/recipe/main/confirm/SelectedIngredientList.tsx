@@ -1,4 +1,4 @@
-import type { Ingredient } from "../../../../stores/useIngredientStore";
+import type { Ingredient } from "@stores/useIngredientStore";
 
 interface Props {
   ingredients: Ingredient[];

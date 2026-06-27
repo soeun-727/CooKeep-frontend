@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../../ui/Button";
+import Button from "@/components/ui/Button";
 import RecentlyAdded from "./components/RecentlyAdded";
 import Selected from "./components/Selected";
-import { useAddIngredientStore } from "../../../stores/useAddIngredientStore";
-import { getIngredientPreview } from "../../../api/ingredient";
+import { useAddIngredientStore } from "@stores/useAddIngredientStore";
+import { getIngredientPreview } from "@api/ingredient";
 import { useState } from "react";
 
 export default function AddItemFooter() {

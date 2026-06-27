@@ -1,4 +1,4 @@
-import sortIcon from "../../../assets/fridge/sort.svg";
+import sortIcon from "@assets/fridge/sort.svg";
 
 interface SortProps {
   currentOrder: string;

@@ -1,7 +1,7 @@
 import RecipeRankCard from "./RecipeRankCard";
 import RecipeFilterButtons from "./RecipeFilterButtons";
-import { RecipeRankItem } from "../../../api/cookeeps";
-import tempImage from "../../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
+import { RecipeRankItem } from "@api/cookeeps";
+import tempImage from "@assets/cookeeps/main/temp_recipe_cookeeps.svg";
 import { memo } from "react";
 interface WeeklyRecipeSectionProps {
   topRecipes: RecipeRankItem[];

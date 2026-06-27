@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import fridgeIcon from "../../../../../assets/fridge/addItem/fridge.svg";
-import freezerIcon from "../../../../../assets/fridge/addItem/freezer.svg";
-import pantryIcon from "../../../../../assets/fridge/addItem/pantry.svg";
-import fridgeSelected from "../../../../../assets/fridge/addItem/fridge_selected.svg";
-import freezerSelected from "../../../../../assets/fridge/addItem/freezer_selected.svg";
-import pantrySelected from "../../../../../assets/fridge/addItem/pantry_selected.svg";
-import { getKoreanStorage } from "../../../../../utils/mapping";
+import fridgeIcon from "@assets/fridge/addItem/fridge.svg";
+import freezerIcon from "@assets/fridge/addItem/freezer.svg";
+import pantryIcon from "@assets/fridge/addItem/pantry.svg";
+import fridgeSelected from "@assets/fridge/addItem/fridge_selected.svg";
+import freezerSelected from "@assets/fridge/addItem/freezer_selected.svg";
+import pantrySelected from "@assets/fridge/addItem/pantry_selected.svg";
+import { getKoreanStorage } from "@utils/mapping";
 
 interface StorageEditorProps {
   value: string;

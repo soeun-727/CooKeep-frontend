@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import { useIngredientStore } from "../../stores/useIngredientStore";
+import { useIngredientStore } from "@stores/useIngredientStore";
 
-import MainHeader from "../../components/fixed/MainHeader";
-import AddButton from "../../components/fridge/addItems/components/AddButton";
-import FridgeTab from "../../components/fridge/main/FridgeTab";
+import MainHeader from "@components/fixed/MainHeader";
+import AddButton from "@components/fridge/addItems/components/AddButton";
+import FridgeTab from "@components/fridge/main/FridgeTab";
 
 export default function FridgePage() {
   const location = useLocation();

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { sendPasswordChangeCode, verifyPasswordChangeCode } from "../api/user";
+import { sendPasswordChangeCode, verifyPasswordChangeCode } from "@api/user";
 
 interface EditPasswordAuthState {
   email: string;

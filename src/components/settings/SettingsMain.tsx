@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import ProfileSection from "./sections/ProfileSection";
 import NotificationSection from "./sections/NotificationSection";
 import SupportSection from "./sections/SupportSection";
-import logoutIcon from "../../assets/settings/logout.svg";
-import ConfirmModal from "../ui/ConfirmModal";
-import { getMyProfile, MyProfileResponse } from "../../api/user";
-import { useAuthStore } from "../../stores/useAuthStore";
-import { loadingChar } from "../../assets";
-import { unsubscribePush } from "../../api/push";
+import logoutIcon from "@assets/settings/logout.svg";
+import ConfirmModal from @/componentsConfirmModal";
+import { getMyProfile, MyProfileResponse } from "@api/user";
+import { useAuthStore } from "@stores/useAuthStore";
+import { loadingChar } from "@assets";
+import { unsubscribePush } from "@api/push";
 
 export default function SettingsMain() {
   const navigate = useNavigate();

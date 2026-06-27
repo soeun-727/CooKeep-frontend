@@ -1,9 +1,9 @@
 import { useParams } from "react-router-dom";
-import { useRecipeStore } from "../../../../stores/useRecipeStore";
-import tempIcon from "../../../../assets/mycookeep/record/fork_knife_plate.svg";
-import unlikedIcon from "../../../../assets/recipe/unliked.svg";
-import likedIcon from "../../../../assets/recipe/liked.svg";
-import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
+import { useRecipeStore } from "@stores/useRecipeStore";
+import tempIcon from "@assets/mycookeep/record/fork_knife_plate.svg";
+import unlikedIcon from "@assets/recipe/unliked.svg";
+import likedIcon from "@assets/recipe/liked.svg";
+import { useRecipeFlowStore } from "@stores/useRecipeFlowStore";
 
 interface Props {
   name: string;

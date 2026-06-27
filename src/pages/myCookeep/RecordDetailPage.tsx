@@ -1,24 +1,18 @@
 import { useNavigate, useParams } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import RecipeRecordContentSection from "../../components/myCookeep/record/RecipeRecordContentSection";
-import RecipeDetailYoutube from "../../components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import privateIcon from "../../assets/mycookeep/record/private_icon.svg";
-import publicIcon from "../../assets/mycookeep/record/public_icon.svg";
-import optionIcon from "../../assets/mycookeep/record/options.svg";
-import RecordViewImageCard from "../../components/myCookeep/record/RecordViewImageCard";
+import BackHeader from "@components/ui/BackHeader";
+import RecipeRecordContentSection from "@components/myCookeep/record/RecipeRecordContentSection";
+import RecipeDetailYoutube from "@components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import privateIcon from "@assets/mycookeep/record/private_icon.svg";
+import publicIcon from "@assets/mycookeep/record/public_icon.svg";
+import optionIcon from "@assets/mycookeep/record/options.svg";
+import RecordViewImageCard from "@components/myCookeep/record/RecordViewImageCard";
 import { useEffect, useState } from "react";
-import {
-  deleteDailyRecipe,
-  getMyRecipeDetail,
-  MyRecipeDetail,
-  updateDailyRecipe,
-  updateRecipeVisibility,
-} from "../../api/myRecipe";
-import Button from "../../components/ui/Button";
-import DoublecheckModal from "../../components/ui/DoublecheckModal";
-import { uploadImage } from "../../api/image";
+import { deleteDailyRecipe, getMyRecipeDetail, MyRecipeDetail, updateDailyRecipe, updateRecipeVisibility } from "@api/myRecipe";
+import Button from "@components/ui/Button";
+import DoublecheckModal from "@components/ui/DoublecheckModal";
+import { uploadImage } from "@api/image";
 import imageCompression from "browser-image-compression";
-import PhotoRewardModal from "../../components/myCookeep/record/PhotoRewardModal";
+import PhotoRewardModal from "@components/myCookeep/record/PhotoRewardModal";
 
 export default function RecordDetailPage() {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import icon from "../../../assets/onboarding/appIcon.svg";
+import icon from "@assets/onboarding/appIcon.svg";
 
 interface Props {
   title: string;

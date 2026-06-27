@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import nextIcon from "../../../assets/fridge/addItem/forward.svg";
-import prevIcon from "../../../assets/fridge/addItem/backward.svg";
-import todaySign from "../../../assets/mycookeep/today.svg";
-import { CalendarRecipe, getCalendarRecipes } from "../../../api/myRecipe";
+import nextIcon from "@assets/fridge/addItem/forward.svg";
+import prevIcon from "@assets/fridge/addItem/backward.svg";
+import todaySign from "@assets/mycookeep/today.svg";
+import { CalendarRecipe, getCalendarRecipes } from "@api/myRecipe";
 
 interface Props {
   onDateClick: (date: string) => void;

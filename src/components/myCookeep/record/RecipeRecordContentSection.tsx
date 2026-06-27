@@ -1,6 +1,6 @@
-import { IngredientsJson } from "../../../api/dailyAiRecipe";
-import RecipeDetailIngredientSection from "../../cookeeps/recipedetail/RecipeDetailIngredientSection";
-import RecipeDetailStepSection from "../../cookeeps/recipedetail/RecipeDetailStepSection";
+import { IngredientsJson } from "@api/dailyAiRecipe";
+import RecipeDetailIngredientSection from @/componentscookeeps/recipedetail/RecipeDetailIngredientSection";
+import RecipeDetailStepSection from @/componentscookeeps/recipedetail/RecipeDetailStepSection";
 
 interface Props {
   recipe: {

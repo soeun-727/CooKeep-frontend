@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
+import { useRecipeFlowStore } from "@stores/useRecipeFlowStore";
 
 interface Props {
   retryCount: number;

@@ -1,13 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useAddIngredientStore } from "../../../../stores/useAddIngredientStore";
-import editIcon from "../../../../assets/recipe/rename.svg";
-import { CATEGORY_ID_TO_SERVER_KEY } from "../../../../constants/category";
-import { DEFAULT_EXPIRY_DAYS } from "../../../../constants/expiry";
-import {
-  registerCustomIngredient,
-  type CategoryType,
-  type CustomIngredientRequest,
-} from "../../../../api/ingredient";
+import { useAddIngredientStore } from "@stores/useAddIngredientStore";
+import editIcon from "@assets/recipe/rename.svg";
+import { CATEGORY_ID_TO_SERVER_KEY } from "@constants/category";
+import { DEFAULT_EXPIRY_DAYS } from "@constants/expiry";
+import { registerCustomIngredient, type CategoryType, type CustomIngredientRequest } from "@api/ingredient";
 
 interface CustomProps {
   isOpen: boolean;

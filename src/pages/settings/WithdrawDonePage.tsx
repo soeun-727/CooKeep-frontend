@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import Button from "../../components/ui/Button";
-import checkImg from "../../assets/signup/check.svg";
+import Button from "@components/ui/Button";
+import checkImg from "@assets/signup/check.svg";
 import { useEffect } from "react";
 
 export default function WithdrawDonePage() {

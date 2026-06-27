@@ -1,5 +1,5 @@
-import tempRecipeImage from "../../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
-import tempIcon from "../../../assets/recipe/main/temp_recipe_title.svg";
+import tempRecipeImage from "@assets/cookeeps/main/temp_recipe_cookeeps.svg";
+import tempIcon from "@assets/recipe/main/temp_recipe_title.svg";
 
 interface Props {
   images?: string[];

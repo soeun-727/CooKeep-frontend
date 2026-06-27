@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { PLANT_DATA } from "../../../constants/plantData";
-import Button from "../../ui/Button";
+import { PLANT_DATA } from "@constants/plantData";
+import Button from "@/components/ui/Button";
 
 interface PlantSelectModalProps {
   isOpen: boolean;

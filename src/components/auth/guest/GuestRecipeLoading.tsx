@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import CheckIcon from "../../../assets/recipe/check.svg";
-import RecipeLoadingSpinner from "../../recipe/main/loading/RecipeLoadingSpinner";
-import StepMessage from "../../recipe/main/loading/StepMessage";
+import CheckIcon from "@assets/recipe/check.svg";
+import RecipeLoadingSpinner from @/componentsrecipe/main/loading/RecipeLoadingSpinner";
+import StepMessage from @/componentsrecipe/main/loading/StepMessage";
 
 interface RecipeLoadingUIProps {
   onComplete?: () => void;

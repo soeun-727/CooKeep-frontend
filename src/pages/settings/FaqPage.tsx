@@ -1,8 +1,8 @@
 // src/pages/settings/FaqPage.tsx
 import { useLocation, useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import { faqCategories } from "../../constants/faqData";
-import FaqCategoryItem from "../../components/settings/components/FaqCategoryItem";
+import BackHeader from "@components/ui/BackHeader";
+import { faqCategories } from "@constants/faqData";
+import FaqCategoryItem from "@components/settings/components/FaqCategoryItem";
 
 export default function FaqPage() {
   const navigate = useNavigate();

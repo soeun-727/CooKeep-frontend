@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import { useCookeepsStore } from "@stores/useCookeepsStore";
 import { EMPTY_PLANT_IMAGE, PLANT_IMAGES } from "./PlantImages";
-import { PLANT_NAME_TO_TYPE } from "../../../constants/plantTypeMap";
+import { PLANT_NAME_TO_TYPE } from "@constants/plantTypeMap";
 
 interface PlantImageProps {
   overridePlantStage?: 1 | 2 | 3 | 4;

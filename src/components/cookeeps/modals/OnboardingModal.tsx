@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Button from "../../ui/Button";
+import Button from "@/components/ui/Button";
 import {
   cookingChar,
   earth,
@@ -11,7 +11,7 @@ import {
   disabledRight,
   abledLeft,
   abledRight,
-} from "../../../assets";
+} from "@assets";
 
 interface Props {
   isOpen: boolean;

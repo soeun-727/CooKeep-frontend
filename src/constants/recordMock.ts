@@ -1,5 +1,5 @@
 // src/mocks/recordMock.ts
-import type { CookeepRecord } from "../types/record";
+import type { CookeepRecord } from "@types/record";
 
 export const MOCK_RECORDS: CookeepRecord[] = [
   {

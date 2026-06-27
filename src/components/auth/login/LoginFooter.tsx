@@ -1,4 +1,4 @@
-import line from "../../../assets/login/Line.png";
+import line from "@assets/login/Line.png";
 
 import { useNavigate } from "react-router-dom";
 

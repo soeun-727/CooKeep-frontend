@@ -1,5 +1,5 @@
 import api from "./axios";
-import type { GoalActionType } from "../utils/mapping";
+import type { GoalActionType } from "@utils/mapping";
 
 /** 타입 정의 */
 export interface UpdateGoalRequest {

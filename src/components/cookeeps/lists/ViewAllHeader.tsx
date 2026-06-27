@@ -1,7 +1,7 @@
 // src/components/headers/ViewAllHeader.tsx
 
-import { searchIcon } from "../../../assets";
-import TextField from "../../ui/TextField";
+import { searchIcon } from "@assets";
+import TextField from "@/components/ui/TextField";
 
 interface Props {
   searchTerm: string;

@@ -1,17 +1,17 @@
 import { useState } from "react";
-import TextField from "../../ui/TextField";
-import Button from "../../ui/Button";
-import { AGREEMENTS, AGREEMENT_NOTICE } from "../../../constants/agreements";
-import { useSignupStore } from "../../../stores/useSignupStore";
-import mailIcon from "../../../assets/signup/mail.svg";
-import pwIcon from "../../../assets/login/key.svg";
-import pwImage from "../../../assets/login/pw.svg";
-import openpwImage from "../../../assets/signup/openpw.svg";
-import checkIcon from "../../../assets/signup/check.svg";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
+import { AGREEMENTS, AGREEMENT_NOTICE } from "@constants/agreements";
+import { useSignupStore } from "@stores/useSignupStore";
+import mailIcon from "@assets/signup/mail.svg";
+import pwIcon from "@assets/login/key.svg";
+import pwImage from "@assets/login/pw.svg";
+import openpwImage from "@assets/signup/openpw.svg";
+import checkIcon from "@assets/signup/check.svg";
+import arrowIcon from "@assets/signup/arrowright.svg";
 import AgreementPage from "./AgreementPage";
-import type { AgreementItem } from "../../../constants/agreements";
-import { blankCheck, grayCheck, greenCheck } from "../../../assets";
+import type { AgreementItem } from "@constants/agreements";
+import { blankCheck, grayCheck, greenCheck } from "@assets";
 
 interface Agreements {
   terms: boolean;

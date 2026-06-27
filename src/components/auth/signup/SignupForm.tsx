@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import AccountSection from "./AccountSection";
 import SuccessSection from "./SuccessSection";
-import { useSignupStore } from "../../../stores/useSignupStore";
-import { signup } from "../../../api/auth";
-import { saveTokens } from "../../../utils/auth";
+import { useSignupStore } from "@stores/useSignupStore";
+import { signup } from "@api/auth";
+import { saveTokens } from "@utils/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { registerPushNotification } from "../../../api/push";
+import { registerPushNotification } from "@api/push";
 import EmailSection from "./EmailSection";
 import EmailAuthModal from "./EmailAuthModal";
 

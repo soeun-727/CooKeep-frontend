@@ -1,12 +1,12 @@
 import { useState } from "react";
-import eaten from "../../../assets/fridge/eaten.svg";
-import thrown from "../../../assets/fridge/thrown.svg";
-import { useIngredientStore } from "../../../stores/useIngredientStore";
-import DoublecheckModal from "../../ui/DoublecheckModal";
-import AlertModal from "../../ui/AlertModal";
+import eaten from "@assets/fridge/eaten.svg";
+import thrown from "@assets/fridge/thrown.svg";
+import { useIngredientStore } from "@stores/useIngredientStore";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
+import AlertModal from "@/components/ui/AlertModal";
 import { useNavigate } from "react-router-dom";
-import { useRecipeFlowStore } from "../../../stores/useRecipeFlowStore";
-import { useRewardStore } from "../../../stores/useRewardStore";
+import { useRecipeFlowStore } from "@stores/useRecipeFlowStore";
+import { useRewardStore } from "@stores/useRewardStore";
 
 export default function ItemOption() {
   const navigate = useNavigate();

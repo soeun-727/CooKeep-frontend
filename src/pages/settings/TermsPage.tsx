@@ -1,8 +1,8 @@
 // src/pages/settings/TermsPage.tsx
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import { AGREEMENT_NOTICE, AGREEMENTS } from "../../constants/agreements";
-import AgreementReadCard from "../../components/settings/components/AgreementReadCard";
+import BackHeader from "@components/ui/BackHeader";
+import { AGREEMENT_NOTICE, AGREEMENTS } from "@constants/agreements";
+import AgreementReadCard from "@components/settings/components/AgreementReadCard";
 
 export default function TermsPage() {
   const navigate = useNavigate();

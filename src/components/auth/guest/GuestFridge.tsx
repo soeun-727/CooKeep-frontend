@@ -1,21 +1,21 @@
-import { type Ingredient } from "../../../stores/useIngredientStore";
-import header from "../../../assets/guest/fridge_header.svg";
-import Storage from "../../fridge/main/Storage";
-import fridgeIcon from "../../../assets/fridge/fridge.svg";
-import freezerIcon from "../../../assets/fridge/freezer.svg";
-import pantryIcon from "../../../assets/fridge/pantry.svg";
-import strawberry from "../../../assets/guest/strawberry.svg";
-import egg from "../../../assets/guest/egg.svg";
-import noodles from "../../../assets/guest/noodles.svg";
-import bagel from "../../../assets/guest/bagel.svg";
-import banana from "../../../assets/guest/banana.svg";
-import milk from "../../../assets/guest/milk.svg";
-import FAB from "../../../assets/guest/fab.svg";
-import notice from "../../../assets/guest/fab_2.svg";
+import { type Ingredient } from "@stores/useIngredientStore";
+import header from "@assets/guest/fridge_header.svg";
+import Storage from @/componentsfridge/main/Storage";
+import fridgeIcon from "@assets/fridge/fridge.svg";
+import freezerIcon from "@assets/fridge/freezer.svg";
+import pantryIcon from "@assets/fridge/pantry.svg";
+import strawberry from "@assets/guest/strawberry.svg";
+import egg from "@assets/guest/egg.svg";
+import noodles from "@assets/guest/noodles.svg";
+import bagel from "@assets/guest/bagel.svg";
+import banana from "@assets/guest/banana.svg";
+import milk from "@assets/guest/milk.svg";
+import FAB from "@assets/guest/fab.svg";
+import notice from "@assets/guest/fab_2.svg";
 import { useState } from "react";
-import Button from "../../ui/Button";
-import FloatingNotice from "../../recipe/main/FloatingNotice";
-import Item from "../../fridge/items/Item";
+import Button from "@/components/ui/Button";
+import FloatingNotice from @/componentsrecipe/main/FloatingNotice";
+import Item from @/componentsfridge/items/Item";
 
 interface Props {
   onNext: () => void;

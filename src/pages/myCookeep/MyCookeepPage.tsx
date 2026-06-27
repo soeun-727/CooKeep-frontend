@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import MyCookeepTabBar from "../../components/myCookeep/fixed/MyCookeepTabBar";
-import Profile from "../../components/myCookeep/fixed/Profile";
-import Statistics from "../../components/myCookeep/contents/Statistics";
-import Calendar from "../../components/myCookeep/contents/Calendar";
-import RecordEntry from "../../components/myCookeep/record/RecordEntry";
-import AddMoreModal from "../../components/myCookeep/record/AddMoreModal";
-import { hasTodayRecord } from "../../utils/record";
-import RecordCard from "../../components/myCookeep/record/RecordCard";
-import { getDailyRecipesByDate } from "../../api/myRecipe";
-import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
-import { useCookeepsStore } from "../../stores/useCookeepsStore";
+import MyCookeepTabBar from "@components/myCookeep/fixed/MyCookeepTabBar";
+import Profile from "@components/myCookeep/fixed/Profile";
+import Statistics from "@components/myCookeep/contents/Statistics";
+import Calendar from "@components/myCookeep/contents/Calendar";
+import RecordEntry from "@components/myCookeep/record/RecordEntry";
+import AddMoreModal from "@components/myCookeep/record/AddMoreModal";
+import { hasTodayRecord } from "@utils/record";
+import RecordCard from "@components/myCookeep/record/RecordCard";
+import { getDailyRecipesByDate } from "@api/myRecipe";
+import { useCookeepRecordStore } from "@stores/useCookeepRecordStore";
+import { useCookeepsStore } from "@stores/useCookeepsStore";
 
 type TabType = "record" | "calendar" | "statistics";
 

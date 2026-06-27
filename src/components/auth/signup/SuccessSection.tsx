@@ -1,7 +1,7 @@
-import Button from "../../ui/Button";
-import char from "../../../assets/character/congrats_char.svg";
+import Button from "@/components/ui/Button";
+import char from "@assets/character/congrats_char.svg";
 import { useNavigate } from "react-router-dom";
-import { chatbox, lightbulb, shadow } from "../../../assets";
+import { chatbox, lightbulb, shadow } from "@assets";
 
 export default function SuccessSection() {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import loadingChar from "../../assets/character/char_loading.svg";
+import loadingChar from "@assets/character/char_loading.svg";
 
 export default function LoadingScreen() {
   return (

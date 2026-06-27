@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "../../ui/Button";
-import BackHeader from "../../ui/BackHeader";
-import type { AgreementItem } from "../../../constants/agreements";
+import Button from "@/components/ui/Button";
+import BackHeader from "@/components/ui/BackHeader";
+import type { AgreementItem } from "@constants/agreements";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { blankCheck, grayCheck } from "../../../assets";
+import { blankCheck, grayCheck } from "@assets";
 interface Agreements {
   terms: boolean;
   privacy: boolean;

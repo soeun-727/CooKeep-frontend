@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken, clearTokens } from "../utils/auth";
+import { getAccessToken, clearTokens } from "@utils/auth";
 import { refreshAccessToken } from "../api/auth.api";
 
 const api = axios.create({

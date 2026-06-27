@@ -1,6 +1,6 @@
 // components/recipe/main/RecipeHeader.tsx
 import { useState } from "react";
-import menuIcon from "../../../assets/recipe/main/menu.svg";
+import menuIcon from "@assets/recipe/main/menu.svg";
 import Sidebar from "../sidebar/SideBar";
 
 interface RecipeHeaderProps {

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import TextField from "../../ui/TextField";
-import Button from "../../ui/Button";
-import { useEditPasswordAuthStore } from "../../../stores/useEditPasswordAuthStore";
-import { getMyProfile } from "../../../api/user";
-import FindEmailAuthModal from "../../auth/find/FindEmailAuthModal";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
+import { useEditPasswordAuthStore } from "@stores/useEditPasswordAuthStore";
+import { getMyProfile } from "@api/user";
+import FindEmailAuthModal from @/componentsauth/find/FindEmailAuthModal";
 
 export default function EditPasswordEmailSection() {
   const navigate = useNavigate();

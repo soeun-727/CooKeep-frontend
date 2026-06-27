@@ -1,9 +1,9 @@
 import { memo } from "react";
-import { WateringRankItem } from "../../../api/cookeeps";
+import { WateringRankItem } from "@api/cookeeps";
 import RankingCard from "./RankingCard";
-import plantBefore from "../../../assets/cookeeps/plant/plant_before.svg";
-import thinkingChar from "../../../assets/character/thinking_char.svg";
-import { plantChar } from "../../../assets";
+import plantBefore from "@assets/cookeeps/plant/plant_before.svg";
+import thinkingChar from "@assets/character/thinking_char.svg";
+import { plantChar } from "@assets";
 
 interface WeeklyTop3SectionProps {
   users: WateringRankItem[];

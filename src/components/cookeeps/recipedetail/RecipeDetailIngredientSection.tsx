@@ -1,4 +1,4 @@
-import { Ingredient, IngredientsJson } from "../../../api/dailyAiRecipe";
+import { Ingredient, IngredientsJson } from "@api/dailyAiRecipe";
 
 interface Props {
   ingredients: IngredientsJson;

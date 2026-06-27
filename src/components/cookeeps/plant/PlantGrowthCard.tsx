@@ -1,11 +1,11 @@
 import WaterButton from "./WaterButton";
-import RefreshIcon from "../../../assets/cookeeps/main/refresh_cookeeps.svg";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import RefreshIcon from "@assets/cookeeps/main/refresh_cookeeps.svg";
+import { useCookeepsStore } from "@stores/useCookeepsStore";
 import GrowthProgressBar from "./GrowthProgressBar";
-import { PLANT_NAME_KR } from "../../../constants/plantNames";
+import { PLANT_NAME_KR } from "@constants/plantNames";
 import { useEffect } from "react";
 import { preloadNextStage } from "./preloadPlantImages";
-import { PLANT_NAME_TO_TYPE } from "../../../constants/plantTypeMap";
+import { PLANT_NAME_TO_TYPE } from "@constants/plantTypeMap";
 
 interface PlantGrowthCardProps {
   onWaterSuccess?: () => void;

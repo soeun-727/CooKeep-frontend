@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { OnboardingIngredient } from "../api/onboarding"; // 정의해둔 타입 임포트
+import { OnboardingIngredient } from "@api/onboarding"; // 정의해둔 타입 임포트
 
 interface OnboardingStore {
   selectedGoal: { id: string; title: string };

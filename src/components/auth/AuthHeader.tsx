@@ -1,6 +1,6 @@
 // src/components/auth/AuthHeader.tsx
 import { useNavigate } from "react-router-dom";
-import { mainLogo } from "../../assets";
+import { mainLogo } from "@assets";
 
 const AuthHeader = () => {
   const navigate = useNavigate();

@@ -1,10 +1,10 @@
-import TextField from "../../ui/TextField";
-import mailIcon from "../../../assets/signup/mail.svg";
-import pwIcon from "../../../assets/login/key.svg";
-import pwImage from "../../../assets/login/pw.svg";
-import openpwImage from "../../../assets/login/openpw.svg";
-import Button from "../../ui/Button";
-import { useAuthStore } from "../../../stores/useAuthStore";
+import TextField from "@/components/ui/TextField";
+import mailIcon from "@assets/signup/mail.svg";
+import pwIcon from "@assets/login/key.svg";
+import pwImage from "@assets/login/pw.svg";
+import openpwImage from "@assets/login/openpw.svg";
+import Button from "@/components/ui/Button";
+import { useAuthStore } from "@stores/useAuthStore";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 

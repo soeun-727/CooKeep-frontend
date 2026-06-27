@@ -1,7 +1,7 @@
-import header from "../../../assets/guest/back_header.svg";
-import contents from "../../../assets/guest/recipe_header.svg";
-import DifficultySelector from "../../recipe/main/confirm/DifficultySelector";
-import Button from "../../ui/Button";
+import header from "@assets/guest/back_header.svg";
+import contents from "@assets/guest/recipe_header.svg";
+import DifficultySelector from @/componentsrecipe/main/confirm/DifficultySelector";
+import Button from "@/components/ui/Button";
 
 interface Props {
   onNext: () => void;

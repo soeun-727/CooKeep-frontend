@@ -1,5 +1,5 @@
-import CautionIcon from "../../../assets/signup/icon_caution.svg";
-import Button from "../../ui/Button";
+import CautionIcon from "@assets/signup/icon_caution.svg";
+import Button from "@/components/ui/Button";
 
 export type FindEmailAuthModalType =
   | "send"

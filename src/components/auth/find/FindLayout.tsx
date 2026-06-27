@@ -1,6 +1,6 @@
 // src/components/auth/find/FindLayout.tsx
 import { Outlet, useNavigate } from "react-router-dom";
-import BackHeader from "../../ui/BackHeader";
+import BackHeader from "@/components/ui/BackHeader";
 
 export default function FindLayout() {
   const navigate = useNavigate();

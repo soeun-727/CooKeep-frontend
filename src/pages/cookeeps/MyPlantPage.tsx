@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import { useCookeepsStore } from "../../stores/useCookeepsStore";
-import { PLANT_DATA } from "../../constants/plantData";
+import BackHeader from "@components/ui/BackHeader";
+import { useCookeepsStore } from "@stores/useCookeepsStore";
+import { PLANT_DATA } from "@constants/plantData";
 
 export default function MyPlantPage() {
   const navigate = useNavigate();

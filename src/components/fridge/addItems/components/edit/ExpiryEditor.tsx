@@ -1,6 +1,6 @@
 import { useState } from "react";
-import nextIcon from "../../../../../assets/fridge/addItem/forward.svg";
-import prevIcon from "../../../../../assets/fridge/addItem/backward.svg";
+import nextIcon from "@assets/fridge/addItem/forward.svg";
+import prevIcon from "@assets/fridge/addItem/backward.svg";
 
 interface ExpiryEditorProps {
   value: string; // "2026.01.20" 형식

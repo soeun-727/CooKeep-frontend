@@ -1,11 +1,4 @@
-import {
-  calendar,
-  calendarOn,
-  record,
-  recordOn,
-  stats,
-  statsOn,
-} from "../../../assets";
+import { calendar, calendarOn, record, recordOn, stats, statsOn } from "@assets";
 
 interface Props {
   activeTab: string;

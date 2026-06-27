@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import SettingsToggleItem from "../components/SettingsToggleItem";
-import ConfirmModal from "../../ui/ConfirmModal";
-import { updateMarketingPush } from "../../../api/user";
-import { registerPushNotification, unsubscribePush } from "../../../api/push";
+import ConfirmModal from "@/components/ui/ConfirmModal";
+import { updateMarketingPush } from "@api/user";
+import { registerPushNotification, unsubscribePush } from "@api/push";
 
 type Props = {
   marketingPush: boolean;

@@ -1,4 +1,4 @@
-import { likeGray } from "../../../assets";
+import { likeGray } from "@assets";
 
 interface ItemProps {
   rank: number;

@@ -1,7 +1,4 @@
-import {
-  useIngredientStore,
-  type Ingredient,
-} from "../../../stores/useIngredientStore";
+import { useIngredientStore, type Ingredient } from "@stores/useIngredientStore";
 import Item from "./Item";
 
 export default function IngredientGrid({ items }: { items: Ingredient[] }) {

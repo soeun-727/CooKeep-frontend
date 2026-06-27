@@ -1,13 +1,9 @@
 // src/stores/useRecipeFlowStore.ts
 import { create } from "zustand";
 import type { Ingredient } from "./useIngredientStore";
-import type { AiRecipeResponse, Difficulty } from "../types/aiRecipe";
-import {
-  completeAiRecipe,
-  generateAiRecipe,
-  retryAiRecipe,
-} from "../api/aiRecipe";
-import { getAiSessionDetail } from "../api/aiSession";
+import type { AiRecipeResponse, Difficulty } from "@types/aiRecipe";
+import { completeAiRecipe, generateAiRecipe, retryAiRecipe } from "@api/aiRecipe";
+import { getAiSessionDetail } from "@api/aiSession";
 import { useRewardStore } from "./useRewardStore";
 import type { RewardType } from "./useRewardStore";
 

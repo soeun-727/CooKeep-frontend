@@ -1,22 +1,10 @@
 // src/stores/useCookeepsStore.ts
 import { create } from "zustand";
-import {
-  deleteMyPlant,
-  getGrowingPlant,
-  getMyPlants,
-  registerMyPlant,
-  reviveMyPlant,
-  setProfileMyPlant,
-  waterMyPlant,
-  type RegisterResponseData,
-} from "../api/myPlants";
-import type { MyPlant } from "../types/myPlant";
-import {
-  PLANT_ID_TO_NAME,
-  PLANT_NAME_TO_TYPE,
-} from "../constants/plantTypeMap";
-import { getMyCookies } from "../api/cookies";
-import type { ApiResponse } from "../api/types";
+import { deleteMyPlant, getGrowingPlant, getMyPlants, registerMyPlant, reviveMyPlant, setProfileMyPlant, waterMyPlant, type RegisterResponseData } from "@api/myPlants";
+import type { MyPlant } from "@types/myPlant";
+import { PLANT_ID_TO_NAME, PLANT_NAME_TO_TYPE } from "@constants/plantTypeMap";
+import { getMyCookies } from "@api/cookies";
+import type { ApiResponse } from "@api/types";
 
 export type PlantType =
   | "apple"

@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import RecipeTitle from "../../recipe/main/result/RecipeTitle";
-import RecipeContentSection from "../../recipe/main/result/RecipeContentSection";
-import RecipeYoutubeCard from "../../recipe/main/result/RecipeYoutubeCard";
-import notice from "../../../assets/guest/recipe_notice.svg";
-import OnboardingRewardModal from "../../ui/OnboardingRewardModal";
+import RecipeTitle from @/componentsrecipe/main/result/RecipeTitle";
+import RecipeContentSection from @/componentsrecipe/main/result/RecipeContentSection";
+import RecipeYoutubeCard from @/componentsrecipe/main/result/RecipeYoutubeCard";
+import notice from "@assets/guest/recipe_notice.svg";
+import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
 
 interface GuestRecipeResultProps {
   onNext: () => void;

@@ -1,4 +1,4 @@
-import temp from "../assets/temporary-image.png";
+import temp from "@assets/temporary-image.png";
 
 export interface RankItem {
   id: number;

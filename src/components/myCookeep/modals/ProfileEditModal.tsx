@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Button from "../../ui/Button";
-import { currentIcon, groundImg } from "../../../assets";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import Button from "@/components/ui/Button";
+import { currentIcon, groundImg } from "@assets";
+import { useCookeepsStore } from "@stores/useCookeepsStore";
 
 interface Props {
   isOpen: boolean;

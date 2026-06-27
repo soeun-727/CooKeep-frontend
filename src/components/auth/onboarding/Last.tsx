@@ -1,6 +1,6 @@
 //온보딩 완료
-import { calendarImage, checkChar, shadow } from "../../../assets";
-import Button from "../../ui/Button";
+import { calendarImage, checkChar, shadow } from "@assets";
+import Button from "@/components/ui/Button";
 
 interface LastProps {
   onStart: () => void;
