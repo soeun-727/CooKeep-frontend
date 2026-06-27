@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import deleteIcon from "../../../../assets/recipe/delete.svg";
 
 interface ItemProps {
@@ -47,4 +47,4 @@ function Item({
   );
 }
 
-export default React.memo(Item);
+export default memo(Item);

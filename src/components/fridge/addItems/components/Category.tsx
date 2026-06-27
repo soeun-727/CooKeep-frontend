@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 
 interface CategoryProps {
   image: string;
@@ -29,4 +29,4 @@ function Category({
   );
 }
 
-export default React.memo(Category);
+export default memo(Category);

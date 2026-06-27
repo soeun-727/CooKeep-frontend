@@ -15,7 +15,7 @@ interface TextFieldProps {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-const TextField = ({
+export default function TextField({
   label,
   value,
   placeholder,
@@ -28,7 +28,7 @@ const TextField = ({
   rightIcon,
   autoComplete,
   onBlur,
-}: TextFieldProps) => {
+}: TextFieldProps) {
   return (
     <div className="w-[361px]">
       {label && (
@@ -101,6 +101,4 @@ const TextField = ({
       </p>
     </div>
   );
-};
-
-export default TextField;
+}
