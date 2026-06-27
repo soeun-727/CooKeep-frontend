@@ -46,8 +46,8 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-70 h-44 bg-white rounded-[10px] shadow-xl flex flex-col items-center px-7 pt-[35px] pb-[25px]">
-        <div className="w-full flex items-center justify-center gap-1 mb-4">
+      <div className="relative flex h-44 w-70 flex-col items-center rounded-[10px] bg-white px-7 pt-[35px] pb-[25px] shadow-xl">
+        <div className="mb-4 flex w-full items-center justify-center gap-1">
           {isEditing ? (
             <input
               ref={inputRef}
@@ -57,36 +57,35 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
               onBlur={() => setIsEditing(false)}
               onKeyDown={handleKeyDown}
               placeholder="직접 입력"
-              className="typo-body w-[180px] text-center font-bold text-neutral-900 border-b border-zinc-300 outline-none"
+              className="typo-body w-[180px] border-b border-zinc-300 text-center font-bold text-neutral-900 outline-none"
             />
           ) : (
-            <div className="flex items-center justify-center gap-1 group">
-              <h2 className="typo-body max-w-[180px] text-center font-bold text-neutral-900 break-all truncate">
+            <div className="group flex items-center justify-center gap-1">
+              <h2 className="typo-body max-w-[180px] truncate text-center font-bold break-all text-neutral-900">
                 {inputValue || "직접 입력"}
               </h2>
               <button
                 onClick={() => setIsEditing(true)}
-                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                className="rounded-full p-1 transition-colors hover:bg-gray-100"
               >
-                <img src={editIcon} alt="edit" className="w-3 h-3" />
+                <img src={editIcon} alt="edit" className="h-3 w-3" />
               </button>
             </div>
           )}
         </div>
 
-        <p className="text-[12px] text-zinc-500 mb-4 leading-none text-center">
+        <p className="mb-4 text-center text-[12px] leading-none text-zinc-500">
           재료명을 입력하세요
         </p>
 
         <button
           onClick={handleConfirm}
           disabled={!inputValue.trim() || isLoading}
-          className={`typo-label w-full h-11 text-white rounded-[10px] transition-colors
-            ${
-              inputValue.trim() && !isLoading
-                ? "bg-[var(--color-green)]"
-                : "bg-zinc-300 cursor-not-allowed"
-            }`}
+          className={`typo-label h-11 w-full rounded-[10px] text-white transition-colors ${
+            inputValue.trim() && !isLoading
+              ? "bg-[var(--color-green)]"
+              : "cursor-not-allowed bg-zinc-300"
+          }`}
         >
           추가
         </button>

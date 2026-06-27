@@ -45,7 +45,7 @@ const FindEmailAuthModal = ({
         onClick={onConfirm} // 배경 클릭 시 닫히게 하고 싶으면 유지
       />
       <div
-        className="fixed z-[110] left-1/2 -translate-x-1/2 bg-white rounded-[10px]"
+        className="fixed left-1/2 z-[110] -translate-x-1/2 rounded-[10px] bg-white"
         style={{
           top: isHelp ? 308 : isSend ? 359 : 343,
           width: isHelp ? 256 : 240,
@@ -64,11 +64,11 @@ const FindEmailAuthModal = ({
           <img
             src={CautionIcon}
             alt="주의"
-            className="mb-2 w-[20px] h-[20px]"
+            className="mb-2 h-[20px] w-[20px]"
           />
         )}
 
-        <p className="text-[14px] font-medium text-center leading-[20px] text-[#111111]">
+        <p className="text-center text-[14px] leading-[20px] font-medium text-[#111111]">
           {isSend && "인증번호가 발송되었어요"}
           {isVerify && "인증에 성공하셨습니다"}
           {isNotRegistered && (
@@ -94,13 +94,13 @@ const FindEmailAuthModal = ({
         </p>
 
         {isVerify && email && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">
+          <p className="text-center text-[12px] text-[#7D7D7D]">
             {maskEmail(email)}
           </p>
         )}
 
         {isHelp && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">
+          <p className="text-center text-[12px] text-[#7D7D7D]">
             문제가 지속되나요?
           </p>
         )}

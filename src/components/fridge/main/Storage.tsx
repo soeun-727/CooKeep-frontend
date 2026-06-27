@@ -2,7 +2,10 @@ import plus from "@assets/fridge/plus.svg";
 import plusDisabled from "@assets/fridge/plusDisabled.svg";
 import Item from "../items/Item";
 import character from "@assets/character/clear_char.svg";
-import { useIngredientStore, type Ingredient } from "@stores/useIngredientStore";
+import {
+  useIngredientStore,
+  type Ingredient,
+} from "@stores/useIngredientStore";
 interface StorageIngredient extends Ingredient {
   className?: string; // 기존 Ingredient에 className이 있을 수도 있다고 알려줌
 }
@@ -33,39 +36,39 @@ export default function Storage({
   const pages = chunk(ingredients, 3);
 
   return (
-    <div className="relative w-full min-h-[173px] z-0">
+    <div className="relative z-0 min-h-[173px] w-full">
       {/* 배경 레이어 */}
-      <div className="absolute inset-0 -z-10 flex flex-col overflow-hidden pointer-events-none">
-        <div className="w-full h-[115px] rounded-t-[36px] bg-[#E3EBE6]" />
-        <div className="flex flex-col relative w-full bg-[#75D99F] h-12">
-          <div className="absolute inset-0 flex gap-[6px] items-start justify-center mt-[7px]">
+      <div className="pointer-events-none absolute inset-0 -z-10 flex flex-col overflow-hidden">
+        <div className="h-[115px] w-full rounded-t-[36px] bg-[#E3EBE6]" />
+        <div className="relative flex h-12 w-full flex-col bg-[#75D99F]">
+          <div className="absolute inset-0 mt-[7px] flex items-start justify-center gap-[6px]">
             {ingredients[0] ? (
-              <div className="w-[114px] h-[26px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+              <div className="h-[26px] w-[114px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
             ) : (
               <div className="w-[114px]" />
             )}
             {ingredients[1] ? (
-              <div className="w-[114px] h-[26px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+              <div className="h-[26px] w-[114px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
             ) : (
               <div className="w-[114px]" />
             )}
             {ingredients[2] ? (
-              <div className="w-[114px] h-[26px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+              <div className="h-[26px] w-[114px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
             ) : (
               <div className="w-[114px]" />
             )}
           </div>
         </div>
-        <div className="w-full bg-[#54BE81] h-[10px]" />
+        <div className="h-[10px] w-full bg-[#54BE81]" />
       </div>
 
       {/* 상단 헤더 */}
-      <div className="max-w-[393px] mx-auto">
+      <div className="mx-auto max-w-[393px]">
         <div className="relative z-10 px-[20px] pt-[5px] pb-[11px]">
-          <div className="flex justify-between w-full h-10 items-center">
+          <div className="flex h-10 w-full items-center justify-between">
             {/* 카테고리 태그 */}
-            <div className="flex items-center justify-center bg-neutral-800 rounded-[6px] h-[22px] min-w-[59px] px-2 gap-1 text-(--color-green)">
-              <img src={image} alt="category" className="w-3 h-3" />
+            <div className="flex h-[22px] min-w-[59px] items-center justify-center gap-1 rounded-[6px] bg-neutral-800 px-2 text-(--color-green)">
+              <img src={image} alt="category" className="h-3 w-3" />
               <span className="typo-caption leading-none whitespace-nowrap">
                 {category}
               </span>
@@ -75,7 +78,7 @@ export default function Storage({
             <button
               disabled={!isScrollable}
               onClick={() => setViewCategory(category)}
-              className="flex items-center gap-1 group transition-all active:scale-95"
+              className="group flex items-center gap-1 transition-all active:scale-95"
             >
               <span
                 className={`typo-caption !text-[13px] !font-semibold transition-colors ${
@@ -98,15 +101,12 @@ export default function Storage({
 
       {/* 아이템 리스트 */}
       {ingredients.length > 0 ? (
-        <div className="relative w-[353px] mx-auto z-10">
-          <div
-            className="flex gap-[6px] overflow-x-auto no-scrollbar pb-2
-        scroll-snap-x scroll-snap-mandatory"
-          >
+        <div className="relative z-10 mx-auto w-[353px]">
+          <div className="no-scrollbar scroll-snap-x scroll-snap-mandatory flex gap-[6px] overflow-x-auto pb-2">
             {pages.map((page, pageIndex) => (
               <div
                 key={pageIndex}
-                className="flex gap-[6px] justify-start flex-shrink-0 scroll-snap-start"
+                className="scroll-snap-start flex flex-shrink-0 justify-start gap-[6px]"
                 style={{ width: "353px" }}
               >
                 {page.map((item) => (
@@ -134,8 +134,8 @@ export default function Storage({
           </div>
         </div>
       ) : (
-        <div className="flex flex-col items-center h-20 animate-fadeIn justify-between">
-          <span className="typo-caption text-[#7A8093] !font-medium">
+        <div className="animate-fadeIn flex h-20 flex-col items-center justify-between">
+          <span className="typo-caption !font-medium text-[#7A8093]">
             재료를 등록해주세요
           </span>
           <img src={character} className="w-[74px]" alt="empty" />

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
-import RecipeTitle from @/componentsrecipe/main/result/RecipeTitle";
-import RecipeContentSection from @/componentsrecipe/main/result/RecipeContentSection";
-import RecipeYoutubeCard from @/componentsrecipe/main/result/RecipeYoutubeCard";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
+import RecipeContentSection from "@/components/recipe/main/result/RecipeContentSection";
+import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
 import notice from "@assets/guest/recipe_notice.svg";
 import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
 
@@ -62,19 +62,19 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
 
   return (
     <div
-      className="flex flex-col bg-gray-50 overflow-hidden items-center"
+      className="flex flex-col items-center overflow-hidden bg-gray-50"
       onClick={() => setIsDimmed(true)}
     >
       {isDimmed && (
-        <div className="fixed inset-0 z-10 bg-neutral-900/50 transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
+        <div className="animate-fadeIn fixed inset-0 left-1/2 z-10 w-full max-w-[450px] -translate-x-1/2 bg-neutral-900/50 transition-opacity" />
       )}
       <div className="typo-body">오늘의 레시피</div>
       {/* 스크롤 영역 */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-9 px-4 pt-[21px]"
+        className="no-scrollbar flex flex-1 flex-col gap-9 overflow-y-auto px-4 pt-[21px]"
       >
-        <div className="flex flex-col gap-2 w-full max-w-[361px] mx-auto">
+        <div className="mx-auto flex w-full max-w-[361px] flex-col gap-2">
           {/* 레시피 제목 */}
           <RecipeTitle name={title} />
 
@@ -94,8 +94,8 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
           <RecipeYoutubeCard videos={[]} tags={youtube_search_queries} />
 
           {/* AI 주의사항 문구 */}
-          <div className="flex flex-col items-center gap-[2px] self-stretch mt-[10px]">
-            <div className="w-[361px] text-center text-[11px] leading-[14px] text-[#7D7D7D] font-pretendard">
+          <div className="mt-[10px] flex flex-col items-center gap-[2px] self-stretch">
+            <div className="font-pretendard w-[361px] text-center text-[11px] leading-[14px] text-[#7D7D7D]">
               AI가 제공하는 정보에는 실수가 있을 수 있습니다
               <br />
               관련 정보를 확인 후 활용해주세요
@@ -104,11 +104,11 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
         </div>
 
         {/* 하단 버튼 영역 */}
-        <div className="relative flex p-4 w-full max-w-[450px] mx-auto z-20 items-center justify-center">
+        <div className="relative z-20 mx-auto flex w-full max-w-[450px] items-center justify-center p-4">
           {isDimmed && (
             <object
               data={notice}
-              className="absolute w-[178px] bottom-15 left-1/2 -translate-x-1/2"
+              className="absolute bottom-15 left-1/2 w-[178px] -translate-x-1/2"
             />
           )}
           <button
@@ -119,7 +119,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
                 handleButtonClick(e);
               }
             }}
-            className="w-full rounded-[10px] h-[38px] typo-button text-white bg-[#32E389]"
+            className="typo-button h-[38px] w-full rounded-[10px] bg-[#32E389] text-white"
           >
             이 레시피대로 요리할래요
           </button>

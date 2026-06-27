@@ -21,9 +21,9 @@ const WeeklyGoalModal: React.FC<Props> = ({ isOpen, onClose }) => {
         <div className="flex w-full flex-col items-center gap-[28px]">
           {/* 이미지 + 텍스트 */}
           <div className="flex flex-col items-center gap-[20px]">
-            <img src={icon} className="w-[80px] h-[85px]" />
+            <img src={icon} className="h-[85px] w-[80px]" />
 
-            <div className="w-[202px] text-center text-[14px] font-medium leading-[20px] text-[#202020]">
+            <div className="w-[202px] text-center text-[14px] leading-[20px] font-medium text-[#202020]">
               이번 주 목표를 달성했어요!
               <br />
               축하의 마음을 담아 쿠키를 드려요

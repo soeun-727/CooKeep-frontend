@@ -38,11 +38,11 @@ export default function LoginMain() {
 
   return (
     <>
-      <div className="pt-[159px] w-[361px] mx-auto">
+      <div className="mx-auto w-[361px] pt-[159px]">
         <div className="typo-h1">로그인</div>
 
         {/* 입력 영역 */}
-        <div className="flex flex-col mt-[12px]">
+        <div className="mt-[12px] flex flex-col">
           <TextField
             value={email}
             placeholder="이메일 주소 입력"
@@ -70,7 +70,7 @@ export default function LoginMain() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="flex items-center justify-center h-full"
+                className="flex h-full items-center justify-center"
               >
                 <img src={showPassword ? openpwImage : pwImage} alt="" />
               </button>

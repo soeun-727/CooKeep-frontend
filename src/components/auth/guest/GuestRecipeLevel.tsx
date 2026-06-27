@@ -1,6 +1,6 @@
 import header from "@assets/guest/back_header.svg";
 import contents from "@assets/guest/recipe_header.svg";
-import DifficultySelector from @/componentsrecipe/main/confirm/DifficultySelector";
+import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
 import Button from "@/components/ui/Button";
 
 interface Props {
@@ -12,10 +12,10 @@ export default function GuestRecipeLevel({ onNext }: Props) {
     <div className="flex flex-col items-center">
       <object data={header} />
       <object data={contents} className="mt-[38px]" />
-      <div className="w-full -mt-[50px] pb-20">
+      <div className="-mt-[50px] w-full pb-20">
         <DifficultySelector />
       </div>
-      <div className="fixed bottom-[34px] left-1/2 -translate-x-1/2 z-[130]">
+      <div className="fixed bottom-[34px] left-1/2 z-[130] -translate-x-1/2">
         <Button size="L" variant="black" onClick={onNext}>
           AI 레시피 추천 받기
         </Button>

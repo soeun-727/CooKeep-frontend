@@ -49,7 +49,7 @@ const EmailAuthModal = ({
         onClick={onConfirm} // 배경 클릭 시 닫히게 하고 싶으면 유지
       />
       <div
-        className="fixed z-[110] left-1/2 -translate-x-1/2 bg-white rounded-[10px]"
+        className="fixed left-1/2 z-[110] -translate-x-1/2 rounded-[10px] bg-white"
         style={{
           top: isHelp ? 308 : isSend ? 359 : 343,
           width: isHelp ? 256 : 240,
@@ -69,12 +69,12 @@ const EmailAuthModal = ({
           <img
             src={CautionIcon}
             alt="주의"
-            className="mb-2 w-[20px] h-[20px]"
+            className="mb-2 h-[20px] w-[20px]"
           />
         )}
         {/* 메인 메시지 */}
         <p
-          className={`text-center leading-[20px] typo-body2 whitespace-pre-wrap ${isHelp ? "-mt-[6px]" : ""}`}
+          className={`typo-body2 text-center leading-[20px] whitespace-pre-wrap ${isHelp ? "-mt-[6px]" : ""}`}
         >
           {isSend && "인증번호가 발송되었어요"}
           {isVerify && "인증에 성공하였습니다"}
@@ -91,13 +91,13 @@ const EmailAuthModal = ({
 
         {/* 마스킹된 이메일 표시 */}
         {(isVerify || isAlready) && email && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">
+          <p className="text-center text-[12px] text-[#7D7D7D]">
             {maskEmail(email)}
           </p>
         )}
 
         {isHelp && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">
+          <p className="text-center text-[12px] text-[#7D7D7D]">
             문제가 지속되나요?
           </p>
         )}
@@ -106,9 +106,7 @@ const EmailAuthModal = ({
         <Button
           size="S"
           onClick={isAlready ? onLogin : isHelp ? handleOpenKakao : onConfirm}
-          className={`
-    ${isBlackButton ? "!w-[200px] !bg-[#202020]" : "!w-[184px] !bg-[#32E389]"}
-  `}
+          className={` ${isBlackButton ? "!w-[200px] !bg-[#202020]" : "!w-[184px] !bg-[#32E389]"} `}
         >
           {buttonText}
         </Button>

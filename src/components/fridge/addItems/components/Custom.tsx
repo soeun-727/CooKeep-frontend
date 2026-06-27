@@ -3,7 +3,11 @@ import { useAddIngredientStore } from "@stores/useAddIngredientStore";
 import editIcon from "@assets/recipe/rename.svg";
 import { CATEGORY_ID_TO_SERVER_KEY } from "@constants/category";
 import { DEFAULT_EXPIRY_DAYS } from "@constants/expiry";
-import { registerCustomIngredient, type CategoryType, type CustomIngredientRequest } from "@api/ingredient";
+import {
+  registerCustomIngredient,
+  type CategoryType,
+  type CustomIngredientRequest,
+} from "@api/ingredient";
 
 interface CustomProps {
   isOpen: boolean;
@@ -88,8 +92,8 @@ const Custom: React.FC<CustomProps> = ({
     <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
       <div className="absolute inset-0" onClick={onClose}></div>
 
-      <div className="relative w-[280px] h-[316px] bg-white rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[35px]">
-        <div className="w-full flex items-center justify-center gap-1 mb-4">
+      <div className="relative flex h-[316px] w-[280px] flex-col items-center rounded-[10px] bg-white px-7 py-[35px] shadow-xl">
+        <div className="mb-4 flex w-full items-center justify-center gap-1">
           {isEditing ? (
             <input
               ref={inputRef}
@@ -98,49 +102,48 @@ const Custom: React.FC<CustomProps> = ({
               onChange={(e) => setLocalName(e.target.value)}
               onBlur={finishEditing}
               onKeyDown={(e) => e.key === "Enter" && finishEditing()}
-              className="typo-body w-[180px] text-center font-bold text-neutral-900 border-b border-zinc-300 outline-none"
+              className="typo-body w-[180px] border-b border-zinc-300 text-center font-bold text-neutral-900 outline-none"
             />
           ) : (
-            <div className="flex items-center justify-center gap-1 group">
-              <h2 className="typo-body max-w-[180px] text-center font-bold text-neutral-900 break-all truncate">
+            <div className="group flex items-center justify-center gap-1">
+              <h2 className="typo-body max-w-[180px] truncate text-center font-bold break-all text-neutral-900">
                 '{localName}'
               </h2>
               <button
                 onClick={() => setIsEditing(true)}
-                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                className="rounded-full p-1 transition-colors hover:bg-gray-100"
               >
-                <img src={editIcon} alt="edit" className="w-3 h-3" />
+                <img src={editIcon} alt="edit" className="h-3 w-3" />
               </button>
             </div>
           )}
         </div>
 
-        <p className="text-[12px] text-zinc-500 mb-4 leading-none text-center">
+        <p className="mb-4 text-center text-[12px] leading-none text-zinc-500">
           '{localName}'의 카테고리를 선택해주세요
         </p>
 
-        <div className="w-40 h-40 flex-1 overflow-y-auto no-scrollbar grid grid-cols-3 gap-2 mb-4">
+        <div className="no-scrollbar mb-4 grid h-40 w-40 flex-1 grid-cols-3 gap-2 overflow-y-auto">
           {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"
               disabled={isLoading}
               onClick={() => setSelectedCategoryId(cat.id)}
-              className={`flex flex-col items-center pt-2 rounded-[6px] transition-all w-12 h-12 gap-[2px]
-                ${
-                  selectedCategoryId === cat.id
-                    ? "bg-gray-100 ring-1 ring-inset ring-gray-300"
-                    : "bg-white hover:bg-gray-50"
-                } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+              className={`flex h-12 w-12 flex-col items-center gap-[2px] rounded-[6px] pt-2 transition-all ${
+                selectedCategoryId === cat.id
+                  ? "bg-gray-100 ring-1 ring-gray-300 ring-inset"
+                  : "bg-white hover:bg-gray-50"
+              } ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
             >
-              <div className="w-[18px] flex items-center justify-center">
+              <div className="flex w-[18px] items-center justify-center">
                 <img
                   src={cat.image}
                   alt={cat.name}
                   className="object-contain"
                 />
               </div>
-              <span className="w-[26px] truncate text-[10px] whitespace-nowrap leading-none font-semibold text-zinc-500">
+              <span className="w-[26px] truncate text-[10px] leading-none font-semibold whitespace-nowrap text-zinc-500">
                 {cat.name}
               </span>
             </button>
@@ -150,12 +153,11 @@ const Custom: React.FC<CustomProps> = ({
         <button
           onClick={handleConfirm}
           disabled={selectedCategoryId === null || isLoading}
-          className={`typo-label w-full h-11 text-white rounded-[10px] transition-colors
-            ${
-              selectedCategoryId !== null && !isLoading
-                ? "bg-[var(--color-green-deep)]"
-                : "bg-zinc-300 cursor-not-allowed"
-            }`}
+          className={`typo-label h-11 w-full rounded-[10px] text-white transition-colors ${
+            selectedCategoryId !== null && !isLoading
+              ? "bg-[var(--color-green-deep)]"
+              : "cursor-not-allowed bg-zinc-300"
+          }`}
         >
           {confirmText}
         </button>

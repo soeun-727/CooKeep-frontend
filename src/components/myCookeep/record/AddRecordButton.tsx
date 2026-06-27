@@ -17,23 +17,12 @@ export default function AddRecordButton() {
       }}
       //   onTouchStart={() => setPressed(true)}
       //   onTouchEnd={() => setPressed(false)}
-      className="
-        z-40
-        w-12 h-12 bg-black
-        rounded-full flex items-center justify-center
-        active:scale-95 
-        active:bg-stone-300
-        transition-all
-        shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)]
-      "
+      className="z-40 flex h-12 w-12 items-center justify-center rounded-full bg-black shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)] transition-all active:scale-95 active:bg-stone-300"
     >
       <img
         src={plusIcon}
         alt="메뉴 추가"
-        className="
-          w-6 h-6
-          stroke-[#33E389]
-        "
+        className="h-6 w-6 stroke-[#33E389]"
       />
     </button>
   );

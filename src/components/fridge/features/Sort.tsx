@@ -17,33 +17,33 @@ export default function Sort({ categoryIcon, viewCategory }: SortProps) {
   ];
   return (
     <>
-      <div className="w-full flex flex-col items-center mt-[3px] mb-4">
-        <div className="w-[353px] relative items-center justify-center flex">
-          <div className="flex items-center justify-center bg-neutral-800 rounded-[6px] h-[22px] w-[59px] px-2 gap-1 text-white text-3">
+      <div className="mt-[3px] mb-4 flex w-full flex-col items-center">
+        <div className="relative flex w-[353px] items-center justify-center">
+          <div className="text-3 flex h-[22px] w-[59px] items-center justify-center gap-1 rounded-[6px] bg-neutral-800 px-2 text-white">
             <img src={categoryIcon} alt="category" className="w-3" />
             <span className="typo-caption">{viewCategory}</span>
           </div>
 
           <div className="absolute right-0 flex items-center">
             {isMenuOpen && (
-              <div className="absolute right-[34px] bottom-0 flex flex-col items-center justify-center bg-white rounded-[10px] w-[130px] h-[104px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
+              <div className="animate-fadeIn absolute right-[34px] bottom-0 z-50 flex h-[104px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-[10px] bg-white shadow-[0_1px_8.2px_-2px_#11111140]">
                 {options.map((option, index) => (
                   <div
                     key={option}
-                    className="flex flex-col items-center w-full"
+                    className="flex w-full flex-col items-center"
                   >
                     <button
                       onClick={() => {
                         setSortOrder(option);
                         setIsMenuOpen(false);
                       }}
-                      className="whitespace-nowrap w-full h-[30px] typo-caption !font-semibold leading-none"
+                      className="typo-caption h-[30px] w-full leading-none !font-semibold whitespace-nowrap"
                     >
                       {option}
                     </button>
                     {/* 구분선 */}
                     {index < options.length - 1 && (
-                      <div className="w-[105px] h-[0.5px] bg-[#D1D1D1]" />
+                      <div className="h-[0.5px] w-[105px] bg-[#D1D1D1]" />
                     )}
                   </div>
                 ))}

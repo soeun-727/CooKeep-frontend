@@ -36,7 +36,7 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
   }, [value]);
 
   return (
-    <div className="flex flex-col gap-[18px] items-center mt-[18px] mb-16">
+    <div className="mt-[18px] mb-16 flex flex-col items-center gap-[18px]">
       <>
         <div className="flex flex-col gap-3">
           {storage.map((storage) => {
@@ -51,12 +51,11 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
                 key={storage}
                 disabled={isInitialValue}
                 onClick={() => handleQuickSelect(storage)}
-                className={`h-11 w-[361px] rounded-[10px] typo-body font-bold transition-all
-                ${
+                className={`typo-body h-11 w-[361px] rounded-[10px] font-bold transition-all ${
                   isInitialValue
-                    ? "bg-gray-200 text-zinc-500 cursor-not-allowed"
+                    ? "cursor-not-allowed bg-gray-200 text-zinc-500"
                     : isNewlySelected
-                      ? "bg-[var(--color-green-light)] text-black border border-[var(--color-green-deep)]"
+                      ? "border border-[var(--color-green-deep)] bg-[var(--color-green-light)] text-black"
                       : "border border-[#D1D1D1] text-zinc-500 active:bg-zinc-200"
                 }`}
               >

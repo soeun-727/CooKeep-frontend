@@ -150,17 +150,17 @@ export default function Onboarding() {
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
 
   return (
-    <div className="flex flex-col h-[100dvh] items-center bg-[#FAFAFA]">
+    <div className="flex h-[100dvh] flex-col items-center bg-[#FAFAFA]">
       <AuthHeader />
       {step !== 0 && (
-        <div className="w-full max-w-[361px] mx-auto">
+        <div className="mx-auto w-full max-w-[361px]">
           <Progress currentStep={step} />
         </div>
       )}
       <div
-        className={`flex-1 flex flex-col items-center w-full ${step === 0 ? "" : "px-1"}`}
+        className={`flex w-full flex-1 flex-col items-center ${step === 0 ? "" : "px-1"}`}
       >
-        <div className="w-full h-full">
+        <div className="h-full w-full">
           {step === 0 && <Guide onNext={nextStep} />}
           {step === 1 && <Preference />}
           {step === 2 && (

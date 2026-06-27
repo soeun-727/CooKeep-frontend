@@ -46,7 +46,7 @@ export default function RecipeLoadingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center h-screen pt-[139px] text-center">
+    <div className="flex h-screen flex-col items-center pt-[139px] text-center">
       {/* 로딩 아이콘 */}
       {/* <img
         src={LoadingIcon}
@@ -56,22 +56,22 @@ export default function RecipeLoadingPage() {
       <RecipeLoadingSpinner />
 
       {/* 타이틀 / 서브타이틀 */}
-      <div className="flex flex-col items-center w-[361px] gap-2 mb-[49px]">
+      <div className="mb-[49px] flex w-[361px] flex-col items-center gap-2">
         <h1 className="typo-result-title">오늘의 요리 준비 중...</h1>
-        <p className="typo-button text-[#1FC16F] font-bold">
+        <p className="typo-button font-bold text-[#1FC16F]">
           나에게 딱 맞는 레시피를 찾고 있어요
         </p>
       </div>
 
       {/* 메시지 카드 */}
-      <div className="flex flex-col w-[321px] gap-3">
+      <div className="flex w-[321px] flex-col gap-3">
         {messages.slice(0, step).map((msg, idx) => (
           <StepMessage key={idx} message={msg} icon={CheckIcon} />
         ))}
       </div>
       {error && (
         <div className="mt-6 flex flex-col items-center gap-3">
-          <p className="text-red-500 text-sm">{error}</p>
+          <p className="text-sm text-red-500">{error}</p>
 
           <button
             onClick={() => generateRecipe()}

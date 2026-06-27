@@ -5,10 +5,10 @@ import ProfileSection from "./sections/ProfileSection";
 import NotificationSection from "./sections/NotificationSection";
 import SupportSection from "./sections/SupportSection";
 import logoutIcon from "@assets/settings/logout.svg";
-import ConfirmModal from @/componentsConfirmModal";
+import ConfirmModal from "@/components/ui/ConfirmModal";
 import { getMyProfile, MyProfileResponse } from "@api/user";
 import { useAuthStore } from "@stores/useAuthStore";
-import { loadingChar } from "@assets";
+import { loadingChar } from "@/assets";
 import { unsubscribePush } from "@api/push";
 
 export default function SettingsMain() {
@@ -55,8 +55,8 @@ export default function SettingsMain() {
 
   if (loading || !profile)
     return (
-      <div className="flex flex-col items-center justify-center text-center mt-50">
-        <img className="opacity-70 w-30 p-5" src={loadingChar} />
+      <div className="mt-50 flex flex-col items-center justify-center text-center">
+        <img className="w-30 p-5 opacity-70" src={loadingChar} />
         <div className="typo-body2 text-zinc-500">
           회원정보를 불러오는 중...
         </div>
@@ -65,7 +65,7 @@ export default function SettingsMain() {
 
   return (
     <>
-      <main className="pt-[103px] px-4">
+      <main className="px-4 pt-[103px]">
         <div className="space-y-6">
           <ProfileSection profile={profile} />
           <NotificationSection
@@ -85,9 +85,9 @@ export default function SettingsMain() {
             <img
               src={logoutIcon}
               alt="logout"
-              className="w-6 h-6 aspect-square"
+              className="aspect-square h-6 w-6"
             />
-            <span className="text-[14px] font-medium leading-[20px] text-[#111]">
+            <span className="text-[14px] leading-[20px] font-medium text-[#111]">
               로그아웃
             </span>
           </button>
@@ -100,7 +100,7 @@ export default function SettingsMain() {
               } catch (e) {}
               navigate("/settings/withdraw");
             }}
-            className="mt-[42px] text-[12px] font-normal leading-[16px] text-[#7D7D7D] underline"
+            className="mt-[42px] text-[12px] leading-[16px] font-normal text-[#7D7D7D] underline"
           >
             탈퇴하기
           </button>

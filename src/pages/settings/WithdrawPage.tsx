@@ -79,7 +79,7 @@ export default function WithdrawPage() {
     return (
       <>
         <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
-        <main className="pt-[161px] px-4 pb-[120px] max-w-[450px] mx-auto">
+        <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">
           <div className="text-center">로딩 중...</div>
         </main>
       </>
@@ -91,15 +91,15 @@ export default function WithdrawPage() {
       <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
 
       {/* 스크롤 영역 */}
-      <main className="pt-[161px] px-4 pb-[120px] max-w-[450px] mx-auto">
+      <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">
         {/* ===== 상단 문구 ===== */}
-        <div className="flex justify-between items-start">
+        <div className="flex items-start justify-between">
           <div>
-            <p className="text-[22px] font-bold leading-[32px] text-[#202020]">
+            <p className="text-[22px] leading-[32px] font-bold text-[#202020]">
               Cookeep을 <span className="text-[#D91F1F]">탈퇴</span>하시나요?
             </p>
 
-            <p className="mt-1 text-[14px] font-medium leading-[20px] text-[#7D7D7D]">
+            <p className="mt-1 text-[14px] leading-[20px] font-medium text-[#7D7D7D]">
               <span className="font-semibold">{username}</span> 님,
               이별인가요..?? 너무 아쉬워요...
             </p>
@@ -108,21 +108,21 @@ export default function WithdrawPage() {
           <img
             src={characterImg}
             alt="character"
-            className="w-[76px] h-[58px] ml-2"
+            className="ml-2 h-[58px] w-[76px]"
           />
         </div>
 
         {/* ===== 안내 박스 ===== */}
-        <div className="mt-[26px] rounded-[6px] border border-[#D1D1D1] bg-[#EBEBEB] p-[12px] space-y-[6px]">
-          <p className="text-[14px] font-medium leading-[20px] text-[#202020]">
+        <div className="mt-[26px] space-y-[6px] rounded-[6px] border border-[#D1D1D1] bg-[#EBEBEB] p-[12px]">
+          <p className="text-[14px] leading-[20px] font-medium text-[#202020]">
             - 회원 탈퇴 시 함께 쌓아온 냉장고 재료, 레시피, 요리 기록이 모두
             삭제돼요. T_T
           </p>
-          <p className="text-[14px] font-medium leading-[20px] text-[#202020]">
+          <p className="text-[14px] leading-[20px] font-medium text-[#202020]">
             - 탈퇴일 포함 30일동안 재가입이 불가하며, 재가입 시 사용자의 이전
             이용 내역은 복구되지 않습니다.
           </p>
-          <p className="text-[14px] font-medium leading-[20px] text-[#202020]">
+          <p className="text-[14px] leading-[20px] font-medium text-[#202020]">
             - 탈퇴 고객의 개인정보는 관련 법령에 따라 일정 기간 보관 후 자동
             파기됩니다.
           </p>
@@ -131,17 +131,10 @@ export default function WithdrawPage() {
         {/* ===== 체크 영역 ===== */}
         <button
           onClick={() => setAgree((v) => !v)}
-          className="mt-3 mx-2 flex items-center gap-2"
+          className="mx-2 mt-3 flex items-center gap-2"
         >
           <span
-            className={`
-      w-[18px] h-[18px]
-      rounded-full
-      flex items-center justify-center
-      border
-      transition
-      ${agree ? "bg-[#1FC16F] border-[#1FC16F]" : "bg-white border-[#D1D1D1]"}
-    `}
+            className={`flex h-[18px] w-[18px] items-center justify-center rounded-full border transition ${agree ? "border-[#1FC16F] bg-[#1FC16F]" : "border-[#D1D1D1] bg-white"} `}
           >
             {agree && (
               <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
@@ -156,7 +149,7 @@ export default function WithdrawPage() {
             )}
           </span>
 
-          <span className="text-[14px] font-medium leading-[20px] text-[#7D7D7D] px-[12px]">
+          <span className="px-[12px] text-[14px] leading-[20px] font-medium text-[#7D7D7D]">
             유의사항을 전부 확인했습니다
           </span>
         </button>
@@ -166,11 +159,7 @@ export default function WithdrawPage() {
           <button
             onClick={() => setReasonOpen((v) => !v)}
             aria-expanded={reasonOpen}
-            className={`
-    flex w-full h-[48px] items-center gap-3 px-3
-    border border-[#D1D1D1] bg-white
-    ${reasonOpen ? "rounded-t-[6px] border-b-0" : "rounded-[6px]"}
-  `}
+            className={`flex h-[48px] w-full items-center gap-3 border border-[#D1D1D1] bg-white px-3 ${reasonOpen ? "rounded-t-[6px] border-b-0" : "rounded-[6px]"} `}
           >
             {isCustom ? (
               <input
@@ -181,7 +170,7 @@ export default function WithdrawPage() {
                 onClick={(e) => e.stopPropagation()}
               />
             ) : (
-              <span className="flex-1 text-[14px] font-medium text-[#111] text-left">
+              <span className="flex-1 text-left text-[14px] font-medium text-[#111]">
                 {selectedReason ?? "탈퇴 사유를 알려주세요"}
               </span>
             )}
@@ -189,24 +178,14 @@ export default function WithdrawPage() {
             <img
               src={arrowIcon}
               alt="toggle"
-              className={`w-6 h-6 transition-transform ${
+              className={`h-6 w-6 transition-transform ${
                 reasonOpen ? "-rotate-90" : "rotate-90"
               }`}
             />
           </button>
 
           {reasonOpen && (
-            <div
-              className="
-      w-full
-      flex flex-col
-      border border-[#D1D1D1]
-      border-t-0
-      rounded-b-[6px]
-      bg-white
-      overflow-hidden
-    "
-            >
+            <div className="flex w-full flex-col overflow-hidden rounded-b-[6px] border border-t-0 border-[#D1D1D1] bg-white">
               {reasons.map((reason) => (
                 <button
                   key={reason}
@@ -214,11 +193,7 @@ export default function WithdrawPage() {
                     setSelectedReason(reason);
                     setReasonOpen(false);
                   }}
-                  className={`
-          flex items-center px-3 py-3
-          text-[14px] font-medium text-left
-          ${selectedReason === reason ? "bg-[#EBEBEB]" : "bg-white"}
-        `}
+                  className={`flex items-center px-3 py-3 text-left text-[14px] font-medium ${selectedReason === reason ? "bg-[#EBEBEB]" : "bg-white"} `}
                 >
                   {reason}
                 </button>
@@ -229,15 +204,7 @@ export default function WithdrawPage() {
       </main>
 
       {/* ===== 하단 고정 버튼 ===== */}
-      <div
-        className="
-    fixed bottom-[34px]
-    left-1/2 -translate-x-1/2
-    w-full max-w-[450px]
-    px-4
-    flex justify-center
-  "
-      >
+      <div className="fixed bottom-[34px] left-1/2 flex w-full max-w-[450px] -translate-x-1/2 justify-center px-4">
         <Button
           size="L"
           disabled={!agree || !selectedReason || isSubmitting}
@@ -260,17 +227,17 @@ export default function WithdrawPage() {
             onClick={() => setOpenModal(false)}
           />
 
-          <div className="relative w-[254px] bg-white rounded-[10px] flex flex-col items-center">
-            <h2 className="mt-[35px] mb-4 font-bold text-[16px] text-[#202020]">
+          <div className="relative flex w-[254px] flex-col items-center rounded-[10px] bg-white">
+            <h2 className="mt-[35px] mb-4 text-[16px] font-bold text-[#202020]">
               정말 탈퇴하시겠어요?
             </h2>
 
-            <div className="flex gap-2 mb-[20px]">
+            <div className="mb-[20px] flex gap-2">
               {/* 탈퇴 진행 */}
               <button
                 onClick={handleWithdraw}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-[#C3C3C3] text-white"
+                className="h-[44px] w-[95px] rounded-[10px] bg-[#C3C3C3] text-white"
               >
                 {isSubmitting ? "처리중" : "네"}
               </button>
@@ -279,7 +246,7 @@ export default function WithdrawPage() {
               <button
                 onClick={() => setOpenModal(false)}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-[#32E389] text-white"
+                className="h-[44px] w-[95px] rounded-[10px] bg-[#32E389] text-white"
               >
                 아니오
               </button>

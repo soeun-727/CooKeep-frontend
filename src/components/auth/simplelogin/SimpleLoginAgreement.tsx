@@ -40,8 +40,8 @@ export default function SimpleLoginAgreement() {
       <BackHeader title="약관 동의" onBack={() => navigate(-1)} />
 
       {/* 회원가입과 동일한 컨테이너 */}
-      <div className="flex flex-col min-h-screen">
-        <div className="flex-1 flex flex-col justify-end mx-auto w-[361px] pb-14">
+      <div className="flex min-h-screen flex-col">
+        <div className="mx-auto flex w-[361px] flex-1 flex-col justify-end pb-14">
           {/* 일러스트 */}
           <div className="flex flex-col gap-2">
             <img
@@ -69,7 +69,7 @@ export default function SimpleLoginAgreement() {
           </div>
 
           {/* 버튼 */}
-          <div className="mt-[10px] ">
+          <div className="mt-[10px]">
             <Button
               size="L"
               variant="green"

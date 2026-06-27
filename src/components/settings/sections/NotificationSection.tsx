@@ -72,7 +72,7 @@ export default function NotificationSection({
   };
 
   return (
-    <section className="px-4 mt-[128px]">
+    <section className="mt-[128px] px-4">
       <SettingsToggleItem
         label="PUSH 수신 동의"
         checked={enabled}

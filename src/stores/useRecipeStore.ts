@@ -1,5 +1,11 @@
 import { create } from "zustand";
-import { getAiRecipeSessions, AiRecipeSessionItem, toggleFavoriteSession, updateAiSessionTitle, deleteAiRecipeSession } from "@api/aiSession";
+import {
+  getAiRecipeSessions,
+  AiRecipeSessionItem,
+  toggleFavoriteSession,
+  updateAiSessionTitle,
+  deleteAiRecipeSession,
+} from "@api/aiSession";
 
 interface RecipeState {
   pinned: AiRecipeSessionItem[];

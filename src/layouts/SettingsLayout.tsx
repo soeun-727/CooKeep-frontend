@@ -26,11 +26,11 @@ export default function SettingsLayout() {
     //   <BackHeader title="회원정보" onBack={handleBack} />
     //   <Outlet />
     // </div>
-    <div className="h-screen flex flex-col">
+    <div className="flex h-screen flex-col">
       <BackHeader title="회원정보" onBack={handleBack} />
 
       {/* 여기가 핵심 */}
-      <div className="flex-1 overflow-y-auto no-scrollbar">
+      <div className="no-scrollbar flex-1 overflow-y-auto">
         <Outlet />
       </div>
     </div>

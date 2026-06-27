@@ -7,7 +7,13 @@ import publicIcon from "@assets/mycookeep/record/public_icon.svg";
 import optionIcon from "@assets/mycookeep/record/options.svg";
 import RecordViewImageCard from "@components/myCookeep/record/RecordViewImageCard";
 import { useEffect, useState } from "react";
-import { deleteDailyRecipe, getMyRecipeDetail, MyRecipeDetail, updateDailyRecipe, updateRecipeVisibility } from "@api/myRecipe";
+import {
+  deleteDailyRecipe,
+  getMyRecipeDetail,
+  MyRecipeDetail,
+  updateDailyRecipe,
+  updateRecipeVisibility,
+} from "@api/myRecipe";
 import Button from "@components/ui/Button";
 import DoublecheckModal from "@components/ui/DoublecheckModal";
 import { uploadImage } from "@api/image";
@@ -176,31 +182,31 @@ export default function RecordDetailPage() {
   if (!record) return null;
 
   return (
-    <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-[#FAFAFA]">
+    <div className="no-scrollbar flex h-full flex-1 flex-col overflow-y-auto bg-[#FAFAFA]">
       {/* 3. 헤더 영역: 스크롤 시 상단에 고정되도록 sticky 유지 */}
-      <div className="sticky top-0 z-[120] bg-[#FAFAFA] w-full">
-        <div className="relative w-full flex justify-center items-center w-full max-w-[450px] mx-auto">
+      <div className="sticky top-0 z-[120] w-full bg-[#FAFAFA]">
+        <div className="relative mx-auto flex w-full max-w-[450px] items-center justify-center">
           <div className="absolute left-0 w-full">
             <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
           </div>
-          <div className="absolute right-2 top-2 flex items-center">
+          <div className="absolute top-2 right-2 flex items-center">
             {isMenuOpen && (
-              <div className="absolute right-2 top-10 flex flex-col items-center justify-center bg-white rounded-[10px] w-[130px] h-[72px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
+              <div className="animate-fadeIn absolute top-10 right-2 z-50 flex h-[72px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-[10px] bg-white shadow-[0_1px_8.2px_-2px_#11111140]">
                 {/* 수정하기 버튼 */}
                 <button
                   onClick={handleEdit}
-                  className="w-full h-[34px] typo-caption !font-semibold hover:bg-gray-50 transition-colors"
+                  className="typo-caption h-[34px] w-full !font-semibold transition-colors hover:bg-gray-50"
                 >
                   수정하기
                 </button>
 
                 {/* 구분선 */}
-                <div className="w-[80px] h-[0.5px] bg-[#D1D1D1]" />
+                <div className="h-[0.5px] w-[80px] bg-[#D1D1D1]" />
 
                 {/* 삭제하기 버튼 */}
                 <button
                   onClick={handleDeleteClick}
-                  className="w-full h-[34px] typo-caption !font-semibold hover:bg-gray-50 transition-colors"
+                  className="typo-caption h-[34px] w-full !font-semibold transition-colors hover:bg-gray-50"
                 >
                   삭제하기
                 </button>
@@ -210,15 +216,15 @@ export default function RecordDetailPage() {
             {/* 옵션 아이콘 버튼 */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-9 h-9 flex items-center justify-center relative z-[110]"
+              className="relative z-[110] flex h-9 w-9 items-center justify-center"
             >
               <img src={optionIcon} className="w-1" alt="option" />
             </button>
           </div>
         </div>
       </div>
-      <div className="flex-1 mx-auto w-full max-w-[450px] px-4 flex flex-col">
-        <div className="pt-[51px] flex flex-col gap-[10px]">
+      <div className="mx-auto flex w-full max-w-[450px] flex-1 flex-col px-4">
+        <div className="flex flex-col gap-[10px] pt-[51px]">
           <RecordViewImageCard
             title={tempTitle}
             imageSrc={currentImageUrl} // ← record.recipeImageUrl 대신
@@ -257,12 +263,12 @@ export default function RecordDetailPage() {
                 el.style.height = `${el.scrollHeight}px`;
               }}
               placeholder="글자 수 최대 500자"
-              className="overflow-hidden w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-[#202020] placeholder:text-[#7D7D7D] resize-none outline-none"
+              className="typo-body w-full resize-none overflow-hidden rounded-[10px] bg-white px-[10px] py-3 text-center text-[#202020] outline-none placeholder:text-[#7D7D7D]"
               rows={1}
             />
           ) : (
             record.description && (
-              <div className="w-full rounded-[10px] bg-white px-[15px] py-4 text-center typo-body text-[#202020] shadow-sm whitespace-pre-wrap break-words border border-gray-100">
+              <div className="typo-body w-full rounded-[10px] border border-gray-100 bg-white px-[15px] py-4 text-center break-words whitespace-pre-wrap text-[#202020] shadow-sm">
                 {record.description}
               </div>
             )
@@ -277,8 +283,7 @@ export default function RecordDetailPage() {
               <button
                 disabled={!isEditing}
                 onClick={() => setTempIsPublic(false)} // ← 즉시 API 말고 임시저장
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
-              ${tempIsPublic === false ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === false ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img src={privateIcon} className="w-[24px]" alt="private" />
@@ -290,8 +295,7 @@ export default function RecordDetailPage() {
               <button
                 disabled={!isEditing}
                 onClick={() => setTempIsPublic(true)} // ← 즉시 API 말고 임시저장
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
-              ${tempIsPublic === true ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === true ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
               >
                 <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
                   <img src={publicIcon} className="w-[36px]" alt="public" />
@@ -299,7 +303,7 @@ export default function RecordDetailPage() {
                 <span className="typo-label text-[#202020]">쿠킵스 공개</span>
               </button>
             </div>
-            <div className=" flex mt-2 mb-2">
+            <div className="mt-2 mb-2 flex">
               <Button
                 size="L"
                 variant="black"

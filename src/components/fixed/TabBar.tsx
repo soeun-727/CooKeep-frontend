@@ -37,8 +37,8 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-150 mx-auto w-full max-w-[450px] bg-white border-t border-gray-100 pb-[env(safe-area-inset-bottom)]">
-      <div className="h-14 flex justify-around items-center">
+    <nav className="fixed right-0 bottom-0 left-0 z-150 mx-auto w-full max-w-[450px] border-t border-gray-100 bg-white pb-[env(safe-area-inset-bottom)]">
+      <div className="flex h-14 items-center justify-around">
         {tabs.map((tab) => (
           <Tab
             key={tab.title}

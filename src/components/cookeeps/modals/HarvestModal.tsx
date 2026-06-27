@@ -15,26 +15,26 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-[258px] px-[28px] pt-[35px] pb-[25px] bg-white rounded-[10px] flex flex-col items-center gap-[18px]">
+      <div className="relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
         {/* content */}
-        <div className="flex flex-col items-center gap-[28px] w-full">
+        <div className="flex w-full flex-col items-center gap-[28px]">
           {/* image + text */}
           <div className="flex flex-col items-center gap-[20px]">
             <img
               src={congratsImg}
               alt="수확 완료"
-              className="w-[80px] h-[84.8px]"
+              className="h-[84.8px] w-[80px]"
             />
 
             {/* text */}
-            <div className="flex flex-col items-center gap-[20px] w-full">
-              <p className="typo-body2 text-[#202020] text-center">
+            <div className="flex w-full flex-col items-center gap-[20px]">
+              <p className="typo-body2 text-center text-[#202020]">
                 축하해요 🎉 <br />
                 정성 들여 키운 식물이 <br />
                 드디어 다 자랐어요
               </p>
 
-              <p className="font-bold text-[16px] leading-[24px] text-[#1FC16F] text-center">
+              <p className="text-center text-[16px] leading-[24px] font-bold text-[#1FC16F]">
                 쿠키 +15 🍪
               </p>
             </div>
@@ -43,7 +43,7 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
           {/* button */}
           <Button
             variant="green"
-            className="!w-full !h-[44px] !rounded-[10px]"
+            className="!h-[44px] !w-full !rounded-[10px]"
             onClick={onClose}
           >
             확인

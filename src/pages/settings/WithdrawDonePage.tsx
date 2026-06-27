@@ -26,13 +26,13 @@ export default function WithdrawDonePage() {
   }, [location, navigate]);
 
   return (
-    <main className="pt-[295px] px-4 max-w-[450px] mx-auto text-center">
+    <main className="mx-auto max-w-[450px] px-4 pt-[295px] text-center">
       <h1 className="typo-result-title">탈퇴 완료</h1>
 
       <img
         src={checkImg}
         alt="완료"
-        className="mx-auto mt-[18px] w-[48px] h-[48px] grayscale brightness-[1.6]"
+        className="mx-auto mt-[18px] h-[48px] w-[48px] brightness-[1.6] grayscale"
       />
 
       <div className="mt-[48px]">

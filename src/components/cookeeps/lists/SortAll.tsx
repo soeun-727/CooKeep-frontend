@@ -17,12 +17,12 @@ export default function SortAll({ currentOrder, onSortChange }: SortProps) {
   return (
     <button
       onClick={handleClick}
-      className="inline-flex items-center gap-[2px] px-[20px] py-[8px] rounded-full bg-white shadow-[0_-36px_30.6px_rgba(0,0,0,0.05)]"
+      className="inline-flex items-center gap-[2px] rounded-full bg-white px-[20px] py-[8px] shadow-[0_-36px_30.6px_rgba(0,0,0,0.05)]"
     >
-      <span className="text-[12px] text-[#7D7D7D] font-medium leading-[16px]">
+      <span className="text-[12px] leading-[16px] font-medium text-[#7D7D7D]">
         {currentOrder}
       </span>
-      <img src={sortIcon} className="w-[16px] h-[16px]" />
+      <img src={sortIcon} className="h-[16px] w-[16px]" />
     </button>
   );
 }

@@ -82,7 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   }, [isOpen]);
 
   const renderRecipeList = (list: AiRecipeSessionItem[], isLiked: boolean) => (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex w-full flex-col items-center">
       {list
         .filter((item) =>
           item.title.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -114,45 +114,22 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     <>
       {/* 1. 배경 오버레이 */}
       <div
-        className={`fixed inset-0 z-[120] bg-[#11111160]
-          transition-opacity duration-300
-          ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`fixed inset-0 z-[120] bg-[#11111160] transition-opacity duration-300 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
         onClick={onClose}
       />
 
       {/* 2. 사이드바 본체 */}
-      <div className="fixed inset-0 flex justify-center z-[130] pointer-events-none">
-        <div className="relative w-full max-w-[450px] h-full overflow-hidden">
+      <div className="pointer-events-none fixed inset-0 z-[130] flex justify-center">
+        <div className="relative h-full w-full max-w-[450px] overflow-hidden">
           <div
-            className={`absolute left-0 top-[22px] pointer-events-auto
-              w-[342px] h-[calc(100%-78px)] bg-[#FFFFFFE3] shadow-2xl rounded-tr-[10px] rounded-br-[10px]
-              transform transition-transform duration-300 ease-in-out
-              ${translateClasses}`}
+            className={`pointer-events-auto absolute top-[22px] left-0 h-[calc(100%-78px)] w-[342px] transform rounded-tr-[10px] rounded-br-[10px] bg-[#FFFFFFE3] shadow-2xl transition-transform duration-300 ease-in-out ${translateClasses}`}
           >
-            <div className="flex flex-col h-full">
+            <div className="flex h-full flex-col">
               {/* 콘텐츠 영역 */}
-              <div className="flex-1 overflow-y-auto py-[35px] px-[26px] no-scrollbar">
+              <div className="no-scrollbar flex-1 overflow-y-auto px-[26px] py-[35px]">
                 <div className="w-[290px]">
                   <div
-                    className={`
-    rounded-[6px]
-    bg-white
-    shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-    
-    [&_>_div]:!w-full
-    [&_p]:hidden
-    
-    [&_input]:outline-none
-    [&_input]:border-none
-    [&_input]:bg-white
-    
-    [&_input]:text-[#C3C3C3]
-    [&_input]:text-[14px]
-    [&_input]:font-medium
-    [&_input]:leading-[20px]
-    
-    [&_input::placeholder]:text-[#C3C3C3]
-  `}
+                    className={`rounded-[6px] bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_>_div]:!w-full [&_input]:border-none [&_input]:bg-white [&_input]:text-[14px] [&_input]:leading-[20px] [&_input]:font-medium [&_input]:text-[#C3C3C3] [&_input]:outline-none [&_input::placeholder]:text-[#C3C3C3] [&_p]:hidden`}
                   >
                     <TextField
                       value={searchTerm}
@@ -162,15 +139,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                     />
                   </div>
                 </div>
-                <div className="flex flex-col items-center w-full mt-2">
+                <div className="mt-2 flex w-full flex-col items-center">
                   {isLoading && (
-                    <div className="text-center py-4 text-sm text-gray-400">
+                    <div className="py-4 text-center text-sm text-gray-400">
                       불러오는 중...
                     </div>
                   )}
 
                   {error && (
-                    <div className="text-center py-4 text-sm text-red-400">
+                    <div className="py-4 text-center text-sm text-red-400">
                       {error}
                     </div>
                   )}
@@ -186,7 +163,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                       {sessions.length > 0 && renderRecipeList(sessions, false)}
                     </>
                   ) : (
-                    <div className="text-center py-20 text-gray-400 text-sm">
+                    <div className="py-20 text-center text-sm text-gray-400">
                       저장된 레시피가 없습니다.
                     </div>
                   )}
@@ -205,13 +182,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         title={selectedRecipe?.name ?? ""}
         description="이 레시피를 삭제할까요?"
       />
-      <div className="whitespace-pre-wrap !font-medium">
+      <div className="!font-medium whitespace-pre-wrap">
         <DoublecheckModal
           isOpen={isErrorModalOpen}
           onClose={() => setIsErrorModalOpen(false)}
           onConfirm={() => setIsDeleteModalOpen(false)}
           title={
-            <span className="block font-medium leading-relaxed">
+            <span className="block leading-relaxed font-medium">
               요리 기록이 있는 레시피는
               <br />
               삭제할 수 없어요

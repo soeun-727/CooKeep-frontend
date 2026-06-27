@@ -39,25 +39,25 @@ export default function UploadCompleteModal({
       />
 
       {/* 모달 박스: DoublecheckModal과 동일한 규격 적용 */}
-      <div className="relative w-[254px] bg-white rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[25px] animate-popIn">
+      <div className="animate-popIn relative flex w-[254px] flex-col items-center rounded-[10px] bg-white px-7 py-[25px] shadow-xl">
         <div className="flex flex-col items-center justify-center self-stretch">
           <img
             src={character}
-            className="w-[84.922px] h-[90px] mb-4"
+            className="mb-4 h-[90px] w-[84.922px]"
             alt="congrats"
           />
 
           <p className="typo-body text-center font-bold text-neutral-900">
             오늘의 레시피 등록 완료!
           </p>
-          <span className="typo-body text-(--color-green-deep) !font-bold mb-4">
+          <span className="typo-body mb-4 !font-bold text-(--color-green-deep)">
             쿠키 +1 🍪
           </span>
 
           <Button
             size="S"
             variant="green"
-            className="!w-[184px] h-11" // DoublecheckModal의 버튼 높이와 통일
+            className="h-11 !w-[184px]" // DoublecheckModal의 버튼 높이와 통일
             onClick={() => {
               onConfirm();
               onCancel(); // 확인 후 모달 닫기

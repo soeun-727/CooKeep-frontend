@@ -109,17 +109,17 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
   };
 
   return (
-    <div className="relative w-[345px] h-[198px] rounded-[6px] bg-[#FFFFFF] shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
-      <div className="flex p-6 gap-6">
-        <div className="flex flex-col items-start w-[99px] h-34">
-          <div className="w-20 h-20 rounded-[6px] flex items-center justify-center border border-[#D1D1D1] p-[14px]">
+    <div className="relative h-[198px] w-[345px] rounded-[6px] bg-[#FFFFFF] shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+      <div className="flex gap-6 p-6">
+        <div className="flex h-34 w-[99px] flex-col items-start">
+          <div className="flex h-20 w-20 items-center justify-center rounded-[6px] border border-[#D1D1D1] p-[14px]">
             <img
               src={item.image}
-              className="w-13 h-13 object-contain"
+              className="h-13 w-13 object-contain"
               alt={item.name}
             />
           </div>
-          <span className="typo-caption w-[95px] pt-[10px] text-left truncate font-bold px-[2px]">
+          <span className="typo-caption w-[95px] truncate px-[2px] pt-[10px] text-left font-bold">
             {item.name}
           </span>
           <div
@@ -127,36 +127,36 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
               e.stopPropagation();
               setModalType("memo");
             }}
-            className="w-full h-6 flex items-center justify-center pl-[2px] cursor-pointer relative z-[20] group"
+            className="group relative z-[20] flex h-6 w-full cursor-pointer items-center justify-center pl-[2px]"
           >
-            <span className="text-[10px] truncate flex-1 text-stone-300">
+            <span className="flex-1 truncate text-[10px] text-stone-300">
               {item.memo || "메모를 남겨주세요"}
             </span>
             <img src={memoIcon} alt="edit memo" className="w-6 flex-shrink-0" />
           </div>
         </div>
 
-        <div className="flex flex-col items-start w-44 h-38 gap-2 typo-caption">
-          <div className="flex gap-3 items-center">
+        <div className="typo-caption flex h-38 w-44 flex-col items-start gap-2">
+          <div className="flex items-center gap-3">
             <span className="w-[42px]">보관장소</span>
             <div
               onClick={() => setModalType("storage")}
-              className="flex min-w-[59px] h-8 px-2 gap-1 bg-black rounded-[6px] items-center cursor-pointer"
+              className="flex h-8 min-w-[59px] cursor-pointer items-center gap-1 rounded-[6px] bg-black px-2"
             >
               <img
                 src={currentIcon}
                 alt={item.storageType}
                 className="h-[15px]"
               />
-              <span className="text-[var(--color-green-deep)] whitespace-nowrap">
+              <span className="whitespace-nowrap text-[var(--color-green-deep)]">
                 {currentText}
               </span>
             </div>
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex items-center gap-3">
             <span className="w-[42px]">유통기한</span>
-            <div className="flex w-[122px] h-8 border border-[#D1D1D1] rounded-[6px] items-center justify-between px-[10px] py-3">
-              <span className="w-[58px] h-4">
+            <div className="flex h-8 w-[122px] items-center justify-between rounded-[6px] border border-[#D1D1D1] px-[10px] py-3">
+              <span className="h-4 w-[58px]">
                 {item.expiration
                   ? item.expiration.replace(/-/g, ".")
                   : calculateExpiryDate(0)}
@@ -169,10 +169,10 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
               />
             </div>
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex items-center gap-3">
             <span className="w-[42px]">수량</span>
-            <div className="flex w-[66px] h-8 border border-[#D1D1D1] rounded-[6px] items-center justify-between px-[10px] py-3">
-              <span className="w-[58px] h-4">{item.quantity || 1}</span>
+            <div className="flex h-8 w-[66px] items-center justify-between rounded-[6px] border border-[#D1D1D1] px-[10px] py-3">
+              <span className="h-4 w-[58px]">{item.quantity || 1}</span>
               <img
                 onClick={() => setModalType("quantity")}
                 src={renameIcon}
@@ -181,10 +181,10 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
               />
             </div>
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex items-center gap-3">
             <span className="w-[42px]">단위</span>
-            <div className="flex w-[66px] h-8 border border-[#D1D1D1] rounded-[6px] items-center justify-between px-[10px] py-3">
-              <span className="w-[58px] h-4">
+            <div className="flex h-8 w-[66px] items-center justify-between rounded-[6px] border border-[#D1D1D1] px-[10px] py-3">
+              <span className="h-4 w-[58px]">
                 {UNIT_NAMES[item.unit] || item.unit || "개"}
               </span>
               <img
@@ -203,7 +203,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
           e.stopPropagation();
           setIsDeleteModalOpen(true);
         }}
-        className="absolute bottom-1 right-1 z-30 p-1 transition-all active:scale-90"
+        className="absolute right-1 bottom-1 z-30 p-1 transition-all active:scale-90"
       >
         <img alt="deleteButton" src={deleteIcon} className="w-10" />
       </button>

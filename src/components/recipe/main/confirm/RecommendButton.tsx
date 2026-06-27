@@ -1,5 +1,5 @@
 // RecommendButton.tsx
-import Button from @/components../ui/Button";
+import Button from "@/components/ui/Button";
 
 interface Props {
   disabled: boolean;

@@ -24,11 +24,11 @@ export default function WiltedModal({
 
       {/* modal */}
       <div
-        className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-white flex flex-col items-center gap-7"
+        className="relative flex w-[280px] flex-col items-center gap-7 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-full flex flex-col items-center gap-7">
-          <p className="typo-body text-[#202020] text-center whitespace-pre-line">
+        <div className="flex w-full flex-col items-center gap-7">
+          <p className="typo-body text-center whitespace-pre-line text-[#202020]">
             <span className="text-(--color-green-deep)">{plant} </span>
             이/가 시들었어요 T.T
             {"\n"}
@@ -37,7 +37,7 @@ export default function WiltedModal({
           <img src={characterIcon} alt="알림 캐릭터" className="w-[86px]" />
         </div>
 
-        <div className="w-full flex flex-col gap-2 font-semibold">
+        <div className="flex w-full flex-col gap-2 font-semibold">
           <Button
             variant="green"
             className="!w-[224px] !bg-(--color-green)"

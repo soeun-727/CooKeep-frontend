@@ -10,12 +10,12 @@ export default function RecentlyAdded() {
   const allSlots = [...displayHistory, ...emptySlots];
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex w-full flex-col">
       <div className="pl-[15px]">
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className={`w-[139px] h-6 flex items-center justify-center gap-2 relative z-30 transition-all duration-300 rounded-t-[15px] ${
+          className={`relative z-30 flex h-6 w-[139px] items-center justify-center gap-2 rounded-t-[15px] transition-all duration-300 ${
             isOpen
               ? "bg-white shadow-[0_-10px_20px_-5px_rgba(17,17,17,0.1)]" // 메뉴바와 연결되는 느낌의 그림자
               : "bg-white"
@@ -29,10 +29,10 @@ export default function RecentlyAdded() {
             최근 추가한 재료
           </span>
           <div
-            className={`w-2 h-2 border-b-2 border-r-2 transition-all duration-300 ${
+            className={`h-2 w-2 border-r-2 border-b-2 transition-all duration-300 ${
               isOpen
-                ? "rotate-45 -translate-y-[1px] border-[var(--color-green-deep)]"
-                : "rotate-[225deg] translate-y-[2px] border-zinc-500"
+                ? "-translate-y-[1px] rotate-45 border-[var(--color-green-deep)]"
+                : "translate-y-[2px] rotate-[225deg] border-zinc-500"
             }`}
           />
         </button>
@@ -40,37 +40,37 @@ export default function RecentlyAdded() {
 
       {/* 2. 메뉴바 (361px 너비) */}
       <div
-        className={`w-[361px] bg-white rounded-t-[10px] shadow-[0_-1px_100px_-4px_rgba(17,17,17,0.15)] overflow-hidden transition-all duration-300 ease-in-out relative z-20 ${
+        className={`relative z-20 w-[361px] overflow-hidden rounded-t-[10px] bg-white shadow-[0_-1px_100px_-4px_rgba(17,17,17,0.15)] transition-all duration-300 ease-in-out ${
           isOpen
-            ? "max-h-[100px] opacity-100 mt-[-1px]" // 버튼과 겹치게 하여 경계선 제거
-            : "max-h-0 opacity-0 pointer-events-none"
+            ? "mt-[-1px] max-h-[100px] opacity-100" // 버튼과 겹치게 하여 경계선 제거
+            : "pointer-events-none max-h-0 opacity-0"
         }`}
       >
-        <div className="px-5 py-3 flex items-center justify-between overflow-x-auto no-scrollbar">
+        <div className="no-scrollbar flex items-center justify-between overflow-x-auto px-5 py-3">
           {allSlots.map((item, idx) => (
             <div
               key={item?.id || `history-empty-${idx}`}
-              className="flex flex-col items-center w-[56px]"
+              className="flex w-[56px] flex-col items-center"
             >
               {item ? (
                 <button
                   onClick={() => toggleItem(item)}
-                  className="flex flex-col items-center group active:scale-90 transition-transform"
+                  className="group flex flex-col items-center transition-transform active:scale-90"
                 >
-                  <div className="w-10 h-10 flex items-center justify-center">
+                  <div className="flex h-10 w-10 items-center justify-center">
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-7 h-7 object-contain"
+                      className="h-7 w-7 object-contain"
                     />
                   </div>
-                  <span className="text-[10px] truncate w-11 text-center text-zinc-600">
+                  <span className="w-11 truncate text-center text-[10px] text-zinc-600">
                     {item.name}
                   </span>
                 </button>
               ) : (
-                <div className="w-10 h-10 flex items-center justify-center">
-                  <div className="w-1.5 h-1.5 bg-gray-200 rounded-full" />
+                <div className="flex h-10 w-10 items-center justify-center">
+                  <div className="h-1.5 w-1.5 rounded-full bg-gray-200" />
                 </div>
               )}
             </div>

@@ -18,14 +18,14 @@ export default memo(function PlantImage({
     const imageSrc =
       PLANT_IMAGES[PLANT_NAME_TO_TYPE[justHarvestedPlant.plantName]][4];
     return (
-      <div className="relative w-full h-full">
+      <div className="relative h-full w-full">
         <img
           src={imageSrc}
           alt="harvested plant"
           // loading="lazy"
           loading="eager"
           decoding="async"
-          className="w-full h-full object-contain"
+          className="h-full w-full object-contain"
         />
       </div>
     );
@@ -39,14 +39,14 @@ export default memo(function PlantImage({
     : EMPTY_PLANT_IMAGE;
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative h-full w-full">
       <img
         src={imageSrc}
         alt="plant"
         // loading="lazy"
         loading="eager"
         decoding="async"
-        className="w-full h-full object-contain"
+        className="h-full w-full object-contain"
       />
     </div>
   );

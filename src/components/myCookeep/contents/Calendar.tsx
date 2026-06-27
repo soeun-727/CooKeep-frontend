@@ -55,39 +55,35 @@ export default function Calendar({ onDateClick }: Props) {
 
   return (
     <div
-      className={`
-    flex flex-col w-[357px] mx-auto items-center justify-center rounded-[6px] p-4 
-    bg-white/10 transition-opacity duration-200
-    ${isLoading ? "opacity-50 pointer-events-none" : "opacity-100"}
-  `}
+      className={`mx-auto flex w-[357px] flex-col items-center justify-center rounded-[6px] bg-white/10 p-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"} `}
     >
       {/* 1. 헤더 */}
-      <div className="flex items-center justify-between w-full px-2 mt-[13px] mb-2">
+      <div className="mt-[13px] mb-2 flex w-full items-center justify-between px-2">
         <h2 className="typo-h3 text-neutral-900">
           {monthName} {year}
         </h2>
         <div className="flex gap-1">
           <button onClick={prevMonth} className="p-2">
-            <img src={prevIcon} className="w-4 h-4" alt="prev" />
+            <img src={prevIcon} className="h-4 w-4" alt="prev" />
           </button>
           <button onClick={nextMonth} className="p-2">
-            <img src={nextIcon} className="w-4 h-4" alt="next" />
+            <img src={nextIcon} className="h-4 w-4" alt="next" />
           </button>
         </div>
       </div>
       {/* 2. 요일 */}
-      <div className="grid grid-cols-7 w-full mb-2">
+      <div className="mb-2 grid w-full grid-cols-7">
         {daysOfWeek.map((day) => (
           <div
             key={day}
-            className="text-center typo-body2 text-(--color-green)"
+            className="typo-body2 text-center text-(--color-green)"
           >
             {day}
           </div>
         ))}
       </div>
       {/* 3. 날짜 그리드 */}
-      <div className="grid grid-cols-7 w-full relative gap-y-[6px] mb-[13px]">
+      <div className="relative mb-[13px] grid w-full grid-cols-7 gap-y-[6px]">
         {Array.from({ length: firstDayOfMonth }).map((_, i) => (
           <div key={`empty-${i}`} />
         ))}
@@ -131,44 +127,35 @@ export default function Calendar({ onDateClick }: Props) {
                 <img
                   src={todaySign}
                   alt="today"
-                  className="absolute -top-3 z-40 w-18 max-w-none pointer-events-none drop-shadow-md"
+                  className="pointer-events-none absolute -top-3 z-40 w-18 max-w-none drop-shadow-md"
                 />
               )}
 
               {/* 연속 배경 */}
               {isContinuous && (
                 <div
-                  className={`
-            absolute top-1/2 -translate-y-1/2 h-12 bg-[#96E8BE] z-0
-            ${hasPrev && hasNext ? "left-[-60%] right-[-60%] rounded-none" : ""}
-            ${hasPrev && !hasNext ? "left-[-60%] right-[-2px] rounded-r-full" : ""}
-            ${!hasPrev && hasNext ? "left-[-2px] right-[-60%] rounded-l-full" : ""}
-          `}
+                  className={`absolute top-1/2 z-0 h-12 -translate-y-1/2 bg-[#96E8BE] ${hasPrev && hasNext ? "right-[-60%] left-[-60%] rounded-none" : ""} ${hasPrev && !hasNext ? "right-[-2px] left-[-60%] rounded-r-full" : ""} ${!hasPrev && hasNext ? "right-[-60%] left-[-2px] rounded-l-full" : ""} `}
                 />
               )}
 
               {/* 날짜 버튼 */}
               <button
                 onClick={() => onDateClick(dateStr)}
-                className={`
-          relative z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all
-          ${hasRecord ? "scale-105" : "hover:bg-zinc-50"}
-          ${hasRecord && !photoUrl ? "bg-[#96E8BE]" : ""} 
-        `}
+                className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full transition-all ${hasRecord ? "scale-105" : "hover:bg-zinc-50"} ${hasRecord && !photoUrl ? "bg-[#96E8BE]" : ""} `}
               >
                 {/* 🚀 사진이 있을 때만 이미지를 보여줌 */}
                 {photoUrl && (
-                  <div className="absolute inset-0 rounded-full overflow-hidden">
+                  <div className="absolute inset-0 overflow-hidden rounded-full">
                     <img
                       src={photoUrl}
                       alt="record"
-                      className="w-full h-full object-cover brightness-75"
+                      className="h-full w-full object-cover brightness-75"
                     />
                   </div>
                 )}
 
                 <span
-                  className={`relative z-20 typo-h2 !font-normal ${
+                  className={`typo-h2 relative z-20 !font-normal ${
                     hasRecord ? "text-white" : "text-neutral-800"
                   }`}
                 >

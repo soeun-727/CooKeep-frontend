@@ -34,7 +34,7 @@ export default function SelectViewTypeModal({
             onClick={onConfirm}
             className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#32E389]"
           >
-            <span className="text-[14px] font-semibold leading-[24px] text-white">
+            <span className="text-[14px] leading-[24px] font-semibold text-white">
               네
             </span>
           </button>
@@ -43,7 +43,7 @@ export default function SelectViewTypeModal({
             onClick={onCancel}
             className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#C3C3C3]"
           >
-            <span className="text-[14px] font-semibold leading-[24px] text-white">
+            <span className="text-[14px] leading-[24px] font-semibold text-white">
               아니오
             </span>
           </button>

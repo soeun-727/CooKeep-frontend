@@ -17,16 +17,8 @@ export default function AppLayout({ children }: Props) {
   const { current, dequeue } = useRewardStore();
 
   return (
-    <div className="flex justify-center bg-[#FAFAFA] min-h-dvh">
-      <div
-        className="
-          relative
-          w-full
-          max-w-[450px]
-          flex flex-col flex-1
-          transition-colors duration-300
-        "
-      >
+    <div className="flex min-h-dvh justify-center bg-[#FAFAFA]">
+      <div className="relative flex w-full max-w-[450px] flex-1 flex-col transition-colors duration-300">
         {children}
 
         {/* overlay 방식으로 변경 */}

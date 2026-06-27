@@ -91,7 +91,7 @@ function Profile() {
     : "목표를 설정해주세요";
   if (!profile) {
     return (
-      <div className="w-full h-[260px] bg-gradient-to-b from-[#32E389] to-[#1FC16F] rounded-b-[36px] animate-pulse" />
+      <div className="h-[260px] w-full animate-pulse rounded-b-[36px] bg-gradient-to-b from-[#32E389] to-[#1FC16F]" />
     );
   }
   const goalId = currentGoalEntry ? currentGoalEntry[0] : "cook";
@@ -101,12 +101,12 @@ function Profile() {
     <>
       <div className="flex flex-col items-center justify-center">
         {/* 헤더 섹션 */}
-        <div className="w-full h-[260px] bg-gradient-to-b from-[#32E389] to-[#1FC16F] rounded-b-[36px] flex flex-col items-center justify-center">
+        <div className="flex h-[260px] w-full flex-col items-center justify-center rounded-b-[36px] bg-gradient-to-b from-[#32E389] to-[#1FC16F]">
           <MyCookeepHeader />
 
-          <div className="flex w-[361px] mt-5 items-center justify-start">
+          <div className="mt-5 flex w-[361px] items-center justify-start">
             {/* 식물 사진 및 수정 버튼 */}
-            <div className="relative w-31 h-31 -ml-[7.5px] shrink-0 inline-block">
+            <div className="relative -ml-[7.5px] inline-block h-31 w-31 shrink-0">
               {/* <img
                 src={profile?.profilePlantImageUrl || groundImg}
                 alt="profileBackground"
@@ -120,13 +120,13 @@ function Profile() {
                 loading="eager"
                 decoding="async"
                 onLoad={() => setImgLoaded(true)}
-                className={`w-full p-6 rounded-full object-cover transition-opacity duration-200 ${
+                className={`w-full rounded-full object-cover p-6 transition-opacity duration-200 ${
                   imgLoaded ? "opacity-100" : "opacity-0"
                 }`}
               />
 
               <button
-                className="absolute bottom-4.5 right-5 transition-transform active:scale-90"
+                className="absolute right-5 bottom-4.5 transition-transform active:scale-90"
                 onClick={() => {
                   console.log("프로필 수정 버튼 클릭됨");
                   setIsEditModalOpen(true);
@@ -145,11 +145,11 @@ function Profile() {
                   지금은 {profile?.growingPlantName || "요리 실력을"} 키우는 중!
                 </span>
               </div>
-              <div className="flex -ml-[0.5px] items-center justify-center gap-[2px] h-5 px-3 bg-[#E6FBEB] rounded-[100px] mt-3 w-fit mx-auto">
-                <span className="typo-caption text-(--color-green) leading-none flex items-center">
+              <div className="mx-auto mt-3 -ml-[0.5px] flex h-5 w-fit items-center justify-center gap-[2px] rounded-[100px] bg-[#E6FBEB] px-3">
+                <span className="typo-caption flex items-center leading-none text-(--color-green)">
                   {profile?.daysSinceJoined}
                 </span>
-                <span className="typo-caption text-zinc-500 leading-none flex items-center">
+                <span className="typo-caption flex items-center leading-none text-zinc-500">
                   일째 CooKeep
                 </span>
               </div>
@@ -157,7 +157,7 @@ function Profile() {
           </div>
 
           {/* 목표 요약 바 */}
-          <div className="bg-[#1DAD64] p-3 w-[361px] h-12 flex items-center justify-between gap-3 rounded-[12px] shadow-[0px_4px_16px_-10px_rgba(0,0,0,0.25)]">
+          <div className="flex h-12 w-[361px] items-center justify-between gap-3 rounded-[12px] bg-[#1DAD64] p-3 shadow-[0px_4px_16px_-10px_rgba(0,0,0,0.25)]">
             <span
               className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-white" : "text-green-300"}`}
             >
@@ -178,12 +178,12 @@ function Profile() {
                   },
                 })
               }
-              className="w-6 flex items-center justify-center h-full"
+              className="flex h-full w-6 items-center justify-center"
             >
               <img
                 src={renameIcon}
                 alt="rename"
-                className="brightness-0 invert-[100%] w-4"
+                className="w-4 brightness-0 invert-[100%]"
               />
             </button>
           </div>
@@ -191,18 +191,18 @@ function Profile() {
           {/* 말풍선 섹션: showBubble 여부에 따라 투명도만 조절 */}
           {!profile?.weeklyGoal?.goalActionType && (
             <div
-              className={`absolute top-[245px] flex justify-center animate-float-bubble shrink-0 transition-opacity duration-1000 ease-in-out ${
-                showBubble ? "opacity-100" : "opacity-0 pointer-events-none"
+              className={`animate-float-bubble absolute top-[245px] flex shrink-0 justify-center transition-opacity duration-1000 ease-in-out ${
+                showBubble ? "opacity-100" : "pointer-events-none opacity-0"
               }`}
             >
               <div
-                className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-white text-zinc-500 text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+                className="relative z-10 inline-flex items-center justify-center rounded-[3px] bg-white px-[16px] py-[9px] text-center text-[12px] font-medium text-zinc-500 shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
                 style={{ width: 227, height: 28 }}
               >
                 이번 주 달성하고 싶은 목표를 세워보세요!
               </div>
               <div
-                className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-white rotate-45 z-0"
+                className="absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45 bg-white"
                 style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
               />
             </div>

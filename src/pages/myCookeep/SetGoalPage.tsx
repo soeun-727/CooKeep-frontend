@@ -87,8 +87,8 @@ export default function SetGoalPage() {
         onBack={() => (step === 0 ? navigate(-1) : setStep(0))}
       />
 
-      <div className="min-h-screen relative pb-32 flex flex-col items-center">
-        <main className="w-full max-w-[361px] mt-10">{STEPS[step]}</main>
+      <div className="relative flex min-h-screen flex-col items-center pb-32">
+        <main className="mt-10 w-full max-w-[361px]">{STEPS[step]}</main>
 
         <footer className="fixed bottom-0 pb-[34px]">
           <Button

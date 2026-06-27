@@ -67,8 +67,8 @@ export default function GoogleLoginCallback() {
   }, [navigate, loginSocial]);
 
   return (
-    <div className="flex flex-col items-center justify-center text-center mt-50">
-      <img className="opacity-70 w-30 p-5" src={loadingChar} alt="loading" />
+    <div className="mt-50 flex flex-col items-center justify-center text-center">
+      <img className="w-30 p-5 opacity-70" src={loadingChar} alt="loading" />
       <div className="typo-body2 text-zinc-500">로그인 중...</div>
     </div>
   );

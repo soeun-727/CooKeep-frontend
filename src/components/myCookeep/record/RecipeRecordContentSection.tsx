@@ -1,6 +1,6 @@
 import { IngredientsJson } from "@api/dailyAiRecipe";
-import RecipeDetailIngredientSection from @/componentscookeeps/recipedetail/RecipeDetailIngredientSection";
-import RecipeDetailStepSection from @/componentscookeeps/recipedetail/RecipeDetailStepSection";
+import RecipeDetailIngredientSection from "@/components/cookeeps/recipedetail/RecipeDetailIngredientSection";
+import RecipeDetailStepSection from "@/components/cookeeps/recipedetail/RecipeDetailStepSection";
 
 interface Props {
   recipe: {
@@ -11,8 +11,8 @@ interface Props {
 
 export default function RecipeRecordContentSection({ recipe }: Props) {
   return (
-    <section className="flex flex-col w-full bg-white rounded-md shadow p-4">
-      <div className="flex flex-col w-full gap-9">
+    <section className="flex w-full flex-col rounded-md bg-white p-4 shadow">
+      <div className="flex w-full flex-col gap-9">
         <RecipeDetailIngredientSection ingredients={recipe.ingredients} />
         <RecipeDetailStepSection steps={recipe.steps} />
       </div>

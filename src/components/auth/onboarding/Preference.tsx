@@ -109,15 +109,15 @@ export default function Preference() {
 
   if (isLoading)
     return (
-      <div className="flex flex-col items-center justify-center text-center mt-50">
-        <img className="opacity-70 w-30 p-5" src={loadingChar} />
+      <div className="mt-50 flex flex-col items-center justify-center text-center">
+        <img className="w-30 p-5 opacity-70" src={loadingChar} />
         <div className="typo-body2 text-zinc-500">로딩 중...</div>
       </div>
     );
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="w-[361px] mt-[46px]">
+    <div className="flex w-full flex-col items-center">
+      <div className="mt-[46px] w-[361px]">
         <h1 className="typo-h1 !text-[22px]">먹지 못하는 식재료가 있나요?</h1>
         <h3 className="typo-h3 text-gray-500">
           해당 재료는 레시피에서 제외할게요
@@ -125,21 +125,11 @@ export default function Preference() {
       </div>
       <div className="relative mt-[46px] flex flex-col items-center">
         <div
-          className={`
-            relative w-[361px] transition-all duration-200
-            ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"}
-            overflow-hidden
-            [&_p]:hidden
-            [&_input]:w-full
-            typo-body2
-            [&_input]:outline-none 
-            [&_input::placeholder]:text-[#7D7D7D]
-            ${
-              isDropdownOpen
-                ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
-                : ""
-            }
-          `}
+          className={`relative w-[361px] transition-all duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-body2 overflow-hidden [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-[#7D7D7D] [&_p]:hidden ${
+            isDropdownOpen
+              ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
+              : ""
+          } `}
         >
           <TextField
             value={searchTerm}
@@ -159,14 +149,14 @@ export default function Preference() {
         </div>
 
         {/* 선택된 재료 */}
-        <div className="flex flex-wrap mt-[18px] w-[361px] gap-[6px]">
+        <div className="mt-[18px] flex w-[361px] flex-wrap gap-[6px]">
           {selectedIngredients.map((ingredient) => (
             <div
               key={ingredient.defaultIngredientId}
               onClick={() => handleRemove(ingredient.defaultIngredientId)}
-              className="bg-gray-200 px-3 px-1 h-7 flex gap-1 rounded-[100px] items-center"
+              className="flex h-7 items-center gap-1 rounded-[100px] bg-gray-200 px-1 px-3"
             >
-              <img src={xIcon} className="w-3 h-3" />
+              <img src={xIcon} className="h-3 w-3" />
               <span className="typo-caption !font-medium text-zinc-500">
                 {ingredient.ingredient}
               </span>
@@ -175,12 +165,12 @@ export default function Preference() {
         </div>
 
         {hasText && (
-          <ul className="absolute top-12 w-[361px] bg-white border border-[#DDDDDD] !border-t-0 rounded-b-[6px] z-50 max-h-[200px] overflow-y-auto typo-body2">
+          <ul className="typo-body2 absolute top-12 z-50 max-h-[200px] w-[361px] overflow-y-auto rounded-b-[6px] border !border-t-0 border-[#DDDDDD] bg-white">
             {filteredIngredients.map((item) => (
               <li
                 key={item.defaultIngredientId}
                 onClick={() => handleSelect(item)}
-                className="h-12 p-3 hover:bg-gray-100 cursor-pointer"
+                className="h-12 cursor-pointer p-3 hover:bg-gray-100"
               >
                 {highlightText(item.ingredient, searchTerm.trim())}
               </li>
@@ -189,7 +179,7 @@ export default function Preference() {
               onClick={() => {
                 setIsModalOpen(true);
               }}
-              className={`h-12 p-3 hover:bg-gray-100 cursor-pointer flex items-center gap-2`}
+              className={`flex h-12 cursor-pointer items-center gap-2 p-3 hover:bg-gray-100`}
             >
               직접 입력하기
             </li>

@@ -1,5 +1,14 @@
 import { create } from "zustand";
-import { consumeIngredients, deleteIngredients, updateIngredientDate, updateIngredientMemo, updateIngredientQuantity, updateIngredientStorage, type ConsumeRewardResponse, type StorageType } from "@api/ingredient";
+import {
+  consumeIngredients,
+  deleteIngredients,
+  updateIngredientDate,
+  updateIngredientMemo,
+  updateIngredientQuantity,
+  updateIngredientStorage,
+  type ConsumeRewardResponse,
+  type StorageType,
+} from "@api/ingredient";
 
 export interface Ingredient {
   id: number;

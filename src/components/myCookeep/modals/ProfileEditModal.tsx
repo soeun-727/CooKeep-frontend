@@ -35,33 +35,33 @@ export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
       {/* 모달 본체 */}
       <div
         key={selectedId ?? "modal"}
-        className="relative w-full max-w-[450px] bg-white rounded-t-[30px] py-[19px] px-4 animate-slide-up flex flex-col"
+        className="animate-slide-up relative flex w-full max-w-[450px] flex-col rounded-t-[30px] bg-white px-4 py-[19px]"
       >
-        <div className="flex justify-center items-center h-10 p-2">
+        <div className="flex h-10 items-center justify-center p-2">
           <h3 className="typo-body text-neutral-900">
             프로필로 설정할 식물을 선택해주세요
           </h3>
         </div>
 
-        <div className="flex flex-col items-center mb-1 px-4">
+        <div className="mb-1 flex flex-col items-center px-4">
           {/* 1. 현재 프로필/식물 이미지 */}
           <div className="-mt-4">
             <div className="relative inline-block overflow-visible">
               <img
                 src={selectedPlantImage}
                 alt="profileBackground"
-                className="w-[155px] p-6 rounded-full object-cover"
+                className="w-[155px] rounded-full object-cover p-6"
               />
             </div>
           </div>
 
           {/* 2. 식물 도감 (그리드) */}
-          <div className="grid grid-cols-4 gap-x-3 gap-y-1 mb-7 w-[331px] -mt-2 px-4">
+          <div className="-mt-2 mb-7 grid w-[331px] grid-cols-4 gap-x-3 gap-y-1 px-4">
             {myPlants.map((plant) => (
               <div key={plant.userPlantId} className="relative">
                 {/* 현재 키우는 식물 위에만 뜨는 말풍선 */}
                 {plant.isProfile && (
-                  <div className="absolute -top-[10px] left-1/2 -translate-x-1/2 z-10 w-full flex justify-center">
+                  <div className="absolute -top-[10px] left-1/2 z-10 flex w-full -translate-x-1/2 justify-center">
                     <img
                       src={currentIcon}
                       alt="currently growing"
@@ -72,19 +72,16 @@ export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
 
                 <button
                   onClick={() => setSelectedId(plant.userPlantId)}
-                  className={`
-                      relative w-full aspect-square rounded-full transition-all flex items-center justify-center
-                      ${
-                        selectedId === plant.userPlantId
-                          ? "border-2 border-(--color-green)"
-                          : "border-2 border-transparent"
-                      }
-                    `}
+                  className={`relative flex aspect-square w-full items-center justify-center rounded-full transition-all ${
+                    selectedId === plant.userPlantId
+                      ? "border-2 border-(--color-green)"
+                      : "border-2 border-transparent"
+                  } `}
                 >
-                  <div className="w-full h-full rounded-full">
+                  <div className="h-full w-full rounded-full">
                     <img
                       src={plant.imageUrl ?? groundImg}
-                      className="w-full h-full object-cover rounded-full"
+                      className="h-full w-full rounded-full object-cover"
                     />
                   </div>
                 </button>

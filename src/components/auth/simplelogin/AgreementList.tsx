@@ -24,8 +24,8 @@ export default function AgreementList({
 
   if (agreementPage) {
     return (
-      <div className="fixed inset-0 z-50 bg-gray-100 flex items-center justify-center">
-        <div className="w-full max-w-[450px] min-h-[100dvh] bg-[#FAFAFA]">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100">
+        <div className="min-h-[100dvh] w-full max-w-[450px] bg-[#FAFAFA]">
           {" "}
           {/*overflow-y-auto*/}
           <AgreementPage
@@ -50,10 +50,10 @@ export default function AgreementList({
   return (
     <div className="mt-[26px]">
       {/* 전체 동의 */}
-      <label className="relative flex items-center px-4 h-[48px] max-w-[361px] w-full rounded-[6px] border border-[#D1D1D1] cursor-pointer">
+      <label className="relative flex h-[48px] w-full max-w-[361px] cursor-pointer items-center rounded-[6px] border border-[#D1D1D1] px-4">
         <input
           type="checkbox"
-          className="peer w-4 h-4 appearance-none border border-[#7D7D7D] rounded-sm checked:bg-(--color-green) cursor-pointer"
+          className="peer h-4 w-4 cursor-pointer appearance-none rounded-sm border border-[#7D7D7D] checked:bg-(--color-green)"
           checked={isAllChecked}
           onChange={(e) =>
             updateAgreements({
@@ -63,33 +63,33 @@ export default function AgreementList({
             })
           }
         />
-        <span className="ml-[16px] typo-label text-[#202020]">
+        <span className="typo-label ml-[16px] text-[#202020]">
           약관 전체동의
         </span>
-        <span className="absolute left-4 w-4 h-4 flex items-center justify-center pointer-events-none text-white text-lg font-bold peer-checked:visible invisible">
+        <span className="pointer-events-none invisible absolute left-4 flex h-4 w-4 items-center justify-center text-lg font-bold text-white peer-checked:visible">
           ✓
         </span>
       </label>
 
       {/* 개별 약관 */}
-      <div className="w-[361px] h-[138px] px-4 py-3 flex flex-col gap-[6px]">
+      <div className="flex h-[138px] w-[361px] flex-col gap-[6px] px-4 py-3">
         {AGREEMENTS.map((item) => (
           <div
             key={item.key}
-            className="flex items-center justify-between w-[337px] h-[24px] mx-auto"
+            className="mx-auto flex h-[24px] w-[337px] items-center justify-between"
           >
-            <label className="flex items-center gap-4 cursor-pointer">
+            <label className="flex cursor-pointer items-center gap-4">
               {item.key !== "policy" ? (
                 <input
                   type="checkbox"
-                  className="w-4 h-4 accent-[#7D7D7D]"
+                  className="h-4 w-4 accent-[#7D7D7D]"
                   checked={agreements[item.key]}
                   onChange={(e) =>
                     updateAgreements({ [item.key]: e.target.checked })
                   }
                 />
               ) : (
-                <span className="w-4 h-4 inline-block" />
+                <span className="inline-block h-4 w-4" />
               )}
 
               <span className="typo-label text-[#7D7D7D]">{item.label}</span>

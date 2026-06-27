@@ -25,8 +25,8 @@ export default function SpecificGoal({
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="w-[361px] mt-[46px]">
+    <div className="flex w-full flex-col items-center">
+      <div className="mt-[46px] w-[361px]">
         <h1 className="typo-h1 !text-[22px]">
           이번 주 달성하고 싶은 목표를 세워보세요!
         </h1>
@@ -35,9 +35,9 @@ export default function SpecificGoal({
         </h3>
       </div>
 
-      <div className="w-[361px] mt-[46px] flex flex-col items-start">
+      <div className="mt-[46px] flex w-[361px] flex-col items-start">
         <div
-          className={`w-full h-12 px-3 flex items-center border rounded-md bg-white transition-all ${
+          className={`flex h-12 w-full items-center rounded-md border bg-white px-3 transition-all ${
             isError ? "border-red-500" : "border-[#D1D1D1]"
           }`}
         >
@@ -50,7 +50,7 @@ export default function SpecificGoal({
             value={count}
             onChange={handleChange}
             placeholder="3"
-            className={`typo-body2 font-bold underline outline-none bg-transparent w-5 text-center transition-colors ${
+            className={`typo-body2 w-5 bg-transparent text-center font-bold underline transition-colors outline-none ${
               isError ? "text-red-500" : "text-green-500"
             }`}
           />
@@ -59,7 +59,7 @@ export default function SpecificGoal({
 
         {/* 에러 메시지: 범위가 벗어났거나 비어있지 않을 때만 표시 */}
         {isError && (
-          <p className="text-red-500 text-[10px] mt-[5px] ml-3 animate-fadeIn">
+          <p className="animate-fadeIn mt-[5px] ml-3 text-[10px] text-red-500">
             1~10 사이의 숫자로 입력해주세요
           </p>
         )}

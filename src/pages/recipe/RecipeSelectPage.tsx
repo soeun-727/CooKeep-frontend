@@ -66,7 +66,7 @@ export default function RecipeSelectPage() {
   };
 
   return (
-    <div className="flex flex-col w-full pb-32">
+    <div className="flex w-full flex-col pb-32">
       <BackHeader title="재료 선택" onBack={handleBack} />
 
       {!viewCategory && <FloatingNotice text="요리할 재료를 선택해 주세요" />}

@@ -98,14 +98,14 @@ export default function ViewAllPage() {
   }
 
   return (
-    <div className="mt-[18px] pb-10 flex justify-center">
+    <div className="mt-[18px] flex justify-center pb-10">
       <div className="w-[361px]">
-        <div className="fixed bottom-[calc(74px+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 w-[361px] flex justify-center z-50">
+        <div className="fixed bottom-[calc(74px+env(safe-area-inset-bottom))] left-1/2 z-50 flex w-[361px] -translate-x-1/2 justify-center">
           <SortAll currentOrder={sortOrder} onSortChange={setSortOrder} />
         </div>
 
         {filteredData.length > 0 ? (
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col items-center gap-3">
             {filteredData.map((item, index) => (
               <AllItem
                 key={item.dailyRecipeId}
@@ -124,16 +124,16 @@ export default function ViewAllPage() {
             {/* 무한 스크롤 트리거 */}
             <div
               ref={observerTarget}
-              className="h-10 w-full flex items-center justify-center"
+              className="flex h-10 w-full items-center justify-center"
             >
               {isLoading && (
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-green-500" />
+                <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-green-500" />
               )}
             </div>
           </div>
         ) : (
           !isLoading && (
-            <p className="mt-10 text-zinc-400 typo-body text-center">
+            <p className="typo-body mt-10 text-center text-zinc-400">
               검색 결과가 없습니다.
             </p>
           )

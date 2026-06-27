@@ -1,5 +1,10 @@
 import { create } from "zustand";
-import { updateRecipeVisibility, DailyRecipe, toggleRecipeLike, toggleRecipeBookmark } from "@api/myRecipe";
+import {
+  updateRecipeVisibility,
+  DailyRecipe,
+  toggleRecipeLike,
+  toggleRecipeBookmark,
+} from "@api/myRecipe";
 import { useRewardStore } from "./useRewardStore";
 
 export interface RecordImage {
