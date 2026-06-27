@@ -1,5 +1,5 @@
 import { useState } from "react";
-import arrowRight from "@assets/signup/arrowright.svg";
+import arrowRight from "@/assets/signup/arrowright.svg";
 
 interface Props {
   videos: {

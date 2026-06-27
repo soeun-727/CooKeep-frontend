@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "@components/ui/BackHeader";
-import Button from "@components/ui/Button";
-import { useCookeepRecordStore } from "@stores/useCookeepRecordStore";
-import RecordWriteImageCard from "@components/myCookeep/record/RecordWriteImageCard";
-import RecipeRecordContentSection from "@components/myCookeep/record/RecipeRecordContentSection";
-import privateIcon from "@assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@assets/mycookeep/record/public_icon.svg";
-import UploadCompleteModal from "@components/myCookeep/record/UploadCompleteModal";
-import { useCookeepsStore } from "@stores/useCookeepsStore";
-import { uploadImage } from "@api/image";
-import { createDailyRecipe } from "@api/myRecipe";
-import { AiRecipeDetail, getAiRecipeDetail } from "@api/dailyAiRecipe";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
+import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
+import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
+import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { uploadImage } from "@/api/image";
+import { createDailyRecipe } from "@/api/myRecipe";
+import { AiRecipeDetail, getAiRecipeDetail } from "@/api/dailyAiRecipe";
 import imageCompression from "browser-image-compression";
 import { AxiosError } from "axios";
-import RecipeDetailYoutube from "@components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import PhotoRewardModal from "@components/myCookeep/record/PhotoRewardModal";
-import WeeklyGoalModal from "@components/ui/WeeklyGoalModal";
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
+import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
 export default function RecordWritePage() {
   const navigate = useNavigate();

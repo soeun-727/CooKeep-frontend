@@ -1,6 +1,6 @@
 import React from "react";
-import check from "@assets/fridge/check.svg";
-import checkOn from "@assets/fridge/check_selected.svg";
+import check from "@/assets/fridge/check.svg";
+import checkOn from "@/assets/fridge/check_selected.svg";
 
 interface ItemProps {
   image: string;

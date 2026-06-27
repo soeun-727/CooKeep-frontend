@@ -1,13 +1,13 @@
 // src/pages/settings/EditEmailPage.tsx
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import checkIcon from "@assets/signup/check.svg";
-import TextField from "@components/ui/TextField";
-import Button from "@components/ui/Button";
+import checkIcon from "@/assets/signup/check.svg";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
 import axios from "axios";
-import { updateEmail } from "@api/user";
-import { useEmailUpdateStore } from "@stores/useEmailUpdateStore";
-import EmailAuthModal from "@components/auth/signup/EmailAuthModal"; // 추가
+import { updateEmail } from "@/api/user";
+import { useEmailUpdateStore } from "@/stores/useEmailUpdateStore";
+import EmailAuthModal from "@/components/auth/signup/EmailAuthModal"; // 추가
 
 type ModalType = "send" | "verify" | "help"; // 추가
 

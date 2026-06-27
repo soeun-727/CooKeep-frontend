@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import ListItem from "@components/cookeeps/lists/ListItem";
-import DoublecheckModal from "@components/ui/DoublecheckModal";
+import ListItem from "@/components/cookeeps/lists/ListItem";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import {
   getMyLikedRecipes,
   getMyBookmarkedRecipes,
   MyRecipeListItem,
   toggleRecipeBookmark,
   toggleRecipeLike,
-} from "@api/myRecipe";
-import temp from "@assets/cookeeps/main/temp_recipe_cookeeps.svg";
+} from "@/api/myRecipe";
+import temp from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 
 interface Props {
   type: string;

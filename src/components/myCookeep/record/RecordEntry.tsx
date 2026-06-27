@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import tempFoodPhoto from "@assets/mycookeep/record/temp_food_photo.svg";
+import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
 import Button from "@/components/ui/Button";
-import { useCookeepRecordStore } from "@stores/useCookeepRecordStore";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import RecordCard from "./RecordCard";
 import AddRecordButton from "./AddRecordButton";
-import { DailyRecipe } from "@api/myRecipe";
+import { DailyRecipe } from "@/api/myRecipe";
 
 interface Props {
   records: DailyRecipe[];

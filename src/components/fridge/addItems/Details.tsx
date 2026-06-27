@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useAddIngredientStore } from "@stores/useAddIngredientStore";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import DetailedItem from "./DetailedItem";
 import Button from "@/components/ui/Button";
-import { addIngredients } from "@api/ingredient";
+import { addIngredients } from "@/api/ingredient";
 import { useState } from "react";
-import { useRewardStore } from "@stores/useRewardStore";
+import { useRewardStore } from "@/stores/useRewardStore";
 
 export default function Details() {
   const navigate = useNavigate();

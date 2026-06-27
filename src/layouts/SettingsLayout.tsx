@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import BackHeader from "@components/ui/BackHeader";
+import BackHeader from "@/components/ui/BackHeader";
 import { useRef } from "react";
 
 export default function SettingsLayout() {

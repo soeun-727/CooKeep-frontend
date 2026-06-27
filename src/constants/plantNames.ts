@@ -1,4 +1,4 @@
-import type { PlantType } from "@stores/useCookeepsStore";
+import type { PlantType } from "@/stores/useCookeepsStore";
 
 export const PLANT_NAME_KR: Record<PlantType, string> = {
   apple: "사과",

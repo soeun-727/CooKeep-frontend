@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import searchIcon from "@assets/recipe/search.svg";
-import liked from "@assets/recipe/liked.svg";
-import unliked from "@assets/recipe/unliked.svg";
-import BackHeader from "@components/ui/BackHeader";
-import Button from "@components/ui/Button";
+import searchIcon from "@/assets/recipe/search.svg";
+import liked from "@/assets/recipe/liked.svg";
+import unliked from "@/assets/recipe/unliked.svg";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
 // import { useRecipeStore, type RecipeItem } from @/componentsstores/useRecipeStore";
-import { useCookeepRecordStore } from "@stores/useCookeepRecordStore";
-import { useDailyAiRecipeStore } from "@stores/useDailyAiRecipeStore";
-import type { DailyAiRecipe } from "@api/dailyAiRecipe";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
+import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
 
 export default function RecordSelectPage() {
   const navigate = useNavigate();

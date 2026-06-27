@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import tempFoodPhoto from "@assets/mycookeep/record/temp_food_photo.svg";
-import editIcon from "@assets/fridge/edit_memo.svg";
+import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
+import editIcon from "@/assets/fridge/edit_memo.svg";
 
 interface RecordWriteImageCardProps {
   title: string;

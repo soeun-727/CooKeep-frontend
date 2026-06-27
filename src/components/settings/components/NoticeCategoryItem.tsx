@@ -1,8 +1,8 @@
 // src/pages/settings/components/NoticeCategoryItem.tsx
 import { useState } from "react";
 import NoticeItem from "./NoticeItem";
-import arrowIcon from "@assets/signup/arrowright.svg";
-import { Notice } from "@types/notice";
+import arrowIcon from "@/assets/signup/arrowright.svg";
+import { Notice } from "@/types/notice";
 
 type Props = {
   category: Notice;

@@ -1,10 +1,10 @@
 import Item from "./Item";
-import character from "@assets/character/confused_char.svg";
+import character from "@/assets/character/confused_char.svg";
 import {
   AddSourceItem,
   useAddIngredientStore,
-} from "@stores/useAddIngredientStore";
-import { deleteCustomIngredient } from "@api/ingredient";
+} from "@/stores/useAddIngredientStore";
+import { deleteCustomIngredient } from "@/api/ingredient";
 import { useState } from "react";
 import DeleteConfirmModal from "../../modals/DeleteConfirmModal";
 import { AxiosError } from "axios";

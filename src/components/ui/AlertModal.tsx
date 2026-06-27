@@ -1,5 +1,5 @@
 import React from "react";
-import icon from "@assets/character/serve_char.svg";
+import icon from "@/assets/character/serve_char.svg";
 
 interface AlertModalProps {
   isOpen: boolean;

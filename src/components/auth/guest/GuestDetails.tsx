@@ -1,6 +1,6 @@
-import header from "@assets/guest/back_header.svg";
+import header from "@/assets/guest/back_header.svg";
 import DetailedItem from "@/components/fridge/addItems/DetailedItem";
-import milk from "@assets/guest/bagel.svg";
+import milk from "@/assets/guest/bagel.svg";
 import Button from "@/components/ui/Button";
 
 interface Props {

@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
-import illustration from "@assets/character/default_char.svg";
-import shadow from "@assets/character/char_shadow.svg";
+import illustration from "@/assets/character/default_char.svg";
+import shadow from "@/assets/character/char_shadow.svg";
 import AgreementList from "./AgreementList";
-import { updateAgreements } from "@api/onboarding";
-import { registerPushNotification } from "@api/push";
+import { updateAgreements } from "@/api/onboarding";
+import { registerPushNotification } from "@/api/push";
 
 export default function SimpleLoginAgreement() {
   const navigate = useNavigate();

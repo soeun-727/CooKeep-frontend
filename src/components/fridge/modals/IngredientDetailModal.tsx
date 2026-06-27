@@ -2,13 +2,13 @@ import { useCallback, useEffect, useState } from "react";
 import {
   useIngredientStore,
   type Ingredient,
-} from "@stores/useIngredientStore";
-import character from "@assets/character/tip_char.svg";
-import memoIcon from "@assets/fridge/edit_memo.svg";
-import fridgeIcon from "@assets/fridge/fridge.svg";
-import freezerIcon from "@assets/fridge/freezer.svg";
-import pantryIcon from "@assets/fridge/pantry.svg";
-import bubbleTail from "@assets/fridge/bubble_tail_left.svg";
+} from "@/stores/useIngredientStore";
+import character from "@/assets/character/tip_char.svg";
+import memoIcon from "@/assets/fridge/edit_memo.svg";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+import bubbleTail from "@/assets/fridge/bubble_tail_left.svg";
 import EditModal from "@/components/ui/EditModal";
 import StorageEditor from "../addItems/components/edit/StorageEditor";
 import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
@@ -19,8 +19,8 @@ import {
   updateIngredientDate,
   updateIngredientQuantity,
   updateIngredientMemo,
-} from "@api/ingredient";
-import { getKoreanUnit } from "@utils/mapping";
+} from "@/api/ingredient";
+import { getKoreanUnit } from "@/utils/mapping";
 
 interface Props {
   ingredient: Ingredient;

@@ -1,4 +1,4 @@
-import { useAddIngredientStore } from "@stores/useAddIngredientStore";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 
 export default function Selected() {
   const { selectedItems } = useAddIngredientStore();

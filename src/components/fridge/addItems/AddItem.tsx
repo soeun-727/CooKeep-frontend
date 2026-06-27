@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import TextField from "@components/ui/TextField";
-import searchIcon from "@assets/fridge/search_on.svg";
+import TextField from "@/components/ui/TextField";
+import searchIcon from "@/assets/fridge/search_on.svg";
 import Category from "./components/Category";
 import ItemsGrid from "./components/ItemsGrid";
 import AddItemFooter from "./AddItemFooter";
 import {
   useAddIngredientStore,
   type MasterItem,
-} from "@stores/useAddIngredientStore";
+} from "@/stores/useAddIngredientStore";
 import Custom from "./components/Custom";
 import {
   getMasterIngredientList,
@@ -16,11 +16,11 @@ import {
   StorageType,
   UnitType,
   type MasterIngredientListResponse,
-} from "@api/ingredient";
-import { DEFAULT_EXPIRY_DAYS } from "@constants/expiry";
-import { calculateExpiryDate } from "@utils/expiryDate";
-import { INGREDIENT_CATEGORIES } from "@constants/category";
-import defaultChar from "@assets/character/default_char.svg";
+} from "@/api/ingredient";
+import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
+import { calculateExpiryDate } from "@/utils/expiryDate";
+import { INGREDIENT_CATEGORIES } from "@/constants/category";
+import defaultChar from "@/assets/character/default_char.svg";
 import { loadingChar } from "@/assets";
 
 export default function AddItem() {

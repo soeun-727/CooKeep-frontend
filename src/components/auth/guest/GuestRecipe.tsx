@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import RecipeContentSection from "@/components/recipe/main/result/RecipeContentSection";
 import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
-import notice from "@assets/guest/recipe_notice.svg";
+import notice from "@/assets/guest/recipe_notice.svg";
 import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
 
 interface GuestRecipeResultProps {

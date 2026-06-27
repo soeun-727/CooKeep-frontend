@@ -1,5 +1,5 @@
-import type { Ingredient } from "@stores/useIngredientStore";
-import milk from "@assets/fridge/milk.svg";
+import type { Ingredient } from "@/stores/useIngredientStore";
+import milk from "@/assets/fridge/milk.svg";
 
 export const TEMP_DATA: Ingredient[] = [
   // 만료 (D+)

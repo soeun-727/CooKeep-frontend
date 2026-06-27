@@ -1,6 +1,6 @@
 // src/components/headers/ViewAllHeader.tsx
 
-import { searchIcon } from "@assets";
+import { searchIcon } from "@/assets/index";
 import TextField from "@/components/ui/TextField";
 
 interface Props {

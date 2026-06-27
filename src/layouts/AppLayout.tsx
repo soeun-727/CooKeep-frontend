@@ -1,10 +1,10 @@
-import { useLoadingStore } from "@stores/useLoadingStore";
-import LoadingScreen from "@components/ui/LoadingScreen";
-import WeeklyGoalModal from "@components/ui/WeeklyGoalModal"; // 추가
-import ExpiringRewardModal from "@components/recipe/ExpiringRewardModal";
-import { useRewardStore } from "@stores/useRewardStore";
-import OnboardingRewardModal from "@components/ui/OnboardingRewardModal";
-import ComebackRewardModal from "@components/ui/ComebackRewardModal";
+import { useLoadingStore } from "@/stores/useLoadingStore";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal"; // 추가
+import ExpiringRewardModal from "@/components/recipe/ExpiringRewardModal";
+import { useRewardStore } from "@/stores/useRewardStore";
+import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
+import ComebackRewardModal from "@/components/ui/ComebackRewardModal";
 
 type Props = {
   children: React.ReactNode;

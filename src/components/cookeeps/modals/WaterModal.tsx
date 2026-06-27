@@ -1,6 +1,6 @@
 // src/components/cookeeps/WaterModal.tsx
 import { createPortal } from "react-dom";
-import waterCookieImg from "@assets/cookeeps/main/water_cookie_cookeeps.svg";
+import waterCookieImg from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
 
 interface WaterModalProps {
   isOpen: boolean;

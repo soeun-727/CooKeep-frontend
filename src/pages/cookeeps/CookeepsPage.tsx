@@ -1,26 +1,26 @@
 import { useCallback, useEffect, useState } from "react";
-import PlantBackground from "@components/cookeeps/plant/PlantBackground";
-import CookeepsHeader from "@components/cookeeps/header/CookeepsHeader";
-import PlantGrowthCard from "@components/cookeeps/plant/PlantGrowthCard";
-import WeeklyTop3Section from "@components/cookeeps/ranking/WeeklyTop3Section";
-import WeeklyRecipeSection from "@components/cookeeps/recipe/WeeklyRecipeSection";
-import OnboardingModal from "@components/cookeeps/modals/OnboardingModal";
-import PlantSelectModal from "@components/cookeeps/modals/PlantSelectModal";
-import { PLANT_DATA } from "@constants/plantData";
-import SelectedModal from "@components/cookeeps/modals/SelectedModal";
-import WiltingModal from "@components/cookeeps/modals/WiltingModal";
-import WiltedModal from "@components/cookeeps/modals/WiltedModal";
-import { useCookeepsStore } from "@stores/useCookeepsStore";
-import FreeWaterModal from "@components/cookeeps/modals/FreeWaterModal";
-import HarvestModal from "@components/cookeeps/modals/HarvestModal";
-import { useLoadingStore } from "@stores/useLoadingStore";
-import { preloadImage } from "@utils/preloadImage";
+import PlantBackground from "@/components/cookeeps/plant/PlantBackground";
+import CookeepsHeader from "@/components/cookeeps/header/CookeepsHeader";
+import PlantGrowthCard from "@/components/cookeeps/plant/PlantGrowthCard";
+import WeeklyTop3Section from "@/components/cookeeps/ranking/WeeklyTop3Section";
+import WeeklyRecipeSection from "@/components/cookeeps/recipe/WeeklyRecipeSection";
+import OnboardingModal from "@/components/cookeeps/modals/OnboardingModal";
+import PlantSelectModal from "@/components/cookeeps/modals/PlantSelectModal";
+import { PLANT_DATA } from "@/constants/plantData";
+import SelectedModal from "@/components/cookeeps/modals/SelectedModal";
+import WiltingModal from "@/components/cookeeps/modals/WiltingModal";
+import WiltedModal from "@/components/cookeeps/modals/WiltedModal";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import FreeWaterModal from "@/components/cookeeps/modals/FreeWaterModal";
+import HarvestModal from "@/components/cookeeps/modals/HarvestModal";
+import { useLoadingStore } from "@/stores/useLoadingStore";
+import { preloadImage } from "@/utils/preloadImage";
 import {
   getOnboardingStatus,
   getWeeklyRanking,
   RankingResponse,
   updateOnboardingStatus,
-} from "@api/cookeeps";
+} from "@/api/cookeeps";
 
 type ActiveModal =
   | "onboarding"

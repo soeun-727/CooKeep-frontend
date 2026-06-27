@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import AuthHeader from "../AuthHeader";
 import SignupForm from "./SignupForm";
-import { useSignupStore } from "@stores/useSignupStore";
+import { useSignupStore } from "@/stores/useSignupStore";
 
 const Signup = () => {
   const [hideHeader, setHideHeader] = useState(false);

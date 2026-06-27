@@ -5,7 +5,7 @@ import {
   recordOn,
   stats,
   statsOn,
-} from "@assets";
+} from "@/assets/index";
 
 interface Props {
   activeTab: string;

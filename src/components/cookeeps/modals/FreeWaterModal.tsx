@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import characterImg from "@assets/character/plant_char.svg";
+import characterImg from "@/assets/character/plant_char.svg";
 
 interface Props {
   isOpen: boolean;

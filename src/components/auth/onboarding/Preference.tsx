@@ -1,15 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { loadingChar, searchIcon } from "@assets";
-import searchOnIcon from "@assets/fridge/search_on.svg";
+import { loadingChar, searchIcon } from "@/assets/index";
+import searchOnIcon from "@/assets/fridge/search_on.svg";
 import TextField from "@/components/ui/TextField";
-import xIcon from "@assets/onboarding/x.svg";
+import xIcon from "@/assets/onboarding/x.svg";
 import InputModal from "./InputModal";
 import {
   getOnboardingIngredients,
   OnboardingIngredient,
   RawIngredient,
-} from "@api/onboarding";
-import { useOnboardingStore } from "@stores/useOnboardingStore";
+} from "@/api/onboarding";
+import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
 export default function Preference() {
   const [searchTerm, setSearchTerm] = useState("");

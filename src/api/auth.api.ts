@@ -1,7 +1,7 @@
 // src/apis/auth.api.ts
 import axios from "axios";
-import { getRefreshToken, saveTokens } from "@utils/auth";
-import { useRewardStore } from "@stores/useRewardStore";
+import { getRefreshToken, saveTokens } from "@/utils/auth";
+import { useRewardStore } from "@/stores/useRewardStore";
 
 export async function refreshAccessToken() {
   const refreshToken = getRefreshToken();

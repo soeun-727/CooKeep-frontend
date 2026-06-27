@@ -11,7 +11,7 @@ import {
   disabledRight,
   abledLeft,
   abledRight,
-} from "@assets";
+} from "@/assets/index";
 
 interface Props {
   isOpen: boolean;

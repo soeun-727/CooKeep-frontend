@@ -1,10 +1,10 @@
 // src/pages/settings/NoticePage.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "@components/ui/BackHeader";
-import NoticeCategoryItem from "@components/settings/components/NoticeCategoryItem";
-import { getNotices } from "@api/notice";
-import { Notice, mapNotice } from "@types/notice";
+import BackHeader from "@/components/ui/BackHeader";
+import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
+import { getNotices } from "@/api/notice";
+import { Notice, mapNotice } from "@/types/notice";
 
 export default function NoticePage() {
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
-import { getKoreanUnit } from "@utils/mapping";
+import { getKoreanUnit } from "@/utils/mapping";
 
 interface QuantityEditorProps {
   value: string;

@@ -1,8 +1,8 @@
 // src/components/myCookeep/record/AddRecordButton.tsx
 import { useNavigate } from "react-router-dom";
 // import { useState } from "react";
-import plusIcon from "@assets/fridge/items/plus.svg";
-import { useCookeepRecordStore } from "@stores/useCookeepRecordStore";
+import plusIcon from "@/assets/fridge/items/plus.svg";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
 export default function AddRecordButton() {
   const navigate = useNavigate();

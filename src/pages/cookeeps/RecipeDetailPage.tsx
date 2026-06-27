@@ -1,20 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
-import BackHeader from "@components/ui/BackHeader";
-import RecipeDetailUserMeta from "@components/cookeeps/recipedetail/RecipeDetailUserMeta";
-import RecipeDetailImageCard from "@components/cookeeps/recipedetail/RecipeDetailImageCard";
-import RecipeDetailContentSection from "@components/cookeeps/recipedetail/RecipeDetailContentSection";
-import RecipeDetailYoutube from "@components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import RecipeDetailMemo from "@components/cookeeps/recipedetail/RecipeDetailMemo";
+import BackHeader from "@/components/ui/BackHeader";
+import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
+import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDetailImageCard";
+import RecipeDetailContentSection from "@/components/cookeeps/recipedetail/RecipeDetailContentSection";
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
 import { useEffect, useState } from "react";
 import {
   getWeeklyRecipeDetail,
   WeeklyRecipeDetailResponse,
-} from "@api/cookeeps";
-import { useCookeepRecordStore } from "@stores/useCookeepRecordStore";
+} from "@/api/cookeeps";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import {
   checkRecipeBookmarkStatus,
   checkRecipeLikeStatus,
-} from "@api/myRecipe";
+} from "@/api/myRecipe";
 
 export default function RecipeDetailPage() {
   const navigate = useNavigate();

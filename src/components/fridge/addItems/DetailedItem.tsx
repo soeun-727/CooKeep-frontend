@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import memoIcon from "@assets/fridge/memo.svg";
-import renameIcon from "@assets/recipe/rename.svg";
-import coldIcon from "@assets/fridge/fridge.svg";
-import frozenIcon from "@assets/fridge/freezer.svg";
-import roomIcon from "@assets/fridge/pantry.svg";
-import deleteIcon from "@assets/fridge/delete.svg";
-import { useAddIngredientStore } from "@stores/useAddIngredientStore";
-import type { MasterItem } from "@stores/useAddIngredientStore";
+import memoIcon from "@/assets/fridge/memo.svg";
+import renameIcon from "@/assets/recipe/rename.svg";
+import coldIcon from "@/assets/fridge/fridge.svg";
+import frozenIcon from "@/assets/fridge/freezer.svg";
+import roomIcon from "@/assets/fridge/pantry.svg";
+import deleteIcon from "@/assets/fridge/delete.svg";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
+import type { MasterItem } from "@/stores/useAddIngredientStore";
 import EditModal from "@/components/ui/EditModal";
 import QuantityEditor from "./components/edit/QuantityEditor";
 import UnitEditor from "./components/edit/UnitEditor";
 import StorageEditor from "./components/edit/StorageEditor";
 import ExpiryEditor from "./components/edit/ExpiryEditor";
 import MemoEditor from "./components/edit/MemoEditor";
-import { calculateExpiryDate } from "@utils/expiryDate";
+import { calculateExpiryDate } from "@/utils/expiryDate";
 import DeleteConfirmModal from "../modals/DeleteConfirmModal";
 
 interface DetailedItemProps extends MasterItem {}

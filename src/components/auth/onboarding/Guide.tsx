@@ -1,9 +1,9 @@
 import { useState, TouchEvent } from "react";
-import image1 from "@assets/onboarding/guide_1.svg";
-import image1_2 from "@assets/onboarding/guide_1_2.svg";
-import image2 from "@assets/onboarding/guide_2.svg";
-import image3 from "@assets/onboarding/guide_3.svg";
-import image4 from "@assets/onboarding/guide_4.svg";
+import image1 from "@/assets/onboarding/guide_1.svg";
+import image1_2 from "@/assets/onboarding/guide_1_2.svg";
+import image2 from "@/assets/onboarding/guide_2.svg";
+import image3 from "@/assets/onboarding/guide_3.svg";
+import image4 from "@/assets/onboarding/guide_4.svg";
 import Button from "@/components/ui/Button";
 
 interface Props {

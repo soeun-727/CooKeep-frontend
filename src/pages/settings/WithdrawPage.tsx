@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "@components/ui/BackHeader";
-import Button from "@components/ui/Button";
-import arrowIcon from "@assets/signup/arrowright.svg";
-import characterImg from "@assets/character/sad_char_faded.svg";
-import { useAuthStore } from "@stores/useAuthStore";
-import { withdrawUser } from "@api/auth";
-import { getMyProfile } from "@api/user";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+import arrowIcon from "@/assets/signup/arrowright.svg";
+import characterImg from "@/assets/character/sad_char_faded.svg";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { withdrawUser } from "@/api/auth";
+import { getMyProfile } from "@/api/user";
 
 export default function WithdrawPage() {
   const navigate = useNavigate();

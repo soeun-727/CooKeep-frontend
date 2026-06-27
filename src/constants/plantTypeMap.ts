@@ -1,5 +1,5 @@
 // constants/plantTypeMap.ts
-import type { PlantType } from "@stores/useCookeepsStore";
+import type { PlantType } from "@/stores/useCookeepsStore";
 
 /** UI 선택 (id → type) */
 export const PLANT_ID_TO_TYPE: Record<number, PlantType> = {

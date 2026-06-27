@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { carIcon, elecIcon, treeIcon, triButton } from "@assets";
+import { carIcon, elecIcon, treeIcon, triButton } from "@/assets/index";
 import CircleGraph from "./CircleGraph";
-import { ConsumptionReport, getConsumptionReport } from "@api/stats";
+import { ConsumptionReport, getConsumptionReport } from "@/api/stats";
 
 export default function Statistics() {
   const [isExpanded, setIsExpanded] = useState(false);

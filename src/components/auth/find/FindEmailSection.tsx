@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 import { useNavigate } from "react-router-dom";
-import { useFindPasswordStore } from "@stores/useFindPasswordStore";
+import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import FindEmailAuthModal from "./FindEmailAuthModal";
 // import axios from "axios";
 

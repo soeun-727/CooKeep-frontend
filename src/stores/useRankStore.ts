@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { RANK_DATA } from "@constants/totalData";
+import { RANK_DATA } from "@/constants/totalData";
 
 interface Rank {
   id: number;

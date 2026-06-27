@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import characterIcon from "@assets/character/crying_char.svg";
+import characterIcon from "@/assets/character/crying_char.svg";
 
 interface Props {
   plant: string;

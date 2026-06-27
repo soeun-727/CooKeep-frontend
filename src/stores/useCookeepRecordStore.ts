@@ -4,7 +4,7 @@ import {
   DailyRecipe,
   toggleRecipeLike,
   toggleRecipeBookmark,
-} from "@api/myRecipe";
+} from "@/api/myRecipe";
 import { useRewardStore } from "./useRewardStore";
 
 export interface RecordImage {

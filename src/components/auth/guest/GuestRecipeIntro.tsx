@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import cookChar from "@assets/recipe/main/cook_char.svg";
+import cookChar from "@/assets/recipe/main/cook_char.svg";
 import { useState } from "react";
 
 interface Props {

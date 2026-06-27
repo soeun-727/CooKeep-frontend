@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { sendUpdateEmailCode, verifyUpdateEmailCode } from "@api/user";
+import { sendUpdateEmailCode, verifyUpdateEmailCode } from "@/api/user";
 import axios from "axios";
 
 interface EmailUpdateState {

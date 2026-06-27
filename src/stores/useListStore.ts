@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { LIST_DATA } from "@constants/listData";
+import { LIST_DATA } from "@/constants/listData";
 
 interface Recipe {
   id: number;

@@ -5,7 +5,7 @@ import {
   toggleFavoriteSession,
   updateAiSessionTitle,
   deleteAiRecipeSession,
-} from "@api/aiSession";
+} from "@/api/aiSession";
 
 interface RecipeState {
   pinned: AiRecipeSessionItem[];

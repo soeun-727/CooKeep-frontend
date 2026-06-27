@@ -2,10 +2,10 @@ import React, { useEffect, useState, useLayoutEffect } from "react";
 import Recipe from "./Recipe";
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import TextField from "@/components/ui/TextField";
-import searchIcon from "@assets/recipe/search.svg";
-import { useRecipeStore } from "@stores/useRecipeStore";
+import searchIcon from "@/assets/recipe/search.svg";
+import { useRecipeStore } from "@/stores/useRecipeStore";
 import { useNavigate } from "react-router-dom";
-import { AiRecipeSessionItem } from "@api/aiSession";
+import { AiRecipeSessionItem } from "@/api/aiSession";
 
 interface SidebarProps {
   isOpen: boolean;

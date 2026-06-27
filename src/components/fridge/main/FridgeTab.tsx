@@ -5,16 +5,16 @@ import Storage from "./Storage";
 import IngredientGrid from "../items/IngredientGrid";
 import NoResultView from "../items/NoResultView";
 import ItemOption from "../items/ItemOption";
-import fridgeIcon from "@assets/fridge/fridge.svg";
-import freezerIcon from "@assets/fridge/freezer.svg";
-import pantryIcon from "@assets/fridge/pantry.svg";
-import { useIngredientStore } from "@stores/useIngredientStore";
-import { useSortedIngredients } from "@hooks/useSortedIngredients";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
-import { getRefrigeratorHome } from "@api/ingredient";
-import { getPushEligibility } from "@api/user";
-import { loadingChar } from "@assets";
+import { getRefrigeratorHome } from "@/api/ingredient";
+import { getPushEligibility } from "@/api/user";
+import { loadingChar } from "@/assets/index";
 
 export default function FridgeTab() {
   const { ingredients, setIngredients, searchTerm, viewCategory } =

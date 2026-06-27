@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 import { useNavigate } from "react-router-dom";
-import { useSignupStore } from "@stores/useSignupStore";
+import { useSignupStore } from "@/stores/useSignupStore";
 import axios from "axios";
 import EmailAuthModal from "./EmailAuthModal";
 

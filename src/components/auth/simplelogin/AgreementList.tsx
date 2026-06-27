@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { AGREEMENTS, AGREEMENT_NOTICE } from "@constants/agreements";
-import arrowIcon from "@assets/signup/arrowright.svg";
-import type { AgreementItem } from "@constants/agreements";
+import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
+import arrowIcon from "@/assets/signup/arrowright.svg";
+import type { AgreementItem } from "@/constants/agreements";
 import AgreementPage from "../signup/AgreementPage";
 
 interface AgreementListProps {

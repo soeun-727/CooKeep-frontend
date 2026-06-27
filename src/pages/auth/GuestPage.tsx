@@ -1,14 +1,14 @@
 // src/pages/auth/GuestPage.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GuestFridge from "@components/auth/guest/GuestFridge";
-import GuestAddItem from "@components/auth/guest/GuestAddItem";
-import GuestDetails from "@components/auth/guest/GuestDetails";
-import GuestRecipeIntro from "@components/auth/guest/GuestRecipeIntro";
-import GuestRecipeLevel from "@components/auth/guest/GuestRecipeLevel";
-import GuestRecipeLoading from "@components/auth/guest/GuestRecipeLoading";
-import GuestRecipe from "@components/auth/guest/GuestRecipe";
-import GuestLast from "@components/auth/guest/GuestLast";
+import GuestFridge from "@/components/auth/guest/GuestFridge";
+import GuestAddItem from "@/components/auth/guest/GuestAddItem";
+import GuestDetails from "@/components/auth/guest/GuestDetails";
+import GuestRecipeIntro from "@/components/auth/guest/GuestRecipeIntro";
+import GuestRecipeLevel from "@/components/auth/guest/GuestRecipeLevel";
+import GuestRecipeLoading from "@/components/auth/guest/GuestRecipeLoading";
+import GuestRecipe from "@/components/auth/guest/GuestRecipe";
+import GuestLast from "@/components/auth/guest/GuestLast";
 
 export default function GuestPage() {
   const navigate = useNavigate();

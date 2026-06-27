@@ -1,6 +1,6 @@
 import Item from "./components/Item";
 import character from "@/components/assets/temp_simplelogin_icon.svg";
-import { useAddIngredientStore } from "@stores/useAddIngredientStore";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 
 interface InventoryItem {
   id: string | number;

@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import character from "@assets/character/thinking_char.svg";
+import character from "@/assets/character/thinking_char.svg";
 
 interface Props {
   onConfirm: () => void;

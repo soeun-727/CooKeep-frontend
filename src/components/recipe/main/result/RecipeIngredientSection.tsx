@@ -1,4 +1,4 @@
-import { IngredientItem } from "@types/aiRecipe";
+import { IngredientItem } from "@/types/aiRecipe";
 
 interface Props {
   selectedIngredients: IngredientItem[];

@@ -1,11 +1,11 @@
 import MyCookeepHeader from "./MyCookeepHeader";
-import { groundImg, refreshIcon, renameIcon } from "@assets";
+import { groundImg, refreshIcon, renameIcon } from "@/assets/index";
 import { useNavigate } from "react-router-dom";
 import React, { useCallback, useEffect, useState } from "react";
 import ProfileEditModal from "../modals/ProfileEditModal";
-import { useCookeepsStore } from "@stores/useCookeepsStore";
-import { getProfileInfo, type ProfileData } from "@api/user";
-import { GOAL_TYPE_MAP } from "@utils/mapping";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { getProfileInfo, type ProfileData } from "@/api/user";
+import { GOAL_TYPE_MAP } from "@/utils/mapping";
 
 function Profile() {
   const navigate = useNavigate();

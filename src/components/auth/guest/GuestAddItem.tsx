@@ -1,10 +1,10 @@
 import { useState } from "react";
-import header from "@assets/guest/add_header.svg";
+import header from "@/assets/guest/add_header.svg";
 import Button from "@/components/ui/Button";
-import bagel from "@assets/guest/bagel_card.svg";
-import bagelSelected from "@assets/guest/bagel_selected.svg";
-import notice from "@assets/guest/item_notice.svg";
-import categories from "@assets/guest/categories.svg";
+import bagel from "@/assets/guest/bagel_card.svg";
+import bagelSelected from "@/assets/guest/bagel_selected.svg";
+import notice from "@/assets/guest/item_notice.svg";
+import categories from "@/assets/guest/categories.svg";
 interface GuestAddItemProps {
   onNext: () => void;
 }

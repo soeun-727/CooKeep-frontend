@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { memo, useState } from "react";
-import privateIcon from "@assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@assets/mycookeep/record/public_icon.svg";
-import { useCookeepRecordStore } from "@stores/useCookeepRecordStore";
+import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
+import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import SelectViewTypeModal from "./SelectViewTypeModal";
-import { DailyRecipe } from "@api/myRecipe";
-import tempFoodPhoto from "@assets/mycookeep/record/temp_food_photo.svg";
+import { DailyRecipe } from "@/api/myRecipe";
+import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
 interface Props {
   record: DailyRecipe;
 }

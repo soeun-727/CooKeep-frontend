@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import cookChar from "@assets/recipe/main/cook_char.svg";
-import Button from "@components/ui/Button";
-import RecipeHeader from "@components/recipe/main/RecipeHeader";
-import { useIngredientStore } from "@stores/useIngredientStore";
-import { useRecipeFlowStore } from "@stores/useRecipeFlowStore";
+import cookChar from "@/assets/recipe/main/cook_char.svg";
+import Button from "@/components/ui/Button";
+import RecipeHeader from "@/components/recipe/main/RecipeHeader";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 export default function RecipeIntroPage() {
   const navigate = useNavigate();

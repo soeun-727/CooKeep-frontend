@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { saveTokens, clearTokens } from "@utils/auth";
-import { loginApi, logoutApi } from "@api/auth";
+import { saveTokens, clearTokens } from "@/utils/auth";
+import { loginApi, logoutApi } from "@/api/auth";
 import axios from "axios";
 import { useSignupStore } from "./useSignupStore";
 import { useEmailUpdateStore } from "./useEmailUpdateStore";

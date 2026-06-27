@@ -1,4 +1,4 @@
-import character from "@assets/character/confused_char.svg";
+import character from "@/assets/character/confused_char.svg";
 
 export default function NoResultView() {
   return (

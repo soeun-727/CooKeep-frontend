@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import settings from "@assets/cookeeps/main/settings_cookeeps.svg";
-import { myLogo, cookieIcon } from "@assets";
-import { useCookeepsStore } from "@stores/useCookeepsStore";
+import settings from "@/assets/cookeeps/main/settings_cookeeps.svg";
+import { myLogo, cookieIcon } from "@/assets/index";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 export default function MyCookeepHeader() {
   const navigate = useNavigate();

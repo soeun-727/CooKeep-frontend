@@ -1,14 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import TextField from "@components/ui/TextField";
-import Button from "@components/ui/Button";
-import { verifyCurrentPassword, changePassword } from "@api/user";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
+import { verifyCurrentPassword, changePassword } from "@/api/user";
 
-import pwIcon from "@assets/login/key.svg";
-import pwImage from "@assets/login/pw.svg";
-import openpwImage from "@assets/signup/openpw.svg";
-import checkIcon from "@assets/signup/check.svg";
+import pwIcon from "@/assets/login/key.svg";
+import pwImage from "@/assets/login/pw.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+import checkIcon from "@/assets/signup/check.svg";
 
 export default function EditPasswordPage() {
   const navigate = useNavigate();

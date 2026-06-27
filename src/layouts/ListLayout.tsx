@@ -6,9 +6,9 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import BackHeader from "@components/ui/BackHeader";
-import ViewListHeader from "@components/cookeeps/lists/ViewListHeader";
-import ViewAllHeader from "@components/cookeeps/lists/ViewAllHeader";
+import BackHeader from "@/components/ui/BackHeader";
+import ViewListHeader from "@/components/cookeeps/lists/ViewListHeader";
+import ViewAllHeader from "@/components/cookeeps/lists/ViewAllHeader";
 
 export default function ListLayout() {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { PLANT_DATA } from "@constants/plantData";
+import { PLANT_DATA } from "@/constants/plantData";
 import Button from "@/components/ui/Button";
 
 interface PlantSelectModalProps {

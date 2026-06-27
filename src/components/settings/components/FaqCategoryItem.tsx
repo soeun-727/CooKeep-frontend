@@ -1,8 +1,8 @@
 // src/pages/settings/components/FaqCategoryItem.tsx
 import { useState } from "react";
-import type { FaqItem } from "@constants/faqData";
+import type { FaqItem } from "@/constants/faqData";
 import FaqItemComponent from "./FaqItem";
-import arrowIcon from "@assets/signup/arrowright.svg";
+import arrowIcon from "@/assets/signup/arrowright.svg";
 
 type Props = {
   title: string;

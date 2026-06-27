@@ -1,10 +1,10 @@
 import { useNavigate, useOutletContext } from "react-router-dom";
-import AllItem from "@components/cookeeps/lists/AllItem";
+import AllItem from "@/components/cookeeps/lists/AllItem";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AllRecipeItem, getAllRecipes } from "@api/cookeeps";
-import tempImage from "@assets/cookeeps/main/temp_recipe_cookeeps.svg";
-import SortAll from "@components/cookeeps/lists/SortAll";
-import WeeklyTopRecipesTab from "@components/cookeeps/lists/WeeklyTopRecipesTab";
+import { AllRecipeItem, getAllRecipes } from "@/api/cookeeps";
+import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
+import SortAll from "@/components/cookeeps/lists/SortAll";
+import WeeklyTopRecipesTab from "@/components/cookeeps/lists/WeeklyTopRecipesTab";
 
 export default function ViewAllPage() {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
 // src/components/fridge/FloatingAddButton.tsx
 import { useNavigate } from "react-router-dom";
-import { useIngredientStore } from "@stores/useIngredientStore";
-import plusIcon from "@assets/fridge/items/plus.svg";
-import inactivePlusIcon from "@assets/fridge/items/plusInactive.svg";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import plusIcon from "@/assets/fridge/items/plus.svg";
+import inactivePlusIcon from "@/assets/fridge/items/plusInactive.svg";
 import { useState } from "react";
 
 export default function AddButton() {

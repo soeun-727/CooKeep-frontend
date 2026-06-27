@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CheckIcon from "@assets/recipe/check.svg";
+import CheckIcon from "@/assets/recipe/check.svg";
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
 

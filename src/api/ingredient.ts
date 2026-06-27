@@ -1,5 +1,5 @@
 import api from "./axios";
-import { CATEGORY_ID_TO_SERVER_KEY } from "@constants/category";
+import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
 
 // --- 공통 타입 정의 ---
 export type CategoryType =

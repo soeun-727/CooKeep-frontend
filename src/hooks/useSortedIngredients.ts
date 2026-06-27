@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { useIngredientStore } from "@stores/useIngredientStore";
+import { useIngredientStore } from "@/stores/useIngredientStore";
 
 export function useSortedIngredients() {
   const { ingredients, searchTerm, viewCategory, sortOrder } =
