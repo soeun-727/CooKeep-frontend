@@ -1,13 +1,18 @@
 import React from "react";
 
-interface Props {
+interface EditModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   children: React.ReactNode;
 }
 
-export default function EditModal({ isOpen, onClose, title, children }: Props) {
+export default function EditModal({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: EditModalProps) {
   if (!isOpen) return null;
 
   return (

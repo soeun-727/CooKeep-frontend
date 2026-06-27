@@ -2,11 +2,11 @@ import Button from "../../ui/Button";
 import cookChar from "../../../assets/recipe/main/cook_char.svg";
 import { useState } from "react";
 
-interface Props {
+interface GuestRecipeIntroProps {
   onNext: () => void;
 }
 
-export default function GuestRecipeIntro({ onNext }: Props) {
+export default function GuestRecipeIntro({ onNext }: GuestRecipeIntroProps) {
   const [isDimmed, setIsDimmed] = useState(false);
 
   return (

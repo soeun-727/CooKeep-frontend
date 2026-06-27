@@ -5,11 +5,11 @@ import unlikedIcon from "../../../../assets/recipe/unliked.svg";
 import likedIcon from "../../../../assets/recipe/liked.svg";
 import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
 
-interface Props {
+interface RecipeTitleProps {
   name: string;
 }
 
-export default function RecipeTitle({ name }: Props) {
+export default function RecipeTitle({ name }: RecipeTitleProps) {
   const { sessionId: paramSessionId } = useParams();
   const { sessionId: flowSessionId } = useRecipeFlowStore();
 

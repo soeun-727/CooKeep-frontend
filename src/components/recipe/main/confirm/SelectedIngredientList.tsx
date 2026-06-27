@@ -1,10 +1,12 @@
 import type { Ingredient } from "../../../../stores/useIngredientStore";
 
-interface Props {
+interface SelectedIngredientListProps {
   ingredients: Ingredient[];
 }
 
-export default function SelectedIngredientList({ ingredients }: Props) {
+export default function SelectedIngredientList({
+  ingredients,
+}: SelectedIngredientListProps) {
   const MAX_PER_ROW = 5;
   const remainder = ingredients.length % MAX_PER_ROW;
   const emptyCount = remainder === 0 ? 0 : MAX_PER_ROW - remainder;

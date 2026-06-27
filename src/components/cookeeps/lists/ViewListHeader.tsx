@@ -2,7 +2,7 @@
 import { searchIcon, like, bookmark } from "../../../assets";
 import TextField from "../../ui/TextField";
 
-interface Props {
+interface ViewListHeaderProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
   type: string;
@@ -14,7 +14,7 @@ export default function ViewListHeader({
   onSearchChange,
   type,
   description,
-}: Props) {
+}: ViewListHeaderProps) {
   return (
     <div className="flex flex-col items-center flex-shrink-0">
       {/* 검색창 */}

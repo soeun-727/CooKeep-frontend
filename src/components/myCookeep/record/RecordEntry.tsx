@@ -6,10 +6,10 @@ import RecordCard from "./RecordCard";
 import AddRecordButton from "./AddRecordButton";
 import { DailyRecipe } from "../../../api/myRecipe";
 
-interface Props {
+interface RecordEntryProps {
   records: DailyRecipe[];
 }
-export default function RecordEntry({ records }: Props) {
+export default function RecordEntry({ records }: RecordEntryProps) {
   const navigate = useNavigate();
   const { resetRecord } = useCookeepRecordStore();
 
