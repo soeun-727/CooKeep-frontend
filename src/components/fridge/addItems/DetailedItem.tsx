@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import memoIcon from "@/assets/fridge/memo.svg";
 import renameIcon from "@/assets/recipe/rename.svg";
 import coldIcon from "@/assets/fridge/fridge.svg";

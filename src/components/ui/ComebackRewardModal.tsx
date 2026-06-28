@@ -1,4 +1,3 @@
-import React from "react";
 import icon from "@/assets/character/surprised_char.svg";
 import Button from "./Button";
 

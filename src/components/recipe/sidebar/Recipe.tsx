@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import liked from "@/assets/recipe/liked.svg";
 import unliked from "@/assets/recipe/unliked.svg";
 import rename from "@/assets/recipe/rename.svg";

@@ -6,7 +6,7 @@ import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import SelectViewTypeModal from "./SelectViewTypeModal";
 import { DailyRecipe } from "@/api/myRecipe";
 import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
-interface Props {
+interface RecordCardProps {
   record: DailyRecipe;
 }
 

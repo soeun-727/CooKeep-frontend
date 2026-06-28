@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import editIcon from "@/assets/recipe/rename.svg";
 import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";

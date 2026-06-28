@@ -1,4 +1,4 @@
-import React from "react";
+
 import icon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
 import Button from "./Button";
 
