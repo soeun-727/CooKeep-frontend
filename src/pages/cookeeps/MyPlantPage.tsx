@@ -14,7 +14,7 @@ export default function MyPlantPage() {
   );
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA] pt-[110px]">
+    <div className="relative min-h-screen bg-background pt-[110px]">
       <BackHeader title="내가 키운 식재료" onBack={() => navigate(-1)} />
 
       {grownPlants.length === 0 ? (

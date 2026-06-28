@@ -120,7 +120,7 @@ export default function EditPasswordPage() {
   }, [location.state, verifiedFromEmail, navigate]);
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA]">
+    <div className="relative min-h-screen bg-background">
       <div className="pt-[241px] w-[361px] mx-auto">
         <div className="typo-h1">비밀번호 변경</div>
 
@@ -296,7 +296,7 @@ export default function EditPasswordPage() {
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
+        <div className="absolute inset-0 z-50 flex justify-center bg-background">
           <div className="w-[361px] flex flex-col items-center">
             <p className="typo-result-title pt-[295px] pb-[18px]">
               비밀번호 변경 완료

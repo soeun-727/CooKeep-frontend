@@ -16,7 +16,7 @@ export default function RecipeIntroPage() {
   }, []);
 
   return (
-    <div className="relative h-[calc(100vh-90px)] flex justify-center bg-[#FAFAFA]">
+    <div className="relative h-[calc(100vh-90px)] flex justify-center bg-background">
       {/* 헤더 */}
       <RecipeHeader transparent />
 

@@ -17,7 +17,7 @@ export default function AppLayout({ children }: Props) {
   const { current, dequeue } = useRewardStore();
 
   return (
-    <div className="flex justify-center bg-[#FAFAFA] min-h-dvh">
+    <div className="flex justify-center bg-background min-h-dvh">
       <div
         className="
           relative

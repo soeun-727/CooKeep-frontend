@@ -16,7 +16,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
   return (
     <div
       onClick={() => !isSelected && setIsDimmed(true)}
-      className="relative w-full h-[calc(100dvh-62px)] flex flex-col items-center bg-[#FAFAFA] overflow-hidden"
+      className="relative w-full h-[calc(100dvh-62px)] flex flex-col items-center bg-background overflow-hidden"
     >
       {/* 딤드: z-10 */}
       {isDimmed && (

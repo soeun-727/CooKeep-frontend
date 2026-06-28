@@ -141,8 +141,8 @@ export default function RecordWritePage() {
 
   return (
     <>
-      <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-[#FAFAFA]">
-        <div className="sticky top-0 z-[120] bg-[#FAFAFA] shrink-0">
+      <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-background">
+        <div className="sticky top-0 z-[120] bg-background shrink-0">
           <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
         </div>
 

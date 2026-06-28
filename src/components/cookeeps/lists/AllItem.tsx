@@ -28,7 +28,7 @@ const AllItem = ({
     <div
       onClick={onSelect}
       className={`w-[361px] h-12 rounded-[6px] flex items-center justify-between px-2 py-[10px] cursor-pointer transition-colors ${
-        isSelected ? "bg-gray-200" : "bg-[#FAFAFA]"
+        isSelected ? "bg-gray-200" : "bg-background"
       }`}
     >
       {/* 순위 배지 */}

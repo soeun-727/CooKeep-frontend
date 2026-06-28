@@ -26,7 +26,7 @@ const ListItem: React.FC<ItemProps> = ({
   return (
     <div
       onClick={onSelect}
-      className={`w-[335px] h-12 rounded-[6px] flex items-center justify-between px-2 py-[10px] ${isSelected ? "bg-gray-200" : "bg-[#FAFAFA]"}`}
+      className={`w-[335px] h-12 rounded-[6px] flex items-center justify-between px-2 py-[10px] ${isSelected ? "bg-gray-200" : "bg-background"}`}
     >
       <img
         src={img}

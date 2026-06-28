@@ -24,7 +24,7 @@ export default function SplashPage() {
       className={`
     fixed inset-0 flex justify-center z-[9999] overflow-hidden
     transition-colors duration-700
-    ${step >= 2 ? "bg-emerald-400" : "bg-[#FAFAFA]"}
+    ${step >= 2 ? "bg-emerald-400" : "bg-background"}
   `}
     >
       <div

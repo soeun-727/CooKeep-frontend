@@ -2,7 +2,7 @@ import loadingChar from "../../assets/character/char_loading.svg";
 
 export default function LoadingScreen() {
   return (
-    <div className="w-full h-full flex items-center justify-center bg-[#FAFAFA]">
+    <div className="w-full h-full flex items-center justify-center bg-background">
       <div className="flex flex-col items-center gap-2 w-[143px]">
         {/* 이미지 + 텍스트 */}
         <div className="flex flex-col items-center gap-3 w-full">

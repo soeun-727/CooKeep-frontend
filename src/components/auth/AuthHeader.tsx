@@ -16,7 +16,7 @@ const AuthHeader = () => {
         w-full max-w-[450px]
         flex items-center justify-between
         px-4 py-2 
-        bg-[#FAFAFA]
+        bg-background
       "
     >
       <button

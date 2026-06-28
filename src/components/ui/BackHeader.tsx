@@ -15,7 +15,7 @@ const BackHeader = ({ title, onBack }: BackHeaderProps) => {
     h-12
     flex items-center
     px-4 py-4
-    bg-[#FAFAFA]
+    bg-background
   "
     >
       <button

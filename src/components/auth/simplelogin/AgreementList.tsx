@@ -25,7 +25,7 @@ export default function AgreementList({
   if (agreementPage) {
     return (
       <div className="fixed inset-0 z-50 bg-gray-100 flex items-center justify-center">
-        <div className="w-full max-w-[450px] min-h-[100dvh] bg-[#FAFAFA]">
+        <div className="w-full max-w-[450px] min-h-[100dvh] bg-background">
           {" "}
           {/*overflow-y-auto*/}
           <AgreementPage

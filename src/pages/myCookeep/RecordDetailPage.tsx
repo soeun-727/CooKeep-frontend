@@ -182,9 +182,9 @@ export default function RecordDetailPage() {
   if (!record) return null;
 
   return (
-    <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-[#FAFAFA]">
+    <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-background">
       {/* 3. 헤더 영역: 스크롤 시 상단에 고정되도록 sticky 유지 */}
-      <div className="sticky top-0 z-[120] bg-[#FAFAFA] w-full">
+      <div className="sticky top-0 z-[120] bg-background w-full">
         <div className="relative w-full flex justify-center items-center w-full max-w-[450px] mx-auto">
           <div className="absolute left-0 w-full">
             <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />

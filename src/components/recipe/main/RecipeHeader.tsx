@@ -26,7 +26,7 @@ export default function RecipeHeader({
     h-[56px]
     mx-auto max-w-[450px]
     flex items-center px-4
-    ${transparent ? "bg-transparent" : "bg-[#FAFAFA]"}
+    ${transparent ? "bg-transparent" : "bg-background"}
   `}
       >
         {/* 사이드바 버튼 */}

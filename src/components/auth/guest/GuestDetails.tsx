@@ -28,7 +28,7 @@ export default function GuestDetails({ onNext }: Props) {
   };
 
   return (
-    <div className="relative flex flex-col items-center w-full h-[calc(100dvh-62px)] bg-[#FAFAFA] overflow-hidden">
+    <div className="relative flex flex-col items-center w-full h-[calc(100dvh-62px)] bg-background overflow-hidden">
       <div className="w-full flex flex-col items-center">
         <div className="flex justify-center shrink-0">
           <img src={header} alt="header" className="w-[361px]" />

@@ -160,7 +160,7 @@ export default function ResetPassword() {
 
       {/* AppLayout 영역 전체를 덮는 팝업 */}
       {isSuccess && (
-        <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
+        <div className="absolute inset-0 z-50 flex justify-center bg-background">
           <div className="w-[361px] flex flex-col items-center">
             <p className="typo-h1 text-gray-80 text-center font-bold text-[28px] leading-[36px] pt-[241px] pb-[18px]">
               비밀번호 변경 완료
