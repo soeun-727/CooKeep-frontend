@@ -15,7 +15,7 @@ export default function FridgePage() {
     <div className="flex h-full flex-col">
       <MainHeader isAllView={isAllViewMode} />
 
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col">
         <FridgeTab />
         <AddButton />
       </div>

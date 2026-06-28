@@ -1,10 +1,18 @@
 // src/pages/settings/NoticePage.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import BackHeader from "@/components/ui/BackHeader";
 import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
 import { getNotices } from "@/api/notice";
 import { Notice, mapNotice } from "@/types/notice";
+=======
+import BackHeader from "../../components/ui/BackHeader";
+import NoticeCategoryItem from "../../components/settings/components/NoticeCategoryItem";
+import { getNotices } from "../../api/notice";
+import { Notice, mapNotice } from "../../types/notice";
+import LoadingScreen from "../../components/ui/LoadingScreen";
+>>>>>>> origin
 
 export default function NoticePage() {
   const navigate = useNavigate();
@@ -32,13 +40,21 @@ export default function NoticePage() {
     fetchNotices();
   }, []);
 
+  // 로딩 중일 때
+  if (loading) return <LoadingScreen />;
+
   return (
     <>
       <BackHeader title="공지사항" onBack={() => navigate(-1)} />
+<<<<<<< HEAD
       <main className="flex min-h-screen flex-col gap-[14px] px-4 pt-[75px] pb-[34px]">
         {loading ? (
           <p className="text-center text-gray-500">불러오는 중...</p>
         ) : error ? (
+=======
+      <main className="pt-[75px] px-4 pb-[34px] flex flex-col gap-[14px] min-h-screen">
+        {error ? (
+>>>>>>> origin
           <p className="text-center text-red-500">
             공지사항을 불러오지 못했습니다.
           </p>

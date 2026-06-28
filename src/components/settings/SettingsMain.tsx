@@ -53,6 +53,7 @@ export default function SettingsMain() {
     }
   };
 
+<<<<<<< HEAD
   if (loading || !profile)
     return (
       <div className="mt-50 flex flex-col items-center justify-center text-center">
@@ -62,6 +63,9 @@ export default function SettingsMain() {
         </div>
       </div>
     );
+=======
+  if (loading || !profile) return <LoadingScreen />;
+>>>>>>> origin
 
   return (
     <>

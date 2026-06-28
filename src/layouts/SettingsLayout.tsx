@@ -9,6 +9,14 @@ export default function SettingsLayout() {
   // 최초 진입 경로 저장
   const initialFrom = useRef(location.state?.from);
 
+  // 스크롤 컨테이너 참조
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // 페이지 변경 시 스크롤 맨 위로
+  useEffect(() => {
+    scrollRef.current?.scrollTo(0, 0);
+  }, [location.pathname]);
+
   const handleBack = () => {
     if (location.pathname === "/settings") {
       if (initialFrom.current) {

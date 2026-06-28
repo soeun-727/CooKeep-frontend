@@ -9,13 +9,9 @@ export default function NoResultView() {
         alt="no result character"
         className="mt-[100px] mb-4 w-[90px]"
       />
-
-      {/* 안내 텍스트 */}
-      <div className="flex flex-col items-center gap-1">
-        <span className="typo-caption font-semibold text-[#7A8093]">
-          검색 결과가 없어요
-        </span>
-      </div>
+      <span className="typo-caption font-semibold text-[#7A8093]">
+        검색 결과가 없어요
+      </span>
     </div>
   );
 }

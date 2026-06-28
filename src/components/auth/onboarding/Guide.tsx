@@ -62,9 +62,7 @@ export default function Guide({ onNext }: Props) {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  // 🚀 수정: 미사용 변수 img 삭제
   const { title, text } = ONBOARDING_DATA[currentIndex];
-
   const minSwipeDistance = 50;
 
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
@@ -101,6 +99,12 @@ export default function Guide({ onNext }: Props) {
     }
   };
 
+  const handleSliderClick = () => {
+    if (currentIndex < 3) {
+      handleNext();
+    }
+  };
+
   return (
     <div
       className="flex h-full flex-col overflow-hidden select-none"
@@ -132,7 +136,7 @@ export default function Guide({ onNext }: Props) {
         </div>
       </div>
 
-      {/* 중간 여백 (핵심) */}
+      {/* 중간 여백 */}
       <div className="flex-1" />
 
       {/* 하단 영역 */}
