@@ -5,6 +5,7 @@ import BackHeader from "@/components/ui/BackHeader";
 import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
 import { getNotices } from "@/api/notice";
 import { Notice, mapNotice } from "@/types/notice";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function NoticePage() {
   const navigate = useNavigate();

@@ -99,11 +99,12 @@ export default function Guide({ onNext }: Props) {
     }
   };
 
-  const handleSliderClick = () => {
-    if (currentIndex < 3) {
-      handleNext();
-    }
-  };
+  // 미사용 핸들러 주석 처리
+  // const handleSliderClick = () => {
+  //   if (currentIndex < 3) {
+  //     handleNext();
+  //   }
+  // };
 
   return (
     <div
