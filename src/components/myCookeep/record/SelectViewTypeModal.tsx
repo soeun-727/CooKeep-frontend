@@ -1,8 +1,8 @@
-type SelectViewTypeModalProps = {
+interface SelectViewTypeModalProps {
   message: string;
   onConfirm: () => void;
   onCancel: () => void;
-};
+}
 
 export default function SelectViewTypeModal({
   message,

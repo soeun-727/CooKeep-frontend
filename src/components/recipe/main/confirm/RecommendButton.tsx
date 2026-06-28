@@ -1,12 +1,15 @@
 // RecommendButton.tsx
 import Button from "@/components/ui/Button";
 
-interface Props {
+interface RecommendButtonProps {
   disabled: boolean;
   onClick: () => void;
 }
 
-export default function RecommendButton({ disabled, onClick }: Props) {
+export default function RecommendButton({
+  disabled,
+  onClick,
+}: RecommendButtonProps) {
   return (
     <div className="fixed inset-x-0 bottom-[34px] flex justify-center">
       <Button size="L" variant="black" disabled={disabled} onClick={onClick}>

@@ -4,13 +4,17 @@ import Button from "./Button";
 
 type OnboardingType = "INGREDIENT" | "RECIPE";
 
-interface Props {
+interface OnboardingRewardModalProps {
   isOpen: boolean;
   onClose: () => void;
   type: OnboardingType;
 }
 
-const OnboardingRewardModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
+export default function OnboardingRewardModal({
+  isOpen,
+  onClose,
+  type,
+}: OnboardingRewardModalProps) {
   if (!isOpen) return null;
   const title = type === "RECIPE" ? "첫 요리 완료!" : "첫 재료 등록 완료!";
   return (
@@ -52,6 +56,4 @@ const OnboardingRewardModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
       </div>
     </div>
   );
-};
-
-export default OnboardingRewardModal;
+}

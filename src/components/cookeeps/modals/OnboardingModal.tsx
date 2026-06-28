@@ -13,7 +13,7 @@ import {
   abledRight,
 } from "@/assets/index";
 
-interface Props {
+interface OnboardingModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
@@ -52,7 +52,10 @@ const ONBOARDING_DATA = [
   },
 ];
 
-export default function OnboardingModal({ isOpen, onClose }: Props) {
+export default function OnboardingModal({
+  isOpen,
+  onClose,
+}: OnboardingModalProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // 모달이 열릴 때마다 첫 페이지로 초기화

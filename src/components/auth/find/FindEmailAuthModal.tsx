@@ -14,12 +14,12 @@ interface FindEmailAuthModalProps {
   onSignup?: () => void;
 }
 
-const FindEmailAuthModal = ({
+export default function FindEmailAuthModal({
   type,
   email,
   onConfirm,
   onSignup,
-}: FindEmailAuthModalProps) => {
+}: FindEmailAuthModalProps) {
   const isSend = type === "send";
   const isVerify = type === "verify";
   const isNotRegistered = type === "notRegistered";
@@ -123,6 +123,4 @@ const FindEmailAuthModal = ({
       </div>
     </>
   );
-};
-
-export default FindEmailAuthModal;
+}

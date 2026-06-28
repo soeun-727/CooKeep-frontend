@@ -1,7 +1,7 @@
 import { useState } from "react";
 import arrowRight from "@/assets/signup/arrowright.svg";
 
-interface Props {
+interface RecipeDetailYoutubeProps {
   videos: {
     title: string;
     thumbnail: string;
@@ -10,7 +10,10 @@ interface Props {
   tags?: string[];
 }
 
-export default function RecipeDetailYoutube({ videos, tags = [] }: Props) {
+export default function RecipeDetailYoutube({
+  videos,
+  tags = [],
+}: RecipeDetailYoutubeProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   if (!videos || videos.length === 0) return null;

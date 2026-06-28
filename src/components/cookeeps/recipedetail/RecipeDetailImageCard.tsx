@@ -1,12 +1,15 @@
 import tempRecipeImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 import tempIcon from "@/assets/recipe/main/temp_recipe_title.svg";
 
-interface Props {
+interface RecipeDetailImageCardProps {
   images?: string[];
   title: string;
 }
 
-export default function RecipeDetailImageCard({ images, title }: Props) {
+export default function RecipeDetailImageCard({
+  images,
+  title,
+}: RecipeDetailImageCardProps) {
   const imageSrc = images && images.length > 0 ? images[0] : tempRecipeImage;
 
   return (

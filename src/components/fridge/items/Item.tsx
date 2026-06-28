@@ -14,7 +14,7 @@ interface ItemProps {
   style?: React.CSSProperties;
 }
 
-const Item: React.FC<ItemProps> = ({
+export default function Item({
   image,
   name,
   leftDays,
@@ -23,7 +23,7 @@ const Item: React.FC<ItemProps> = ({
   onDetail,
   className = "",
   style,
-}) => {
+}: ItemProps) {
   return (
     <div
       onClick={onDetail}
@@ -72,6 +72,4 @@ const Item: React.FC<ItemProps> = ({
       </div>
     </div>
   );
-};
-
-export default Item;
+}

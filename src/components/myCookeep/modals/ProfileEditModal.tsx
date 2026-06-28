@@ -3,13 +3,17 @@ import Button from "@/components/ui/Button";
 import { currentIcon, groundImg } from "@/assets/index";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-interface Props {
+interface ProfileEditModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (userPlantId: number) => void;
 }
 
-export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
+export default function ProfileEditModal({
+  isOpen,
+  onClose,
+  onSave,
+}: ProfileEditModalProps) {
   const currentPlant = useCookeepsStore((s) => s.currentPlant);
   const myPlants = useCookeepsStore((s) => s.myPlants);
 

@@ -1,4 +1,4 @@
-interface Props {
+interface RecipeYoutubeCardProps {
   videos: {
     title: string;
     thumbnail: string;
@@ -7,7 +7,10 @@ interface Props {
   tags?: string[];
 }
 
-export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
+export default function RecipeYoutubeCard({
+  videos,
+  tags = [],
+}: RecipeYoutubeCardProps) {
   if (!videos || videos.length === 0) return null;
 
   return (

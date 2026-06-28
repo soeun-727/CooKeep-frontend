@@ -11,7 +11,7 @@ import {
 } from "@/api/myRecipe";
 import temp from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 
-interface Props {
+interface ViewListPageProps {
   type: string;
 }
 
@@ -19,7 +19,7 @@ interface OutletContext {
   searchTerm: string;
 }
 
-export default function ViewListPage({ type }: Props) {
+export default function ViewListPage({ type }: ViewListPageProps) {
   const { searchTerm } = useOutletContext<OutletContext>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);

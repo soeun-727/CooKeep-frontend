@@ -5,13 +5,14 @@ interface TabProps {
   isSelected?: boolean;
   onClick?: () => void;
 }
-const Tab: React.FC<TabProps> = ({
+
+export default function Tab({
   image,
   selectedImage,
   title,
   isSelected = false,
   onClick,
-}) => {
+}: TabProps) {
   return (
     <button
       onClick={onClick}
@@ -38,6 +39,4 @@ const Tab: React.FC<TabProps> = ({
       </span>
     </button>
   );
-};
-
-export default Tab;
+}

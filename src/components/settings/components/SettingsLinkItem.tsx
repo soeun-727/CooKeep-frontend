@@ -1,10 +1,10 @@
 // src/pages/settings/components/SettingsLinkItem.tsx
 import { useNavigate } from "react-router-dom";
 
-type SettingsLinkItemProps = {
+interface SettingsLinkItemProps {
   label: string;
   to: string;
-};
+}
 
 export default function SettingsLinkItem({ label, to }: SettingsLinkItemProps) {
   const navigate = useNavigate();

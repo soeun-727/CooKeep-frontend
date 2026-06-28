@@ -41,7 +41,7 @@ const UNIT_NAMES: Record<string, string> = {
   MILLILITER: "ml",
 };
 
-const DetailedItem: React.FC<DetailedItemProps> = (item) => {
+export default function DetailedItem(item: DetailedItemProps) {
   const { updateItemDetail, toggleItem } = useAddIngredientStore();
   const [modalType, setModalType] = useState<
     "storage" | "expiry" | "quantity" | "unit" | "memo" | null
@@ -225,6 +225,4 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
       )}
     </div>
   );
-};
-
-export default DetailedItem;
+}

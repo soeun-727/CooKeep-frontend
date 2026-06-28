@@ -1,9 +1,9 @@
-type DeleteConfirmModalProps = {
+interface DeleteConfirmModalProps {
   ingredientName: string;
   onConfirm: () => void;
   onCancel: () => void;
   confirmColor?: "black" | "green"; // 추가
-};
+}
 
 export default function DeleteConfirmModal({
   ingredientName,

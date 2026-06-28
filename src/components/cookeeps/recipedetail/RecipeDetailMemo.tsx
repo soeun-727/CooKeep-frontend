@@ -1,9 +1,12 @@
-interface Props {
+interface RecipeDetailMemoProps {
   userName: string;
   memo: string;
 }
 
-export default function RecipeDetailMemo({ userName, memo }: Props) {
+export default function RecipeDetailMemo({
+  userName,
+  memo,
+}: RecipeDetailMemoProps) {
   return (
     <div className="flex w-full justify-center px-1">
       <div className="flex w-full max-w-[450px] flex-col items-center justify-center gap-2 rounded-[10px] bg-white px-4 py-3">

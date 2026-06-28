@@ -1,10 +1,10 @@
 // src/pages/settings/components/SettingsToggleItem.tsx
 
-type SettingsToggleItemProps = {
+interface SettingsToggleItemProps {
   label: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
-};
+}
 
 export default function SettingsToggleItem({
   label,

@@ -1,16 +1,16 @@
 import Button from "./Button";
 
-type Props = {
+interface SingleButtonModalProps {
   message: string;
   buttonText?: string;
   onClose: () => void;
-};
+}
 
 export default function SingleButtonModal({
   message,
   buttonText = "확인",
   onClose,
-}: Props) {
+}: SingleButtonModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="flex w-[240px] flex-col items-center gap-2 rounded-[10px] bg-white px-[28px] py-[25px]">

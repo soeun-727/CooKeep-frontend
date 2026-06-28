@@ -1,7 +1,7 @@
 import Button from "@/components/ui/Button";
 import characterIcon from "@/assets/character/crying_char.svg";
 
-interface Props {
+interface WiltedModalProps {
   plant: string;
   isOpen: boolean;
   onClose: () => void;
@@ -14,7 +14,7 @@ export default function WiltedModal({
   onClose,
   onAbandon,
   onRecover,
-}: Props) {
+}: WiltedModalProps) {
   if (!isOpen) return null;
 
   return (

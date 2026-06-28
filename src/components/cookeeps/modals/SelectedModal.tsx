@@ -1,6 +1,4 @@
-import React from "react";
-
-interface Props {
+interface SelectedModalProps {
   isOpen: boolean;
   onClose: () => void;
   plant: string;
@@ -9,14 +7,14 @@ interface Props {
   onConfirm: () => void;
 }
 
-const SelectedModal: React.FC<Props> = ({
+export default function SelectedModal({
   isOpen,
   onClose,
   plant,
   image,
   description,
   onConfirm,
-}) => {
+}: SelectedModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -55,6 +53,4 @@ const SelectedModal: React.FC<Props> = ({
       </div>
     </div>
   );
-};
-
-export default SelectedModal;
+}

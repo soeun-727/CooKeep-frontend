@@ -5,7 +5,7 @@ import AuthHeader from "../AuthHeader";
 import SignupForm from "./SignupForm";
 import { useSignupStore } from "@/stores/useSignupStore";
 
-const Signup = () => {
+export default function Signup() {
   const [hideHeader, setHideHeader] = useState(false);
   const resetSignup = useSignupStore((s) => s.resetSignup);
 
@@ -21,6 +21,4 @@ const Signup = () => {
       <SignupForm setHideHeader={setHideHeader} />
     </div>
   );
-};
-
-export default Signup;
+}

@@ -10,7 +10,7 @@ interface ItemProps {
   onIconClick?: (e: React.MouseEvent) => void;
 }
 
-const AllItem = ({
+export default function AllItem({
   rank,
   img,
   title,
@@ -18,18 +18,11 @@ const AllItem = ({
   isSelected = false,
   onSelect,
   onIconClick,
-}: ItemProps) => {
+}: ItemProps) {
   const handleIconClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (onIconClick) onIconClick(e);
   };
-
-  // 랭크별 배경색 및 글자색 결정
-  // const getRankStyle = () => {
-  //   if (rank === 1) return "bg-(--color-green) text-white";
-  //   if (rank === 2 || rank === 3) return "bg-black text-white";
-  //   return "bg-gray-200 text-zinc-500"; // 회색 배경일 때 글자색 변경
-  // };
 
   return (
     <div
@@ -73,6 +66,4 @@ const AllItem = ({
       </div>
     </div>
   );
-};
-
-export default AllItem;
+}

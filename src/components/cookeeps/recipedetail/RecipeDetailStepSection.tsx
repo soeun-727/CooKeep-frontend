@@ -1,8 +1,10 @@
-interface Props {
+interface RecipeDetailStepSectionProps {
   steps: string[];
 }
 
-export default function RecipeDetailStepSection({ steps }: Props) {
+export default function RecipeDetailStepSection({
+  steps,
+}: RecipeDetailStepSectionProps) {
   return (
     <div className="flex w-full flex-col items-start gap-[10px]">
       {/* 제목 */}
@@ -15,21 +17,7 @@ export default function RecipeDetailStepSection({ steps }: Props) {
           const stepOrder = index + 1;
 
           return (
-            // <div
-            //   key={stepOrder}
-            //   className="flex justify-start items-start w-full gap-3"
-            // >
-            //   {/* 번호 배지 */}
-            //   <div className="flex items-center justify-center min-w-[30px] h-[20px] px-[12px] rounded-full bg-[#202020] text-white text-[12px] font-semibold leading-[16px] flex-shrink-0">
-            //     {stepOrder}
-            //   </div>
-
-            //   {/* 단계 설명 */}
-            //   <p className="text-[#202020] typo-body2 flex-1 break-keep">
-            //     {cleanDescription}
-            //   </p>
-            // </div>
-            <div key={stepOrder} className="flex w-full items-start gap-3">
+            <div key={stepOrder} className="flex items-start gap-3 w-full">
               {/* 번호 */}
               <div className="flex w-[30px] flex-shrink-0 items-start justify-center">
                 <div className="flex h-[20px] w-[30px] items-center justify-center rounded-full bg-[#202020] text-xs leading-[16px] font-semibold text-white">

@@ -1,18 +1,16 @@
-import React from "react";
-
-interface Props {
+interface GoalcheckModalProps {
   isOpen: boolean;
   onClose: () => void;
   description: string;
   onConfirm: () => void;
 }
 
-const GoalcheckModal: React.FC<Props> = ({
+export default function GoalcheckModal({
   isOpen,
   onClose,
   description,
   onConfirm,
-}) => {
+}: GoalcheckModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -42,6 +40,4 @@ const GoalcheckModal: React.FC<Props> = ({
       </div>
     </div>
   );
-};
-
-export default GoalcheckModal;
+}

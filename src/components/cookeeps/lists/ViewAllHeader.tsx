@@ -3,7 +3,7 @@
 import { searchIcon } from "@/assets/index";
 import TextField from "@/components/ui/TextField";
 
-interface Props {
+interface ViewAllHeaderProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
   activeTab: "weekly" | "all";
@@ -15,7 +15,7 @@ export default function ViewAllHeader({
   onSearchChange,
   activeTab,
   onTabChange,
-}: Props) {
+}: ViewAllHeaderProps) {
   return (
     <div className="flex flex-shrink-0 flex-col items-center">
       {/* 검색창 */}

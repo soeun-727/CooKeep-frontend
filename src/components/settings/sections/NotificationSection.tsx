@@ -4,15 +4,15 @@ import ConfirmModal from "@/components/ui/ConfirmModal";
 import { updateMarketingPush } from "@/api/user";
 import { registerPushNotification, unsubscribePush } from "@/api/push";
 
-type Props = {
+interface NotificationSectionProps {
   marketingPush: boolean;
   onStateChange: (isAgreed: boolean) => void;
-};
+}
 
 export default function NotificationSection({
   marketingPush,
   onStateChange,
-}: Props) {
+}: NotificationSectionProps) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [enabled, setEnabled] = useState(marketingPush);
   const [loading, setLoading] = useState(false);

@@ -4,12 +4,15 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import type { AgreementItem } from "@/constants/agreements";
 
-interface Props {
+interface AgreementReadCardProps {
   agreement: AgreementItem;
   notice?: React.ReactNode;
 }
 
-export default function AgreementReadCard({ agreement, notice }: Props) {
+export default function AgreementReadCard({
+  agreement,
+  notice,
+}: AgreementReadCardProps) {
   return (
     <div className="w-full overflow-hidden rounded-[6px] border border-[#D1D1D1] bg-white">
       {/* 상단 제목 */}

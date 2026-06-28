@@ -1,11 +1,14 @@
 import icon from "@/assets/onboarding/appIcon.svg";
 
-interface Props {
+interface ExampleNotificationProps {
   title: string;
   description: string;
 }
 
-export default function ExampleNotification({ title, description }: Props) {
+export default function ExampleNotification({
+  title,
+  description,
+}: ExampleNotificationProps) {
   return (
     <div className="flex h-[81px] w-[259px] flex-col gap-[5px] rounded-[4.32px] bg-white p-[7px] shadow-[0px_1.4px_6.6px_0px_rgba(17,17,17,0.20)]">
       <div className="flex gap-[5px]">

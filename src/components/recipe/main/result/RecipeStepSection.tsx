@@ -3,12 +3,12 @@ interface Step {
   description: string;
 }
 
-interface Props {
+interface RecipeStepSectionProps {
   steps: Step[];
   difficulty: string;
 }
 
-export default function RecipeStepSection({ steps }: Props) {
+export default function RecipeStepSection({ steps }: RecipeStepSectionProps) {
   // 숫자와 공백을 제거하는 함수
   const formatDescription = (text: string) => {
     // 1. 2. 혹은 1) 2) 형태의 시작 패턴을 제거합니다.

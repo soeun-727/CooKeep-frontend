@@ -10,7 +10,7 @@ interface ItemProps {
   onIconClick?: (e: React.MouseEvent) => void;
 }
 
-const ListItem: React.FC<ItemProps> = ({
+export default function ListItem({
   type,
   img,
   title,
@@ -18,7 +18,7 @@ const ListItem: React.FC<ItemProps> = ({
   isSelected = false,
   onSelect,
   onIconClick,
-}) => {
+}: ItemProps) {
   const handleIconClick = (e: React.MouseEvent) => {
     e.stopPropagation(); // 부모의 onSelect가 실행되지 않도록 방지
     if (onIconClick) onIconClick(e);
@@ -52,6 +52,4 @@ const ListItem: React.FC<ItemProps> = ({
       )}
     </div>
   );
-};
-
-export default ListItem;
+}

@@ -17,13 +17,13 @@ interface CustomProps {
   confirmText?: string;
 }
 
-const Custom: React.FC<CustomProps> = ({
+export default function Custom({
   isOpen,
   onClose,
   onConfirm,
   categories,
   confirmText = "추가",
-}) => {
+}: CustomProps) {
   const { searchTerm } = useAddIngredientStore();
   const [localName, setLocalName] = useState(searchTerm);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
@@ -164,6 +164,4 @@ const Custom: React.FC<CustomProps> = ({
       </div>
     </div>
   );
-};
-
-export default Custom;
+}

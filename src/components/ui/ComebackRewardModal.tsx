@@ -2,12 +2,15 @@ import React from "react";
 import icon from "@/assets/character/surprised_char.svg";
 import Button from "./Button";
 
-interface Props {
+interface ComebackRewardModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export default function ComebackRewardModal({
+  isOpen,
+  onClose,
+}: ComebackRewardModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -49,6 +52,4 @@ const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-};
-
-export default ComebackRewardModal;
+}

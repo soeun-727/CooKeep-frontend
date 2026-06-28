@@ -2,7 +2,7 @@
 import { useNavigate } from "react-router-dom";
 import { mainLogo } from "@/assets/index";
 
-const AuthHeader = () => {
+export default function AuthHeader() {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
@@ -24,6 +24,4 @@ const AuthHeader = () => {
       </p>
     </header>
   );
-};
-
-export default AuthHeader;
+}

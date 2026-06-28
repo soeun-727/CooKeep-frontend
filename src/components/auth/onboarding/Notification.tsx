@@ -27,11 +27,11 @@ const EXAMPLE_DATA = [
   },
 ];
 
-interface Props {
+interface NotificationProps {
   onNext: () => void;
 }
 
-export default function Notification({ onNext }: Props) {
+export default function Notification({ onNext }: NotificationProps) {
   const [isLoading, setIsLoading] = useState(false);
   const INFINITE_DATA = [...EXAMPLE_DATA, ...EXAMPLE_DATA];
 

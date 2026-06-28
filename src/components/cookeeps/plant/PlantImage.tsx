@@ -7,9 +7,7 @@ interface PlantImageProps {
   overridePlantStage?: 1 | 2 | 3 | 4;
 }
 
-export default memo(function PlantImage({
-  overridePlantStage,
-}: PlantImageProps) {
+function PlantImage({ overridePlantStage }: PlantImageProps) {
   const currentPlant = useCookeepsStore((s) => s.currentPlant);
   const justHarvestedPlant = useCookeepsStore((s) => s.justHarvestedPlant);
 
@@ -50,4 +48,6 @@ export default memo(function PlantImage({
       />
     </div>
   );
-});
+}
+
+export default memo(PlantImage);

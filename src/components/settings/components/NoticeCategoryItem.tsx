@@ -4,11 +4,13 @@ import NoticeItem from "./NoticeItem";
 import arrowIcon from "@/assets/signup/arrowright.svg";
 import { Notice } from "@/types/notice";
 
-type Props = {
+interface NoticeCategoryItemProps {
   category: Notice;
-};
+}
 
-export default function NoticeCategoryItem({ category }: Props) {
+export default function NoticeCategoryItem({
+  category,
+}: NoticeCategoryItemProps) {
   const [open, setOpen] = useState(false);
 
   return (

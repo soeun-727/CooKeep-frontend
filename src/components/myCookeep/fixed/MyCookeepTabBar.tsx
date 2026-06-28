@@ -7,7 +7,7 @@ import {
   statsOn,
 } from "@/assets/index";
 
-interface Props {
+interface MyCookeepTabBarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
   onActiveTabClick?: (tab: string) => void;
@@ -17,7 +17,7 @@ export default function MyCookeepTabBar({
   activeTab,
   onTabChange,
   onActiveTabClick,
-}: Props) {
+}: MyCookeepTabBarProps) {
   const tabs = [
     { id: "record", img: record, onImg: recordOn },
     { id: "calendar", img: calendar, onImg: calendarOn },

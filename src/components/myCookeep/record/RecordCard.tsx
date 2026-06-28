@@ -10,7 +10,7 @@ interface Props {
   record: DailyRecipe;
 }
 
-function RecordCard({ record: initialRecord }: Props) {
+function RecordCard({ record: initialRecord }: RecordCardProps) {
   const navigate = useNavigate();
   const { updateRecordVisibility } = useCookeepRecordStore();
   const record =

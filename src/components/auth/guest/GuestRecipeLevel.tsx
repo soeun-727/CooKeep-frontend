@@ -3,11 +3,11 @@ import contents from "@/assets/guest/recipe_header.svg";
 import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
 import Button from "@/components/ui/Button";
 
-interface Props {
+interface GuestRecipeLevelProps {
   onNext: () => void;
 }
 
-export default function GuestRecipeLevel({ onNext }: Props) {
+export default function GuestRecipeLevel({ onNext }: GuestRecipeLevelProps) {
   return (
     <div className="flex flex-col items-center">
       <object data={header} />

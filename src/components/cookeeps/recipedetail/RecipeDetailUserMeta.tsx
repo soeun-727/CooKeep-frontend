@@ -4,7 +4,7 @@ import saveIcon from "@/assets/cookeeps/main/save_cookeeps.svg";
 
 // 저장눌렀을때 아이콘 확정되면 수정
 
-interface Props {
+interface RecipeDetailUserMetaProps {
   userName: string;
   isLiked: boolean;
   isBookmarked: boolean;
@@ -18,10 +18,7 @@ export default function RecipeDetailUserMeta({
   isBookmarked,
   onLike,
   onBookmark,
-}: Props) {
-  // const [liked, setLiked] = useState(false);
-  // const [saved, setSaved] = useState(false);
-
+}: RecipeDetailUserMetaProps) {
   return (
     <div className="flex w-full items-center justify-between p-1">
       {/* 유저 pill */}

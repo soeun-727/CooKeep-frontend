@@ -1,13 +1,13 @@
 // src/pages/settings/components/SettingsInputItem.tsx
 import { useLocation, useNavigate } from "react-router-dom";
 
-type SettingsInputItemProps = {
+interface SettingsInputItemProps {
   label: string;
   value: string;
   buttonText: string;
   to: string;
   disabled?: boolean;
-};
+}
 
 export default function SettingsInputItem({
   label,

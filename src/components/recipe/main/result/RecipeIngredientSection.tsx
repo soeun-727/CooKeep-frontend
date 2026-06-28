@@ -1,6 +1,6 @@
 import { IngredientItem } from "@/types/aiRecipe";
 
-interface Props {
+interface RecipeIngredientSectionProps {
   selectedIngredients: IngredientItem[];
   requiredIngredients?: IngredientItem[];
   substitutions?: IngredientItem[]; // API의 optional_ingredients
@@ -10,7 +10,7 @@ export default function RecipeIngredientSection({
   selectedIngredients,
   requiredIngredients = [],
   substitutions = [],
-}: Props) {
+}: RecipeIngredientSectionProps) {
   const formatIngredient = (item: IngredientItem) => {
     if (!item.quantity) return item.name;
 

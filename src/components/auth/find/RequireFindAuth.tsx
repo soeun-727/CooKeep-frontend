@@ -3,11 +3,11 @@ import { Navigate } from "react-router-dom";
 import type { ReactNode } from "react";
 import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 
-type Props = {
+interface RequireFindAuthProps {
   children: ReactNode;
-};
+}
 
-export default function RequireFindAuth({ children }: Props) {
+export default function RequireFindAuth({ children }: RequireFindAuthProps) {
   const isVerified = useFindPasswordStore((s) => s.isVerified);
 
   // 개발 환경에서는 인증 우회
