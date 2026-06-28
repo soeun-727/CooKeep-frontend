@@ -14,12 +14,7 @@ import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import {
   checkRecipeBookmarkStatus,
   checkRecipeLikeStatus,
-<<<<<<< HEAD
 } from "@/api/myRecipe";
-=======
-} from "../../api/myRecipe";
-import LoadingScreen from "../../components/ui/LoadingScreen";
->>>>>>> origin
 
 export default function RecipeDetailPage() {
   const navigate = useNavigate();
@@ -134,16 +129,12 @@ export default function RecipeDetailPage() {
     fetchFullDetail();
   }, [id]);
 
-<<<<<<< HEAD
   if (isLoading)
     return (
       <div className="flex min-h-screen items-center justify-center">
         로딩 중...
       </div>
     );
-=======
-  if (isLoading) return <LoadingScreen />;
->>>>>>> origin
   if (!recipe)
     return (
       <div className="flex min-h-screen items-center justify-center">

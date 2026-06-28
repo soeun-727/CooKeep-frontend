@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import arrowIcon from "@/assets/signup/arrowright.svg";
@@ -8,16 +7,6 @@ import characterImg from "@/assets/character/sad_char_faded.svg";
 import { useAuthStore } from "@/stores/useAuthStore";
 import { withdrawUser } from "@/api/auth";
 import { getMyProfile } from "@/api/user";
-=======
-import BackHeader from "../../components/ui/BackHeader";
-import Button from "../../components/ui/Button";
-import arrowIcon from "../../assets/signup/arrowright.svg";
-import characterImg from "../../assets/character/sad_char_faded.svg";
-import { useAuthStore } from "../../stores/useAuthStore";
-import { withdrawUser } from "../../api/auth";
-import { getMyProfile } from "../../api/user";
-import LoadingScreen from "../../components/ui/LoadingScreen";
->>>>>>> origin
 
 export default function WithdrawPage() {
   const navigate = useNavigate();
@@ -86,7 +75,6 @@ export default function WithdrawPage() {
   };
 
   // 로딩 중일 때
-<<<<<<< HEAD
   if (loading) {
     return (
       <>
@@ -97,9 +85,6 @@ export default function WithdrawPage() {
       </>
     );
   }
-=======
-  if (loading) return <LoadingScreen />;
->>>>>>> origin
 
   return (
     <>
