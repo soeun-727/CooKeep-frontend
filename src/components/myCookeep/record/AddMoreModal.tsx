@@ -1,5 +1,5 @@
-import Button from "../../ui/Button";
-import character from "../../../assets/character/thinking_char.svg";
+import Button from "@/components/ui/Button";
+import character from "@/assets/character/thinking_char.svg";
 
 interface AddMoreModalProps {
   onConfirm: () => void;
@@ -12,15 +12,15 @@ export default function AddMoreModal({
 }: AddMoreModalProps) {
   return (
     <div
-      className="fixed inset-0 bg-black/40 flex items-center justify-center z-60"
+      className="fixed inset-0 z-60 flex items-center justify-center bg-black/40"
       onClick={onCancel}
     >
       <div
-        className="flex flex-col items-center gap-2 w-[240px] px-[28px] pt-[35px] pb-[25px] bg-white rounded-[10px]"
+        className="flex w-[240px] flex-col items-center gap-2 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center justify-center gap-4 self-stretch">
-          <img src={character} className="w-[85px] h-[90px]" alt="thinking" />
+          <img src={character} className="h-[90px] w-[85px]" alt="thinking" />
 
           <p className="typo-label">오늘, 다른 요리도 기록해볼까요?</p>
 

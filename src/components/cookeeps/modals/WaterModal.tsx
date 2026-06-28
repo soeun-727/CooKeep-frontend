@@ -1,6 +1,6 @@
 // src/components/cookeeps/WaterModal.tsx
 import { createPortal } from "react-dom";
-import waterCookieImg from "../../../assets/cookeeps/main/water_cookie_cookeeps.svg";
+import waterCookieImg from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
 
 interface WaterModalProps {
   isOpen: boolean;
@@ -29,15 +29,15 @@ export default function WaterModal({
             <img
               src={waterCookieImg}
               alt="물 쿠키"
-              className="h-[48px] w-[48px] aspect-square"
+              className="aspect-square h-[48px] w-[48px]"
             />
 
             {/* 텍스트 */}
             <div className="flex flex-col items-start gap-[2px] self-stretch text-center">
-              <span className="self-stretch text-[16px] font-bold leading-[24px] text-[#1FC16F]">
+              <span className="self-stretch text-[16px] leading-[24px] font-bold text-[#1FC16F]">
                 쿠키 10개
               </span>
-              <span className="self-stretch typo-body2 text-[#202020]">
+              <span className="typo-body2 self-stretch text-[#202020]">
                 사용해서 물을 줄까요?
               </span>
             </div>
@@ -47,30 +47,14 @@ export default function WaterModal({
           <div className="flex h-[44px] items-center gap-[8px] self-stretch">
             <button
               onClick={onConfirm}
-              className="
-    flex flex-1 items-center justify-center
-    h-[44px]
-    rounded-[10px]
-    bg-[#32E389]
-    py-[12px] px-[12px]
-    text-white
-    text-[14px] font-semibold leading-[24px]
-  "
+              className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#32E389] px-[12px] py-[12px] text-[14px] leading-[24px] font-semibold text-white"
             >
               물을 줄게요
             </button>
 
             <button
               onClick={onClose}
-              className="
-    flex flex-1 items-center justify-center
-    h-[44px]
-    rounded-[10px]
-    bg-[#C3C3C3]
-    py-[12px] px-[12px]
-    text-white
-    text-[14px] font-semibold leading-[24px]
-  "
+              className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#C3C3C3] px-[12px] py-[12px] text-[14px] leading-[24px] font-semibold text-white"
             >
               돌아가기
             </button>

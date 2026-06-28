@@ -1,6 +1,6 @@
 import { useState } from "react";
-import nextIcon from "../../../../../assets/fridge/addItem/forward.svg";
-import prevIcon from "../../../../../assets/fridge/addItem/backward.svg";
+import nextIcon from "@/assets/fridge/addItem/forward.svg";
+import prevIcon from "@/assets/fridge/addItem/backward.svg";
 
 interface ExpiryEditorProps {
   value: string; // "2026.01.20" 형식
@@ -34,9 +34,9 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
   };
 
   return (
-    <div className="flex flex-col w-[357px] mx-auto items-center justify-center rounded-[6px] py-[13px] px-4 mb-[34px] shadow-[0px_10px_60px_0px_rgba(0,0,0,0.1)] bg-white">
+    <div className="mx-auto mb-[34px] flex w-[357px] flex-col items-center justify-center rounded-[6px] bg-white px-4 py-[13px] shadow-[0px_10px_60px_0px_rgba(0,0,0,0.1)]">
       {/* 1. 달력 헤더 (월 이동) */}
-      <div className="flex items-center justify-between w-[325px] h-11">
+      <div className="flex h-11 w-[325px] items-center justify-between">
         <h2 className="typo-h3 font-semibold">
           {monthName} {year}
         </h2>
@@ -51,11 +51,11 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
       </div>
 
       {/* 2. 요일 표시 */}
-      <div className="grid grid-cols-7 w-full mb-2">
+      <div className="mb-2 grid w-full grid-cols-7">
         {daysOfWeek.map((day) => (
           <div
             key={day}
-            className="text-center typo-body2 text-[var(--color-green)] py-2"
+            className="typo-body2 py-2 text-center text-[var(--color-green)]"
           >
             {day}
           </div>
@@ -63,7 +63,7 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
       </div>
 
       {/* 3. 날짜 그리드 */}
-      <div className="grid grid-cols-7 w-full gap-y-1">
+      <div className="grid w-full grid-cols-7 gap-y-1">
         {/* 1일 이전 빈칸 처리 */}
         {Array.from({ length: firstDayOfMonth }).map((_, i) => (
           <div key={`empty-${i}`} />
@@ -87,14 +87,13 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
             <button
               key={day}
               onClick={() => handleDateClick(day)}
-              className={`h-10 w-10 mx-auto flex items-center justify-center rounded-full typo-h2 text-zinc-800 transition-all !font-normal
-                ${
-                  isNewlySelected
-                    ? "!bg-[var(--color-green-light)] !border !border-[var(--color-green-deep)] !font-semibold"
-                    : isNewlySelected || isCurrent
-                      ? "!bg-zinc-200 !text-zinc-500 !cursor-not-allowed"
-                      : "hover:bg-zinc-50"
-                }`}
+              className={`typo-h2 mx-auto flex h-10 w-10 items-center justify-center rounded-full !font-normal text-zinc-800 transition-all ${
+                isNewlySelected
+                  ? "!border !border-[var(--color-green-deep)] !bg-[var(--color-green-light)] !font-semibold"
+                  : isNewlySelected || isCurrent
+                    ? "!cursor-not-allowed !bg-zinc-200 !text-zinc-500"
+                    : "hover:bg-zinc-50"
+              }`}
             >
               {day}
             </button>

@@ -1,4 +1,4 @@
-import Button from "../../ui/Button";
+import Button from "@/components/ui/Button";
 interface FooterProps {
   onNext: () => void;
   onPrev: () => void;
@@ -20,7 +20,7 @@ export default function Footer({
 }: FooterProps) {
   return (
     <div className="fixed bottom-0 left-1/2 -translate-x-1/2 pb-[34px]">
-      <div className="w-[361px] mx-auto flex flex-col items-center gap-2">
+      <div className="mx-auto flex w-[361px] flex-col items-center gap-2">
         <Button
           size="S"
           variant="green"

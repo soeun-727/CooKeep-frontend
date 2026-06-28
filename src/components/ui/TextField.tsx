@@ -32,12 +32,12 @@ export default function TextField({
   return (
     <div className="w-[361px]">
       {label && (
-        <label className="block text-sm font-medium mb-1">{label}</label>
+        <label className="mb-1 block text-sm font-medium">{label}</label>
       )}
 
       <div className="relative">
         {leftIcon && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2">
+          <div className="absolute top-1/2 left-3 -translate-y-1/2">
             {leftIcon}
           </div>
         )}
@@ -50,52 +50,30 @@ export default function TextField({
           autoComplete={autoComplete}
           onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`
-    w-full h-[48px]
-    border
-    rounded-[6px]
-    px-3 py-2
-    bg-white
-    text-[#202020] 
-    font-['Pretendard'] text-sm leading-5
-    placeholder:font-medium
-    placeholder:text-stone-300
-    disabled:bg-[#ECECEC]
-    focus:outline-none
-    ${leftIcon ? "pl-11" : ""}
-        ${rightIcon ? "pr-10" : ""}
-    ${
-      errorMessage
-        ? "border-[#D91F1F]"
-        : successMessage
-          ? "border-[#1FA43C]"
-          : "border-[#DDDDDD]"
-    }
-  `}
+          className={`h-[48px] w-full rounded-[6px] border bg-white px-3 py-2 font-['Pretendard'] text-sm leading-5 text-[#202020] placeholder:font-medium placeholder:text-stone-300 focus:outline-none disabled:bg-[#ECECEC] ${leftIcon ? "pl-11" : ""} ${rightIcon ? "pr-10" : ""} ${
+            errorMessage
+              ? "border-[#D91F1F]"
+              : successMessage
+                ? "border-[#1FA43C]"
+                : "border-[#DDDDDD]"
+          } `}
         />
 
         {rightIcon && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+          <div className="absolute top-1/2 right-3 -translate-y-1/2">
             {rightIcon}
           </div>
         )}
       </div>
 
       <p
-        className={`
-    mt-1
-    pl-2
-    text-[10px]
-    leading-[14px]
-    min-h-[14px]
-    ${
-      errorMessage
-        ? "text-[#D91F1F]"
-        : successMessage
-          ? "text-[#1FA43C]"
-          : "text-transparent"
-    }
-  `}
+        className={`mt-1 min-h-[14px] pl-2 text-[10px] leading-[14px] ${
+          errorMessage
+            ? "text-[#D91F1F]"
+            : successMessage
+              ? "text-[#1FA43C]"
+              : "text-transparent"
+        } `}
       >
         {errorMessage || successMessage || "placeholder"}
       </p>

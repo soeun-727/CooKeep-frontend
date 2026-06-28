@@ -1,11 +1,11 @@
 // src/pages/settings/NoticePage.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import NoticeCategoryItem from "../../components/settings/components/NoticeCategoryItem";
-import { getNotices } from "../../api/notice";
-import { Notice, mapNotice } from "../../types/notice";
-import LoadingScreen from "../../components/ui/LoadingScreen";
+import BackHeader from "@/components/ui/BackHeader";
+import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
+import { getNotices } from "@/api/notice";
+import { Notice, mapNotice } from "@/types/notice";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function NoticePage() {
   const navigate = useNavigate();
@@ -39,8 +39,10 @@ export default function NoticePage() {
   return (
     <>
       <BackHeader title="공지사항" onBack={() => navigate(-1)} />
-      <main className="pt-[75px] px-4 pb-[34px] flex flex-col gap-[14px] min-h-screen">
-        {error ? (
+      <main className="flex min-h-screen flex-col gap-[14px] px-4 pt-[75px] pb-[34px]">
+        {loading ? (
+          <p className="text-center text-gray-500">불러오는 중...</p>
+        ) : error ? (
           <p className="text-center text-red-500">
             공지사항을 불러오지 못했습니다.
           </p>
@@ -53,7 +55,7 @@ export default function NoticePage() {
             <NoticeCategoryItem key={notice.id} category={notice} />
           ))
         )}
-        <p className="pt-[2px] text-center typo-label text-[#202020]">
+        <p className="typo-label pt-[2px] text-center text-[#202020]">
           오늘 한 끼부터, 쿠킵으로 이어가볼까요?
         </p>
       </main>

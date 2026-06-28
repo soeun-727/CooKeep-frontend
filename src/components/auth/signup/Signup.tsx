@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import AuthHeader from "../AuthHeader";
 import SignupForm from "./SignupForm";
-import { useSignupStore } from "../../../stores/useSignupStore";
+import { useSignupStore } from "@/stores/useSignupStore";
 
 export default function Signup() {
   const [hideHeader, setHideHeader] = useState(false);
@@ -15,7 +15,7 @@ export default function Signup() {
   }, [resetSignup]);
 
   return (
-    <div className="h-[100dvh] flex flex-col items-center overflow-hidden bg-gray-50">
+    <div className="flex h-[100dvh] flex-col items-center overflow-hidden bg-gray-50">
       {!hideHeader && <AuthHeader />}
 
       <SignupForm setHideHeader={setHideHeader} />

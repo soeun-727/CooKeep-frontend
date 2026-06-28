@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import ListItem from "../../components/cookeeps/lists/ListItem";
-import DoublecheckModal from "../../components/ui/DoublecheckModal";
+import ListItem from "@/components/cookeeps/lists/ListItem";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import {
   getMyLikedRecipes,
   getMyBookmarkedRecipes,
   MyRecipeListItem,
   toggleRecipeBookmark,
   toggleRecipeLike,
-} from "../../api/myRecipe";
-import temp from "../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
+} from "@/api/myRecipe";
+import temp from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 
 interface ViewListPageProps {
   type: string;
@@ -107,7 +107,7 @@ export default function ViewListPage({ type }: ViewListPageProps) {
 
   return (
     <>
-      <div className="w-[361px] mx-auto mt-[18px] pb-10 flex flex-col items-center">
+      <div className="mx-auto mt-[18px] flex w-[361px] flex-col items-center pb-10">
         {filteredData.length > 0
           ? filteredData.map((item) => (
               <ListItem
@@ -125,7 +125,7 @@ export default function ViewListPage({ type }: ViewListPageProps) {
               />
             ))
           : !isLoading && (
-              <p className="mt-10 text-zinc-400 typo-body text-center">
+              <p className="typo-body mt-10 text-center text-zinc-400">
                 {searchTerm ? "검색 결과가 없습니다." : "목록이 비어 있습니다."}
               </p>
             )}

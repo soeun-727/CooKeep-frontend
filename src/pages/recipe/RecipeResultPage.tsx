@@ -1,9 +1,9 @@
-import RecipeActionButtons from "../../components/recipe/main/result/RecipeActionButtons";
-import RecipeContentSection from "../../components/recipe/main/result/RecipeContentSection";
-import RecipeHeader from "../../components/recipe/main/RecipeHeader";
-import RecipeTitle from "../../components/recipe/main/result/RecipeTitle";
-import RecipeYoutubeCard from "../../components/recipe/main/result/RecipeYoutubeCard";
-import { useRecipeFlowStore } from "../../stores/useRecipeFlowStore";
+import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
+import RecipeContentSection from "@/components/recipe/main/result/RecipeContentSection";
+import RecipeHeader from "@/components/recipe/main/RecipeHeader";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
+import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 
@@ -49,7 +49,7 @@ export default function RecipeResultPage() {
 
   if (!recipeHistory.length) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-400">
+      <div className="flex h-full items-center justify-center text-gray-400">
         레시피를 찾을 수 없습니다.
       </div>
     );
@@ -61,7 +61,7 @@ export default function RecipeResultPage() {
 
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-9 px-4 pt-[75px]"
+        className="no-scrollbar flex flex-1 flex-col gap-9 overflow-y-auto px-4 pt-[75px]"
       >
         {recipeHistory.map((data, index) => {
           const recipe = data.recipe;
@@ -79,7 +79,7 @@ export default function RecipeResultPage() {
           return (
             <div
               key={index}
-              className="flex flex-col gap-2 w-full max-w-[361px] mx-auto"
+              className="mx-auto flex w-full max-w-[361px] flex-col gap-2"
             >
               <RecipeTitle name={recipe.title} />
 
@@ -100,18 +100,18 @@ export default function RecipeResultPage() {
               />
 
               {isLastRecipe && (
-                <div className="flex flex-col items-center gap-[2px] self-stretch mt-[10px]">
-                  <div className="w-[361px] text-center text-[11px] leading-[14px] text-[#7D7D7D] font-pretendard">
+                <div className="mt-[10px] flex flex-col items-center gap-[2px] self-stretch">
+                  <div className="font-pretendard w-[361px] text-center text-[11px] leading-[14px] text-[#7D7D7D]">
                     AI가 제공하는 정보에는 실수가 있을 수 있습니다
                     <br />
                     관련 정보를 확인 후 활용해주세요
                   </div>
 
                   {isLoading && (
-                    <div className="flex w-[28.8px] h-[28.8px] justify-center items-center gap-[3.6px]">
-                      <div className="w-[4.8px] h-[4.8px] rounded-full animate-dot" />
-                      <div className="w-[4.8px] h-[4.8px] rounded-full animate-dot delay-200" />
-                      <div className="w-[4.8px] h-[4.8px] rounded-full animate-dot delay-400" />
+                    <div className="flex h-[28.8px] w-[28.8px] items-center justify-center gap-[3.6px]">
+                      <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full" />
+                      <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full delay-200" />
+                      <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full delay-400" />
                     </div>
                   )}
                 </div>
@@ -121,7 +121,7 @@ export default function RecipeResultPage() {
         })}
 
         {/* 버튼 영역 */}
-        <div className="p-4 w-full max-w-[450px] mx-auto mb-7">
+        <div className="mx-auto mb-7 w-full max-w-[450px] p-4">
           <RecipeActionButtons
             retryCount={retryCount}
             onRetry={handleRetry}

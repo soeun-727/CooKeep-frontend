@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 export default function CookeepsLayout() {
   return (
-    <div className="flex-1 h-full flex flex-col no-scrollbar">
+    <div className="no-scrollbar flex h-full flex-1 flex-col">
       <Outlet />
     </div>
   );

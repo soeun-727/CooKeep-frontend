@@ -1,21 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import RecipeDetailUserMeta from "../../components/cookeeps/recipedetail/RecipeDetailUserMeta";
-import RecipeDetailImageCard from "../../components/cookeeps/recipedetail/RecipeDetailImageCard";
-import RecipeDetailContentSection from "../../components/cookeeps/recipedetail/RecipeDetailContentSection";
-import RecipeDetailYoutube from "../../components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import RecipeDetailMemo from "../../components/cookeeps/recipedetail/RecipeDetailMemo";
+import BackHeader from "@/components/ui/BackHeader";
+import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
+import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDetailImageCard";
+import RecipeDetailContentSection from "@/components/cookeeps/recipedetail/RecipeDetailContentSection";
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
 import { useEffect, useState } from "react";
 import {
   getWeeklyRecipeDetail,
   WeeklyRecipeDetailResponse,
-} from "../../api/cookeeps";
-import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
+} from "@/api/cookeeps";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import {
   checkRecipeBookmarkStatus,
   checkRecipeLikeStatus,
-} from "../../api/myRecipe";
-import LoadingScreen from "../../components/ui/LoadingScreen";
+} from "@/api/myRecipe";
 
 export default function RecipeDetailPage() {
   const navigate = useNavigate();
@@ -130,10 +129,15 @@ export default function RecipeDetailPage() {
     fetchFullDetail();
   }, [id]);
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading)
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        로딩 중...
+      </div>
+    );
   if (!recipe)
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center">
         레시피를 찾을 수 없습니다.
       </div>
     );
@@ -146,7 +150,7 @@ export default function RecipeDetailPage() {
       <div className="mx-auto w-full max-w-[450px] px-4">
         {/* 헤더 */}
 
-        <div className="flex flex-col mx-auto pt-[51px]">
+        <div className="mx-auto flex flex-col pt-[51px]">
           {/* 유저 메타 */}
           <RecipeDetailUserMeta
             userName={recipe.nickname}
@@ -157,9 +161,9 @@ export default function RecipeDetailPage() {
           />
 
           {/* 메인 콘텐츠 */}
-          <div className="flex flex-col items-start gap-4 self-stretch w-full">
-            <div className="flex flex-col items-center gap-[10px] w-full">
-              <div className="flex flex-col items-start self-stretch w-full">
+          <div className="flex w-full flex-col items-start gap-4 self-stretch">
+            <div className="flex w-full flex-col items-center gap-[10px]">
+              <div className="flex w-full flex-col items-start self-stretch">
                 <RecipeDetailImageCard
                   images={recipe.recipeImageUrl ? [recipe.recipeImageUrl] : []}
                   title={recipe.title}
@@ -191,7 +195,7 @@ export default function RecipeDetailPage() {
           </div>
 
           {/* 메모 */}
-          <div className="flex flex-col items-center gap-2 w-full mt-4 pb-25">
+          <div className="mt-4 flex w-full flex-col items-center gap-2 pb-25">
             {recipe.description && (
               <RecipeDetailMemo
                 userName={recipe.nickname}

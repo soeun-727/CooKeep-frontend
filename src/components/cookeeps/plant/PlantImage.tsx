@@ -1,7 +1,7 @@
 import { memo } from "react";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { EMPTY_PLANT_IMAGE, PLANT_IMAGES } from "./PlantImages";
-import { PLANT_NAME_TO_TYPE } from "../../../constants/plantTypeMap";
+import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
 
 interface PlantImageProps {
   overridePlantStage?: 1 | 2 | 3 | 4;
@@ -16,14 +16,14 @@ function PlantImage({ overridePlantStage }: PlantImageProps) {
     const imageSrc =
       PLANT_IMAGES[PLANT_NAME_TO_TYPE[justHarvestedPlant.plantName]][4];
     return (
-      <div className="relative w-full h-full">
+      <div className="relative h-full w-full">
         <img
           src={imageSrc}
           alt="harvested plant"
           // loading="lazy"
           loading="eager"
           decoding="async"
-          className="w-full h-full object-contain"
+          className="h-full w-full object-contain"
         />
       </div>
     );
@@ -37,14 +37,14 @@ function PlantImage({ overridePlantStage }: PlantImageProps) {
     : EMPTY_PLANT_IMAGE;
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative h-full w-full">
       <img
         src={imageSrc}
         alt="plant"
         // loading="lazy"
         loading="eager"
         decoding="async"
-        className="w-full h-full object-contain"
+        className="h-full w-full object-contain"
       />
     </div>
   );

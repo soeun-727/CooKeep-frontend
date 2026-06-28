@@ -17,9 +17,9 @@ export default function PlantBackground({
   isLoading,
 }: PlantBackgroundProps) {
   return (
-    <section className="relative w-full flex justify-center">
+    <section className="relative flex w-full justify-center">
       {/* 기준 박스 (식물 + 토스트 공통) */}
-      <div className="relative w-full max-w-[450px] aspect-square">
+      <div className="relative aspect-square w-full max-w-[450px]">
         {!isLoading && <PlantImage overridePlantStage={overridePlantStage} />}
         {/* 토스트는 반드시 여기 */}
         <WaterToast message={message} isVisible={showToast} />

@@ -1,4 +1,4 @@
-import { likeGray, bookmarkGray } from "../../../assets";
+import { likeGray, bookmarkGray } from "@/assets/index";
 
 interface ItemProps {
   type: string;
@@ -26,18 +26,18 @@ export default function ListItem({
   return (
     <div
       onClick={onSelect}
-      className={`w-[335px] h-12 rounded-[6px] flex items-center justify-between px-2 py-[10px] ${isSelected ? "bg-gray-200" : "bg-[#FAFAFA]"}`}
+      className={`flex h-12 w-[335px] items-center justify-between rounded-[6px] px-2 py-[10px] ${isSelected ? "bg-gray-200" : "bg-[#FAFAFA]"}`}
     >
       <img
         src={img}
         alt={title}
-        className="h-[42px] w-[65px]  rounded-[6px] object-cover"
+        className="h-[42px] w-[65px] rounded-[6px] object-cover"
       />
-      <span className="w-[190px] typo-body truncate text-left">{title}</span>
+      <span className="typo-body w-[190px] truncate text-left">{title}</span>
       {type === "좋아요 누른 레시피" ? (
         <button
           onClick={handleIconClick}
-          className="flex items-center justify-between w-[38px] active:scale-90 transition-transform"
+          className="flex w-[38px] items-center justify-between transition-transform active:scale-90"
         >
           <img src={likeGray} alt="like" className="w-4" />
           <span className="typo-caption text-zinc-500">{likes}</span>
@@ -45,7 +45,7 @@ export default function ListItem({
       ) : (
         <button
           onClick={handleIconClick}
-          className="active:scale-90 transition-transform pr-2"
+          className="pr-2 transition-transform active:scale-90"
         >
           <img src={bookmarkGray} alt="bookmark" className="w-7" />
         </button>

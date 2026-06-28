@@ -1,10 +1,10 @@
 import Item from "./Item";
-import character from "../../../../assets/character/confused_char.svg";
+import character from "@/assets/character/confused_char.svg";
 import {
   AddSourceItem,
   useAddIngredientStore,
-} from "../../../../stores/useAddIngredientStore";
-import { deleteCustomIngredient } from "../../../../api/ingredient";
+} from "@/stores/useAddIngredientStore";
+import { deleteCustomIngredient } from "@/api/ingredient";
 import { useState } from "react";
 import DeleteConfirmModal from "../../modals/DeleteConfirmModal";
 import { AxiosError } from "axios";
@@ -107,9 +107,9 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
 
   return (
     <>
-      <div className="w-full flex flex-col items-center justify-center pt-[10px] pb-25">
-        <div className="flex flex-col w-[294px]">
-          <div className="grid grid-cols-3 gap-3 justify-items-center">
+      <div className="flex w-full flex-col items-center justify-center pt-[10px] pb-25">
+        <div className="flex w-[294px] flex-col">
+          <div className="grid grid-cols-3 justify-items-center gap-3">
             {items.map((item) => (
               <Item
                 key={item.id}
@@ -129,11 +129,11 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
             <button
               type="button"
               onClick={() => setModalOpen(true)}
-              className="flex flex-col items-center justify-center gap-3 mt-30 mb-50 animate-fadeIn"
+              className="animate-fadeIn mt-30 mb-50 flex flex-col items-center justify-center gap-3"
             >
               <img src={character} className="w-23" alt="no result" />
-              <div className="bg-black rounded-[100px] h-6 py-1 px-[18px] flex justify-center items-center">
-                <span className="typo-caption text-white text-center py-1">
+              <div className="flex h-6 items-center justify-center rounded-[100px] bg-black px-[18px] py-1">
+                <span className="typo-caption py-1 text-center text-white">
                   직접 재료 추가하기
                 </span>
               </div>

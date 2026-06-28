@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../../ui/Button";
+import Button from "@/components/ui/Button";
 
-import installGuideImage from "../../../assets/onboarding/installGuideImage.png";
-import mainLogo from "../../../assets/logos/mainLogo.svg";
-import appleIcon from "../../../assets/onboarding/appleinc.svg";
-import androidIcon from "../../../assets/onboarding/android.svg";
+import installGuideImage from "@/assets/onboarding/installGuideImage.png";
+import mainLogo from "@/assets/logos/mainLogo.svg";
+import appleIcon from "@/assets/onboarding/appleinc.svg";
+import androidIcon from "@/assets/onboarding/android.svg";
 
 interface InstallGuideProps {
   onFinish: () => void;
@@ -14,20 +14,20 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex justify-center">
-      <div className=" flex flex-col items-center relative">
+    <div className="flex min-h-screen justify-center">
+      <div className="relative flex flex-col items-center">
         {/* ================= 이미지 + 그라데이션 ================= */}
-        <div className="relative max-w-[484px] h-[312px] w-full flex justify-center">
+        <div className="relative flex h-[312px] w-full max-w-[484px] justify-center">
           <img
             src={installGuideImage}
             alt="Install Guide"
-            className="max-w-[449px] w-full max-h-[300px] h-full"
+            className="h-full max-h-[300px] w-full max-w-[449px]"
             style={{ aspectRatio: "223 / 149" }}
           />
 
           {/* 하단 그라데이션 오버레이 */}
           <div
-            className="absolute bottom-0 max-w-[449px] w-full max-h-[58px] h-full"
+            className="absolute bottom-0 h-full max-h-[58px] w-full max-w-[449px]"
             style={{
               background:
                 "linear-gradient(180deg, rgba(255,255,255,0) 6.45%, #FAFAFA 76.21%)",
@@ -36,12 +36,12 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
         </div>
 
         {/* ================= 상단 (로고 + 제목 + 소제목) ================= */}
-        <div className="mt-[31px] flex flex-col items-center gap-[10px] w-full">
-          <div className="flex flex-col items-center gap-[2px] w-full">
+        <div className="mt-[31px] flex w-full flex-col items-center gap-[10px]">
+          <div className="flex w-full flex-col items-center gap-[2px]">
             <img
               src={mainLogo}
               alt="CooKeep Logo"
-              className="w-[148.81px] h-[28px]"
+              className="h-[28px] w-[148.81px]"
             />
 
             <h1 className="typo-result-title">
@@ -49,31 +49,31 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
             </h1>
           </div>
 
-          <p className="w-full text-center typo-button text-[var(--color-green-deep)]">
+          <p className="typo-button w-full text-center text-[var(--color-green-deep)]">
             더 쉽고 빠르게 서비스를 이용할 수 있어요
           </p>
         </div>
 
         {/* ================= 설명 영역 ================= */}
-        <div className="mt-[27px] w-[362px] flex flex-col items-start gap-[7px]">
+        <div className="mt-[27px] flex w-[362px] flex-col items-start gap-[7px]">
           {/* iOS */}
-          <div className="flex flex-col items-center gap-[4px] self-stretch px-[14px] py-[10px] bg-white rounded-[6px]">
+          <div className="flex flex-col items-center gap-[4px] self-stretch rounded-[6px] bg-white px-[14px] py-[10px]">
             {/* 내용 영역 */}
             <div className="flex flex-col items-center gap-[10px] self-stretch">
               {/* 아이콘 */}
               <img
                 src={appleIcon}
                 alt="apple"
-                className="w-[24px] h-[24px] aspect-square"
+                className="aspect-square h-[24px] w-[24px]"
               />
 
               {/* 텍스트 영역 */}
               <div className="flex flex-col items-start gap-[4px] self-stretch">
-                <p className="typo-body text-[#202020] text-center self-stretch font-semibold">
+                <p className="typo-body self-stretch text-center font-semibold text-[#202020]">
                   iOS 사용자는 Safari에서 열어주세요
                 </p>
 
-                <p className="text-[12px] font-medium leading-[20px] text-[#202020] text-center self-stretch">
+                <p className="self-stretch text-center text-[12px] leading-[20px] font-medium text-[#202020]">
                   Safari 공유 버튼 → ‘홈 화면에 추가’
                 </p>
               </div>
@@ -81,23 +81,23 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
           </div>
 
           {/* Android */}
-          <div className="flex flex-col items-start gap-[4px] self-stretch px-[14px] py-[10px] bg-white rounded-[6px]">
+          <div className="flex flex-col items-start gap-[4px] self-stretch rounded-[6px] bg-white px-[14px] py-[10px]">
             {/* 내용 영역 */}
             <div className="flex flex-col items-center gap-[10px] self-stretch">
               {/* 아이콘 */}
               <img
                 src={androidIcon}
                 alt="android"
-                className="w-[24px] h-[24px] aspect-square"
+                className="aspect-square h-[24px] w-[24px]"
               />
 
               {/* 텍스트 영역 */}
               <div className="flex flex-col items-start gap-[4px] self-stretch">
-                <p className="text-[16px] font-semibold leading-[20px] text-[#202020] text-center self-stretch">
+                <p className="self-stretch text-center text-[16px] leading-[20px] font-semibold text-[#202020]">
                   Android 사용자는 Chrome을 추천드려요
                 </p>
 
-                <p className="text-[12px] font-medium leading-[20px] text-[#202020] text-center self-stretch">
+                <p className="self-stretch text-center text-[12px] leading-[20px] font-medium text-[#202020]">
                   우측 상단 메뉴 → ‘홈 화면에 추가’
                 </p>
               </div>
@@ -107,7 +107,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
 
         {/* ================= 하단 버튼 ================= */}
         <div className="fixed bottom-0 left-1/2 -translate-x-1/2 pb-[34px]">
-          <div className="w-[361px] flex flex-col items-center gap-[8px]">
+          <div className="flex w-[361px] flex-col items-center gap-[8px]">
             <Button size="S" variant="green" onClick={onFinish}>
               확인
             </Button>

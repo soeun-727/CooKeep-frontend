@@ -1,4 +1,4 @@
-import { Ingredient, IngredientsJson } from "../../../api/dailyAiRecipe";
+import { Ingredient, IngredientsJson } from "@/api/dailyAiRecipe";
 
 interface RecipeDetailIngredientSectionProps {
   ingredients: IngredientsJson;
@@ -29,15 +29,15 @@ export default function RecipeDetailIngredientSection({
   );
 
   return (
-    <div className="flex flex-col gap-8 w-full">
+    <div className="flex w-full flex-col gap-8">
       {/* 내가 가진 재료 */}
       <div>
         <span className="typo-body2 text-[#202020]">내가 가지고 있는 재료</span>
-        <div className="flex flex-wrap gap-[5px] mt-2">
+        <div className="mt-2 flex flex-wrap gap-[5px]">
           {user_ingredients.map((item, idx) => (
             <span
               key={idx}
-              className="h-[20px] px-[12px] rounded-full bg-[#1FC16F] text-white text-[12px]"
+              className="h-[20px] rounded-full bg-[#1FC16F] px-[12px] text-[12px] text-white"
             >
               {formatIngredient(item)}
             </span>
@@ -49,11 +49,11 @@ export default function RecipeDetailIngredientSection({
       {additional_ingredients.length > 0 && (
         <div>
           <span className="typo-body2 text-[#202020]">추가로 필요한 재료</span>
-          <div className="flex flex-wrap gap-[5px] mt-2">
+          <div className="mt-2 flex flex-wrap gap-[5px]">
             {additional_ingredients.map((item, idx) => (
               <span
                 key={idx}
-                className="h-[20px] px-[12px] rounded-full bg-[#EBEBEB] text-[#7D7D7D] text-[12px]"
+                className="h-[20px] rounded-full bg-[#EBEBEB] px-[12px] text-[12px] text-[#7D7D7D]"
               >
                 {formatIngredient(item)}
               </span>
@@ -103,7 +103,7 @@ export default function RecipeDetailIngredientSection({
                   {items.map((item, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-[2px] rounded-full bg-[#EBEBEB] text-[12px] text-[#7D7D7D]"
+                      className="rounded-full bg-[#EBEBEB] px-3 py-[2px] text-[12px] text-[#7D7D7D]"
                     >
                       {formatIngredient(item)}
                     </span>

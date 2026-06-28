@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import MyCookeepTabBar from "../../components/myCookeep/fixed/MyCookeepTabBar";
-import Profile from "../../components/myCookeep/fixed/Profile";
-import Statistics from "../../components/myCookeep/contents/Statistics";
-import Calendar from "../../components/myCookeep/contents/Calendar";
-import RecordEntry from "../../components/myCookeep/record/RecordEntry";
-import AddMoreModal from "../../components/myCookeep/record/AddMoreModal";
-import { hasTodayRecord } from "../../utils/record";
-import RecordCard from "../../components/myCookeep/record/RecordCard";
-import { getDailyRecipesByDate } from "../../api/myRecipe";
-import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
-import { useCookeepsStore } from "../../stores/useCookeepsStore";
+import MyCookeepTabBar from "@/components/myCookeep/fixed/MyCookeepTabBar";
+import Profile from "@/components/myCookeep/fixed/Profile";
+import Statistics from "@/components/myCookeep/contents/Statistics";
+import Calendar from "@/components/myCookeep/contents/Calendar";
+import RecordEntry from "@/components/myCookeep/record/RecordEntry";
+import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
+import { hasTodayRecord } from "@/utils/record";
+import RecordCard from "@/components/myCookeep/record/RecordCard";
+import { getDailyRecipesByDate } from "@/api/myRecipe";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 type TabType = "record" | "calendar" | "statistics";
 
@@ -92,7 +92,7 @@ export default function MyCookeepPage() {
         // 사용자가 날짜를 클릭해서 selectedDate가 생겼고, 데이터가 있을 때만 상세를 보여줌
         if (selectedDate && records.length > 0) {
           return (
-            <div className="flex flex-col items-center gap-6 px-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
+            <div className="animate-in fade-in slide-in-from-bottom-4 flex flex-col items-center gap-6 px-4 duration-300">
               {/* 뒤로가기 버튼 등이 있으면 더 좋겠네요! */}
               <button
                 onClick={() => setSelectedDate("")}
@@ -125,7 +125,7 @@ export default function MyCookeepPage() {
   };
 
   return (
-    <div className="relative flex flex-col h-full min-h-0">
+    <div className="relative flex h-full min-h-0 flex-col">
       <div className="shrink-0">
         <Profile />
 
@@ -138,7 +138,7 @@ export default function MyCookeepPage() {
         </div>
       </div>
 
-      <div className="flex-1 mt-[10px] pb-15 overflow-y-auto no-scrollbar">
+      <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
         {renderContent()}
       </div>
 
