@@ -1,13 +1,15 @@
-import React from "react";
 import icon from "../../assets/character/congrats_char.svg";
 import Button from "./Button";
 
-interface Props {
+interface WeeklyGoalModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const WeeklyGoalModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export default function WeeklyGoalModal({
+  isOpen,
+  onClose,
+}: WeeklyGoalModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -43,6 +45,4 @@ const WeeklyGoalModal: React.FC<Props> = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-};
-
-export default WeeklyGoalModal;
+}

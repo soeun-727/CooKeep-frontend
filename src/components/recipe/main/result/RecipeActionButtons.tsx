@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
 
-interface Props {
+interface RecipeActionButtonsProps {
   retryCount: number;
   maxRetry?: number;
   onRetry: () => void;
@@ -15,12 +15,10 @@ export default function RecipeActionButtons({
   onRetry,
   showRetryButton = true, // 기본값은 true
   isLoading = false,
-}: Props) {
+}: RecipeActionButtonsProps) {
   const navigate = useNavigate();
 
   const {
-    // increaseRetry,
-    // generateRecipe,
     selectedIngredients,
     difficulty,
     recipeHistory,
@@ -37,11 +35,6 @@ export default function RecipeActionButtons({
   const retryBtnText = isLoading
     ? "레시피 생성 중..."
     : `다른 레시피 받기 (${retryCount}/${maxRetry})`;
-
-  // const handleRetry = () => {
-  //   increaseRetry();
-  //   generateRecipe();
-  // };
 
   const handleCookClick = async () => {
     // async 추가

@@ -1,10 +1,12 @@
 import { Ingredient, IngredientsJson } from "../../../api/dailyAiRecipe";
 
-interface Props {
+interface RecipeDetailIngredientSectionProps {
   ingredients: IngredientsJson;
 }
 
-export default function RecipeDetailIngredientSection({ ingredients }: Props) {
+export default function RecipeDetailIngredientSection({
+  ingredients,
+}: RecipeDetailIngredientSectionProps) {
   const { user_ingredients, additional_ingredients, optional_ingredients } =
     ingredients;
 

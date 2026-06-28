@@ -1,12 +1,12 @@
 // src/components/header/BackHeader.tsx
 import BackIcon from "../../assets/back.svg";
 
-type BackHeaderProps = {
+interface BackHeaderProps {
   title: string;
   onBack: () => void;
-};
+}
 
-const BackHeader = ({ title, onBack }: BackHeaderProps) => {
+export default function BackHeader({ title, onBack }: BackHeaderProps) {
   return (
     <header
       className="
@@ -31,6 +31,4 @@ const BackHeader = ({ title, onBack }: BackHeaderProps) => {
       </h1>
     </header>
   );
-};
-
-export default BackHeader;
+}

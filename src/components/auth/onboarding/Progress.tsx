@@ -2,7 +2,7 @@ interface ProgressProps {
   currentStep: number;
 }
 
-const Progress = ({ currentStep }: ProgressProps) => {
+export default function Progress({ currentStep }: ProgressProps) {
   // 시각적으로 5단계가 있는 것처럼 계산하여 마지막 단계에서도 1칸이 남도록 함
   const visualTotalSteps = 5;
 
@@ -21,6 +21,4 @@ const Progress = ({ currentStep }: ProgressProps) => {
       </div>
     </div>
   );
-};
-
-export default Progress;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
 import Recipe from "./Recipe";
 import DoublecheckModal from "../../ui/DoublecheckModal";
 import TextField from "../../ui/TextField";
@@ -12,7 +12,7 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const navigate = useNavigate();
 
   const {
@@ -223,6 +223,4 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
       </div>
     </>
   );
-};
-
-export default Sidebar;
+}

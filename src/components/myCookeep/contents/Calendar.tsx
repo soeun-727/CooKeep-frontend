@@ -4,13 +4,13 @@ import prevIcon from "../../../assets/fridge/addItem/backward.svg";
 import todaySign from "../../../assets/mycookeep/today.svg";
 import { CalendarRecipe, getCalendarRecipes } from "../../../api/myRecipe";
 
-interface Props {
+interface CalendarProps {
   onDateClick: (date: string) => void;
 }
 
-export default function Calendar({ onDateClick }: Props) {
+export default function Calendar({ onDateClick }: CalendarProps) {
   const [viewDate, setViewDate] = useState(new Date());
-  const [apiRecords, setApiRecords] = useState<Record<string, string>>({}); // 🚀 서버 데이터를 담을 상태
+  const [apiRecords, setApiRecords] = useState<Record<string, string>>({}); // 서버 데이터를 담을 상태
   const [isLoading, setIsLoading] = useState(false);
 
   const year = viewDate.getFullYear();

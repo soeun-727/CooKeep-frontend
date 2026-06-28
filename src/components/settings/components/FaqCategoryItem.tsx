@@ -4,13 +4,17 @@ import type { FaqItem } from "../../../constants/faqData";
 import FaqItemComponent from "./FaqItem";
 import arrowIcon from "../../../assets/signup/arrowright.svg";
 
-type Props = {
+interface FaqCategoryItemProps {
   title: string;
   items: FaqItem[];
   defaultOpen?: boolean;
-};
+}
 
-export default function FaqCategoryItem({ title, items, defaultOpen }: Props) {
+export default function FaqCategoryItem({
+  title,
+  items,
+  defaultOpen,
+}: FaqCategoryItemProps) {
   const [open, setOpen] = useState(defaultOpen ?? false);
 
   return (

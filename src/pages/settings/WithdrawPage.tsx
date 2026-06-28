@@ -7,6 +7,7 @@ import characterImg from "../../assets/character/sad_char_faded.svg";
 import { useAuthStore } from "../../stores/useAuthStore";
 import { withdrawUser } from "../../api/auth";
 import { getMyProfile } from "../../api/user";
+import LoadingScreen from "../../components/ui/LoadingScreen";
 
 export default function WithdrawPage() {
   const navigate = useNavigate();
@@ -75,16 +76,7 @@ export default function WithdrawPage() {
   };
 
   // 로딩 중일 때
-  if (loading) {
-    return (
-      <>
-        <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
-        <main className="pt-[161px] px-4 pb-[120px] max-w-[450px] mx-auto">
-          <div className="text-center">로딩 중...</div>
-        </main>
-      </>
-    );
-  }
+  if (loading) return <LoadingScreen />;
 
   return (
     <>

@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import Button from "../../ui/Button";
 import character from "../../../assets/character/congrats_happy_char.svg";
 
-interface Props {
+interface UploadCompleteModalProps {
   isOpen: boolean; // 열림 상태 추가
   onConfirm: () => void; // 쿠키받기
   onCancel: () => void; // 그냥 닫기
@@ -15,7 +15,7 @@ export default function UploadCompleteModal({
   onConfirm,
   onCancel,
   closeOnOverlayClick = false,
-}: Props) {
+}: UploadCompleteModalProps) {
   // DoublecheckModal과 동일한 스크롤 방지 로직
   useEffect(() => {
     if (isOpen) {
