@@ -31,16 +31,12 @@ export default function Statistics() {
     consumedNearExpiry: report?.consumedNearExpiryCount || 0,
   };
 
-<<<<<<< HEAD
   if (isLoading)
     return (
       <div className="flex h-[354px] items-center justify-center">
         데이터 로딩 중...
       </div>
     );
-=======
-  if (isLoading) return <LoadingScreen />;
->>>>>>> origin
 
   return (
     <div className="relative flex h-[354px] w-full flex-col items-center overflow-hidden bg-white py-6">

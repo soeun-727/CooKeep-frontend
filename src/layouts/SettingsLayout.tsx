@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import BackHeader from "@/components/ui/BackHeader";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 export default function SettingsLayout() {
   const navigate = useNavigate();

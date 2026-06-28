@@ -95,7 +95,6 @@ export default function FridgeTab() {
   const isSearching = searchTerm.trim().length > 0;
   const isListView = !!viewCategory && !isSearching;
 
-<<<<<<< HEAD
   if (isLoading) {
     return (
       <div className="fixed inset-0 top-55 z-50 flex flex-col items-center bg-[#FAFAFA]">
@@ -107,12 +106,6 @@ export default function FridgeTab() {
 
   return (
     <div className="flex w-full flex-col pt-[calc(env(safe-area-inset-top)+3rem)] transition-all">
-=======
-  if (isLoading) return <LoadingScreen />;
-
-  return (
-    <div className="w-full flex-1 flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
->>>>>>> origin
       <Search />
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal
