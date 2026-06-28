@@ -22,7 +22,7 @@ import {
 } from "../../../api/ingredient";
 import { getKoreanUnit } from "../../../utils/mapping";
 
-interface Props {
+interface IngredientDetailModalProps {
   ingredient: Ingredient;
   onClose: () => void;
   onUpdate: () => void;
@@ -32,7 +32,7 @@ export default function IngredientDetailModal({
   ingredient,
   onClose,
   onUpdate,
-}: Props) {
+}: IngredientDetailModalProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [memo, setMemo] = useState("");

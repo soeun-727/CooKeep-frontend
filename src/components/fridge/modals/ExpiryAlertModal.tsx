@@ -3,13 +3,17 @@ import type { Ingredient } from "../../../stores/useIngredientStore";
 import characterImg from "../../../assets/character/surprised_char_faded.svg";
 import { useNavigate } from "react-router-dom";
 
-interface Props {
+interface ExpiryAlertModalProps {
   isOpen: boolean;
   onClose: () => void;
   items: Ingredient[];
 }
 
-export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
+export default function ExpiryAlertModal({
+  isOpen,
+  onClose,
+  items,
+}: ExpiryAlertModalProps) {
   const navigate = useNavigate();
 
   if (!isOpen || items.length === 0) return null;

@@ -1,13 +1,17 @@
 import Button from "../../ui/Button";
 import characterImg from "../../../assets/character/plant_char.svg";
 
-interface Props {
+interface FreeWaterModalProps {
   isOpen: boolean;
   onConfirm: () => void | Promise<void>;
   onClose: () => void;
 }
 
-export default function FreeWaterModal({ isOpen, onConfirm, onClose }: Props) {
+export default function FreeWaterModal({
+  isOpen,
+  onConfirm,
+  onClose,
+}: FreeWaterModalProps) {
   if (!isOpen) return null;
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">

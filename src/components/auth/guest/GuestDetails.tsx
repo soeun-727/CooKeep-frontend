@@ -3,11 +3,11 @@ import DetailedItem from "../../fridge/addItems/DetailedItem";
 import milk from "../../../assets/guest/bagel.svg";
 import Button from "../../ui/Button";
 
-interface Props {
+interface GuestDetailsProps {
   onNext: () => void;
 }
 
-export default function GuestDetails({ onNext }: Props) {
+export default function GuestDetails({ onNext }: GuestDetailsProps) {
   const guestItem = {
     id: 1,
     name: "베이글",

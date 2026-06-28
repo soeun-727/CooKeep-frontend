@@ -7,7 +7,8 @@ import { useIngredientStore } from "../../stores/useIngredientStore";
 interface MainHeaderProps {
   isAllView: boolean;
 }
-const MainHeader = ({ isAllView }: MainHeaderProps) => {
+
+export default function MainHeader({ isAllView }: MainHeaderProps) {
   const navigate = useNavigate();
   const { setViewCategory } = useIngredientStore();
   const handleSettings = () => {
@@ -46,6 +47,4 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
       </div>
     </header>
   );
-};
-
-export default MainHeader;
+}

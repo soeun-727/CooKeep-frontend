@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import liked from "../../../assets/recipe/liked.svg";
 import unliked from "../../../assets/recipe/unliked.svg";
 import rename from "../../../assets/recipe/rename.svg";
@@ -14,7 +14,7 @@ interface RecipeProps {
   onSelect?: () => void;
 }
 
-const Recipe: React.FC<RecipeProps> = ({
+export default function Recipe({
   isLiked = false,
   name,
   searchTerm = "",
@@ -22,7 +22,7 @@ const Recipe: React.FC<RecipeProps> = ({
   onRename,
   onDelete,
   onSelect,
-}) => {
+}: RecipeProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(name);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -96,6 +96,4 @@ const Recipe: React.FC<RecipeProps> = ({
       </button>
     </div>
   );
-};
-
-export default Recipe;
+}

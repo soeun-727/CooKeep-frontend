@@ -1,14 +1,16 @@
 import { IngredientsJson } from "../../../api/dailyAiRecipe";
 import RecipeDetailIngredientSection from "./RecipeDetailIngredientSection";
 import RecipeDetailStepSection from "./RecipeDetailStepSection";
-interface Props {
+interface RecipeDetailContentSectionProps {
   recipe: {
     ingredients: IngredientsJson;
     steps: string[];
   };
 }
 
-export default function RecipeDetailContentSection({ recipe }: Props) {
+export default function RecipeDetailContentSection({
+  recipe,
+}: RecipeDetailContentSectionProps) {
   return (
     <section className="flex flex-col w-full bg-white rounded-md shadow p-4">
       <div className="flex flex-col w-full gap-9">

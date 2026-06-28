@@ -18,12 +18,12 @@ const maskEmail = (email: string) => {
   return `${visible}****@${domain}`;
 };
 
-const EmailAuthModal = ({
+export default function EmailAuthModal({
   type,
   email,
   onConfirm,
   onLogin,
-}: EmailAuthModalProps) => {
+}: EmailAuthModalProps) {
   const isSend = type === "send";
   const isVerify = type === "verify";
   const isAlready = type === "already";
@@ -115,6 +115,4 @@ const EmailAuthModal = ({
       </div>
     </>
   );
-};
-
-export default EmailAuthModal;
+}

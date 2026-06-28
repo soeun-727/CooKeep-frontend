@@ -17,12 +17,15 @@ import Button from "../../ui/Button";
 import FloatingNotice from "../../recipe/main/FloatingNotice";
 import Item from "../../fridge/items/Item";
 
-interface Props {
+interface GuestFridgeProps {
   onNext: () => void;
   mode?: "fridge" | "recipe";
 }
 
-export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
+export default function GuestFridge({
+  onNext,
+  mode = "fridge",
+}: GuestFridgeProps) {
   const [isDimmed, setIsDimmed] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 

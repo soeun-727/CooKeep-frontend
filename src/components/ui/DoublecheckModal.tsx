@@ -10,10 +10,10 @@ interface DoublecheckModalProps {
   confirmText?: string;
   cancelText?: string;
   variant?: "black" | "green" | "singular";
-  closeOnOverlayClick?: boolean; // 🚀 배경 클릭 시 닫을지 여부 선택 옵션
+  closeOnOverlayClick?: boolean; // 배경 클릭 시 닫을지 여부 선택 옵션
 }
 
-const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
+export default function DoublecheckModal({
   isOpen,
   onClose,
   title,
@@ -23,7 +23,7 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
   cancelText = "아니오",
   variant = "black",
   closeOnOverlayClick = false,
-}) => {
+}: DoublecheckModalProps) {
   useEffect(() => {
     if (isOpen) {
       const scrollY = window.scrollY;
@@ -82,6 +82,4 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
     </div>,
     document.body,
   );
-};
-
-export default DoublecheckModal;
+}

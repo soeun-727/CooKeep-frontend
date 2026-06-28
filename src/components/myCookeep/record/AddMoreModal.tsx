@@ -1,12 +1,15 @@
 import Button from "../../ui/Button";
 import character from "../../../assets/character/thinking_char.svg";
 
-interface Props {
+interface AddMoreModalProps {
   onConfirm: () => void;
   onCancel: () => void; // 그냥 닫기
 }
 
-export default function AddMoreModal({ onConfirm, onCancel }: Props) {
+export default function AddMoreModal({
+  onConfirm,
+  onCancel,
+}: AddMoreModalProps) {
   return (
     <div
       className="fixed inset-0 bg-black/40 flex items-center justify-center z-60"

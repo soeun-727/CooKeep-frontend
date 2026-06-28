@@ -7,7 +7,7 @@ interface Step {
   description: string;
 }
 
-interface Props {
+interface RecipeContentSectionProps {
   selectedIngredients: IngredientItem[];
   requiredIngredients?: IngredientItem[];
   substitutions?: IngredientItem[];
@@ -21,7 +21,7 @@ export default function RecipeContentSection({
   substitutions,
   steps,
   difficulty,
-}: Props) {
+}: RecipeContentSectionProps) {
   return (
     <section
       className="
