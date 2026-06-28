@@ -1,8 +1,8 @@
 // src/pages/settings/components/FaqCategoryItem.tsx
 import { useState } from "react";
-import type { FaqItem } from "../../../constants/faqData";
+import type { FaqItem } from "@/constants/faqData";
 import FaqItemComponent from "./FaqItem";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
+import arrowIcon from "@/assets/signup/arrowright.svg";
 
 interface FaqCategoryItemProps {
   title: string;
@@ -19,14 +19,13 @@ export default function FaqCategoryItem({
 
   return (
     <div
-      className={`flex flex-col items-start self-stretch w-full rounded-[6px] border border-[#D1D1D1] ${
+      className={`flex w-full flex-col items-start self-stretch rounded-[6px] border border-[#D1D1D1] ${
         open ? "bg-[#ECECEC]" : "bg-white"
       }`}
     >
       {/* 카테고리 헤더 */}
       <div
-        className={`flex w-full items-center justify-between px-[12px] cursor-pointer 
-    ${open ? "pt-[12px] pb-[6px]" : "py-[12px]"}`}
+        className={`flex w-full cursor-pointer items-center justify-between px-[12px] ${open ? "pt-[12px] pb-[6px]" : "py-[12px]"}`}
         onClick={() => setOpen((prev) => !prev)}
       >
         <p
@@ -37,7 +36,7 @@ export default function FaqCategoryItem({
         <img
           src={arrowIcon}
           alt="약관 보기 화살표"
-          className={`w-[24px] h-[24px] transition-transform ${
+          className={`h-[24px] w-[24px] transition-transform ${
             open ? "-rotate-90" : "rotate-90"
           }`}
         />

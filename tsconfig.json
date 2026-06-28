@@ -7,6 +7,21 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable", "WebWorker"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/api/*": ["./src/api/*"],
+      "@/assets/*": ["./src/assets/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/constants/*": ["./src/constants/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/layouts/*": ["./src/layouts/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/stores/*": ["./src/stores/*"],
+      "@/styles/*": ["./src/styles/*"],
+      "@/types/*": ["./src/types/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@public/*": ["./public/*"]
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -27,6 +42,10 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/vite-env.d.ts",
+<<<<<<< HEAD
     "custom.d.ts"
+=======
+    "public/**/*.ts"
+>>>>>>> 87154e3055ebcdec1bfea2cb517b0b16e6ed7419
   ]
 }

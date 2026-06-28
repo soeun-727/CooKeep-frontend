@@ -1,9 +1,9 @@
 // src/components/auth/signup/EmailSection.tsx
 import { useState, useEffect } from "react";
-import Button from "../../ui/Button";
-import TextField from "../../ui/TextField";
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 import { useNavigate } from "react-router-dom";
-import { useSignupStore } from "../../../stores/useSignupStore";
+import { useSignupStore } from "@/stores/useSignupStore";
 import axios from "axios";
 import EmailAuthModal from "./EmailAuthModal";
 
@@ -99,7 +99,7 @@ export default function EmailSection() {
   };
 
   return (
-    <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="mx-auto w-[361px] pt-[241px]">
       <div className="relative w-[361px]">
         <div className="typo-h1">이메일 인증</div>
         <div className="relative mt-[12px]">
@@ -118,9 +118,7 @@ export default function EmailSection() {
                 type="button"
                 onClick={isCodeSent ? handleSendCode : handleSendCode}
                 disabled={!isEmailValid || isSending}
-                className={`w-[102px] h-[24px] rounded-full typo-caption text-white
-                  ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"}
-                  disabled:cursor-not-allowed`}
+                className={`typo-caption h-[24px] w-[102px] rounded-full text-white ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"} disabled:cursor-not-allowed`}
               >
                 {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
               </button>
@@ -161,7 +159,7 @@ export default function EmailSection() {
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
+          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-[#7D7D7D] underline"
         >
           인증 번호가 발송되지 않나요?
         </button>

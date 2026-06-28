@@ -1,7 +1,7 @@
 // src/components/auth/find/RequireFindAuth.tsx
 import { Navigate } from "react-router-dom";
 import type { ReactNode } from "react";
-import { useFindPasswordStore } from "../../../stores/useFindPasswordStore";
+import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 
 interface RequireFindAuthProps {
   children: ReactNode;

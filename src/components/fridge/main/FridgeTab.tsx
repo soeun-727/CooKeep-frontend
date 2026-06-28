@@ -5,16 +5,16 @@ import Storage from "./Storage";
 import IngredientGrid from "../items/IngredientGrid";
 import NoResultView from "../items/NoResultView";
 import ItemOption from "../items/ItemOption";
-import fridgeIcon from "../../../assets/fridge/fridge.svg";
-import freezerIcon from "../../../assets/fridge/freezer.svg";
-import pantryIcon from "../../../assets/fridge/pantry.svg";
-import { useIngredientStore } from "../../../stores/useIngredientStore";
-import { useSortedIngredients } from "../../../hooks/useSortedIngredients";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
-import { getRefrigeratorHome } from "../../../api/ingredient";
-import { getPushEligibility } from "../../../api/user";
-import LoadingScreen from "../../ui/LoadingScreen";
+import { getRefrigeratorHome } from "@/api/ingredient";
+import { getPushEligibility } from "@/api/user";
+import { loadingChar } from "@/assets/index";
 
 export default function FridgeTab() {
   const { ingredients, setIngredients, searchTerm, viewCategory } =
@@ -95,10 +95,17 @@ export default function FridgeTab() {
   const isSearching = searchTerm.trim().length > 0;
   const isListView = !!viewCategory && !isSearching;
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 top-55 z-50 flex flex-col items-center bg-[#FAFAFA]">
+        <img className="w-30 p-5 opacity-70" src={loadingChar} alt="loading" />
+        <div className="typo-body2 text-zinc-500">식재료 가져오는 중...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full flex-1 flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
+    <div className="flex w-full flex-col pt-[calc(env(safe-area-inset-top)+3rem)] transition-all">
       <Search />
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal

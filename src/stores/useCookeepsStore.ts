@@ -9,14 +9,12 @@ import {
   setProfileMyPlant,
   waterMyPlant,
   type RegisterResponseData,
-} from "../api/myPlants";
-import type { MyPlant } from "../types/myPlant";
-import {
-  PLANT_ID_TO_NAME,
-  PLANT_NAME_TO_TYPE,
-} from "../constants/plantTypeMap";
-import { claimPendingReward, getMyCookies } from "../api/cookies";
-import type { ApiResponse } from "../api/types";
+} from "@/api/myPlants";
+import type { MyPlant } from "@/types/myPlant";
+import { PLANT_ID_TO_NAME, PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
+import { getMyCookies } from "@/api/cookies";
+import type { ApiResponse } from "@/api/types";
+import { claimPendingReward } from "@/api/cookies";
 
 export type PlantType =
   | "apple"

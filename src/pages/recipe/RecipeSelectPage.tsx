@@ -1,21 +1,21 @@
 // src/pages/recipe/RecipeSelectPage.tsx
 import { useNavigate } from "react-router-dom";
 
-import Button from "../../components/ui/Button";
-import BackHeader from "../../components/ui/BackHeader";
-import Search from "../../components/fridge/features/Search";
-import Sort from "../../components/fridge/features/Sort";
-import Storage from "../../components/fridge/main/Storage";
-import IngredientGrid from "../../components/fridge/items/IngredientGrid";
-import FloatingNotice from "../../components/recipe/main/FloatingNotice";
+import Button from "@/components/ui/Button";
+import BackHeader from "@/components/ui/BackHeader";
+import Search from "@/components/fridge/features/Search";
+import Sort from "@/components/fridge/features/Sort";
+import Storage from "@/components/fridge/main/Storage";
+import IngredientGrid from "@/components/fridge/items/IngredientGrid";
+import FloatingNotice from "@/components/recipe/main/FloatingNotice";
 
-import { useIngredientStore } from "../../stores/useIngredientStore";
-import { useRecipeFlowStore } from "../../stores/useRecipeFlowStore";
-import { useSortedIngredients } from "../../hooks/useSortedIngredients";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
-import fridgeIcon from "../../assets/fridge/fridge.svg";
-import freezerIcon from "../../assets/fridge/freezer.svg";
-import pantryIcon from "../../assets/fridge/pantry.svg";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
 
 export default function RecipeSelectPage() {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ export default function RecipeSelectPage() {
   };
 
   return (
-    <div className="flex flex-col w-full pb-32">
+    <div className="flex w-full flex-col pb-32">
       <BackHeader title="재료 선택" onBack={handleBack} />
 
       {!viewCategory && <FloatingNotice text="요리할 재료를 선택해 주세요" />}

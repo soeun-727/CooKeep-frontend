@@ -12,15 +12,7 @@ export default function SettingsLinkItem({ label, to }: SettingsLinkItemProps) {
   return (
     <button
       onClick={() => navigate(to)}
-      className="
-        flex justify-center items-center
-        w-full 
-        pt-[12px] pb-[12px]
-        rounded-[10px]
-        bg-[var(--color-green)]
-        text-white
-        typo-body
-      "
+      className="typo-body flex w-full items-center justify-center rounded-[10px] bg-[var(--color-green)] pt-[12px] pb-[12px] text-white"
     >
       {label}
     </button>

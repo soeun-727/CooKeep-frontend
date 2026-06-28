@@ -1,4 +1,4 @@
-import { likeGray } from "../../../assets";
+import { likeGray } from "@/assets/index";
 
 interface ItemProps {
   rank: number;
@@ -27,32 +27,32 @@ export default function AllItem({
   return (
     <div
       onClick={onSelect}
-      className={`w-[361px] h-12 rounded-[6px] flex items-center justify-between px-2 py-[10px] cursor-pointer transition-colors ${
+      className={`flex h-12 w-[361px] cursor-pointer items-center justify-between rounded-[6px] px-2 py-[10px] transition-colors ${
         isSelected ? "bg-gray-200" : "bg-[#FAFAFA]"
       }`}
     >
       {/* 순위 배지 */}
       <div
-        className={`flex items-center justify-center w-[30px] h-5 rounded-[100px] typo-caption flex-shrink-0 font-bold bg-gray-200 text-zinc-500 `} // ${getRankStyle()}
+        className={`typo-caption flex h-5 w-[30px] flex-shrink-0 items-center justify-center rounded-[100px] bg-gray-200 font-bold text-zinc-500`} // ${getRankStyle()}
       >
         {rank}
       </div>
 
-      <span className="flex-1 px-[14px] truncate typo-body text-left">
+      <span className="typo-body flex-1 truncate px-[14px] text-left">
         {title}
       </span>
 
       {/* 우측 아이콘 및 이미지 */}
-      <div className="flex items-center flex-shrink-0">
+      <div className="flex flex-shrink-0 items-center">
         {/* 좋아요 영역 */}
         <div
           onClick={handleIconClick}
-          className="flex items-center gap-1 flex-shrink-0 mx-4"
+          className="mx-4 flex flex-shrink-0 items-center gap-1"
         >
           <img src={likeGray} alt="like" className="w-[13px] flex-shrink-0" />
 
           {/* 숫자 오른쪽 정렬 */}
-          <span className="flex-1 text-right ml-0.5 typo-caption text-zinc-500 whitespace-nowrap">
+          <span className="typo-caption ml-0.5 flex-1 text-right whitespace-nowrap text-zinc-500">
             {likes ?? 0}
           </span>
         </div>
@@ -61,7 +61,7 @@ export default function AllItem({
         <img
           src={img}
           alt={title}
-          className="w-[65px] h-[42px] rounded-[6px] object-cover flex-shrink-0"
+          className="h-[42px] w-[65px] flex-shrink-0 rounded-[6px] object-cover"
         />
       </div>
     </div>

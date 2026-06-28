@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../../../../ui/Button";
+import Button from "@/components/ui/Button";
 
 interface MemoEditorProps {
   value: string;
@@ -18,14 +18,14 @@ export default function MemoEditor({ value, onSave }: MemoEditorProps) {
   };
 
   return (
-    <div className="flex flex-col items-center mt-[18px] mb-16 pb-[18px]">
+    <div className="mt-[18px] mb-16 flex flex-col items-center pb-[18px]">
       <textarea
         autoFocus
         value={text}
         onChange={handleChange}
         maxLength={MAX_LENGTH}
         placeholder="메모를 입력해주세요(최대 100글자)"
-        className="w-[361px] h-49 p-3 rounded-[10px] border border-[#D1D1D1] text-center outline-none resize-none typo-body"
+        className="typo-body h-49 w-[361px] resize-none rounded-[10px] border border-[#D1D1D1] p-3 text-center outline-none"
       />
 
       {/* 저장 버튼으로 명시적 저장 */}

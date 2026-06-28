@@ -12,7 +12,7 @@ export default function Progress({ currentStep }: ProgressProps) {
   return (
     <div className="mt-[93px]">
       {/* 바 컨테이너 */}
-      <div className="w-[361px] h-1 bg-gray-200 rounded-full overflow-hidden">
+      <div className="h-1 w-[361px] overflow-hidden rounded-full bg-gray-200">
         {/* 실제 채워지는 게이지 */}
         <div
           className="h-full bg-gradient-to-r from-emerald-400 to-green-400 transition-all duration-500 ease-out"

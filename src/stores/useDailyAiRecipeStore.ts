@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getDailyAiRecipes, DailyAiRecipe } from "../api/dailyAiRecipe";
+import { getDailyAiRecipes, DailyAiRecipe } from "@/api/dailyAiRecipe";
 
 interface State {
   recipes: DailyAiRecipe[];

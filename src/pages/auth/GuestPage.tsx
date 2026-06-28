@@ -1,14 +1,14 @@
 // src/pages/auth/GuestPage.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GuestFridge from "../../components/auth/guest/GuestFridge";
-import GuestAddItem from "../../components/auth/guest/GuestAddItem";
-import GuestDetails from "../../components/auth/guest/GuestDetails";
-import GuestRecipeIntro from "../../components/auth/guest/GuestRecipeIntro";
-import GuestRecipeLevel from "../../components/auth/guest/GuestRecipeLevel";
-import GuestRecipeLoading from "../../components/auth/guest/GuestRecipeLoading";
-import GuestRecipe from "../../components/auth/guest/GuestRecipe";
-import GuestLast from "../../components/auth/guest/GuestLast";
+import GuestFridge from "@/components/auth/guest/GuestFridge";
+import GuestAddItem from "@/components/auth/guest/GuestAddItem";
+import GuestDetails from "@/components/auth/guest/GuestDetails";
+import GuestRecipeIntro from "@/components/auth/guest/GuestRecipeIntro";
+import GuestRecipeLevel from "@/components/auth/guest/GuestRecipeLevel";
+import GuestRecipeLoading from "@/components/auth/guest/GuestRecipeLoading";
+import GuestRecipe from "@/components/auth/guest/GuestRecipe";
+import GuestLast from "@/components/auth/guest/GuestLast";
 
 export default function GuestPage() {
   const navigate = useNavigate();
@@ -45,10 +45,10 @@ export default function GuestPage() {
   };
 
   return (
-    <div className="relative flex-1 flex flex-col w-full h-full overflow-hidden">
-      <div className="w-full shrink-0 mt-[62px]" />
-      <div className="flex-1 w-full overflow-y-auto no-scrollbar">
-        <div className="w-full flex justify-center">{renderSlide()}</div>
+    <div className="relative flex h-full w-full flex-1 flex-col overflow-hidden">
+      <div className="mt-[62px] w-full shrink-0" />
+      <div className="no-scrollbar w-full flex-1 overflow-y-auto">
+        <div className="flex w-full justify-center">{renderSlide()}</div>
       </div>
 
       <button
@@ -56,11 +56,7 @@ export default function GuestPage() {
           e.stopPropagation();
           navigate("/");
         }}
-        className="absolute top-5 right-4 z-[200]
-                   inline-flex py-2 px-[22px]
-                   items-center justify-center gap-[8px]
-                   rounded-full bg-[rgba(235,235,235,0.8)]
-                   text-[#7D7D7D] text-[14px] font-medium"
+        className="absolute top-5 right-4 z-[200] inline-flex items-center justify-center gap-[8px] rounded-full bg-[rgba(235,235,235,0.8)] px-[22px] py-2 text-[14px] font-medium text-[#7D7D7D]"
       >
         메인으로 돌아가기
       </button>

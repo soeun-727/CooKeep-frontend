@@ -1,10 +1,10 @@
-import { useLoadingStore } from "../stores/useLoadingStore";
-import LoadingScreen from "../components/ui/LoadingScreen";
-import WeeklyGoalModal from "../components/ui/WeeklyGoalModal"; // 추가
-import ExpiringRewardModal from "../components/recipe/ExpiringRewardModal";
-import { useRewardStore } from "../stores/useRewardStore";
-import OnboardingRewardModal from "../components/ui/OnboardingRewardModal";
-import ComebackRewardModal from "../components/ui/ComebackRewardModal";
+import { useLoadingStore } from "@/stores/useLoadingStore";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal"; // 추가
+import ExpiringRewardModal from "@/components/recipe/ExpiringRewardModal";
+import { useRewardStore } from "@/stores/useRewardStore";
+import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
+import ComebackRewardModal from "@/components/ui/ComebackRewardModal";
 
 interface AppLayoutProps {
   children: React.ReactNode;
@@ -17,16 +17,8 @@ export default function AppLayout({ children }: AppLayoutProps) {
   const { current, dequeue } = useRewardStore();
 
   return (
-    <div className="flex justify-center bg-[#FAFAFA] min-h-dvh">
-      <div
-        className="
-          relative
-          w-full
-          max-w-[450px]
-          flex flex-col flex-1
-          transition-colors duration-300
-        "
-      >
+    <div className="flex min-h-dvh justify-center bg-[#FAFAFA]">
+      <div className="relative flex w-full max-w-[450px] flex-1 flex-col transition-colors duration-300">
         {children}
 
         {/* overlay 방식으로 변경 */}
