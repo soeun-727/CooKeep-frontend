@@ -201,7 +201,7 @@ export default function RecordDetailPage() {
                 </button>
 
                 {/* 구분선 */}
-                <div className="w-[80px] h-[0.5px] bg-[#D1D1D1]" />
+                <div className="w-[80px] h-[0.5px] bg-gray-10" />
 
                 {/* 삭제하기 버튼 */}
                 <button

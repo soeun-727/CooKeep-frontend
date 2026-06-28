@@ -55,7 +55,7 @@ export default function Details() {
   };
 
   return (
-    <div className="relative flex flex-col items-center w-full h-full bg-[#F8F8F8] pt-1">
+    <div className="relative flex flex-col items-center w-full h-full bg-background pt-1">
       <div className="flex-1 overflow-y-auto no-scrollbar min-h-0 w-full px-4">
         <div className="flex flex-col items-center gap-[10px] pb-15">
           {selectedItems.length > 0 ? (

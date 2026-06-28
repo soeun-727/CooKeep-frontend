@@ -24,7 +24,7 @@ export default function ViewAllHeader({
           [&_input]:border-none [&_input]:focus:outline-none
           [&_input::placeholder]:text-gray-50
           shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-          ${searchTerm ? "[&_input]:bg-gray-0" : "[&_input]:bg-[#EBEDF1]"}`}
+          ${searchTerm ? "[&_input]:bg-gray-0" : "[&_input]:bg-searchbar"}`}
       >
         <TextField
           value={searchTerm}

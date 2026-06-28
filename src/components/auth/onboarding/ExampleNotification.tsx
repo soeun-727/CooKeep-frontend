@@ -13,7 +13,7 @@ export default function ExampleNotification({ title, description }: Props) {
     >
       <div className="flex gap-[5px]">
         <img src={icon} className="w-3" />
-        <span className="text-[#616164] text-[9.5px] font-normal">CooKeep</span>
+        <span className="text-gray-50 text-[9.5px] font-normal">CooKeep</span>
       </div>
       <span className="text-[10px] font-medium">{title}</span>
       <span className="text-[8.5px] font-normal leading-snug whitespace-pre-wrap break-keep">

@@ -83,7 +83,7 @@ export default function ProfileSection({ profile }: Props) {
           <div
             className={`
             flex items-center justify-between w-full h-[44px] px-3 border rounded-[6px] transition-colors
-            ${isNicknameError ? "border-semantic-negative" : "border-[#DDD]"}
+            ${isNicknameError ? "border-semantic-negative" : "border-gray-10"}
           `}
           >
             {isEditingNickname ? (
@@ -124,7 +124,7 @@ export default function ProfileSection({ profile }: Props) {
               </>
             ) : (
               <>
-                <span className="typo-body2 text-[#AEAEAE]">
+                <span className="typo-body2 text-gray-50">
                   {account.nickname}
                 </span>
 

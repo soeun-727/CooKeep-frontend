@@ -31,7 +31,7 @@ export default function Search() {
           [&_input]:border-none 
           [&_input]:outline-none 
           [&_input::placeholder]:text-gray-50
-          ${hasText ? "[&_input]: bg-gray-0" : "[&_input]:bg-[#EBEDF1] "}
+          ${hasText ? "[&_input]: bg-gray-0" : "[&_input]:bg-searchbar "}
       `}
         >
           <TextField

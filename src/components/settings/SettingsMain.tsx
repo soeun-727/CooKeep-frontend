@@ -79,7 +79,7 @@ export default function SettingsMain() {
               alt="logout"
               className="w-6 h-6 aspect-square"
             />
-            <span className="text-[14px] font-medium leading-[20px] text-[#111]">
+            <span className="text-[14px] font-medium leading-[20px] text-gray-80">
               로그아웃
             </span>
           </button>

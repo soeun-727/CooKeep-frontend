@@ -20,7 +20,7 @@ const SelectedModal: React.FC<Props> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black-overlay">
       {/* Backdrop */}
       <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
       {/* modal */}

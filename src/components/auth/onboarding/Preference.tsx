@@ -170,7 +170,7 @@ export default function Preference() {
         </div>
 
         {hasText && (
-          <ul className="absolute top-12 w-[361px] bg-gray-0 border border-[#DDDDDD] !border-t-0 rounded-b-[6px] z-50 max-h-[200px] overflow-y-auto typo-body2">
+          <ul className="absolute top-12 w-[361px] bg-gray-0 border border-gray-10 !border-t-0 rounded-b-[6px] z-50 max-h-[200px] overflow-y-auto typo-body2">
             {filteredIngredients.map((item) => (
               <li
                 key={item.defaultIngredientId}

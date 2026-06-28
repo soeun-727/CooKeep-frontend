@@ -87,7 +87,7 @@ export default function RecordSelectPage() {
       flex items-center justify-center
       w-full
       rounded-[6px]
-      bg-[#EBEDF1]
+      bg-searchbar
       shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
     "
         >

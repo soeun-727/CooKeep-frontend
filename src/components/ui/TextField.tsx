@@ -60,7 +60,7 @@ const TextField = ({
     font-['Pretendard'] text-sm leading-5
     placeholder:font-medium
     placeholder:text-gray-30
-    disabled:bg-[#ECECEC]
+    disabled:bg-gray-10
     focus:outline-none
     ${leftIcon ? "pl-11" : ""}
         ${rightIcon ? "pr-10" : ""}
@@ -69,7 +69,7 @@ const TextField = ({
         ? "border-semantic-negative"
         : successMessage
           ? "border-semantic-positive"
-          : "border-[#DDDDDD]"
+          : "border-gray-10"
     }
   `}
         />

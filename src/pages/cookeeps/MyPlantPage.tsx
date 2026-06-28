@@ -28,7 +28,7 @@ export default function MyPlantPage() {
             {grownPlants.map((plant) => (
               <div
                 key={plant.userPlantId}
-                className="flex flex-col items-center justify-center w-[90px] p-[12.504px_16px_13.496px_16px] rounded-[6px] border border-[#D1D1D1] bg-gray-0"
+                className="flex flex-col items-center justify-center w-[90px] p-[12.504px_16px_13.496px_16px] rounded-[6px] border border-gray-10 bg-gray-0"
               >
                 <div className="flex flex-col items-center gap-[4px] w-[58px]">
                   <img

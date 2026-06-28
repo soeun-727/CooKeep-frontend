@@ -57,7 +57,7 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
                     ? "bg-gray-200 text-gray-50 cursor-not-allowed"
                     : isNewlySelected
                       ? "bg-green-light text-black border border-green-deep"
-                      : "border border-[#D1D1D1] text-gray-50 active:bg-gray-30"
+                      : "border border-gray-10 text-gray-50 active:bg-gray-30"
                 }`}
               >
                 <div className="flex justify-center gap-[6px]">

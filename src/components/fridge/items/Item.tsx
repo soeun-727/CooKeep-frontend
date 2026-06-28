@@ -33,7 +33,7 @@ const Item: React.FC<ItemProps> = ({
         items-start shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)] overflow-hidden pl-[11px] ${
           isSelected
             ? "border-emerald-400 bg-green-light"
-            : "border-[#D1D1D1] bg-gray-0"
+            : "border-gray-10 bg-gray-0"
         } ${className}`}
       style={style}
     >

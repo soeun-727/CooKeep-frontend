@@ -176,7 +176,7 @@ export default function AccountSection({
                     {/* 약관 영역 */}
                     <div className="mt-[90px]">
                       {/* 전체 동의 */}
-                      <label className="relative flex items-center px-3 h-[48px] w-full rounded-[6px] border border-[#D1D1D1] cursor-pointer">
+                      <label className="relative flex items-center px-3 h-[48px] w-full rounded-[6px] border border-gray-10 cursor-pointer">
                         <div className="relative w-6 h-6 flex-shrink-0 flex items-center justify-center">
                           <input
                             type="checkbox"

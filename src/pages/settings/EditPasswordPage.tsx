@@ -271,7 +271,7 @@ export default function EditPasswordPage() {
       {showAuthModal && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-gray-80">
           <div className="w-[254px] flex flex-col items-center pt-[25px] px-[28px] pb-[25px] gap-[16px] rounded-[10px] bg-gray-0">
-            <p className="typo-label text-[#111] text-center self-stretch">
+            <p className="typo-label text-gray-80 text-center self-stretch">
               비밀번호가 5회 일치하지 않았어요
               <br />
               본인인증을 진행해 주세요

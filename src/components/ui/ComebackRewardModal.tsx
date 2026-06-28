@@ -11,7 +11,7 @@ const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[170] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[170] flex items-center justify-center bg-black-overlay">
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* 전체 */}

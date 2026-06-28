@@ -13,8 +13,8 @@ export default function NoticeCategoryItem({ category }: Props) {
 
   return (
     <div
-      className={`flex flex-col items-start self-stretch w-full rounded-[6px] border border-[#D1D1D1] ${
-        open ? "bg-[#ECECEC]" : "bg-gray-0"
+      className={`flex flex-col items-start self-stretch w-full rounded-[6px] border border-gray-10 ${
+        open ? "bg-gray-10" : "bg-gray-0"
       }`}
     >
       {/* 헤더 */}

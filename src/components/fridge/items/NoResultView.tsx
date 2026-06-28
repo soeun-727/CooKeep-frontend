@@ -8,7 +8,7 @@ export default function NoResultView() {
         alt="no result character"
         className="w-[90px] mb-4"
       />
-      <span className="typo-caption font-semibold text-[#7A8093]">
+      <span className="typo-caption font-semibold text-gray-50">
         검색 결과가 없어요
       </span>
     </div>

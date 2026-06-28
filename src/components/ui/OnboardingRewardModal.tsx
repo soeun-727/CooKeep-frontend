@@ -14,7 +14,7 @@ const OnboardingRewardModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
   if (!isOpen) return null;
   const title = type === "RECIPE" ? "첫 요리 완료!" : "첫 재료 등록 완료!";
   return (
-    <div className="fixed inset-0 z-[170] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[170] flex items-center justify-center bg-black-overlay">
       {/* 배경 클릭 */}
       <div className="absolute inset-0" onClick={onClose} />
 

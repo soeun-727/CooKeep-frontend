@@ -65,7 +65,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         })}
 
         {isRankingEmpty && (
-          <div className="absolute inset-0 flex justify-center items-center rounded-[6px] bg-[#E6FBEBCC]">
+          <div className="absolute inset-0 flex justify-center items-center rounded-[6px] bg-green-light/80">
             <div className="flex w-full max-w-[343px] h-[143px] px-[20px] py-[18px] justify-center items-center gap-[24px]">
               <img
                 src={thinkingChar}

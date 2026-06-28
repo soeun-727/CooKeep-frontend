@@ -17,7 +17,7 @@ export default function ConfirmModal({
       {/* Modal */}
       <div className="relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] bg-gray-0 px-[28px] pt-[35px] pb-[25px]">
         {/* Text */}
-        <p className="typo-body2 text-center text-[#111]">{message}</p>
+        <p className="typo-body2 text-center text-gray-80">{message}</p>
 
         {/* Buttons */}
         <div className="mt-4 flex w-full gap-2">

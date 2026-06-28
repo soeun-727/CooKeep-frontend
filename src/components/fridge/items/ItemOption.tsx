@@ -70,7 +70,7 @@ export default function ItemOption() {
     <>
       {/* 하단 옵션 바 */}
       <div className="fixed bottom-[calc(56px+env(safe-area-inset-bottom))] left-1/2 z-60 w-full max-w-[450px] -translate-x-1/2">
-        <div className="flex h-11 bg-gray-0 border-[0.5px] border-[#D1D1D1]">
+        <div className="flex h-11 bg-gray-0 border-[0.5px] border-gray-10">
           <button
             onClick={() => handleOpenModal("eaten")}
             className="flex-1 transition-all active:bg-green-light active:shadow-[inset_0_-1px_20px_-4px_rgba(0,0,0,0.25)]"
@@ -83,7 +83,7 @@ export default function ItemOption() {
 
           <button
             onClick={() => handleOpenModal("thrown")}
-            className="flex-1 border-x-[0.5px] border-[#D1D1D1] transition-all active:bg-green-light active:shadow-[inset_0_1px_6.7px_0_rgba(17,17,17,0.2)]"
+            className="flex-1 border-x-[0.5px] border-gray-10 transition-all active:bg-green-light active:shadow-[inset_0_1px_6.7px_0_rgba(17,17,17,0.2)]"
           >
             <div className="flex h-11 items-center justify-center gap-[3px]">
               <span className="typo-body2">버렸어요</span>

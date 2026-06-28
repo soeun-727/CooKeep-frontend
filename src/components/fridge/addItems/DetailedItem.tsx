@@ -109,10 +109,10 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
   };
 
   return (
-    <div className="relative w-[345px] h-[198px] rounded-[6px] bg-[#FFFFFF] shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+    <div className="relative w-[345px] h-[198px] rounded-[6px] bg-gray-0 shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
       <div className="flex p-6 gap-6">
         <div className="flex flex-col items-start w-[99px] h-34">
-          <div className="w-20 h-20 rounded-[6px] flex items-center justify-center border border-[#D1D1D1] p-[14px]">
+          <div className="w-20 h-20 rounded-[6px] flex items-center justify-center border border-gray-10 p-[14px]">
             <img
               src={item.image}
               className="w-13 h-13 object-contain"
@@ -155,7 +155,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
           </div>
           <div className="flex gap-3 items-center">
             <span className="w-[42px]">유통기한</span>
-            <div className="flex w-[122px] h-8 border border-[#D1D1D1] rounded-[6px] items-center justify-between px-[10px] py-3">
+            <div className="flex w-[122px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
               <span className="w-[58px] h-4">
                 {item.expiration
                   ? item.expiration.replace(/-/g, ".")
@@ -171,7 +171,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
           </div>
           <div className="flex gap-3 items-center">
             <span className="w-[42px]">수량</span>
-            <div className="flex w-[66px] h-8 border border-[#D1D1D1] rounded-[6px] items-center justify-between px-[10px] py-3">
+            <div className="flex w-[66px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
               <span className="w-[58px] h-4">{item.quantity || 1}</span>
               <img
                 onClick={() => setModalType("quantity")}
@@ -183,7 +183,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
           </div>
           <div className="flex gap-3 items-center">
             <span className="w-[42px]">단위</span>
-            <div className="flex w-[66px] h-8 border border-[#D1D1D1] rounded-[6px] items-center justify-between px-[10px] py-3">
+            <div className="flex w-[66px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
               <span className="w-[58px] h-4">
                 {UNIT_NAMES[item.unit] || item.unit || "개"}
               </span>

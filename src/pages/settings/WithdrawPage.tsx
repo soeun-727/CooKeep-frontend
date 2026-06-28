@@ -106,7 +106,7 @@ export default function WithdrawPage() {
         </div>
 
         {/* ===== 안내 박스 ===== */}
-        <div className="mt-[26px] rounded-[6px] border border-[#D1D1D1] bg-gray-10 p-[12px] space-y-[6px]">
+        <div className="mt-[26px] rounded-[6px] border border-gray-10 bg-gray-10 p-[12px] space-y-[6px]">
           <p className="text-[14px] font-medium leading-[20px] text-gray-80">
             - 회원 탈퇴 시 함께 쌓아온 냉장고 재료, 레시피, 요리 기록이 모두
             삭제돼요. T_T
@@ -133,7 +133,7 @@ export default function WithdrawPage() {
       flex items-center justify-center
       border
       transition
-      ${agree ? "bg-green-deep border-green-deep" : "bg-gray-0 border-[#D1D1D1]"}
+      ${agree ? "bg-green-deep border-green-deep" : "bg-gray-0 border-gray-10"}
     `}
           >
             {agree && (
@@ -161,7 +161,7 @@ export default function WithdrawPage() {
             aria-expanded={reasonOpen}
             className={`
     flex w-full h-[48px] items-center gap-3 px-3
-    border border-[#D1D1D1] bg-gray-0
+    border border-gray-10 bg-gray-0
     ${reasonOpen ? "rounded-t-[6px] border-b-0" : "rounded-[6px]"}
   `}
           >
@@ -174,7 +174,7 @@ export default function WithdrawPage() {
                 onClick={(e) => e.stopPropagation()}
               />
             ) : (
-              <span className="flex-1 text-[14px] font-medium text-[#111] text-left">
+              <span className="flex-1 text-[14px] font-medium text-gray-80 text-left">
                 {selectedReason ?? "탈퇴 사유를 알려주세요"}
               </span>
             )}
@@ -193,7 +193,7 @@ export default function WithdrawPage() {
               className="
       w-full
       flex flex-col
-      border border-[#D1D1D1]
+      border border-gray-10
       border-t-0
       rounded-b-[6px]
       bg-gray-0
@@ -244,7 +244,7 @@ export default function WithdrawPage() {
       {/* ===== 더블체크 모달 ===== */}
       {openModal && (
         <div
-          className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]"
+          className="fixed inset-0 z-[150] flex items-center justify-center bg-black-overlay"
           role="dialog"
           aria-modal="true"
         >

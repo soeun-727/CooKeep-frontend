@@ -47,12 +47,12 @@ export default function SettingsInputItem({
           h-[44px]
           px-3
           border
-          border-[#DDD]
+          border-gray-10
           rounded-[6px]
         "
       >
         {/* value */}
-        <span className="typo-body2 text-[#AEAEAE]">{value}</span>
+        <span className="typo-body2 text-gray-50">{value}</span>
 
         {/* button */}
         <button
@@ -72,7 +72,7 @@ export default function SettingsInputItem({
             ${
               disabled
                 ? "bg-gray-30 text-gray-0 cursor-not-allowed" // 비활성화 스타일
-                : "bg-gray-80 text-gray-0 cursor-pointer active:bg-[#404040]" // 활성화 스타일
+                : "bg-gray-80 text-gray-0 cursor-pointer active:bg-gray-80" // 활성화 스타일
             }
           `}
         >

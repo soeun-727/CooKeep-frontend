@@ -46,7 +46,7 @@ export default function Sort({ categoryIcon, viewCategory }: SortProps) {
                     </button>
                     {/* 구분선 */}
                     {index < options.length - 1 && (
-                      <div className="w-[105px] h-[0.5px] bg-[#D1D1D1]" />
+                      <div className="w-[105px] h-[0.5px] bg-gray-10" />
                     )}
                   </div>
                 ))}

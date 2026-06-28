@@ -89,7 +89,7 @@ const Custom: React.FC<CustomProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black-overlay">
       <div className="absolute inset-0" onClick={onClose}></div>
 
       <div className="relative w-[280px] h-[316px] bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[35px]">

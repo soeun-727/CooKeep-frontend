@@ -31,7 +31,7 @@ export default function UploadCompleteModal({
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black-overlay">
       {/* 배경 레이어 */}
       <div
         className="absolute inset-0 cursor-default"

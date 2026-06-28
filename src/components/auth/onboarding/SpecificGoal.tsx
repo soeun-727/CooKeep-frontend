@@ -38,7 +38,7 @@ export default function SpecificGoal({
       <div className="w-[361px] mt-[46px] flex flex-col items-start">
         <div
           className={`w-full h-12 px-3 flex items-center border rounded-md bg-gray-0 transition-all ${
-            isError ? "border-semantic-negative" : "border-[#D1D1D1]"
+            isError ? "border-semantic-negative" : "border-gray-10"
           }`}
         >
           <span className="typo-body2 whitespace-pre text-gray-80">

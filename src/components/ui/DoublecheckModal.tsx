@@ -42,7 +42,7 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
   const buttonWidth = isSingular ? "w-[184px]" : "w-[95px]";
 
   return createPortal(
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black-overlay">
       <div
         className="absolute inset-0 cursor-default"
         onClick={closeOnOverlayClick ? onClose : undefined}

@@ -53,7 +53,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
           ${
             isUrgent
               ? "border-semantic-negative text-semantic-negative"
-              : "border-[#D1D1D1] text-gray-50"
+              : "border-gray-10 text-gray-50"
           }
         `}
               >

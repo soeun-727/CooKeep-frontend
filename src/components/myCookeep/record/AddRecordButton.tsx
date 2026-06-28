@@ -32,7 +32,7 @@ export default function AddRecordButton() {
         alt="메뉴 추가"
         className="
           w-6 h-6
-          stroke-[#33E389]
+          stroke-green-gradient
         "
       />
     </button>

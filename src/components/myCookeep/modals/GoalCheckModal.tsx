@@ -16,7 +16,7 @@ const GoalcheckModal: React.FC<Props> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black-overlay">
       <div className="absolute inset-0" onClick={onClose}></div>
       <div className="relative w-[254px] h-43 bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center">
         <h2 className="typo-body w-[198px] h-6 mb-2 text-center text-gray-80 mt-[35px]">

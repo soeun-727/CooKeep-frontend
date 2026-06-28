@@ -61,7 +61,7 @@ export default function Notification({ onNext }: Props) {
   };
 
   return (
-    <div className="flex flex-col w-[361px] mx-auto h-screen overflow-hidden relative bg-[#fafafa]">
+    <div className="flex flex-col w-[361px] mx-auto h-screen overflow-hidden relative bg-background">
       <div className="mt-[107px] shrink-0">
         <h1 className="typo-h1 text-left">
           쿠킵 루틴, 알림으로 받아보시겠어요?
@@ -94,7 +94,7 @@ export default function Notification({ onNext }: Props) {
         <div className="absolute bottom-0 left-0 w-full h-12 bg-blur-to-b z-10" />
       </div>
 
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[361px] bg-[#fafafa] z-50 pb-[34px]">
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[361px] bg-background z-50 pb-[34px]">
         <div className="flex justify-end">
           <img src={char} className="w-[95px] mb-[26.5px]" alt="character" />
         </div>

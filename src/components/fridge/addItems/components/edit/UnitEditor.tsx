@@ -54,7 +54,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
                     ? "bg-gray-200 text-gray-50 cursor-not-allowed"
                     : isNewlySelected
                       ? "bg-green-light text-black border border-green-deep"
-                      : "border border-[#D1D1D1] text-gray-50 active:bg-gray-30"
+                      : "border border-gray-10 text-gray-50 active:bg-gray-30"
                 }`}
                 >
                   {unit}
@@ -69,7 +69,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
               size="S"
               variant="black"
               onClick={() => setIsCustomInput(true)}
-              className="!bg-gray-0 border border-[#D1D1D1] text-gray-50"
+              className="!bg-gray-0 border border-gray-10 text-gray-50"
             >
               직접 입력하기
             </Button>

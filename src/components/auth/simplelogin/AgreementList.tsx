@@ -50,7 +50,7 @@ export default function AgreementList({
   return (
     <div className="mt-[26px]">
       {/* 전체 동의 */}
-      <label className="relative flex items-center px-4 h-[48px] max-w-[361px] w-full rounded-[6px] border border-[#D1D1D1] cursor-pointer">
+      <label className="relative flex items-center px-4 h-[48px] max-w-[361px] w-full rounded-[6px] border border-gray-10 cursor-pointer">
         <input
           type="checkbox"
           className="peer w-4 h-4 appearance-none border border-gray-50 rounded-sm checked:bg-green cursor-pointer"
