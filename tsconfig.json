@@ -42,10 +42,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/vite-env.d.ts",
-<<<<<<< HEAD
-    "custom.d.ts"
-=======
+    "custom.d.ts",
     "public/**/*.ts"
->>>>>>> 87154e3055ebcdec1bfea2cb517b0b16e6ed7419
   ]
 }

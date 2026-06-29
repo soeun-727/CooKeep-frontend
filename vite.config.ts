@@ -2,11 +2,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
-<<<<<<< HEAD
 import svgr from "vite-plugin-svgr";
-=======
 import path from "path";
->>>>>>> 87154e3055ebcdec1bfea2cb517b0b16e6ed7419
 
 export default defineConfig({
   plugins: [
