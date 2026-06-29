@@ -1,8 +1,10 @@
 // src/pages/settings/sections/ProfileSection.tsx
 import { useEffect, useRef, useState } from "react";
-import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
-import axios from "axios";
+
 import { MyProfileResponse, updateNickname } from "@/api/user";
+import axios from "axios";
+
+import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
 import SingleButtonModal from "@/components/ui/SingleButtonModal";
 
 const MASKED_PASSWORD = "********";
@@ -52,7 +54,7 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
       await updateNickname(trimmedNickname);
 
       // 4. 내 로컬 상태도 깔끔한 값으로 동기화
-      setAccount((prev) => ({ ...prev, nickname: trimmedNickname }));
+      setAccount(prev => ({ ...prev, nickname: trimmedNickname }));
 
       setIsEditingNickname(false);
     } catch (err) {
@@ -88,8 +90,8 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
                 <input
                   ref={nicknameInputRef}
                   value={account?.nickname || ""}
-                  onChange={(e) =>
-                    setAccount((prev) =>
+                  onChange={e =>
+                    setAccount(prev =>
                       prev ? { ...prev, nickname: e.target.value } : prev,
                     )
                   }

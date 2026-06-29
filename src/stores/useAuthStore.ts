@@ -1,13 +1,15 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { saveTokens, clearTokens } from "@/utils/auth";
 import { loginApi, logoutApi } from "@/api/auth";
 import axios from "axios";
-import { useSignupStore } from "./useSignupStore";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+
+import { clearTokens, saveTokens } from "@/utils/auth";
+
+import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
 import { useEmailUpdateStore } from "./useEmailUpdateStore";
 import { useFindPasswordStore } from "./useFindPasswordStore";
-import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
 import { useRewardStore } from "./useRewardStore";
+import { useSignupStore } from "./useSignupStore";
 
 interface SocialLoginPayload {
   userId: number;
@@ -157,28 +159,28 @@ export const useAuthStore = create<AuthState>()(
         }
       },
 
-      setEmail: (email) => {
+      setEmail: email => {
         const trimmed = email.trim();
 
         const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
 
-        set((state) => ({
+        set(state => ({
           email: trimmed,
           isValidEmail,
           canLogin: isValidEmail && state.isValidPW,
         }));
       },
 
-      setPassword: (password) => {
+      setPassword: password => {
         const isValidPW = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password);
-        set((state) => ({
+        set(state => ({
           password,
           isValidPW,
           canLogin: state.isValidEmail && isValidPW,
         }));
       },
 
-      loginSocial: (data) => {
+      loginSocial: data => {
         saveTokens({
           accessToken: data.accessToken,
           refreshToken: data.refreshToken,
@@ -200,7 +202,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: "cookeep-auth",
-      partialize: (state) => ({
+      partialize: state => ({
         isLoggedIn: state.isLoggedIn,
         userId: state.userId,
         userStatus: state.userStatus,

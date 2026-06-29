@@ -1,6 +1,8 @@
 // components/recipe/main/RecipeHeader.tsx
 import { useState } from "react";
+
 import menuIcon from "@/assets/recipe/main/menu.svg";
+
 import Sidebar from "../sidebar/SideBar";
 
 interface RecipeHeaderProps {
@@ -15,7 +17,7 @@ export default function RecipeHeader({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen((prev) => !prev);
+    setIsSidebarOpen(prev => !prev);
   };
 
   return (

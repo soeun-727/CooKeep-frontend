@@ -1,27 +1,33 @@
 import { useEffect, useMemo, useState } from "react";
-import TextField from "@/components/ui/TextField";
-import searchIcon from "@/assets/fridge/search_on.svg";
-import Category from "./components/Category";
-import ItemsGrid from "./components/ItemsGrid";
-import AddItemFooter from "./AddItemFooter";
+
 import {
-  useAddIngredientStore,
-  type MasterItem,
-} from "@/stores/useAddIngredientStore";
-import Custom from "./components/Custom";
-import {
-  getMasterIngredientList,
-  getRecentIngredients,
   IngredientType,
+  type MasterIngredientListResponse,
   StorageType,
   UnitType,
-  type MasterIngredientListResponse,
+  getMasterIngredientList,
+  getRecentIngredients,
 } from "@/api/ingredient";
-import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
-import { calculateExpiryDate } from "@/utils/expiryDate";
-import { INGREDIENT_CATEGORIES } from "@/constants/category";
-import defaultChar from "@/assets/character/default_char.svg";
 import { loadingChar } from "@/assets";
+import {
+  type MasterItem,
+  useAddIngredientStore,
+} from "@/stores/useAddIngredientStore";
+
+import defaultChar from "@/assets/character/default_char.svg";
+import searchIcon from "@/assets/fridge/search_on.svg";
+
+import TextField from "@/components/ui/TextField";
+
+import { INGREDIENT_CATEGORIES } from "@/constants/category";
+import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
+
+import { calculateExpiryDate } from "@/utils/expiryDate";
+
+import AddItemFooter from "./AddItemFooter";
+import Category from "./components/Category";
+import Custom from "./components/Custom";
+import ItemsGrid from "./components/ItemsGrid";
 
 export default function AddItem() {
   const {
@@ -39,18 +45,18 @@ export default function AddItem() {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleDeleteLocal = (id: number | string) => {
-    setMasterItems((prev) => prev.filter((item) => item.id !== id));
+    setMasterItems(prev => prev.filter(item => item.id !== id));
   };
 
   const parseMasterData = (
     data: MasterIngredientListResponse,
   ): MasterItem[] => {
-    return data.categories.flatMap((cat) => {
+    return data.categories.flatMap(cat => {
       const categoryInfo =
-        INGREDIENT_CATEGORIES.find((tc) => tc.serverKey === cat.category) ||
+        INGREDIENT_CATEGORIES.find(tc => tc.serverKey === cat.category) ||
         INGREDIENT_CATEGORIES[12];
 
-      return cat.ingredients.map((ing) => {
+      return cat.ingredients.map(ing => {
         const days = DEFAULT_EXPIRY_DAYS[cat.category] || 7;
         const defaultStorage: StorageType =
           cat.category === "MEAT" || cat.category === "SEAFOOD"
@@ -92,27 +98,25 @@ export default function AddItem() {
           allMasterItems = parsed;
         }
         if (recentRes.data && recentRes.data.data) {
-          const recentIngredients = recentRes.data.data.ingredients.map(
-            (ing) => {
-              const fullInfo = allMasterItems.find(
-                (m) => m.id === ing.ingredientId,
-              );
+          const recentIngredients = recentRes.data.data.ingredients.map(ing => {
+            const fullInfo = allMasterItems.find(
+              m => m.id === ing.ingredientId,
+            );
 
-              return {
-                id: ing.ingredientId,
-                referenceId: ing.ingredientId,
-                name: ing.name,
-                image: ing.imageUrl,
-                type: ing.type as IngredientType,
-                categoryId: fullInfo?.categoryId || 14,
-                storageType: fullInfo?.storageType || ("FRIDGE" as StorageType),
-                unit: fullInfo?.unit || ("PIECE" as UnitType),
-                expiration: fullInfo?.expiration || calculateExpiryDate(7),
-                quantity: 1,
-                memo: "",
-              };
-            },
-          );
+            return {
+              id: ing.ingredientId,
+              referenceId: ing.ingredientId,
+              name: ing.name,
+              image: ing.imageUrl,
+              type: ing.type as IngredientType,
+              categoryId: fullInfo?.categoryId || 14,
+              storageType: fullInfo?.storageType || ("FRIDGE" as StorageType),
+              unit: fullInfo?.unit || ("PIECE" as UnitType),
+              expiration: fullInfo?.expiration || calculateExpiryDate(7),
+              quantity: 1,
+              memo: "",
+            };
+          });
 
           setHistoryItems(recentIngredients);
         }
@@ -130,12 +134,12 @@ export default function AddItem() {
     const trimmedSearch = searchTerm.trim().toLowerCase();
 
     if (trimmedSearch.length > 0) {
-      return masterItems.filter((item) =>
+      return masterItems.filter(item =>
         item.name.toLowerCase().includes(trimmedSearch),
       );
     }
     return masterItems.filter(
-      (item) => Number(item.categoryId) === Number(selectedCategoryId),
+      item => Number(item.categoryId) === Number(selectedCategoryId),
     );
   }, [masterItems, searchTerm, selectedCategoryId]);
 
@@ -154,13 +158,13 @@ export default function AddItem() {
           <TextField
             value={searchTerm}
             placeholder="재료명을 검색하세요"
-            onChange={(value) => setSearchTerm(value)}
+            onChange={value => setSearchTerm(value)}
             rightIcon={<img src={searchIcon} className="" />}
           />
         </div>
         <div className="mt-4 w-[401px] shrink-0 pl-[31px]">
           <div className="no-scrollbar flex gap-[6px] overflow-x-auto scroll-smooth pr-8 pb-2">
-            {INGREDIENT_CATEGORIES.map((category) => (
+            {INGREDIENT_CATEGORIES.map(category => (
               <div key={category.id} className="flex-shrink-0">
                 <Category
                   name={category.name}
@@ -199,7 +203,7 @@ export default function AddItem() {
             }
 
             const selectedCat = INGREDIENT_CATEGORIES.find(
-              (c) => c.id === selectedCategoryId,
+              c => c.id === selectedCategoryId,
             );
             const serverKey = selectedCat?.serverKey || "ETC";
             const defaultDays = DEFAULT_EXPIRY_DAYS[serverKey] || 7;
@@ -217,7 +221,7 @@ export default function AddItem() {
               memo: "",
             };
             toggleItem(newCustomItem);
-            setMasterItems((prev) => [newCustomItem, ...prev]);
+            setMasterItems(prev => [newCustomItem, ...prev]);
             setModalOpen(false);
           }}
         />

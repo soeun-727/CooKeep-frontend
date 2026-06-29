@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import TextField from "@/components/ui/TextField";
-import Button from "@/components/ui/Button";
 import { useNavigate } from "react-router-dom";
+
+import { resetPasswordApi } from "@/api/auth";
+import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
+import axios from "axios";
+
 // 아이콘
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
-import openpwImage from "@/assets/signup/openpw.svg";
 import checkIcon from "@/assets/signup/check.svg";
-import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
-import { resetPasswordApi } from "@/api/auth";
-import axios from "axios";
+import openpwImage from "@/assets/signup/openpw.svg";
+
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 
 export default function ResetPassword() {
   const { email, isVerified, reset } = useFindPasswordStore();

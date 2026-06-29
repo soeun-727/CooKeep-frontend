@@ -1,16 +1,19 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import MyCookeepTabBar from "@/components/myCookeep/fixed/MyCookeepTabBar";
-import Profile from "@/components/myCookeep/fixed/Profile";
-import Statistics from "@/components/myCookeep/contents/Statistics";
-import Calendar from "@/components/myCookeep/contents/Calendar";
-import RecordEntry from "@/components/myCookeep/record/RecordEntry";
-import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
-import { hasTodayRecord } from "@/utils/record";
-import RecordCard from "@/components/myCookeep/record/RecordCard";
+
 import { getDailyRecipesByDate } from "@/api/myRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import Calendar from "@/components/myCookeep/contents/Calendar";
+import Statistics from "@/components/myCookeep/contents/Statistics";
+import MyCookeepTabBar from "@/components/myCookeep/fixed/MyCookeepTabBar";
+import Profile from "@/components/myCookeep/fixed/Profile";
+import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
+import RecordCard from "@/components/myCookeep/record/RecordCard";
+import RecordEntry from "@/components/myCookeep/record/RecordEntry";
+
+import { hasTodayRecord } from "@/utils/record";
 
 type TabType = "record" | "calendar" | "statistics";
 
@@ -21,13 +24,13 @@ export default function MyCookeepPage() {
   const [activeTab, setActiveTab] = useState<TabType>("record");
   const [dismissed, setDismissed] = useState(false);
   const [selectedDate, setSelectedDate] = useState<string>("");
-  const records = useCookeepRecordStore((s) => s.records);
-  const setRecords = useCookeepRecordStore((s) => s.setRecords);
+  const records = useCookeepRecordStore(s => s.records);
+  const setRecords = useCookeepRecordStore(s => s.setRecords);
   const [enteredByBottomTab, setEnteredByBottomTab] = useState(
     location.state?.fromTab === true,
   );
   // 쿠키 개수 표시
-  const fetchCookies = useCookeepsStore((s) => s.fetchCookies); // 추가
+  const fetchCookies = useCookeepsStore(s => s.fetchCookies); // 추가
 
   useEffect(() => {
     fetchCookies(); // 추가
@@ -100,7 +103,7 @@ export default function MyCookeepPage() {
               >
                 ← 캘린더로 돌아가기
               </button>
-              {records.map((record) => (
+              {records.map(record => (
                 <RecordCard key={record.dailyRecipeId} record={record} />
               ))}
             </div>
@@ -108,7 +111,7 @@ export default function MyCookeepPage() {
         }
         return (
           <Calendar
-            onDateClick={(date) => {
+            onDateClick={date => {
               setSelectedDate(date);
               handleDateClick(date);
             }}

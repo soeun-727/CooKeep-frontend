@@ -1,10 +1,11 @@
-import { create } from "zustand";
 import {
-  updateRecipeVisibility,
   DailyRecipe,
-  toggleRecipeLike,
   toggleRecipeBookmark,
+  toggleRecipeLike,
+  updateRecipeVisibility,
 } from "@/api/myRecipe";
+import { create } from "zustand";
+
 import { useRewardStore } from "./useRewardStore";
 
 export interface RecordImage {
@@ -61,11 +62,11 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
   image: null,
   records: [],
 
-  setSelectedRecipeId: (id) => set({ selectedRecipeId: id }),
-  setEditingRecordId: (id) => set({ editingRecordId: id }),
-  setTitle: (title) => set({ title }),
-  setMemo: (memo) => set({ memo }),
-  setIsPublic: (value) => set({ isPublic: value }),
+  setSelectedRecipeId: id => set({ selectedRecipeId: id }),
+  setEditingRecordId: id => set({ editingRecordId: id }),
+  setTitle: title => set({ title }),
+  setMemo: memo => set({ memo }),
+  setIsPublic: value => set({ isPublic: value }),
 
   // addImages: (newImages) =>
   //   set((state) => ({
@@ -76,7 +77,7 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
   //   set((state) => ({
   //     images: state.images.filter((_, i) => i !== index),
   //   })),
-  setImage: (image) => set({ image }),
+  setImage: image => set({ image }),
   clearImage: () => set({ image: null }),
 
   resetRecord: () =>
@@ -90,18 +91,18 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
     }),
 
   // 서버 데이터를 스토어에 저장하는 함수
-  setRecords: (records) => set({ records }),
+  setRecords: records => set({ records }),
 
   updateRecordLike: async (recordId: string) => {
     const previousRecords = get().records;
     const targetRecord = previousRecords.find(
-      (r) => String(r.dailyRecipeId) === recordId,
+      r => String(r.dailyRecipeId) === recordId,
     );
 
     // 1. [낙관적 업데이트] 배열에 데이터가 있을 때만 실행
     if (targetRecord) {
-      set((state) => ({
-        records: state.records.map((r) =>
+      set(state => ({
+        records: state.records.map(r =>
           String(r.dailyRecipeId) === recordId
             ? {
                 ...r,
@@ -120,8 +121,8 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
 
       // 3. 서버 응답으로 동기화
       if (targetRecord) {
-        set((state) => ({
-          records: state.records.map((r) =>
+        set(state => ({
+          records: state.records.map(r =>
             String(r.dailyRecipeId) === recordId
               ? { ...r, liked: res.data.liked, likeCount: res.data.likeCount }
               : r,
@@ -147,8 +148,8 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
     const previousRecords = get().records;
 
     // 2. [즉각 반영] 서버 응답 기다리지 않고 UI 상태부터 변경
-    set((state) => ({
-      records: state.records.map((r) =>
+    set(state => ({
+      records: state.records.map(r =>
         String(r.dailyRecipeId) === recordId ? { ...r, isPublic } : r,
       ),
     }));
@@ -175,8 +176,8 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
     const previousRecords = get().records;
 
     // 1. [낙관적 업데이트] 즉시 북마크 아이콘 변경
-    set((state) => ({
-      records: state.records.map((r) =>
+    set(state => ({
+      records: state.records.map(r =>
         String(r.dailyRecipeId) === recordId
           ? { ...r, bookmarked: !r.bookmarked }
           : r,
@@ -188,8 +189,8 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
       if (res.status !== "OK") throw new Error();
 
       // 2. 서버 응답 결과로 데이터 확정
-      set((state) => ({
-        records: state.records.map((r) =>
+      set(state => ({
+        records: state.records.map(r =>
           String(r.dailyRecipeId) === recordId
             ? { ...r, bookmarked: res.data.bookmarked }
             : r,

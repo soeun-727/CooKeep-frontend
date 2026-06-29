@@ -1,8 +1,11 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
-import AllItem from "@/components/cookeeps/lists/AllItem";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
+
 import { AllRecipeItem, getAllRecipes } from "@/api/cookeeps";
+
 import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
+
+import AllItem from "@/components/cookeeps/lists/AllItem";
 import SortAll from "@/components/cookeeps/lists/SortAll";
 import WeeklyTopRecipesTab from "@/components/cookeeps/lists/WeeklyTopRecipesTab";
 
@@ -43,7 +46,7 @@ export default function ViewAllPage() {
         const apiFilter = getApiFilter(sortOrder);
         const data = await getAllRecipes(apiFilter, currentPage);
 
-        setRecipes((prev) =>
+        setRecipes(prev =>
           isNewFilter ? data.content : [...prev, ...data.content],
         );
         setIsLast(data.last);
@@ -76,9 +79,9 @@ export default function ViewAllPage() {
     if (!observerTarget.current || isLast || isLoading) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         if (entries[0].isIntersecting && !isLast && !isLoading) {
-          setPage((prev) => prev + 1);
+          setPage(prev => prev + 1);
         }
       },
       { threshold: 0.1 }, // 1.0 보다는 0.1 정도가 더 매끄럽게 작동합니다.
@@ -89,7 +92,7 @@ export default function ViewAllPage() {
   }, [isLast, isLoading]);
 
   // 7. 검색어 필터링
-  const filteredData = recipes.filter((item) =>
+  const filteredData = recipes.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 

@@ -1,5 +1,5 @@
-import { create } from "zustand";
 import type { IngredientType, StorageType, UnitType } from "@/api/ingredient";
+import { create } from "zustand";
 
 export interface MasterItem {
   id: number | string;
@@ -73,27 +73,27 @@ const REVERSE_UNIT_MAP: Record<string, UnitType> = {
   MILLILITER: "MILLILITER",
 };
 
-export const useAddIngredientStore = create<AddIngredientState>((set) => ({
+export const useAddIngredientStore = create<AddIngredientState>(set => ({
   searchTerm: "",
   selectedCategoryId: 1,
   selectedItems: [],
   historyItems: [],
   isModalOpen: false,
-  deleteMasterItem: (id) =>
-    set((state) => ({
-      selectedItems: state.selectedItems.filter((i) => i.id !== id),
-      historyItems: state.historyItems.filter((i) => i.id !== id),
+  deleteMasterItem: id =>
+    set(state => ({
+      selectedItems: state.selectedItems.filter(i => i.id !== id),
+      historyItems: state.historyItems.filter(i => i.id !== id),
     })),
-  setModalOpen: (open) => set({ isModalOpen: open }),
-  setSearchTerm: (term) => set({ searchTerm: term }),
-  setCategoryId: (id) => set({ selectedCategoryId: id, searchTerm: "" }),
+  setModalOpen: open => set({ isModalOpen: open }),
+  setSearchTerm: term => set({ searchTerm: term }),
+  setCategoryId: id => set({ selectedCategoryId: id, searchTerm: "" }),
 
-  toggleItem: (item) =>
-    set((state) => {
-      const isExist = state.selectedItems.find((i) => i.id === item.id);
+  toggleItem: item =>
+    set(state => {
+      const isExist = state.selectedItems.find(i => i.id === item.id);
       if (isExist) {
         return {
-          selectedItems: state.selectedItems.filter((i) => i.id !== item.id),
+          selectedItems: state.selectedItems.filter(i => i.id !== item.id),
         };
       }
       const today = new Date();
@@ -119,11 +119,11 @@ export const useAddIngredientStore = create<AddIngredientState>((set) => ({
     }),
 
   resetSelected: () => set({ selectedItems: [] }),
-  setHistoryItems: (items) => set({ historyItems: items }),
-  setDetailedItemsFromPreview: (items) => set({ selectedItems: items }),
+  setHistoryItems: items => set({ historyItems: items }),
+  setDetailedItemsFromPreview: items => set({ selectedItems: items }),
 
   updateItemDetail: (id, type, value) =>
-    set((state) => {
+    set(state => {
       const fieldMap: Record<EditorType, keyof MasterItem> = {
         storage: "storageType",
         expiry: "expiration",
@@ -141,7 +141,7 @@ export const useAddIngredientStore = create<AddIngredientState>((set) => ({
       const fieldName = fieldMap[type];
 
       return {
-        selectedItems: state.selectedItems.map((item) =>
+        selectedItems: state.selectedItems.map(item =>
           item.id === id ? { ...item, [fieldName]: finalValue } : item,
         ),
       };

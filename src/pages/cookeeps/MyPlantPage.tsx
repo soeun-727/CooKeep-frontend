@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import BackHeader from "@/components/ui/BackHeader";
+
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import BackHeader from "@/components/ui/BackHeader";
+
 import { PLANT_DATA } from "@/constants/plantData";
 
 export default function MyPlantPage() {
   const navigate = useNavigate();
   // const grownPlants = tempGrownPlants; // 임시 데이터 사용
-  const myPlants = useCookeepsStore((s) => s.myPlants);
+  const myPlants = useCookeepsStore(s => s.myPlants);
 
-  const grownPlants = myPlants.filter((p) => p.isHarvested);
+  const grownPlants = myPlants.filter(p => p.isHarvested);
   const plantImageMap = Object.fromEntries(
-    PLANT_DATA.map((p) => [p.text, p.img]),
+    PLANT_DATA.map(p => [p.text, p.img]),
   );
 
   return (
@@ -25,7 +28,7 @@ export default function MyPlantPage() {
         <>
           {/* 3열 그리드 */}
           <div className="mx-auto grid w-[294px] grid-cols-3 justify-items-center gap-x-[12px] gap-y-[8px]">
-            {grownPlants.map((plant) => (
+            {grownPlants.map(plant => (
               <div
                 key={plant.userPlantId}
                 className="flex w-[90px] flex-col items-center justify-center rounded-[6px] border border-[#D1D1D1] bg-white p-[12.504px_16px_13.496px_16px]"

@@ -50,7 +50,7 @@ export default function AllItem({
           onClick={handleIconClick}
           className="mx-4 flex flex-shrink-0 items-center"
         >
-          <LikeGray className="w-[18px] h-[18px] text-[#C3C3C3]" />
+          <LikeGray className="h-[18px] w-[18px] text-[#C3C3C3]" />
 
           {/* 숫자 오른쪽 정렬 */}
           <span className="typo-caption ml-0.5 flex-1 text-right whitespace-nowrap text-zinc-500">

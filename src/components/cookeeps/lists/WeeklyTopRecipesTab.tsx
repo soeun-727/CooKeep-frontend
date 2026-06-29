@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { getWeeklyRanking, RecipeRankItem } from "@/api/cookeeps";
-import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
-import { likeGray } from "@/assets";
 import { useNavigate } from "react-router-dom";
+
+import { RecipeRankItem, getWeeklyRanking } from "@/api/cookeeps";
+import { likeGray } from "@/assets";
+
+import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 
 export default function WeeklyTopRecipesTab() {
   const [recipes, setRecipes] = useState<RecipeRankItem[]>([]);

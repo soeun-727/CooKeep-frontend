@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
+
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
-import { useNavigate } from "react-router-dom";
-import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
+
 import FindEmailAuthModal from "./FindEmailAuthModal";
+
 // import axios from "axios";
 
 export default function FindEmailSection() {
@@ -132,7 +136,7 @@ export default function FindEmailSection() {
       <div className="mt-[5px] w-[361px]">
         <TextField
           value={code}
-          onChange={(value) => {
+          onChange={value => {
             const onlyNumber = value.replace(/[^0-9]/g, "");
             setCode(onlyNumber);
 

@@ -1,7 +1,7 @@
 // crown은 require 대신 import로
+import crownBronze from "@/assets/cookeeps/main/crown_bronze.svg";
 import crownGold from "@/assets/cookeeps/main/crown_gold.svg";
 import crownSilver from "@/assets/cookeeps/main/crown_silver.svg";
-import crownBronze from "@/assets/cookeeps/main/crown_bronze.svg";
 
 interface RankingCardProps {
   rank: number;
