@@ -6,7 +6,7 @@ interface TabProps {
   onClick?: () => void;
 }
 
-const Tab: React.FC<TabProps> = ({
+export default function Tab ({
   image,
   selectedImage,
   title,

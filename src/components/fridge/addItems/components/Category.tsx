@@ -7,8 +7,12 @@ interface CategoryProps {
   onSelect: () => void;
 }
 
-const Category: React.FC<CategoryProps> = React.memo(
-  ({ image, name, isSelected = false, onSelect }) => {
+function Category({
+  image,
+  name,
+  isSelected = false,
+  onSelect,
+}: CategoryProps) {
     return (
       <button
         type="button"
@@ -24,8 +28,6 @@ const Category: React.FC<CategoryProps> = React.memo(
         </div>
       </button>
     );
-  },
-);
-Category.displayName = "Category";
+}
 
 export default memo(Category);
