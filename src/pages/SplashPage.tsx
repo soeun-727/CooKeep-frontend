@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import { logoBlack, logoChar, logoWhite } from "@/assets/index";
 
 export default function SplashPage() {

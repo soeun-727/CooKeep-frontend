@@ -1,9 +1,13 @@
 import { useState } from "react";
-import Button from "@/components/ui/Button";
-import ExampleNotification from "./ExampleNotification";
-import char from "@/assets/character/noti_char.svg";
+
 import { updatePushConsent } from "@/api/onboarding";
 import { registerPushNotification } from "@/api/push";
+
+import char from "@/assets/character/noti_char.svg";
+
+import Button from "@/components/ui/Button";
+
+import ExampleNotification from "./ExampleNotification";
 
 const EXAMPLE_DATA = [
   {

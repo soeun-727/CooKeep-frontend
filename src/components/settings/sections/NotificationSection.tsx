@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+
+import { registerPushNotification, unsubscribePush } from "@/api/push";
+import { updateMarketingPush } from "@/api/user";
+
 import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
 import ConfirmModal from "@/components/ui/ConfirmModal";
-import { updateMarketingPush } from "@/api/user";
-import { registerPushNotification, unsubscribePush } from "@/api/push";
 
 interface NotificationSectionProps {
   marketingPush: boolean;

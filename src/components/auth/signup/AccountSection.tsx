@@ -1,17 +1,22 @@
 import { useState } from "react";
-import TextField from "@/components/ui/TextField";
-import Button from "@/components/ui/Button";
-import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
+
 import { useSignupStore } from "@/stores/useSignupStore";
-import mailIcon from "@/assets/signup/mail.svg";
+
+import { blankCheck, grayCheck, greenCheck } from "@/assets/index";
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
-import openpwImage from "@/assets/signup/openpw.svg";
-import checkIcon from "@/assets/signup/check.svg";
 import arrowIcon from "@/assets/signup/arrowright.svg";
-import AgreementPage from "./AgreementPage";
+import checkIcon from "@/assets/signup/check.svg";
+import mailIcon from "@/assets/signup/mail.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
+
+import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
 import type { AgreementItem } from "@/constants/agreements";
-import { blankCheck, grayCheck, greenCheck } from "@/assets/index";
+
+import AgreementPage from "./AgreementPage";
 
 interface Agreements {
   terms: boolean;
@@ -49,7 +54,7 @@ export default function AccountSection({
     null,
   );
   // store에서 인증된 이메일 읽기
-  const verifiedEmail = useSignupStore((state) => state.email);
+  const verifiedEmail = useSignupStore(state => state.email);
 
   const isPasswordValid =
     password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
@@ -84,7 +89,7 @@ export default function AccountSection({
             setAgreementPage(null);
             setHideHeader(false);
           }}
-          onConfirm={(key) => {
+          onConfirm={key => {
             updateAgreements({ [key]: true });
             setAgreementPage(null);
             setHideHeader(false);
@@ -182,7 +187,7 @@ export default function AccountSection({
                             type="checkbox"
                             className="peer absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none"
                             checked={isAllChecked}
-                            onChange={(e) =>
+                            onChange={e =>
                               updateAgreements({
                                 terms: e.target.checked,
                                 privacy: e.target.checked,
@@ -209,7 +214,7 @@ export default function AccountSection({
 
                       {/* 개별 약관 박스 */}
                       <div className="flex w-full flex-col gap-[10px] p-3">
-                        {AGREEMENTS.map((item) => (
+                        {AGREEMENTS.map(item => (
                           <div
                             key={item.key}
                             className="flex h-[24px] w-full items-center justify-between"
@@ -221,7 +226,7 @@ export default function AccountSection({
                                     type="checkbox"
                                     className="peer absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none"
                                     checked={agreements[item.key]}
-                                    onChange={(e) =>
+                                    onChange={e =>
                                       updateAgreements({
                                         [item.key]: e.target.checked,
                                       })

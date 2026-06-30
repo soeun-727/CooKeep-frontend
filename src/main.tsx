@@ -1,13 +1,14 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom"; // HashRouter 제거
-import "pretendard/dist/web/static/pretendard.css";
-import "./styles/index.css";
-import "./styles/global.css";
-import "./styles/typography.css";
-import App from "./App.tsx";
-import { registerSW } from "virtual:pwa-register";
+import { BrowserRouter } from "react-router-dom";
+
 import { Analytics } from "@vercel/analytics/react";
+import { registerSW } from "virtual:pwa-register";
+
+// HashRouter 제거
+import "@/styles/index.css";
+
+import App from "./App.tsx";
 
 // registerSW({ immediate: true });
 const updateSW = registerSW({

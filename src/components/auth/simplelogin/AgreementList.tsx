@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
+
 import arrowIcon from "@/assets/signup/arrowright.svg";
+
+import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
 import type { AgreementItem } from "@/constants/agreements";
+
 import AgreementPage from "../signup/AgreementPage";
 
 interface AgreementListProps {
@@ -33,7 +36,7 @@ export default function AgreementList({
             isChecked={agreements[agreementPage.key]}
             onBack={() => setAgreementPage(null)}
             updateAgreements={updateAgreements}
-            onConfirm={(key) => {
+            onConfirm={key => {
               updateAgreements({ [key]: true });
               setAgreementPage(null);
             }}
@@ -55,7 +58,7 @@ export default function AgreementList({
           type="checkbox"
           className="peer w-4 h-4 appearance-none border border-gray-50 rounded-sm checked:bg-green cursor-pointer"
           checked={isAllChecked}
-          onChange={(e) =>
+          onChange={e =>
             updateAgreements({
               terms: e.target.checked,
               privacy: e.target.checked,
@@ -71,7 +74,7 @@ export default function AgreementList({
 
       {/* 개별 약관 */}
       <div className="flex h-[138px] w-[361px] flex-col gap-[6px] px-4 py-3">
-        {AGREEMENTS.map((item) => (
+        {AGREEMENTS.map(item => (
           <div
             key={item.key}
             className="mx-auto flex h-[24px] w-[337px] items-center justify-between"
@@ -82,7 +85,7 @@ export default function AgreementList({
                   type="checkbox"
                   className="w-4 h-4 accent-gray-50"
                   checked={agreements[item.key]}
-                  onChange={(e) =>
+                  onChange={e =>
                     updateAgreements({ [item.key]: e.target.checked })
                   }
                 />

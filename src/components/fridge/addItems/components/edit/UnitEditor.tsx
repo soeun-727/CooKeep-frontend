@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import Button from "@/components/ui/Button";
+
 import { getKoreanUnit } from "@/utils/mapping";
 
 interface QuantityEditorProps {
@@ -40,7 +42,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
       {!isCustomInput ? (
         <>
           <div className="flex flex-col gap-3">
-            {units.map((unit) => {
+            {units.map(unit => {
               const isInitialValue = unit === koreanValue;
               const isNewlySelected = selectedUnit === unit && !isInitialValue;
               return (
@@ -83,7 +85,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
               type="string"
               autoFocus
               value={customValue}
-              onChange={(e) => setCustomValue(e.target.value)}
+              onChange={e => setCustomValue(e.target.value)}
               className="w-full border-b-2 border-black pb-2 text-center text-3xl font-bold outline-none"
               placeholder="개"
             />

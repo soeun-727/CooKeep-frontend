@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+
 import foodIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
 import temp from "@/assets/mycookeep/record/temp_food_photo.svg";
 
@@ -56,7 +57,7 @@ export default function RecordViewImageCard({
             >
               <div
                 className="flex w-[208px] flex-col items-center gap-4"
-                onClick={(e) => e.stopPropagation()} // 내부 클릭만 막기
+                onClick={e => e.stopPropagation()} // 내부 클릭만 막기
               >
                 <p className="text-gray-0 text-[14px] font-medium text-center leading-[20px]">
                   사진을{" "}
@@ -111,7 +112,7 @@ export default function RecordViewImageCard({
             accept="image/*"
             ref={fileInputRef}
             hidden
-            onChange={(e) => {
+            onChange={e => {
               const file = e.target.files?.[0];
               if (file) onImageFileSelect?.(file);
               e.target.value = "";
@@ -144,7 +145,7 @@ export default function RecordViewImageCard({
               <input
                 autoFocus
                 value={title}
-                onChange={(e) => onChangeTitle(e.target.value)}
+                onChange={e => onChangeTitle(e.target.value)}
                 className="border-primary flex-1 border-b-2 text-[18px] leading-[26px] font-semibold outline-none"
                 placeholder={title}
               />

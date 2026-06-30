@@ -1,20 +1,25 @@
 import { useState } from "react";
-import memoIcon from "@/assets/fridge/memo.svg";
-import renameIcon from "@/assets/recipe/rename.svg";
-import coldIcon from "@/assets/fridge/fridge.svg";
-import frozenIcon from "@/assets/fridge/freezer.svg";
-import roomIcon from "@/assets/fridge/pantry.svg";
-import deleteIcon from "@/assets/fridge/delete.svg";
+
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import type { MasterItem } from "@/stores/useAddIngredientStore";
+
+import deleteIcon from "@/assets/fridge/delete.svg";
+import frozenIcon from "@/assets/fridge/freezer.svg";
+import coldIcon from "@/assets/fridge/fridge.svg";
+import memoIcon from "@/assets/fridge/memo.svg";
+import roomIcon from "@/assets/fridge/pantry.svg";
+import renameIcon from "@/assets/recipe/rename.svg";
+
 import EditModal from "@/components/ui/EditModal";
-import QuantityEditor from "./components/edit/QuantityEditor";
-import UnitEditor from "./components/edit/UnitEditor";
-import StorageEditor from "./components/edit/StorageEditor";
+
+import { calculateExpiryDate } from "@/utils/expiryDate";
+
+import DeleteConfirmModal from "../modals/DeleteConfirmModal";
 import ExpiryEditor from "./components/edit/ExpiryEditor";
 import MemoEditor from "./components/edit/MemoEditor";
-import { calculateExpiryDate } from "@/utils/expiryDate";
-import DeleteConfirmModal from "../modals/DeleteConfirmModal";
+import QuantityEditor from "./components/edit/QuantityEditor";
+import StorageEditor from "./components/edit/StorageEditor";
+import UnitEditor from "./components/edit/UnitEditor";
 
 interface DetailedItemProps extends MasterItem {}
 
@@ -123,7 +128,7 @@ export default function DetailedItem(item: DetailedItemProps) {
             {item.name}
           </span>
           <div
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               setModalType("memo");
             }}
@@ -199,7 +204,7 @@ export default function DetailedItem(item: DetailedItemProps) {
       </div>
 
       <button
-        onClick={(e) => {
+        onClick={e => {
           e.stopPropagation();
           setIsDeleteModalOpen(true);
         }}

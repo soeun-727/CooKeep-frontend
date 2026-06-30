@@ -1,4 +1,5 @@
 import { IngredientItem } from "@/types/aiRecipe";
+
 import RecipeIngredientSection from "./RecipeIngredientSection";
 import RecipeStepSection from "./RecipeStepSection";
 

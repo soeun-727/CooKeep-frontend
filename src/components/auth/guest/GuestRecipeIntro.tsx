@@ -1,6 +1,8 @@
-import Button from "@/components/ui/Button";
-import cookChar from "@/assets/recipe/main/cook_char.svg";
 import { useState } from "react";
+
+import cookChar from "@/assets/recipe/main/cook_char.svg";
+
+import Button from "@/components/ui/Button";
 
 interface GuestRecipeIntroProps {
   onNext: () => void;

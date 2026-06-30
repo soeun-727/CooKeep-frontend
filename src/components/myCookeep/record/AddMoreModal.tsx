@@ -1,5 +1,6 @@
-import Button from "@/components/ui/Button";
 import character from "@/assets/character/thinking_char.svg";
+
+import Button from "@/components/ui/Button";
 
 interface AddMoreModalProps {
   onConfirm: () => void;

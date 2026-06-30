@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import Button from "@/components/ui/Button";
 
-import installGuideImage from "@/assets/onboarding/installGuideImage.png";
 import mainLogo from "@/assets/logos/mainLogo.svg";
-import appleIcon from "@/assets/onboarding/appleinc.svg";
 import androidIcon from "@/assets/onboarding/android.svg";
+import appleIcon from "@/assets/onboarding/appleinc.svg";
+import installGuideImage from "@/assets/onboarding/installGuideImage.png";
+
+import Button from "@/components/ui/Button";
 
 interface InstallGuideProps {
   onFinish: () => void;

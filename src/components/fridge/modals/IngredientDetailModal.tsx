@@ -1,26 +1,31 @@
 import { useCallback, useEffect, useState } from "react";
-import {
-  useIngredientStore,
-  type Ingredient,
-} from "@/stores/useIngredientStore";
-import character from "@/assets/character/tip_char.svg";
-import memoIcon from "@/assets/fridge/edit_memo.svg";
-import fridgeIcon from "@/assets/fridge/fridge.svg";
-import freezerIcon from "@/assets/fridge/freezer.svg";
-import pantryIcon from "@/assets/fridge/pantry.svg";
-import bubbleTail from "@/assets/fridge/bubble_tail_left.svg";
-import EditModal from "@/components/ui/EditModal";
-import StorageEditor from "../addItems/components/edit/StorageEditor";
-import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
-import QuantityEditor from "../addItems/components/edit/QuantityEditor";
+
 import {
   getIngredientDetail,
-  updateIngredientStorage,
   updateIngredientDate,
-  updateIngredientQuantity,
   updateIngredientMemo,
+  updateIngredientQuantity,
+  updateIngredientStorage,
 } from "@/api/ingredient";
+import {
+  type Ingredient,
+  useIngredientStore,
+} from "@/stores/useIngredientStore";
+
+import character from "@/assets/character/tip_char.svg";
+import bubbleTail from "@/assets/fridge/bubble_tail_left.svg";
+import memoIcon from "@/assets/fridge/edit_memo.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+
+import EditModal from "@/components/ui/EditModal";
+
 import { getKoreanUnit } from "@/utils/mapping";
+
+import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
+import QuantityEditor from "../addItems/components/edit/QuantityEditor";
+import StorageEditor from "../addItems/components/edit/StorageEditor";
 
 interface IngredientDetailModalProps {
   ingredient: Ingredient;
@@ -162,7 +167,7 @@ export default function IngredientDetailModal({
                     type="text"
                     value={memo}
                     autoFocus
-                    onChange={(e) => setMemo(e.target.value)}
+                    onChange={e => setMemo(e.target.value)}
                     onBlur={handleSaveMemo}
                     onKeyDown={(e) => e.key === "Enter" && handleSaveMemo()}
                     className="flex-1 text-[14px] font-medium text-gray-80 border-b border-gray-30 focus:outline-none"
@@ -280,7 +285,7 @@ export default function IngredientDetailModal({
             >
               <StorageEditor
                 value={displayData.storage || displayData.category}
-                onSave={async (val) => {
+                onSave={async val => {
                   try {
                     await updateIngredientStorage(
                       Number(ingredient.id),
@@ -304,7 +309,7 @@ export default function IngredientDetailModal({
             >
               <ExpiryEditor
                 value={displayData.expirationDate || displayData.expiryDate}
-                onSave={async (val) => {
+                onSave={async val => {
                   try {
                     await updateIngredientDate(Number(ingredient.id), val);
                     await changeExpiryDate(ingredient.id, val);
@@ -328,7 +333,7 @@ export default function IngredientDetailModal({
             >
               <QuantityEditor
                 value={displayData.quantity}
-                onSave={async (val) => {
+                onSave={async val => {
                   try {
                     await updateIngredientQuantity(
                       Number(ingredient.id),

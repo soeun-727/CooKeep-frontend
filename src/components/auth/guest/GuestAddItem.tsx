@@ -1,10 +1,13 @@
 import { useState } from "react";
+
 import header from "@/assets/guest/add_header.svg";
-import Button from "@/components/ui/Button";
 import bagel from "@/assets/guest/bagel_card.svg";
 import bagelSelected from "@/assets/guest/bagel_selected.svg";
-import notice from "@/assets/guest/item_notice.svg";
 import categories from "@/assets/guest/categories.svg";
+import notice from "@/assets/guest/item_notice.svg";
+
+import Button from "@/components/ui/Button";
+
 interface GuestAddItemProps {
   onNext: () => void;
 }
@@ -37,7 +40,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
             src={isSelected ? bagelSelected : bagel}
             alt="bagel"
             className={`cursor-pointer transition-all ${isDimmed && !isSelected ? "relative z-20" : ""}`}
-            onClick={(e) => {
+            onClick={e => {
               if (!isDimmed) {
                 setIsDimmed(true);
               } else {
@@ -59,7 +62,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
 
       {/* 하단 버튼 영역: z-20 */}
       <div
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
         className="absolute bottom-[calc(32px+env(safe-area-inset-bottom))] z-20 flex w-full justify-center"
       >
         <div className="flex w-[300px] gap-[6px]">

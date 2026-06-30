@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import Button from "@/components/ui/Button";
 
 interface QuantityEditorProps {
@@ -31,7 +32,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
       {!isCustomInput ? (
         <>
           <div className="grid h-12 w-82 grid-cols-6 gap-2">
-            {quickNumbers.map((num) => {
+            {quickNumbers.map(num => {
               const isInitialValue = num === value;
               const isNewlySelected = selectedNum === num && !isInitialValue;
               return (
@@ -74,7 +75,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
               type="number"
               autoFocus
               value={customValue}
-              onChange={(e) => setCustomValue(e.target.value)}
+              onChange={e => setCustomValue(e.target.value)}
               className="w-full border-b-2 border-black pb-2 text-center text-3xl font-bold outline-none"
               placeholder="1"
             />

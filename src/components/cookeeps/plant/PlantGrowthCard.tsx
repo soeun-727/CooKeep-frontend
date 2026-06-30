@@ -1,11 +1,15 @@
-import WaterButton from "./WaterButton";
-import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg";
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
-import GrowthProgressBar from "./GrowthProgressBar";
-import { PLANT_NAME_KR } from "@/constants/plantNames";
 import { useEffect } from "react";
-import { preloadNextStage } from "./preloadPlantImages";
+
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg";
+
+import { PLANT_NAME_KR } from "@/constants/plantNames";
 import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
+
+import GrowthProgressBar from "./GrowthProgressBar";
+import WaterButton from "./WaterButton";
+import { preloadNextStage } from "./preloadPlantImages";
 
 interface PlantGrowthCardProps {
   onWaterSuccess?: () => void;
@@ -19,9 +23,9 @@ export default function PlantGrowthCard({
   onRefresh,
   overridePlantStage,
 }: PlantGrowthCardProps) {
-  const currentPlant = useCookeepsStore((s) => s.currentPlant);
-  const lastRefreshedAt = useCookeepsStore((s) => s.lastRefreshedAt);
-  const refreshGrowth = useCookeepsStore((s) => s.refreshGrowth);
+  const currentPlant = useCookeepsStore(s => s.currentPlant);
+  const lastRefreshedAt = useCookeepsStore(s => s.lastRefreshedAt);
+  const refreshGrowth = useCookeepsStore(s => s.refreshGrowth);
 
   useEffect(() => {
     refreshGrowth();

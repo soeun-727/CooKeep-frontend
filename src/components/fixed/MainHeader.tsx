@@ -1,9 +1,12 @@
 // src/components/auth/MainHeader.tsx
-import { mainLogo } from "@/assets/index";
-import settings from "@/assets/fixed/settings.svg";
 import { useNavigate } from "react-router-dom";
-import backIcon from "@/assets/back.svg";
+
 import { useIngredientStore } from "@/stores/useIngredientStore";
+
+import backIcon from "@/assets/back.svg";
+import settings from "@/assets/fixed/settings.svg";
+import { mainLogo } from "@/assets/index";
+
 interface MainHeaderProps {
   isAllView: boolean;
 }

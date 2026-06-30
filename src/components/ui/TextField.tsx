@@ -48,7 +48,7 @@ export default function TextField({
           placeholder={placeholder}
           disabled={disabled}
           autoComplete={autoComplete}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
           className={`
     w-full h-[48px]

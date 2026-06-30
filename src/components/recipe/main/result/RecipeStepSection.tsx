@@ -36,7 +36,7 @@ export default function RecipeStepSection({ steps }: RecipeStepSectionProps) {
             </p>
           </div>
         ))} */}
-        {steps.map((step) => (
+        {steps.map(step => (
           <div key={step.order} className="flex w-full items-start gap-3">
             {/* 번호 버튼 */}
             <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-gray-80 text-gray-0 text-xs font-semibold flex-shrink-0 ">

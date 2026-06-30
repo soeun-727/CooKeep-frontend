@@ -1,9 +1,10 @@
-import { mainLogo, confetti } from "@/assets/index";
-import chars from "@/assets/onboarding/Frame 781.svg";
 import { useNavigate } from "react-router-dom";
+
+import { confetti, mainLogo } from "@/assets/index";
+import Google from "@/assets/login/Google.svg";
 import Line from "@/assets/login/Horizontal-Line.png";
 import Kakao from "@/assets/login/Kakao.svg";
-import Google from "@/assets/login/Google.svg";
+import chars from "@/assets/onboarding/Frame 781.svg";
 
 const CHAR = [chars];
 const INFINITE_CHAR = [...CHAR, ...CHAR];
@@ -70,7 +71,7 @@ export default function Initial() {
       {/* <div className="flex-1" /> */}
 
       {/* <div className="flex flex-col items-center justify-center mb-[34px]"> */}
-      <div className="flex flex-col items-center justify-center mt-[24px]">
+      <div className="mt-[24px] flex flex-col items-center justify-center">
         {/* SNS 로그인 */}
         <span className="typo-caption text-gray-50">
           SNS 계정으로 로그인하기

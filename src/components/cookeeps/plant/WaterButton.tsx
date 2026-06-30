@@ -1,8 +1,11 @@
 // WaterButton.tsx
 import { useEffect, useState } from "react";
+
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
-import WaterModal from "../modals/WaterModal";
+
 import CookieIcon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
+
+import WaterModal from "../modals/WaterModal";
 
 interface WaterButtonProps {
   onSuccess?: () => void; // prop 추가

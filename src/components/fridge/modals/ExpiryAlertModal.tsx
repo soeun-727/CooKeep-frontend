@@ -1,7 +1,10 @@
-import Button from "@/components/ui/Button";
-import type { Ingredient } from "@/stores/useIngredientStore";
-import characterImg from "@/assets/character/surprised_char_faded.svg";
 import { useNavigate } from "react-router-dom";
+
+import type { Ingredient } from "@/stores/useIngredientStore";
+
+import characterImg from "@/assets/character/surprised_char_faded.svg";
+
+import Button from "@/components/ui/Button";
 
 interface ExpiryAlertModalProps {
   isOpen: boolean;

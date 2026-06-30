@@ -1,11 +1,14 @@
+import {
+  type Ingredient,
+  useIngredientStore,
+} from "@/stores/useIngredientStore";
+
+import character from "@/assets/character/clear_char.svg";
 import plus from "@/assets/fridge/plus.svg";
 import plusDisabled from "@/assets/fridge/plusDisabled.svg";
+
 import Item from "../items/Item";
-import character from "@/assets/character/clear_char.svg";
-import {
-  useIngredientStore,
-  type Ingredient,
-} from "@/stores/useIngredientStore";
+
 interface StorageIngredient extends Ingredient {
   className?: string; // 기존 Ingredient에 className이 있을 수도 있다고 알려줌
 }
@@ -107,7 +110,7 @@ export default function Storage({
                 className="scroll-snap-start flex flex-shrink-0 justify-start gap-[6px]"
                 style={{ width: "353px" }}
               >
-                {page.map((item) => (
+                {page.map(item => (
                   <Item
                     key={item.id}
                     name={item.name}

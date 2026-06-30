@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
-import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
-import RecipeContentSection from "@/components/recipe/main/result/RecipeContentSection";
-import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
+
 import notice from "@/assets/guest/recipe_notice.svg";
+
+import RecipeContentSection from "@/components/recipe/main/result/RecipeContentSection";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
+import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
 import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
 
 interface GuestRecipeResultProps {
@@ -112,7 +114,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
             />
           )}
           <button
-            onClick={(e) => {
+            onClick={e => {
               if (!isDimmed) {
                 setIsDimmed(true);
               } else {

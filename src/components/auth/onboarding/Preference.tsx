@@ -1,15 +1,19 @@
 import { useEffect, useMemo, useState } from "react";
-import { loadingChar, searchIcon } from "@/assets/index";
-import searchOnIcon from "@/assets/fridge/search_on.svg";
-import TextField from "@/components/ui/TextField";
-import xIcon from "@/assets/onboarding/x.svg";
-import InputModal from "./InputModal";
+
 import {
-  getOnboardingIngredients,
   OnboardingIngredient,
   RawIngredient,
+  getOnboardingIngredients,
 } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
+
+import searchOnIcon from "@/assets/fridge/search_on.svg";
+import { loadingChar, searchIcon } from "@/assets/index";
+import xIcon from "@/assets/onboarding/x.svg";
+
+import TextField from "@/components/ui/TextField";
+
+import InputModal from "./InputModal";
 
 export default function Preference() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,7 +35,7 @@ export default function Preference() {
         const ingredientsList: RawIngredient[] = res.data?.data?.ingredients;
 
         if (ingredientsList && Array.isArray(ingredientsList)) {
-          const mapped = ingredientsList.map((item) => ({
+          const mapped = ingredientsList.map(item => ({
             defaultIngredientId: item.ingredientId,
             ingredient: item.name,
           }));
@@ -51,12 +55,12 @@ export default function Preference() {
     if (!searchTerm.trim()) return [];
     const trimmed = searchTerm.trim().toLowerCase();
 
-    return allIngredients.filter((item) => {
+    return allIngredients.filter(item => {
       if (!item.ingredient) return false;
 
       const matchesSearch = item.ingredient.toLowerCase().includes(trimmed);
       const isNotSelected = !selectedIngredients.some(
-        (s) => s.defaultIngredientId === item.defaultIngredientId,
+        s => s.defaultIngredientId === item.defaultIngredientId,
       );
 
       return matchesSearch && isNotSelected;
@@ -72,7 +76,7 @@ export default function Preference() {
 
   const handleRemove = (id: number) => {
     setSelectedIngredients(
-      selectedIngredients.filter((item) => item.defaultIngredientId !== id),
+      selectedIngredients.filter(item => item.defaultIngredientId !== id),
     );
   };
 
@@ -160,7 +164,7 @@ export default function Preference() {
 
         {/* 선택된 재료 */}
         <div className="mt-[18px] flex w-[361px] flex-wrap gap-[6px]">
-          {selectedIngredients.map((ingredient) => (
+          {selectedIngredients.map(ingredient => (
             <div
               key={ingredient.defaultIngredientId}
               onClick={() => handleRemove(ingredient.defaultIngredientId)}

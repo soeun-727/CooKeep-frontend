@@ -1,5 +1,5 @@
-
 import icon from "@/assets/character/congrats_char.svg";
+
 import Button from "./Button";
 
 interface WeeklyGoalModalProps {

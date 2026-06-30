@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "@/components/ui/BackHeader";
-import Button from "@/components/ui/Button";
-import arrowIcon from "@/assets/signup/arrowright.svg";
-import characterImg from "@/assets/character/sad_char_faded.svg";
-import { useAuthStore } from "@/stores/useAuthStore";
+
 import { withdrawUser } from "@/api/auth";
 import { getMyProfile } from "@/api/user";
+import { useAuthStore } from "@/stores/useAuthStore";
+
+import characterImg from "@/assets/character/sad_char_faded.svg";
+import arrowIcon from "@/assets/signup/arrowright.svg";
+
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
 
 export default function WithdrawPage() {
   const navigate = useNavigate();
@@ -131,7 +134,7 @@ export default function WithdrawPage() {
 
         {/* ===== 체크 영역 ===== */}
         <button
-          onClick={() => setAgree((v) => !v)}
+          onClick={() => setAgree(v => !v)}
           className="mx-2 mt-3 flex items-center gap-2"
         >
           <span
@@ -165,7 +168,7 @@ export default function WithdrawPage() {
         {/* ===== 탈퇴 사유 토글 ===== */}
         <div className="mt-6">
           <button
-            onClick={() => setReasonOpen((v) => !v)}
+            onClick={() => setReasonOpen(v => !v)}
             aria-expanded={reasonOpen}
             className={`
     flex w-full h-[48px] items-center gap-3 px-3
@@ -176,10 +179,10 @@ export default function WithdrawPage() {
             {isCustom ? (
               <input
                 value={customReason}
-                onChange={(e) => setCustomReason(e.target.value)}
+                onChange={e => setCustomReason(e.target.value)}
                 placeholder="직접 입력하세요"
                 className="flex-1 text-[14px] outline-none"
-                onClick={(e) => e.stopPropagation()}
+                onClick={e => e.stopPropagation()}
               />
             ) : (
               <span className="flex-1 text-[14px] font-medium text-gray-80 text-left">

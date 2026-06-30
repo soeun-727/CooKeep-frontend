@@ -1,10 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
-import DetailedItem from "./DetailedItem";
-import Button from "@/components/ui/Button";
-import { addIngredients } from "@/api/ingredient";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { addIngredients } from "@/api/ingredient";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import { useRewardStore } from "@/stores/useRewardStore";
+
+import Button from "@/components/ui/Button";
+
+import DetailedItem from "./DetailedItem";
 
 export default function Details() {
   const navigate = useNavigate();
@@ -18,7 +21,7 @@ export default function Details() {
     try {
       // 1. 서버 명세(Request Body)에 맞춰 전체 배열 가공
       const payload = {
-        ingredients: selectedItems.map((item) => ({
+        ingredients: selectedItems.map(item => ({
           type: item.type,
           referenceId: Number(item.id),
           quantity: item.quantity,
@@ -59,9 +62,7 @@ export default function Details() {
       <div className="flex-1 overflow-y-auto no-scrollbar min-h-0 w-full px-4">
         <div className="flex flex-col items-center gap-[10px] pb-15">
           {selectedItems.length > 0 ? (
-            selectedItems.map((item) => (
-              <DetailedItem key={item.id} {...item} />
-            ))
+            selectedItems.map(item => <DetailedItem key={item.id} {...item} />)
           ) : (
             <div className="mt-20 flex flex-col items-center gap-4">
               <p className="text-gray-50 typo-caption text-center">

@@ -1,8 +1,8 @@
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import easyImg from "@/assets/recipe/main/easyImg.svg";
-import normalImg from "@/assets/recipe/main/normalImg.svg";
 import hardImg from "@/assets/recipe/main/hardImg.svg";
+import normalImg from "@/assets/recipe/main/normalImg.svg";
 
 const options = [
   {
@@ -45,7 +45,7 @@ export default function DifficultySelector() {
 
       {/* 난이도 선택 리스트 */}
       <div className="flex w-full flex-col items-start gap-2">
-        {options.map((opt) => {
+        {options.map(opt => {
           const selected = difficulty === opt.key;
 
           return (

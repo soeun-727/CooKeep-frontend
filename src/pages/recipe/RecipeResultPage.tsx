@@ -1,11 +1,13 @@
-import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
-import RecipeContentSection from "@/components/recipe/main/result/RecipeContentSection";
-import RecipeHeader from "@/components/recipe/main/RecipeHeader";
-import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
-import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
-import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
+import RecipeHeader from "@/components/recipe/main/RecipeHeader";
+import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
+import RecipeContentSection from "@/components/recipe/main/result/RecipeContentSection";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
+import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
 
 export default function RecipeResultPage() {
   const scrollRef = useRef<HTMLDivElement>(null);

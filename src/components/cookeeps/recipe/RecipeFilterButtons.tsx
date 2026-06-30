@@ -1,7 +1,8 @@
-import arrowRight from "@/assets/signup/arrowright.svg";
+import { useNavigate } from "react-router-dom";
+
 import likeIcon from "@/assets/cookeeps/main/like_cookeeps.svg";
 import saveIcon from "@/assets/cookeeps/main/save_cookeeps.svg";
-import { useNavigate } from "react-router-dom";
+import arrowRight from "@/assets/signup/arrowright.svg";
 
 export default function RecipeFilterButtons() {
   const navigate = useNavigate();

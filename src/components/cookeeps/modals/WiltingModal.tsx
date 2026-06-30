@@ -1,6 +1,8 @@
-import Button from "@/components/ui/Button";
-import characterImg from "@/assets/character/kijul_char.svg";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import characterImg from "@/assets/character/kijul_char.svg";
+
+import Button from "@/components/ui/Button";
 
 interface WiltingModalProps {
   plant: string;

@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import ListItem from "@/components/cookeeps/lists/ListItem";
-import DoublecheckModal from "@/components/ui/DoublecheckModal";
+
 import {
-  getMyLikedRecipes,
-  getMyBookmarkedRecipes,
   MyRecipeListItem,
+  getMyBookmarkedRecipes,
+  getMyLikedRecipes,
   toggleRecipeBookmark,
   toggleRecipeLike,
 } from "@/api/myRecipe";
+
 import temp from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
+
+import ListItem from "@/components/cookeeps/lists/ListItem";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
 
 interface ViewListPageProps {
   type: string;
@@ -45,7 +48,7 @@ export default function ViewListPage({ type }: ViewListPageProps) {
       }
 
       if (data && data.content) {
-        setRecipes((prev) =>
+        setRecipes(prev =>
           pageNum === 0 ? data.content : [...prev, ...data.content],
         );
         setIsLast(data.last);
@@ -67,9 +70,9 @@ export default function ViewListPage({ type }: ViewListPageProps) {
   /** 무한 스크롤 감지 */
   useEffect(() => {
     if (isLoading || isLast) return;
-    observerRef.current = new IntersectionObserver((entries) => {
+    observerRef.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
-        setPage((prev) => {
+        setPage(prev => {
           const next = prev + 1;
           fetchData(next);
           return next;
@@ -80,12 +83,10 @@ export default function ViewListPage({ type }: ViewListPageProps) {
     return () => observerRef.current?.disconnect();
   }, [isLoading, isLast, recipes]);
 
-  const filteredData = recipes.filter((item) =>
+  const filteredData = recipes.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
-  const selectedItem = recipes.find(
-    (item) => item.dailyRecipeId === selectedId,
-  );
+  const selectedItem = recipes.find(item => item.dailyRecipeId === selectedId);
 
   const handleConfirmDelete = async () => {
     if (selectedId === null) return;
@@ -96,7 +97,7 @@ export default function ViewListPage({ type }: ViewListPageProps) {
       } else {
         await toggleRecipeBookmark(selectedId);
       }
-      setRecipes((prev) => prev.filter((r) => r.dailyRecipeId !== selectedId));
+      setRecipes(prev => prev.filter(r => r.dailyRecipeId !== selectedId));
     } catch (error) {
       alert("처리에 실패했습니다.");
     } finally {
@@ -109,7 +110,7 @@ export default function ViewListPage({ type }: ViewListPageProps) {
     <>
       <div className="mx-auto mt-[18px] flex w-[361px] flex-col items-center pb-10">
         {filteredData.length > 0
-          ? filteredData.map((item) => (
+          ? filteredData.map(item => (
               <ListItem
                 key={item.dailyRecipeId}
                 type={type}

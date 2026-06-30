@@ -1,5 +1,6 @@
-import treeIcon from "@/assets/cookeeps/main/tree_cookeeps.svg";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import treeIcon from "@/assets/cookeeps/main/tree_cookeeps.svg";
 
 export default function GrowthProgressBar({
   overridePlantStage,
@@ -7,7 +8,7 @@ export default function GrowthProgressBar({
   overridePlantStage?: 1 | 2 | 3 | 4;
 }) {
   //  선택 전이면 0%, 선택 후에만 단계 반영
-  const currentPlant = useCookeepsStore((s) => s.currentPlant);
+  const currentPlant = useCookeepsStore(s => s.currentPlant);
   const stageToShow = overridePlantStage ?? currentPlant?.level ?? 1;
 
   const percent = currentPlant ? (stageToShow / 4) * 100 : 0;

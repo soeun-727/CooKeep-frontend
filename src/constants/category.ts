@@ -1,17 +1,17 @@
-import veg from "@/assets/fridge/items/vegatable.svg";
-import fruit from "@/assets/fridge/items/fruit.svg";
-import meat from "@/assets/fridge/items/meat.svg";
-import fish from "@/assets/fridge/items/fish.svg";
-import egg from "@/assets/fridge/items/egg.svg";
-import rice from "@/assets/fridge/items/rice.svg";
+import bean from "@/assets/fridge/items/bean.svg";
 import bread from "@/assets/fridge/items/bread.svg";
-import salt from "@/assets/fridge/items/salt.svg";
-import simple from "@/assets/fridge/items/simple.svg";
 import candy from "@/assets/fridge/items/candy.svg";
 import drink from "@/assets/fridge/items/drink.svg";
-import ferment from "@/assets/fridge/items/fermented.svg";
-import bean from "@/assets/fridge/items/bean.svg";
+import egg from "@/assets/fridge/items/egg.svg";
 import elseIcon from "@/assets/fridge/items/else.svg";
+import ferment from "@/assets/fridge/items/fermented.svg";
+import fish from "@/assets/fridge/items/fish.svg";
+import fruit from "@/assets/fridge/items/fruit.svg";
+import meat from "@/assets/fridge/items/meat.svg";
+import rice from "@/assets/fridge/items/rice.svg";
+import salt from "@/assets/fridge/items/salt.svg";
+import simple from "@/assets/fridge/items/simple.svg";
+import veg from "@/assets/fridge/items/vegatable.svg";
 
 export interface CategoryItem {
   id: number;
@@ -48,9 +48,9 @@ export const INGREDIENT_CATEGORIES: CategoryItem[] = [
 ];
 
 export const CATEGORY_ID_TO_SERVER_KEY = Object.fromEntries(
-  INGREDIENT_CATEGORIES.map((c) => [c.id, c.serverKey]),
+  INGREDIENT_CATEGORIES.map(c => [c.id, c.serverKey]),
 );
 
 export const CATEGORY_SERVER_KEY_TO_NAME = Object.fromEntries(
-  INGREDIENT_CATEGORIES.map((c) => [c.serverKey, c.name]),
+  INGREDIENT_CATEGORIES.map(c => [c.serverKey, c.name]),
 );

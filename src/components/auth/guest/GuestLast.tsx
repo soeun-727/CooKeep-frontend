@@ -1,4 +1,5 @@
 import char from "@/assets/character/onboarding_char.svg";
+
 import Button from "@/components/ui/Button";
 
 export default function GuestLast({ onNext }: { onNext: () => void }) {

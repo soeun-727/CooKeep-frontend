@@ -1,10 +1,13 @@
 // src/components/auth/signup/EmailSection.tsx
-import { useState, useEffect } from "react";
-import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { useSignupStore } from "@/stores/useSignupStore";
 import axios from "axios";
+
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
+
 import EmailAuthModal from "./EmailAuthModal";
 
 export default function EmailSection() {
@@ -132,7 +135,7 @@ export default function EmailSection() {
       <div className="mt-[5px] w-[361px]">
         <TextField
           value={code}
-          onChange={(value) => {
+          onChange={value => {
             const onlyNumber = value.replace(/[^0-9]/g, "");
             setCode(onlyNumber);
             if (!onlyNumber) setCodeError(undefined);

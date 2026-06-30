@@ -1,5 +1,6 @@
 // src/components/auth/AuthHeader.tsx
 import { useNavigate } from "react-router-dom";
+
 import { mainLogo } from "@/assets/index";
 
 export default function AuthHeader() {

@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
-import liked from "@/assets/recipe/liked.svg";
-import unliked from "@/assets/recipe/unliked.svg";
-import rename from "@/assets/recipe/rename.svg";
+import { useEffect, useRef, useState } from "react";
+
 import deleteIcon from "@/assets/recipe/delete.svg";
+import liked from "@/assets/recipe/liked.svg";
+import rename from "@/assets/recipe/rename.svg";
+import unliked from "@/assets/recipe/unliked.svg";
 
 interface RecipeProps {
   isLiked: boolean;
@@ -65,9 +66,9 @@ export default function Recipe({
           ref={inputRef}
           type="text"
           value={editValue}
-          onChange={(e) => setEditValue(e.target.value)}
+          onChange={e => setEditValue(e.target.value)}
           onBlur={handleFinishRename}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             if (e.key === "Enter") handleFinishRename();
             if (e.key === "Escape") {
               setEditValue(name);

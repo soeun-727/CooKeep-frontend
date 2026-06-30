@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import arrowRight from "@/assets/signup/arrowright.svg";
 
 interface RecipeDetailYoutubeProps {
@@ -32,7 +33,7 @@ export default function RecipeDetailYoutube({
       {/* 헤더 (항상 보임) */}
       <button
         type="button"
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => setIsOpen(prev => !prev)}
         className="flex w-full items-center gap-2"
       >
         {/* 텍스트 */}

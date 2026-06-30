@@ -1,6 +1,8 @@
 // src/api/push.ts
-import api from "./axios"; // 기존에 사용 중인 axios 인스턴스 경로
+// 기존에 사용 중인 axios 인스턴스 경로
 import { urlBase64ToUint8Array } from "@/utils/push";
+
+import api from "./axios";
 
 /**
  * 1. VAPID 공개키 조회 (GET)

@@ -1,13 +1,18 @@
 // src/pages/settings/EditEmailPage.tsx
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import checkIcon from "@/assets/signup/check.svg";
-import TextField from "@/components/ui/TextField";
-import Button from "@/components/ui/Button";
-import axios from "axios";
+
 import { updateEmail } from "@/api/user";
 import { useEmailUpdateStore } from "@/stores/useEmailUpdateStore";
-import EmailAuthModal from "@/components/auth/signup/EmailAuthModal"; // 추가
+import axios from "axios";
+
+import checkIcon from "@/assets/signup/check.svg";
+
+import EmailAuthModal from "@/components/auth/signup/EmailAuthModal";
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
+
+// 추가
 
 type ModalType = "send" | "verify" | "help"; // 추가
 
@@ -41,7 +46,7 @@ export default function EditEmailPage() {
         setTimeLeft(0);
         setCodeError("인증번호가 만료되었습니다");
       } else {
-        setTimeLeft((prev) => prev - 1);
+        setTimeLeft(prev => prev - 1);
       }
     }, 1000);
     return () => clearTimeout(timer);
@@ -132,7 +137,7 @@ export default function EditEmailPage() {
         <div className="relative mt-[12px]">
           <TextField
             value={email}
-            onChange={(val) => setEmail(val)}
+            onChange={val => setEmail(val)}
             placeholder="새 이메일 주소 입력"
             disabled={isCodeSent}
             errorMessage={
@@ -157,7 +162,7 @@ export default function EditEmailPage() {
         <div className="mt-[5px]">
           <TextField
             value={code}
-            onChange={(v) => {
+            onChange={v => {
               const onlyNumber = v.replace(/[^0-9]/g, "");
               setCode(onlyNumber);
               if (!onlyNumber) {

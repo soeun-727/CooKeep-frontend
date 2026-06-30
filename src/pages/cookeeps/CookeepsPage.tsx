@@ -1,26 +1,30 @@
 import { useCallback, useEffect, useState } from "react";
-import PlantBackground from "@/components/cookeeps/plant/PlantBackground";
+
+import {
+  RankingResponse,
+  getOnboardingStatus,
+  getWeeklyRanking,
+  updateOnboardingStatus,
+} from "@/api/cookeeps";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { useLoadingStore } from "@/stores/useLoadingStore";
+
 import CookeepsHeader from "@/components/cookeeps/header/CookeepsHeader";
+import FreeWaterModal from "@/components/cookeeps/modals/FreeWaterModal";
+import HarvestModal from "@/components/cookeeps/modals/HarvestModal";
+import OnboardingModal from "@/components/cookeeps/modals/OnboardingModal";
+import PlantSelectModal from "@/components/cookeeps/modals/PlantSelectModal";
+import SelectedModal from "@/components/cookeeps/modals/SelectedModal";
+import WiltedModal from "@/components/cookeeps/modals/WiltedModal";
+import WiltingModal from "@/components/cookeeps/modals/WiltingModal";
+import PlantBackground from "@/components/cookeeps/plant/PlantBackground";
 import PlantGrowthCard from "@/components/cookeeps/plant/PlantGrowthCard";
 import WeeklyTop3Section from "@/components/cookeeps/ranking/WeeklyTop3Section";
 import WeeklyRecipeSection from "@/components/cookeeps/recipe/WeeklyRecipeSection";
-import OnboardingModal from "@/components/cookeeps/modals/OnboardingModal";
-import PlantSelectModal from "@/components/cookeeps/modals/PlantSelectModal";
+
 import { PLANT_DATA } from "@/constants/plantData";
-import SelectedModal from "@/components/cookeeps/modals/SelectedModal";
-import WiltingModal from "@/components/cookeeps/modals/WiltingModal";
-import WiltedModal from "@/components/cookeeps/modals/WiltedModal";
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
-import FreeWaterModal from "@/components/cookeeps/modals/FreeWaterModal";
-import HarvestModal from "@/components/cookeeps/modals/HarvestModal";
-import { useLoadingStore } from "@/stores/useLoadingStore";
+
 import { preloadImage } from "@/utils/preloadImage";
-import {
-  getOnboardingStatus,
-  getWeeklyRanking,
-  RankingResponse,
-  updateOnboardingStatus,
-} from "@/api/cookeeps";
 
 type ActiveModal =
   | "onboarding"
@@ -53,19 +57,19 @@ export default function CookeepsPage() {
     recipeRanking: [],
   });
 
-  const status = useCookeepsStore((s) => s.status);
-  const abandonPlant = useCookeepsStore((s) => s.abandonPlant);
-  const recoverPlant = useCookeepsStore((s) => s.recoverPlant);
-  const setFreeWaterMode = useCookeepsStore((s) => s.setFreeWaterMode);
-  const isFreeWaterMode = useCookeepsStore((s) => s.isFreeWaterMode);
-  const isPlantLoading = useCookeepsStore((s) => s.isPlantLoading);
-  const currentPlant = useCookeepsStore((s) => s.currentPlant);
-  const hasShownHarvestModal = useCookeepsStore((s) => s.hasShownHarvestModal);
-  const harvestedPlantNames = useCookeepsStore((s) => s.harvestedPlantNames);
-  const justHarvestedPlant = useCookeepsStore((s) => s.justHarvestedPlant);
-  const registerPlant = useCookeepsStore((s) => s.registerPlant);
-  const claimHarvestReward = useCookeepsStore((s) => s.claimHarvestReward);
-  const setLoading = useLoadingStore((s) => s.setLoading);
+  const status = useCookeepsStore(s => s.status);
+  const abandonPlant = useCookeepsStore(s => s.abandonPlant);
+  const recoverPlant = useCookeepsStore(s => s.recoverPlant);
+  const setFreeWaterMode = useCookeepsStore(s => s.setFreeWaterMode);
+  const isFreeWaterMode = useCookeepsStore(s => s.isFreeWaterMode);
+  const isPlantLoading = useCookeepsStore(s => s.isPlantLoading);
+  const currentPlant = useCookeepsStore(s => s.currentPlant);
+  const hasShownHarvestModal = useCookeepsStore(s => s.hasShownHarvestModal);
+  const harvestedPlantNames = useCookeepsStore(s => s.harvestedPlantNames);
+  const justHarvestedPlant = useCookeepsStore(s => s.justHarvestedPlant);
+  const registerPlant = useCookeepsStore(s => s.registerPlant);
+  const claimHarvestReward = useCookeepsStore(s => s.claimHarvestReward);
+  const setLoading = useLoadingStore(s => s.setLoading);
 
   const [hideWiltingModal, setHideWiltingModal] = useState(false);
   const [showHarvestModal, setShowHarvestModal] = useState(false);
@@ -97,7 +101,7 @@ export default function CookeepsPage() {
       const plantName = store.currentPlant?.plantName;
 
       if (plantName) {
-        const plantData = PLANT_DATA.find((p) => p.text === plantName);
+        const plantData = PLANT_DATA.find(p => p.text === plantName);
         if (plantData?.img) {
           await preloadImage(plantData.img);
         }
@@ -182,7 +186,7 @@ export default function CookeepsPage() {
   };
 
   const handleSelectConfirm = (id: number) => {
-    const plant = PLANT_DATA.find((p) => p.id === id);
+    const plant = PLANT_DATA.find(p => p.id === id);
     if (!plant) return;
     setHideWiltingModal(false);
     setSelectedPlantData(plant);
@@ -201,7 +205,7 @@ export default function CookeepsPage() {
         return;
       }
 
-      const plantData = PLANT_DATA.find((p) => p.text === current.plantName);
+      const plantData = PLANT_DATA.find(p => p.text === current.plantName);
       setSelectedPlantData({
         id: current.userPlantId,
         text: current.plantName,
