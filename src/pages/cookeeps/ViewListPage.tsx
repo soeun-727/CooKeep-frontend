@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import ListItem from "../../components/cookeeps/lists/ListItem";
-import DoublecheckModal from "../../components/ui/DoublecheckModal";
+
 import {
-  getMyLikedRecipes,
-  getMyBookmarkedRecipes,
   MyRecipeListItem,
+  getMyBookmarkedRecipes,
+  getMyLikedRecipes,
   toggleRecipeBookmark,
   toggleRecipeLike,
-} from "../../api/myRecipe";
-import temp from "../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
+} from "@/api/myRecipe";
 
-interface Props {
+import temp from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
+
+import ListItem from "@/components/cookeeps/lists/ListItem";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
+
+interface ViewListPageProps {
   type: string;
 }
 
@@ -19,7 +22,7 @@ interface OutletContext {
   searchTerm: string;
 }
 
-export default function ViewListPage({ type }: Props) {
+export default function ViewListPage({ type }: ViewListPageProps) {
   const { searchTerm } = useOutletContext<OutletContext>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -45,7 +48,7 @@ export default function ViewListPage({ type }: Props) {
       }
 
       if (data && data.content) {
-        setRecipes((prev) =>
+        setRecipes(prev =>
           pageNum === 0 ? data.content : [...prev, ...data.content],
         );
         setIsLast(data.last);
@@ -67,9 +70,9 @@ export default function ViewListPage({ type }: Props) {
   /** 무한 스크롤 감지 */
   useEffect(() => {
     if (isLoading || isLast) return;
-    observerRef.current = new IntersectionObserver((entries) => {
+    observerRef.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
-        setPage((prev) => {
+        setPage(prev => {
           const next = prev + 1;
           fetchData(next);
           return next;
@@ -80,12 +83,10 @@ export default function ViewListPage({ type }: Props) {
     return () => observerRef.current?.disconnect();
   }, [isLoading, isLast, recipes]);
 
-  const filteredData = recipes.filter((item) =>
+  const filteredData = recipes.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
-  const selectedItem = recipes.find(
-    (item) => item.dailyRecipeId === selectedId,
-  );
+  const selectedItem = recipes.find(item => item.dailyRecipeId === selectedId);
 
   const handleConfirmDelete = async () => {
     if (selectedId === null) return;
@@ -96,7 +97,7 @@ export default function ViewListPage({ type }: Props) {
       } else {
         await toggleRecipeBookmark(selectedId);
       }
-      setRecipes((prev) => prev.filter((r) => r.dailyRecipeId !== selectedId));
+      setRecipes(prev => prev.filter(r => r.dailyRecipeId !== selectedId));
     } catch (error) {
       alert("처리에 실패했습니다.");
     } finally {
@@ -107,9 +108,9 @@ export default function ViewListPage({ type }: Props) {
 
   return (
     <>
-      <div className="w-[361px] mx-auto mt-[18px] pb-10 flex flex-col items-center">
+      <div className="mx-auto mt-[18px] flex w-[361px] flex-col items-center pb-10">
         {filteredData.length > 0
-          ? filteredData.map((item) => (
+          ? filteredData.map(item => (
               <ListItem
                 key={item.dailyRecipeId}
                 type={type}
@@ -125,7 +126,7 @@ export default function ViewListPage({ type }: Props) {
               />
             ))
           : !isLoading && (
-              <p className="mt-10 text-zinc-400 typo-body text-center">
+              <p className="typo-body mt-10 text-center text-zinc-400">
                 {searchTerm ? "검색 결과가 없습니다." : "목록이 비어 있습니다."}
               </p>
             )}

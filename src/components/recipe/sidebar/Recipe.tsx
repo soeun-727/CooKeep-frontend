@@ -1,8 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
-import liked from "../../../assets/recipe/liked.svg";
-import unliked from "../../../assets/recipe/unliked.svg";
-import rename from "../../../assets/recipe/rename.svg";
-import deleteIcon from "../../../assets/recipe/delete.svg";
+import { useEffect, useRef, useState } from "react";
+
+import deleteIcon from "@/assets/recipe/delete.svg";
+import liked from "@/assets/recipe/liked.svg";
+import rename from "@/assets/recipe/rename.svg";
+import unliked from "@/assets/recipe/unliked.svg";
 
 interface RecipeProps {
   isLiked: boolean;
@@ -14,7 +15,7 @@ interface RecipeProps {
   onSelect?: () => void;
 }
 
-const Recipe: React.FC<RecipeProps> = ({
+export default function Recipe({
   isLiked = false,
   name,
   searchTerm = "",
@@ -22,7 +23,7 @@ const Recipe: React.FC<RecipeProps> = ({
   onRename,
   onDelete,
   onSelect,
-}) => {
+}: RecipeProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(name);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -45,7 +46,7 @@ const Recipe: React.FC<RecipeProps> = ({
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, i) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
-        <span key={i} className="text-[var(--color-green-deep)] font-bold">
+        <span key={i} className="font-bold text-[var(--color-green-deep)]">
           {part}
         </span>
       ) : (
@@ -55,8 +56,8 @@ const Recipe: React.FC<RecipeProps> = ({
   };
 
   return (
-    <div className="flex w-[277px] h-[34px] items-center justify-between mx-auto">
-      <button onClick={onLike} className="px-2 flex-shrink-0">
+    <div className="mx-auto flex h-[34px] w-[277px] items-center justify-between">
+      <button onClick={onLike} className="flex-shrink-0 px-2">
         <img src={isLiked ? liked : unliked} alt="like" className="w-[18px]" />
       </button>
 
@@ -65,20 +66,20 @@ const Recipe: React.FC<RecipeProps> = ({
           ref={inputRef}
           type="text"
           value={editValue}
-          onChange={(e) => setEditValue(e.target.value)}
+          onChange={e => setEditValue(e.target.value)}
           onBlur={handleFinishRename}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             if (e.key === "Enter") handleFinishRename();
             if (e.key === "Escape") {
               setEditValue(name);
               setIsEditing(false);
             }
           }}
-          className="flex-1 min-w-0 mx-2 px-1 typo-body2 border border-stone-300 outline-none bg-white rounded-sm"
+          className="typo-body2 mx-2 min-w-0 flex-1 rounded-sm border border-stone-300 bg-white px-1 outline-none"
         />
       ) : (
-        <button onClick={onSelect} className="flex-1 min-w-0">
-          <span className="typo-body2 text-left block truncate px-2">
+        <button onClick={onSelect} className="min-w-0 flex-1">
+          <span className="typo-body2 block truncate px-2 text-left">
             {highlightText(name, searchTerm)}
           </span>
         </button>
@@ -86,16 +87,14 @@ const Recipe: React.FC<RecipeProps> = ({
 
       <button
         onClick={() => setIsEditing(true)}
-        className="px-[10px] flex-shrink-0"
+        className="flex-shrink-0 px-[10px]"
       >
         <img src={rename} alt="rename" className="w-[14px]" />
       </button>
 
-      <button onClick={onDelete} className="px-[10px] flex-shrink-0">
+      <button onClick={onDelete} className="flex-shrink-0 px-[10px]">
         <img src={deleteIcon} alt="delete" className="w-[14px]" />
       </button>
     </div>
   );
-};
-
-export default Recipe;
+}

@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { LIST_DATA } from "../constants/listData";
+
+import { LIST_DATA } from "@/constants/listData";
 
 interface Recipe {
   id: number;
@@ -20,27 +21,27 @@ interface ListState {
   setRecipes: (recipes: Recipe[]) => void;
 }
 
-export const useListStore = create<ListState>((set) => ({
+export const useListStore = create<ListState>(set => ({
   // 초기 데이터에 기본 상태값 주입 (실제 데이터 구조에 맞게 조정)
-  recipes: LIST_DATA.map((item) => ({
+  recipes: LIST_DATA.map(item => ({
     ...item,
     isLiked: item.isLiked ?? false, // 데이터에 없으면 기본값 false
     bookmark: item.bookmark ?? false,
   })),
 
-  toggleLike: (id) =>
-    set((state) => ({
-      recipes: state.recipes.map((recipe) =>
+  toggleLike: id =>
+    set(state => ({
+      recipes: state.recipes.map(recipe =>
         recipe.id === id ? { ...recipe, isLiked: !recipe.isLiked } : recipe,
       ),
     })),
 
-  toggleBookmark: (id) =>
-    set((state) => ({
-      recipes: state.recipes.map((recipe) =>
+  toggleBookmark: id =>
+    set(state => ({
+      recipes: state.recipes.map(recipe =>
         recipe.id === id ? { ...recipe, bookmark: !recipe.bookmark } : recipe,
       ),
     })),
 
-  setRecipes: (recipes) => set({ recipes }),
+  setRecipes: recipes => set({ recipes }),
 }));

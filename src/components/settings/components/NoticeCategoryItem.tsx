@@ -1,28 +1,33 @@
 // src/pages/settings/components/NoticeCategoryItem.tsx
 import { useState } from "react";
+
+import arrowIcon from "@/assets/signup/arrowright.svg";
+
+import { Notice } from "@/types/notice";
+
 import NoticeItem from "./NoticeItem";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
-import { Notice } from "../../../types/notice";
 
-type Props = {
+interface NoticeCategoryItemProps {
   category: Notice;
-};
+}
 
-export default function NoticeCategoryItem({ category }: Props) {
+export default function NoticeCategoryItem({
+  category,
+}: NoticeCategoryItemProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <div
-      className={`flex flex-col items-start self-stretch w-full rounded-[6px] border border-[#D1D1D1] ${
+      className={`flex w-full flex-col items-start self-stretch rounded-[6px] border border-[#D1D1D1] ${
         open ? "bg-[#ECECEC]" : "bg-white"
       }`}
     >
       {/* 헤더 */}
       <div
-        className={`flex w-full items-center justify-between px-[12px] cursor-pointer ${
+        className={`flex w-full cursor-pointer items-center justify-between px-[12px] ${
           open ? "pt-[12px] pb-[6px]" : "py-[12px]"
         }`}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() => setOpen(prev => !prev)}
       >
         <p
           className={`typo-label ${open ? "text-[#1FC16F]" : "text-[#202020]"}`}
@@ -32,7 +37,7 @@ export default function NoticeCategoryItem({ category }: Props) {
         <img
           src={arrowIcon}
           alt="공지사항 열기 화살표"
-          className={`w-[24px] h-[24px] transition-transform ${
+          className={`h-[24px] w-[24px] transition-transform ${
             open ? "-rotate-90" : "rotate-90"
           }`}
         />

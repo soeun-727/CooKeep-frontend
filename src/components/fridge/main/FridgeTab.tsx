@@ -1,20 +1,24 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+
+import { getRefrigeratorHome } from "@/api/ingredient";
+import { getPushEligibility } from "@/api/user";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+import { loadingChar } from "@/assets/index";
+
+import { useSortedIngredients } from "@/hooks/useSortedIngredients";
+
 import Search from "../features/Search";
 import Sort from "../features/Sort";
-import Storage from "./Storage";
 import IngredientGrid from "../items/IngredientGrid";
-import NoResultView from "../items/NoResultView";
 import ItemOption from "../items/ItemOption";
-import fridgeIcon from "../../../assets/fridge/fridge.svg";
-import freezerIcon from "../../../assets/fridge/freezer.svg";
-import pantryIcon from "../../../assets/fridge/pantry.svg";
-import { useIngredientStore } from "../../../stores/useIngredientStore";
-import { useSortedIngredients } from "../../../hooks/useSortedIngredients";
+import NoResultView from "../items/NoResultView";
 import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
-import { getRefrigeratorHome } from "../../../api/ingredient";
-import { getPushEligibility } from "../../../api/user";
-import LoadingScreen from "../../ui/LoadingScreen";
+import Storage from "./Storage";
 
 export default function FridgeTab() {
   const { ingredients, setIngredients, searchTerm, viewCategory } =
@@ -58,7 +62,7 @@ export default function FridgeTab() {
         const lastShown = localStorage.getItem(EXPIRY_MODAL_KEY);
         if (lastShown !== today) {
           const eligibility = await getPushEligibility();
-          const hasTodayItems = parsed.some((i) => i.dDay === 0);
+          const hasTodayItems = parsed.some(i => i.dDay === 0);
           if (eligibility?.eligible && hasTodayItems) {
             setIsExpiryModalOpen(true);
             localStorage.setItem(EXPIRY_MODAL_KEY, today);
@@ -78,12 +82,12 @@ export default function FridgeTab() {
 
   const { filteredIngredients, sortedIngredients } = useSortedIngredients();
   const todayIngredients = useMemo(
-    () => ingredients.filter((i) => i.dDay === 0),
+    () => ingredients.filter(i => i.dDay === 0),
     [ingredients],
   );
   const selectedIngredient = useMemo(() => {
     if (!selectedIngredientId) return null;
-    return ingredients.find((i) => i.id === selectedIngredientId) || null;
+    return ingredients.find(i => i.id === selectedIngredientId) || null;
   }, [ingredients, selectedIngredientId]);
 
   const getCategoryIcon = (category: string | null) => {
@@ -95,10 +99,17 @@ export default function FridgeTab() {
   const isSearching = searchTerm.trim().length > 0;
   const isListView = !!viewCategory && !isSearching;
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 top-55 z-50 flex flex-col items-center bg-[#FAFAFA]">
+        <img className="w-30 p-5 opacity-70" src={loadingChar} alt="loading" />
+        <div className="typo-body2 text-zinc-500">식재료 가져오는 중...</div>
+      </div>
+    );
+  }
 
   return (
-    <div className="w-full flex-1 flex flex-col transition-all pt-[calc(env(safe-area-inset-top)+3rem)]">
+    <div className="flex w-full flex-col pt-[calc(env(safe-area-inset-top)+3rem)] transition-all">
       <Search />
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal
@@ -111,7 +122,7 @@ export default function FridgeTab() {
         (filteredIngredients.length > 0 ? (
           <IngredientGrid items={filteredIngredients} />
         ) : (
-          <div className="h-[calc(100dvh-220px)] flex items-center justify-center pb-10">
+          <div className="flex h-[calc(100dvh-220px)] items-center justify-center pb-10">
             <NoResultView />
           </div>
         ))}
@@ -129,17 +140,17 @@ export default function FridgeTab() {
           <Storage
             category="냉장"
             image={fridgeIcon}
-            ingredients={ingredients.filter((i) => i.category === "냉장")}
+            ingredients={ingredients.filter(i => i.category === "냉장")}
           />
           <Storage
             category="냉동"
             image={freezerIcon}
-            ingredients={ingredients.filter((i) => i.category === "냉동")}
+            ingredients={ingredients.filter(i => i.category === "냉동")}
           />
           <Storage
             category="상온"
             image={pantryIcon}
-            ingredients={ingredients.filter((i) => i.category === "상온")}
+            ingredients={ingredients.filter(i => i.category === "상온")}
           />
         </div>
       )}

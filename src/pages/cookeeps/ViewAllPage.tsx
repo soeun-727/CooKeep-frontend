@@ -1,10 +1,13 @@
-import { useNavigate, useOutletContext } from "react-router-dom";
-import AllItem from "../../components/cookeeps/lists/AllItem";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AllRecipeItem, getAllRecipes } from "../../api/cookeeps";
-import tempImage from "../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
-import SortAll from "../../components/cookeeps/lists/SortAll";
-import WeeklyTopRecipesTab from "../../components/cookeeps/lists/WeeklyTopRecipesTab";
+import { useNavigate, useOutletContext } from "react-router-dom";
+
+import { AllRecipeItem, getAllRecipes } from "@/api/cookeeps";
+
+import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
+
+import AllItem from "@/components/cookeeps/lists/AllItem";
+import SortAll from "@/components/cookeeps/lists/SortAll";
+import WeeklyTopRecipesTab from "@/components/cookeeps/lists/WeeklyTopRecipesTab";
 
 export default function ViewAllPage() {
   const navigate = useNavigate();
@@ -43,7 +46,7 @@ export default function ViewAllPage() {
         const apiFilter = getApiFilter(sortOrder);
         const data = await getAllRecipes(apiFilter, currentPage);
 
-        setRecipes((prev) =>
+        setRecipes(prev =>
           isNewFilter ? data.content : [...prev, ...data.content],
         );
         setIsLast(data.last);
@@ -76,9 +79,9 @@ export default function ViewAllPage() {
     if (!observerTarget.current || isLast || isLoading) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
+      entries => {
         if (entries[0].isIntersecting && !isLast && !isLoading) {
-          setPage((prev) => prev + 1);
+          setPage(prev => prev + 1);
         }
       },
       { threshold: 0.1 }, // 1.0 보다는 0.1 정도가 더 매끄럽게 작동합니다.
@@ -89,7 +92,7 @@ export default function ViewAllPage() {
   }, [isLast, isLoading]);
 
   // 7. 검색어 필터링
-  const filteredData = recipes.filter((item) =>
+  const filteredData = recipes.filter(item =>
     item.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
@@ -98,14 +101,14 @@ export default function ViewAllPage() {
   }
 
   return (
-    <div className="mt-[18px] pb-10 flex justify-center">
+    <div className="mt-[18px] flex justify-center pb-10">
       <div className="w-[361px]">
-        <div className="fixed bottom-[calc(74px+env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 w-[361px] flex justify-center z-50">
+        <div className="fixed bottom-[calc(74px+env(safe-area-inset-bottom))] left-1/2 z-50 flex w-[361px] -translate-x-1/2 justify-center">
           <SortAll currentOrder={sortOrder} onSortChange={setSortOrder} />
         </div>
 
         {filteredData.length > 0 ? (
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col items-center gap-3">
             {filteredData.map((item, index) => (
               <AllItem
                 key={item.dailyRecipeId}
@@ -124,16 +127,16 @@ export default function ViewAllPage() {
             {/* 무한 스크롤 트리거 */}
             <div
               ref={observerTarget}
-              className="h-10 w-full flex items-center justify-center"
+              className="flex h-10 w-full items-center justify-center"
             >
               {isLoading && (
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-green-500" />
+                <div className="h-5 w-5 animate-spin rounded-full border-b-2 border-green-500" />
               )}
             </div>
           </div>
         ) : (
           !isLoading && (
-            <p className="mt-10 text-zinc-400 typo-body text-center">
+            <p className="typo-body mt-10 text-center text-zinc-400">
               검색 결과가 없습니다.
             </p>
           )

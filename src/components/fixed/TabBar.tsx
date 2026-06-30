@@ -1,13 +1,15 @@
-import Tab from "./Tab";
-import fridgeIcon from "../../assets/fixed/fridge.svg";
-import fridgeOnIcon from "../../assets/fixed/fridgeTab.svg";
-import recipeIcon from "../../assets/fixed/recipe.svg";
-import recipeOnIcon from "../../assets/fixed/recipeTab.svg";
-import cookeepsIcon from "../../assets/fixed/cookeeps.svg";
-import cookeepsOnIcon from "../../assets/fixed/cookeepsTab.svg";
-import mycookeepIcon from "../../assets/fixed/mycookeep.svg";
-import mycookeepOnIcon from "../../assets/fixed/mycookeepTab.svg";
 import { useNavigate } from "react-router-dom";
+
+import cookeepsIcon from "@/assets/fixed/cookeeps.svg";
+import cookeepsOnIcon from "@/assets/fixed/cookeepsTab.svg";
+import fridgeIcon from "@/assets/fixed/fridge.svg";
+import fridgeOnIcon from "@/assets/fixed/fridgeTab.svg";
+import mycookeepIcon from "@/assets/fixed/mycookeep.svg";
+import mycookeepOnIcon from "@/assets/fixed/mycookeepTab.svg";
+import recipeIcon from "@/assets/fixed/recipe.svg";
+import recipeOnIcon from "@/assets/fixed/recipeTab.svg";
+
+import Tab from "./Tab";
 
 interface TabBarProps {
   selectedTab: string;
@@ -37,9 +39,9 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-150 mx-auto w-full max-w-[450px] bg-white border-t border-gray-100 pb-[env(safe-area-inset-bottom)]">
-      <div className="h-14 flex justify-around items-center">
-        {tabs.map((tab) => (
+    <nav className="fixed right-0 bottom-0 left-0 z-150 mx-auto w-full max-w-[450px] border-t border-gray-100 bg-white pb-[env(safe-area-inset-bottom)]">
+      <div className="flex h-14 items-center justify-around">
+        {tabs.map(tab => (
           <Tab
             key={tab.title}
             image={tab.image}

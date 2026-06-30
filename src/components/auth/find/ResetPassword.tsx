@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import TextField from "../../ui/TextField";
-import Button from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
-// 아이콘
-import pwIcon from "../../../assets/login/key.svg";
-import pwImage from "../../../assets/login/pw.svg";
-import openpwImage from "../../../assets/signup/openpw.svg";
-import checkIcon from "../../../assets/signup/check.svg";
-import { useFindPasswordStore } from "../../../stores/useFindPasswordStore";
-import { resetPasswordApi } from "../../../api/auth";
+
+import { resetPasswordApi } from "@/api/auth";
+import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import axios from "axios";
+
+// 아이콘
+import pwIcon from "@/assets/login/key.svg";
+import pwImage from "@/assets/login/pw.svg";
+import checkIcon from "@/assets/signup/check.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 
 export default function ResetPassword() {
   const { email, isVerified, reset } = useFindPasswordStore();
@@ -78,7 +81,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="mx-auto w-[361px] pt-[241px]">
       <div className="typo-h1">비밀번호 변경하기</div>
       <div className="mt-[12px]">
         <TextField
@@ -102,7 +105,7 @@ export default function ResetPassword() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="flex items-center justify-center h-full"
+              className="flex h-full items-center justify-center"
             >
               <img src={getPasswordIcon()} alt="비밀번호 토글 아이콘" />
             </button>
@@ -132,7 +135,7 @@ export default function ResetPassword() {
             <button
               type="button"
               onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
-              className="flex items-center justify-center h-full"
+              className="flex h-full items-center justify-center"
             >
               <img
                 src={getPasswordConfirmIcon()}
@@ -143,7 +146,7 @@ export default function ResetPassword() {
         />
       </div>
 
-      {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+      {error && <p className="text-center text-sm text-red-500">{error}</p>}
 
       <Button
         type="submit"
@@ -159,8 +162,8 @@ export default function ResetPassword() {
       {/* AppLayout 영역 전체를 덮는 팝업 */}
       {isSuccess && (
         <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
-          <div className="w-[361px] flex flex-col items-center">
-            <p className="typo-h1 text-[#202020] text-center font-bold text-[28px] leading-[36px] pt-[241px] pb-[18px]">
+          <div className="flex w-[361px] flex-col items-center">
+            <p className="typo-h1 pt-[241px] pb-[18px] text-center text-[28px] leading-[36px] font-bold text-[#202020]">
               비밀번호 변경 완료
             </p>
             {/*중앙정렬 안하고 피그마 기준으로 pt-[241px] 이걸로 맞춤*/}
@@ -168,7 +171,7 @@ export default function ResetPassword() {
             <img
               src={checkIcon}
               alt="성공 아이콘"
-              className="w-[40px] h-[40px]"
+              className="h-[40px] w-[40px]"
             />
             <Button
               size="L"

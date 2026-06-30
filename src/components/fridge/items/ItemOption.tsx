@@ -1,18 +1,21 @@
 import { useState } from "react";
-import eaten from "../../../assets/fridge/eaten.svg";
-import thrown from "../../../assets/fridge/thrown.svg";
-import { useIngredientStore } from "../../../stores/useIngredientStore";
-import DoublecheckModal from "../../ui/DoublecheckModal";
-import AlertModal from "../../ui/AlertModal";
 import { useNavigate } from "react-router-dom";
-import { useRecipeFlowStore } from "../../../stores/useRecipeFlowStore";
-import { useRewardStore } from "../../../stores/useRewardStore";
+
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import { useRewardStore } from "@/stores/useRewardStore";
+
+import eaten from "@/assets/fridge/eaten.svg";
+import thrown from "@/assets/fridge/thrown.svg";
+
+import AlertModal from "@/components/ui/AlertModal";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
 
 export default function ItemOption() {
   const navigate = useNavigate();
   const { selectedIds, ingredients, deleteSelected } = useIngredientStore();
   const { setSelectedIngredients } = useRecipeFlowStore();
-  const enqueue = useRewardStore((s) => s.enqueue);
+  const enqueue = useRewardStore(s => s.enqueue);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [modalType, setModalType] = useState<"eaten" | "thrown">("eaten");
@@ -24,7 +27,7 @@ export default function ItemOption() {
     return null;
   }
   const firstItemName =
-    ingredients.find((item) => item.id === selectedIds[0])?.name ?? "재료";
+    ingredients.find(item => item.id === selectedIds[0])?.name ?? "재료";
 
   const modalTitle =
     selectedIds.length === 1
@@ -37,7 +40,7 @@ export default function ItemOption() {
   };
 
   const handleRecipeRecommend = () => {
-    const selectedIngredients = ingredients.filter((item) =>
+    const selectedIngredients = ingredients.filter(item =>
       selectedIds.includes(item.id),
     );
     setSelectedIngredients(selectedIngredients);
@@ -70,7 +73,7 @@ export default function ItemOption() {
     <>
       {/* 하단 옵션 바 */}
       <div className="fixed bottom-[calc(56px+env(safe-area-inset-bottom))] left-1/2 z-60 w-full max-w-[450px] -translate-x-1/2">
-        <div className="flex h-11 bg-white border-[0.5px] border-[#D1D1D1]">
+        <div className="flex h-11 border-[0.5px] border-[#D1D1D1] bg-white">
           <button
             onClick={() => handleOpenModal("eaten")}
             className="flex-1 transition-all active:bg-[var(--color-green-light)] active:shadow-[inset_0_-1px_20px_-4px_rgba(0,0,0,0.25)]"
@@ -95,7 +98,7 @@ export default function ItemOption() {
             onClick={handleRecipeRecommend}
             className="flex-1 transition-all active:bg-[var(--color-green-light)] active:shadow-[inset_0_1px_6.7px_0_rgba(17,17,17,0.2)]"
           >
-            <div className="flex h-11 items-center justify-center typo-body2">
+            <div className="typo-body2 flex h-11 items-center justify-center">
               AI 레시피 추천받기
             </div>
           </button>

@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import InstallGuide from "../../components/auth/onboarding/InstallGuide";
-import AuthHeader from "../../components/auth/AuthHeader";
-import Progress from "../../components/auth/onboarding/Progress";
-import Goal from "../../components/auth/onboarding/Goal";
-import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
-import Footer from "../../components/auth/onboarding/Footer";
-import Notification from "../../components/auth/onboarding/Notification";
-import Last from "../../components/auth/onboarding/Last";
-import Guide from "../../components/auth/onboarding/Guide";
-import Preference from "../../components/auth/onboarding/Preference";
+import { saveOnboardingData } from "@/api/onboarding";
+import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
-import { saveOnboardingData } from "../../api/onboarding";
-import { useOnboardingStore } from "../../stores/useOnboardingStore";
-import { GOAL_TYPE_MAP } from "../../utils/mapping";
+import AuthHeader from "@/components/auth/AuthHeader";
+import Footer from "@/components/auth/onboarding/Footer";
+import Goal from "@/components/auth/onboarding/Goal";
+import Guide from "@/components/auth/onboarding/Guide";
+import InstallGuide from "@/components/auth/onboarding/InstallGuide";
+import Last from "@/components/auth/onboarding/Last";
+import Notification from "@/components/auth/onboarding/Notification";
+import Preference from "@/components/auth/onboarding/Preference";
+import Progress from "@/components/auth/onboarding/Progress";
+import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
+
+import { GOAL_TYPE_MAP } from "@/utils/mapping";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -84,9 +85,7 @@ export default function Onboarding() {
       if (isForcedSkip) {
         // 건너뛰기: 둘 다 null
         requestBody = {
-          dislikedIngredients: selectedIngredients.map(
-            (item) => item.ingredient,
-          ),
+          dislikedIngredients: selectedIngredients.map(item => item.ingredient),
           goalActionType: null,
           targetCount: null,
         };
@@ -108,9 +107,7 @@ export default function Onboarding() {
         }
 
         requestBody = {
-          dislikedIngredients: selectedIngredients.map(
-            (item) => item.ingredient,
-          ),
+          dislikedIngredients: selectedIngredients.map(item => item.ingredient),
           goalActionType:
             GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
           targetCount: count,
@@ -150,17 +147,17 @@ export default function Onboarding() {
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
 
   return (
-    <div className="flex flex-col h-[100dvh] items-center bg-[#FAFAFA]">
+    <div className="flex h-[100dvh] flex-col items-center bg-[#FAFAFA]">
       <AuthHeader />
       {step !== 0 && (
-        <div className="w-full max-w-[361px] mx-auto">
+        <div className="mx-auto w-full max-w-[361px]">
           <Progress currentStep={step} />
         </div>
       )}
       <div
-        className={`flex-1 flex flex-col items-center w-full ${step === 0 ? "" : "px-1"}`}
+        className={`flex w-full flex-1 flex-col items-center ${step === 0 ? "" : "px-1"}`}
       >
-        <div className="w-full h-full">
+        <div className="h-full w-full">
           {step === 0 && <Guide onNext={nextStep} />}
           {step === 1 && <Preference />}
           {step === 2 && (

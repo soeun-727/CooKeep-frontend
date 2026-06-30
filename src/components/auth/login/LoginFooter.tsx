@@ -1,6 +1,6 @@
-import line from "../../../assets/login/Line.png";
-
 import { useNavigate } from "react-router-dom";
+
+import line from "@/assets/login/Line.png";
 
 export default function LoginFooter() {
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ export default function LoginFooter() {
   return (
     <>
       {/* 하단 메뉴 */}
-      <div className="flex items-center justify-center gap-[18px] mt-[39px]">
+      <div className="mt-[39px] flex items-center justify-center gap-[18px]">
         <button className="typo-label" onClick={() => navigate("/findpw")}>
           비밀번호 찾기
         </button>

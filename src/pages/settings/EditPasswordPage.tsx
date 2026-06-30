@@ -1,14 +1,16 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import TextField from "../../components/ui/TextField";
-import Button from "../../components/ui/Button";
-import { verifyCurrentPassword, changePassword } from "../../api/user";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import pwIcon from "../../assets/login/key.svg";
-import pwImage from "../../assets/login/pw.svg";
-import openpwImage from "../../assets/signup/openpw.svg";
-import checkIcon from "../../assets/signup/check.svg";
+import { changePassword, verifyCurrentPassword } from "@/api/user";
+import axios from "axios";
+
+import pwIcon from "@/assets/login/key.svg";
+import pwImage from "@/assets/login/pw.svg";
+import checkIcon from "@/assets/signup/check.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 
 export default function EditPasswordPage() {
   const navigate = useNavigate();
@@ -121,7 +123,7 @@ export default function EditPasswordPage() {
 
   return (
     <div className="relative min-h-screen bg-[#FAFAFA]">
-      <div className="pt-[241px] w-[361px] mx-auto">
+      <div className="mx-auto w-[361px] pt-[241px]">
         <div className="typo-h1">비밀번호 변경</div>
 
         {/* 기존 비밀번호 */}
@@ -129,7 +131,7 @@ export default function EditPasswordPage() {
           <TextField
             type={showCurrentPassword ? "text" : "password"}
             value={currentPassword}
-            onChange={(value) => {
+            onChange={value => {
               setCurrentPassword(value);
               setIsCurrentPwValid(null);
               setError(undefined);
@@ -251,7 +253,7 @@ export default function EditPasswordPage() {
         </div>
 
         {error && (
-          <p className="text-red-500 text-sm text-center mt-[8px]">{error}</p>
+          <p className="mt-[8px] text-center text-sm text-red-500">{error}</p>
         )}
 
         <Button
@@ -268,8 +270,8 @@ export default function EditPasswordPage() {
       {/* 5회 실패 모달 */}
       {showAuthModal && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-[254px] flex flex-col items-center pt-[25px] px-[28px] pb-[25px] gap-[16px] rounded-[10px] bg-white">
-            <p className="typo-label text-[#111] text-center self-stretch">
+          <div className="flex w-[254px] flex-col items-center gap-[16px] rounded-[10px] bg-white px-[28px] pt-[25px] pb-[25px]">
+            <p className="typo-label self-stretch text-center text-[#111]">
               비밀번호가 5회 일치하지 않았어요
               <br />
               본인인증을 진행해 주세요
@@ -295,11 +297,11 @@ export default function EditPasswordPage() {
       {/* 성공 오버레이 */}
       {isSuccess && (
         <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
-          <div className="w-[361px] flex flex-col items-center">
+          <div className="flex w-[361px] flex-col items-center">
             <p className="typo-result-title pt-[295px] pb-[18px]">
               비밀번호 변경 완료
             </p>
-            <img src={checkIcon} alt="성공" className="w-[40px] h-[40px]" />
+            <img src={checkIcon} alt="성공" className="h-[40px] w-[40px]" />
             <Button
               size="L"
               variant="black"

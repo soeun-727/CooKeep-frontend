@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import SettingsToggleItem from "../components/SettingsToggleItem";
-import ConfirmModal from "../../ui/ConfirmModal";
-import { updateMarketingPush } from "../../../api/user";
-import { registerPushNotification, unsubscribePush } from "../../../api/push";
 
-type Props = {
+import { registerPushNotification, unsubscribePush } from "@/api/push";
+import { updateMarketingPush } from "@/api/user";
+
+import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
+import ConfirmModal from "@/components/ui/ConfirmModal";
+
+interface NotificationSectionProps {
   marketingPush: boolean;
   onStateChange: (isAgreed: boolean) => void;
-};
+}
 
 export default function NotificationSection({
   marketingPush,
   onStateChange,
-}: Props) {
+}: NotificationSectionProps) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [enabled, setEnabled] = useState(marketingPush);
   const [loading, setLoading] = useState(false);
@@ -72,7 +74,7 @@ export default function NotificationSection({
   };
 
   return (
-    <section className="px-4 mt-[128px]">
+    <section className="mt-[128px] px-4">
       <SettingsToggleItem
         label="PUSH 수신 동의"
         checked={enabled}

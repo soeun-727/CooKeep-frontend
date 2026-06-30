@@ -19,7 +19,7 @@ export const useRewardStore = create<RewardState>((set, get) => ({
   queue: [],
   current: null,
 
-  enqueue: (type) => {
+  enqueue: type => {
     const { queue, current } = get();
 
     // 중복 방지

@@ -1,5 +1,6 @@
+import type { AiRecipeResponse, Difficulty } from "@/types/aiRecipe";
+
 import api from "./axios";
-import type { AiRecipeResponse, Difficulty } from "../types/aiRecipe";
 
 interface GenerateAiRecipeRequest {
   ingredientIds?: number[];

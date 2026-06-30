@@ -5,9 +5,9 @@ import {
   recordOn,
   stats,
   statsOn,
-} from "../../../assets";
+} from "@/assets/index";
 
-interface Props {
+interface MyCookeepTabBarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
   onActiveTabClick?: (tab: string) => void;
@@ -17,7 +17,7 @@ export default function MyCookeepTabBar({
   activeTab,
   onTabChange,
   onActiveTabClick,
-}: Props) {
+}: MyCookeepTabBarProps) {
   const tabs = [
     { id: "record", img: record, onImg: recordOn },
     { id: "calendar", img: calendar, onImg: calendarOn },
@@ -33,23 +33,23 @@ export default function MyCookeepTabBar({
     }
   };
   return (
-    <div className="w-full flex bg-white h-13 justify-around items-center">
-      {tabs.map((tab) => {
+    <div className="flex h-13 w-full items-center justify-around bg-white">
+      {tabs.map(tab => {
         const isActive = activeTab === tab.id;
         return (
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
-            className="flex-1 py-3 flex justify-center items-center relative transition-all"
+            className="relative flex flex-1 items-center justify-center py-3 transition-all"
           >
             <img
               src={isActive ? tab.onImg : tab.img}
               alt={tab.id}
-              className="w-6 h-6 object-contain"
+              className="h-6 w-6 object-contain"
             />
 
             {isActive && (
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[114px] h-[2px] bg-gray-800 rounded-full" />
+              <div className="absolute bottom-0 left-1/2 h-[2px] w-[114px] -translate-x-1/2 rounded-full bg-gray-800" />
             )}
           </button>
         );

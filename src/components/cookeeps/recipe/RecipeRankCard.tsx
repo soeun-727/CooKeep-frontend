@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import fullLikeIcon from "../../../assets/cookeeps/main/full_like_cookeeps.svg";
+
+import fullLikeIcon from "@/assets/cookeeps/main/full_like_cookeeps.svg";
 
 interface RecipeRankCardProps {
   rank: number;
@@ -55,24 +56,23 @@ export default function RecipeRankCard({
       onClick={() => {
         if (!isPlaceholder) navigate(`/cookeeps/${id}`);
       }}
-      className={`flex items-center w-full h-12 px-2 py-2 rounded-lg transition-colors
-${isPlaceholder ? "" : "cursor-pointer hover:bg-gray-50"}`}
+      className={`flex h-12 w-full items-center rounded-lg px-2 py-2 transition-colors ${isPlaceholder ? "" : "cursor-pointer hover:bg-gray-50"}`}
     >
       {/* 왼쪽: 순위 + 제목 */}
-      <div className="flex items-center gap-3 flex-1 min-w-0">
-        <div className="flex justify-center items-center w-8 h-6 rounded-full bg-gray-800 flex-shrink-0">
-          <span className="text-white text-[12px] font-semibold">{rank}</span>
+      <div className="flex min-w-0 flex-1 items-center gap-3">
+        <div className="flex h-6 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gray-800">
+          <span className="text-[12px] font-semibold text-white">{rank}</span>
         </div>
 
-        <div className="truncate font-medium text-gray-800 text-[14px]">
+        <div className="truncate text-[14px] font-medium text-gray-800">
           {title}
         </div>
       </div>
 
       {/* 좋아요 (고정 영역) */}
-      <div className="flex items-center gap-1 flex-shrink-0 mx-4">
-        <img src={fullLikeIcon} alt="like" className="w-5 h-5" />
-        <span className="text-gray-400 text-[12px] whitespace-nowrap">
+      <div className="mx-4 flex flex-shrink-0 items-center gap-1">
+        <img src={fullLikeIcon} alt="like" className="h-5 w-5" />
+        <span className="text-[12px] whitespace-nowrap text-gray-400">
           {likes}
         </span>
       </div>
@@ -96,7 +96,7 @@ ${isPlaceholder ? "" : "cursor-pointer hover:bg-gray-50"}`}
         <img
           src={image}
           alt={title}
-          className="w-16 h-10 rounded-md object-cover flex-shrink-0"
+          className="h-10 w-16 flex-shrink-0 rounded-md object-cover"
         />
       )}
     </div>

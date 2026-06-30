@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
 
-interface Props {
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
+interface RecipeActionButtonsProps {
   retryCount: number;
   maxRetry?: number;
   onRetry: () => void;
@@ -15,12 +16,10 @@ export default function RecipeActionButtons({
   onRetry,
   showRetryButton = true, // 기본값은 true
   isLoading = false,
-}: Props) {
+}: RecipeActionButtonsProps) {
   const navigate = useNavigate();
 
   const {
-    // increaseRetry,
-    // generateRecipe,
     selectedIngredients,
     difficulty,
     recipeHistory,
@@ -37,11 +36,6 @@ export default function RecipeActionButtons({
   const retryBtnText = isLoading
     ? "레시피 생성 중..."
     : `다른 레시피 받기 (${retryCount}/${maxRetry})`;
-
-  // const handleRetry = () => {
-  //   increaseRetry();
-  //   generateRecipe();
-  // };
 
   const handleCookClick = async () => {
     // async 추가
@@ -66,12 +60,12 @@ export default function RecipeActionButtons({
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 w-full">
+    <div className="flex w-full flex-col items-center gap-2">
       {/* 요리할래요 버튼 */}
       <button
         onClick={handleCookClick}
         disabled={!latestRecipe || isLoading || isCompleted}
-        className={`w-full rounded-[10px] h-[38px] typo-button text-white ${
+        className={`typo-button h-[38px] w-full rounded-[10px] text-white ${
           !latestRecipe || isLoading || isCompleted
             ? "bg-gray-300"
             : "bg-[#32E389]"
@@ -85,9 +79,9 @@ export default function RecipeActionButtons({
         <button
           onClick={onRetry}
           disabled={isRetryDisabled}
-          className={`w-full rounded-[10px] h-[38px] typo-button transition-colors ${
+          className={`typo-button h-[38px] w-full rounded-[10px] transition-colors ${
             isRetryDisabled
-              ? "bg-gray-300 text-[#7D7D7D] cursor-not-allowed"
+              ? "cursor-not-allowed bg-gray-300 text-[#7D7D7D]"
               : "bg-[#202020] text-white"
           }`}
         >

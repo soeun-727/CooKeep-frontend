@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import Button from "../../components/ui/Button";
-import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
-import RecordWriteImageCard from "../../components/myCookeep/record/RecordWriteImageCard";
-import RecipeRecordContentSection from "../../components/myCookeep/record/RecipeRecordContentSection";
-import privateIcon from "../../assets/mycookeep/record/private_icon.svg";
-import publicIcon from "../../assets/mycookeep/record/public_icon.svg";
-import UploadCompleteModal from "../../components/myCookeep/record/UploadCompleteModal";
-import { useCookeepsStore } from "../../stores/useCookeepsStore";
-import { uploadImage } from "../../api/image";
-import { createDailyRecipe } from "../../api/myRecipe";
-import { AiRecipeDetail, getAiRecipeDetail } from "../../api/dailyAiRecipe";
-import imageCompression from "browser-image-compression";
+
+import { AiRecipeDetail, getAiRecipeDetail } from "@/api/dailyAiRecipe";
+import { uploadImage } from "@/api/image";
+import { createDailyRecipe } from "@/api/myRecipe";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { AxiosError } from "axios";
-import RecipeDetailYoutube from "../../components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import PhotoRewardModal from "../../components/myCookeep/record/PhotoRewardModal";
-import WeeklyGoalModal from "../../components/ui/WeeklyGoalModal";
+import imageCompression from "browser-image-compression";
+
+import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
+import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
+import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
+import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
+import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
 export default function RecordWritePage() {
   const navigate = useNavigate();
@@ -189,24 +192,24 @@ export default function RecordWritePage() {
   if (!recipeDetail) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#32E389]"></div>
+        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-[#32E389]"></div>
       </div>
     );
   }
 
   return (
     <>
-      <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-[#FAFAFA]">
-        <div className="sticky top-0 z-[120] bg-[#FAFAFA] shrink-0">
+      <div className="no-scrollbar flex h-full flex-1 flex-col overflow-y-auto bg-[#FAFAFA]">
+        <div className="sticky top-0 z-[120] shrink-0 bg-[#FAFAFA]">
           <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
         </div>
 
-        <div className="flex-1 mx-auto w-full max-w-[450px] px-4 flex flex-col min-h-0 mt-10">
-          <div className="pt-4 flex flex-col gap-[10px]">
+        <div className="mx-auto mt-10 flex min-h-0 w-full max-w-[450px] flex-1 flex-col px-4">
+          <div className="flex flex-col gap-[10px] pt-4">
             <RecordWriteImageCard
               title={title}
               imageSrc={image?.url}
-              onImageChange={async (file) => {
+              onImageChange={async file => {
                 // onClickAddImage 대신
                 if (file.size > 15 * 1024 * 1024) {
                   alert(
@@ -275,32 +278,32 @@ export default function RecordWritePage() {
               )}
           </div>
 
-          <div className="flex w-full flex-col items-center pt-4 shrink-0">
+          <div className="flex w-full shrink-0 flex-col items-center pt-4">
             <textarea
               value={memo}
-              onChange={(e) => setMemo(e.target.value.slice(0, 500))}
+              onChange={e => setMemo(e.target.value.slice(0, 500))}
               onInput={handleMemoInput}
               placeholder="글자 수 최대 500자"
-              className="w-full rounded-[10px] bg-white px-[10px] py-3 text-center typo-body text-[#202020] placeholder:text-[#7D7D7D] resize-none outline-none overflow-hidden"
+              className="typo-body w-full resize-none overflow-hidden rounded-[10px] bg-white px-[10px] py-3 text-center text-[#202020] outline-none placeholder:text-[#7D7D7D]"
               rows={1}
             />
           </div>
 
-          <div className="relative mt-[15px] flex justify-center animate-float-bubble shrink-0">
+          <div className="animate-float-bubble relative mt-[15px] flex shrink-0 justify-center">
             <div
-              className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-white text-[#32E389] text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+              className="relative z-10 inline-flex items-center justify-center rounded-[3px] bg-white px-[16px] py-[9px] text-center text-[12px] font-medium text-[#32E389] shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
               style={{ width: 206, height: 36 }}
             >
               나만의 팁 작성하기
             </div>
             <div
-              className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-white rotate-45 z-0"
+              className="absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45 bg-white"
               style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
             />
           </div>
 
-          <div className="mt-auto pt-[64px] pb-[20px] flex flex-col gap-4 items-center shrink-0">
-            <div className="flex justify-center gap-[9px] w-full">
+          <div className="mt-auto flex shrink-0 flex-col items-center gap-4 pt-[64px] pb-[20px]">
+            <div className="flex w-full justify-center gap-[9px]">
               <button
                 onClick={() => setIsPublic(false)}
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}

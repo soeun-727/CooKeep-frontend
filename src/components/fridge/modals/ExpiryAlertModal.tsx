@@ -1,15 +1,22 @@
-import Button from "../../ui/Button";
-import type { Ingredient } from "../../../stores/useIngredientStore";
-import characterImg from "../../../assets/character/surprised_char_faded.svg";
 import { useNavigate } from "react-router-dom";
 
-interface Props {
+import type { Ingredient } from "@/stores/useIngredientStore";
+
+import characterImg from "@/assets/character/surprised_char_faded.svg";
+
+import Button from "@/components/ui/Button";
+
+interface ExpiryAlertModalProps {
   isOpen: boolean;
   onClose: () => void;
   items: Ingredient[];
 }
 
-export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
+export default function ExpiryAlertModal({
+  isOpen,
+  onClose,
+  items,
+}: ExpiryAlertModalProps) {
   const navigate = useNavigate();
 
   if (!isOpen || items.length === 0) return null;
@@ -20,16 +27,16 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-white flex flex-col items-center gap-2">
+      <div className="relative flex w-[280px] flex-col items-center gap-2 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
         {/* content */}
-        <div className="w-full flex flex-col items-center gap-4">
+        <div className="flex w-full flex-col items-center gap-4">
           <img
             src={characterImg}
             alt="알림 캐릭터"
-            className="w-[75px] h-[60px]"
+            className="h-[60px] w-[75px]"
           />
 
-          <p className="typo-body2 text-[#202020] text-center whitespace-pre-line">
+          <p className="typo-body2 text-center whitespace-pre-line text-[#202020]">
             유통기한이 오늘까지인 재료가 있어요!
             <br />
             지금 확인하고 요리해볼까요?
@@ -37,7 +44,7 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
         </div>
 
         {/* buttons */}
-        <div className="w-full flex flex-col gap-2 mt-2">
+        <div className="mt-2 flex w-full flex-col gap-2">
           <Button
             variant="green"
             className="!w-[224px] bg-[#32E389]"

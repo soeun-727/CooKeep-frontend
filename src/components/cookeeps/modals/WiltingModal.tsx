@@ -1,14 +1,20 @@
-import Button from "../../ui/Button";
-import characterImg from "../../../assets/character/kijul_char.svg";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-interface Props {
+import characterImg from "@/assets/character/kijul_char.svg";
+
+import Button from "@/components/ui/Button";
+
+interface WiltingModalProps {
   plant: string;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function WiltingModal({ plant, isOpen, onClose }: Props) {
+export default function WiltingModal({
+  plant,
+  isOpen,
+  onClose,
+}: WiltingModalProps) {
   if (!isOpen) return null;
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">
@@ -17,12 +23,12 @@ export default function WiltingModal({ plant, isOpen, onClose }: Props) {
 
       {/* modal */}
       <div
-        className="relative w-70 h-[254px] px-7 pt-[35px] pb-[25px] rounded-[10px] bg-white flex flex-col items-center gap-7"
-        onClick={(e) => e.stopPropagation()}
+        className="relative flex h-[254px] w-70 flex-col items-center gap-7 rounded-[10px] bg-white px-7 pt-[35px] pb-[25px]"
+        onClick={e => e.stopPropagation()}
       >
         {/* content */}
-        <div className="w-full flex flex-col items-center gap-7">
-          <p className="typo-body text-[#202020] text-center whitespace-pre-line">
+        <div className="flex w-full flex-col items-center gap-7">
+          <p className="typo-body text-center whitespace-pre-line text-[#202020]">
             <span className="text-(--color-green-deep)">{plant} </span>
             이/가 시들고 있어요
             {"\n"}

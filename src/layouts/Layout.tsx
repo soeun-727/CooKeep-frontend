@@ -1,9 +1,11 @@
 // src/components/layout/Layout.tsx
+import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import TabBar from "../components/fixed/TabBar";
-import { useState, useEffect } from "react";
-import { useIngredientStore } from "../stores/useIngredientStore";
-import { useRecipeFlowStore } from "../stores/useRecipeFlowStore";
+
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
+import TabBar from "@/components/fixed/TabBar";
 
 export default function Layout() {
   const location = useLocation();
@@ -35,20 +37,15 @@ export default function Layout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col w-full h-dvh bg-[#FAFAFA] overflow-hidden">
+    <div className="flex h-dvh w-full flex-col overflow-hidden bg-[#FAFAFA]">
       <main
-        className={` flex-1 flex flex-col overflow-y-auto no-scrollbar
-          ${showTabBar ? "pb-[56px]" : ""}
-        `}
+        className={`no-scrollbar flex flex-1 flex-col overflow-y-auto ${showTabBar ? "pb-[56px]" : ""} `}
       >
         <Outlet />
       </main>
 
       {showTabBar && (
-        <TabBar
-          selectedTab={activeTab}
-          onSelect={(name) => setActiveTab(name)}
-        />
+        <TabBar selectedTab={activeTab} onSelect={name => setActiveTab(name)} />
       )}
     </div>
   );

@@ -1,5 +1,6 @@
 import { createPortal } from "react-dom";
-import Button from "../../ui/Button";
+
+import Button from "@/components/ui/Button";
 
 interface PhotoRewardModalProps {
   onConfirm: () => void;
@@ -8,9 +9,9 @@ interface PhotoRewardModalProps {
 export default function PhotoRewardModal({ onConfirm }: PhotoRewardModalProps) {
   return createPortal(
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#11111180]">
-      <div className="w-[258px] bg-white rounded-[10px] px-[28px] pt-[35px] pb-[25px] flex flex-col items-center gap-[18px]">
+      <div className="flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
         <div className="flex flex-col items-center gap-[20px]">
-          <p className="w-[202px] text-center text-[14px] font-medium leading-[20px] text-[#202020]">
+          <p className="w-[202px] text-center text-[14px] leading-[20px] font-medium text-[#202020]">
             요리 사진 등록!
             <br />
             추가 쿠키가 도착했어요

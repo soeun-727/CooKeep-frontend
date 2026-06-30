@@ -1,13 +1,18 @@
-import Button from "../../ui/Button";
-import characterImg from "../../../assets/character/plant_char.svg";
+import characterImg from "@/assets/character/plant_char.svg";
 
-interface Props {
+import Button from "@/components/ui/Button";
+
+interface FreeWaterModalProps {
   isOpen: boolean;
   onConfirm: () => void | Promise<void>;
   onClose: () => void;
 }
 
-export default function FreeWaterModal({ isOpen, onConfirm, onClose }: Props) {
+export default function FreeWaterModal({
+  isOpen,
+  onConfirm,
+  onClose,
+}: FreeWaterModalProps) {
   if (!isOpen) return null;
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">
@@ -15,10 +20,10 @@ export default function FreeWaterModal({ isOpen, onConfirm, onClose }: Props) {
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-[258px] px-7 pt-[35px] pb-[25px] rounded-[10px] bg-white flex flex-col items-center gap-5">
+      <div className="relative flex w-[258px] flex-col items-center gap-5 rounded-[10px] bg-white px-7 pt-[35px] pb-[25px]">
         {/* content */}
-        <div className="w-full flex flex-col items-center gap-7">
-          <p className="typo-body2 text-[#202020] text-center whitespace-pre-line">
+        <div className="flex w-full flex-col items-center gap-7">
+          <p className="typo-body2 text-center whitespace-pre-line text-[#202020]">
             씨앗 등록 완료! 🌱{"\n"}
             무료 물주기 1회가 준비되어 있어요
           </p>
@@ -29,7 +34,7 @@ export default function FreeWaterModal({ isOpen, onConfirm, onClose }: Props) {
 
         <Button
           variant="green"
-          className="!w-[202px] !bg-(--color-green) !font-bold mt-2"
+          className="mt-2 !w-[202px] !bg-(--color-green) !font-bold"
           onClick={async () => {
             await onConfirm(); // 이것만
             onClose();

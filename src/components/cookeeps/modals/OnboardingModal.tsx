@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import Button from "../../ui/Button";
+
 import {
-  cookingChar,
-  earth,
-  plant,
-  tree,
-  seedling,
-  seeds,
-  disabledLeft,
-  disabledRight,
   abledLeft,
   abledRight,
-} from "../../../assets";
+  cookingChar,
+  disabledLeft,
+  disabledRight,
+  earth,
+  plant,
+  seedling,
+  seeds,
+  tree,
+} from "@/assets/index";
 
-interface Props {
+import Button from "@/components/ui/Button";
+
+interface OnboardingModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
@@ -32,7 +34,7 @@ const ONBOARDING_DATA = [
   {
     id: 3,
     img: (
-      <div className="flex gap-[4px] items-end pb-1">
+      <div className="flex items-end gap-[4px] pb-1">
         {[
           { src: seeds, label: "씨앗" },
           { src: seedling, label: "새싹" },
@@ -52,7 +54,10 @@ const ONBOARDING_DATA = [
   },
 ];
 
-export default function OnboardingModal({ isOpen, onClose }: Props) {
+export default function OnboardingModal({
+  isOpen,
+  onClose,
+}: OnboardingModalProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // 모달이 열릴 때마다 첫 페이지로 초기화
@@ -68,11 +73,11 @@ export default function OnboardingModal({ isOpen, onClose }: Props) {
   const isLastStep = currentIndex === ONBOARDING_DATA.length - 1;
 
   const handlePrev = () => {
-    if (!isFirstStep) setCurrentIndex((prev) => prev - 1);
+    if (!isFirstStep) setCurrentIndex(prev => prev - 1);
   };
 
   const handleNext = () => {
-    if (!isLastStep) setCurrentIndex((prev) => prev + 1);
+    if (!isLastStep) setCurrentIndex(prev => prev + 1);
   };
 
   return (
@@ -82,32 +87,32 @@ export default function OnboardingModal({ isOpen, onClose }: Props) {
 
       {/* Modal Container */}
       <div
-        className="relative box-border w-[258px] min-w-[258px] max-w-[258px] min-h-[246px] max-h-[267px] px-7 py-[25px] gap-3 rounded-[10px] bg-white flex flex-col shadow-xl overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
+        className="relative box-border flex max-h-[267px] min-h-[246px] w-[258px] max-w-[258px] min-w-[258px] flex-col gap-3 overflow-hidden rounded-[10px] bg-white px-7 py-[25px] shadow-xl"
+        onClick={e => e.stopPropagation()}
       >
         {/* 1. Slider Content (상하 중앙 정렬을 위해 flex-1 사용) */}
-        <div className="flex-1 w-full overflow-hidden flex items-center">
+        <div className="flex w-full flex-1 items-center overflow-hidden">
           <div
-            className="flex transition-transform duration-300 ease-in-out w-full"
+            className="flex w-full transition-transform duration-300 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {ONBOARDING_DATA.map((item) => (
+            {ONBOARDING_DATA.map(item => (
               <div
                 key={item.id}
-                className="min-w-full flex flex-col items-center justify-center shrink-0 gap-4"
+                className="flex min-w-full shrink-0 flex-col items-center justify-center gap-4"
               >
-                <div className="h-15 flex items-center justify-center">
+                <div className="flex h-15 items-center justify-center">
                   {typeof item.img === "string" ? (
                     <img
                       src={item.img}
-                      className="max-w-full max-h-full object-contain"
+                      className="max-h-full max-w-full object-contain"
                       alt="step"
                     />
                   ) : (
                     item.img
                   )}
                 </div>
-                <p className="typo-body2 text-center whitespace-pre-wrap leading-5">
+                <p className="typo-body2 text-center leading-5 whitespace-pre-wrap">
                   {item.text}
                 </p>
               </div>
@@ -116,28 +121,28 @@ export default function OnboardingModal({ isOpen, onClose }: Props) {
         </div>
 
         {/* 2. Footer Area (Dots & Navigation) */}
-        <div className="w-full flex flex-col items-center gap-4 mt-auto">
+        <div className="mt-auto flex w-full flex-col items-center gap-4">
           {/* Arrows & Dots Row */}
-          <div className="flex items-center justify-between w-full px-1">
+          <div className="flex w-full items-center justify-between px-1">
             {/* 왼쪽 버튼 */}
             <button
               onClick={handlePrev}
               disabled={isFirstStep}
-              className="flex items-center justify-center p-1 w-6 outline-none"
+              className="flex w-6 items-center justify-center p-1 outline-none"
             >
               <img
                 src={isFirstStep ? disabledLeft : abledLeft}
                 alt="이전"
-                className="w-2 h-[10px] object-contain"
+                className="h-[10px] w-2 object-contain"
               />
             </button>
 
             {/* Dots 중앙 정렬 */}
-            <div className="flex justify-center items-center gap-2">
+            <div className="flex items-center justify-center gap-2">
               {ONBOARDING_DATA.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                  className={`h-1.5 w-1.5 rounded-full transition-colors ${
                     currentIndex === index ? "bg-zinc-500" : "bg-stone-100"
                   }`}
                 />
@@ -148,18 +153,18 @@ export default function OnboardingModal({ isOpen, onClose }: Props) {
             <button
               onClick={handleNext}
               disabled={isLastStep}
-              className="flex items-center justify-center p-1 w-6 outline-none"
+              className="flex w-6 items-center justify-center p-1 outline-none"
             >
               <img
                 src={isLastStep ? disabledRight : abledRight}
                 alt="다음"
-                className="w-2 h-[10px] object-contain"
+                className="h-[10px] w-2 object-contain"
               />
             </button>
           </div>
 
           {/* 3. 확인 버튼 영역 (높이 고정으로 레이아웃 흔들림 방지) */}
-          <div className="w-full flex items-center justify-center">
+          <div className="flex w-full items-center justify-center">
             {isLastStep && (
               <Button variant="green" className="!w-full" onClick={onClose}>
                 확인

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import foodIcon from "../../../assets/mycookeep/record/fork_knife_plate.svg";
-import temp from "../../../assets/mycookeep/record/temp_food_photo.svg";
+
+import foodIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
+import temp from "@/assets/mycookeep/record/temp_food_photo.svg";
 
 interface RecordViewImageCardProps {
   title: string;
@@ -29,10 +30,10 @@ export default function RecordViewImageCard({
 
   return (
     <>
-      <div className="flex flex-col w-full max-w-[450px] mx-auto">
+      <div className="mx-auto flex w-full max-w-[450px] flex-col">
         {/* 이미지 */}
         <div
-          className="relative w-full h-[153px] rounded-t-[6px] overflow-hidden shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+          className="relative h-[153px] w-full overflow-hidden rounded-t-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
           // onClick={() => {
           //   if (!isEditing) return;
           //   setShowImageOptions(true);
@@ -41,13 +42,13 @@ export default function RecordViewImageCard({
           <img
             src={imageSrc || temp}
             alt="요리 이미지"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
 
           {/* 수정 모드 overlay */}
           {isEditing && (
             <div
-              className="absolute inset-0 flex justify-center items-center"
+              className="absolute inset-0 flex items-center justify-center"
               style={{
                 background:
                   "linear-gradient(0deg, rgba(32,32,32,0.5), rgba(32,32,32,0.5))",
@@ -55,10 +56,10 @@ export default function RecordViewImageCard({
               // onClick={() => setShowImageOptions(false)} // 추가
             >
               <div
-                className="flex flex-col items-center gap-4 w-[208px]"
-                onClick={(e) => e.stopPropagation()} // 내부 클릭만 막기
+                className="flex w-[208px] flex-col items-center gap-4"
+                onClick={e => e.stopPropagation()} // 내부 클릭만 막기
               >
-                <p className="text-white text-[14px] font-medium text-center leading-[20px]">
+                <p className="text-center text-[14px] leading-[20px] font-medium text-white">
                   사진을{" "}
                   {imageSrc
                     ? "변경하거나 삭제할 수 있습니다"
@@ -66,10 +67,7 @@ export default function RecordViewImageCard({
                 </p>
                 {/* 🔥 버튼 영역 */}
                 <div
-                  className={`
-    flex gap-[8px] w-full
-    ${!imageSrc ? "justify-center" : ""}
-  `}
+                  className={`flex w-full gap-[8px] ${!imageSrc ? "justify-center" : ""} `}
                 >
                   {/* 변경 / 추가 버튼 */}
                   <button
@@ -77,10 +75,7 @@ export default function RecordViewImageCard({
                       fileInputRef.current?.click();
                       // setShowImageOptions(false);
                     }}
-                    className={`
-      h-[44px] rounded-[10px] text-white text-[14px] font-semibold
-      ${imageSrc ? "flex-1 bg-[#32E389]" : "w-[160px] bg-[#32E389]"}
-    `}
+                    className={`h-[44px] rounded-[10px] text-[14px] font-semibold text-white ${imageSrc ? "flex-1 bg-[#32E389]" : "w-[160px] bg-[#32E389]"} `}
                   >
                     {imageSrc ? "변경" : "추가"}
                   </button>
@@ -92,7 +87,7 @@ export default function RecordViewImageCard({
                         // setShowImageOptions(false);
                         setIsDeleteModalOpen(true); // 🔥 바로 삭제 X → 모달
                       }}
-                      className="flex-1 h-[44px] rounded-[10px] bg-[#C3C3C3] text-white text-[14px] font-semibold"
+                      className="h-[44px] flex-1 rounded-[10px] bg-[#C3C3C3] text-[14px] font-semibold text-white"
                     >
                       삭제
                     </button>
@@ -114,7 +109,7 @@ export default function RecordViewImageCard({
             accept="image/*"
             ref={fileInputRef}
             hidden
-            onChange={(e) => {
+            onChange={e => {
               const file = e.target.files?.[0];
               if (file) onImageFileSelect?.(file);
               e.target.value = "";
@@ -123,23 +118,14 @@ export default function RecordViewImageCard({
         </div>
 
         {/* 제목 영역 */}
-        <div
-          className="
-          flex items-center
-          w-full
-          bg-white
-          rounded-b-[6px]
-          shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-          px-3 py-[12px]
-        "
-        >
+        <div className="flex w-full items-center rounded-b-[6px] bg-white px-3 py-[12px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
           {/* 왼쪽 아이콘 + 제목 */}
-          <div className="flex items-center gap-[4px] flex-1 px-2">
+          <div className="flex flex-1 items-center gap-[4px] px-2">
             {/* 기본 아이콘 */}
             <img
               src={foodIcon}
               alt="요리 아이콘"
-              className="w-[38px] h-[38px] flex-shrink-0"
+              className="h-[38px] w-[38px] flex-shrink-0"
             />
 
             {/* 제목 */}
@@ -147,12 +133,12 @@ export default function RecordViewImageCard({
               <input
                 autoFocus
                 value={title}
-                onChange={(e) => onChangeTitle(e.target.value)}
-                className="flex-1 text-[18px] font-semibold leading-[26px] outline-none border-b-2 border-primary"
+                onChange={e => onChangeTitle(e.target.value)}
+                className="border-primary flex-1 border-b-2 text-[18px] leading-[26px] font-semibold outline-none"
                 placeholder={title}
               />
             ) : (
-              <h2 className="flex-1 text-[#202020] text-[18px] font-semibold leading-[26px]">
+              <h2 className="flex-1 text-[18px] leading-[26px] font-semibold text-[#202020]">
                 {title}
               </h2>
             )}
@@ -161,14 +147,14 @@ export default function RecordViewImageCard({
       </div>
       {isDeleteModalOpen && (
         <div
-          className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
           onClick={() => setIsDeleteModalOpen(false)}
         >
           <div
-            className="w-[254px] bg-white rounded-[10px] px-[28px] py-[25px] flex flex-col items-center gap-4"
-            onClick={(e) => e.stopPropagation()}
+            className="flex w-[254px] flex-col items-center gap-4 rounded-[10px] bg-white px-[28px] py-[25px]"
+            onClick={e => e.stopPropagation()}
           >
-            <p className="text-[#202020] text-[14px] font-medium text-center">
+            <p className="text-center text-[14px] font-medium text-[#202020]">
               사진을 삭제할까요?
             </p>
 
@@ -178,14 +164,14 @@ export default function RecordViewImageCard({
                   onImageDelete?.();
                   setIsDeleteModalOpen(false);
                 }}
-                className="flex-1 h-[44px] rounded-[10px] bg-[#202020] text-white font-semibold"
+                className="h-[44px] flex-1 rounded-[10px] bg-[#202020] font-semibold text-white"
               >
                 네
               </button>
 
               <button
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="flex-1 h-[44px] rounded-[10px] bg-[#C3C3C3] text-white font-semibold"
+                className="h-[44px] flex-1 rounded-[10px] bg-[#C3C3C3] font-semibold text-white"
               >
                 아니오
               </button>

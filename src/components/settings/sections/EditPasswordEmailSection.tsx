@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { getMyProfile } from "@/api/user";
+import { useEditPasswordAuthStore } from "@/stores/useEditPasswordAuthStore";
 import axios from "axios";
-import TextField from "../../ui/TextField";
-import Button from "../../ui/Button";
-import { useEditPasswordAuthStore } from "../../../stores/useEditPasswordAuthStore";
-import { getMyProfile } from "../../../api/user";
-import FindEmailAuthModal from "../../auth/find/FindEmailAuthModal";
+
+import FindEmailAuthModal from "@/components/auth/find/FindEmailAuthModal";
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 
 export default function EditPasswordEmailSection() {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ export default function EditPasswordEmailSection() {
         setTimeLeft(0);
         setCodeError("인증번호가 만료되었습니다");
       } else {
-        setTimeLeft((prev) => prev - 1);
+        setTimeLeft(prev => prev - 1);
       }
     }, 1000);
     return () => clearTimeout(timer);
@@ -95,7 +97,7 @@ export default function EditPasswordEmailSection() {
       setCodeError("인증번호 재발송 횟수를 초과했습니다");
       return;
     }
-    setResendCount((prev) => prev + 1);
+    setResendCount(prev => prev + 1);
     await handleSendCode();
   };
 
@@ -124,7 +126,7 @@ export default function EditPasswordEmailSection() {
   };
 
   return (
-    <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="mx-auto w-[361px] pt-[241px]">
       <div className="typo-h1">이메일 인증</div>
 
       <div className="mt-[12px]">
@@ -143,9 +145,7 @@ export default function EditPasswordEmailSection() {
               type="button"
               onClick={isCodeSent ? handleResend : handleSendCode}
               disabled={!isEmailValid || isSending || resendCount >= MAX_RESEND}
-              className={`w-[102px] h-[24px] rounded-full typo-caption text-white
-                ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"}
-                disabled:cursor-not-allowed`}
+              className={`typo-caption h-[24px] w-[102px] rounded-full text-white ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"} disabled:cursor-not-allowed`}
             >
               {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
             </button>
@@ -156,7 +156,7 @@ export default function EditPasswordEmailSection() {
       <div className="mt-[5px]">
         <TextField
           value={code}
-          onChange={(v) => {
+          onChange={v => {
             const onlyNumber = v.replace(/[^0-9]/g, "");
             setCode(onlyNumber);
             if (codeError) setCodeError(undefined);
@@ -180,7 +180,7 @@ export default function EditPasswordEmailSection() {
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
+          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-[#7D7D7D] underline"
         >
           인증 번호가 발송되지 않나요?
         </button>
@@ -190,8 +190,8 @@ export default function EditPasswordEmailSection() {
       {modalType === "mismatch" && (
         <>
           <div className="fixed inset-0 z-[100] bg-[rgba(17,17,17,0.5)]" />
-          <div className="fixed z-[110] left-1/2 -translate-x-1/2 top-[343px] bg-white rounded-[10px] w-[240px] pt-[35px] px-[28px] pb-[25px] flex flex-col items-center gap-4">
-            <p className="text-[14px] font-medium text-center leading-[20px] text-[#111111]">
+          <div className="fixed top-[343px] left-1/2 z-[110] flex w-[240px] -translate-x-1/2 flex-col items-center gap-4 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
+            <p className="text-center text-[14px] leading-[20px] font-medium text-[#111111]">
               등록된 이메일과 일치하지 않습니다
             </p>
             <Button

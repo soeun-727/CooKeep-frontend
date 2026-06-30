@@ -1,7 +1,7 @@
 // src/store/useSignupStore.ts
-import { create } from "zustand";
-import { sendSignupCodeApi, verifySignupCodeApi } from "../api/auth";
+import { sendSignupCodeApi, verifySignupCodeApi } from "@/api/auth";
 import axios from "axios";
+import { create } from "zustand";
 
 interface VerifyResult {
   success: boolean;
@@ -25,7 +25,7 @@ export const useSignupStore = create<SignupState>((set, get) => ({
   isCodeSent: false,
   isVerified: false,
 
-  setEmail: (email) =>
+  setEmail: email =>
     set({
       email,
       isVerified: false,

@@ -1,10 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import { useAddIngredientStore } from "../../../stores/useAddIngredientStore";
-import DetailedItem from "./DetailedItem";
-import Button from "../../ui/Button";
-import { addIngredients } from "../../../api/ingredient";
 import { useState } from "react";
-import { useRewardStore } from "../../../stores/useRewardStore";
+import { useNavigate } from "react-router-dom";
+
+import { addIngredients } from "@/api/ingredient";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
+import { useRewardStore } from "@/stores/useRewardStore";
+
+import Button from "@/components/ui/Button";
+
+import DetailedItem from "./DetailedItem";
 
 export default function Details() {
   const navigate = useNavigate();
@@ -18,7 +21,7 @@ export default function Details() {
     try {
       // 1. 서버 명세(Request Body)에 맞춰 전체 배열 가공
       const payload = {
-        ingredients: selectedItems.map((item) => ({
+        ingredients: selectedItems.map(item => ({
           type: item.type,
           referenceId: Number(item.id),
           quantity: item.quantity,
@@ -55,16 +58,14 @@ export default function Details() {
   };
 
   return (
-    <div className="relative flex flex-col items-center w-full h-full bg-[#F8F8F8] pt-1">
-      <div className="flex-1 overflow-y-auto no-scrollbar min-h-0 w-full px-4">
+    <div className="relative flex h-full w-full flex-col items-center bg-[#F8F8F8] pt-1">
+      <div className="no-scrollbar min-h-0 w-full flex-1 overflow-y-auto px-4">
         <div className="flex flex-col items-center gap-[10px] pb-15">
           {selectedItems.length > 0 ? (
-            selectedItems.map((item) => (
-              <DetailedItem key={item.id} {...item} />
-            ))
+            selectedItems.map(item => <DetailedItem key={item.id} {...item} />)
           ) : (
             <div className="mt-20 flex flex-col items-center gap-4">
-              <p className="text-zinc-400 typo-caption text-center">
+              <p className="typo-caption text-center text-zinc-400">
                 선택된 재료가 없습니다.
               </p>
               <Button size="S" variant="black" onClick={() => navigate(-1)}>
@@ -76,8 +77,8 @@ export default function Details() {
       </div>
 
       {selectedItems.length > 0 && (
-        <div className="shrink-0 flex flex-col items-center w-full pt-2 pb-[23px] z-50 px-4">
-          <div className="w-full max-w-[345px] shadow-[0_-4px_10px_rgba(0,0,0,0.05)] pb-[11px]">
+        <div className="z-50 flex w-full shrink-0 flex-col items-center px-4 pt-2 pb-[23px]">
+          <div className="w-full max-w-[345px] pb-[11px] shadow-[0_-4px_10px_rgba(0,0,0,0.05)]">
             <Button
               size="L"
               variant="black"

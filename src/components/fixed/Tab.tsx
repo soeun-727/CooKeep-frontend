@@ -5,32 +5,33 @@ interface TabProps {
   isSelected?: boolean;
   onClick?: () => void;
 }
-const Tab: React.FC<TabProps> = ({
+
+export default function Tab({
   image,
   selectedImage,
   title,
   isSelected = false,
   onClick,
-}) => {
+}: TabProps) {
   return (
     <button
       onClick={onClick}
-      className={`relative gap-[2px] flex flex-1 flex-col items-center justify-center transition-all h-14 ${
+      className={`relative flex h-14 flex-1 flex-col items-center justify-center gap-[2px] transition-all ${
         isSelected
           ? "bg-white shadow-[inset_0_0_2px_0_rgba(17,17,17,0.1)]"
-          : "bg-white border-t-transparent"
+          : "border-t-transparent bg-white"
       }`}
     >
       {isSelected && (
-        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-emerald-400 to-green-500" />
+        <div className="absolute top-0 left-0 h-[2px] w-full bg-gradient-to-r from-emerald-400 to-green-500" />
       )}
       <img
-        className="w-[25px] h-[25px]"
+        className="h-[25px] w-[25px]"
         src={isSelected ? selectedImage : image}
         alt={title}
       />
       <span
-        className={`font-semibold font-["Pretendard"] text-[10px] leading-3 tracking-[0.1px] text-center ${
+        className={`text-center font-["Pretendard"] text-[10px] leading-3 font-semibold tracking-[0.1px] ${
           isSelected ? "text-[#202020]" : "text-stone-300"
         }`}
       >
@@ -38,6 +39,4 @@ const Tab: React.FC<TabProps> = ({
       </span>
     </button>
   );
-};
-
-export default Tab;
+}

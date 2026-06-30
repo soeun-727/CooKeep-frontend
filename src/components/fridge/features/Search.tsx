@@ -1,7 +1,9 @@
-import TextField from "../../ui/TextField";
-import searchIcon from "../../../assets/fridge/search.svg";
-import searchOnIcon from "../../../assets/fridge/search_on.svg";
-import { useIngredientStore } from "../../../stores/useIngredientStore";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+
+import searchIcon from "@/assets/fridge/search.svg";
+import searchOnIcon from "@/assets/fridge/search_on.svg";
+
+import TextField from "@/components/ui/TextField";
 
 //재료 검색
 export default function Search() {
@@ -17,22 +19,10 @@ export default function Search() {
 
   const hasText = searchTerm.trim().length > 0;
   return (
-    <div className="w-full pb-[26px] pt-1">
-      <div className="w-[361px] mx-auto transition-all duration-200">
+    <div className="w-full pt-1 pb-[26px]">
+      <div className="mx-auto w-[361px] transition-all duration-200">
         <div
-          className={`
-          relative
-          w-full 
-          rounded-[6px]
-          overflow-hidden
-          shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-          [&_p]:hidden
-          [&_input]:w-full
-          [&_input]:border-none 
-          [&_input]:outline-none 
-          [&_input::placeholder]:text-[#7D7D7D]
-          ${hasText ? "[&_input]: bg-white" : "[&_input]:bg-[#EBEDF1] "}
-      `}
+          className={`relative w-full overflow-hidden rounded-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_input]:w-full [&_input]:border-none [&_input]:outline-none [&_input::placeholder]:text-[#7D7D7D] [&_p]:hidden ${hasText ? "[&_input]: bg-white" : "[&_input]:bg-[#EBEDF1]"} `}
         >
           <TextField
             value={searchTerm}

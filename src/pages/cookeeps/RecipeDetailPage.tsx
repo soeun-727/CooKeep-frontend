@@ -1,36 +1,37 @@
-import { useNavigate, useParams } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import RecipeDetailUserMeta from "../../components/cookeeps/recipedetail/RecipeDetailUserMeta";
-import RecipeDetailImageCard from "../../components/cookeeps/recipedetail/RecipeDetailImageCard";
-import RecipeDetailContentSection from "../../components/cookeeps/recipedetail/RecipeDetailContentSection";
-import RecipeDetailYoutube from "../../components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import RecipeDetailMemo from "../../components/cookeeps/recipedetail/RecipeDetailMemo";
 import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 import {
-  getWeeklyRecipeDetail,
   WeeklyRecipeDetailResponse,
-} from "../../api/cookeeps";
-import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
+  getWeeklyRecipeDetail,
+} from "@/api/cookeeps";
 import {
   checkRecipeBookmarkStatus,
   checkRecipeLikeStatus,
-} from "../../api/myRecipe";
-import LoadingScreen from "../../components/ui/LoadingScreen";
+} from "@/api/myRecipe";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+
+import RecipeDetailContentSection from "@/components/cookeeps/recipedetail/RecipeDetailContentSection";
+import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDetailImageCard";
+import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
+import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import BackHeader from "@/components/ui/BackHeader";
 
 export default function RecipeDetailPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const records = useCookeepRecordStore((state) => state.records);
+  const records = useCookeepRecordStore(state => state.records);
   const updateRecordLike = useCookeepRecordStore(
-    (state) => state.updateRecordLike,
+    state => state.updateRecordLike,
   );
   const updateRecordBookmark = useCookeepRecordStore(
-    (state) => state.updateRecordBookmark,
+    state => state.updateRecordBookmark,
   );
   const [recipe, setRecipe] = useState<WeeklyRecipeDetailResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const storeRecord = records.find((r) => String(r.dailyRecipeId) === id);
+  const storeRecord = records.find(r => String(r.dailyRecipeId) === id);
   // 화면에 보여줄 데이터 (스토어에 있으면 스토어꺼, 없으면 서버에서 받아온 상세 데이터 사용)
   const isLiked = storeRecord ? storeRecord.liked : recipe?.liked;
   const isBookmarked = storeRecord
@@ -48,7 +49,7 @@ export default function RecipeDetailPage() {
       // 2. ✅ 로컬 상태를 서버에서 준 정확한 값으로 업데이트
       // 만약 updatedData가 없으면(스토어 로직상) 기존처럼 반전 처리
       if (updatedData) {
-        setRecipe((prev) =>
+        setRecipe(prev =>
           prev
             ? {
                 ...prev,
@@ -59,7 +60,7 @@ export default function RecipeDetailPage() {
         );
       } else {
         // 스토어에 records가 없는 경우(상세페이지 직접 진입 등) 대비한 fallback
-        setRecipe((prev) => {
+        setRecipe(prev => {
           if (!prev) return prev;
           const nextLiked = !prev.liked;
           return {
@@ -84,11 +85,11 @@ export default function RecipeDetailPage() {
 
       // 2. ✅ 로컬 상태 동기화
       if (updatedData) {
-        setRecipe((prev) =>
+        setRecipe(prev =>
           prev ? { ...prev, bookmarked: updatedData.bookmarked } : null,
         );
       } else {
-        setRecipe((prev) =>
+        setRecipe(prev =>
           prev ? { ...prev, bookmarked: !prev.bookmarked } : null,
         );
       }
@@ -130,10 +131,15 @@ export default function RecipeDetailPage() {
     fetchFullDetail();
   }, [id]);
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading)
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        로딩 중...
+      </div>
+    );
   if (!recipe)
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center">
         레시피를 찾을 수 없습니다.
       </div>
     );
@@ -146,7 +152,7 @@ export default function RecipeDetailPage() {
       <div className="mx-auto w-full max-w-[450px] px-4">
         {/* 헤더 */}
 
-        <div className="flex flex-col mx-auto pt-[51px]">
+        <div className="mx-auto flex flex-col pt-[51px]">
           {/* 유저 메타 */}
           <RecipeDetailUserMeta
             userName={recipe.nickname}
@@ -157,9 +163,9 @@ export default function RecipeDetailPage() {
           />
 
           {/* 메인 콘텐츠 */}
-          <div className="flex flex-col items-start gap-4 self-stretch w-full">
-            <div className="flex flex-col items-center gap-[10px] w-full">
-              <div className="flex flex-col items-start self-stretch w-full">
+          <div className="flex w-full flex-col items-start gap-4 self-stretch">
+            <div className="flex w-full flex-col items-center gap-[10px]">
+              <div className="flex w-full flex-col items-start self-stretch">
                 <RecipeDetailImageCard
                   images={recipe.recipeImageUrl ? [recipe.recipeImageUrl] : []}
                   title={recipe.title}
@@ -191,7 +197,7 @@ export default function RecipeDetailPage() {
           </div>
 
           {/* 메모 */}
-          <div className="flex flex-col items-center gap-2 w-full mt-4 pb-25">
+          <div className="mt-4 flex w-full flex-col items-center gap-2 pb-25">
             {recipe.description && (
               <RecipeDetailMemo
                 userName={recipe.nickname}

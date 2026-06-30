@@ -1,13 +1,18 @@
 // src/pages/settings/EditEmailPage.tsx
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import checkIcon from "../../assets/signup/check.svg";
-import TextField from "../../components/ui/TextField";
-import Button from "../../components/ui/Button";
+
+import { updateEmail } from "@/api/user";
+import { useEmailUpdateStore } from "@/stores/useEmailUpdateStore";
 import axios from "axios";
-import { updateEmail } from "../../api/user";
-import { useEmailUpdateStore } from "../../stores/useEmailUpdateStore";
-import EmailAuthModal from "../../components/auth/signup/EmailAuthModal"; // 추가
+
+import checkIcon from "@/assets/signup/check.svg";
+
+import EmailAuthModal from "@/components/auth/signup/EmailAuthModal";
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
+
+// 추가
 
 type ModalType = "send" | "verify" | "help"; // 추가
 
@@ -41,7 +46,7 @@ export default function EditEmailPage() {
         setTimeLeft(0);
         setCodeError("인증번호가 만료되었습니다");
       } else {
-        setTimeLeft((prev) => prev - 1);
+        setTimeLeft(prev => prev - 1);
       }
     }, 1000);
     return () => clearTimeout(timer);
@@ -126,13 +131,13 @@ export default function EditEmailPage() {
 
   return (
     <div className="relative min-h-screen bg-[#FAFAFA]">
-      <div className="pt-[241px] w-[361px] mx-auto">
+      <div className="mx-auto w-[361px] pt-[241px]">
         <div className="typo-h1">이메일 주소 변경</div>
 
         <div className="relative mt-[12px]">
           <TextField
             value={email}
-            onChange={(val) => setEmail(val)}
+            onChange={val => setEmail(val)}
             placeholder="새 이메일 주소 입력"
             disabled={isCodeSent}
             errorMessage={
@@ -145,8 +150,7 @@ export default function EditEmailPage() {
                 type="button"
                 onClick={handleSendCode}
                 disabled={!isEmailValid || isSending}
-                className={`w-[102px] h-[24px] rounded-full typo-caption text-white
-                  ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"}`}
+                className={`typo-caption h-[24px] w-[102px] rounded-full text-white ${isEmailValid ? "bg-[#202020]" : "bg-[#C3C3C3]"}`}
               >
                 {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
               </button>
@@ -157,7 +161,7 @@ export default function EditEmailPage() {
         <div className="mt-[5px]">
           <TextField
             value={code}
-            onChange={(v) => {
+            onChange={v => {
               const onlyNumber = v.replace(/[^0-9]/g, "");
               setCode(onlyNumber);
               if (!onlyNumber) {
@@ -186,7 +190,7 @@ export default function EditEmailPage() {
         <button
           type="button"
           onClick={() => setModalType("help")} // 이제 동작함
-          className="mt-6 w-[361px] typo-caption text-[#7D7D7D] text-center underline cursor-pointer bg-transparent"
+          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-[#7D7D7D] underline"
         >
           인증 번호가 발송되지 않나요?
         </button>
@@ -209,11 +213,11 @@ export default function EditEmailPage() {
       {/* 성공 오버레이 */}
       {isSuccess && (
         <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
-          <div className="w-[361px] flex flex-col items-center">
+          <div className="flex w-[361px] flex-col items-center">
             <p className="typo-result-title w-full pt-[295px] pb-[18px]">
               이메일 주소 변경 완료
             </p>
-            <img src={checkIcon} alt="성공" className="w-[40px] h-[40px]" />
+            <img src={checkIcon} alt="성공" className="h-[40px] w-[40px]" />
             <Button
               size="L"
               variant="black"

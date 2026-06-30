@@ -3,12 +3,12 @@ interface Step {
   description: string;
 }
 
-interface Props {
+interface RecipeStepSectionProps {
   steps: Step[];
   difficulty: string;
 }
 
-export default function RecipeStepSection({ steps }: Props) {
+export default function RecipeStepSection({ steps }: RecipeStepSectionProps) {
   // 숫자와 공백을 제거하는 함수
   const formatDescription = (text: string) => {
     // 1. 2. 혹은 1) 2) 형태의 시작 패턴을 제거합니다.
@@ -16,12 +16,12 @@ export default function RecipeStepSection({ steps }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-start gap-[10px] w-full">
+    <div className="flex w-full flex-col items-start gap-[10px]">
       {/* 제목 */}
-      <span className="typo-body2 text-[#7D7D7D] self-stretch">레시피</span>
+      <span className="typo-body2 self-stretch text-[#7D7D7D]">레시피</span>
 
       {/* 단계 리스트 */}
-      <div className="flex flex-col items-start gap-[8px] w-full">
+      <div className="flex w-full flex-col items-start gap-[8px]">
         {/* {steps.map((step) => (
           <div
             key={step.order}
@@ -36,15 +36,15 @@ export default function RecipeStepSection({ steps }: Props) {
             </p>
           </div>
         ))} */}
-        {steps.map((step) => (
-          <div key={step.order} className="flex items-start gap-3 w-full">
+        {steps.map(step => (
+          <div key={step.order} className="flex w-full items-start gap-3">
             {/* 번호 버튼 */}
-            <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-[#202020] text-white text-xs font-semibold flex-shrink-0 ">
+            <div className="flex h-[20px] w-[30px] flex-shrink-0 items-center justify-center rounded-full bg-[#202020] text-xs leading-[16px] font-semibold text-white">
               {step.order}
             </div>
 
             {/* 설명 */}
-            <p className="flex-1 text-[#202020] typo-body2 leading-[22px]">
+            <p className="typo-body2 flex-1 leading-[22px] text-[#202020]">
               {formatDescription(step.description)}
             </p>
           </div>

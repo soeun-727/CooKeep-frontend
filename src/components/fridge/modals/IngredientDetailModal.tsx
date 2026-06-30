@@ -1,28 +1,33 @@
 import { useCallback, useEffect, useState } from "react";
-import {
-  useIngredientStore,
-  type Ingredient,
-} from "../../../stores/useIngredientStore";
-import character from "../../../assets/character/tip_char.svg";
-import memoIcon from "../../../assets/fridge/edit_memo.svg";
-import fridgeIcon from "../../../assets/fridge/fridge.svg";
-import freezerIcon from "../../../assets/fridge/freezer.svg";
-import pantryIcon from "../../../assets/fridge/pantry.svg";
-import bubbleTail from "../../../assets/fridge/bubble_tail_left.svg";
-import EditModal from "../../ui/EditModal";
-import StorageEditor from "../addItems/components/edit/StorageEditor";
-import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
-import QuantityEditor from "../addItems/components/edit/QuantityEditor";
+
 import {
   getIngredientDetail,
-  updateIngredientStorage,
   updateIngredientDate,
-  updateIngredientQuantity,
   updateIngredientMemo,
-} from "../../../api/ingredient";
-import { getKoreanUnit } from "../../../utils/mapping";
+  updateIngredientQuantity,
+  updateIngredientStorage,
+} from "@/api/ingredient";
+import {
+  type Ingredient,
+  useIngredientStore,
+} from "@/stores/useIngredientStore";
 
-interface Props {
+import character from "@/assets/character/tip_char.svg";
+import bubbleTail from "@/assets/fridge/bubble_tail_left.svg";
+import memoIcon from "@/assets/fridge/edit_memo.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+
+import EditModal from "@/components/ui/EditModal";
+
+import { getKoreanUnit } from "@/utils/mapping";
+
+import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
+import QuantityEditor from "../addItems/components/edit/QuantityEditor";
+import StorageEditor from "../addItems/components/edit/StorageEditor";
+
+interface IngredientDetailModalProps {
   ingredient: Ingredient;
   onClose: () => void;
   onUpdate: () => void;
@@ -32,7 +37,7 @@ export default function IngredientDetailModal({
   ingredient,
   onClose,
   onUpdate,
-}: Props) {
+}: IngredientDetailModalProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [memo, setMemo] = useState("");
@@ -99,7 +104,7 @@ export default function IngredientDetailModal({
   if (isLoading)
     return (
       <div className="fixed inset-0 z-60 flex items-center justify-center bg-black/40">
-        <div className="bg-white p-6 rounded-lg text-sm">정보 로딩 중...</div>
+        <div className="rounded-lg bg-white p-6 text-sm">정보 로딩 중...</div>
       </div>
     );
 
@@ -111,36 +116,36 @@ export default function IngredientDetailModal({
         className="absolute inset-0 bg-black/40"
         onClick={handleModalClose}
       />
-      <div className="relative z-10 w-full max-w-[330px] max-h-[90vh] overflow-y-auto no-scrollbar rounded-[6px] px-5 py-6 bg-gradient-to-b from-[#F5F5F5] to-white shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)] animate-fadeIn">
-        <div className="flex w-full max-w-[290px] flex-col items-center gap-5 mx-auto">
+      <div className="no-scrollbar animate-fadeIn relative z-10 max-h-[90vh] w-full max-w-[330px] overflow-y-auto rounded-[6px] bg-gradient-to-b from-[#F5F5F5] to-white px-5 py-6 shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+        <div className="mx-auto flex w-full max-w-[290px] flex-col items-center gap-5">
           <div className="flex flex-col items-center gap-2 self-stretch">
-            <span className="text-[16px] font-semibold leading-6 text-[#202020] text-center">
+            <span className="text-center text-[16px] leading-6 font-semibold text-[#202020]">
               상세정보
             </span>
-            <div className="w-full h-[0.5px] bg-[#C3C3C3]" />
+            <div className="h-[0.5px] w-full bg-[#C3C3C3]" />
           </div>
 
           <div className="flex flex-col items-center gap-4 self-stretch">
             <div className="flex w-full items-center gap-[14px]">
-              <div className="flex h-[86px] w-[86px] items-center justify-center rounded-[10px] bg-[#E6FBEB] flex-shrink-0">
+              <div className="flex h-[86px] w-[86px] flex-shrink-0 items-center justify-center rounded-[10px] bg-[#E6FBEB]">
                 <img
                   src={displayData.imageUrl || displayData.image}
                   alt={displayData.name}
-                  className="h-[60px] w-[60px] rounded-[6px] object-cover aspect-square"
+                  className="aspect-square h-[60px] w-[60px] rounded-[6px] object-cover"
                 />
               </div>
               <div className="flex flex-1 flex-col items-start gap-1">
-                <span className="w-full truncate text-[16px] font-semibold leading-5 text-[#202020]">
+                <span className="w-full truncate text-[16px] leading-5 font-semibold text-[#202020]">
                   {displayData.name}
                 </span>
                 <div className="flex flex-col items-start gap-2">
-                  <span className="text-[12px] text-[#C3C3C3] leading-4">
+                  <span className="text-[12px] leading-4 text-[#C3C3C3]">
                     {displayData.leftDays < 0
                       ? `D+${Math.abs(displayData.leftDays)}`
                       : `D-${displayData.leftDays}`}
                   </span>
                   <span
-                    className={`text-[12px] font-semibold leading-4 ${
+                    className={`text-[12px] leading-4 font-semibold ${
                       displayData.leftDays < 0
                         ? "text-[#D91F1F]" // 지났을 때 빨간색
                         : displayData.leftDays > 3
@@ -159,20 +164,20 @@ export default function IngredientDetailModal({
             </div>
 
             <div className="flex flex-col items-start gap-[14px] self-stretch">
-              <div className="flex w-full items-center rounded-[6px] bg-white px-3 py-3 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] gap-2">
+              <div className="flex w-full items-center gap-2 rounded-[6px] bg-white px-3 py-3 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
                 {isEditing ? (
                   <input
                     type="text"
                     value={memo}
                     autoFocus
-                    onChange={(e) => setMemo(e.target.value)}
+                    onChange={e => setMemo(e.target.value)}
                     onBlur={handleSaveMemo}
-                    onKeyDown={(e) => e.key === "Enter" && handleSaveMemo()}
-                    className="flex-1 text-[14px] font-medium text-[#202020] border-b border-[#C3C3C3] focus:outline-none"
+                    onKeyDown={e => e.key === "Enter" && handleSaveMemo()}
+                    className="flex-1 border-b border-[#C3C3C3] text-[14px] font-medium text-[#202020] focus:outline-none"
                   />
                 ) : (
                   <span
-                    className={`flex-1 truncate text-[14px] font-medium leading-5 ${memo ? "text-[#202020]" : "text-[#C3C3C3]"}`}
+                    className={`flex-1 truncate text-[14px] leading-5 font-medium ${memo ? "text-[#202020]" : "text-[#C3C3C3]"}`}
                   >
                     {memo || "메모를 입력해주세요"}
                   </span>
@@ -181,18 +186,18 @@ export default function IngredientDetailModal({
                   <img
                     src={memoIcon}
                     alt="수정"
-                    className="w-6 h-6 aspect-square"
+                    className="aspect-square h-6 w-6"
                   />
                 </button>
               </div>
 
               <div className="flex flex-col items-start gap-[6px] self-stretch">
-                <div className="flex h-14 w-full gap-[3px] items-center">
+                <div className="flex h-14 w-full items-center gap-[3px]">
                   <div
-                    className="flex-1 h-full flex flex-col justify-center items-center bg-[#EBEBEB] py-[5px] rounded-l-[6px] cursor-pointer"
+                    className="flex h-full flex-1 cursor-pointer flex-col items-center justify-center rounded-l-[6px] bg-[#EBEBEB] py-[5px]"
                     onClick={() => setOpenEditor("storage")}
                   >
-                    <span className="text-[12px] font-semibold text-[#202020] leading-4 truncate self-stretch text-center">
+                    <span className="self-stretch truncate text-center text-[12px] leading-4 font-semibold text-[#202020]">
                       보관장소
                     </span>
                     <img
@@ -201,15 +206,15 @@ export default function IngredientDetailModal({
                           displayData.storage || displayData.category
                         ]
                       }
-                      className="w-5 h-5 brightness-0"
+                      className="h-5 w-5 brightness-0"
                       alt="icon"
                     />
                   </div>
                   <div
-                    className="flex-1 h-full flex flex-col justify-center items-center bg-[#EBEBEB] py-[5px] cursor-pointer"
+                    className="flex h-full flex-1 cursor-pointer flex-col items-center justify-center bg-[#EBEBEB] py-[5px]"
                     onClick={() => setOpenEditor("expiry")}
                   >
-                    <span className="text-[12px] font-semibold text-[#202020] leading-4 truncate self-stretch text-center">
+                    <span className="self-stretch truncate text-center text-[12px] leading-4 font-semibold text-[#202020]">
                       유통기한
                     </span>
                     <span className="text-[12px] leading-4 text-[#202020]">
@@ -217,10 +222,10 @@ export default function IngredientDetailModal({
                     </span>
                   </div>
                   <div
-                    className="flex-1 h-full flex flex-col justify-center items-center bg-[#EBEBEB] py-[5px] rounded-r-[6px] cursor-pointer"
+                    className="flex h-full flex-1 cursor-pointer flex-col items-center justify-center rounded-r-[6px] bg-[#EBEBEB] py-[5px]"
                     onClick={() => setOpenEditor("quantity")}
                   >
-                    <span className="text-[12px] font-semibold text-[#202020] leading-4 truncate self-stretch text-center">
+                    <span className="self-stretch truncate text-center text-[12px] leading-4 font-semibold text-[#202020]">
                       수량/단위
                     </span>
                     <span className="text-[12px] leading-4 text-[#202020]">
@@ -230,8 +235,8 @@ export default function IngredientDetailModal({
                   </div>
                 </div>
                 <div className="flex flex-col items-end gap-1 self-stretch">
-                  <div className="flex justify-end items-end gap-1">
-                    <span className="text-[10px] font-semibold text-[#C3C3C3] leading-4">
+                  <div className="flex items-end justify-end gap-1">
+                    <span className="text-[10px] leading-4 font-semibold text-[#C3C3C3]">
                       등록일자{" "}
                       {displayData.createdAt
                         ? displayData.createdAt.replace(/-/g, ".")
@@ -243,31 +248,31 @@ export default function IngredientDetailModal({
             </div>
 
             {displayTip && (
-              <div className="flex flex-col items-center gap-5 self-stretch mt-1">
-                <div className="flex items-end justify-center gap-5 w-full relative">
+              <div className="mt-1 flex flex-col items-center gap-5 self-stretch">
+                <div className="relative flex w-full items-end justify-center gap-5">
                   <img
                     src={character}
                     alt="tip character"
-                    className="w-[64px] h-[56px] flex-shrink-0 relative z-30"
+                    className="relative z-30 h-[56px] w-[64px] flex-shrink-0"
                   />
-                  <div className="relative flex-1 max-w-[178px]">
+                  <div className="relative max-w-[178px] flex-1">
                     <img
                       src={bubbleTail}
                       alt=""
-                      className="absolute left-[-14px] bottom-[12px] w-[27.2px] z-20"
+                      className="absolute bottom-[12px] left-[-14px] z-20 w-[27.2px]"
                     />
-                    <div className="relative z-10 flex w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] border-[#D1D1D1] bg-white px-[17.6px] py-[10px] min-h-[56px] shadow-sm">
-                      <span className="text-[8px] font-semibold leading-[12px] text-[#32E389] self-stretch">
+                    <div className="relative z-10 flex min-h-[56px] w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] border-[#D1D1D1] bg-white px-[17.6px] py-[10px] shadow-sm">
+                      <span className="self-stretch text-[8px] leading-[12px] font-semibold text-[#32E389]">
                         TIP
                       </span>
-                      <p className="text-[10px] font-medium leading-[14px] text-[#202020] self-stretch break-words">
+                      <p className="self-stretch text-[10px] leading-[14px] font-medium break-words text-[#202020]">
                         {displayTip}
                       </p>
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-col items-center gap-1 self-stretch">
-                  <p className="text-center text-[10px] font-normal leading-[14px] text-[#C3C3C3]">
+                  <p className="text-center text-[10px] leading-[14px] font-normal text-[#C3C3C3]">
                     AI가 제공하는 정보에는 실수가 있을 수 있습니다
                     <br />
                     관련 정보를 확인 후 활용해주세요
@@ -283,7 +288,7 @@ export default function IngredientDetailModal({
             >
               <StorageEditor
                 value={displayData.storage || displayData.category}
-                onSave={async (val) => {
+                onSave={async val => {
                   try {
                     await updateIngredientStorage(
                       Number(ingredient.id),
@@ -307,7 +312,7 @@ export default function IngredientDetailModal({
             >
               <ExpiryEditor
                 value={displayData.expirationDate || displayData.expiryDate}
-                onSave={async (val) => {
+                onSave={async val => {
                   try {
                     await updateIngredientDate(Number(ingredient.id), val);
                     await changeExpiryDate(ingredient.id, val);
@@ -331,7 +336,7 @@ export default function IngredientDetailModal({
             >
               <QuantityEditor
                 value={displayData.quantity}
-                onSave={async (val) => {
+                onSave={async val => {
                   try {
                     await updateIngredientQuantity(
                       Number(ingredient.id),

@@ -1,11 +1,13 @@
 // src/pages/recipe/confirm/RecipeConfirmPage.tsx
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import BackHeader from "../../components/ui/BackHeader";
-import { useRecipeFlowStore } from "../../stores/useRecipeFlowStore";
-import SelectedIngredientList from "../../components/recipe/main/confirm/SelectedIngredientList";
-import DifficultySelector from "../../components/recipe/main/confirm/DifficultySelector";
-import RecommendButton from "../../components/recipe/main/confirm/RecommendButton";
+import { useNavigate } from "react-router-dom";
+
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
+import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
+import RecommendButton from "@/components/recipe/main/confirm/RecommendButton";
+import SelectedIngredientList from "@/components/recipe/main/confirm/SelectedIngredientList";
+import BackHeader from "@/components/ui/BackHeader";
 
 export default function RecipeConfirmPage() {
   const navigate = useNavigate();
@@ -23,10 +25,10 @@ export default function RecipeConfirmPage() {
   }, [selectedIngredients]);
 
   return (
-    <div className="flex flex-col w-full pb-32">
+    <div className="flex w-full flex-col pb-32">
       <BackHeader title="레시피 추천" onBack={() => navigate(-1)} />
 
-      <div className="px-5 mt-[70px] flex flex-col gap-8">
+      <div className="mt-[70px] flex flex-col gap-8 px-5">
         <SelectedIngredientList ingredients={selectedIngredients} />
 
         <DifficultySelector />

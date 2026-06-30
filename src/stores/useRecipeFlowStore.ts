@@ -1,17 +1,18 @@
 // src/stores/useRecipeFlowStore.ts
-import { create } from "zustand";
-import type { Ingredient } from "./useIngredientStore";
-import type { AiRecipeResponse, Difficulty } from "../types/aiRecipe";
 import {
   completeAiRecipe,
   generateAiRecipe,
   retryAiRecipe,
-} from "../api/aiRecipe";
-import { getAiSessionDetail } from "../api/aiSession";
+} from "@/api/aiRecipe";
+import { getAiSessionDetail } from "@/api/aiSession";
+import axios from "axios";
+import { create } from "zustand";
+
+import type { AiRecipeResponse, Difficulty } from "@/types/aiRecipe";
+
+import type { Ingredient } from "./useIngredientStore";
 import { useRewardStore } from "./useRewardStore";
 import type { RewardType } from "./useRewardStore";
-
-import axios from "axios";
 
 const parseAiError = (error: unknown): string => {
   if (!axios.isAxiosError(error)) {
@@ -86,14 +87,14 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
   isCompleted: false,
   hasExpiringIngredient: false,
 
-  setSelectedIngredients: (items) => set({ selectedIngredients: items }),
+  setSelectedIngredients: items => set({ selectedIngredients: items }),
 
-  setDifficulty: (difficulty) => set({ difficulty }),
+  setDifficulty: difficulty => set({ difficulty }),
 
   generateRecipe: async () => {
     const { selectedIngredients, difficulty, sessionId, recipeHistory } = get();
 
-    const hasDdayIngredient = selectedIngredients.some((i) => i.dDay === 0);
+    const hasDdayIngredient = selectedIngredients.some(i => i.dDay === 0);
 
     set({
       hasExpiringIngredient: hasDdayIngredient,
@@ -109,7 +110,7 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
       if (sessionId === null) {
         // 처음 생성 시
         response = await generateAiRecipe({
-          ingredientIds: selectedIngredients.map((i) => i.id),
+          ingredientIds: selectedIngredients.map(i => i.id),
           difficulty,
         });
       } else {
@@ -117,7 +118,7 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
         response = await retryAiRecipe({
           sessionId,
           difficulty,
-          ingredientIds: selectedIngredients.map((i) => i.id),
+          ingredientIds: selectedIngredients.map(i => i.id),
         });
       }
 
@@ -157,8 +158,8 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
 
       // AI가 응답한 content(JSON 문자열)를 AiRecipeResponse 구조로 변환
       const parsedHistory: AiRecipeResponse[] = data.messages
-        .filter((msg) => msg.role === "AI")
-        .map((msg) => {
+        .filter(msg => msg.role === "AI")
+        .map(msg => {
           try {
             const parsed = JSON.parse(msg.content);
 
@@ -222,7 +223,7 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
       rewards.sort((a, b) => PRIORITY[a] - PRIORITY[b]);
 
       // 순서대로 enqueue
-      rewards.forEach((r) => {
+      rewards.forEach(r => {
         useRewardStore.getState().enqueue(r);
       });
 

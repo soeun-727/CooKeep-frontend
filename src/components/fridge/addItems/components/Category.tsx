@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 
 interface CategoryProps {
   image: string;
@@ -6,26 +6,26 @@ interface CategoryProps {
   isSelected: boolean;
   onSelect: () => void;
 }
+function Category({
+  image,
+  name,
+  isSelected = false,
+  onSelect,
+}: CategoryProps) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className={`flex h-8 min-w-12 rounded-[6px] ${isSelected ? "bg-gray-200" : "bg-white"}`}
+    >
+      <div className="flex items-center justify-center gap-[6px] p-3">
+        <img src={image} className="h-4 w-4" />
+        <span className="text-[10px] leading-none font-semibold whitespace-nowrap text-zinc-500">
+          {name}
+        </span>
+      </div>
+    </button>
+  );
+}
 
-const Category: React.FC<CategoryProps> = React.memo(
-  ({ image, name, isSelected = false, onSelect }) => {
-    return (
-      <button
-        type="button"
-        onClick={onSelect}
-        className={`min-w-12 h-8 rounded-[6px] flex
-        ${isSelected ? "bg-gray-200" : "bg-white"}`}
-      >
-        <div className="flex gap-[6px] p-3 items-center justify-center">
-          <img src={image} className="w-4 h-4" />
-          <span className="font-semibold text-[10px] text-zinc-500 whitespace-nowrap leading-none">
-            {name}
-          </span>
-        </div>
-      </button>
-    );
-  },
-);
-Category.displayName = "Category";
-
-export default Category;
+export default memo(Category);

@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { PLANT_DATA } from "../../../constants/plantData";
-import Button from "../../ui/Button";
+import { useEffect, useState } from "react";
+
+import Button from "@/components/ui/Button";
+
+import { PLANT_DATA } from "@/constants/plantData";
 
 interface PlantSelectModalProps {
   isOpen: boolean;
@@ -8,11 +10,11 @@ interface PlantSelectModalProps {
   harvestedPlantNames: string[];
 }
 
-const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
+export default function PlantSelectModal({
   isOpen,
   onConfirm,
   harvestedPlantNames,
-}) => {
+}: PlantSelectModalProps) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   // 모달이 열릴 때마다 선택 초기화
@@ -37,7 +39,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
       <div className="absolute inset-0 bg-black/40" />
 
       {/* 모달 영역 */}
-      <div className="relative w-[258px] bg-white rounded-[10px] flex flex-col items-center pt-[35px] pb-[25px] px-7 gap-4">
+      <div className="relative flex w-[258px] flex-col items-center gap-4 rounded-[10px] bg-white px-7 pt-[35px] pb-[25px]">
         <h2 className="typo-body text-center">
           키우고 싶은 식재료를
           <br />
@@ -45,8 +47,8 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
         </h2>
 
         {/* 그리드 영역 */}
-        <div className="grid grid-cols-3 gap-2 justify-items-center w-full">
-          {PLANT_DATA.map((plant) => {
+        <div className="grid w-full grid-cols-3 justify-items-center gap-2">
+          {PLANT_DATA.map(plant => {
             const isHarvested = harvestedPlantNames.includes(plant.text);
 
             return (
@@ -58,21 +60,20 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                   if (isHarvested) return;
                   setSelectedId(plant.id);
                 }}
-                className="flex flex-col items-center group transition-all"
+                className="group flex flex-col items-center transition-all"
               >
                 {/* 아이콘 컨테이너 */}
                 <div
-                  className={`relative w-[60px] h-[60px] flex flex-col items-center justify-center rounded-[6px] transition-all gap-[2px] overflow-hidden
-                ${
-                  selectedId === plant.id
-                    ? "bg-[var(--color-green-light)]"
-                    : "bg-white group-hover:bg-gray-100"
-                }`}
+                  className={`relative flex h-[60px] w-[60px] flex-col items-center justify-center gap-[2px] overflow-hidden rounded-[6px] transition-all ${
+                    selectedId === plant.id
+                      ? "bg-[var(--color-green-light)]"
+                      : "bg-white group-hover:bg-gray-100"
+                  }`}
                 >
                   <img
-                    src={plant.img} // 이게 제일 깔끔
+                    src={plant.img}
                     alt={plant.text}
-                    className="w-[48px] h-[48px]"
+                    className="h-[48px] w-[48px]"
                     loading="lazy"
                   />
 
@@ -80,9 +81,9 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                     {plant.text}
                   </span>
                   {isHarvested && (
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                      <div className="flex items-center justify-center w-[43px] h-5 bg-[var(--color-green-light)]/90 border-[0.5px] border-[var(--color-green-deep)] rounded-[3px]">
-                        <span className="text-[var(--color-green-deep)] text-[10px] font-semibold leading-none">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+                      <div className="flex h-5 w-[43px] items-center justify-center rounded-[3px] border-[0.5px] border-[var(--color-green-deep)] bg-[var(--color-green-light)]/90">
+                        <span className="text-[10px] leading-none font-semibold text-[var(--color-green-deep)]">
                           수확완료
                         </span>
                       </div>
@@ -97,7 +98,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
         {/* 확인 버튼 */}
         <Button
           variant="black"
-          className="!w-[224px] !h-11"
+          className="!h-11 !w-[224px]"
           onClick={handleConfirm}
           disabled={!selectedId}
         >
@@ -106,6 +107,4 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
       </div>
     </div>
   );
-};
-
-export default PlantSelectModal;
+}

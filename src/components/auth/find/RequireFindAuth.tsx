@@ -1,14 +1,15 @@
 // src/components/auth/find/RequireFindAuth.tsx
-import { Navigate } from "react-router-dom";
 import type { ReactNode } from "react";
-import { useFindPasswordStore } from "../../../stores/useFindPasswordStore";
+import { Navigate } from "react-router-dom";
 
-type Props = {
+import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
+
+interface RequireFindAuthProps {
   children: ReactNode;
-};
+}
 
-export default function RequireFindAuth({ children }: Props) {
-  const isVerified = useFindPasswordStore((s) => s.isVerified);
+export default function RequireFindAuth({ children }: RequireFindAuthProps) {
+  const isVerified = useFindPasswordStore(s => s.isVerified);
 
   // 개발 환경에서는 인증 우회
   // if (import.meta.env.DEV) {

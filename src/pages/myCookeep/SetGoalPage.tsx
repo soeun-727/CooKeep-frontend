@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Goal from "../../components/auth/onboarding/Goal";
-import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
-import BackHeader from "../../components/ui/BackHeader";
-import Button from "../../components/ui/Button";
-import GoalcheckModal from "../../components/myCookeep/modals/GoalCheckModal";
-import { GOAL_TYPE_MAP } from "../../utils/mapping";
-import { updateWeeklyGoal } from "../../api/user";
+
+import { updateWeeklyGoal } from "@/api/user";
 import axios from "axios";
+
+import Goal from "@/components/auth/onboarding/Goal";
+import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
+import GoalcheckModal from "@/components/myCookeep/modals/GoalCheckModal";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+
+import { GOAL_TYPE_MAP } from "@/utils/mapping";
 
 export default function SetGoalPage() {
   const navigate = useNavigate();
@@ -44,7 +47,7 @@ export default function SetGoalPage() {
     if (isLastStep) {
       setIsModalOpen(true);
     } else {
-      setStep((prev) => prev + 1);
+      setStep(prev => prev + 1);
     }
   };
   const handleConfirm = async () => {
@@ -87,8 +90,8 @@ export default function SetGoalPage() {
         onBack={() => (step === 0 ? navigate(-1) : setStep(0))}
       />
 
-      <div className="min-h-screen relative pb-32 flex flex-col items-center">
-        <main className="w-full max-w-[361px] mt-10">{STEPS[step]}</main>
+      <div className="relative flex min-h-screen flex-col items-center pb-32">
+        <main className="mt-10 w-full max-w-[361px]">{STEPS[step]}</main>
 
         <footer className="fixed bottom-0 pb-[34px]">
           <Button

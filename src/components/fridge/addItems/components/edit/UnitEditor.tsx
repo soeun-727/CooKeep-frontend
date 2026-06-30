@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import Button from "../../../../ui/Button";
-import { getKoreanUnit } from "../../../../../utils/mapping";
+
+import Button from "@/components/ui/Button";
+
+import { getKoreanUnit } from "@/utils/mapping";
 
 interface QuantityEditorProps {
   value: string;
@@ -36,11 +38,11 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
   }, [value]);
 
   return (
-    <div className="flex flex-col gap-[18px] items-center mt-[18px]">
+    <div className="mt-[18px] flex flex-col items-center gap-[18px]">
       {!isCustomInput ? (
         <>
           <div className="flex flex-col gap-3">
-            {units.map((unit) => {
+            {units.map(unit => {
               const isInitialValue = unit === koreanValue;
               const isNewlySelected = selectedUnit === unit && !isInitialValue;
               return (
@@ -48,14 +50,13 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
                   key={unit}
                   disabled={isInitialValue}
                   onClick={() => handleQuickSelect(unit)}
-                  className={`h-11 w-[361px] rounded-[10px] typo-body !font-bold transition-all
-                ${
-                  isInitialValue
-                    ? "bg-gray-200 text-zinc-500 cursor-not-allowed"
-                    : isNewlySelected
-                      ? "bg-[var(--color-green-light)] text-black border border-[var(--color-green-deep)]"
-                      : "border border-[#D1D1D1] text-zinc-500 active:bg-zinc-200"
-                }`}
+                  className={`typo-body h-11 w-[361px] rounded-[10px] !font-bold transition-all ${
+                    isInitialValue
+                      ? "cursor-not-allowed bg-gray-200 text-zinc-500"
+                      : isNewlySelected
+                        ? "border border-[var(--color-green-deep)] bg-[var(--color-green-light)] text-black"
+                        : "border border-[#D1D1D1] text-zinc-500 active:bg-zinc-200"
+                  }`}
                 >
                   {unit}
                 </button>
@@ -64,12 +65,12 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
           </div>
 
           {/* 하단 제어 버튼 */}
-          <div className="flex flex-col pb-16 mt-[-4px]">
+          <div className="mt-[-4px] flex flex-col pb-16">
             <Button
               size="S"
               variant="black"
               onClick={() => setIsCustomInput(true)}
-              className="!bg-white border border-[#D1D1D1] text-zinc-500"
+              className="border border-[#D1D1D1] !bg-white text-zinc-500"
             >
               직접 입력하기
             </Button>
@@ -77,14 +78,14 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
         </>
       ) : (
         /* 3. 직접 입력 모드 UI */
-        <div className="flex flex-col items-center gap-6 w-full pb-16">
+        <div className="flex w-full flex-col items-center gap-6 pb-16">
           <div className="w-full px-10">
             <input
               type="string"
               autoFocus
               value={customValue}
-              onChange={(e) => setCustomValue(e.target.value)}
-              className="w-full text-center text-3xl font-bold border-b-2 border-black pb-2 outline-none"
+              onChange={e => setCustomValue(e.target.value)}
+              className="w-full border-b-2 border-black pb-2 text-center text-3xl font-bold outline-none"
               placeholder="개"
             />
           </div>
