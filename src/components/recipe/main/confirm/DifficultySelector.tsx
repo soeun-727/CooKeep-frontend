@@ -2,7 +2,7 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import easyImg from "@/assets/recipe/main/easyImg.svg";
 import hardImg from "@/assets/recipe/main/hardImg.svg";
-import normalImg from "@/assets/recipe/main/normalImg.svg";
+import normalImg from "@/assets/recipe/main/temp_recipe_title.svg";
 
 const options = [
   {
