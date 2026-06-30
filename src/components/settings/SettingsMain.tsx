@@ -90,7 +90,7 @@ export default function SettingsMain() {
               alt="logout"
               className="aspect-square h-6 w-6"
             />
-            <span className="text-[14px] leading-[20px] font-medium text-[#111]">
+            <span className="text-[14px] font-medium leading-[20px] text-gray-80">
               로그아웃
             </span>
           </button>
@@ -103,7 +103,7 @@ export default function SettingsMain() {
               } catch (e) {}
               navigate("/settings/withdraw");
             }}
-            className="mt-[42px] text-[12px] leading-[16px] font-normal text-[#7D7D7D] underline"
+            className="mt-[42px] text-[12px] font-normal leading-[16px] text-gray-50 underline"
           >
             탈퇴하기
           </button>

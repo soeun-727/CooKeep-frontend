@@ -35,11 +35,11 @@ export default function Button({
   `;
 
   const variantStyles = {
-    black: "bg-[#111111] text-white",
-    green: "bg-[#32E389] text-white",
+    black: "bg-gray-100 text-gray-0",
+    green: "bg-green text-gray-0",
   };
 
-  const disabledStyle = "bg-[#C3C3C3] text-white cursor-not-allowed";
+  const disabledStyle = "bg-gray-30 text-gray-0 cursor-not-allowed";
 
   return (
     <button

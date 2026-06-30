@@ -1,0 +1,249 @@
+[33m0a9d267[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbugfix/refactor-css[m[33m, [m[1;31morigin/bugfix/refactor-css[m[33m)[m HEAD@{0}: commit (merge): merge: 충돌 해결
+[33m59bef84[m HEAD@{1}: commit: refactor: hex 값 색들 제거
+[33m6081819[m HEAD@{2}: commit: refactor: 배경 색 추가
+[33m0e57712[m HEAD@{3}: commit: refactor: 불필요한 주석 삭제
+[33m596dfd8[m HEAD@{4}: commit: refactor: 불필요한 주석 삭제
+[33mbf4a615[m HEAD@{5}: commit: refactor: zinc, stone 등 색 제거
+[33m6dfc9a9[m HEAD@{6}: commit: refactor: gradient 정리
+[33m36b3c8a[m HEAD@{7}: commit: refactor: rgb 값으로 되어있는 색상들 변경
+[33md35e8fa[m HEAD@{8}: commit: refactor: 색상 등록된 변수 활용하도록 수정
+[33m6791b0b[m HEAD@{9}: commit: refactor: 색상 등록된 변수 활용하도록 수정
+[33md5b1054[m HEAD@{10}: commit: refactor: 블러 추가
+[33mf4c6fcd[m HEAD@{11}: commit: refactor: 색 변수값으로 변경
+[33mfe4a960[m HEAD@{12}: commit: refactor: global.css, typography.css 추가
+[33m3ec720c[m[33m ([m[1;32mdevelop[m[33m)[m HEAD@{13}: checkout: moving from develop to bugfix/refactor-css
+[33m3ec720c[m[33m ([m[1;32mdevelop[m[33m)[m HEAD@{14}: checkout: moving from main to develop
+[33m373e042[m[33m ([m[1;33mtag: [m[1;33mv1.0.2[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{15}: checkout: moving from develop to main
+[33m3ec720c[m[33m ([m[1;32mdevelop[m[33m)[m HEAD@{16}: merge v1.0.2: Merge made by the 'ort' strategy.
+[33m7209942[m HEAD@{17}: checkout: moving from main to develop
+[33m373e042[m[33m ([m[1;33mtag: [m[1;33mv1.0.2[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{18}: checkout: moving from main to main
+[33m373e042[m[33m ([m[1;33mtag: [m[1;33mv1.0.2[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m HEAD@{19}: merge release/v1.0.2: Merge made by the 'ort' strategy.
+[33md643bef[m[33m ([m[1;33mtag: [m[1;33mv1.0.1[m[33m)[m HEAD@{20}: checkout: moving from release/v1.0.2 to main
+[33m7209942[m HEAD@{21}: checkout: moving from develop to release/v1.0.2
+[33m7209942[m HEAD@{22}: pull origin develop: Merge made by the 'ort' strategy.
+[33m5e4793b[m HEAD@{23}: checkout: moving from bugfix/ui to develop
+[33m1d52e12[m[33m ([m[1;31morigin/bugfix/ui[m[33m, [m[1;32mbugfix/ui[m[33m)[m HEAD@{24}: commit: fix: PC 대응 - 클릭 핸들러 추가
+[33med07909[m HEAD@{25}: commit: fix: 온보딩 스와이프 이슈 해결
+[33m8eca560[m HEAD@{26}: pull origin develop: Fast-forward
+[33m0f15f30[m HEAD@{27}: checkout: moving from develop to bugfix/ui
+[33m5e4793b[m HEAD@{28}: pull origin develop: Merge made by the 'ort' strategy.
+[33maa3c8f8[m HEAD@{29}: checkout: moving from main to develop
+[33md643bef[m[33m ([m[1;33mtag: [m[1;33mv1.0.1[m[33m)[m HEAD@{30}: checkout: moving from develop to main
+[33maa3c8f8[m HEAD@{31}: merge v1.0.1: Merge made by the 'ort' strategy.
+[33m734adc8[m HEAD@{32}: checkout: moving from main to develop
+[33md643bef[m[33m ([m[1;33mtag: [m[1;33mv1.0.1[m[33m)[m HEAD@{33}: checkout: moving from main to main
+[33md643bef[m[33m ([m[1;33mtag: [m[1;33mv1.0.1[m[33m)[m HEAD@{34}: merge release/v1.0.1: Merge made by the 'ort' strategy.
+[33mb18bc80[m HEAD@{35}: checkout: moving from release/v1.0.1 to main
+[33m734adc8[m HEAD@{36}: merge develop: Fast-forward
+[33m7035b56[m HEAD@{37}: checkout: moving from develop to release/v1.0.1
+[33m734adc8[m HEAD@{38}: pull origin develop: Fast-forward
+[33mb18bc80[m HEAD@{39}: checkout: moving from hotfix/chore to develop
+[33m50cb1f0[m[33m ([m[1;31morigin/hotfix/chore[m[33m, [m[1;32mhotfix/chore[m[33m)[m HEAD@{40}: commit: chore: pr 템플릿 수정 및 github actions 추가
+[33mb18bc80[m HEAD@{41}: checkout: moving from develop to hotfix/chore
+[33mb18bc80[m HEAD@{42}: checkout: moving from main to develop
+[33mb18bc80[m HEAD@{43}: merge develop: Fast-forward
+[33m7035b56[m HEAD@{44}: checkout: moving from develop to main
+[33mb18bc80[m HEAD@{45}: pull: Fast-forward
+[33m85f604f[m[33m ([m[1;32mfeature/status-bar[m[33m)[m HEAD@{46}: checkout: moving from feature/pwa-builder to develop
+[33m51173d0[m[33m ([m[1;31morigin/feature/pwa-builder[m[33m, [m[1;32mfeature/pwa-builder[m[33m)[m HEAD@{47}: commit: fix: 앱 id 수정
+[33m755c3dd[m HEAD@{48}: commit: chore: assetlinks.json 복사
+[33mbd1f20f[m HEAD@{49}: checkout: moving from main to feature/pwa-builder
+[33m7035b56[m HEAD@{50}: merge release/v1.0.1: Fast-forward
+[33m8b62523[m[33m ([m[1;33mtag: [m[1;33mui[m[33m)[m HEAD@{51}: checkout: moving from release/v1.0.1 to main
+[33m7035b56[m HEAD@{52}: pull origin develop: Fast-forward
+[33m85f604f[m[33m ([m[1;32mfeature/status-bar[m[33m)[m HEAD@{53}: checkout: moving from feature/pwa-builder to release/v1.0.1
+[33mbd1f20f[m HEAD@{54}: commit: chore: manifest에 카테고리 추가
+[33m30d36d4[m HEAD@{55}: commit: feat: 192 앱아이콘 및 스크린 샷 추가
+[33m52f31f4[m HEAD@{56}: commit: chore: manifest 점검
+[33maece7b0[m HEAD@{57}: commit: feat: display_override, lang, dir 추가
+[33mb303308[m HEAD@{58}: commit: feat: prefer_related_applications 추가
+[33m2368a6e[m HEAD@{59}: commit: fix: 앱 id 추가
+[33mace0a0c[m HEAD@{60}: commit: fix: 아이콘 크기 수정
+[33m85f604f[m[33m ([m[1;32mfeature/status-bar[m[33m)[m HEAD@{61}: checkout: moving from develop to feature/pwa-builder
+[33m85f604f[m[33m ([m[1;32mfeature/status-bar[m[33m)[m HEAD@{62}: checkout: moving from feature/status-bar to develop
+[33m85f604f[m[33m ([m[1;32mfeature/status-bar[m[33m)[m HEAD@{63}: pull origin develop: Fast-forward
+[33mcfc1967[m HEAD@{64}: checkout: moving from develop to feature/status-bar
+[33m85f604f[m[33m ([m[1;32mfeature/status-bar[m[33m)[m HEAD@{65}: pull: Merge made by the 'ort' strategy.
+[33m56d6953[m HEAD@{66}: commit: fix: rollback
+[33mcfc1967[m HEAD@{67}: checkout: moving from feature/status-bar to develop
+[33mcfc1967[m HEAD@{68}: reset: moving to HEAD
+[33mcfc1967[m HEAD@{69}: checkout: moving from develop to feature/status-bar
+[33mcfc1967[m HEAD@{70}: commit: fix: 상태바 영역 롤백
+[33m1c2586f[m HEAD@{71}: commit: fix: 상태영역 수정
+[33m4bdf446[m HEAD@{72}: commit: fix: 스플래시 및 냉장고탭 상태영역 수정
+[33m831c4cb[m HEAD@{73}: commit: fix: 냉장고탭 상태영역 해결
+[33m56c9444[m HEAD@{74}: commit: fix: 상태영역 최종 수정
+[33mb08fb4d[m HEAD@{75}: commit: fix: 냉장고탭 하단 여백 추가
+[33m9775727[m HEAD@{76}: commit: fix: 상태영역 수정
+[33mf8138db[m HEAD@{77}: commit: fix: 스플래시 화면 높이 수정
+[33me75beb0[m HEAD@{78}: commit: fix: 냉장고탭 헤더 위치 수정
+[33m6a43979[m HEAD@{79}: commit: fix: 상태영역 최종
+[33md63f5fb[m HEAD@{80}: commit: fix: 상태영역 해결
+[33mb970613[m HEAD@{81}: commit: fix: 공백 삭제
+[33m62d0db7[m HEAD@{82}: commit: fix: 스크롤 방지
+[33mab35169[m HEAD@{83}: commit: fix: 헤더 겹침 이슈 해결
+[33m7a51110[m HEAD@{84}: commit: fix: 헤더 관련 수정
+[33mc39fc23[m HEAD@{85}: commit: fix: 헤더 높이 수정
+[33m3549b94[m HEAD@{86}: commit: fix: 헤더 패딩 재수정
+[33mb53f8d2[m HEAD@{87}: commit: fix: 헤더 위치 통일
+[33m1c68e98[m HEAD@{88}: commit: fix: 헤더 여백 추가
+[33mf6cb193[m HEAD@{89}: commit: fix: height 이슈 해결
+[33m6bdd4be[m HEAD@{90}: commit: fix: height 이슈 해결
+[33m346af08[m HEAD@{91}: commit: fix: 패딩 추가
+[33m3392a61[m HEAD@{92}: commit: fix: 상태바 영역 수정
+[33ma9de3a6[m HEAD@{93}: commit: fix: AppLayout 수정
+[33m491e893[m HEAD@{94}: commit: fix: 상태영역 확장 시도
+[33m7ccd70e[m HEAD@{95}: pull: Fast-forward
+[33mad18d00[m HEAD@{96}: checkout: moving from bugfix/ui to develop
+[33m0f15f30[m HEAD@{97}: commit: fix: 상태영역 수정 시도
+[33mad18d00[m HEAD@{98}: pull origin develop: Fast-forward
+[33mc294672[m[33m ([m[1;31morigin/feature/google-auth[m[33m)[m HEAD@{99}: checkout: moving from develop to bugfix/ui
+[33mad18d00[m HEAD@{100}: commit: fix: 갤럭시 상태영역 이슈 해결
+[33m52a7c5c[m HEAD@{101}: pull: Merge made by the 'ort' strategy.
+[33md09e794[m HEAD@{102}: commit: fix: 프리뷰 로그인 해결
+[33m6abc608[m HEAD@{103}: checkout: moving from bugfix/api to develop
+[33m1985b83[m[33m ([m[1;31morigin/bugfix/api[m[33m, [m[1;32mbugfix/api[m[33m)[m HEAD@{104}: checkout: moving from develop to bugfix/api
+[33m6abc608[m HEAD@{105}: checkout: moving from main to develop
+[33m8b62523[m[33m ([m[1;33mtag: [m[1;33mui[m[33m)[m HEAD@{106}: checkout: moving from develop to main
+[33m6abc608[m HEAD@{107}: merge ui: Merge made by the 'ort' strategy.
+[33m20c65b6[m HEAD@{108}: checkout: moving from main to develop
+[33m8b62523[m[33m ([m[1;33mtag: [m[1;33mui[m[33m)[m HEAD@{109}: merge hotfix/ui: Merge made by the 'ort' strategy.
+[33ma797564[m[33m ([m[1;33mtag: [m[1;33mres[m[33m)[m HEAD@{110}: checkout: moving from hotfix/ui to main
+[33ma6bdbc7[m HEAD@{111}: commit: fix: z인덱스 수정
+[33ma797564[m[33m ([m[1;33mtag: [m[1;33mres[m[33m)[m HEAD@{112}: checkout: moving from develop to hotfix/ui
+[33m20c65b6[m HEAD@{113}: checkout: moving from main to develop
+[33ma797564[m[33m ([m[1;33mtag: [m[1;33mres[m[33m)[m HEAD@{114}: checkout: moving from hotfix/ui to main
+[33ma797564[m[33m ([m[1;33mtag: [m[1;33mres[m[33m)[m HEAD@{115}: checkout: moving from develop to hotfix/ui
+[33m20c65b6[m HEAD@{116}: checkout: moving from main to develop
+[33ma797564[m[33m ([m[1;33mtag: [m[1;33mres[m[33m)[m HEAD@{117}: checkout: moving from develop to main
+[33m20c65b6[m HEAD@{118}: merge res: Merge made by the 'ort' strategy.
+[33mc294672[m[33m ([m[1;31morigin/feature/google-auth[m[33m)[m HEAD@{119}: checkout: moving from main to develop
+[33ma797564[m[33m ([m[1;33mtag: [m[1;33mres[m[33m)[m HEAD@{120}: merge hotfix/res: Merge made by the 'ort' strategy.
+[33mc294672[m[33m ([m[1;31morigin/feature/google-auth[m[33m)[m HEAD@{121}: checkout: moving from hotfix/res to main
+[33maf6eb83[m HEAD@{122}: commit: fix: 화질 수정
+[33mc294672[m[33m ([m[1;31morigin/feature/google-auth[m[33m)[m HEAD@{123}: checkout: moving from main to hotfix/res
+[33mc294672[m[33m ([m[1;31morigin/feature/google-auth[m[33m)[m HEAD@{124}: merge develop: Fast-forward
+[33mf002ff0[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m HEAD@{125}: checkout: moving from develop to main
+[33mc294672[m[33m ([m[1;31morigin/feature/google-auth[m[33m)[m HEAD@{126}: merge bugfix/ui: Fast-forward
+[33mf002ff0[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m HEAD@{127}: checkout: moving from bugfix/ui to develop
+[33mc294672[m[33m ([m[1;31morigin/feature/google-auth[m[33m)[m HEAD@{128}: commit: hotfix
+[33m902d0dd[m HEAD@{129}: commit: hotfix
+[33mb90ccf7[m HEAD@{130}: commit: fix: ios pwa 관련 수정
+[33mf002ff0[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m HEAD@{131}: pull origin develop: Fast-forward
+[33med28420[m HEAD@{132}: checkout: moving from develop to bugfix/ui
+[33mf002ff0[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m HEAD@{133}: checkout: moving from main to develop
+[33mf002ff0[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m HEAD@{134}: checkout: moving from develop to main
+[33mf002ff0[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m HEAD@{135}: merge main: Fast-forward
+[33m2c68757[m[33m ([m[1;31morigin/release/v1.0.0[m[33m)[m HEAD@{136}: checkout: moving from main to develop
+[33mf002ff0[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m HEAD@{137}: checkout: moving from main to main
+[33mf002ff0[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m HEAD@{138}: merge release/v1.0.0: Merge made by the 'ort' strategy.
+[33ma3af8bf[m HEAD@{139}: checkout: moving from release/v1.0.0 to main
+[33m2c68757[m[33m ([m[1;31morigin/release/v1.0.0[m[33m)[m HEAD@{140}: merge develop: Fast-forward
+[33med60ed9[m HEAD@{141}: checkout: moving from develop to release/v1.0.0
+[33m2c68757[m[33m ([m[1;31morigin/release/v1.0.0[m[33m)[m HEAD@{142}: pull: Fast-forward
+[33med60ed9[m HEAD@{143}: checkout: moving from bugfix/ui to develop
+[33med28420[m HEAD@{144}: commit: chore: vercel analytics 추가
+[33m64dd492[m HEAD@{145}: commit: fix: 용어 수정
+[33med60ed9[m HEAD@{146}: pull origin develop: Fast-forward
+[33m554d1e2[m HEAD@{147}: checkout: moving from main to bugfix/ui
+[33ma3af8bf[m HEAD@{148}: merge release/v1.0.0: Merge made by the 'ort' strategy.
+[33m48bf17c[m HEAD@{149}: checkout: moving from release/v1.0.0 to main
+[33med60ed9[m HEAD@{150}: merge develop: Fast-forward
+[33med42134[m HEAD@{151}: checkout: moving from develop to release/v1.0.0
+[33med60ed9[m HEAD@{152}: pull: Fast-forward
+[33m554d1e2[m HEAD@{153}: checkout: moving from bugfix/ui to develop
+[33m554d1e2[m HEAD@{154}: pull origin develop: Fast-forward
+[33m60bedb6[m HEAD@{155}: checkout: moving from develop to bugfix/ui
+[33m554d1e2[m HEAD@{156}: pull: Fast-forward
+[33med42134[m HEAD@{157}: checkout: moving from bugfix/api to develop
+[33m1985b83[m[33m ([m[1;31morigin/bugfix/api[m[33m, [m[1;32mbugfix/api[m[33m)[m HEAD@{158}: commit: fix: 빌드 오류 해결
+[33m25d8e84[m HEAD@{159}: pull origin develop: Merge made by the 'ort' strategy.
+[33ma987eb7[m HEAD@{160}: commit: fix: test 코드 삭제
+[33mec1ff44[m HEAD@{161}: commit: fix: 회원가입 성공 페이지 수정
+[33mb982c89[m HEAD@{162}: pull origin develop: Merge made by the 'ort' strategy.
+[33m8a3ddd8[m HEAD@{163}: commit: fix: 캘린더 버그 해결
+[33med42134[m HEAD@{164}: pull origin develop: Fast-forward
+[33mf95e816[m HEAD@{165}: checkout: moving from main to bugfix/api
+[33m48bf17c[m HEAD@{166}: merge release/v1.0.0: Merge made by the 'ort' strategy.
+[33me421a34[m HEAD@{167}: checkout: moving from release/v1.0.0 to main
+[33med42134[m HEAD@{168}: merge develop: Fast-forward
+[33m81040aa[m HEAD@{169}: checkout: moving from develop to release/v1.0.0
+[33med42134[m HEAD@{170}: pull: Fast-forward
+[33mb45f08d[m HEAD@{171}: checkout: moving from bugfix/ui to develop
+[33m60bedb6[m HEAD@{172}: commit: fix: 화질 개선 시도
+[33mb45f08d[m HEAD@{173}: pull origin develop: Fast-forward
+[33m590f98e[m HEAD@{174}: checkout: moving from develop to bugfix/ui
+[33mb45f08d[m HEAD@{175}: pull: Fast-forward
+[33m2c67b13[m HEAD@{176}: checkout: moving from feature/push-noti to develop
+[33m715368f[m[33m ([m[1;31morigin/feature/push-noti[m[33m, [m[1;32mfeature/push-noti[m[33m)[m HEAD@{177}: commit: refactor: 구독 해제 관련 리팩토링
+[33m19f95c3[m HEAD@{178}: commit: merge: 충돌 해결
+[33m9efb660[m HEAD@{179}: commit (merge): merge: 충돌 해결
+[33m18b0403[m HEAD@{180}: commit: fix: 푸시알림 구독 해제 수정
+[33mc88cc75[m HEAD@{181}: checkout: moving from bugfix/ui to feature/push-noti
+[33m590f98e[m HEAD@{182}: commit: merge: develop 머지
+[33m439cd3a[m HEAD@{183}: pull origin develop: Merge made by the 'ort' strategy.
+[33m93486b3[m HEAD@{184}: commit: fix: 스플래시 화면 오류 수정
+[33m8e87ec9[m HEAD@{185}: commit: fix: 개스트모드 스크롤 수정
+[33m90b6bc2[m HEAD@{186}: commit: fix: guestdetails 터치 불가능하게 수정
+[33m69311e0[m HEAD@{187}: commit: fix: recipe intro에 딤드 추가
+[33m8bf2111[m HEAD@{188}: checkout: moving from develop to bugfix/ui
+[33m2c67b13[m HEAD@{189}: reset: moving to HEAD
+[33m2c67b13[m HEAD@{190}: checkout: moving from feature/push-noti to develop
+[33mc88cc75[m HEAD@{191}: commit: fix: 푸시 알림 로직 수정
+[33me5f1545[m HEAD@{192}: checkout: moving from develop to feature/push-noti
+[33m2c67b13[m HEAD@{193}: pull: Fast-forward
+[33m81040aa[m HEAD@{194}: checkout: moving from main to develop
+[33me421a34[m HEAD@{195}: merge release/v1.0.0: Merge made by the 'ort' strategy.
+[33m069756b[m HEAD@{196}: checkout: moving from release/v1.0.0 to main
+[33m81040aa[m HEAD@{197}: pull origin develop: Fast-forward
+[33m03b062b[m HEAD@{198}: checkout: moving from develop to release/v1.0.0
+[33m81040aa[m HEAD@{199}: pull: Fast-forward
+[33m03b062b[m HEAD@{200}: checkout: moving from bugfix/api to develop
+[33mf95e816[m HEAD@{201}: reset: moving to HEAD
+[33mf95e816[m HEAD@{202}: commit: fix: 상태영역 해결 시도
+[33m7a162d5[m HEAD@{203}: commit: fix: 콩류 추가
+[33m4ee1458[m HEAD@{204}: commit: fix: 재료 추가 부분 에러 해결 시도
+[33mdf6c949[m HEAD@{205}: commit: fix: 온보딩 건너뛰기 오류 문제 해결
+[33m03b062b[m HEAD@{206}: pull origin develop: Fast-forward
+[33m07329d3[m HEAD@{207}: checkout: moving from develop to bugfix/api
+[33m03b062b[m HEAD@{208}: checkout: moving from main to develop
+[33m069756b[m HEAD@{209}: merge release/v1.0.0: Merge made by the 'ort' strategy.
+[33m8fa4029[m HEAD@{210}: checkout: moving from release/v1.0.0 to main
+[33m03b062b[m HEAD@{211}: checkout: moving from develop to release/v1.0.0
+[33m03b062b[m HEAD@{212}: pull: Fast-forward
+[33m63209b4[m HEAD@{213}: checkout: moving from feature/push-noti to develop
+[33me5f1545[m HEAD@{214}: commit: feat: api 연동 및 테스트코드 작성 완료
+[33md4baa50[m HEAD@{215}: commit: feat: 회원 정보에서 푸시 구독 / 삭제 연동
+[33m2dbe9eb[m HEAD@{216}: commit: feat: 회원가입 시 푸시 구독 연동(확인 못함)
+[33m2e7904f[m HEAD@{217}: commit: feat: 간편로그인, 온보딩 푸시 구독 연동
+[33m63209b4[m HEAD@{218}: checkout: moving from develop to feature/push-noti
+[33m63209b4[m HEAD@{219}: checkout: moving from bugfix/ui to develop
+[33m8bf2111[m HEAD@{220}: commit: fix: 빌드오류 해결
+[33m0036725[m HEAD@{221}: commit: fix: 빌드오류 해결
+[33m6849d83[m HEAD@{222}: commit: feat: 게스트 모드 마지막 화면 완성
+[33meb7724d[m HEAD@{223}: commit: fix: 랭킹 리로드하도록 수정
+[33m020db95[m HEAD@{224}: commit: fix: 깜빡임 문제 해결 위해 마이쿠킵 로딩 화면 제거
+[33m783d8b9[m HEAD@{225}: commit: fix: 비회원 모드 추가 수정
+[33mf4a686e[m HEAD@{226}: commit: fix: 수정모드에서만 공개여부 보이게
+[33m72f9d7e[m HEAD@{227}: commit: fix: guestmode ui 수정
+[33m63209b4[m HEAD@{228}: checkout: moving from develop to bugfix/ui
+[33m63209b4[m HEAD@{229}: pull: Fast-forward
+[33mcf17877[m HEAD@{230}: checkout: moving from bugfix/api to develop
+[33m07329d3[m HEAD@{231}: pull origin develop: Merge made by the 'ort' strategy.
+[33md0b387d[m HEAD@{232}: commit: fix: 냉장고탭 로컬 스토리지로 로딩 X
+[33me33c738[m HEAD@{233}: commit: fix: 로그인 유지 로직 변경
+[33mcf17877[m HEAD@{234}: checkout: moving from develop to bugfix/api
+[33mcf17877[m HEAD@{235}: reset: moving to HEAD
+[33mcf17877[m HEAD@{236}: checkout: moving from main to develop
+[33m8fa4029[m HEAD@{237}: commit: fix: updating git user email
+[33ma88eadb[m HEAD@{238}: commit: fix: updating git user email
+[33mf867399[m HEAD@{239}: merge develop: Merge made by the 'ort' strategy.
+[33m67bcbaf[m HEAD@{240}: checkout: moving from develop to main
+[33mcf17877[m HEAD@{241}: pull: Fast-forward
+[33m2787e3d[m HEAD@{242}: checkout: moving from main to develop
+[33m67bcbaf[m HEAD@{243}: commit (merge): merge: 충돌 해결
+[33m2787e3d[m HEAD@{244}: checkout: moving from develop to main
+[33m2787e3d[m HEAD@{245}: checkout: moving from main to develop
+[33m2787e3d[m HEAD@{246}: checkout: moving from develop to main
+[33m2787e3d[m HEAD@{247}: checkout: moving from master to develop
+[33m2787e3d[m HEAD@{248}: commit (initial): Initial commit

@@ -146,7 +146,9 @@ export default function ResetPassword() {
         />
       </div>
 
-      {error && <p className="text-center text-sm text-red-500">{error}</p>}
+      {error && (
+        <p className="text-semantic-negative text-sm text-center">{error}</p>
+      )}
 
       <Button
         type="submit"
@@ -154,16 +156,16 @@ export default function ResetPassword() {
         variant="black"
         disabled={!isFormValid}
         onClick={handleSubmit}
-        className="mt-[31px] !text-[#32E389] disabled:!text-white"
+        className="mt-[31px] !text-green disabled:!text-gray-0"
       >
         비밀번호 재설정
       </Button>
 
       {/* AppLayout 영역 전체를 덮는 팝업 */}
       {isSuccess && (
-        <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
-          <div className="flex w-[361px] flex-col items-center">
-            <p className="typo-h1 pt-[241px] pb-[18px] text-center text-[28px] leading-[36px] font-bold text-[#202020]">
+        <div className="absolute inset-0 z-50 flex justify-center bg-background">
+          <div className="w-[361px] flex flex-col items-center">
+            <p className="typo-h1 text-gray-80 text-center font-bold text-[28px] leading-[36px] pt-[241px] pb-[18px]">
               비밀번호 변경 완료
             </p>
             {/*중앙정렬 안하고 피그마 기준으로 pt-[241px] 이걸로 맞춤*/}
@@ -180,7 +182,7 @@ export default function ResetPassword() {
                 reset();
                 navigate("/login");
               }}
-              className="mt-[48px] !text-[#32E389]"
+              className="mt-[48px] !text-green"
             >
               로그인하기
             </Button>

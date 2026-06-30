@@ -100,7 +100,7 @@ export default function Preference() {
             key={i}
             className={
               part.toLowerCase() === highlight.toLowerCase()
-                ? "text-(--color-green-deep)"
+                ? "text-green-deep"
                 : ""
             }
           >
@@ -129,11 +129,21 @@ export default function Preference() {
       </div>
       <div className="relative mt-[46px] flex flex-col items-center">
         <div
-          className={`relative w-[361px] transition-all duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-body2 overflow-hidden [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-[#7D7D7D] [&_p]:hidden ${
-            isDropdownOpen
-              ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
-              : ""
-          } `}
+          className={`
+            relative w-[361px] transition-all duration-200
+            ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"}
+            overflow-hidden
+            [&_p]:hidden
+            [&_input]:w-full
+            typo-body2
+            [&_input]:outline-none 
+            [&_input::placeholder]:text-gray-50
+            ${
+              isDropdownOpen
+                ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
+                : ""
+            }
+          `}
         >
           <TextField
             value={searchTerm}
@@ -160,8 +170,8 @@ export default function Preference() {
               onClick={() => handleRemove(ingredient.defaultIngredientId)}
               className="flex h-7 items-center gap-1 rounded-[100px] bg-gray-200 px-1 px-3"
             >
-              <img src={xIcon} className="h-3 w-3" />
-              <span className="typo-caption !font-medium text-zinc-500">
+              <img src={xIcon} className="w-3 h-3" />
+              <span className="typo-caption !font-medium text-gray-50">
                 {ingredient.ingredient}
               </span>
             </div>
@@ -169,8 +179,8 @@ export default function Preference() {
         </div>
 
         {hasText && (
-          <ul className="typo-body2 absolute top-12 z-50 max-h-[200px] w-[361px] overflow-y-auto rounded-b-[6px] border !border-t-0 border-[#DDDDDD] bg-white">
-            {filteredIngredients.map(item => (
+          <ul className="absolute top-12 w-[361px] bg-gray-0 border border-gray-10 !border-t-0 rounded-b-[6px] z-50 max-h-[200px] overflow-y-auto typo-body2">
+            {filteredIngredients.map((item) => (
               <li
                 key={item.defaultIngredientId}
                 onClick={() => handleSelect(item)}

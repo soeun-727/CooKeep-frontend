@@ -68,7 +68,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
       onClick={() => setIsDimmed(true)}
     >
       {isDimmed && (
-        <div className="animate-fadeIn fixed inset-0 left-1/2 z-10 w-full max-w-[450px] -translate-x-1/2 bg-neutral-900/50 transition-opacity" />
+        <div className="fixed inset-0 z-10 bg-black-overlay transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
       )}
       <div className="typo-body">오늘의 레시피</div>
       {/* 스크롤 영역 */}
@@ -96,8 +96,8 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
           <RecipeYoutubeCard videos={[]} tags={youtube_search_queries} />
 
           {/* AI 주의사항 문구 */}
-          <div className="mt-[10px] flex flex-col items-center gap-[2px] self-stretch">
-            <div className="font-pretendard w-[361px] text-center text-[11px] leading-[14px] text-[#7D7D7D]">
+          <div className="flex flex-col items-center gap-[2px] self-stretch mt-[10px]">
+            <div className="w-[361px] text-center text-[11px] leading-[14px] text-gray-50 font-pretendard">
               AI가 제공하는 정보에는 실수가 있을 수 있습니다
               <br />
               관련 정보를 확인 후 활용해주세요
@@ -121,7 +121,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
                 handleButtonClick(e);
               }
             }}
-            className="typo-button h-[38px] w-full rounded-[10px] bg-[#32E389] text-white"
+            className="w-full rounded-[10px] h-[38px] typo-button text-gray-0 bg-green"
           >
             이 레시피대로 요리할래요
           </button>

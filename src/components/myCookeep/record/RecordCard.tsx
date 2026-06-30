@@ -84,7 +84,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
           <div className="pointer-events-none absolute top-0 right-0 left-0 h-[35%] bg-gradient-to-b from-black/25 to-transparent" />
 
           {/* 날짜 */}
-          <span className="absolute top-1 left-1 px-1 py-1 text-[12px] font-medium text-white">
+          <span className="absolute top-1 left-1 px-1 py-1 text-gray-0 text-[12px] font-medium">
             만든 날짜: {formatDateDot(record.createdAt)}
           </span>
 
@@ -96,7 +96,14 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
                 e.stopPropagation();
                 handleTryChangeVisibility(!isPublic);
               }}
-              className={`mb-2 flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] transition-all duration-200 ease-out ${
+              className={`
+              mb-2
+              w-9 h-9
+              rounded-full bg-gray-0
+              shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
+              flex items-center justify-center
+              transition-all duration-200 ease-out
+              ${
                 isOptionOpen
                   ? "translate-y-0 scale-100 opacity-100"
                   : "pointer-events-none translate-y-2 scale-95 opacity-0"
@@ -115,7 +122,12 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
                 e.stopPropagation();
                 toggleOption();
               }}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+              className="
+              w-9 h-9
+              rounded-full bg-gray-0
+              shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
+              flex items-center justify-center
+            "
             >
               <img
                 src={isPublic ? publicIcon : privateIcon}
@@ -129,18 +141,26 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
         {/* 제목 + 메뉴 변경 */}
         <div className="flex flex-col items-center self-stretch">
           <div
-            className="flex h-[56px] w-full cursor-pointer items-center justify-center rounded-[10px] bg-[#EBEBEB] px-4"
+            className="
+            flex justify-center items-center
+            h-[56px]
+            w-full
+            px-4
+            rounded-[10px]
+            bg-gray-10
+            cursor-pointer
+          "
             onClick={() =>
               navigate(`/mycookeep/record/${record.dailyRecipeId}`)
             }
           >
-            <span className="line-clamp-2 text-center text-[16px] leading-[24px] font-bold text-[#202020]">
+            <span className="text-gray-80 text-[16px] font-bold leading-[24px] text-center line-clamp-2">
               {record.title}
             </span>
           </div>
 
           {/* <button
-            className="w-[77px] h-[30px] text-[#7D7D7D] text-[14px] font-medium"
+            className="w-[77px] h-[30px] text-gray-50 text-[14px] font-medium"
             onClick={() =>
               navigate(`/mycookeep/record/${record.dailyRecipeId}`)
             }

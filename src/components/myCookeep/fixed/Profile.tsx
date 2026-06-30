@@ -68,7 +68,7 @@ function Profile() {
     : "목표를 설정해주세요";
   if (!profile) {
     return (
-      <div className="h-[260px] w-full animate-pulse rounded-b-[36px] bg-gradient-to-b from-[#32E389] to-[#1FC16F]" />
+      <div className="w-full h-[260px] bg-green-gradient rounded-b-[36px] animate-pulse" />
     );
   }
   const goalId = currentGoalEntry ? currentGoalEntry[0] : "cook";
@@ -78,7 +78,7 @@ function Profile() {
     <>
       <div className="flex flex-col items-center justify-center">
         {/* 헤더 섹션 */}
-        <div className="flex h-[260px] w-full flex-col items-center justify-center rounded-b-[36px] bg-gradient-to-b from-[#32E389] to-[#1FC16F]">
+        <div className="w-full h-[260px] bg-gradient-to-b from-green to-green-deep rounded-b-[36px] flex flex-col items-center justify-center">
           <MyCookeepHeader />
 
           <div className="mt-5 flex w-[361px] items-center justify-start">
@@ -107,19 +107,19 @@ function Profile() {
             </div>
             {/* 유저 정보 */}
             <div className="flex flex-col">
-              <p className="typo-h2 text-white">
+              <p className="typo-h2 text-gray-0">
                 {profile?.nickname || "쿠킵이"}
               </p>
-              <div className="typo-caption text-white">
+              <div className="typo-caption text-gray-0">
                 <span>
                   지금은 {profile?.growingPlantName || "요리 실력을"} 키우는 중!
                 </span>
               </div>
-              <div className="mx-auto mt-3 -ml-[0.5px] flex h-5 w-fit items-center justify-center gap-[2px] rounded-[100px] bg-[#E6FBEB] px-3">
-                <span className="typo-caption flex items-center leading-none text-(--color-green)">
+              <div className="flex -ml-[0.5px] items-center justify-center gap-[2px] h-5 px-3 bg-green-light rounded-[100px] mt-3 w-fit mx-auto">
+                <span className="typo-caption text-green leading-none flex items-center">
                   {profile?.daysSinceJoined}
                 </span>
-                <span className="typo-caption flex items-center leading-none text-zinc-500">
+                <span className="typo-caption text-gray-50 leading-none flex items-center">
                   일째 CooKeep
                 </span>
               </div>
@@ -127,9 +127,9 @@ function Profile() {
           </div>
 
           {/* 목표 요약 바 */}
-          <div className="flex h-12 w-[361px] items-center justify-between gap-3 rounded-[12px] bg-[#1DAD64] p-3 shadow-[0px_4px_16px_-10px_rgba(0,0,0,0.25)]">
+          <div className="bg-green-deep p-3 w-[361px] h-12 flex items-center justify-between gap-3 rounded-[12px] shadow-[0px_4px_16px_-10px_rgba(0,0,0,0.25)]">
             <span
-              className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-white" : "text-green-300"}`}
+              className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-gray-0" : "text-green-300"}`}
             >
               {profile?.weeklyGoal?.goalActionType ? (
                 <>
@@ -166,13 +166,13 @@ function Profile() {
               }`}
             >
               <div
-                className="relative z-10 inline-flex items-center justify-center rounded-[3px] bg-white px-[16px] py-[9px] text-center text-[12px] font-medium text-zinc-500 shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+                className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-gray-0 text-gray-50 text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
                 style={{ width: 227, height: 28 }}
               >
                 이번 주 달성하고 싶은 목표를 세워보세요!
               </div>
               <div
-                className="absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45 bg-white"
+                className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-gray-0 rotate-45 z-0"
                 style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
               />
             </div>

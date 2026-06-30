@@ -65,10 +65,8 @@ export default function RecipeActionButtons({
       <button
         onClick={handleCookClick}
         disabled={!latestRecipe || isLoading || isCompleted}
-        className={`typo-button h-[38px] w-full rounded-[10px] text-white ${
-          !latestRecipe || isLoading || isCompleted
-            ? "bg-gray-300"
-            : "bg-[#32E389]"
+        className={`w-full rounded-[10px] h-[38px] typo-button text-gray-0 ${
+          !latestRecipe || isLoading || isCompleted ? "bg-gray-300" : "bg-green"
         }`}
       >
         이 레시피대로 요리할래요
@@ -81,8 +79,8 @@ export default function RecipeActionButtons({
           disabled={isRetryDisabled}
           className={`typo-button h-[38px] w-full rounded-[10px] transition-colors ${
             isRetryDisabled
-              ? "cursor-not-allowed bg-gray-300 text-[#7D7D7D]"
-              : "bg-[#202020] text-white"
+              ? "bg-gray-300 text-gray-50 cursor-not-allowed"
+              : "bg-gray-80 text-gray-0"
           }`}
         >
           {retryBtnText}

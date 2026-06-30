@@ -34,17 +34,17 @@ export default function Initial() {
     window.location.href = GOOGLE_AUTH_URL;
   };
   return (
-    <div className="relative flex h-full flex-col items-center overflow-hidden bg-[#FAFAFA]">
-      <div className="pointer-events-none absolute top-[3px] right-0 left-0 z-0 flex justify-center">
+    <div className="flex flex-col items-center bg-background min-h-screen relative">
+      <div className="absolute top-[3px] left-0 right-0 flex justify-center pointer-events-none z-0">
         <img src={confetti} className="w-86" />
       </div>
       {/* 상단 텍스트 영역 */}
-      <div className="mt-[86px] flex w-full flex-1 flex-col items-center overflow-y-auto">
-        <h1 className="flex gap-1 text-[19px] font-semibold">
-          <span className="text-(--color-green-deep)">재료 관리</span>
-          <span className="text-neutral-800">부터,</span>
-          <span className="text-(--color-green-deep)">요리 기록</span>
-          <span className="text-neutral-800">까지!</span>
+      <div className="w-full flex flex-col mt-[86px] items-center">
+        <h1 className="text-[19px] font-semibold flex gap-1">
+          <span className="text-green-deep">재료 관리</span>
+          <span className="text-gray-80">부터,</span>
+          <span className="text-green-deep">요리 기록</span>
+          <span className="text-gray-80">까지!</span>
         </h1>
       </div>
 
@@ -73,7 +73,7 @@ export default function Initial() {
       {/* <div className="flex flex-col items-center justify-center mb-[34px]"> */}
       <div className="mt-[24px] flex flex-col items-center justify-center">
         {/* SNS 로그인 */}
-        <span className="typo-caption text-zinc-500">
+        <span className="typo-caption text-gray-50">
           SNS 계정으로 로그인하기
         </span>
 
@@ -89,17 +89,15 @@ export default function Initial() {
         </div>
         <div className="flex items-center justify-center gap-[22px] py-[18px]">
           <img src={Line} alt="구분선" />
-          <span className="typo-caption text-zinc-500">또는</span>
+          <span className="typo-caption text-gray-50">또는</span>
           <img src={Line} alt="구분선" />
         </div>
         <button onClick={() => navigate("/login")}>
-          <span className="typo-caption text-zinc-500">
-            이메일로 로그인하기
-          </span>
+          <span className="typo-caption text-gray-50">이메일로 로그인하기</span>
         </button>
         <button
           onClick={() => navigate("/guest")}
-          className="typo-body mt-5 mb-[50px] !font-bold text-[var(--color-green-deep)]"
+          className="mt-5 typo-body !font-bold text-green-deep mb-[50px]"
         >
           쿠킵이 처음인가요? 둘러보기
         </button>

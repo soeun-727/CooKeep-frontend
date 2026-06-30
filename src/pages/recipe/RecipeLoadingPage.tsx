@@ -60,7 +60,7 @@ export default function RecipeLoadingPage() {
       {/* 타이틀 / 서브타이틀 */}
       <div className="mb-[49px] flex w-[361px] flex-col items-center gap-2">
         <h1 className="typo-result-title">오늘의 요리 준비 중...</h1>
-        <p className="typo-button font-bold text-[#1FC16F]">
+        <p className="typo-button text-green-deep font-bold">
           나에게 딱 맞는 레시피를 찾고 있어요
         </p>
       </div>
@@ -73,7 +73,7 @@ export default function RecipeLoadingPage() {
       </div>
       {error && (
         <div className="mt-6 flex flex-col items-center gap-3">
-          <p className="text-sm text-red-500">{error}</p>
+          <p className="text-semantic-negative text-sm">{error}</p>
 
           <button
             onClick={() => generateRecipe()}

@@ -33,7 +33,7 @@ export default function UploadCompleteModal({
   if (!isOpen) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black-overlay">
       {/* 배경 레이어 */}
       <div
         className="absolute inset-0 cursor-default"
@@ -41,7 +41,7 @@ export default function UploadCompleteModal({
       />
 
       {/* 모달 박스: DoublecheckModal과 동일한 규격 적용 */}
-      <div className="animate-popIn relative flex w-[254px] flex-col items-center rounded-[10px] bg-white px-7 py-[25px] shadow-xl">
+      <div className="relative w-[254px] bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[25px] animate-popIn">
         <div className="flex flex-col items-center justify-center self-stretch">
           <img
             src={character}
@@ -49,10 +49,10 @@ export default function UploadCompleteModal({
             alt="congrats"
           />
 
-          <p className="typo-body text-center font-bold text-neutral-900">
+          <p className="typo-body text-center font-bold text-gray-80">
             오늘의 레시피 등록 완료!
           </p>
-          <span className="typo-body mb-4 !font-bold text-(--color-green-deep)">
+          <span className="typo-body text-green-deep !font-bold mb-4">
             쿠키 +1 🍪
           </span>
 

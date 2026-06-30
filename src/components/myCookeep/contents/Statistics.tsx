@@ -42,27 +42,27 @@ export default function Statistics() {
     );
 
   return (
-    <div className="relative flex h-[354px] w-full flex-col items-center overflow-hidden bg-white py-6">
+    <div className="h-[354px] py-6 w-full flex flex-col items-center bg-gray-0 overflow-hidden relative">
       <div
         className={`flex w-full flex-col items-center transition-transform duration-500 ease-in-out ${
           isExpanded ? "-translate-y-[230px]" : "translate-y-0"
         }`}
       >
-        <div className="flex h-[307px] w-full shrink-0 flex-col items-center">
-          <div className="typo-caption mt-5 flex h-[26px] w-[157px] flex-col justify-center rounded-[6px] bg-black text-center text-white">
+        <div className="flex flex-col items-center w-full h-[307px] shrink-0">
+          <div className="flex flex-col typo-caption text-gray-0 bg-black rounded-[6px] w-[157px] h-[26px] text-center justify-center mt-5">
             나의 식재료 소비 달성 현황
           </div>
 
           <div className="mt-6 flex w-77 justify-between pt-[6.5px]">
             <div className="flex w-1/2 flex-col items-center justify-center gap-[6.5px]">
               <CircleGraph percentage={stats.totalRate} />
-              <span className="typo-caption text-center !text-[10px] leading-tight text-zinc-500">
+              <span className="typo-caption !text-[10px] text-gray-50 text-center leading-tight">
                 (실제 소비 음식/전체 음식) %
               </span>
             </div>
             <div className="flex w-1/2 flex-col items-center justify-center gap-[6.5px]">
               <CircleGraph percentage={stats.nearExpiryRate} />
-              <span className="typo-caption text-center !text-[10px] leading-tight text-zinc-500">
+              <span className="typo-caption !text-[10px] text-gray-50 text-center leading-tight">
                 (실제 소비 음식/폐기 임박 음식) %
               </span>
             </div>
@@ -71,8 +71,8 @@ export default function Statistics() {
           <div className="typo-body2 mt-[31px] text-center">
             유통기한 임박 식재료 3개를 요리하면
             <br />
-            <span className="font-bold text-(--color-green)">0.8kg</span>의 CO₂
-            배출을 줄일 수 있어요
+            <span className="text-green font-bold">0.8kg</span>의 CO₂ 배출을
+            줄일 수 있어요
           </div>
 
           <button
@@ -98,7 +98,7 @@ export default function Statistics() {
                 alt="tree"
                 className="h-20 w-20 object-contain"
               />
-              <div className="rounded-[100px] bg-[#E6FBEB] px-3 py-1 text-[10px] font-medium whitespace-nowrap text-[#1DAD64]">
+              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-green-deep font-medium">
                 나무 0.03그루 심기
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function Statistics() {
                 alt="car"
                 className="h-20 w-20 object-contain"
               />
-              <div className="rounded-[100px] bg-[#E6FBEB] px-3 py-1 text-[10px] font-medium whitespace-nowrap text-[#1DAD64]">
+              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-green-deep font-medium">
                 자동차 4km 미주행
               </div>
             </div>
@@ -118,13 +118,13 @@ export default function Statistics() {
                 alt="elec"
                 className="h-20 w-20 object-contain"
               />
-              <div className="rounded-[100px] bg-[#E6FBEB] px-3 py-1 text-[10px] font-medium whitespace-nowrap text-[#1DAD64]">
+              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-green-deep font-medium">
                 자동차 4km 미주행
               </div>
             </div>
           </div>
 
-          <span className="typo-caption text-center text-[10px] text-zinc-400">
+          <span className="typo-caption text-gray-30 text-[10px] text-center">
             국제 평균 식품 폐기물 탄소 배출 계수 기준 추정치
           </span>
         </div>

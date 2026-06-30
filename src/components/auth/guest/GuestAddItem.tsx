@@ -19,11 +19,11 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
   return (
     <div
       onClick={() => !isSelected && setIsDimmed(true)}
-      className="relative flex h-[calc(100dvh-62px)] w-full flex-col items-center overflow-hidden bg-[#FAFAFA]"
+      className="relative w-full h-[calc(100dvh-62px)] flex flex-col items-center bg-background overflow-hidden"
     >
       {/* 딤드: z-10 */}
       {isDimmed && (
-        <div className="animate-fadeIn fixed inset-0 left-1/2 z-10 w-full max-w-[450px] -translate-x-1/2 bg-neutral-900/50 transition-opacity" />
+        <div className="fixed inset-0 z-10 bg-black-overlay transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
       )}
 
       {/* 헤더 영역 */}

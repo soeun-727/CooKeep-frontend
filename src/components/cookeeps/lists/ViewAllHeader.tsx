@@ -20,7 +20,11 @@ export default function ViewAllHeader({
     <div className="flex flex-shrink-0 flex-col items-center">
       {/* 검색창 */}
       <div
-        className={`mt-12 !w-[361px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_input]:border-none [&_input]:focus:outline-none [&_input::placeholder]:text-zinc-500 [&_p]:hidden ${searchTerm ? "[&_input]:bg-white" : "[&_input]:bg-[#EBEDF1]"}`}
+        className={`mt-12 !w-[361px] [&_p]:hidden
+          [&_input]:border-none [&_input]:focus:outline-none
+          [&_input::placeholder]:text-gray-50
+          shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
+          ${searchTerm ? "[&_input]:bg-gray-0" : "[&_input]:bg-searchbar"}`}
       >
         <TextField
           value={searchTerm}
@@ -40,8 +44,8 @@ export default function ViewAllHeader({
           onClick={() => onTabChange("weekly")}
           className={`flex flex-1 items-center justify-center gap-2 rounded-t-[6px] border-b-2 py-2 ${
             activeTab === "weekly"
-              ? "border-[#1FC16F] text-[#1FC16F]"
-              : "border-transparent text-[#7D7D7D]"
+              ? "border-green-deep text-green-deep"
+              : "border-transparent text-gray-50"
           }`}
         >
           <span className="truncate text-[14px] leading-[20px] font-semibold">
@@ -54,8 +58,8 @@ export default function ViewAllHeader({
           onClick={() => onTabChange("all")}
           className={`flex flex-1 items-center justify-center gap-2 rounded-t-[6px] border-b-2 py-2 ${
             activeTab === "all"
-              ? "border-[#1FC16F] text-[#1FC16F]"
-              : "border-transparent text-[#7D7D7D]"
+              ? "border-green-deep text-green-deep"
+              : "border-transparent text-gray-50"
           }`}
         >
           <span className="truncate text-[14px] leading-[20px] font-semibold">

@@ -19,10 +19,10 @@ export default function WaterModal({
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-[254px] rounded-[10px] bg-white px-[28px] py-[25px]">
+      <div className="relative w-[254px] rounded-[10px] bg-gray-0 px-[28px] py-[25px]">
         {/* 내용 */}
         <div className="flex flex-col items-center justify-center gap-[16px] self-stretch">
           {/* 이미지 + 텍스트 */}
@@ -35,10 +35,10 @@ export default function WaterModal({
 
             {/* 텍스트 */}
             <div className="flex flex-col items-start gap-[2px] self-stretch text-center">
-              <span className="self-stretch text-[16px] leading-[24px] font-bold text-[#1FC16F]">
+              <span className="self-stretch text-[16px] font-bold leading-[24px] text-green-deep">
                 쿠키 10개
               </span>
-              <span className="typo-body2 self-stretch text-[#202020]">
+              <span className="self-stretch typo-body2 text-gray-80">
                 사용해서 물을 줄까요?
               </span>
             </div>
@@ -48,14 +48,30 @@ export default function WaterModal({
           <div className="flex h-[44px] items-center gap-[8px] self-stretch">
             <button
               onClick={onConfirm}
-              className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#32E389] px-[12px] py-[12px] text-[14px] leading-[24px] font-semibold text-white"
+              className="
+    flex flex-1 items-center justify-center
+    h-[44px]
+    rounded-[10px]
+    bg-green
+    py-[12px] px-[12px]
+    text-gray-0
+    text-[14px] font-semibold leading-[24px]
+  "
             >
               물을 줄게요
             </button>
 
             <button
               onClick={onClose}
-              className="flex h-[44px] flex-1 items-center justify-center rounded-[10px] bg-[#C3C3C3] px-[12px] py-[12px] text-[14px] leading-[24px] font-semibold text-white"
+              className="
+    flex flex-1 items-center justify-center
+    h-[44px]
+    rounded-[10px]
+    bg-gray-30
+    py-[12px] px-[12px]
+    text-gray-0
+    text-[14px] font-semibold leading-[24px]
+  "
             >
               돌아가기
             </button>

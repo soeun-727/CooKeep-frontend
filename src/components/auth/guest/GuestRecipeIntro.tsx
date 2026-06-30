@@ -14,11 +14,24 @@ export default function GuestRecipeIntro({ onNext }: GuestRecipeIntroProps) {
   return (
     <div onClick={() => setIsDimmed(true)} className="flex justify-center">
       {/* 배경 장식 */}
-      <div className="pointer-events-none absolute top-[72px] left-1/2 z-0 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-[#1FC16F]/15 blur-[100px]" />
+      <div
+        className="
+          absolute
+          top-[72px]
+          left-1/2
+          -translate-x-1/2
+          w-[450px]
+          h-[450px]
+          rounded-full 
+          bg-green-deep/15 blur-[100px]
+          pointer-events-none
+          z-0
+        "
+      />
 
       {/* 딤드 레이어 (z-90) */}
       {isDimmed && (
-        <div className="fixed inset-0 left-1/2 z-90 w-full max-w-[450px] -translate-x-1/2 bg-neutral-900/50" />
+        <div className="fixed inset-0 z-90 bg-black-overlay left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
       )}
 
       {/* 컨텐츠 영역: 부모의 z-index를 제거해야 자식의 z-index가 딤드(z-90)와 직접 경쟁할 수 있습니다. */}
@@ -30,7 +43,7 @@ export default function GuestRecipeIntro({ onNext }: GuestRecipeIntroProps) {
             alt="요리 캐릭터"
             className="h-[116.646px] w-[162.5px]"
           />
-          <h1 className="text-center text-[28px] leading-[36px] font-semibold text-[#202020]">
+          <h1 className="text-center text-[28px] font-semibold leading-[36px] text-gray-80">
             지금 있는 재료로
             <br />
             요리해볼까요?
