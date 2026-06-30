@@ -11,7 +11,7 @@ export default function AuthHeader() {
   };
 
   return (
-    <header className="absolute top-0 z-50 flex w-full max-w-[450px] items-center justify-between bg-[#FAFAFA] px-4 py-2">
+    <header className="absolute top-0 z-50 flex w-full items-center justify-between bg-[#FAFAFA] px-4 py-2">
       <button
         onClick={handleLogoClick}
         className="cursor-pointer border-none bg-transparent p-0"

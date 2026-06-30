@@ -132,7 +132,7 @@ export default function Guide({ onNext }: GuideProps) {
 
         {/* 텍스트 */}
         <div className="mt-10 px-4 text-center">
-          <div className="typo-h1 !text-[22px]">{title}</div>
+          <div className="typo-h2">{title}</div>
           <p className="typo-body mt-2 whitespace-pre-wrap text-zinc-500">
             {text}
           </p>
