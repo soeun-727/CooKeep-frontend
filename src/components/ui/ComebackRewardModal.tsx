@@ -1,5 +1,4 @@
 import icon from "@/assets/character/surprised_char.svg";
-
 import Button from "./Button";
 
 interface ComebackRewardModalProps {

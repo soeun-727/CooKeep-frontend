@@ -48,7 +48,7 @@ export default function TextField({
           placeholder={placeholder}
           disabled={disabled}
           autoComplete={autoComplete}
-          onChange={e => onChange(e.target.value)}
+          onChange={(e) => onChange(e.target.value)}
           onBlur={onBlur}
           className={`h-[48px] w-full rounded-[6px] border bg-white px-3 py-2 font-['Pretendard'] text-sm leading-5 text-[#202020] placeholder:font-medium placeholder:text-stone-300 focus:outline-none disabled:bg-[#ECECEC] ${leftIcon ? "pl-11" : ""} ${rightIcon ? "pr-10" : ""} ${
             errorMessage

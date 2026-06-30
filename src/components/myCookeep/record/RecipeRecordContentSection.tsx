@@ -1,5 +1,4 @@
 import { IngredientsJson } from "@/api/dailyAiRecipe";
-
 import RecipeDetailIngredientSection from "@/components/cookeeps/recipedetail/RecipeDetailIngredientSection";
 import RecipeDetailStepSection from "@/components/cookeeps/recipedetail/RecipeDetailStepSection";
 

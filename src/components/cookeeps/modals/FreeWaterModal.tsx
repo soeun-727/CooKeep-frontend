@@ -1,6 +1,5 @@
-import characterImg from "@/assets/character/plant_char.svg";
-
 import Button from "@/components/ui/Button";
+import characterImg from "@/assets/character/plant_char.svg";
 
 interface FreeWaterModalProps {
   isOpen: boolean;

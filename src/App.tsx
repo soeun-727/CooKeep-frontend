@@ -1,57 +1,62 @@
-import { useEffect, useState } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-
-import AddItemLayout from "@/layouts/AddItemLayout";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import AppLayout from "@/layouts/AppLayout";
-import CookeepsLayout from "@/layouts/CookeepsLayout";
-import Layout from "@/layouts/Layout";
-import ListLayout from "@/layouts/ListLayout";
-import SettingsLayout from "@/layouts/SettingsLayout";
-import VerifyLayout from "@/layouts/VerifyLayout";
-import SplashPage from "@/pages/SplashPage";
-import FindPage from "@/pages/auth/FindPage";
-import GuestPage from "@/pages/auth/GuestPage";
+
 import InitialPage from "@/pages/auth/InitialPage";
-import LoginPage from "@/pages/auth/LoginPage";
 import OnboardingPage from "@/pages/auth/OnboardingPage";
+import LoginPage from "@/pages/auth/LoginPage";
 import SignupPage from "@/pages/auth/SignupPage";
+import FindPage from "@/pages/auth/FindPage";
+import ResetPassword from "@/components/auth/find/ResetPassword";
+import RequireFindAuth from "@/components/auth/find/RequireFindAuth";
+import FindLayout from "@/components/auth/find/FindLayout";
+
+import SettingsPage from "@/pages/settings/SettingsPage";
+import SettingsLayout from "@/layouts/SettingsLayout";
+import EditEmailPage from "@/pages/settings/EditEmailPage";
+import EditPasswordPage from "@/pages/settings/EditPasswordPage";
+import VerifyLayout from "@/layouts/VerifyLayout";
+import EditPasswordEmailSection from "@/components/settings/sections/EditPasswordEmailSection";
+
 import SimpleLoginAgreementPage from "@/pages/auth/SimpleLoginAgreementPage";
+import SupportPage from "@/pages/settings/SupportPage";
+import FaqPage from "@/pages/settings/FaqPage";
+import NoticePage from "@/pages/settings/NoticePage";
+import TermsPage from "@/pages/settings/TermsPage";
+import WithdrawPage from "@/pages/settings/WithdrawPage";
+import WithdrawDonePage from "@/pages/settings/WithdrawDonePage";
+
+import Layout from "@/layouts/Layout";
+import FridgePage from "@/pages/fridge/FridgePage";
+import AddItemPage from "@/pages/fridge/AddItemPage";
+import AddItemLayout from "@/layouts/AddItemLayout";
+import Details from "@/components/fridge/addItems/Details";
+
+import RecipePage from "@/pages/recipe/RecipePage";
+import RecipeIntroPage from "@/pages/recipe/RecipeIntroPage";
+import RecipeSelectPage from "@/pages/recipe/RecipeSelectPage";
+import RecipeConfirmPage from "@/pages/recipe/RecipeConfirmPage";
+import RecipeLoadingPage from "@/pages/recipe/RecipeLoadingPage";
+import RecipeResultPage from "@/pages/recipe/RecipeResultPage";
+
 import CookeepsPage from "@/pages/cookeeps/CookeepsPage";
 import MyPlantPage from "@/pages/cookeeps/MyPlantPage";
 import RecipeDetailPage from "@/pages/cookeeps/RecipeDetailPage";
-import ViewAllPage from "@/pages/cookeeps/ViewAllPage";
+import ListLayout from "@/layouts/ListLayout";
 import ViewListPage from "@/pages/cookeeps/ViewListPage";
-import AddItemPage from "@/pages/fridge/AddItemPage";
-import FridgePage from "@/pages/fridge/FridgePage";
+import ViewAllPage from "@/pages/cookeeps/ViewAllPage";
+import CookeepsLayout from "@/layouts/CookeepsLayout";
+
 import MyCookeepPage from "@/pages/myCookeep/MyCookeepPage";
-import RecordDetailPage from "@/pages/myCookeep/RecordDetailPage";
+import SetGoalPage from "@/pages/myCookeep/SetGoalPage";
 import RecordSelectPage from "@/pages/myCookeep/RecordSelectPage";
 import RecordWritePage from "@/pages/myCookeep/RecordWritePage";
-import SetGoalPage from "@/pages/myCookeep/SetGoalPage";
-import RecipeConfirmPage from "@/pages/recipe/RecipeConfirmPage";
-import RecipeIntroPage from "@/pages/recipe/RecipeIntroPage";
-import RecipeLoadingPage from "@/pages/recipe/RecipeLoadingPage";
-import RecipePage from "@/pages/recipe/RecipePage";
-import RecipeResultPage from "@/pages/recipe/RecipeResultPage";
-import RecipeSelectPage from "@/pages/recipe/RecipeSelectPage";
-import EditEmailPage from "@/pages/settings/EditEmailPage";
-import EditPasswordPage from "@/pages/settings/EditPasswordPage";
-import FaqPage from "@/pages/settings/FaqPage";
-import NoticePage from "@/pages/settings/NoticePage";
-import SettingsPage from "@/pages/settings/SettingsPage";
-import SupportPage from "@/pages/settings/SupportPage";
-import TermsPage from "@/pages/settings/TermsPage";
-import WithdrawDonePage from "@/pages/settings/WithdrawDonePage";
-import WithdrawPage from "@/pages/settings/WithdrawPage";
-import { useAuthStore } from "@/stores/useAuthStore";
-
-import FindLayout from "@/components/auth/find/FindLayout";
-import RequireFindAuth from "@/components/auth/find/RequireFindAuth";
-import ResetPassword from "@/components/auth/find/ResetPassword";
-import GoogleLoginCallback from "@/components/auth/simplelogin/GoogleLoginCallback";
+import RecordDetailPage from "@/pages/myCookeep/RecordDetailPage";
 import KakaoLoginCallback from "@/components/auth/simplelogin/KakaoLoginCallback";
-import Details from "@/components/fridge/addItems/Details";
-import EditPasswordEmailSection from "@/components/settings/sections/EditPasswordEmailSection";
+import GoogleLoginCallback from "@/components/auth/simplelogin/GoogleLoginCallback";
+import GuestPage from "@/pages/auth/GuestPage";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { useEffect, useState } from "react";
+import SplashPage from "@/pages/SplashPage";
 
 export default function App() {
   const navigate = useNavigate();

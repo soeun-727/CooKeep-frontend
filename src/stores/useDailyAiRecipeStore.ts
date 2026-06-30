@@ -1,5 +1,5 @@
-import { DailyAiRecipe, getDailyAiRecipes } from "@/api/dailyAiRecipe";
 import { create } from "zustand";
+import { getDailyAiRecipes, DailyAiRecipe } from "@/api/dailyAiRecipe";
 
 interface State {
   recipes: DailyAiRecipe[];
@@ -7,7 +7,7 @@ interface State {
   fetchRecipes: () => Promise<void>;
 }
 
-export const useDailyAiRecipeStore = create<State>(set => ({
+export const useDailyAiRecipeStore = create<State>((set) => ({
   recipes: [],
   isLoading: false,
 

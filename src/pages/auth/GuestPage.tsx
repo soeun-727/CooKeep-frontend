@@ -1,22 +1,21 @@
 // src/pages/auth/GuestPage.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import GuestFridge from "@/components/auth/guest/GuestFridge";
 import GuestAddItem from "@/components/auth/guest/GuestAddItem";
 import GuestDetails from "@/components/auth/guest/GuestDetails";
-import GuestFridge from "@/components/auth/guest/GuestFridge";
-import GuestLast from "@/components/auth/guest/GuestLast";
-import GuestRecipe from "@/components/auth/guest/GuestRecipe";
 import GuestRecipeIntro from "@/components/auth/guest/GuestRecipeIntro";
 import GuestRecipeLevel from "@/components/auth/guest/GuestRecipeLevel";
 import GuestRecipeLoading from "@/components/auth/guest/GuestRecipeLoading";
+import GuestRecipe from "@/components/auth/guest/GuestRecipe";
+import GuestLast from "@/components/auth/guest/GuestLast";
 
 export default function GuestPage() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
 
   const handleNext = () => {
-    setIndex(prev => prev + 1);
+    setIndex((prev) => prev + 1);
   };
 
   const renderSlide = () => {
@@ -53,7 +52,7 @@ export default function GuestPage() {
       </div>
 
       <button
-        onClick={e => {
+        onClick={(e) => {
           e.stopPropagation();
           navigate("/");
         }}

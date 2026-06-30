@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-
-import freezerIcon from "@/assets/fridge/addItem/freezer.svg";
-import freezerSelected from "@/assets/fridge/addItem/freezer_selected.svg";
 import fridgeIcon from "@/assets/fridge/addItem/fridge.svg";
-import fridgeSelected from "@/assets/fridge/addItem/fridge_selected.svg";
+import freezerIcon from "@/assets/fridge/addItem/freezer.svg";
 import pantryIcon from "@/assets/fridge/addItem/pantry.svg";
+import fridgeSelected from "@/assets/fridge/addItem/fridge_selected.svg";
+import freezerSelected from "@/assets/fridge/addItem/freezer_selected.svg";
 import pantrySelected from "@/assets/fridge/addItem/pantry_selected.svg";
-
 import { getKoreanStorage } from "@/utils/mapping";
 
 interface StorageEditorProps {
@@ -41,7 +39,7 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
     <div className="mt-[18px] mb-16 flex flex-col items-center gap-[18px]">
       <>
         <div className="flex flex-col gap-3">
-          {storage.map(storage => {
+          {storage.map((storage) => {
             const isInitialValue = storage === koreanValue;
             const isNewlySelected =
               selectedStorage === storage && !isInitialValue;

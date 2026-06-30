@@ -1,24 +1,20 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-
-import { getRefrigeratorHome } from "@/api/ingredient";
-import { getPushEligibility } from "@/api/user";
-import { useIngredientStore } from "@/stores/useIngredientStore";
-
-import freezerIcon from "@/assets/fridge/freezer.svg";
-import fridgeIcon from "@/assets/fridge/fridge.svg";
-import pantryIcon from "@/assets/fridge/pantry.svg";
-import { loadingChar } from "@/assets/index";
-
-import { useSortedIngredients } from "@/hooks/useSortedIngredients";
-
+import { useEffect, useMemo, useState, useCallback } from "react";
 import Search from "../features/Search";
 import Sort from "../features/Sort";
+import Storage from "./Storage";
 import IngredientGrid from "../items/IngredientGrid";
-import ItemOption from "../items/ItemOption";
 import NoResultView from "../items/NoResultView";
+import ItemOption from "../items/ItemOption";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
-import Storage from "./Storage";
+import { getRefrigeratorHome } from "@/api/ingredient";
+import { getPushEligibility } from "@/api/user";
+import { loadingChar } from "@/assets/index";
 
 export default function FridgeTab() {
   const { ingredients, setIngredients, searchTerm, viewCategory } =
@@ -62,7 +58,7 @@ export default function FridgeTab() {
         const lastShown = localStorage.getItem(EXPIRY_MODAL_KEY);
         if (lastShown !== today) {
           const eligibility = await getPushEligibility();
-          const hasTodayItems = parsed.some(i => i.dDay === 0);
+          const hasTodayItems = parsed.some((i) => i.dDay === 0);
           if (eligibility?.eligible && hasTodayItems) {
             setIsExpiryModalOpen(true);
             localStorage.setItem(EXPIRY_MODAL_KEY, today);
@@ -82,12 +78,12 @@ export default function FridgeTab() {
 
   const { filteredIngredients, sortedIngredients } = useSortedIngredients();
   const todayIngredients = useMemo(
-    () => ingredients.filter(i => i.dDay === 0),
+    () => ingredients.filter((i) => i.dDay === 0),
     [ingredients],
   );
   const selectedIngredient = useMemo(() => {
     if (!selectedIngredientId) return null;
-    return ingredients.find(i => i.id === selectedIngredientId) || null;
+    return ingredients.find((i) => i.id === selectedIngredientId) || null;
   }, [ingredients, selectedIngredientId]);
 
   const getCategoryIcon = (category: string | null) => {
@@ -122,7 +118,7 @@ export default function FridgeTab() {
         (filteredIngredients.length > 0 ? (
           <IngredientGrid items={filteredIngredients} />
         ) : (
-          <div className="flex h-[calc(100dvh-220px)] items-center justify-center pb-10">
+          <div className="h-[calc(100dvh-220px)] flex items-center justify-center pb-10">
             <NoResultView />
           </div>
         ))}
@@ -140,17 +136,17 @@ export default function FridgeTab() {
           <Storage
             category="냉장"
             image={fridgeIcon}
-            ingredients={ingredients.filter(i => i.category === "냉장")}
+            ingredients={ingredients.filter((i) => i.category === "냉장")}
           />
           <Storage
             category="냉동"
             image={freezerIcon}
-            ingredients={ingredients.filter(i => i.category === "냉동")}
+            ingredients={ingredients.filter((i) => i.category === "냉동")}
           />
           <Storage
             category="상온"
             image={pantryIcon}
-            ingredients={ingredients.filter(i => i.category === "상온")}
+            ingredients={ingredients.filter((i) => i.category === "상온")}
           />
         </div>
       )}

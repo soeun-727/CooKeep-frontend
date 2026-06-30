@@ -1,37 +1,35 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import BackHeader from "@/components/ui/BackHeader";
+import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
+import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDetailImageCard";
+import RecipeDetailContentSection from "@/components/cookeeps/recipedetail/RecipeDetailContentSection";
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
+import { useEffect, useState } from "react";
 import {
-  WeeklyRecipeDetailResponse,
   getWeeklyRecipeDetail,
+  WeeklyRecipeDetailResponse,
 } from "@/api/cookeeps";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import {
   checkRecipeBookmarkStatus,
   checkRecipeLikeStatus,
 } from "@/api/myRecipe";
-import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
-
-import RecipeDetailContentSection from "@/components/cookeeps/recipedetail/RecipeDetailContentSection";
-import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDetailImageCard";
-import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
-import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
-import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import BackHeader from "@/components/ui/BackHeader";
 
 export default function RecipeDetailPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const records = useCookeepRecordStore(state => state.records);
+  const records = useCookeepRecordStore((state) => state.records);
   const updateRecordLike = useCookeepRecordStore(
-    state => state.updateRecordLike,
+    (state) => state.updateRecordLike,
   );
   const updateRecordBookmark = useCookeepRecordStore(
-    state => state.updateRecordBookmark,
+    (state) => state.updateRecordBookmark,
   );
   const [recipe, setRecipe] = useState<WeeklyRecipeDetailResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const storeRecord = records.find(r => String(r.dailyRecipeId) === id);
+  const storeRecord = records.find((r) => String(r.dailyRecipeId) === id);
   // 화면에 보여줄 데이터 (스토어에 있으면 스토어꺼, 없으면 서버에서 받아온 상세 데이터 사용)
   const isLiked = storeRecord ? storeRecord.liked : recipe?.liked;
   const isBookmarked = storeRecord
@@ -49,7 +47,7 @@ export default function RecipeDetailPage() {
       // 2. ✅ 로컬 상태를 서버에서 준 정확한 값으로 업데이트
       // 만약 updatedData가 없으면(스토어 로직상) 기존처럼 반전 처리
       if (updatedData) {
-        setRecipe(prev =>
+        setRecipe((prev) =>
           prev
             ? {
                 ...prev,
@@ -60,7 +58,7 @@ export default function RecipeDetailPage() {
         );
       } else {
         // 스토어에 records가 없는 경우(상세페이지 직접 진입 등) 대비한 fallback
-        setRecipe(prev => {
+        setRecipe((prev) => {
           if (!prev) return prev;
           const nextLiked = !prev.liked;
           return {
@@ -85,11 +83,11 @@ export default function RecipeDetailPage() {
 
       // 2. ✅ 로컬 상태 동기화
       if (updatedData) {
-        setRecipe(prev =>
+        setRecipe((prev) =>
           prev ? { ...prev, bookmarked: updatedData.bookmarked } : null,
         );
       } else {
-        setRecipe(prev =>
+        setRecipe((prev) =>
           prev ? { ...prev, bookmarked: !prev.bookmarked } : null,
         );
       }

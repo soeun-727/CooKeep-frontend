@@ -1,23 +1,23 @@
 import type { Ingredient } from "@/stores/useIngredientStore";
-
-import { MOCK_RECIPES } from "@/constants/mockRecipes";
-
 // import type { Difficulty } from "@/stores/useRecipeFlowStore";
 import type { Recipe } from "@/types/recipe";
+import { MOCK_RECIPES } from "@/constants/mockRecipes";
 
 export function generateRecipe(
   ingredients: Pick<Ingredient, "id" | "name" | "quantity" | "unit">[],
   retryCount: number,
 ): Recipe {
-  const ingredientNames = ingredients.map(i => i.name);
+  const ingredientNames = ingredients.map((i) => i.name);
 
   // 재료 매칭 점수
-  const scored = MOCK_RECIPES.map(recipe => {
+  const scored = MOCK_RECIPES.map((recipe) => {
     const required = recipe.ingredients
-      .filter(i => i.isRequired)
-      .map(i => i.name);
+      .filter((i) => i.isRequired)
+      .map((i) => i.name);
 
-    const matchCount = required.filter(r => ingredientNames.includes(r)).length;
+    const matchCount = required.filter((r) =>
+      ingredientNames.includes(r),
+    ).length;
 
     return { recipe, score: matchCount };
   });

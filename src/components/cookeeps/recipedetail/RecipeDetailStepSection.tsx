@@ -17,7 +17,7 @@ export default function RecipeDetailStepSection({
           const stepOrder = index + 1;
 
           return (
-            <div key={stepOrder} className="flex w-full items-start gap-3">
+            <div key={stepOrder} className="flex items-start gap-3 w-full">
               {/* 번호 */}
               <div className="flex w-[30px] flex-shrink-0 items-start justify-center">
                 <div className="flex h-[20px] w-[30px] items-center justify-center rounded-full bg-[#202020] text-xs leading-[16px] font-semibold text-white">

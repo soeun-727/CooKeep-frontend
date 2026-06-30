@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
-
 import settings from "@/assets/cookeeps/main/settings_cookeeps.svg";
-import { cookieIcon, myLogo } from "@/assets/index";
+import { myLogo, cookieIcon } from "@/assets/index";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 export default function MyCookeepHeader() {
   const navigate = useNavigate();
   const location = useLocation();
-  const cookie = useCookeepsStore(s => s.cookie);
+  const cookie = useCookeepsStore((s) => s.cookie);
 
   const TOOLTIP_KEY = "cookeepsPlantShortcutSeen";
 

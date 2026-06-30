@@ -1,15 +1,11 @@
-import { memo, useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { type ProfileData, getProfileInfo } from "@/api/user";
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
-
-import { groundImg, refreshIcon, renameIcon } from "@/assets/index";
-
-import { GOAL_TYPE_MAP } from "@/utils/mapping";
-
-import ProfileEditModal from "../modals/ProfileEditModal";
 import MyCookeepHeader from "./MyCookeepHeader";
+import { groundImg, refreshIcon, renameIcon } from "@/assets/index";
+import { useNavigate } from "react-router-dom";
+import { useCallback, useEffect, useState, memo } from "react";
+import ProfileEditModal from "../modals/ProfileEditModal";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { getProfileInfo, type ProfileData } from "@/api/user";
+import { GOAL_TYPE_MAP } from "@/utils/mapping";
 
 function Profile() {
   const navigate = useNavigate();
@@ -49,8 +45,8 @@ function Profile() {
     }
   }, [profile]); //isLoading, , location.key
 
-  const setProfilePlant = useCookeepsStore(s => s.setProfilePlant);
-  const setProfileAuto = useCookeepsStore(s => s.setProfileAuto);
+  const setProfilePlant = useCookeepsStore((s) => s.setProfilePlant);
+  const setProfileAuto = useCookeepsStore((s) => s.setProfileAuto);
 
   const handleSaveProfile = async (userPlantId: number) => {
     await setProfilePlant(userPlantId);
@@ -83,7 +79,7 @@ function Profile() {
 
           <div className="mt-5 flex w-[361px] items-center justify-start">
             {/* 식물 사진 및 수정 버튼 */}
-            <div className="relative -ml-[7.5px] inline-block h-31 w-31 shrink-0">
+            <div className="relative w-31 h-31 -ml-[7.5px] shrink-0 inline-block">
               <img
                 src={profile.profilePlantImageUrl || groundImg}
                 alt="profileBackground"

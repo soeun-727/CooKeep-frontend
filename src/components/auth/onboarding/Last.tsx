@@ -1,6 +1,5 @@
 //온보딩 완료
 import { calendarImage, checkChar, shadow } from "@/assets/index";
-
 import Button from "@/components/ui/Button";
 
 interface LastProps {

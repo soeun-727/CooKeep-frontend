@@ -1,7 +1,6 @@
 import header from "@/assets/guest/back_header.svg";
-import milk from "@/assets/guest/bagel.svg";
-
 import DetailedItem from "@/components/fridge/addItems/DetailedItem";
+import milk from "@/assets/guest/bagel.svg";
 import Button from "@/components/ui/Button";
 
 interface GuestDetailsProps {
@@ -37,7 +36,7 @@ export default function GuestDetails({ onNext }: GuestDetailsProps) {
 
         <div
           className="pointer-events-none mt-[43px] flex w-full justify-center px-5"
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
         >
           <DetailedItem {...(guestItem as any)} />
         </div>

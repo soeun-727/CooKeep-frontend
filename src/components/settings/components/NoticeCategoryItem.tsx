@@ -1,11 +1,8 @@
 // src/pages/settings/components/NoticeCategoryItem.tsx
 import { useState } from "react";
-
-import arrowIcon from "@/assets/signup/arrowright.svg";
-
-import { Notice } from "@/types/notice";
-
 import NoticeItem from "./NoticeItem";
+import arrowIcon from "@/assets/signup/arrowright.svg";
+import { Notice } from "@/types/notice";
 
 interface NoticeCategoryItemProps {
   category: Notice;
@@ -27,7 +24,7 @@ export default function NoticeCategoryItem({
         className={`flex w-full cursor-pointer items-center justify-between px-[12px] ${
           open ? "pt-[12px] pb-[6px]" : "py-[12px]"
         }`}
-        onClick={() => setOpen(prev => !prev)}
+        onClick={() => setOpen((prev) => !prev)}
       >
         <p
           className={`typo-label ${open ? "text-[#1FC16F]" : "text-[#202020]"}`}

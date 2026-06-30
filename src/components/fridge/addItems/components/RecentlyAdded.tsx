@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 
 export default function RecentlyAdded() {

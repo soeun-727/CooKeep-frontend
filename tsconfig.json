@@ -42,7 +42,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/vite-env.d.ts",
-    "custom.d.ts",
     "public/**/*.ts"
   ]
 }

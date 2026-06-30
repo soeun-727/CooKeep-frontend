@@ -1,14 +1,10 @@
 import { useNavigate } from "react-router-dom";
-
-import { DailyRecipe } from "@/api/myRecipe";
-import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
-
 import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
-
 import Button from "@/components/ui/Button";
-
-import AddRecordButton from "./AddRecordButton";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import RecordCard from "./RecordCard";
+import AddRecordButton from "./AddRecordButton";
+import { DailyRecipe } from "@/api/myRecipe";
 
 interface RecordEntryProps {
   records: DailyRecipe[];
@@ -40,7 +36,7 @@ export default function RecordEntry({ records }: RecordEntryProps) {
               </div>
             </>
           ) : (
-            records.map(record => (
+            records.map((record) => (
               <RecordCard key={record.dailyRecipeId} record={record} />
             ))
           )}

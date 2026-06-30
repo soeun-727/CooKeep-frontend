@@ -1,16 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-
-import {
-  type CategoryType,
-  type CustomIngredientRequest,
-  registerCustomIngredient,
-} from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
-
 import editIcon from "@/assets/recipe/rename.svg";
-
 import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
 import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
+import {
+  registerCustomIngredient,
+  type CategoryType,
+  type CustomIngredientRequest,
+} from "@/api/ingredient";
 
 interface CustomProps {
   isOpen: boolean;
@@ -102,9 +99,9 @@ export default function Custom({
               ref={inputRef}
               type="text"
               value={localName}
-              onChange={e => setLocalName(e.target.value)}
+              onChange={(e) => setLocalName(e.target.value)}
               onBlur={finishEditing}
-              onKeyDown={e => e.key === "Enter" && finishEditing()}
+              onKeyDown={(e) => e.key === "Enter" && finishEditing()}
               className="typo-body w-[180px] border-b border-zinc-300 text-center font-bold text-neutral-900 outline-none"
             />
           ) : (
@@ -127,7 +124,7 @@ export default function Custom({
         </p>
 
         <div className="no-scrollbar mb-4 grid h-40 w-40 flex-1 grid-cols-3 gap-2 overflow-y-auto">
-          {categories.map(cat => (
+          {categories.map((cat) => (
             <button
               key={cat.id}
               type="button"

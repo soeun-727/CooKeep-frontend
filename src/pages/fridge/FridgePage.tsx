@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
 import MainHeader from "@/components/fixed/MainHeader";
@@ -8,7 +7,7 @@ import FridgeTab from "@/components/fridge/main/FridgeTab";
 
 export default function FridgePage() {
   const location = useLocation();
-  const viewCategory = useIngredientStore(state => state.viewCategory);
+  const viewCategory = useIngredientStore((state) => state.viewCategory);
 
   const isAllViewMode = location.pathname.includes("fridge") && !!viewCategory;
 
@@ -16,7 +15,7 @@ export default function FridgePage() {
     <div className="flex h-full flex-col">
       <MainHeader isAllView={isAllViewMode} />
 
-      <div className="flex flex-1 flex-col">
+      <div className="flex-1 flex flex-col">
         <FridgeTab />
         <AddButton />
       </div>

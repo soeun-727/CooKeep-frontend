@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-
-import character from "@/assets/character/congrats_happy_char.svg";
-
 import Button from "@/components/ui/Button";
+import character from "@/assets/character/congrats_happy_char.svg";
 
 interface UploadCompleteModalProps {
   isOpen: boolean; // 열림 상태 추가

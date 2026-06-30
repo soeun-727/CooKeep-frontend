@@ -1,6 +1,5 @@
 import PlantImage from "./PlantImage";
 import WaterToast from "./WaterToast";
-
 // 이거 크기 1대1로 반응형으로 했는데 별로면 수정....
 
 interface PlantBackgroundProps {

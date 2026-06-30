@@ -1,6 +1,6 @@
+import { create } from "zustand";
 import { sendUpdateEmailCode, verifyUpdateEmailCode } from "@/api/user";
 import axios from "axios";
-import { create } from "zustand";
 
 interface EmailUpdateState {
   email: string;
@@ -19,7 +19,7 @@ export const useEmailUpdateStore = create<EmailUpdateState>((set, get) => ({
   isCodeSent: false,
   isVerified: false,
 
-  setEmail: email => set({ email }),
+  setEmail: (email) => set({ email }),
 
   requestSendCode: async () => {
     try {
@@ -34,7 +34,7 @@ export const useEmailUpdateStore = create<EmailUpdateState>((set, get) => ({
     }
   },
 
-  requestVerifyCode: async code => {
+  requestVerifyCode: async (code) => {
     try {
       await verifyUpdateEmailCode(get().email, code);
       set({ isVerified: true }); // 추가

@@ -1,14 +1,11 @@
 // src/pages/settings/NoticePage.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { getNotices } from "@/api/notice";
-
-import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
 import BackHeader from "@/components/ui/BackHeader";
-import LoadingScreen from "@/components/ui/LoadingScreen";
-
+import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
+import { getNotices } from "@/api/notice";
 import { Notice, mapNotice } from "@/types/notice";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function NoticePage() {
   const navigate = useNavigate();
@@ -54,7 +51,7 @@ export default function NoticePage() {
             등록된 공지사항이 없습니다.
           </p>
         ) : (
-          notices.map(notice => (
+          notices.map((notice) => (
             <NoticeCategoryItem key={notice.id} category={notice} />
           ))
         )}

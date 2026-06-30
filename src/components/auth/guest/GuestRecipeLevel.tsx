@@ -1,6 +1,5 @@
 import header from "@/assets/guest/back_header.svg";
 import contents from "@/assets/guest/recipe_header.svg";
-
 import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
 import Button from "@/components/ui/Button";
 

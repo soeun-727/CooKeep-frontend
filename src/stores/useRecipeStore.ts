@@ -1,11 +1,11 @@
+import { create } from "zustand";
 import {
-  AiRecipeSessionItem,
-  deleteAiRecipeSession,
   getAiRecipeSessions,
+  AiRecipeSessionItem,
   toggleFavoriteSession,
   updateAiSessionTitle,
+  deleteAiRecipeSession,
 } from "@/api/aiSession";
-import { create } from "zustand";
 
 interface RecipeState {
   pinned: AiRecipeSessionItem[];
@@ -19,7 +19,7 @@ interface RecipeState {
   deleteSession: (sessionId: number) => Promise<void>;
 }
 
-export const useRecipeStore = create<RecipeState>(set => ({
+export const useRecipeStore = create<RecipeState>((set) => ({
   pinned: [],
   sessions: [],
   isLoading: false,
@@ -92,9 +92,9 @@ export const useRecipeStore = create<RecipeState>(set => ({
       // await get().fetchSessions();
 
       // 방법 2: 로컬 상태에서 직접 필터링 (네트워크 비용 아끼기)
-      set(state => ({
-        pinned: state.pinned.filter(s => s.sessionId !== sessionId),
-        sessions: state.sessions.filter(s => s.sessionId !== sessionId),
+      set((state) => ({
+        pinned: state.pinned.filter((s) => s.sessionId !== sessionId),
+        sessions: state.sessions.filter((s) => s.sessionId !== sessionId),
         isLoading: false,
       }));
     } catch (error) {

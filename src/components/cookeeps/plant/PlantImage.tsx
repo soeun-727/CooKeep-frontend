@@ -1,18 +1,15 @@
 import { memo } from "react";
-
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
-
-import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
-
 import { EMPTY_PLANT_IMAGE, PLANT_IMAGES } from "./PlantImages";
+import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
 
 interface PlantImageProps {
   overridePlantStage?: 1 | 2 | 3 | 4;
 }
 
 function PlantImage({ overridePlantStage }: PlantImageProps) {
-  const currentPlant = useCookeepsStore(s => s.currentPlant);
-  const justHarvestedPlant = useCookeepsStore(s => s.justHarvestedPlant);
+  const currentPlant = useCookeepsStore((s) => s.currentPlant);
+  const justHarvestedPlant = useCookeepsStore((s) => s.justHarvestedPlant);
 
   // 수확 직후 - 수확된 식물의 4단계 이미지 유지
   if (justHarvestedPlant && !currentPlant) {

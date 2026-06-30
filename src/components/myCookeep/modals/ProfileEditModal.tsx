@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
-
-import { currentIcon, groundImg } from "@/assets/index";
-
 import Button from "@/components/ui/Button";
+import { currentIcon, groundImg } from "@/assets/index";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 interface ProfileEditModalProps {
   isOpen: boolean;
@@ -17,8 +14,8 @@ export default function ProfileEditModal({
   onClose,
   onSave,
 }: ProfileEditModalProps) {
-  const currentPlant = useCookeepsStore(s => s.currentPlant);
-  const myPlants = useCookeepsStore(s => s.myPlants);
+  const currentPlant = useCookeepsStore((s) => s.currentPlant);
+  const myPlants = useCookeepsStore((s) => s.myPlants);
 
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
@@ -33,7 +30,7 @@ export default function ProfileEditModal({
   if (!isOpen) return null;
 
   const selectedPlantImage =
-    myPlants.find(p => p.userPlantId === selectedId)?.imageUrl ?? groundImg;
+    myPlants.find((p) => p.userPlantId === selectedId)?.imageUrl ?? groundImg;
   return (
     <div className="fixed inset-0 z-[200] flex items-end justify-center">
       {/* 배경 어둡게 */}
@@ -64,7 +61,7 @@ export default function ProfileEditModal({
 
           {/* 2. 식물 도감 (그리드) */}
           <div className="-mt-2 mb-7 grid w-[331px] grid-cols-4 gap-x-3 gap-y-1 px-4">
-            {myPlants.map(plant => (
+            {myPlants.map((plant) => (
               <div key={plant.userPlantId} className="relative">
                 {/* 현재 키우는 식물 위에만 뜨는 말풍선 */}
                 {plant.isProfile && (

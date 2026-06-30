@@ -1,4 +1,4 @@
-import { bookmarkGray, likeGray } from "@/assets/index";
+import { likeGray, bookmarkGray } from "@/assets/index";
 
 interface ItemProps {
   type: string;

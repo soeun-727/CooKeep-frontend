@@ -1,24 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { AiRecipeDetail, getAiRecipeDetail } from "@/api/dailyAiRecipe";
-import { uploadImage } from "@/api/image";
-import { createDailyRecipe } from "@/api/myRecipe";
-import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
-import { AxiosError } from "axios";
-import imageCompression from "browser-image-compression";
-
-import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
-
-import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
-import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
-import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
-import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
+import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
+import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
+import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { uploadImage } from "@/api/image";
+import { createDailyRecipe } from "@/api/myRecipe";
+import { AiRecipeDetail, getAiRecipeDetail } from "@/api/dailyAiRecipe";
+import imageCompression from "browser-image-compression";
+import { AxiosError } from "axios";
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
 export default function RecordWritePage() {
@@ -209,7 +206,7 @@ export default function RecordWritePage() {
             <RecordWriteImageCard
               title={title}
               imageSrc={image?.url}
-              onImageChange={async file => {
+              onImageChange={async (file) => {
                 // onClickAddImage 대신
                 if (file.size > 15 * 1024 * 1024) {
                   alert(
@@ -281,7 +278,7 @@ export default function RecordWritePage() {
           <div className="flex w-full shrink-0 flex-col items-center pt-4">
             <textarea
               value={memo}
-              onChange={e => setMemo(e.target.value.slice(0, 500))}
+              onChange={(e) => setMemo(e.target.value.slice(0, 500))}
               onInput={handleMemoInput}
               placeholder="글자 수 최대 500자"
               className="typo-body w-full resize-none overflow-hidden rounded-[10px] bg-white px-[10px] py-3 text-center text-[#202020] outline-none placeholder:text-[#7D7D7D]"

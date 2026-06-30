@@ -1,6 +1,5 @@
-import congratsImg from "@/assets/character/congrats_happy_char.svg";
-
 import Button from "@/components/ui/Button";
+import congratsImg from "@/assets/character/congrats_happy_char.svg";
 
 interface HarvestModalProps {
   isOpen: boolean;

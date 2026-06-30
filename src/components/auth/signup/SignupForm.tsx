@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { signup } from "@/api/auth";
-import { registerPushNotification } from "@/api/push";
-import { useSignupStore } from "@/stores/useSignupStore";
-import axios from "axios";
-
-import { saveTokens } from "@/utils/auth";
-
+import { useState, useEffect } from "react";
 import AccountSection from "./AccountSection";
-import EmailAuthModal from "./EmailAuthModal";
-import EmailSection from "./EmailSection";
 import SuccessSection from "./SuccessSection";
+import { useSignupStore } from "@/stores/useSignupStore";
+import { signup } from "@/api/auth";
+import { saveTokens } from "@/utils/auth";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { registerPushNotification } from "@/api/push";
+import EmailSection from "./EmailSection";
+import EmailAuthModal from "./EmailAuthModal";
 
 interface Agreements {
   terms: boolean;
@@ -33,8 +30,8 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
   }, [isFinished, setHideHeader]);
 
   // 인증 결과만 구독
-  const isVerified = useSignupStore(s => s.isVerified);
-  const storeEmail = useSignupStore(s => s.email); // store의 이메일 (인증에 사용된)
+  const isVerified = useSignupStore((s) => s.isVerified);
+  const storeEmail = useSignupStore((s) => s.email); // store의 이메일 (인증에 사용된)
 
   // 계정 정보
   const [password, setPassword] = useState("");
@@ -94,7 +91,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
       setIsFinished(true);
 
       if (agreements.marketing) {
-        registerPushNotification().catch(err => {
+        registerPushNotification().catch((err) => {
           console.error("회원가입 후 푸시 등록 실패 (비필수):", err);
         });
       }

@@ -1,6 +1,6 @@
-import { useNavigate } from "react-router-dom";
-
 import line from "@/assets/login/Line.png";
+
+import { useNavigate } from "react-router-dom";
 
 export default function LoginFooter() {
   const navigate = useNavigate();

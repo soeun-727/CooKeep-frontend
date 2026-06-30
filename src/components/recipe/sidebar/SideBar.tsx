@@ -1,15 +1,11 @@
-import { useEffect, useLayoutEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import { AiRecipeSessionItem } from "@/api/aiSession";
-import { useRecipeStore } from "@/stores/useRecipeStore";
-
-import searchIcon from "@/assets/recipe/search.svg";
-
+import { useEffect, useState, useLayoutEffect } from "react";
+import Recipe from "./Recipe";
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import TextField from "@/components/ui/TextField";
-
-import Recipe from "./Recipe";
+import searchIcon from "@/assets/recipe/search.svg";
+import { useRecipeStore } from "@/stores/useRecipeStore";
+import { useNavigate } from "react-router-dom";
+import { AiRecipeSessionItem } from "@/api/aiSession";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -88,17 +84,17 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
   const renderRecipeList = (list: AiRecipeSessionItem[], isLiked: boolean) => (
     <div className="flex w-full flex-col items-center">
       {list
-        .filter(item =>
+        .filter((item) =>
           item.title.toLowerCase().includes(searchTerm.toLowerCase()),
         )
-        .map(item => (
+        .map((item) => (
           <Recipe
             key={item.sessionId}
             isLiked={isLiked}
             name={item.title}
             searchTerm={searchTerm}
             onLike={() => toggleLike(item.sessionId)}
-            onRename={newTitle => renameRecipe(item.sessionId, newTitle)}
+            onRename={(newTitle) => renameRecipe(item.sessionId, newTitle)}
             onDelete={() => {
               // 삭제 버튼 클릭 시 모달 오픈 및 데이터 세팅
               setSelectedRecipe({ id: item.sessionId, name: item.title });
@@ -138,7 +134,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                     <TextField
                       value={searchTerm}
                       placeholder="레시피를 검색하세요"
-                      onChange={value => setSearchTerm(value)}
+                      onChange={(value) => setSearchTerm(value)}
                       rightIcon={<img src={searchIcon} className="" />}
                     />
                   </div>

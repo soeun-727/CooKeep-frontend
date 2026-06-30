@@ -1,5 +1,4 @@
 import type { RecipeSession } from "@/types/recipe";
-
 import { MOCK_RECIPES } from "./mockRecipes";
 
 export const MOCK_RECIPE_SESSIONS: RecipeSession[] = [

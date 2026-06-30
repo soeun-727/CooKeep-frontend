@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-
-import { CalendarRecipe, getCalendarRecipes } from "@/api/myRecipe";
-
-import prevIcon from "@/assets/fridge/addItem/backward.svg";
 import nextIcon from "@/assets/fridge/addItem/forward.svg";
+import prevIcon from "@/assets/fridge/addItem/backward.svg";
 import todaySign from "@/assets/mycookeep/today.svg";
+import { CalendarRecipe, getCalendarRecipes } from "@/api/myRecipe";
 
 interface CalendarProps {
   onDateClick: (date: string) => void;
@@ -75,7 +73,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
       </div>
       {/* 2. 요일 */}
       <div className="mb-2 grid w-full grid-cols-7">
-        {daysOfWeek.map(day => (
+        {daysOfWeek.map((day) => (
           <div
             key={day}
             className="typo-body2 text-center text-(--color-green)"

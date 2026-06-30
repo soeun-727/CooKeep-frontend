@@ -1,5 +1,4 @@
 import { memo } from "react";
-
 import deleteIcon from "@/assets/recipe/delete.svg";
 
 interface ItemProps {
@@ -30,7 +29,7 @@ function Item({
           src={deleteIcon}
           alt="delete"
           className="absolute top-[9px] right-[10px] z-10 h-3 cursor-pointer"
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             onDelete?.(e);
           }}

@@ -1,8 +1,6 @@
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
-
-import characterImg from "@/assets/character/kijul_char.svg";
-
 import Button from "@/components/ui/Button";
+import characterImg from "@/assets/character/kijul_char.svg";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 interface WiltingModalProps {
   plant: string;
@@ -24,7 +22,7 @@ export default function WiltingModal({
       {/* modal */}
       <div
         className="relative flex h-[254px] w-70 flex-col items-center gap-7 rounded-[10px] bg-white px-7 pt-[35px] pb-[25px]"
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         {/* content */}
         <div className="flex w-full flex-col items-center gap-7">

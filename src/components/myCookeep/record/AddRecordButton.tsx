@@ -1,15 +1,13 @@
 // src/components/myCookeep/record/AddRecordButton.tsx
 import { useNavigate } from "react-router-dom";
-
-import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
-
 // import { useState } from "react";
 import plusIcon from "@/assets/fridge/items/plus.svg";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
 export default function AddRecordButton() {
   const navigate = useNavigate();
   //   const [pressed, setPressed] = useState(false);
-  const resetRecord = useCookeepRecordStore(s => s.resetRecord);
+  const resetRecord = useCookeepRecordStore((s) => s.resetRecord);
 
   return (
     <button

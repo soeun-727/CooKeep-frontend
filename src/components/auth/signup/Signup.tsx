@@ -1,14 +1,13 @@
 // src/components/auth/Signup.tsx
-import { useEffect, useState } from "react";
 
-import { useSignupStore } from "@/stores/useSignupStore";
-
+import { useState, useEffect } from "react";
 import AuthHeader from "../AuthHeader";
 import SignupForm from "./SignupForm";
+import { useSignupStore } from "@/stores/useSignupStore";
 
 export default function Signup() {
   const [hideHeader, setHideHeader] = useState(false);
-  const resetSignup = useSignupStore(s => s.resetSignup);
+  const resetSignup = useSignupStore((s) => s.resetSignup);
 
   // 페이지 진입 시 store 초기화
   useEffect(() => {

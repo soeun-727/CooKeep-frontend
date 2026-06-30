@@ -1,6 +1,5 @@
-import character from "@/assets/character/thinking_char.svg";
-
 import Button from "@/components/ui/Button";
+import character from "@/assets/character/thinking_char.svg";
 
 interface AddMoreModalProps {
   onConfirm: () => void;
@@ -18,7 +17,7 @@ export default function AddMoreModal({
     >
       <div
         className="flex w-[240px] flex-col items-center gap-2 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]"
-        onClick={e => e.stopPropagation()}
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center justify-center gap-4 self-stretch">
           <img src={character} className="h-[90px] w-[85px]" alt="thinking" />

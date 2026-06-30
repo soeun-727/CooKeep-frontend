@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import InstallGuide from "@/components/auth/onboarding/InstallGuide";
+import AuthHeader from "@/components/auth/AuthHeader";
+import Progress from "@/components/auth/onboarding/Progress";
+import Goal from "@/components/auth/onboarding/Goal";
+import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
+import Footer from "@/components/auth/onboarding/Footer";
+import Notification from "@/components/auth/onboarding/Notification";
+import Last from "@/components/auth/onboarding/Last";
+import Guide from "@/components/auth/onboarding/Guide";
+import Preference from "@/components/auth/onboarding/Preference";
+
 import { saveOnboardingData } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
-
-import AuthHeader from "@/components/auth/AuthHeader";
-import Footer from "@/components/auth/onboarding/Footer";
-import Goal from "@/components/auth/onboarding/Goal";
-import Guide from "@/components/auth/onboarding/Guide";
-import InstallGuide from "@/components/auth/onboarding/InstallGuide";
-import Last from "@/components/auth/onboarding/Last";
-import Notification from "@/components/auth/onboarding/Notification";
-import Preference from "@/components/auth/onboarding/Preference";
-import Progress from "@/components/auth/onboarding/Progress";
-import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
-
 import { GOAL_TYPE_MAP } from "@/utils/mapping";
 
 export default function Onboarding() {
@@ -85,7 +84,9 @@ export default function Onboarding() {
       if (isForcedSkip) {
         // 건너뛰기: 둘 다 null
         requestBody = {
-          dislikedIngredients: selectedIngredients.map(item => item.ingredient),
+          dislikedIngredients: selectedIngredients.map(
+            (item) => item.ingredient,
+          ),
           goalActionType: null,
           targetCount: null,
         };
@@ -107,7 +108,9 @@ export default function Onboarding() {
         }
 
         requestBody = {
-          dislikedIngredients: selectedIngredients.map(item => item.ingredient),
+          dislikedIngredients: selectedIngredients.map(
+            (item) => item.ingredient,
+          ),
           goalActionType:
             GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
           targetCount: count,

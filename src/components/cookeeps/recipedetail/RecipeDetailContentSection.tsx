@@ -1,8 +1,6 @@
 import { IngredientsJson } from "@/api/dailyAiRecipe";
-
 import RecipeDetailIngredientSection from "./RecipeDetailIngredientSection";
 import RecipeDetailStepSection from "./RecipeDetailStepSection";
-
 interface RecipeDetailContentSectionProps {
   recipe: {
     ingredients: IngredientsJson;

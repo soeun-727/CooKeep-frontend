@@ -3,9 +3,9 @@ import { create } from "zustand";
 export const useLoadingStore = create<{
   isLoading: boolean;
   setLoading: (v: boolean) => void;
-}>(set => ({
+}>((set) => ({
   isLoading: false,
-  setLoading: v => {
+  setLoading: (v) => {
     if (v) {
       set({ isLoading: true });
     } else {

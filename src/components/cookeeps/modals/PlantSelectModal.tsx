@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-
-import Button from "@/components/ui/Button";
-
 import { PLANT_DATA } from "@/constants/plantData";
+import Button from "@/components/ui/Button";
 
 interface PlantSelectModalProps {
   isOpen: boolean;
@@ -48,7 +46,7 @@ export default function PlantSelectModal({
 
         {/* 그리드 영역 */}
         <div className="grid w-full grid-cols-3 justify-items-center gap-2">
-          {PLANT_DATA.map(plant => {
+          {PLANT_DATA.map((plant) => {
             const isHarvested = harvestedPlantNames.includes(plant.text);
 
             return (

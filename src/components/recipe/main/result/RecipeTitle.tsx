@@ -1,11 +1,9 @@
 import { useParams } from "react-router-dom";
-
-import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRecipeStore } from "@/stores/useRecipeStore";
-
 import tempIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
-import likedIcon from "@/assets/recipe/liked.svg";
 import unlikedIcon from "@/assets/recipe/unliked.svg";
+import likedIcon from "@/assets/recipe/liked.svg";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 interface RecipeTitleProps {
   name: string;
@@ -23,7 +21,7 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
   const { pinned, toggleLike } = useRecipeStore();
 
   // 현재 세션이 pinned 배열에 있는지 확인하여 하트 색상 결정
-  const isLiked = pinned.some(p => p.sessionId === currentSessionId);
+  const isLiked = pinned.some((p) => p.sessionId === currentSessionId);
 
   const handleToggleLike = async () => {
     if (currentSessionId) {

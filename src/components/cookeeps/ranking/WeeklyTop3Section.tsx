@@ -1,12 +1,9 @@
 import { memo } from "react";
-
 import { WateringRankItem } from "@/api/cookeeps";
-
-import thinkingChar from "@/assets/character/thinking_char.svg";
-import plantBefore from "@/assets/cookeeps/plant/plant_before.svg";
-import { plantChar } from "@/assets/index";
-
 import RankingCard from "./RankingCard";
+import plantBefore from "@/assets/cookeeps/plant/plant_before.svg";
+import thinkingChar from "@/assets/character/thinking_char.svg";
+import { plantChar } from "@/assets/index";
 
 interface WeeklyTop3SectionProps {
   users: WateringRankItem[];
@@ -48,7 +45,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
       </div>
 
       <div className="relative flex gap-[10px]">
-        {order.map(idx => {
+        {order.map((idx) => {
           const user = filledUsers[idx];
 
           // 데이터가 3개 미만일 경우를 대비한 가드

@@ -1,11 +1,9 @@
 import { useState } from "react";
-
-import {
-  type SortOrder,
-  useIngredientStore,
-} from "@/stores/useIngredientStore";
-
 import sortIcon from "@/assets/fridge/sort.svg";
+import {
+  useIngredientStore,
+  type SortOrder,
+} from "@/stores/useIngredientStore";
 
 interface SortProps {
   categoryIcon: string;

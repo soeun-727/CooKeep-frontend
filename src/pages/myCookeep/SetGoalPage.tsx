@@ -1,16 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { updateWeeklyGoal } from "@/api/user";
-import axios from "axios";
-
 import Goal from "@/components/auth/onboarding/Goal";
 import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
-import GoalcheckModal from "@/components/myCookeep/modals/GoalCheckModal";
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
-
+import GoalcheckModal from "@/components/myCookeep/modals/GoalCheckModal";
 import { GOAL_TYPE_MAP } from "@/utils/mapping";
+import { updateWeeklyGoal } from "@/api/user";
+import axios from "axios";
 
 export default function SetGoalPage() {
   const navigate = useNavigate();
@@ -47,7 +44,7 @@ export default function SetGoalPage() {
     if (isLastStep) {
       setIsModalOpen(true);
     } else {
-      setStep(prev => prev + 1);
+      setStep((prev) => prev + 1);
     }
   };
   const handleConfirm = async () => {

@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { withdrawUser } from "@/api/auth";
-import { getMyProfile } from "@/api/user";
-import { useAuthStore } from "@/stores/useAuthStore";
-
-import characterImg from "@/assets/character/sad_char_faded.svg";
-import arrowIcon from "@/assets/signup/arrowright.svg";
-
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
+import arrowIcon from "@/assets/signup/arrowright.svg";
+import characterImg from "@/assets/character/sad_char_faded.svg";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { withdrawUser } from "@/api/auth";
+import { getMyProfile } from "@/api/user";
 
 export default function WithdrawPage() {
   const navigate = useNavigate();
@@ -133,7 +130,7 @@ export default function WithdrawPage() {
 
         {/* ===== 체크 영역 ===== */}
         <button
-          onClick={() => setAgree(v => !v)}
+          onClick={() => setAgree((v) => !v)}
           className="mx-2 mt-3 flex items-center gap-2"
         >
           <span
@@ -160,17 +157,17 @@ export default function WithdrawPage() {
         {/* ===== 탈퇴 사유 토글 ===== */}
         <div className="mt-6">
           <button
-            onClick={() => setReasonOpen(v => !v)}
+            onClick={() => setReasonOpen((v) => !v)}
             aria-expanded={reasonOpen}
             className={`flex h-[48px] w-full items-center gap-3 border border-[#D1D1D1] bg-white px-3 ${reasonOpen ? "rounded-t-[6px] border-b-0" : "rounded-[6px]"} `}
           >
             {isCustom ? (
               <input
                 value={customReason}
-                onChange={e => setCustomReason(e.target.value)}
+                onChange={(e) => setCustomReason(e.target.value)}
                 placeholder="직접 입력하세요"
                 className="flex-1 text-[14px] outline-none"
-                onClick={e => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
               />
             ) : (
               <span className="flex-1 text-left text-[14px] font-medium text-[#111]">
@@ -189,7 +186,7 @@ export default function WithdrawPage() {
 
           {reasonOpen && (
             <div className="flex w-full flex-col overflow-hidden rounded-b-[6px] border border-t-0 border-[#D1D1D1] bg-white">
-              {reasons.map(reason => (
+              {reasons.map((reason) => (
                 <button
                   key={reason}
                   onClick={() => {

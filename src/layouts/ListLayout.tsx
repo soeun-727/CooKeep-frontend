@@ -1,15 +1,14 @@
 // src/layouts/ListLayout.tsx
-import { useEffect, useRef, useState } from "react";
 import {
   Outlet,
-  useLocation,
   useNavigate,
+  useLocation,
   useSearchParams,
 } from "react-router-dom";
-
-import ViewAllHeader from "@/components/cookeeps/lists/ViewAllHeader";
-import ViewListHeader from "@/components/cookeeps/lists/ViewListHeader";
+import { useEffect, useRef, useState } from "react";
 import BackHeader from "@/components/ui/BackHeader";
+import ViewListHeader from "@/components/cookeeps/lists/ViewListHeader";
+import ViewAllHeader from "@/components/cookeeps/lists/ViewAllHeader";
 
 export default function ListLayout() {
   const navigate = useNavigate();
@@ -51,7 +50,7 @@ export default function ListLayout() {
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
           activeTab={activeTab}
-          onTabChange={tab => {
+          onTabChange={(tab) => {
             setSearchParams({ tab });
           }}
         />

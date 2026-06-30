@@ -27,7 +27,7 @@ export default function SelectedIngredientList({
 
       {/* 재료 컨테이너 */}
       <div className="grid w-full grid-cols-5 justify-items-center gap-y-2 rounded-[10px] bg-white px-[5px] py-[9px] shadow-[0_-1px_80px_-4px_rgba(32,32,32,0.1)]">
-        {sortedIngredients.map(item => {
+        {sortedIngredients.map((item) => {
           const isUrgent = item.dDay <= 3;
           console.log(item.name, item.expiryDate, item.dDay);
 

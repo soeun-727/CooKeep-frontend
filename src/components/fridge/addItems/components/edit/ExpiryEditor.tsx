@@ -1,7 +1,6 @@
 import { useState } from "react";
-
-import prevIcon from "@/assets/fridge/addItem/backward.svg";
 import nextIcon from "@/assets/fridge/addItem/forward.svg";
+import prevIcon from "@/assets/fridge/addItem/backward.svg";
 
 interface ExpiryEditorProps {
   value: string; // "2026.01.20" 형식
@@ -53,7 +52,7 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
 
       {/* 2. 요일 표시 */}
       <div className="mb-2 grid w-full grid-cols-7">
-        {daysOfWeek.map(day => (
+        {daysOfWeek.map((day) => (
           <div
             key={day}
             className="typo-body2 py-2 text-center text-[var(--color-green)]"

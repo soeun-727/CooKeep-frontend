@@ -1,14 +1,14 @@
+import { create } from "zustand";
 import {
-  type ConsumeRewardResponse,
-  type StorageType,
   consumeIngredients,
   deleteIngredients,
   updateIngredientDate,
   updateIngredientMemo,
   updateIngredientQuantity,
   updateIngredientStorage,
+  type ConsumeRewardResponse,
+  type StorageType,
 } from "@/api/ingredient";
-import { create } from "zustand";
 
 export interface Ingredient {
   id: number;
@@ -61,24 +61,24 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
   sortOrder: "유통기한 임박 순",
   selectedIngredientId: null,
   eatenCount: 0,
-  setIngredients: ingredients => set({ ingredients }),
-  setSearchTerm: term => set({ searchTerm: term }),
-  setViewCategory: category => set({ viewCategory: category }),
-  setSortOrder: order => set({ sortOrder: order }),
-  toggleSelect: id =>
-    set(state => ({
+  setIngredients: (ingredients) => set({ ingredients }),
+  setSearchTerm: (term) => set({ searchTerm: term }),
+  setViewCategory: (category) => set({ viewCategory: category }),
+  setSortOrder: (order) => set({ sortOrder: order }),
+  toggleSelect: (id) =>
+    set((state) => ({
       selectedIds: state.selectedIds.includes(id)
-        ? state.selectedIds.filter(sid => sid !== id)
+        ? state.selectedIds.filter((sid) => sid !== id)
         : [...state.selectedIds, id],
     })),
 
-  setSelectedFromIngredients: ingredients =>
+  setSelectedFromIngredients: (ingredients) =>
     set({
-      selectedIds: ingredients.map(i => i.id),
+      selectedIds: ingredients.map((i) => i.id),
     }),
 
   clearSelection: () => set({ selectedIds: [] }),
-  deleteSelected: async type => {
+  deleteSelected: async (type) => {
     const { selectedIds, ingredients, eatenCount } = get();
     if (selectedIds.length === 0) return null;
 
@@ -92,7 +92,7 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
         await deleteIngredients(selectedIds);
       }
       set({
-        ingredients: ingredients.filter(i => !selectedIds.includes(i.id)),
+        ingredients: ingredients.filter((i) => !selectedIds.includes(i.id)),
         selectedIds: [],
         eatenCount:
           type === "eaten" ? eatenCount + selectedIds.length : eatenCount,
@@ -105,7 +105,7 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
       throw error;
     }
   },
-  openDetail: id => set({ selectedIngredientId: id }),
+  openDetail: (id) => set({ selectedIngredientId: id }),
   closeDetail: () => set({ selectedIngredientId: null }),
   changeMemo: async (ingredientId, newMemo) => {
     const { ingredients } = get();
@@ -113,7 +113,7 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
       const response = await updateIngredientMemo(ingredientId, newMemo);
 
       if (response.status === 200 || response.data.status === "OK") {
-        const updatedIngredients = ingredients.map(item =>
+        const updatedIngredients = ingredients.map((item) =>
           item.id === ingredientId ? { ...item, memo: newMemo } : item,
         );
         set({ ingredients: updatedIngredients });
@@ -135,7 +135,7 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
 
       if (response.status === 200 || response.data.status === "OK") {
         // 서버 응답 데이터를 기반으로 로컬 상태 업데이트
-        const updatedIngredients = ingredients.map(item =>
+        const updatedIngredients = ingredients.map((item) =>
           item.id === ingredientId ? { ...item, quantity: newQuantity } : item,
         );
         set({ ingredients: updatedIngredients });
@@ -170,7 +170,7 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
       );
 
       if (response.status === 200 || response.data.status === "OK") {
-        const updatedIngredients = ingredients.map(item =>
+        const updatedIngredients = ingredients.map((item) =>
           item.id === ingredientId
             ? {
                 ...item,
@@ -197,7 +197,7 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
 
       if (response.status === 200 || response.data.status === "OK") {
         const serverData = response.data.data;
-        const updatedIngredients = ingredients.map(item =>
+        const updatedIngredients = ingredients.map((item) =>
           item.id === ingredientId
             ? {
                 ...item,
@@ -214,9 +214,9 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
       throw error;
     }
   },
-  updateIngredient: updated =>
-    set(state => ({
-      ingredients: state.ingredients.map(i =>
+  updateIngredient: (updated) =>
+    set((state) => ({
+      ingredients: state.ingredients.map((i) =>
         i.id === updated.id ? updated : i,
       ),
     })),

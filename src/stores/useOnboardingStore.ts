@@ -1,7 +1,5 @@
-import { OnboardingIngredient } from "@/api/onboarding";
 import { create } from "zustand";
-
-// 정의해둔 타입 임포트
+import { OnboardingIngredient } from "@/api/onboarding"; // 정의해둔 타입 임포트
 
 interface OnboardingStore {
   selectedGoal: { id: string; title: string };
@@ -25,7 +23,7 @@ interface OnboardingStore {
   resetOnboarding: () => void;
 }
 
-export const useOnboardingStore = create<OnboardingStore>(set => ({
+export const useOnboardingStore = create<OnboardingStore>((set) => ({
   selectedGoal: { id: "cook", title: "주 n회 요리하기" },
   goalCount: "3",
 
@@ -37,16 +35,16 @@ export const useOnboardingStore = create<OnboardingStore>(set => ({
   showNotification: false,
   showInstallGuide: false,
 
-  setSelectedGoal: selectedGoal => set({ selectedGoal }),
-  setGoalCount: goalCount => set({ goalCount }),
+  setSelectedGoal: (selectedGoal) => set({ selectedGoal }),
+  setGoalCount: (goalCount) => set({ goalCount }),
 
   // 상태 업데이트 로직 구현
-  setSelectedIngredients: selectedIngredients => set({ selectedIngredients }),
+  setSelectedIngredients: (selectedIngredients) => set({ selectedIngredients }),
 
-  setStep: step => set({ step }),
-  setIsFinished: isFinished => set({ isFinished }),
-  setShowNotification: showNotification => set({ showNotification }),
-  setShowInstallGuide: showInstallGuide => set({ showInstallGuide }),
+  setStep: (step) => set({ step }),
+  setIsFinished: (isFinished) => set({ isFinished }),
+  setShowNotification: (showNotification) => set({ showNotification }),
+  setShowInstallGuide: (showInstallGuide) => set({ showInstallGuide }),
 
   resetOnboarding: () =>
     set({

@@ -1,11 +1,9 @@
 // src/components/layout/Layout.tsx
-import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-
+import TabBar from "@/components/fixed/TabBar";
+import { useState, useEffect } from "react";
 import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
-
-import TabBar from "@/components/fixed/TabBar";
 
 export default function Layout() {
   const location = useLocation();
@@ -45,7 +43,10 @@ export default function Layout() {
       </main>
 
       {showTabBar && (
-        <TabBar selectedTab={activeTab} onSelect={name => setActiveTab(name)} />
+        <TabBar
+          selectedTab={activeTab}
+          onSelect={(name) => setActiveTab(name)}
+        />
       )}
     </div>
   );

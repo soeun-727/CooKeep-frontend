@@ -1,17 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
+import searchIcon from "@/assets/recipe/search.svg";
+import liked from "@/assets/recipe/liked.svg";
+import unliked from "@/assets/recipe/unliked.svg";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
 // import { useRecipeStore, type RecipeItem } from @/componentsstores/useRecipeStore";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
-
-import liked from "@/assets/recipe/liked.svg";
-import searchIcon from "@/assets/recipe/search.svg";
-import unliked from "@/assets/recipe/unliked.svg";
-
-import BackHeader from "@/components/ui/BackHeader";
-import Button from "@/components/ui/Button";
+import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
 
 export default function RecordSelectPage() {
   const navigate = useNavigate();
@@ -32,13 +29,13 @@ export default function RecordSelectPage() {
 
   // 검색 필터
   const filteredRecipes = useMemo(() => {
-    return recipes.filter(recipe =>
+    return recipes.filter((recipe) =>
       recipe.title.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   }, [recipes, searchTerm]);
 
-  const likedRecipes = filteredRecipes.filter(r => r.isPinned);
-  const normalRecipes = filteredRecipes.filter(r => !r.isPinned);
+  const likedRecipes = filteredRecipes.filter((r) => r.isPinned);
+  const normalRecipes = filteredRecipes.filter((r) => !r.isPinned);
 
   const renderRecipeItem = (recipe: DailyAiRecipe) => {
     const isSelected = selectedRecipeId === recipe.aiRecipeId;
@@ -76,7 +73,7 @@ export default function RecordSelectPage() {
           <div className="flex w-full items-center gap-2 p-3">
             <input
               value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="레시피를 검색하세요"
               className="typo-body2 h-[24px] flex-1 bg-transparent text-[#7D7D7D] outline-none"
             />
@@ -118,7 +115,7 @@ export default function RecordSelectPage() {
             disabled={!selectedRecipeId}
             onClick={() => {
               const recipe = recipes.find(
-                r => r.aiRecipeId === selectedRecipeId,
+                (r) => r.aiRecipeId === selectedRecipeId,
               );
               if (!recipe) return;
 

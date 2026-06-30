@@ -1,5 +1,4 @@
 import React from "react";
-
 import check from "@/assets/fridge/check.svg";
 import checkOn from "@/assets/fridge/check_selected.svg";
 
@@ -52,7 +51,7 @@ export default function Item({
 
       <div className="flex w-full flex-1 items-end justify-between pb-1.5">
         <button
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             onSelect?.();
           }}

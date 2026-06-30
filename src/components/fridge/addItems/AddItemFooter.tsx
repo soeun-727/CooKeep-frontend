@@ -1,13 +1,10 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-import { getIngredientPreview } from "@/api/ingredient";
-import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
-
 import Button from "@/components/ui/Button";
-
 import RecentlyAdded from "./components/RecentlyAdded";
 import Selected from "./components/Selected";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
+import { getIngredientPreview } from "@/api/ingredient";
+import { useState } from "react";
 
 export default function AddItemFooter() {
   const navigate = useNavigate();
@@ -21,7 +18,7 @@ export default function AddItemFooter() {
     try {
       setIsLoading(true);
 
-      const ingredientsPayload = selectedItems.map(item => ({
+      const ingredientsPayload = selectedItems.map((item) => ({
         type: item.type,
         referenceId: Number(item.id),
       }));
@@ -31,9 +28,9 @@ export default function AddItemFooter() {
       if (response.data && response.data.data) {
         const previewIngredients = response.data.data.ingredients;
 
-        const detailedItems = previewIngredients.map(ing => {
+        const detailedItems = previewIngredients.map((ing) => {
           const originalItem = selectedItems.find(
-            s => Number(s.id) === ing.referenceId,
+            (s) => Number(s.id) === ing.referenceId,
           );
 
           return {

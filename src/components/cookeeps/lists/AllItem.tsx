@@ -1,5 +1,4 @@
-// import { likeGray } from "@/assets/index";
-import LikeGray from "@/assets/cookeeps/like.svg?react";
+import { likeGray } from "@/assets/index";
 
 interface ItemProps {
   rank: number;
@@ -48,9 +47,9 @@ export default function AllItem({
         {/* 좋아요 영역 */}
         <div
           onClick={handleIconClick}
-          className="mx-4 flex flex-shrink-0 items-center"
+          className="mx-4 flex flex-shrink-0 items-center gap-1"
         >
-          <LikeGray className="h-[18px] w-[18px] text-[#C3C3C3]" />
+          <img src={likeGray} alt="like" className="w-[13px] flex-shrink-0" />
 
           {/* 숫자 오른쪽 정렬 */}
           <span className="typo-caption ml-0.5 flex-1 text-right whitespace-nowrap text-zinc-500">

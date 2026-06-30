@@ -1,5 +1,4 @@
 import { Outlet, useNavigate } from "react-router-dom";
-
 import BackHeader from "@/components/ui/BackHeader";
 
 export default function VerifyLayout() {

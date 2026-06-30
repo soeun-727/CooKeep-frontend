@@ -1,5 +1,5 @@
-import icon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
 
+import icon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
 import Button from "./Button";
 
 type OnboardingType = "INGREDIENT" | "RECIPE";

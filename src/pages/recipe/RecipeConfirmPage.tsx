@@ -1,13 +1,11 @@
 // src/pages/recipe/confirm/RecipeConfirmPage.tsx
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react";
+import BackHeader from "@/components/ui/BackHeader";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
-
+import SelectedIngredientList from "@/components/recipe/main/confirm/SelectedIngredientList";
 import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
 import RecommendButton from "@/components/recipe/main/confirm/RecommendButton";
-import SelectedIngredientList from "@/components/recipe/main/confirm/SelectedIngredientList";
-import BackHeader from "@/components/ui/BackHeader";
 
 export default function RecipeConfirmPage() {
   const navigate = useNavigate();

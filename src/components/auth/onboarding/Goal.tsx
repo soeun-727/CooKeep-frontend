@@ -66,7 +66,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
             }`}
           >
             <div className="flex flex-col">
-              {goals.map(goal => (
+              {goals.map((goal) => (
                 <button
                   key={goal.id}
                   onClick={() => {

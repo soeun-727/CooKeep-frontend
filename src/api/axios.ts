@@ -1,7 +1,6 @@
-import { refreshAccessToken } from "@/api/auth.api";
 import axios from "axios";
-
-import { clearTokens, getAccessToken } from "@/utils/auth";
+import { getAccessToken, clearTokens } from "@/utils/auth";
+import { refreshAccessToken } from "@/api/auth.api";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -12,14 +11,14 @@ let isRefreshing = false;
 let failedQueue: any[] = [];
 
 const processQueue = (error: any, token: string | null = null) => {
-  failedQueue.forEach(prom => {
+  failedQueue.forEach((prom) => {
     if (error) prom.reject(error);
     else prom.resolve(token);
   });
   failedQueue = [];
 };
 
-api.interceptors.request.use(config => {
+api.interceptors.request.use((config) => {
   const token = getAccessToken();
   if (token && config.headers) {
     const hasBearer = token.startsWith("Bearer ");
@@ -29,8 +28,8 @@ api.interceptors.request.use(config => {
 });
 
 api.interceptors.response.use(
-  response => response,
-  async error => {
+  (response) => response,
+  async (error) => {
     const originalRequest = error.config;
     const isUnauthorized =
       error.response?.status === 401 ||
@@ -45,11 +44,11 @@ api.interceptors.response.use(
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })
-          .then(token => {
+          .then((token) => {
             originalRequest.headers.Authorization = `Bearer ${token}`;
             return api(originalRequest);
           })
-          .catch(err => Promise.reject(err));
+          .catch((err) => Promise.reject(err));
       }
 
       originalRequest._retry = true;
