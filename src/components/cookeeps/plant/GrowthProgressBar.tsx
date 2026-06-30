@@ -1,5 +1,5 @@
-import treeIcon from "../../../assets/cookeeps/main/tree_cookeeps.svg";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import treeIcon from "@/assets/cookeeps/main/tree_cookeeps.svg";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 export default function GrowthProgressBar({
   overridePlantStage,

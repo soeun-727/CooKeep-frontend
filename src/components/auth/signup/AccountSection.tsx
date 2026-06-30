@@ -1,17 +1,17 @@
 import { useState } from "react";
-import TextField from "../../ui/TextField";
-import Button from "../../ui/Button";
-import { AGREEMENTS, AGREEMENT_NOTICE } from "../../../constants/agreements";
-import { useSignupStore } from "../../../stores/useSignupStore";
-import mailIcon from "../../../assets/signup/mail.svg";
-import pwIcon from "../../../assets/login/key.svg";
-import pwImage from "../../../assets/login/pw.svg";
-import openpwImage from "../../../assets/signup/openpw.svg";
-import checkIcon from "../../../assets/signup/check.svg";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
+import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
+import { useSignupStore } from "@/stores/useSignupStore";
+import mailIcon from "@/assets/signup/mail.svg";
+import pwIcon from "@/assets/login/key.svg";
+import pwImage from "@/assets/login/pw.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+import checkIcon from "@/assets/signup/check.svg";
+import arrowIcon from "@/assets/signup/arrowright.svg";
 import AgreementPage from "./AgreementPage";
-import type { AgreementItem } from "../../../constants/agreements";
-import { blankCheck, grayCheck, greenCheck } from "../../../assets";
+import type { AgreementItem } from "@/constants/agreements";
+import { blankCheck, grayCheck, greenCheck } from "@/assets/index";
 
 interface Agreements {
   terms: boolean;
@@ -95,8 +95,8 @@ export default function AccountSection({
           </p>
         </AgreementPage>
       ) : (
-        <div className="flex-1 min-h-0 flex flex-col w-full px-5 pb-[34px]">
-          <div className="flex-1 overflow-y-auto no-scrollbar pt-[108px]">
+        <div className="flex min-h-0 w-full flex-1 flex-col px-5 pb-[34px]">
+          <div className="no-scrollbar flex-1 overflow-y-auto pt-[108px]">
             {/* 제목 */}
             <div className="typo-h1">회원가입</div>
             <div className="mx-auto mt-[12px]">
@@ -132,7 +132,7 @@ export default function AccountSection({
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="flex items-center justify-center h-full"
+                        className="flex h-full items-center justify-center"
                       >
                         <img src={getPasswordIcon()} alt="비밀번호 아이콘" />
                       </button>
@@ -163,7 +163,7 @@ export default function AccountSection({
                           onClick={() =>
                             setShowPasswordConfirm(!showPasswordConfirm)
                           }
-                          className="flex items-center justify-center h-full"
+                          className="flex h-full items-center justify-center"
                         >
                           <img
                             src={getPasswordConfirmIcon()}
@@ -180,7 +180,7 @@ export default function AccountSection({
                         <div className="relative w-6 h-6 flex-shrink-0 flex items-center justify-center">
                           <input
                             type="checkbox"
-                            className="peer absolute inset-0 w-full h-full appearance-none cursor-pointer z-10"
+                            className="peer absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none"
                             checked={isAllChecked}
                             onChange={(e) =>
                               updateAgreements({
@@ -193,12 +193,12 @@ export default function AccountSection({
                           <img
                             src={blankCheck}
                             alt="unchecked"
-                            className="block peer-checked:hidden w-full h-full object-contain pointer-events-none z-0"
+                            className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                           />
                           <img
                             src={greenCheck}
                             alt="checked"
-                            className="hidden peer-checked:block w-4 h-4 object-contain pointer-events-none z-0"
+                            className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
                           />
                         </div>
 
@@ -208,18 +208,18 @@ export default function AccountSection({
                       </label>
 
                       {/* 개별 약관 박스 */}
-                      <div className="w-full p-3 flex flex-col gap-[10px]">
+                      <div className="flex w-full flex-col gap-[10px] p-3">
                         {AGREEMENTS.map((item) => (
                           <div
                             key={item.key}
-                            className="flex items-center justify-between w-full h-[24px]"
+                            className="flex h-[24px] w-full items-center justify-between"
                           >
-                            <label className="flex items-center gap-3 cursor-pointer overflow-hidden">
+                            <label className="flex cursor-pointer items-center gap-3 overflow-hidden">
                               {item.key !== "policy" ? (
-                                <div className="relative w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                                <div className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
                                   <input
                                     type="checkbox"
-                                    className="peer absolute inset-0 w-full h-full appearance-none cursor-pointer z-10"
+                                    className="peer absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none"
                                     checked={agreements[item.key]}
                                     onChange={(e) =>
                                       updateAgreements({
@@ -230,16 +230,16 @@ export default function AccountSection({
                                   <img
                                     src={blankCheck}
                                     alt="unchecked"
-                                    className="block peer-checked:hidden w-full h-full object-contain pointer-events-none z-0"
+                                    className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                                   />
                                   <img
                                     src={grayCheck}
                                     alt="checked"
-                                    className="hidden peer-checked:block w-4 h-4 object-contain pointer-events-none z-0"
+                                    className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
                                   />
                                 </div>
                               ) : (
-                                <span className="w-5 h-5 flex-shrink-0 inline-block" />
+                                <span className="inline-block h-5 w-5 flex-shrink-0" />
                               )}
 
                               <span className="typo-label text-gray-50 truncate">
@@ -258,7 +258,7 @@ export default function AccountSection({
                               <img
                                 src={arrowIcon}
                                 alt="약관 보기"
-                                className="w-6 h-6"
+                                className="h-6 w-6"
                               />
                             </button>
                           </div>

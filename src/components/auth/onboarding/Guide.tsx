@@ -1,12 +1,12 @@
 import { useState, TouchEvent } from "react";
-import image1 from "../../../assets/onboarding/guide_1.svg";
-import image1_2 from "../../../assets/onboarding/guide_1_2.svg";
-import image2 from "../../../assets/onboarding/guide_2.svg";
-import image3 from "../../../assets/onboarding/guide_3.svg";
-import image4 from "../../../assets/onboarding/guide_4.svg";
-import Button from "../../ui/Button";
+import image1 from "@/assets/onboarding/guide_1.svg";
+import image1_2 from "@/assets/onboarding/guide_1_2.svg";
+import image2 from "@/assets/onboarding/guide_2.svg";
+import image3 from "@/assets/onboarding/guide_3.svg";
+import image4 from "@/assets/onboarding/guide_4.svg";
+import Button from "@/components/ui/Button";
 
-interface Props {
+interface GuideProps {
   onNext: () => void;
 }
 
@@ -53,7 +53,7 @@ const ONBOARDING_DATA = [
   },
 ];
 
-export default function Guide({ onNext }: Props) {
+export default function Guide({ onNext }: GuideProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
@@ -95,15 +95,17 @@ export default function Guide({ onNext }: Props) {
     }
   };
 
-  const handleSliderClick = () => {
-    if (currentIndex < 3) {
-      handleNext();
-    }
-  };
+  // 미사용 핸들러 주석 처리
+  // const handleSliderClick = () => {
+  //   if (currentIndex < 3) {
+  //     handleNext();
+  //   }
+  // };
 
   return (
     <div
-      className="flex flex-col h-full overflow-hidden select-none"
+      className="flex h-full flex-col overflow-hidden select-none"
+      onClick={() => currentIndex < 3 && handleNext()}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -124,7 +126,7 @@ export default function Guide({ onNext }: Props) {
         </div>
 
         {/* 텍스트 */}
-        <div className="mt-10 text-center px-4">
+        <div className="mt-10 px-4 text-center">
           <div className="typo-h1 !text-[22px]">{title}</div>
           <p className="whitespace-pre-wrap typo-body text-gray-50 mt-2">
             {text}
@@ -136,12 +138,9 @@ export default function Guide({ onNext }: Props) {
       <div className="flex-1" />
 
       {/* 하단 영역 */}
-      <div className="pb-8 relative">
-        {/* 이미지 슬라이더 */}
-        <div
-          onClick={handleSliderClick}
-          className={`overflow-hidden ${currentIndex < 3 ? "cursor-pointer" : "cursor-default"}`}
-        >
+      <div className="relative pb-8">
+        {/* 이미지 */}
+        <div className="overflow-hidden">
           <div
             className="flex items-end transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
@@ -149,21 +148,17 @@ export default function Guide({ onNext }: Props) {
             {ONBOARDING_DATA.map((data, index) => (
               <div
                 key={data.id}
-                className="min-w-full flex justify-center items-end relative"
+                className="relative flex min-w-full items-end justify-center"
               >
-                <img
-                  src={data.img}
-                  alt={`guide-${index}`}
-                  className="h-[61.6vh] max-h-[524px] min-h-[320px] object-contain pointer-events-none"
-                  loading={index === 0 ? "eager" : "lazy"}
+                <object
+                  className="pointer-events-none h-[61.6vh] max-h-[524px] min-h-[320px] border-none object-contain outline-none"
+                  data={data.img}
                 />
 
                 {index === 0 && (
-                  <img
-                    src={image1_2}
-                    alt="guide-sub"
-                    className="absolute z-10 w-[38%] right-[8%] bottom-[17%] pointer-events-none"
-                    loading="eager"
+                  <object
+                    data={image1_2}
+                    className="absolute right-[8%] bottom-[17%] z-10 w-[38%]"
                   />
                 )}
               </div>
@@ -175,8 +170,8 @@ export default function Guide({ onNext }: Props) {
 
         {/* 버튼 */}
         <div
-          className={`absolute bottom-10 w-full px-6 z-20 transition-opacity duration-300 ${
-            currentIndex === 3 ? "opacity-100" : "opacity-0 pointer-events-none"
+          className={`absolute bottom-10 z-20 w-full px-6 transition-opacity duration-300 ${
+            currentIndex === 3 ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >
           <Button onClick={onNext} variant="black" size="L" className="w-full">

@@ -1,6 +1,4 @@
-import React from "react";
-
-interface Props {
+interface SelectedModalProps {
   isOpen: boolean;
   onClose: () => void;
   plant: string;
@@ -9,14 +7,14 @@ interface Props {
   onConfirm: () => void;
 }
 
-const SelectedModal: React.FC<Props> = ({
+export default function SelectedModal({
   isOpen,
   onClose,
   plant,
   image,
   description,
   onConfirm,
-}) => {
+}: SelectedModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -43,7 +41,7 @@ const SelectedModal: React.FC<Props> = ({
             </span>
           </div>
         </div>
-        <div className="flex gap-2 mt-4">
+        <div className="mt-4 flex gap-2">
           <button
             onClick={onConfirm}
             className="typo-label w-27 h-11 text-gray-0 bg-green rounded-[10px]"
@@ -60,6 +58,4 @@ const SelectedModal: React.FC<Props> = ({
       </div>
     </div>
   );
-};
-
-export default SelectedModal;
+}

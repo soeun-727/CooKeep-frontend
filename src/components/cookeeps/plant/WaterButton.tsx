@@ -1,8 +1,8 @@
 // WaterButton.tsx
 import { useEffect, useState } from "react";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import WaterModal from "../modals/WaterModal";
-import CookieIcon from "../../../assets/cookeeps/main/water_cookie_cookeeps.svg";
+import CookieIcon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
 
 interface WaterButtonProps {
   onSuccess?: () => void; // prop 추가
@@ -77,15 +77,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
             </div>
 
             {/* ▼ 삼각형 */}
-            <div
-              className="
-        w-0 h-0
-        border-l-[5px] border-l-transparent
-        border-r-[5px] border-r-transparent
-        border-t-[10px] border-t-white
-        -mt-[1px]
-      "
-            />
+            <div className="-mt-[1px] h-0 w-0 border-t-[10px] border-r-[5px] border-l-[5px] border-t-white border-r-transparent border-l-transparent" />
           </div>
         )}
         <button
@@ -117,7 +109,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
           <img
             src={CookieIcon}
             alt="cookie"
-            className="w-4 h-4 object-contain"
+            className="h-4 w-4 object-contain"
           />
           10)
         </button>

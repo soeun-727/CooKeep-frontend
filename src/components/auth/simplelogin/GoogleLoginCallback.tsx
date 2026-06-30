@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../../stores/useAuthStore";
-import LoadingScreen from "../../ui/LoadingScreen";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { loadingChar } from "@/assets/index";
 
 export default function GoogleLoginCallback() {
   const navigate = useNavigate();
@@ -66,5 +66,10 @@ export default function GoogleLoginCallback() {
     handleLogin();
   }, [navigate, loginSocial]);
 
-  return <LoadingScreen />;
+  return (
+    <div className="mt-50 flex flex-col items-center justify-center text-center">
+      <img className="w-30 p-5 opacity-70" src={loadingChar} alt="loading" />
+      <div className="typo-body2 text-zinc-500">로그인 중...</div>
+    </div>
+  );
 }

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import AccountSection from "./AccountSection";
 import SuccessSection from "./SuccessSection";
-import { useSignupStore } from "../../../stores/useSignupStore";
-import { signup } from "../../../api/auth";
-import { saveTokens } from "../../../utils/auth";
+import { useSignupStore } from "@/stores/useSignupStore";
+import { signup } from "@/api/auth";
+import { saveTokens } from "@/utils/auth";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { registerPushNotification } from "../../../api/push";
+import { registerPushNotification } from "@/api/push";
 import EmailSection from "./EmailSection";
 import EmailAuthModal from "./EmailAuthModal";
 
@@ -124,7 +124,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
   if (isFinished) return <SuccessSection />;
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col gap-4">
+    <div className="flex min-h-0 flex-1 flex-col gap-4">
       {/* 이메일 인증 섹션 (전화번호 섹션 대체) */}
       {!isVerified && <EmailSection />}
 

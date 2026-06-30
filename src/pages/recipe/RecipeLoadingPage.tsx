@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import LoadingIcon from "../../assets/recipe/main/LoadingIcon.svg";
-import CheckIcon from "../../assets/recipe/check.svg";
-import StepMessage from "../../components/recipe/main/loading/StepMessage";
-import { useRecipeFlowStore } from "../../stores/useRecipeFlowStore";
-import RecipeLoadingSpinner from "../../components/recipe/main/loading/RecipeLoadingSpinner";
+// import LoadingIcon from @/componentsassets/recipe/main/LoadingIcon.svg";
+import CheckIcon from "@/assets/recipe/check.svg";
+import StepMessage from "@/components/recipe/main/loading/StepMessage";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ export default function RecipeLoadingPage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center h-screen pt-[139px] text-center">
+    <div className="flex h-screen flex-col items-center pt-[139px] text-center">
       {/* 로딩 아이콘 */}
       {/* <img
         src={LoadingIcon}
@@ -56,7 +56,7 @@ export default function RecipeLoadingPage() {
       <RecipeLoadingSpinner />
 
       {/* 타이틀 / 서브타이틀 */}
-      <div className="flex flex-col items-center w-[361px] gap-2 mb-[49px]">
+      <div className="mb-[49px] flex w-[361px] flex-col items-center gap-2">
         <h1 className="typo-result-title">오늘의 요리 준비 중...</h1>
         <p className="typo-button text-green-deep font-bold">
           나에게 딱 맞는 레시피를 찾고 있어요
@@ -64,7 +64,7 @@ export default function RecipeLoadingPage() {
       </div>
 
       {/* 메시지 카드 */}
-      <div className="flex flex-col w-[321px] gap-3">
+      <div className="flex w-[321px] flex-col gap-3">
         {messages.slice(0, step).map((msg, idx) => (
           <StepMessage key={idx} message={msg} icon={CheckIcon} />
         ))}

@@ -1,4 +1,4 @@
-interface Props {
+interface RecipeYoutubeCardProps {
   videos: {
     title: string;
     thumbnail: string;
@@ -7,7 +7,10 @@ interface Props {
   tags?: string[];
 }
 
-export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
+export default function RecipeYoutubeCard({
+  videos,
+  tags = [],
+}: RecipeYoutubeCardProps) {
   if (!videos || videos.length === 0) return null;
 
   return (
@@ -28,20 +31,20 @@ export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
       )}
 
       {/* 썸네일 3개 */}
-      <div className="flex gap-2 w-full">
+      <div className="flex w-full gap-2">
         {videos.slice(0, 3).map((video, idx) => (
           <a
             key={idx}
             href={video.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 rounded-[6px] overflow-hidden bg-gray-200"
+            className="flex-1 overflow-hidden rounded-[6px] bg-gray-200"
             style={{ height: "68px" }}
           >
             <img
               src={video.thumbnail}
               alt={video.title}
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </a>
         ))}

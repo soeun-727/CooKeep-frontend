@@ -13,7 +13,7 @@ interface DoublecheckModalProps {
   closeOnOverlayClick?: boolean;
 }
 
-const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
+export default function DoublecheckModal({
   isOpen,
   onClose,
   title,
@@ -23,7 +23,7 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
   cancelText = "아니오",
   variant = "black",
   closeOnOverlayClick = false,
-}) => {
+}: DoublecheckModalProps) {
   useEffect(() => {
     if (isOpen) {
       const scrollY = window.scrollY;
@@ -81,6 +81,4 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
     </div>,
     document.body,
   );
-};
-
-export default DoublecheckModal;
+}

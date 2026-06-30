@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Button from "../../ui/Button";
+import Button from "@/components/ui/Button";
 import ExampleNotification from "./ExampleNotification";
-import char from "../../../assets/character/noti_char.svg";
-import { updatePushConsent } from "../../../api/onboarding";
-import { registerPushNotification } from "../../../api/push";
+import char from "@/assets/character/noti_char.svg";
+import { updatePushConsent } from "@/api/onboarding";
+import { registerPushNotification } from "@/api/push";
 
 const EXAMPLE_DATA = [
   {
@@ -27,11 +27,11 @@ const EXAMPLE_DATA = [
   },
 ];
 
-interface Props {
+interface NotificationProps {
   onNext: () => void;
 }
 
-export default function Notification({ onNext }: Props) {
+export default function Notification({ onNext }: NotificationProps) {
   const [isLoading, setIsLoading] = useState(false);
   const INFINITE_DATA = [...EXAMPLE_DATA, ...EXAMPLE_DATA];
 
@@ -66,7 +66,7 @@ export default function Notification({ onNext }: Props) {
         <h1 className="typo-h1 text-left">
           쿠킵 루틴, 알림으로 받아보시겠어요?
         </h1>
-        <p className="typo-body2 text-gray-500 mt-1 text-left break-keep">
+        <p className="typo-body2 mt-1 text-left break-keep text-gray-500">
           유통기한 임박, 주간 목표, 물 주기처럼 까먹지 않게
           <br />
           필요한 순간에만 도와드릴게요.
@@ -76,7 +76,7 @@ export default function Notification({ onNext }: Props) {
       </div>
 
       <div
-        className="relative flex flex-col items-center justify-start overflow-hidden mt-14"
+        className="relative mt-14 flex flex-col items-center justify-start overflow-hidden"
         style={{
           height: "calc(100dvh - 500px)",
         }}
@@ -96,7 +96,7 @@ export default function Notification({ onNext }: Props) {
 
       <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[361px] bg-background z-50 pb-[34px]">
         <div className="flex justify-end">
-          <img src={char} className="w-[95px] mb-[26.5px]" alt="character" />
+          <img src={char} className="mb-[26.5px] w-[95px]" alt="character" />
         </div>
         <div className="flex flex-col gap-2">
           <Button

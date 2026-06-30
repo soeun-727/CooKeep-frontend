@@ -1,5 +1,5 @@
-import Button from "../../ui/Button";
-import congratsImg from "../../../assets/character/congrats_happy_char.svg";
+import Button from "@/components/ui/Button";
+import congratsImg from "@/assets/character/congrats_happy_char.svg";
 
 interface HarvestModalProps {
   isOpen: boolean;
@@ -17,13 +17,13 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
       {/* modal */}
       <div className="relative w-[258px] px-[28px] pt-[35px] pb-[25px] bg-gray-0 rounded-[10px] flex flex-col items-center gap-[18px]">
         {/* content */}
-        <div className="flex flex-col items-center gap-[28px] w-full">
+        <div className="flex w-full flex-col items-center gap-[28px]">
           {/* image + text */}
           <div className="flex flex-col items-center gap-[20px]">
             <img
               src={congratsImg}
               alt="수확 완료"
-              className="w-[80px] h-[84.8px]"
+              className="h-[84.8px] w-[80px]"
             />
 
             {/* text */}
@@ -43,7 +43,7 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
           {/* button */}
           <Button
             variant="green"
-            className="!w-full !h-[44px] !rounded-[10px]"
+            className="!h-[44px] !w-full !rounded-[10px]"
             onClick={onClose}
           >
             확인

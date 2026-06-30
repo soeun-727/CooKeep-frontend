@@ -1,10 +1,10 @@
 // import { useState } from "react";
-import likeIcon from "../../../assets/cookeeps/main/like_cookeeps.svg";
-import saveIcon from "../../../assets/cookeeps/main/save_cookeeps.svg";
+import likeIcon from "@/assets/cookeeps/main/like_cookeeps.svg";
+import saveIcon from "@/assets/cookeeps/main/save_cookeeps.svg";
 
 // 저장눌렀을때 아이콘 확정되면 수정
 
-interface Props {
+interface RecipeDetailUserMetaProps {
   userName: string;
   isLiked: boolean;
   isBookmarked: boolean;
@@ -18,17 +18,9 @@ export default function RecipeDetailUserMeta({
   isBookmarked,
   onLike,
   onBookmark,
-}: Props) {
-  // const [liked, setLiked] = useState(false);
-  // const [saved, setSaved] = useState(false);
-
+}: RecipeDetailUserMetaProps) {
   return (
-    <div
-      className="
-    flex justify-between items-center
-    w-full p-1
-  "
-    >
+    <div className="flex w-full items-center justify-between p-1">
       {/* 유저 pill */}
       <div
         className="
@@ -48,23 +40,23 @@ export default function RecipeDetailUserMeta({
       <div className="flex items-center">
         <button
           onClick={onLike}
-          className="w-[36px] h-[36px] flex items-center justify-center rounded-full"
+          className="flex h-[36px] w-[36px] items-center justify-center rounded-full"
         >
           <img
             src={likeIcon}
             alt="좋아요"
-            className={`w-8 h-8 ${isLiked ? "invert brightness-100" : ""}`}
+            className={`h-8 w-8 ${isLiked ? "brightness-100 invert" : ""}`}
           />
         </button>
 
         <button
           onClick={onBookmark}
-          className="w-[36px] h-[36px] flex items-center justify-center rounded-full"
+          className="flex h-[36px] w-[36px] items-center justify-center rounded-full"
         >
           <img
             src={saveIcon}
             alt="저장"
-            className={`w-8 h-8 ${isBookmarked ? "invert brightness-100" : ""}`}
+            className={`h-8 w-8 ${isBookmarked ? "brightness-100 invert" : ""}`}
           />
         </button>
       </div>

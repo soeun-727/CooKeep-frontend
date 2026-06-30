@@ -1,13 +1,13 @@
-import header from "../../../assets/guest/back_header.svg";
-import DetailedItem from "../../fridge/addItems/DetailedItem";
-import milk from "../../../assets/guest/bagel.svg";
-import Button from "../../ui/Button";
+import header from "@/assets/guest/back_header.svg";
+import DetailedItem from "@/components/fridge/addItems/DetailedItem";
+import milk from "@/assets/guest/bagel.svg";
+import Button from "@/components/ui/Button";
 
-interface Props {
+interface GuestDetailsProps {
   onNext: () => void;
 }
 
-export default function GuestDetails({ onNext }: Props) {
+export default function GuestDetails({ onNext }: GuestDetailsProps) {
   const guestItem = {
     id: 1,
     name: "베이글",
@@ -35,12 +35,12 @@ export default function GuestDetails({ onNext }: Props) {
         </div>
 
         <div
-          className="mt-[43px] w-full flex justify-center px-5 pointer-events-none"
+          className="pointer-events-none mt-[43px] flex w-full justify-center px-5"
           onClick={(e) => e.stopPropagation()}
         >
           <DetailedItem {...(guestItem as any)} />
         </div>
-        <div className="absolute bottom-[calc(32px+env(safe-area-inset-bottom))] flex justify-center w-full z-20">
+        <div className="absolute bottom-[calc(32px+env(safe-area-inset-bottom))] z-20 flex w-full justify-center">
           <Button size="L" variant="black" onClick={onNext}>
             등록 완료
           </Button>

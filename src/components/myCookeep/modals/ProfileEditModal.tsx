@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
-import Button from "../../ui/Button";
-import { currentIcon, groundImg } from "../../../assets";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import Button from "@/components/ui/Button";
+import { currentIcon, groundImg } from "@/assets/index";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-interface Props {
+interface ProfileEditModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSave: (userPlantId: number) => void;
 }
 
-export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
+export default function ProfileEditModal({
+  isOpen,
+  onClose,
+  onSave,
+}: ProfileEditModalProps) {
   const currentPlant = useCookeepsStore((s) => s.currentPlant);
   const myPlants = useCookeepsStore((s) => s.myPlants);
 
@@ -43,25 +47,25 @@ export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
           </h3>
         </div>
 
-        <div className="flex flex-col items-center mb-1 px-4">
+        <div className="mb-1 flex flex-col items-center px-4">
           {/* 1. 현재 프로필/식물 이미지 */}
           <div className="-mt-4">
             <div className="relative inline-block overflow-visible">
               <img
                 src={selectedPlantImage}
                 alt="profileBackground"
-                className="w-[155px] p-6 rounded-full object-cover"
+                className="w-[155px] rounded-full object-cover p-6"
               />
             </div>
           </div>
 
           {/* 2. 식물 도감 (그리드) */}
-          <div className="grid grid-cols-4 gap-x-3 gap-y-1 mb-7 w-[331px] -mt-2 px-4">
+          <div className="-mt-2 mb-7 grid w-[331px] grid-cols-4 gap-x-3 gap-y-1 px-4">
             {myPlants.map((plant) => (
               <div key={plant.userPlantId} className="relative">
                 {/* 현재 키우는 식물 위에만 뜨는 말풍선 */}
                 {plant.isProfile && (
-                  <div className="absolute -top-[10px] left-1/2 -translate-x-1/2 z-10 w-full flex justify-center">
+                  <div className="absolute -top-[10px] left-1/2 z-10 flex w-full -translate-x-1/2 justify-center">
                     <img
                       src={currentIcon}
                       alt="currently growing"
@@ -81,10 +85,10 @@ export default function ProfileEditModal({ isOpen, onClose, onSave }: Props) {
                       }
                     `}
                 >
-                  <div className="w-full h-full rounded-full">
+                  <div className="h-full w-full rounded-full">
                     <img
                       src={plant.imageUrl ?? groundImg}
-                      className="w-full h-full object-cover rounded-full"
+                      className="h-full w-full rounded-full object-cover"
                     />
                   </div>
                 </button>

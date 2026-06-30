@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { getWeeklyRanking, RecipeRankItem } from "../../../api/cookeeps";
-import tempImage from "../../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
-import { likeGray } from "../../../assets";
+import { getWeeklyRanking, RecipeRankItem } from "@/api/cookeeps";
+import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
+import { likeGray } from "@/assets";
+// import LikeGray from "@/assets/cookeeps/like.svg?react";
 import { useNavigate } from "react-router-dom";
 
 export default function WeeklyTopRecipesTab() {
@@ -30,7 +31,7 @@ export default function WeeklyTopRecipesTab() {
 
   return (
     <div className="mt-[18px] flex justify-center">
-      <div className="w-[361px] flex flex-col  ">
+      <div className="flex w-[361px] flex-col">
         {recipes.length === 0 ? (
           // 레시피 없을 때
           <div className="h-[200px] flex items-center justify-center text-[14px] text-gray-50">
@@ -44,13 +45,13 @@ export default function WeeklyTopRecipesTab() {
               onClick={() =>
                 navigate(`/cookeeps/${item.dailyRecipeId}?tab=weekly`)
               }
-              className="flex flex-col gap-[12px] p-[10px_8px] rounded-[6px] cursor-pointer"
+              className="flex cursor-pointer flex-col gap-[12px] rounded-[6px] p-[10px_8px]"
             >
               {/* 1. 제목 + 좋아요 */}
               <div className="flex items-center gap-[14px]">
                 {/* 순위 */}
                 <div
-                  className={`w-[30px] h-[20px] flex items-center justify-center rounded-full text-[12px] font-semibold ${getRankStyle(item.rank)}`}
+                  className={`flex h-[20px] w-[30px] items-center justify-center rounded-full text-[12px] font-semibold ${getRankStyle(item.rank)}`}
                 >
                   {item.rank}
                 </div>
@@ -72,7 +73,7 @@ export default function WeeklyTopRecipesTab() {
 
               {/* 2. 이미지 */}
               <div
-                className="h-[160px] rounded-[6px] bg-cover bg-center relative"
+                className="relative h-[160px] rounded-[6px] bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${item.recipeImageUrl || tempImage})`,
                 }}

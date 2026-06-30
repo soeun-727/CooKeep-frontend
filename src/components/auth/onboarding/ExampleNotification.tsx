@@ -1,11 +1,14 @@
-import icon from "../../../assets/onboarding/appIcon.svg";
+import icon from "@/assets/onboarding/appIcon.svg";
 
-interface Props {
+interface ExampleNotificationProps {
   title: string;
   description: string;
 }
 
-export default function ExampleNotification({ title, description }: Props) {
+export default function ExampleNotification({
+  title,
+  description,
+}: ExampleNotificationProps) {
   return (
     <div
       className="w-[259px] h-[81px] rounded-[4.32px] p-[7px] bg-gray-0 flex flex-col
@@ -16,7 +19,7 @@ export default function ExampleNotification({ title, description }: Props) {
         <span className="text-gray-50 text-[9.5px] font-normal">CooKeep</span>
       </div>
       <span className="text-[10px] font-medium">{title}</span>
-      <span className="text-[8.5px] font-normal leading-snug whitespace-pre-wrap break-keep">
+      <span className="text-[8.5px] leading-snug font-normal break-keep whitespace-pre-wrap">
         {description}
       </span>
     </div>

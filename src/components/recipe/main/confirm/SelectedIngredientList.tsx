@@ -1,10 +1,12 @@
-import type { Ingredient } from "../../../../stores/useIngredientStore";
+import type { Ingredient } from "@/stores/useIngredientStore";
 
-interface Props {
+interface SelectedIngredientListProps {
   ingredients: Ingredient[];
 }
 
-export default function SelectedIngredientList({ ingredients }: Props) {
+export default function SelectedIngredientList({
+  ingredients,
+}: SelectedIngredientListProps) {
   const MAX_PER_ROW = 5;
   const remainder = ingredients.length % MAX_PER_ROW;
   const emptyCount = remainder === 0 ? 0 : MAX_PER_ROW - remainder;
@@ -12,7 +14,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
   const sortedIngredients = [...ingredients].sort((a, b) => a.dDay - b.dDay);
 
   return (
-    <section className="flex flex-col items-center gap-4 w-full max-w-[361px] mx-auto px-4">
+    <section className="mx-auto flex w-full max-w-[361px] flex-col items-center gap-4 px-4">
       {/* 제목 / 설명 */}
       <div className="flex flex-col items-center gap-[2px]">
         <h2 className="text-[20px] font-semibold leading-[28px] text-green-deep text-center">
@@ -61,12 +63,12 @@ export default function SelectedIngredientList({ ingredients }: Props) {
               </span>
 
               {/* 이미지 + 이름 */}
-              <div className="w-[70px] h-[70px] flex flex-col items-center">
-                <div className="flex flex-col items-center gap-1 w-[56px]">
+              <div className="flex h-[70px] w-[70px] flex-col items-center">
+                <div className="flex w-[56px] flex-col items-center gap-1">
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-[44px] h-[44px] object-cover"
+                    className="h-[44px] w-[44px] object-cover"
                   />
                   <span className="text-[12px] font-medium leading-[16px] text-gray-80 text-center line-clamp-1">
                     {item.name}
@@ -79,7 +81,7 @@ export default function SelectedIngredientList({ ingredients }: Props) {
         {Array.from({ length: emptyCount }).map((_, idx) => (
           <div
             key={`empty-${idx}`}
-            className="w-[70px] h-[70px] flex items-center justify-center"
+            className="flex h-[70px] w-[70px] items-center justify-center"
           >
             <div className="w-[8px] h-[8px] rounded-full bg-gray-10 shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
           </div>

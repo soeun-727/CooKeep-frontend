@@ -2,7 +2,7 @@ interface ProgressProps {
   currentStep: number;
 }
 
-const Progress = ({ currentStep }: ProgressProps) => {
+export default function Progress({ currentStep }: ProgressProps) {
   // 시각적으로 5단계가 있는 것처럼 계산하여 마지막 단계에서도 1칸이 남도록 함
   const visualTotalSteps = 5;
 
@@ -12,7 +12,7 @@ const Progress = ({ currentStep }: ProgressProps) => {
   return (
     <div className="mt-[93px]">
       {/* 바 컨테이너 */}
-      <div className="w-[361px] h-1 bg-gray-200 rounded-full overflow-hidden">
+      <div className="h-1 w-[361px] overflow-hidden rounded-full bg-gray-200">
         {/* 실제 채워지는 게이지 */}
         <div
           className="h-full bg-green-gradient transition-all duration-500 ease-out"
@@ -21,6 +21,4 @@ const Progress = ({ currentStep }: ProgressProps) => {
       </div>
     </div>
   );
-};
-
-export default Progress;
+}

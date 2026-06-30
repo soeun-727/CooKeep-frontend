@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { PLANT_DATA } from "../../../constants/plantData";
-import Button from "../../ui/Button";
+import { useEffect, useState } from "react";
+import { PLANT_DATA } from "@/constants/plantData";
+import Button from "@/components/ui/Button";
 
 interface PlantSelectModalProps {
   isOpen: boolean;
@@ -8,11 +8,11 @@ interface PlantSelectModalProps {
   harvestedPlantNames: string[];
 }
 
-const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
+export default function PlantSelectModal({
   isOpen,
   onConfirm,
   harvestedPlantNames,
-}) => {
+}: PlantSelectModalProps) {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   // 모달이 열릴 때마다 선택 초기화
@@ -45,7 +45,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
         </h2>
 
         {/* 그리드 영역 */}
-        <div className="grid grid-cols-3 gap-2 justify-items-center w-full">
+        <div className="grid w-full grid-cols-3 justify-items-center gap-2">
           {PLANT_DATA.map((plant) => {
             const isHarvested = harvestedPlantNames.includes(plant.text);
 
@@ -58,7 +58,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                   if (isHarvested) return;
                   setSelectedId(plant.id);
                 }}
-                className="flex flex-col items-center group transition-all"
+                className="group flex flex-col items-center transition-all"
               >
                 {/* 아이콘 컨테이너 */}
                 <div
@@ -70,9 +70,9 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
                 }`}
                 >
                   <img
-                    src={plant.img} // 이게 제일 깔끔
+                    src={plant.img}
                     alt={plant.text}
-                    className="w-[48px] h-[48px]"
+                    className="h-[48px] w-[48px]"
                     loading="lazy"
                   />
 
@@ -97,7 +97,7 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
         {/* 확인 버튼 */}
         <Button
           variant="black"
-          className="!w-[224px] !h-11"
+          className="!h-11 !w-[224px]"
           onClick={handleConfirm}
           disabled={!selectedId}
         >
@@ -106,6 +106,4 @@ const PlantSelectModal: React.FC<PlantSelectModalProps> = ({
       </div>
     </div>
   );
-};
-
-export default PlantSelectModal;
+}

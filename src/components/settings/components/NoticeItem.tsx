@@ -1,7 +1,4 @@
 // src/pages/settings/components/NoticeItem.tsx
-// type Props = {
-//   content: string;
-// };
 
 // export default function NoticeItem({ content }: Props) {
 //   // content를 줄 단위로 나눔
@@ -55,9 +52,9 @@
 type Props = {
   title: string;
   content: string;
-};
+}
 
-export default function NoticeItem({ title, content }: Props) {
+export default function NoticeItem({ title, content }: NoticeItemProps) {
   const lines = content.split(/\r?\n/);
 
   // 두 줄 합친 회색 문장

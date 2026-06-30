@@ -1,10 +1,10 @@
 // src/pages/settings/components/SettingsToggleItem.tsx
 
-type SettingsToggleItemProps = {
+interface SettingsToggleItemProps {
   label: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
-};
+}
 
 export default function SettingsToggleItem({
   label,
@@ -17,11 +17,7 @@ export default function SettingsToggleItem({
 
       <button
         onClick={() => onChange(!checked)}
-        className={`
-          relative flex items-center
-          w-[50px] h-[26px] rounded-full transition-colors
-          ${checked ? "bg-gray-200" : "bg-gray-200"}
-        `}
+        className={`relative flex h-[26px] w-[50px] items-center rounded-full transition-colors ${checked ? "bg-gray-200" : "bg-gray-200"} `}
       >
         <div
           className={`

@@ -25,8 +25,8 @@ export default function SpecificGoal({
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="w-[361px] mt-[46px]">
+    <div className="flex w-full flex-col items-center">
+      <div className="mt-[46px] w-[361px]">
         <h1 className="typo-h1 !text-[22px]">
           이번 주 달성하고 싶은 목표를 세워보세요!
         </h1>
@@ -35,7 +35,7 @@ export default function SpecificGoal({
         </h3>
       </div>
 
-      <div className="w-[361px] mt-[46px] flex flex-col items-start">
+      <div className="mt-[46px] flex w-[361px] flex-col items-start">
         <div
           className={`w-full h-12 px-3 flex items-center border rounded-md bg-gray-0 transition-all ${
             isError ? "border-semantic-negative" : "border-gray-10"

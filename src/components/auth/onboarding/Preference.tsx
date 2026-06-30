@@ -1,16 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { searchIcon } from "../../../assets";
-import searchOnIcon from "../../../assets/fridge/search_on.svg";
-import TextField from "../../ui/TextField";
-import xIcon from "../../../assets/onboarding/x.svg";
+import { loadingChar, searchIcon } from "@/assets/index";
+import searchOnIcon from "@/assets/fridge/search_on.svg";
+import TextField from "@/components/ui/TextField";
+import xIcon from "@/assets/onboarding/x.svg";
 import InputModal from "./InputModal";
 import {
   getOnboardingIngredients,
   OnboardingIngredient,
   RawIngredient,
-} from "../../../api/onboarding";
-import { useOnboardingStore } from "../../../stores/useOnboardingStore";
-import LoadingScreen from "../../ui/LoadingScreen";
+} from "@/api/onboarding";
+import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
 export default function Preference() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -108,11 +107,17 @@ export default function Preference() {
     );
   };
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading)
+    return (
+      <div className="mt-50 flex flex-col items-center justify-center text-center">
+        <img className="w-30 p-5 opacity-70" src={loadingChar} />
+        <div className="typo-body2 text-zinc-500">로딩 중...</div>
+      </div>
+    );
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="w-[361px] mt-[46px]">
+    <div className="flex w-full flex-col items-center">
+      <div className="mt-[46px] w-[361px]">
         <h1 className="typo-h1 !text-[22px]">먹지 못하는 식재료가 있나요?</h1>
         <h3 className="typo-h3 text-gray-500">
           해당 재료는 레시피에서 제외할게요
@@ -154,12 +159,12 @@ export default function Preference() {
         </div>
 
         {/* 선택된 재료 */}
-        <div className="flex flex-wrap mt-[18px] w-[361px] gap-[6px]">
+        <div className="mt-[18px] flex w-[361px] flex-wrap gap-[6px]">
           {selectedIngredients.map((ingredient) => (
             <div
               key={ingredient.defaultIngredientId}
               onClick={() => handleRemove(ingredient.defaultIngredientId)}
-              className="bg-gray-200 px-3 px-1 h-7 flex gap-1 rounded-[100px] items-center"
+              className="flex h-7 items-center gap-1 rounded-[100px] bg-gray-200 px-1 px-3"
             >
               <img src={xIcon} className="w-3 h-3" />
               <span className="typo-caption !font-medium text-gray-50">
@@ -175,7 +180,7 @@ export default function Preference() {
               <li
                 key={item.defaultIngredientId}
                 onClick={() => handleSelect(item)}
-                className="h-12 p-3 hover:bg-gray-100 cursor-pointer"
+                className="h-12 cursor-pointer p-3 hover:bg-gray-100"
               >
                 {highlightText(item.ingredient, searchTerm.trim())}
               </li>
@@ -184,7 +189,7 @@ export default function Preference() {
               onClick={() => {
                 setIsModalOpen(true);
               }}
-              className={`h-12 p-3 hover:bg-gray-100 cursor-pointer flex items-center gap-2`}
+              className={`flex h-12 cursor-pointer items-center gap-2 p-3 hover:bg-gray-100`}
             >
               직접 입력하기
             </li>

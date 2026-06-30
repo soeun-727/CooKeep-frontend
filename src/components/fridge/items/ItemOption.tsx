@@ -1,12 +1,12 @@
 import { useState } from "react";
-import eaten from "../../../assets/fridge/eaten.svg";
-import thrown from "../../../assets/fridge/thrown.svg";
-import { useIngredientStore } from "../../../stores/useIngredientStore";
-import DoublecheckModal from "../../ui/DoublecheckModal";
-import AlertModal from "../../ui/AlertModal";
+import eaten from "@/assets/fridge/eaten.svg";
+import thrown from "@/assets/fridge/thrown.svg";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
+import AlertModal from "@/components/ui/AlertModal";
 import { useNavigate } from "react-router-dom";
-import { useRecipeFlowStore } from "../../../stores/useRecipeFlowStore";
-import { useRewardStore } from "../../../stores/useRewardStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import { useRewardStore } from "@/stores/useRewardStore";
 
 export default function ItemOption() {
   const navigate = useNavigate();
@@ -95,7 +95,7 @@ export default function ItemOption() {
             onClick={handleRecipeRecommend}
             className="flex-1 transition-all active:bg-green-light active:shadow-[inset_0_1px_6.7px_0_rgba(17,17,17,0.2)]"
           >
-            <div className="flex h-11 items-center justify-center typo-body2">
+            <div className="typo-body2 flex h-11 items-center justify-center">
               AI 레시피 추천받기
             </div>
           </button>

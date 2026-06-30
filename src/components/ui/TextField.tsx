@@ -15,7 +15,7 @@ interface TextFieldProps {
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-const TextField = ({
+export default function TextField({
   label,
   value,
   placeholder,
@@ -28,16 +28,16 @@ const TextField = ({
   rightIcon,
   autoComplete,
   onBlur,
-}: TextFieldProps) => {
+}: TextFieldProps) {
   return (
     <div className="w-[361px]">
       {label && (
-        <label className="block text-sm font-medium mb-1">{label}</label>
+        <label className="mb-1 block text-sm font-medium">{label}</label>
       )}
 
       <div className="relative">
         {leftIcon && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2">
+          <div className="absolute top-1/2 left-3 -translate-y-1/2">
             {leftIcon}
           </div>
         )}
@@ -75,7 +75,7 @@ const TextField = ({
         />
 
         {rightIcon && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+          <div className="absolute top-1/2 right-3 -translate-y-1/2">
             {rightIcon}
           </div>
         )}
@@ -101,6 +101,4 @@ const TextField = ({
       </p>
     </div>
   );
-};
-
-export default TextField;
+}

@@ -2,18 +2,21 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import type { AgreementItem } from "../../../constants/agreements";
+import type { AgreementItem } from "@/constants/agreements";
 
-interface Props {
+interface AgreementReadCardProps {
   agreement: AgreementItem;
   notice?: React.ReactNode;
 }
 
-export default function AgreementReadCard({ agreement, notice }: Props) {
+export default function AgreementReadCard({
+  agreement,
+  notice,
+}: AgreementReadCardProps) {
   return (
     <div className="w-full bg-gray-0 border border-gray-10 rounded-[6px] overflow-hidden">
       {/* 상단 제목 */}
-      <div className="p-3 h-[48px] flex items-center">
+      <div className="flex h-[48px] items-center p-3">
         <span className="text-sm font-medium">{agreement.label}</span>
       </div>
 
@@ -69,7 +72,7 @@ export default function AgreementReadCard({ agreement, notice }: Props) {
 
         {/* 공고일자 / 시행일자 */}
         {notice && (
-          <div className="mt-[18px] typo-label text-center whitespace-pre-line">
+          <div className="typo-label mt-[18px] text-center whitespace-pre-line">
             {notice}
           </div>
         )}

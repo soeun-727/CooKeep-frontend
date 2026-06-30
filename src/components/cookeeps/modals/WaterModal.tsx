@@ -1,6 +1,6 @@
 // src/components/cookeeps/WaterModal.tsx
 import { createPortal } from "react-dom";
-import waterCookieImg from "../../../assets/cookeeps/main/water_cookie_cookeeps.svg";
+import waterCookieImg from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
 
 interface WaterModalProps {
   isOpen: boolean;
@@ -29,7 +29,7 @@ export default function WaterModal({
             <img
               src={waterCookieImg}
               alt="물 쿠키"
-              className="h-[48px] w-[48px] aspect-square"
+              className="aspect-square h-[48px] w-[48px]"
             />
 
             {/* 텍스트 */}

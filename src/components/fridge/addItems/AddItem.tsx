@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import TextField from "../../ui/TextField";
-import searchIcon from "../../../assets/fridge/search_on.svg";
+import TextField from "@/components/ui/TextField";
+import searchIcon from "@/assets/fridge/search_on.svg";
 import Category from "./components/Category";
 import ItemsGrid from "./components/ItemsGrid";
 import AddItemFooter from "./AddItemFooter";
 import {
   useAddIngredientStore,
   type MasterItem,
-} from "../../../stores/useAddIngredientStore";
+} from "@/stores/useAddIngredientStore";
 import Custom from "./components/Custom";
 import {
   getMasterIngredientList,
@@ -16,12 +16,12 @@ import {
   StorageType,
   UnitType,
   type MasterIngredientListResponse,
-} from "../../../api/ingredient";
-import { DEFAULT_EXPIRY_DAYS } from "../../../constants/expiry";
-import { calculateExpiryDate } from "../../../utils/expiryDate";
-import { INGREDIENT_CATEGORIES } from "../../../constants/category";
-import defaultChar from "../../../assets/character/default_char.svg";
-import LoadingScreen from "../../ui/LoadingScreen";
+} from "@/api/ingredient";
+import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
+import { calculateExpiryDate } from "@/utils/expiryDate";
+import { INGREDIENT_CATEGORIES } from "@/constants/category";
+import defaultChar from "@/assets/character/default_char.svg";
+import { loadingChar } from "@/assets";
 
 export default function AddItem() {
   const {
@@ -139,7 +139,13 @@ export default function AddItem() {
     );
   }, [masterItems, searchTerm, selectedCategoryId]);
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading)
+    return (
+      <div className="mt-50 flex flex-col items-center justify-center text-center">
+        <img className="w-30 p-5 opacity-70" src={loadingChar} />
+        <div className="typo-body2 text-zinc-500">식재료를 불러오는 중...</div>
+      </div>
+    );
 
   return (
     <>
@@ -152,8 +158,8 @@ export default function AddItem() {
             rightIcon={<img src={searchIcon} className="" />}
           />
         </div>
-        <div className="mt-4 pl-[31px] w-[401px] shrink-0">
-          <div className="flex gap-[6px] overflow-x-auto no-scrollbar scroll-smooth pb-2 pr-8">
+        <div className="mt-4 w-[401px] shrink-0 pl-[31px]">
+          <div className="no-scrollbar flex gap-[6px] overflow-x-auto scroll-smooth pr-8 pb-2">
             {INGREDIENT_CATEGORIES.map((category) => (
               <div key={category.id} className="flex-shrink-0">
                 <Category
@@ -166,10 +172,10 @@ export default function AddItem() {
             ))}
           </div>
         </div>
-        <div className="w-full flex-1 min-h-0 overflow-y-auto no-scrollbar scroll-smooth">
+        <div className="no-scrollbar min-h-0 w-full flex-1 overflow-y-auto scroll-smooth">
           <ItemsGrid items={filteredItems} onDeleteLocal={handleDeleteLocal} />
         </div>
-        <div className="shrink-0 w-full pt-35">
+        <div className="w-full shrink-0 pt-35">
           <AddItemFooter />
         </div>
       </div>

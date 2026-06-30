@@ -1,9 +1,9 @@
 import { useState } from "react";
-import sortIcon from "../../../assets/fridge/sort.svg";
+import sortIcon from "@/assets/fridge/sort.svg";
 import {
   useIngredientStore,
   type SortOrder,
-} from "../../../stores/useIngredientStore";
+} from "@/stores/useIngredientStore";
 
 interface SortProps {
   categoryIcon: string;
@@ -33,14 +33,14 @@ export default function Sort({ categoryIcon, viewCategory }: SortProps) {
                 {options.map((option, index) => (
                   <div
                     key={option}
-                    className="flex flex-col items-center w-full"
+                    className="flex w-full flex-col items-center"
                   >
                     <button
                       onClick={() => {
                         setSortOrder(option);
                         setIsMenuOpen(false);
                       }}
-                      className="whitespace-nowrap w-full h-[30px] typo-caption !font-semibold leading-none"
+                      className="typo-caption h-[30px] w-full leading-none !font-semibold whitespace-nowrap"
                     >
                       {option}
                     </button>

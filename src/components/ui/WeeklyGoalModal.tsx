@@ -1,13 +1,16 @@
-import React from "react";
-import icon from "../../assets/character/congrats_char.svg";
+
+import icon from "@/assets/character/congrats_char.svg";
 import Button from "./Button";
 
-interface Props {
+interface WeeklyGoalModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const WeeklyGoalModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export default function WeeklyGoalModal({
+  isOpen,
+  onClose,
+}: WeeklyGoalModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -21,7 +24,7 @@ const WeeklyGoalModal: React.FC<Props> = ({ isOpen, onClose }) => {
         <div className="flex w-full flex-col items-center gap-[28px]">
           {/* 이미지 + 텍스트 */}
           <div className="flex flex-col items-center gap-[20px]">
-            <img src={icon} className="w-[80px] h-[85px]" />
+            <img src={icon} className="h-[85px] w-[80px]" />
 
             <div className="w-[202px] text-center text-[14px] font-medium leading-[20px] text-gray-80">
               이번 주 목표를 달성했어요!
@@ -43,6 +46,4 @@ const WeeklyGoalModal: React.FC<Props> = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-};
-
-export default WeeklyGoalModal;
+}

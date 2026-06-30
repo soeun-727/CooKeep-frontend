@@ -1,12 +1,15 @@
-import Button from "../../ui/Button";
-import character from "../../../assets/character/thinking_char.svg";
+import Button from "@/components/ui/Button";
+import character from "@/assets/character/thinking_char.svg";
 
-interface Props {
+interface AddMoreModalProps {
   onConfirm: () => void;
   onCancel: () => void; // 그냥 닫기
 }
 
-export default function AddMoreModal({ onConfirm, onCancel }: Props) {
+export default function AddMoreModal({
+  onConfirm,
+  onCancel,
+}: AddMoreModalProps) {
   return (
     <div
       className="fixed inset-0 bg-gray-80 flex items-center justify-center z-60"
@@ -17,7 +20,7 @@ export default function AddMoreModal({ onConfirm, onCancel }: Props) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center justify-center gap-4 self-stretch">
-          <img src={character} className="w-[85px] h-[90px]" alt="thinking" />
+          <img src={character} className="h-[90px] w-[85px]" alt="thinking" />
 
           <p className="typo-label">오늘, 다른 요리도 기록해볼까요?</p>
 

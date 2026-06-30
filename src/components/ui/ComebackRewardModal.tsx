@@ -1,13 +1,15 @@
-import React from "react";
-import icon from "../../assets/character/surprised_char.svg";
+import icon from "@/assets/character/surprised_char.svg";
 import Button from "./Button";
 
-interface Props {
+interface ComebackRewardModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export default function ComebackRewardModal({
+  isOpen,
+  onClose,
+}: ComebackRewardModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -26,7 +28,7 @@ const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
             </div>
 
             {/* 🔥 이미지 */}
-            <img src={icon} className="w-[60px] h-[56px]" alt="comeback" />
+            <img src={icon} className="h-[56px] w-[60px]" alt="comeback" />
 
             {/* 🔥 텍스트2 */}
             <div className="w-[202px] text-center typo-body2 text-gray-80">
@@ -49,6 +51,4 @@ const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-};
-
-export default ComebackRewardModal;
+}

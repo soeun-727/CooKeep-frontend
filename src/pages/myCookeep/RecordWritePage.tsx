@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import Button from "../../components/ui/Button";
-import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
-import RecordWriteImageCard from "../../components/myCookeep/record/RecordWriteImageCard";
-import RecipeRecordContentSection from "../../components/myCookeep/record/RecipeRecordContentSection";
-import privateIcon from "../../assets/mycookeep/record/private_icon.svg";
-import publicIcon from "../../assets/mycookeep/record/public_icon.svg";
-import UploadCompleteModal from "../../components/myCookeep/record/UploadCompleteModal";
-import { useCookeepsStore } from "../../stores/useCookeepsStore";
-import { uploadImage } from "../../api/image";
-import { createDailyRecipe } from "../../api/myRecipe";
-import { AiRecipeDetail, getAiRecipeDetail } from "../../api/dailyAiRecipe";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
+import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
+import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
+import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { uploadImage } from "@/api/image";
+import { createDailyRecipe } from "@/api/myRecipe";
+import { AiRecipeDetail, getAiRecipeDetail } from "@/api/dailyAiRecipe";
 import imageCompression from "browser-image-compression";
 import { AxiosError } from "axios";
-import RecipeDetailYoutube from "../../components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import PhotoRewardModal from "../../components/myCookeep/record/PhotoRewardModal";
-import WeeklyGoalModal from "../../components/ui/WeeklyGoalModal";
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
+import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
 export default function RecordWritePage() {
   const navigate = useNavigate();
@@ -146,8 +146,8 @@ export default function RecordWritePage() {
           <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
         </div>
 
-        <div className="flex-1 mx-auto w-full max-w-[450px] px-4 flex flex-col min-h-0 mt-10">
-          <div className="pt-4 flex flex-col gap-[10px]">
+        <div className="mx-auto mt-10 flex min-h-0 w-full max-w-[450px] flex-1 flex-col px-4">
+          <div className="flex flex-col gap-[10px] pt-4">
             <RecordWriteImageCard
               title={title}
               imageSrc={image?.url}
@@ -205,7 +205,7 @@ export default function RecordWritePage() {
               )}
           </div>
 
-          <div className="flex w-full flex-col items-center pt-4 shrink-0">
+          <div className="flex w-full shrink-0 flex-col items-center pt-4">
             <textarea
               value={memo}
               onChange={(e) => setMemo(e.target.value.slice(0, 500))}
@@ -216,7 +216,7 @@ export default function RecordWritePage() {
             />
           </div>
 
-          <div className="relative mt-[15px] flex justify-center animate-float-bubble shrink-0">
+          <div className="animate-float-bubble relative mt-[15px] flex shrink-0 justify-center">
             <div
               className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-gray-0 text-green text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
               style={{ width: 206, height: 36 }}
@@ -229,8 +229,8 @@ export default function RecordWritePage() {
             />
           </div>
 
-          <div className="mt-auto pt-[64px] pb-[20px] flex flex-col gap-4 items-center shrink-0">
-            <div className="flex justify-center gap-[9px] w-full">
+          <div className="mt-auto flex shrink-0 flex-col items-center gap-4 pt-[64px] pb-[20px]">
+            <div className="flex w-full justify-center gap-[9px]">
               <button
                 onClick={() => setIsPublic(false)}
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-green-light" : "bg-gray-10"}`}

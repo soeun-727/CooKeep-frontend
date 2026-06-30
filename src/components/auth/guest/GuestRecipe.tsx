@@ -1,9 +1,9 @@
 import { useRef, useState } from "react";
-import RecipeTitle from "../../recipe/main/result/RecipeTitle";
-import RecipeContentSection from "../../recipe/main/result/RecipeContentSection";
-import RecipeYoutubeCard from "../../recipe/main/result/RecipeYoutubeCard";
-import notice from "../../../assets/guest/recipe_notice.svg";
-import OnboardingRewardModal from "../../ui/OnboardingRewardModal";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
+import RecipeContentSection from "@/components/recipe/main/result/RecipeContentSection";
+import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
+import notice from "@/assets/guest/recipe_notice.svg";
+import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
 
 interface GuestRecipeResultProps {
   onNext: () => void;
@@ -62,7 +62,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
 
   return (
     <div
-      className="flex flex-col bg-gray-50 overflow-hidden items-center"
+      className="flex flex-col items-center overflow-hidden bg-gray-50"
       onClick={() => setIsDimmed(true)}
     >
       {isDimmed && (
@@ -72,9 +72,9 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
       {/* 스크롤 영역 */}
       <div
         ref={scrollRef}
-        className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-9 px-4 pt-[21px]"
+        className="no-scrollbar flex flex-1 flex-col gap-9 overflow-y-auto px-4 pt-[21px]"
       >
-        <div className="flex flex-col gap-2 w-full max-w-[361px] mx-auto">
+        <div className="mx-auto flex w-full max-w-[361px] flex-col gap-2">
           {/* 레시피 제목 */}
           <RecipeTitle name={title} />
 
@@ -104,11 +104,11 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
         </div>
 
         {/* 하단 버튼 영역 */}
-        <div className="relative flex p-4 w-full max-w-[450px] mx-auto z-20 items-center justify-center">
+        <div className="relative z-20 mx-auto flex w-full max-w-[450px] items-center justify-center p-4">
           {isDimmed && (
             <object
               data={notice}
-              className="absolute w-[178px] bottom-15 left-1/2 -translate-x-1/2"
+              className="absolute bottom-15 left-1/2 w-[178px] -translate-x-1/2"
             />
           )}
           <button

@@ -1,13 +1,13 @@
 // src/pages/settings/components/SettingsInputItem.tsx
 import { useLocation, useNavigate } from "react-router-dom";
 
-type SettingsInputItemProps = {
+interface SettingsInputItemProps {
   label: string;
   value: string;
   buttonText: string;
   to: string;
   disabled?: boolean;
-};
+}
 
 export default function SettingsInputItem({
   label,
@@ -33,7 +33,7 @@ export default function SettingsInputItem({
   };
 
   return (
-    <div className="flex flex-col gap-2 h-[80px] w-full">
+    <div className="flex h-[80px] w-full flex-col gap-2">
       {/* label */}
       <span className="typo-body text-gray-80 px-3">{label}</span>
 

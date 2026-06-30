@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "../../ui/Button";
-import BackHeader from "../../ui/BackHeader";
-import type { AgreementItem } from "../../../constants/agreements";
+import Button from "@/components/ui/Button";
+import BackHeader from "@/components/ui/BackHeader";
+import type { AgreementItem } from "@/constants/agreements";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { blankCheck, grayCheck } from "../../../assets";
+import { blankCheck, grayCheck } from "@/assets/index";
 interface Agreements {
   terms: boolean;
   privacy: boolean;
@@ -31,7 +31,7 @@ export default function AgreementPage({
   const isPolicyOnly = agreement.key === "policy";
 
   return (
-    <div className="flex flex-col h-[100dvh] w-full px-4 overflow-hidden items-center">
+    <div className="flex h-[100dvh] w-full flex-col items-center overflow-hidden px-4">
       {/* 헤더 */}
       <BackHeader title="이용 약관" onBack={onBack} />
 
@@ -39,34 +39,34 @@ export default function AgreementPage({
       <div className="h-[75px] shrink-0" />
 
       {/* 카드 + 버튼 영역 */}
-      <div className="flex-1 flex flex-col  min-h-0">
+      <div className="flex min-h-0 flex-1 flex-col">
         {/* 약관 카드 */}
         <div className="w-full max-w-[361px] mx-auto bg-gray-0 border border-gray-10 rounded-[6px] flex flex-col overflow-hidden max-h-full">
           {/* 카드 상단 */}
-          <div className="flex items-center gap-[16px] p-3 h-[48px] shrink-0">
+          <div className="flex h-[48px] shrink-0 items-center gap-[16px] p-3">
             {!isPolicyOnly ? (
-              <div className="relative w-6 h-6 flex-shrink-0 flex items-center justify-center">
+              <div className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
                 <input
                   type="checkbox"
                   checked={isChecked}
                   onChange={(e) =>
                     updateAgreements({ [agreement.key]: e.target.checked })
                   }
-                  className="peer absolute inset-0 w-full h-full appearance-none cursor-default z-10"
+                  className="peer absolute inset-0 z-10 h-full w-full cursor-default appearance-none"
                 />
                 <img
                   src={blankCheck}
                   alt="unchecked"
-                  className="block peer-checked:hidden w-full h-full object-contain pointer-events-none z-0"
+                  className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                 />
                 <img
                   src={grayCheck}
                   alt="checked"
-                  className="hidden peer-checked:block w-4 h-4 object-contain pointer-events-none z-0"
+                  className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
                 />
               </div>
             ) : (
-              <span className="w-4 h-4 inline-block" />
+              <span className="inline-block h-4 w-4" />
             )}
             <span className="text-sm font-medium">{agreement.label}</span>
           </div>
@@ -74,7 +74,7 @@ export default function AgreementPage({
           <div className="mx-auto w-[332px] border-t-[1.5px] border-gray-30" />
 
           {/* 약관 전문만 스크롤 */}
-          <div className="flex-1 overflow-y-auto p-3 min-h-0 no-scrollbar">
+          <div className="no-scrollbar min-h-0 flex-1 overflow-y-auto p-3">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               components={{
@@ -132,22 +132,13 @@ export default function AgreementPage({
 
             {/* AgreementItem에 없는 추가 영역 */}
             {children && (
-              <div className="mt-[18px] typo-label text-center">{children}</div>
+              <div className="typo-label mt-[18px] text-center">{children}</div>
             )}
           </div>
         </div>
 
         {/* 하단 버튼 (safe-area 대응) */}
-        <div
-          className="
-    mt-auto
-    pt-[11px]
-    pb-[calc(32px+env(safe-area-inset-bottom))]
-    w-full
-    flex
-    justify-center
-  "
-        >
+        <div className="mt-auto flex w-full justify-center pt-[11px] pb-[calc(32px+env(safe-area-inset-bottom))]">
           <div className="w-full max-w-[361px]">
             <Button
               size="L"

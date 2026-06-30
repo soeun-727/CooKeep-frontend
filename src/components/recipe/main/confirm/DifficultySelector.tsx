@@ -1,8 +1,8 @@
-import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
-import easyImg from "../../../../assets/recipe/main/easyImg.svg";
-import normalImg from "../../../../assets/recipe/main/normalImg.svg";
-import hardImg from "../../../../assets/recipe/main/hardImg.svg";
+import easyImg from "@/assets/recipe/main/easyImg.svg";
+import normalImg from "@/assets/recipe/main/normalImg.svg";
+import hardImg from "@/assets/recipe/main/hardImg.svg";
 
 const options = [
   {
@@ -32,7 +32,7 @@ export default function DifficultySelector() {
   const { difficulty, setDifficulty } = useRecipeFlowStore();
 
   return (
-    <section className="flex flex-col items-center gap-4 w-full max-w-[361px] mx-auto mt-[38px]">
+    <section className="mx-auto mt-[38px] flex w-full max-w-[361px] flex-col items-center gap-4">
       {/* 제목 영역 */}
       <div className="flex flex-col items-center gap-[2px] w-[188px]">
         <h2 className="w-full text-center text-[20px] font-semibold leading-[28px] text-gray-80">
@@ -44,7 +44,7 @@ export default function DifficultySelector() {
       </div>
 
       {/* 난이도 선택 리스트 */}
-      <div className="flex flex-col items-start gap-2 w-full">
+      <div className="flex w-full flex-col items-start gap-2">
         {options.map((opt) => {
           const selected = difficulty === opt.key;
 
@@ -54,13 +54,13 @@ export default function DifficultySelector() {
               onClick={() => setDifficulty(opt.key)}
               className="w-full flex justify-center items-center rounded-[6px] bg-gray-0 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
             >
-              <div className="w-full flex items-center gap-2 p-3">
-                <div className="w-full flex items-center gap-3">
+              <div className="flex w-full items-center gap-2 p-3">
+                <div className="flex w-full items-center gap-3">
                   {/* 왼쪽 이미지 */}
                   <img
                     src={opt.image}
                     alt={opt.title}
-                    className="w-[36px] h-[36px] aspect-square flex-shrink-0"
+                    className="aspect-square h-[36px] w-[36px] flex-shrink-0"
                   />
 
                   {/* 텍스트 */}
@@ -72,7 +72,7 @@ export default function DifficultySelector() {
                   </div>
 
                   {/* 선택 버튼 */}
-                  <div className="w-[40px] h-[40px] flex items-center justify-center flex-shrink-0">
+                  <div className="flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center">
                     <div
                       className={`
       w-[24px] h-[24px] rounded-full

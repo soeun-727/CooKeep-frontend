@@ -1,8 +1,8 @@
 // src/components/headers/ViewListHeader.tsx
-import { searchIcon, like, bookmark } from "../../../assets";
-import TextField from "../../ui/TextField";
+import { searchIcon, like, bookmark } from "@/assets/index";
+import TextField from "@/components/ui/TextField";
 
-interface Props {
+interface ViewListHeaderProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
   type: string;
@@ -14,9 +14,9 @@ export default function ViewListHeader({
   onSearchChange,
   type,
   description,
-}: Props) {
+}: ViewListHeaderProps) {
   return (
-    <div className="flex flex-col items-center flex-shrink-0">
+    <div className="flex flex-shrink-0 flex-col items-center">
       {/* 검색창 */}
       <div
         className={`mt-12 !w-[361px] [&_p]:hidden

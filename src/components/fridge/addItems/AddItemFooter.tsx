@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import Button from "../../ui/Button";
+import Button from "@/components/ui/Button";
 import RecentlyAdded from "./components/RecentlyAdded";
 import Selected from "./components/Selected";
-import { useAddIngredientStore } from "../../../stores/useAddIngredientStore";
-import { getIngredientPreview } from "../../../api/ingredient";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
+import { getIngredientPreview } from "@/api/ingredient";
 import { useState } from "react";
 
 export default function AddItemFooter() {
@@ -59,14 +59,14 @@ export default function AddItemFooter() {
   };
 
   return (
-    <div className="fixed bottom-[34px] left-1/2 -translate-x-1/2 z-50 flex flex-col items-center">
+    <div className="fixed bottom-[34px] left-1/2 z-50 flex -translate-x-1/2 flex-col items-center">
       <div className="-mb-1">
         <RecentlyAdded />
       </div>
       <div className="relative z-20">
         <Selected />
       </div>
-      <div className="flex gap-[6px] w-[300px] mt-[14px]">
+      <div className="mt-[14px] flex w-[300px] gap-[6px]">
         <div className="flex-1">
           <Button
             size="S"

@@ -1,8 +1,8 @@
 // src/components/auth/AuthHeader.tsx
 import { useNavigate } from "react-router-dom";
-import { mainLogo } from "../../assets";
+import { mainLogo } from "@/assets/index";
 
-const AuthHeader = () => {
+export default function AuthHeader() {
   const navigate = useNavigate();
 
   const handleLogoClick = () => {
@@ -21,9 +21,9 @@ const AuthHeader = () => {
     >
       <button
         onClick={handleLogoClick}
-        className="cursor-pointer p-0 border-none bg-transparent"
+        className="cursor-pointer border-none bg-transparent p-0"
       >
-        <img src={mainLogo} alt="CooKeep logo" className="w-24 h-[18px]" />
+        <img src={mainLogo} alt="CooKeep logo" className="h-[18px] w-24" />
       </button>
 
       <p className="flex items-center gap-[6px] typo-label">
@@ -32,6 +32,4 @@ const AuthHeader = () => {
       </p>
     </header>
   );
-};
-
-export default AuthHeader;
+}

@@ -1,6 +1,6 @@
-import { IngredientItem } from "../../../../types/aiRecipe";
+import { IngredientItem } from "@/types/aiRecipe";
 
-interface Props {
+interface RecipeIngredientSectionProps {
   selectedIngredients: IngredientItem[];
   requiredIngredients?: IngredientItem[];
   substitutions?: IngredientItem[]; // API의 optional_ingredients
@@ -10,7 +10,7 @@ export default function RecipeIngredientSection({
   selectedIngredients,
   requiredIngredients = [],
   substitutions = [],
-}: Props) {
+}: RecipeIngredientSectionProps) {
   const formatIngredient = (item: IngredientItem) => {
     if (!item.quantity) return item.name;
 
@@ -33,8 +33,8 @@ export default function RecipeIngredientSection({
   );
 
   return (
-    <div className="flex flex-col items-start gap-[36px] w-full">
-      <div className="flex flex-col items-start gap-4 w-full">
+    <div className="flex w-full flex-col items-start gap-[36px]">
+      <div className="flex w-full flex-col items-start gap-4">
         {/* 내 재료 섹션 */}
         <div className="flex flex-col items-start gap-2 w-full">
           <span className="typo-label text-gray-80">내가 가지고 있는 재료</span>
@@ -70,25 +70,25 @@ export default function RecipeIngredientSection({
 
       {/* --- 수정된 대체/생략 가능 재료 섹션 --- */}
       {substitutions.length > 0 && (
-        <div className="flex flex-col items-start gap-[10px] self-stretch w-full">
+        <div className="flex w-full flex-col items-start gap-[10px] self-stretch">
           {/* 섹션 타이틀 */}
           <span className="self-stretch text-gray-50 typo-label">
             대체/생략 가능 재료
           </span>
 
           {/* 그룹화된 리스트 컨테이너 */}
-          <div className="flex flex-col items-start gap-[16px] self-stretch w-full">
+          <div className="flex w-full flex-col items-start gap-[16px] self-stretch">
             {Object.entries(groupedSubstitutions).map(
               ([description, items], groupIdx) => (
                 <div
                   key={groupIdx}
-                  className="flex flex-col items-start gap-[10px] w-[331px]"
+                  className="flex w-[331px] flex-col items-start gap-[10px]"
                 >
                   {/* 메시지 (재료보다 위로 노출) */}
-                  <span className="w-[255px] typo-label">{description}</span>
+                  <span className="typo-label w-[255px]">{description}</span>
 
                   {/* 해당 메시지에 속한 재료 리스트 */}
-                  <div className="flex flex-wrap items-start content-start gap-x-[6px] gap-y-[5px] self-stretch">
+                  <div className="flex flex-wrap content-start items-start gap-x-[6px] gap-y-[5px] self-stretch">
                     {items.map((item, itemIdx) => (
                       <div
                         key={itemIdx}

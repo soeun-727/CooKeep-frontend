@@ -24,8 +24,8 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
   const currentGoal = selectedGoal.id ? selectedGoal : goals[0];
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="w-[361px] mt-[46px]">
+    <div className="flex w-full flex-col items-center">
+      <div className="mt-[46px] w-[361px]">
         <h1 className="typo-h1 !text-[22px]">
           이번 주 달성하고 싶은 목표를 세워보세요!
         </h1>
@@ -39,11 +39,11 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
           {/* 클릭 영역: 아코디언 헤더 */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full h-[48px] px-5 flex items-center justify-between text-left"
+            className="flex h-[48px] w-full items-center justify-between px-5 text-left"
           >
             <span className="typo-body2 text-gray-80">{currentGoal.title}</span>
             <svg
-              className={`w-5 h-5 transition-transform duration-300 ${
+              className={`h-5 w-5 transition-transform duration-300 ${
                 isOpen ? "rotate-180" : ""
               }`}
               fill="none"
@@ -61,7 +61,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
 
           {/* 펼쳐지는 리스트 영역 */}
           <div
-            className={`transition-all duration-300 ease-in-out overflow-hidden ${
+            className={`overflow-hidden transition-all duration-300 ease-in-out ${
               isOpen ? "max-h-[300px]" : "max-h-0"
             }`}
           >

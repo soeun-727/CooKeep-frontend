@@ -12,7 +12,7 @@ const Tab: React.FC<TabProps> = ({
   title,
   isSelected = false,
   onClick,
-}) => {
+}: TabProps) {
   return (
     <button
       onClick={onClick}
@@ -25,7 +25,7 @@ const Tab: React.FC<TabProps> = ({
       )}
 
       <img
-        className="w-[25px] h-[25px]"
+        className="h-[25px] w-[25px]"
         src={isSelected ? selectedImage : image}
         alt={title}
       />
@@ -39,6 +39,4 @@ const Tab: React.FC<TabProps> = ({
       </span>
     </button>
   );
-};
-
-export default Tab;
+}

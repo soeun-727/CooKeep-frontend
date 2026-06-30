@@ -13,7 +13,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({
+export default function Button({
   children,
   size = "S",
   variant = "black",
@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
   type = "button",
-}) => {
+}: ButtonProps) {
   const sizeStyles = {
     S: "w-[361px] h-[44px]",
     L: "w-[361px] h-[56px]",
@@ -46,17 +46,9 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`
-        ${baseStyle}
-        ${sizeStyles[size]}
-        ${disabled ? disabledStyle : variantStyles[variant]}
-        button-text typo-button
-        ${className}
-      `}
+      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-button ${className} `}
     >
       {children}
     </button>
   );
-};
-
-export default Button;
+}

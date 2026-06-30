@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import TextField from "../../ui/TextField";
-import Button from "../../ui/Button";
-import { useEditPasswordAuthStore } from "../../../stores/useEditPasswordAuthStore";
-import { getMyProfile } from "../../../api/user";
-import FindEmailAuthModal from "../../auth/find/FindEmailAuthModal";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
+import { useEditPasswordAuthStore } from "@/stores/useEditPasswordAuthStore";
+import { getMyProfile } from "@/api/user";
+import FindEmailAuthModal from "@/components/auth/find/FindEmailAuthModal";
 
 export default function EditPasswordEmailSection() {
   const navigate = useNavigate();
@@ -124,7 +124,7 @@ export default function EditPasswordEmailSection() {
   };
 
   return (
-    <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="mx-auto w-[361px] pt-[241px]">
       <div className="typo-h1">이메일 인증</div>
 
       <div className="mt-[12px]">

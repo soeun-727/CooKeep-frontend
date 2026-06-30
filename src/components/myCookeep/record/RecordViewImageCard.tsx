@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import foodIcon from "../../../assets/mycookeep/record/fork_knife_plate.svg";
-import temp from "../../../assets/mycookeep/record/temp_food_photo.svg";
+import foodIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
+import temp from "@/assets/mycookeep/record/temp_food_photo.svg";
 
 interface RecordViewImageCardProps {
   title: string;
@@ -29,10 +29,10 @@ export default function RecordViewImageCard({
 
   return (
     <>
-      <div className="flex flex-col w-full max-w-[450px] mx-auto">
+      <div className="mx-auto flex w-full max-w-[450px] flex-col">
         {/* 이미지 */}
         <div
-          className="relative w-full h-[153px] rounded-t-[6px] overflow-hidden shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+          className="relative h-[153px] w-full overflow-hidden rounded-t-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
           // onClick={() => {
           //   if (!isEditing) return;
           //   setShowImageOptions(true);
@@ -41,13 +41,13 @@ export default function RecordViewImageCard({
           <img
             src={imageSrc || temp}
             alt="요리 이미지"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
 
           {/* 수정 모드 overlay */}
           {isEditing && (
             <div
-              className="absolute inset-0 flex justify-center items-center"
+              className="absolute inset-0 flex items-center justify-center"
               style={{
                 background:
                   "linear-gradient(0deg, rgba(32,32,32,0.5), rgba(32,32,32,0.5))",
@@ -55,7 +55,7 @@ export default function RecordViewImageCard({
               // onClick={() => setShowImageOptions(false)} // 추가
             >
               <div
-                className="flex flex-col items-center gap-4 w-[208px]"
+                className="flex w-[208px] flex-col items-center gap-4"
                 onClick={(e) => e.stopPropagation()} // 내부 클릭만 막기
               >
                 <p className="text-gray-0 text-[14px] font-medium text-center leading-[20px]">
@@ -66,10 +66,7 @@ export default function RecordViewImageCard({
                 </p>
                 {/* 🔥 버튼 영역 */}
                 <div
-                  className={`
-    flex gap-[8px] w-full
-    ${!imageSrc ? "justify-center" : ""}
-  `}
+                  className={`flex w-full gap-[8px] ${!imageSrc ? "justify-center" : ""} `}
                 >
                   {/* 변경 / 추가 버튼 */}
                   <button
@@ -134,12 +131,12 @@ export default function RecordViewImageCard({
         "
         >
           {/* 왼쪽 아이콘 + 제목 */}
-          <div className="flex items-center gap-[4px] flex-1 px-2">
+          <div className="flex flex-1 items-center gap-[4px] px-2">
             {/* 기본 아이콘 */}
             <img
               src={foodIcon}
               alt="요리 아이콘"
-              className="w-[38px] h-[38px] flex-shrink-0"
+              className="h-[38px] w-[38px] flex-shrink-0"
             />
 
             {/* 제목 */}
@@ -148,7 +145,7 @@ export default function RecordViewImageCard({
                 autoFocus
                 value={title}
                 onChange={(e) => onChangeTitle(e.target.value)}
-                className="flex-1 text-[18px] font-semibold leading-[26px] outline-none border-b-2 border-primary"
+                className="border-primary flex-1 border-b-2 text-[18px] leading-[26px] font-semibold outline-none"
                 placeholder={title}
               />
             ) : (

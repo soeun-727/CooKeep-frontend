@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { memo, useState } from "react";
-import privateIcon from "../../../assets/mycookeep/record/private_icon.svg";
-import publicIcon from "../../../assets/mycookeep/record/public_icon.svg";
-import { useCookeepRecordStore } from "../../../stores/useCookeepRecordStore";
+import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
+import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import SelectViewTypeModal from "./SelectViewTypeModal";
-import { DailyRecipe } from "../../../api/myRecipe";
-import tempFoodPhoto from "../../../assets/mycookeep/record/temp_food_photo.svg";
-interface Props {
+import { DailyRecipe } from "@/api/myRecipe";
+import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
+interface RecordCardProps {
   record: DailyRecipe;
 }
 
-function RecordCard({ record: initialRecord }: Props) {
+function RecordCard({ record: initialRecord }: RecordCardProps) {
   const navigate = useNavigate();
   const { updateRecordVisibility } = useCookeepRecordStore();
   const record =
@@ -63,25 +63,21 @@ function RecordCard({ record: initialRecord }: Props) {
 
   return (
     <>
-      <div className="flex flex-col gap-[9px] w-full max-w-[360px] mx-auto">
+      <div className="mx-auto flex w-full max-w-[360px] flex-col gap-[9px]">
         {/* 이미지 */}
         <div
-          className="
-          relative w-full h-[160px] cursor-pointer
-          rounded-[6px] overflow-hidden
-          shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25),0_4px_16px_-10px_rgba(0,0,0,0.25)]
-        "
+          className="relative h-[160px] w-full cursor-pointer overflow-hidden rounded-[6px] shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25),0_4px_16px_-10px_rgba(0,0,0,0.25)]"
           onClick={() => navigate(`/mycookeep/record/${record.dailyRecipeId}`)}
         >
           <img
             loading="lazy"
             src={record.recipeImageUrl || tempFoodPhoto}
             alt="요리 이미지"
-            className="w-full h-full object-cover transition-opacity duration-300"
+            className="h-full w-full object-cover transition-opacity duration-300"
           />
 
           {/* 상단 그라데이션 */}
-          <div className="pointer-events-none absolute top-0 left-0 right-0 h-[35%] bg-gradient-to-b from-black/25 to-transparent" />
+          <div className="pointer-events-none absolute top-0 right-0 left-0 h-[35%] bg-gradient-to-b from-black/25 to-transparent" />
 
           {/* 날짜 */}
           <span className="absolute top-1 left-1 px-1 py-1 text-gray-0 text-[12px] font-medium">
@@ -89,7 +85,7 @@ function RecordCard({ record: initialRecord }: Props) {
           </span>
 
           {/* 공개 / 비공개 아이콘 컨트롤 */}
-          <div className="absolute bottom-2 right-2 flex flex-col items-center">
+          <div className="absolute right-2 bottom-2 flex flex-col items-center">
             {/* 옵션 버튼 (위에서 쑥 내려옴) */}
             <button
               onClick={(e) => {
@@ -105,15 +101,14 @@ function RecordCard({ record: initialRecord }: Props) {
               transition-all duration-200 ease-out
               ${
                 isOptionOpen
-                  ? "opacity-100 translate-y-0 scale-100"
-                  : "opacity-0 translate-y-2 scale-95 pointer-events-none"
-              }
-            `}
+                  ? "translate-y-0 scale-100 opacity-100"
+                  : "pointer-events-none translate-y-2 scale-95 opacity-0"
+              } `}
             >
               <img
                 src={isPublic ? privateIcon : publicIcon}
                 alt="옵션 변경"
-                className={isPublic ? "w-[24px] h-[24px]" : "w-[36px] h-[36px]"}
+                className={isPublic ? "h-[24px] w-[24px]" : "h-[36px] w-[36px]"}
               />
             </button>
 
@@ -133,7 +128,7 @@ function RecordCard({ record: initialRecord }: Props) {
               <img
                 src={isPublic ? publicIcon : privateIcon}
                 alt="공개 여부"
-                className={isPublic ? "w-[36px] h-[36px]" : "w-[24px] h-[24px]"}
+                className={isPublic ? "h-[36px] w-[36px]" : "h-[24px] w-[24px]"}
               />
             </button>
           </div>

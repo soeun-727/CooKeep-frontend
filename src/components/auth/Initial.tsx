@@ -1,9 +1,9 @@
-import { mainLogo, confetti } from "../../assets";
-import chars from "../../assets/onboarding/Frame 781.svg";
+import { mainLogo, confetti } from "@/assets/index";
+import chars from "@/assets/onboarding/Frame 781.svg";
 import { useNavigate } from "react-router-dom";
-import Line from "../../assets/login/Horizontal-Line.png";
-import Kakao from "../../assets/login/Kakao.svg";
-import Google from "../../assets/login/Google.svg";
+import Line from "@/assets/login/Horizontal-Line.png";
+import Kakao from "@/assets/login/Kakao.svg";
+import Google from "@/assets/login/Google.svg";
 
 const CHAR = [chars];
 const INFINITE_CHAR = [...CHAR, ...CHAR];
@@ -48,20 +48,20 @@ export default function Initial() {
       </div>
 
       {/* 로고 */}
-      <div className="flex flex-col items-center mt-[23px]">
+      <div className="mt-[23px] flex flex-col items-center">
         <span className="typo-caption">1인 가구 요리 루틴 플랫폼</span>
         <img src={mainLogo} alt="로고" className="w-[218px]" />
       </div>
 
       {/* 애니메이션 */}
-      <div className="relative w-full overflow-hidden flex items-center min-h-[200px] mt-[108px] mb-[40px]">
-        <div className="flex h-50 items-end animate-roll-left w-max flex-nowrap">
+      <div className="relative my-10 flex min-h-[200px] w-full items-center overflow-hidden">
+        <div className="animate-roll-left flex h-50 w-max flex-nowrap items-end">
           {INFINITE_CHAR.map((char, index) => (
             <img
               key={index}
               src={char}
               alt={`character-${index}`}
-              className="mr-8 w-[791.5px] min-w-[791.5px] object-contain flex-shrink-0"
+              className="mr-8 w-[791.5px] min-w-[791.5px] flex-shrink-0 object-contain"
             />
           ))}
         </div>
@@ -76,7 +76,7 @@ export default function Initial() {
           SNS 계정으로 로그인하기
         </span>
 
-        <div className="flex items-center justify-center gap-3 mt-4">
+        <div className="mt-4 flex items-center justify-center gap-3">
           {/* 간편 로그인 미구현  */}
           <button onClick={handleGoogleLogin}>
             <img src={Google} alt="구글 로고" className="" />
@@ -86,7 +86,7 @@ export default function Initial() {
             <img src={Kakao} alt="카카오 로고" className="" />
           </button>
         </div>
-        <div className="flex justify-center items-center gap-[22px] py-[18px]">
+        <div className="flex items-center justify-center gap-[22px] py-[18px]">
           <img src={Line} alt="구분선" />
           <span className="typo-caption text-gray-50">또는</span>
           <img src={Line} alt="구분선" />

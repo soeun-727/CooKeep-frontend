@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import Button from "../../components/ui/Button";
-import arrowIcon from "../../assets/signup/arrowright.svg";
-import characterImg from "../../assets/character/sad_char_faded.svg";
-import { useAuthStore } from "../../stores/useAuthStore";
-import { withdrawUser } from "../../api/auth";
-import { getMyProfile } from "../../api/user";
-import LoadingScreen from "../../components/ui/LoadingScreen";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+import arrowIcon from "@/assets/signup/arrowright.svg";
+import characterImg from "@/assets/character/sad_char_faded.svg";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { withdrawUser } from "@/api/auth";
+import { getMyProfile } from "@/api/user";
 
 export default function WithdrawPage() {
   const navigate = useNavigate();
@@ -76,16 +75,25 @@ export default function WithdrawPage() {
   };
 
   // 로딩 중일 때
-  if (loading) return <LoadingScreen />;
+  if (loading) {
+    return (
+      <>
+        <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
+        <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">
+          <div className="text-center">로딩 중...</div>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
       <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
 
       {/* 스크롤 영역 */}
-      <main className="pt-[161px] px-4 pb-[120px] max-w-[450px] mx-auto">
+      <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">
         {/* ===== 상단 문구 ===== */}
-        <div className="flex justify-between items-start">
+        <div className="flex items-start justify-between">
           <div>
             <p className="text-[22px] font-bold leading-[32px] text-gray-80">
               Cookeep을 <span className="text-semantic-negative">탈퇴</span>
@@ -101,7 +109,7 @@ export default function WithdrawPage() {
           <img
             src={characterImg}
             alt="character"
-            className="w-[76px] h-[58px] ml-2"
+            className="ml-2 h-[58px] w-[76px]"
           />
         </div>
 
@@ -124,7 +132,7 @@ export default function WithdrawPage() {
         {/* ===== 체크 영역 ===== */}
         <button
           onClick={() => setAgree((v) => !v)}
-          className="mt-3 mx-2 flex items-center gap-2"
+          className="mx-2 mt-3 flex items-center gap-2"
         >
           <span
             className={`
@@ -182,7 +190,7 @@ export default function WithdrawPage() {
             <img
               src={arrowIcon}
               alt="toggle"
-              className={`w-6 h-6 transition-transform ${
+              className={`h-6 w-6 transition-transform ${
                 reasonOpen ? "-rotate-90" : "rotate-90"
               }`}
             />
@@ -222,15 +230,7 @@ export default function WithdrawPage() {
       </main>
 
       {/* ===== 하단 고정 버튼 ===== */}
-      <div
-        className="
-    fixed bottom-[34px]
-    left-1/2 -translate-x-1/2
-    w-full max-w-[450px]
-    px-4
-    flex justify-center
-  "
-      >
+      <div className="fixed bottom-[34px] left-1/2 flex w-full max-w-[450px] -translate-x-1/2 justify-center px-4">
         <Button
           size="L"
           disabled={!agree || !selectedReason || isSubmitting}
@@ -258,7 +258,7 @@ export default function WithdrawPage() {
               정말 탈퇴하시겠어요?
             </h2>
 
-            <div className="flex gap-2 mb-[20px]">
+            <div className="mb-[20px] flex gap-2">
               {/* 탈퇴 진행 */}
               <button
                 onClick={handleWithdraw}

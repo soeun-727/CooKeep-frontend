@@ -1,9 +1,9 @@
 // src/components/headers/ViewAllHeader.tsx
 
-import { searchIcon } from "../../../assets";
-import TextField from "../../ui/TextField";
+import { searchIcon } from "@/assets/index";
+import TextField from "@/components/ui/TextField";
 
-interface Props {
+interface ViewAllHeaderProps {
   searchTerm: string;
   onSearchChange: (value: string) => void;
   activeTab: "weekly" | "all";
@@ -15,9 +15,9 @@ export default function ViewAllHeader({
   onSearchChange,
   activeTab,
   onTabChange,
-}: Props) {
+}: ViewAllHeaderProps) {
   return (
-    <div className="flex flex-col items-center flex-shrink-0">
+    <div className="flex flex-shrink-0 flex-col items-center">
       {/* 검색창 */}
       <div
         className={`mt-12 !w-[361px] [&_p]:hidden
@@ -38,17 +38,17 @@ export default function ViewAllHeader({
       </div>
 
       {/* 탭 영역 */}
-      <div className="w-[361px] flex items-center mt-[27px]">
+      <div className="mt-[27px] flex w-[361px] items-center">
         {/* 왼쪽 탭 */}
         <button
           onClick={() => onTabChange("weekly")}
-          className={`flex-1 flex justify-center items-center py-2 gap-2 border-b-2 rounded-t-[6px] ${
+          className={`flex flex-1 items-center justify-center gap-2 rounded-t-[6px] border-b-2 py-2 ${
             activeTab === "weekly"
               ? "border-green-deep text-green-deep"
               : "border-transparent text-gray-50"
           }`}
         >
-          <span className="text-[14px] font-semibold leading-[20px] truncate">
+          <span className="truncate text-[14px] leading-[20px] font-semibold">
             이번 주 인기
           </span>
         </button>
@@ -56,13 +56,13 @@ export default function ViewAllHeader({
         {/* 오른쪽 탭 */}
         <button
           onClick={() => onTabChange("all")}
-          className={`flex-1 flex justify-center items-center py-2 gap-2 border-b-2 rounded-t-[6px] ${
+          className={`flex flex-1 items-center justify-center gap-2 rounded-t-[6px] border-b-2 py-2 ${
             activeTab === "all"
               ? "border-green-deep text-green-deep"
               : "border-transparent text-gray-50"
           }`}
         >
-          <span className="text-[14px] font-semibold leading-[20px] truncate">
+          <span className="truncate text-[14px] leading-[20px] font-semibold">
             모든 레시피 둘러보기
           </span>
         </button>

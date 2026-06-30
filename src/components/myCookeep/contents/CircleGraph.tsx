@@ -6,9 +6,9 @@ export default function CircleGraph({ percentage }: { percentage: number }) {
   const offset = circumference - (percentage / 100) * openCircumference;
 
   return (
-    <div className="relative flex items-center justify-center w-[105px]">
+    <div className="relative flex w-[105px] items-center justify-center">
       <svg
-        className="w-full h-full"
+        className="h-full w-full"
         viewBox="0 0 94 94"
         style={{ transform: "rotate(125deg)" }}
       >

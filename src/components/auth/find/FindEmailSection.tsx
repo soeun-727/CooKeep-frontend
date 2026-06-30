@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import Button from "../../ui/Button";
-import TextField from "../../ui/TextField";
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 import { useNavigate } from "react-router-dom";
-import { useFindPasswordStore } from "../../../stores/useFindPasswordStore";
+import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import FindEmailAuthModal from "./FindEmailAuthModal";
 // import axios from "axios";
 
@@ -95,7 +95,7 @@ export default function FindEmailSection() {
   const handleResend = () => handleSendCode();
 
   return (
-    <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="mx-auto w-[361px] pt-[241px]">
       {/* 전화번호 입력 */}
       <div className="relative w-[361px]">
         <div className="typo-h1">이메일 인증</div>

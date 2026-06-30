@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { AGREEMENTS, AGREEMENT_NOTICE } from "../../../constants/agreements";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
-import type { AgreementItem } from "../../../constants/agreements";
+import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
+import arrowIcon from "@/assets/signup/arrowright.svg";
+import type { AgreementItem } from "@/constants/agreements";
 import AgreementPage from "../signup/AgreementPage";
 
 interface AgreementListProps {
@@ -70,13 +70,13 @@ export default function AgreementList({
       </label>
 
       {/* 개별 약관 */}
-      <div className="w-[361px] h-[138px] px-4 py-3 flex flex-col gap-[6px]">
+      <div className="flex h-[138px] w-[361px] flex-col gap-[6px] px-4 py-3">
         {AGREEMENTS.map((item) => (
           <div
             key={item.key}
-            className="flex items-center justify-between w-[337px] h-[24px] mx-auto"
+            className="mx-auto flex h-[24px] w-[337px] items-center justify-between"
           >
-            <label className="flex items-center gap-4 cursor-pointer">
+            <label className="flex cursor-pointer items-center gap-4">
               {item.key !== "policy" ? (
                 <input
                   type="checkbox"
@@ -87,7 +87,7 @@ export default function AgreementList({
                   }
                 />
               ) : (
-                <span className="w-4 h-4 inline-block" />
+                <span className="inline-block h-4 w-4" />
               )}
 
               <span className="typo-label text-gray-50">{item.label}</span>

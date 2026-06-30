@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-import cookChar from "../../assets/recipe/main/cook_char.svg";
-import Button from "../../components/ui/Button";
-import RecipeHeader from "../../components/recipe/main/RecipeHeader";
-import { useIngredientStore } from "../../stores/useIngredientStore";
-import { useRecipeFlowStore } from "../../stores/useRecipeFlowStore";
+import cookChar from "@/assets/recipe/main/cook_char.svg";
+import Button from "@/components/ui/Button";
+import RecipeHeader from "@/components/recipe/main/RecipeHeader";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 export default function RecipeIntroPage() {
   const navigate = useNavigate();
@@ -37,11 +37,11 @@ export default function RecipeIntroPage() {
       />
 
       {/* 콘텐츠 */}
-      <div className="flex flex-col items-center w-[361px] gap-[28px] mt-[203.62px] z-10">
+      <div className="z-10 mt-[203.62px] flex w-[361px] flex-col items-center gap-[28px]">
         <img
           src={cookChar}
           alt="요리 캐릭터"
-          className="w-[162.5px] h-[116.646px]"
+          className="h-[116.646px] w-[162.5px]"
         />
 
         <div className="flex flex-col items-center h-[144px] gap-[28px] self-stretch">
@@ -51,12 +51,12 @@ export default function RecipeIntroPage() {
             요리해볼까요?
           </h1>
 
-          <div className="w-[249px] h-[44px]">
+          <div className="h-[44px] w-[249px]">
             <Button
               size="S"
               variant="green"
               onClick={() => navigate("/recipe/select")}
-              className="w-full h-full "
+              className="h-full w-full"
             >
               요리할 재료 선택하기
             </Button>

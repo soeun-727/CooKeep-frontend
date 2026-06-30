@@ -1,17 +1,22 @@
 import React from "react";
 
-interface Props {
+interface EditModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
   children: React.ReactNode;
 }
 
-export default function EditModal({ isOpen, onClose, title, children }: Props) {
+export default function EditModal({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: EditModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-200 flex items-end justify-center ">
+    <div className="fixed inset-0 z-200 flex items-end justify-center">
       {/* 배경 어둡게 */}
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 

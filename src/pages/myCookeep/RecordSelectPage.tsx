@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import searchIcon from "../../assets/recipe/search.svg";
-import liked from "../../assets/recipe/liked.svg";
-import unliked from "../../assets/recipe/unliked.svg";
-import BackHeader from "../../components/ui/BackHeader";
-import Button from "../../components/ui/Button";
-// import { useRecipeStore, type RecipeItem } from "../../stores/useRecipeStore";
-import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
-import { useDailyAiRecipeStore } from "../../stores/useDailyAiRecipeStore";
-import type { DailyAiRecipe } from "../../api/dailyAiRecipe";
+import searchIcon from "@/assets/recipe/search.svg";
+import liked from "@/assets/recipe/liked.svg";
+import unliked from "@/assets/recipe/unliked.svg";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+// import { useRecipeStore, type RecipeItem } from @/componentsstores/useRecipeStore";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
+import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
 
 export default function RecordSelectPage() {
   const navigate = useNavigate();
@@ -59,7 +59,7 @@ export default function RecordSelectPage() {
           <img
             src={recipe.isPinned ? liked : unliked}
             alt="like"
-            className="w-[18px] h-[15px] shrink-0"
+            className="h-[15px] w-[18px] shrink-0"
           />
           <span
             className={`
@@ -77,7 +77,7 @@ export default function RecordSelectPage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center">
+    <div className="flex min-h-screen w-full flex-col items-center">
       {/* 헤더 */}
       <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
       {/* 검색 */}
@@ -105,7 +105,7 @@ export default function RecordSelectPage() {
           text-gray-50
         "
             />
-            <img src={searchIcon} alt="검색" className="w-6 h-6 shrink-0" />
+            <img src={searchIcon} alt="검색" className="h-6 w-6 shrink-0" />
           </div>
         </div>
       </div>
@@ -121,10 +121,10 @@ export default function RecordSelectPage() {
       </div>
 
       {/* 리스트 영역 */}
-      <div className="flex-1 w-full overflow-y-auto no-scrollbar mt-4">
-        <div className="w-full max-w-[390px] px-4 mx-auto">
+      <div className="no-scrollbar mt-4 w-full flex-1 overflow-y-auto">
+        <div className="mx-auto w-full max-w-[390px] px-4">
           <div className="flex flex-col gap-6 pb-[140px]">
-            <div className="flex flex-col ">
+            <div className="flex flex-col">
               {likedRecipes.map(renderRecipeItem)}
             </div>
 
@@ -136,8 +136,8 @@ export default function RecordSelectPage() {
       </div>
 
       {/* 하단 고정 버튼 */}
-      <div className="fixed bottom-[34px] left-0 right-0">
-        <div className="w-full max-w-[390px] px-4 mx-auto">
+      <div className="fixed right-0 bottom-[34px] left-0">
+        <div className="mx-auto w-full max-w-[390px] px-4">
           <Button
             size="L"
             disabled={!selectedRecipeId}

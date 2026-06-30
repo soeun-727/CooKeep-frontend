@@ -1,12 +1,12 @@
 import Tab from "./Tab";
-import fridgeIcon from "../../assets/fixed/fridge.svg";
-import fridgeOnIcon from "../../assets/fixed/fridgeTab.svg";
-import recipeIcon from "../../assets/fixed/recipe.svg";
-import recipeOnIcon from "../../assets/fixed/recipeTab.svg";
-import cookeepsIcon from "../../assets/fixed/cookeeps.svg";
-import cookeepsOnIcon from "../../assets/fixed/cookeepsTab.svg";
-import mycookeepIcon from "../../assets/fixed/mycookeep.svg";
-import mycookeepOnIcon from "../../assets/fixed/mycookeepTab.svg";
+import fridgeIcon from "@/assets/fixed/fridge.svg";
+import fridgeOnIcon from "@/assets/fixed/fridgeTab.svg";
+import recipeIcon from "@/assets/fixed/recipe.svg";
+import recipeOnIcon from "@/assets/fixed/recipeTab.svg";
+import cookeepsIcon from "@/assets/fixed/cookeeps.svg";
+import cookeepsOnIcon from "@/assets/fixed/cookeepsTab.svg";
+import mycookeepIcon from "@/assets/fixed/mycookeep.svg";
+import mycookeepOnIcon from "@/assets/fixed/mycookeepTab.svg";
 import { useNavigate } from "react-router-dom";
 
 interface TabBarProps {

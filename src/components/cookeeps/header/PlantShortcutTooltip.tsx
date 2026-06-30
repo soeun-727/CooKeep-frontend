@@ -8,7 +8,7 @@ export default function PlantShortcutTooltip({
   if (!visible) return null;
 
   return (
-    <div className="absolute left-1/2 top-full mt-[5px] z-20 -translate-x-1/2">
+    <div className="absolute top-full left-1/2 z-20 mt-[5px] -translate-x-1/2">
       <div className="relative inline-flex flex-col items-center">
         {/* ▲ 화살표 */}
         <div

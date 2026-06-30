@@ -1,7 +1,7 @@
-import Button from "../../ui/Button";
-import characterIcon from "../../../assets/character/crying_char.svg";
+import Button from "@/components/ui/Button";
+import characterIcon from "@/assets/character/crying_char.svg";
 
-interface Props {
+interface WiltedModalProps {
   plant: string;
   isOpen: boolean;
   onClose: () => void;
@@ -14,7 +14,7 @@ export default function WiltedModal({
   onClose,
   onAbandon,
   onRecover,
-}: Props) {
+}: WiltedModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -37,7 +37,7 @@ export default function WiltedModal({
           <img src={characterIcon} alt="알림 캐릭터" className="w-[86px]" />
         </div>
 
-        <div className="w-full flex flex-col gap-2 font-semibold">
+        <div className="flex w-full flex-col gap-2 font-semibold">
           <Button
             variant="green"
             className="!w-[224px] !bg-green"

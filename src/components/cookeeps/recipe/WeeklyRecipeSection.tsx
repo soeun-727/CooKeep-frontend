@@ -1,7 +1,7 @@
 import RecipeRankCard from "./RecipeRankCard";
 import RecipeFilterButtons from "./RecipeFilterButtons";
-import { RecipeRankItem } from "../../../api/cookeeps";
-import tempImage from "../../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
+import { RecipeRankItem } from "@/api/cookeeps";
+import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 import { memo } from "react";
 interface WeeklyRecipeSectionProps {
   topRecipes: RecipeRankItem[];
@@ -38,10 +38,10 @@ function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
       </h2>
 
       {/* 버튼 + 리스트 */}
-      <div className="relative flex flex-col w-full gap-2">
+      <div className="relative flex w-full flex-col gap-2">
         <RecipeFilterButtons />
 
-        <div className="flex flex-col gap-1 w-full">
+        <div className="flex w-full flex-col gap-1">
           {filledRecipes.map((recipe, idx) => (
             <RecipeRankCard
               key={`${recipe.dailyRecipeId}-${idx}`}

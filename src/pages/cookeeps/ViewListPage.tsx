@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { useOutletContext } from "react-router-dom";
-import ListItem from "../../components/cookeeps/lists/ListItem";
-import DoublecheckModal from "../../components/ui/DoublecheckModal";
+import ListItem from "@/components/cookeeps/lists/ListItem";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import {
   getMyLikedRecipes,
   getMyBookmarkedRecipes,
   MyRecipeListItem,
   toggleRecipeBookmark,
   toggleRecipeLike,
-} from "../../api/myRecipe";
-import temp from "../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
+} from "@/api/myRecipe";
+import temp from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 
-interface Props {
+interface ViewListPageProps {
   type: string;
 }
 
@@ -19,7 +19,7 @@ interface OutletContext {
   searchTerm: string;
 }
 
-export default function ViewListPage({ type }: Props) {
+export default function ViewListPage({ type }: ViewListPageProps) {
   const { searchTerm } = useOutletContext<OutletContext>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -107,7 +107,7 @@ export default function ViewListPage({ type }: Props) {
 
   return (
     <>
-      <div className="w-[361px] mx-auto mt-[18px] pb-10 flex flex-col items-center">
+      <div className="mx-auto mt-[18px] flex w-[361px] flex-col items-center pb-10">
         {filteredData.length > 0
           ? filteredData.map((item) => (
               <ListItem

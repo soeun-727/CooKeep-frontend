@@ -1,5 +1,5 @@
-import React from "react";
-import deleteIcon from "../../../../assets/recipe/delete.svg";
+import { memo } from "react";
+import deleteIcon from "@/assets/recipe/delete.svg";
 
 interface ItemProps {
   image: string;
@@ -40,13 +40,12 @@ const Item: React.FC<ItemProps> = React.memo(
         <div className="flex flex-col gap-[2px] items-center justify-center">
           <img src={image} className="w-12 h-12" />
 
-          <span className="typo-caption !font-bold truncate whitespace-nowrap w-[58px]">
-            {name}
-          </span>
-        </div>
-      </button>
-    );
-  },
-);
-Item.displayName = "Item";
-export default Item;
+        <span className="typo-caption w-[58px] truncate !font-bold whitespace-nowrap">
+          {name}
+        </span>
+      </div>
+    </button>
+  );
+}
+
+export default memo(Item);

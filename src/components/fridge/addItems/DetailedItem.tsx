@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import memoIcon from "../../../assets/fridge/memo.svg";
-import renameIcon from "../../../assets/recipe/rename.svg";
-import coldIcon from "../../../assets/fridge/fridge.svg";
-import frozenIcon from "../../../assets/fridge/freezer.svg";
-import roomIcon from "../../../assets/fridge/pantry.svg";
-import deleteIcon from "../../../assets/fridge/delete.svg";
-import { useAddIngredientStore } from "../../../stores/useAddIngredientStore";
-import type { MasterItem } from "../../../stores/useAddIngredientStore";
-import EditModal from "../../ui/EditModal";
+import { useState } from "react";
+import memoIcon from "@/assets/fridge/memo.svg";
+import renameIcon from "@/assets/recipe/rename.svg";
+import coldIcon from "@/assets/fridge/fridge.svg";
+import frozenIcon from "@/assets/fridge/freezer.svg";
+import roomIcon from "@/assets/fridge/pantry.svg";
+import deleteIcon from "@/assets/fridge/delete.svg";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
+import type { MasterItem } from "@/stores/useAddIngredientStore";
+import EditModal from "@/components/ui/EditModal";
 import QuantityEditor from "./components/edit/QuantityEditor";
 import UnitEditor from "./components/edit/UnitEditor";
 import StorageEditor from "./components/edit/StorageEditor";
 import ExpiryEditor from "./components/edit/ExpiryEditor";
 import MemoEditor from "./components/edit/MemoEditor";
-import { calculateExpiryDate } from "../../../utils/expiryDate";
+import { calculateExpiryDate } from "@/utils/expiryDate";
 import DeleteConfirmModal from "../modals/DeleteConfirmModal";
 
 interface DetailedItemProps extends MasterItem {}
@@ -41,7 +41,7 @@ const UNIT_NAMES: Record<string, string> = {
   MILLILITER: "ml",
 };
 
-const DetailedItem: React.FC<DetailedItemProps> = (item) => {
+export default function DetailedItem(item: DetailedItemProps) {
   const { updateItemDetail, toggleItem } = useAddIngredientStore();
   const [modalType, setModalType] = useState<
     "storage" | "expiry" | "quantity" | "unit" | "memo" | null
@@ -115,11 +115,11 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
           <div className="w-20 h-20 rounded-[6px] flex items-center justify-center border border-gray-10 p-[14px]">
             <img
               src={item.image}
-              className="w-13 h-13 object-contain"
+              className="h-13 w-13 object-contain"
               alt={item.name}
             />
           </div>
-          <span className="typo-caption w-[95px] pt-[10px] text-left truncate font-bold px-[2px]">
+          <span className="typo-caption w-[95px] truncate px-[2px] pt-[10px] text-left font-bold">
             {item.name}
           </span>
           <div
@@ -127,7 +127,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
               e.stopPropagation();
               setModalType("memo");
             }}
-            className="w-full h-6 flex items-center justify-center pl-[2px] cursor-pointer relative z-[20] group"
+            className="group relative z-[20] flex h-6 w-full cursor-pointer items-center justify-center pl-[2px]"
           >
             <span className="text-[10px] truncate flex-1 text-gray-30">
               {item.memo || "메모를 남겨주세요"}
@@ -136,12 +136,12 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
           </div>
         </div>
 
-        <div className="flex flex-col items-start w-44 h-38 gap-2 typo-caption">
-          <div className="flex gap-3 items-center">
+        <div className="typo-caption flex h-38 w-44 flex-col items-start gap-2">
+          <div className="flex items-center gap-3">
             <span className="w-[42px]">보관장소</span>
             <div
               onClick={() => setModalType("storage")}
-              className="flex min-w-[59px] h-8 px-2 gap-1 bg-black rounded-[6px] items-center cursor-pointer"
+              className="flex h-8 min-w-[59px] cursor-pointer items-center gap-1 rounded-[6px] bg-black px-2"
             >
               <img
                 src={currentIcon}
@@ -153,7 +153,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
               </span>
             </div>
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex items-center gap-3">
             <span className="w-[42px]">유통기한</span>
             <div className="flex w-[122px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
               <span className="w-[58px] h-4">
@@ -169,7 +169,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
               />
             </div>
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex items-center gap-3">
             <span className="w-[42px]">수량</span>
             <div className="flex w-[66px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
               <span className="w-[58px] h-4">{item.quantity || 1}</span>
@@ -181,7 +181,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
               />
             </div>
           </div>
-          <div className="flex gap-3 items-center">
+          <div className="flex items-center gap-3">
             <span className="w-[42px]">단위</span>
             <div className="flex w-[66px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
               <span className="w-[58px] h-4">
@@ -203,7 +203,7 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
           e.stopPropagation();
           setIsDeleteModalOpen(true);
         }}
-        className="absolute bottom-1 right-1 z-30 p-1 transition-all active:scale-90"
+        className="absolute right-1 bottom-1 z-30 p-1 transition-all active:scale-90"
       >
         <img alt="deleteButton" src={deleteIcon} className="w-10" />
       </button>
@@ -225,6 +225,4 @@ const DetailedItem: React.FC<DetailedItemProps> = (item) => {
       )}
     </div>
   );
-};
-
-export default DetailedItem;
+}

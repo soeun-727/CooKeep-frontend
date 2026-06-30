@@ -1,12 +1,12 @@
 // src/components/header/BackHeader.tsx
-import BackIcon from "../../assets/back.svg";
+import BackIcon from "@/assets/back.svg";
 
-type BackHeaderProps = {
+interface BackHeaderProps {
   title: string;
   onBack: () => void;
-};
+}
 
-const BackHeader = ({ title, onBack }: BackHeaderProps) => {
+export default function BackHeader({ title, onBack }: BackHeaderProps) {
   return (
     <header
       className="
@@ -21,7 +21,7 @@ const BackHeader = ({ title, onBack }: BackHeaderProps) => {
       <button
         type="button"
         onClick={onBack}
-        className="w-8 h-8 flex items-center justify-center"
+        className="flex h-8 w-8 items-center justify-center"
       >
         <img src={BackIcon} alt="뒤로가기" />
       </button>
@@ -31,6 +31,4 @@ const BackHeader = ({ title, onBack }: BackHeaderProps) => {
       </h1>
     </header>
   );
-};
-
-export default BackHeader;
+}

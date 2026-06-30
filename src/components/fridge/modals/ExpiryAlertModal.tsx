@@ -1,15 +1,19 @@
-import Button from "../../ui/Button";
-import type { Ingredient } from "../../../stores/useIngredientStore";
-import characterImg from "../../../assets/character/surprised_char_faded.svg";
+import Button from "@/components/ui/Button";
+import type { Ingredient } from "@/stores/useIngredientStore";
+import characterImg from "@/assets/character/surprised_char_faded.svg";
 import { useNavigate } from "react-router-dom";
 
-interface Props {
+interface ExpiryAlertModalProps {
   isOpen: boolean;
   onClose: () => void;
   items: Ingredient[];
 }
 
-export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
+export default function ExpiryAlertModal({
+  isOpen,
+  onClose,
+  items,
+}: ExpiryAlertModalProps) {
   const navigate = useNavigate();
 
   if (!isOpen || items.length === 0) return null;
@@ -22,11 +26,11 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
       {/* modal */}
       <div className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-gray-0 flex flex-col items-center gap-2">
         {/* content */}
-        <div className="w-full flex flex-col items-center gap-4">
+        <div className="flex w-full flex-col items-center gap-4">
           <img
             src={characterImg}
             alt="알림 캐릭터"
-            className="w-[75px] h-[60px]"
+            className="h-[60px] w-[75px]"
           />
 
           <p className="typo-body2 text-gray-80 text-center whitespace-pre-line">
@@ -37,7 +41,7 @@ export default function ExpiryAlertModal({ isOpen, onClose, items }: Props) {
         </div>
 
         {/* buttons */}
-        <div className="w-full flex flex-col gap-2 mt-2">
+        <div className="mt-2 flex w-full flex-col gap-2">
           <Button
             variant="green"
             className="!w-[224px] bg-green"

@@ -1,10 +1,10 @@
-import char from "../../../assets/character/onboarding_char.svg";
-import Button from "../../ui/Button";
+import char from "@/assets/character/onboarding_char.svg";
+import Button from "@/components/ui/Button";
 
 export default function GuestLast({ onNext }: { onNext: () => void }) {
   return (
     <div className="flex flex-col items-center gap-[10px]">
-      <div className="text-3xl font-bold leading-9 text-center mt-26">
+      <div className="mt-26 text-center text-3xl leading-9 font-bold">
         지금 만든 레시피,
         <br />
         저장하지 않으면 사라져요!

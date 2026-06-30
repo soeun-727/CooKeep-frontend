@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import ProfileSection from "./sections/ProfileSection";
 import NotificationSection from "./sections/NotificationSection";
 import SupportSection from "./sections/SupportSection";
-import logoutIcon from "../../assets/settings/logout.svg";
-import ConfirmModal from "../ui/ConfirmModal";
-import { getMyProfile, MyProfileResponse } from "../../api/user";
-import { useAuthStore } from "../../stores/useAuthStore";
-import { unsubscribePush } from "../../api/push";
-import LoadingScreen from "../ui/LoadingScreen";
+import logoutIcon from "@/assets/settings/logout.svg";
+import ConfirmModal from "@/components/ui/ConfirmModal";
+import { getMyProfile, MyProfileResponse } from "@/api/user";
+import { useAuthStore } from "@/stores/useAuthStore";
+import { loadingChar } from "@/assets";
+import { unsubscribePush } from "@/api/push";
 
 export default function SettingsMain() {
   const navigate = useNavigate();
@@ -53,11 +53,19 @@ export default function SettingsMain() {
     }
   };
 
-  if (loading || !profile) return <LoadingScreen />;
+  if (loading || !profile)
+    return (
+      <div className="mt-50 flex flex-col items-center justify-center text-center">
+        <img className="w-30 p-5 opacity-70" src={loadingChar} />
+        <div className="typo-body2 text-zinc-500">
+          회원정보를 불러오는 중...
+        </div>
+      </div>
+    );
 
   return (
     <>
-      <main className="pt-[103px] px-4">
+      <main className="px-4 pt-[103px]">
         <div className="space-y-6">
           <ProfileSection profile={profile} />
           <NotificationSection
@@ -77,7 +85,7 @@ export default function SettingsMain() {
             <img
               src={logoutIcon}
               alt="logout"
-              className="w-6 h-6 aspect-square"
+              className="aspect-square h-6 w-6"
             />
             <span className="text-[14px] font-medium leading-[20px] text-gray-80">
               로그아웃

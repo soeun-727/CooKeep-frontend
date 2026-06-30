@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import TextField from "../../ui/TextField";
-import Button from "../../ui/Button";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
 import { useNavigate } from "react-router-dom";
 // 아이콘
-import pwIcon from "../../../assets/login/key.svg";
-import pwImage from "../../../assets/login/pw.svg";
-import openpwImage from "../../../assets/signup/openpw.svg";
-import checkIcon from "../../../assets/signup/check.svg";
-import { useFindPasswordStore } from "../../../stores/useFindPasswordStore";
-import { resetPasswordApi } from "../../../api/auth";
+import pwIcon from "@/assets/login/key.svg";
+import pwImage from "@/assets/login/pw.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+import checkIcon from "@/assets/signup/check.svg";
+import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
+import { resetPasswordApi } from "@/api/auth";
 import axios from "axios";
 
 export default function ResetPassword() {
@@ -78,7 +78,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="mx-auto w-[361px] pt-[241px]">
       <div className="typo-h1">비밀번호 변경하기</div>
       <div className="mt-[12px]">
         <TextField
@@ -102,7 +102,7 @@ export default function ResetPassword() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="flex items-center justify-center h-full"
+              className="flex h-full items-center justify-center"
             >
               <img src={getPasswordIcon()} alt="비밀번호 토글 아이콘" />
             </button>
@@ -132,7 +132,7 @@ export default function ResetPassword() {
             <button
               type="button"
               onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
-              className="flex items-center justify-center h-full"
+              className="flex h-full items-center justify-center"
             >
               <img
                 src={getPasswordConfirmIcon()}
@@ -170,7 +170,7 @@ export default function ResetPassword() {
             <img
               src={checkIcon}
               alt="성공 아이콘"
-              className="w-[40px] h-[40px]"
+              className="h-[40px] w-[40px]"
             />
             <Button
               size="L"

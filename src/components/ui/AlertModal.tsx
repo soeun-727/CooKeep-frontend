@@ -1,5 +1,5 @@
-import React from "react";
-import icon from "../../assets/character/serve_char.svg";
+
+import icon from "@/assets/character/serve_char.svg";
 
 interface AlertModalProps {
   isOpen: boolean;
@@ -8,12 +8,12 @@ interface AlertModalProps {
   rewardPoints?: number | null;
 }
 
-const AlertModal: React.FC<AlertModalProps> = ({
+export default function AlertModal({
   isOpen,
   onClose,
   buttonText = "확인",
   rewardPoints,
-}) => {
+}: AlertModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -40,6 +40,4 @@ const AlertModal: React.FC<AlertModalProps> = ({
       </div>
     </div>
   );
-};
-
-export default AlertModal;
+}

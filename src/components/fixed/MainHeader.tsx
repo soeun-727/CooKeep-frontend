@@ -1,13 +1,14 @@
 // src/components/auth/MainHeader.tsx
-import { mainLogo } from "../../assets";
-import settings from "../../assets/fixed/settings.svg";
+import { mainLogo } from "@/assets/index";
+import settings from "@/assets/fixed/settings.svg";
 import { useNavigate } from "react-router-dom";
-import backIcon from "../../assets/back.svg";
-import { useIngredientStore } from "../../stores/useIngredientStore";
+import backIcon from "@/assets/back.svg";
+import { useIngredientStore } from "@/stores/useIngredientStore";
 interface MainHeaderProps {
   isAllView: boolean;
 }
-const MainHeader = ({ isAllView }: MainHeaderProps) => {
+
+export default function MainHeader({ isAllView }: MainHeaderProps) {
   const navigate = useNavigate();
   const { setViewCategory } = useIngredientStore();
   const handleSettings = () => {
@@ -32,12 +33,12 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
               <img
                 src={mainLogo}
                 alt="CooKeep logo"
-                className="w-24 object-contain pb-1 ml-[31px]"
+                className="ml-[31px] w-24 object-contain pb-1"
               />
             )}
           </div>
 
-          <div className="w-9 h-9 flex items-center justify-end mr-[15px]">
+          <div className="mr-[15px] flex h-9 w-9 items-center justify-end">
             <button className="" onClick={handleSettings}>
               <img src={settings} alt="settings" className="w-9" />
             </button>
@@ -46,6 +47,4 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
       </div>
     </header>
   );
-};
-
-export default MainHeader;
+}

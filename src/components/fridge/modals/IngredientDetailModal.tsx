@@ -2,14 +2,14 @@ import { useCallback, useEffect, useState } from "react";
 import {
   useIngredientStore,
   type Ingredient,
-} from "../../../stores/useIngredientStore";
-import character from "../../../assets/character/tip_char.svg";
-import memoIcon from "../../../assets/fridge/edit_memo.svg";
-import fridgeIcon from "../../../assets/fridge/fridge.svg";
-import freezerIcon from "../../../assets/fridge/freezer.svg";
-import pantryIcon from "../../../assets/fridge/pantry.svg";
-import bubbleTail from "../../../assets/fridge/bubble_tail_left.svg";
-import EditModal from "../../ui/EditModal";
+} from "@/stores/useIngredientStore";
+import character from "@/assets/character/tip_char.svg";
+import memoIcon from "@/assets/fridge/edit_memo.svg";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+import bubbleTail from "@/assets/fridge/bubble_tail_left.svg";
+import EditModal from "@/components/ui/EditModal";
 import StorageEditor from "../addItems/components/edit/StorageEditor";
 import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
 import QuantityEditor from "../addItems/components/edit/QuantityEditor";
@@ -19,10 +19,10 @@ import {
   updateIngredientDate,
   updateIngredientQuantity,
   updateIngredientMemo,
-} from "../../../api/ingredient";
-import { getKoreanUnit } from "../../../utils/mapping";
+} from "@/api/ingredient";
+import { getKoreanUnit } from "@/utils/mapping";
 
-interface Props {
+interface IngredientDetailModalProps {
   ingredient: Ingredient;
   onClose: () => void;
   onUpdate: () => void;
@@ -32,7 +32,7 @@ export default function IngredientDetailModal({
   ingredient,
   onClose,
   onUpdate,
-}: Props) {
+}: IngredientDetailModalProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
   const [memo, setMemo] = useState("");
@@ -123,7 +123,7 @@ export default function IngredientDetailModal({
                 <img
                   src={displayData.imageUrl || displayData.image}
                   alt={displayData.name}
-                  className="h-[60px] w-[60px] rounded-[6px] object-cover aspect-square"
+                  className="aspect-square h-[60px] w-[60px] rounded-[6px] object-cover"
                 />
               </div>
               <div className="flex flex-1 flex-col items-start gap-1">
@@ -137,7 +137,7 @@ export default function IngredientDetailModal({
                       : `D-${displayData.leftDays}`}
                   </span>
                   <span
-                    className={`text-[12px] font-semibold leading-4 ${
+                    className={`text-[12px] leading-4 font-semibold ${
                       displayData.leftDays < 0
                         ? "text-semantic-negative" // 지났을 때 빨간색
                         : displayData.leftDays > 3
@@ -178,13 +178,13 @@ export default function IngredientDetailModal({
                   <img
                     src={memoIcon}
                     alt="수정"
-                    className="w-6 h-6 aspect-square"
+                    className="aspect-square h-6 w-6"
                   />
                 </button>
               </div>
 
               <div className="flex flex-col items-start gap-[6px] self-stretch">
-                <div className="flex h-14 w-full gap-[3px] items-center">
+                <div className="flex h-14 w-full items-center gap-[3px]">
                   <div
                     className="flex-1 h-full flex flex-col justify-center items-center bg-gray-10 py-[5px] rounded-l-[6px] cursor-pointer"
                     onClick={() => setOpenEditor("storage")}
@@ -198,7 +198,7 @@ export default function IngredientDetailModal({
                           displayData.storage || displayData.category
                         ]
                       }
-                      className="w-5 h-5 brightness-0"
+                      className="h-5 w-5 brightness-0"
                       alt="icon"
                     />
                   </div>
@@ -240,18 +240,18 @@ export default function IngredientDetailModal({
             </div>
 
             {displayTip && (
-              <div className="flex flex-col items-center gap-5 self-stretch mt-1">
-                <div className="flex items-end justify-center gap-5 w-full relative">
+              <div className="mt-1 flex flex-col items-center gap-5 self-stretch">
+                <div className="relative flex w-full items-end justify-center gap-5">
                   <img
                     src={character}
                     alt="tip character"
-                    className="w-[64px] h-[56px] flex-shrink-0 relative z-30"
+                    className="relative z-30 h-[56px] w-[64px] flex-shrink-0"
                   />
-                  <div className="relative flex-1 max-w-[178px]">
+                  <div className="relative max-w-[178px] flex-1">
                     <img
                       src={bubbleTail}
                       alt=""
-                      className="absolute left-[-14px] bottom-[12px] w-[27.2px] z-20"
+                      className="absolute bottom-[12px] left-[-14px] z-20 w-[27.2px]"
                     />
                     <div className="relative z-10 flex w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] border-gray-10 bg-gray-0 px-[17.6px] py-[10px] min-h-[56px] shadow-sm">
                       <span className="text-[8px] font-semibold leading-[12px] text-green self-stretch">

@@ -1,5 +1,5 @@
-import CautionIcon from "../../../assets/signup/icon_caution.svg";
-import Button from "../../ui/Button";
+import CautionIcon from "@/assets/signup/icon_caution.svg";
+import Button from "@/components/ui/Button";
 
 export type FindEmailAuthModalType =
   | "send"
@@ -14,12 +14,12 @@ interface FindEmailAuthModalProps {
   onSignup?: () => void;
 }
 
-const FindEmailAuthModal = ({
+export default function FindEmailAuthModal({
   type,
   email,
   onConfirm,
   onSignup,
-}: FindEmailAuthModalProps) => {
+}: FindEmailAuthModalProps) {
   const isSend = type === "send";
   const isVerify = type === "verify";
   const isNotRegistered = type === "notRegistered";
@@ -64,7 +64,7 @@ const FindEmailAuthModal = ({
           <img
             src={CautionIcon}
             alt="주의"
-            className="mb-2 w-[20px] h-[20px]"
+            className="mb-2 h-[20px] w-[20px]"
           />
         )}
 
@@ -123,6 +123,4 @@ const FindEmailAuthModal = ({
       </div>
     </>
   );
-};
-
-export default FindEmailAuthModal;
+}

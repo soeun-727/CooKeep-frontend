@@ -1,4 +1,4 @@
-import sortIcon from "../../../assets/fridge/sort.svg";
+import sortIcon from "@/assets/fridge/sort.svg";
 
 interface SortProps {
   currentOrder: string;
@@ -22,7 +22,7 @@ export default function SortAll({ currentOrder, onSortChange }: SortProps) {
       <span className="text-[12px] text-gray-50 font-medium leading-[16px]">
         {currentOrder}
       </span>
-      <img src={sortIcon} className="w-[16px] h-[16px]" />
+      <img src={sortIcon} className="h-[16px] w-[16px]" />
     </button>
   );
 }

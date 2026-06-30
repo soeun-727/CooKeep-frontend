@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import image from "../../assets/settings/cs.svg";
+import BackHeader from "@/components/ui/BackHeader";
+import image from "@/assets/settings/cs.svg";
 
 export default function SupportPage() {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ export default function SupportPage() {
       {/* 헤더 */}
       <BackHeader title="고객센터" onBack={() => navigate(-1)} />
 
-      <main className="pt-[97px] px-4 flex flex-col relative gap-12">
+      <main className="relative flex flex-col gap-12 px-4 pt-[97px]">
         {/* 상단 텍스트 */}
         <section className="">
-          <h2 className="typo-h1 !text-[22px] text-left">
+          <h2 className="typo-h1 text-left !text-[22px]">
             무엇을 도와드릴까요?
           </h2>
 

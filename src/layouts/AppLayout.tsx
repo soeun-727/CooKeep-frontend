@@ -1,17 +1,17 @@
-import { useLoadingStore } from "../stores/useLoadingStore";
-import LoadingScreen from "../components/ui/LoadingScreen";
-import WeeklyGoalModal from "../components/ui/WeeklyGoalModal"; // 추가
-import ExpiringRewardModal from "../components/recipe/ExpiringRewardModal";
-import { useRewardStore } from "../stores/useRewardStore";
-import OnboardingRewardModal from "../components/ui/OnboardingRewardModal";
-import ComebackRewardModal from "../components/ui/ComebackRewardModal";
+import { useLoadingStore } from "@/stores/useLoadingStore";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal"; // 추가
+import ExpiringRewardModal from "@/components/recipe/ExpiringRewardModal";
+import { useRewardStore } from "@/stores/useRewardStore";
+import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
+import ComebackRewardModal from "@/components/ui/ComebackRewardModal";
 
-type Props = {
+interface AppLayoutProps {
   children: React.ReactNode;
-};
+}
 
 // AppLayout.tsx
-export default function AppLayout({ children }: Props) {
+export default function AppLayout({ children }: AppLayoutProps) {
   const isLoading = useLoadingStore((s) => s.isLoading);
 
   const { current, dequeue } = useRewardStore();

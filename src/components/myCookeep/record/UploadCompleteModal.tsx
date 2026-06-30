@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import Button from "../../ui/Button";
-import character from "../../../assets/character/congrats_happy_char.svg";
+import Button from "@/components/ui/Button";
+import character from "@/assets/character/congrats_happy_char.svg";
 
-interface Props {
+interface UploadCompleteModalProps {
   isOpen: boolean; // 열림 상태 추가
   onConfirm: () => void; // 쿠키받기
   onCancel: () => void; // 그냥 닫기
@@ -15,7 +15,7 @@ export default function UploadCompleteModal({
   onConfirm,
   onCancel,
   closeOnOverlayClick = false,
-}: Props) {
+}: UploadCompleteModalProps) {
   // DoublecheckModal과 동일한 스크롤 방지 로직
   useEffect(() => {
     if (isOpen) {
@@ -43,7 +43,7 @@ export default function UploadCompleteModal({
         <div className="flex flex-col items-center justify-center self-stretch">
           <img
             src={character}
-            className="w-[84.922px] h-[90px] mb-4"
+            className="mb-4 h-[90px] w-[84.922px]"
             alt="congrats"
           />
 
@@ -57,7 +57,7 @@ export default function UploadCompleteModal({
           <Button
             size="S"
             variant="green"
-            className="!w-[184px] h-11" // DoublecheckModal의 버튼 높이와 통일
+            className="h-11 !w-[184px]" // DoublecheckModal의 버튼 높이와 통일
             onClick={() => {
               onConfirm();
               onCancel(); // 확인 후 모달 닫기

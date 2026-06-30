@@ -1,14 +1,18 @@
-import Button from "../../ui/Button";
-import characterImg from "../../../assets/character/kijul_char.svg";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import Button from "@/components/ui/Button";
+import characterImg from "@/assets/character/kijul_char.svg";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-interface Props {
+interface WiltingModalProps {
   plant: string;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function WiltingModal({ plant, isOpen, onClose }: Props) {
+export default function WiltingModal({
+  plant,
+  isOpen,
+  onClose,
+}: WiltingModalProps) {
   if (!isOpen) return null;
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">

@@ -1,7 +1,7 @@
-import type { Ingredient } from "../stores/useIngredientStore";
-// import type { Difficulty } from "../stores/useRecipeFlowStore";
-import type { Recipe } from "../types/recipe";
-import { MOCK_RECIPES } from "../constants/mockRecipes";
+import type { Ingredient } from "@/stores/useIngredientStore";
+// import type { Difficulty } from "@/stores/useRecipeFlowStore";
+import type { Recipe } from "@/types/recipe";
+import { MOCK_RECIPES } from "@/constants/mockRecipes";
 
 export function generateRecipe(
   ingredients: Pick<Ingredient, "id" | "name" | "quantity" | "unit">[],

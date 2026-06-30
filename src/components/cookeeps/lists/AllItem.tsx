@@ -1,4 +1,4 @@
-import { likeGray } from "../../../assets";
+import { likeGray } from "@/assets/index";
 
 interface ItemProps {
   rank: number;
@@ -10,7 +10,7 @@ interface ItemProps {
   onIconClick?: (e: React.MouseEvent) => void;
 }
 
-const AllItem = ({
+export default function AllItem({
   rank,
   img,
   title,
@@ -18,7 +18,7 @@ const AllItem = ({
   isSelected = false,
   onSelect,
   onIconClick,
-}: ItemProps) => {
+}: ItemProps) {
   const handleIconClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (onIconClick) onIconClick(e);
@@ -38,16 +38,16 @@ const AllItem = ({
         {rank}
       </div>
 
-      <span className="flex-1 px-[14px] truncate typo-body text-left">
+      <span className="typo-body flex-1 truncate px-[14px] text-left">
         {title}
       </span>
 
       {/* 우측 아이콘 및 이미지 */}
-      <div className="flex items-center flex-shrink-0">
+      <div className="flex flex-shrink-0 items-center">
         {/* 좋아요 영역 */}
         <div
           onClick={handleIconClick}
-          className="flex items-center gap-1 flex-shrink-0 mx-4"
+          className="mx-4 flex flex-shrink-0 items-center gap-1"
         >
           <img src={likeGray} alt="like" className="w-[13px] flex-shrink-0" />
 
@@ -61,11 +61,9 @@ const AllItem = ({
         <img
           src={img}
           alt={title}
-          className="w-[65px] h-[42px] rounded-[6px] object-cover flex-shrink-0"
+          className="h-[42px] w-[65px] flex-shrink-0 rounded-[6px] object-cover"
         />
       </div>
     </div>
   );
-};
-
-export default AllItem;
+}

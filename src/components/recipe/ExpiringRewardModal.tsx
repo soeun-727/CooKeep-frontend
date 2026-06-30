@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import Button from "../ui/Button";
+import Button from "@/components/ui/Button";
 
 interface ExpiringRewardModalProps {
   onConfirm: () => void;

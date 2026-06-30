@@ -1,6 +1,6 @@
 // components/recipe/main/RecipeHeader.tsx
 import { useState } from "react";
-import menuIcon from "../../../assets/recipe/main/menu.svg";
+import menuIcon from "@/assets/recipe/main/menu.svg";
 import Sidebar from "../sidebar/SideBar";
 
 interface RecipeHeaderProps {
@@ -32,9 +32,9 @@ export default function RecipeHeader({
         {/* 사이드바 버튼 */}
         <button
           onClick={toggleSidebar}
-          className="w-[36px] h-[36px] flex items-center justify-center"
+          className="flex h-[36px] w-[36px] items-center justify-center"
         >
-          <img src={menuIcon} className="w-full h-full object-contain" />
+          <img src={menuIcon} className="h-full w-full object-contain" />
         </button>
 
         {/* 제목: title props가 있을 때만 렌더링 */}

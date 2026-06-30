@@ -1,11 +1,11 @@
 import WaterButton from "./WaterButton";
-import RefreshIcon from "../../../assets/cookeeps/main/refresh_cookeeps.svg";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import GrowthProgressBar from "./GrowthProgressBar";
-import { PLANT_NAME_KR } from "../../../constants/plantNames";
+import { PLANT_NAME_KR } from "@/constants/plantNames";
 import { useEffect } from "react";
 import { preloadNextStage } from "./preloadPlantImages";
-import { PLANT_NAME_TO_TYPE } from "../../../constants/plantTypeMap";
+import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
 
 interface PlantGrowthCardProps {
   onWaterSuccess?: () => void;
@@ -54,8 +54,8 @@ export default function PlantGrowthCard({
 
   return (
     <div className="-mt-[46px] flex justify-center">
-      <div className="relative w-full max-w-[450px] shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)] z-50">
-        <div className="absolute -top-[20px] left-1/2 -translate-x-1/2 z-50">
+      <div className="relative z-50 w-full max-w-[450px] shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)]">
+        <div className="absolute -top-[20px] left-1/2 z-50 -translate-x-1/2">
           <WaterButton
             onSuccess={() => {
               onWaterSuccess?.();
@@ -78,7 +78,7 @@ export default function PlantGrowthCard({
 
               {/* 여기를 handleRefreshClick으로 수정했습니다 */}
               <button onClick={handleRefreshClick}>
-                <img src={RefreshIcon} alt="새로고침" className="w-4 h-4" />
+                <img src={RefreshIcon} alt="새로고침" className="h-4 w-4" />
               </button>
             </div>
 

@@ -1,4 +1,4 @@
-import { IngredientItem } from "../../../../types/aiRecipe";
+import { IngredientItem } from "@/types/aiRecipe";
 import RecipeIngredientSection from "./RecipeIngredientSection";
 import RecipeStepSection from "./RecipeStepSection";
 
@@ -7,7 +7,7 @@ interface Step {
   description: string;
 }
 
-interface Props {
+interface RecipeContentSectionProps {
   selectedIngredients: IngredientItem[];
   requiredIngredients?: IngredientItem[];
   substitutions?: IngredientItem[];
@@ -21,7 +21,7 @@ export default function RecipeContentSection({
   substitutions,
   steps,
   difficulty,
-}: Props) {
+}: RecipeContentSectionProps) {
   return (
     <section
       className="
@@ -34,7 +34,7 @@ export default function RecipeContentSection({
       style={{ gap: "8px" }}
     >
       {/* 내부 세부 섹션 */}
-      <div className="flex flex-col items-start w-full max-w-[331px] gap-9">
+      <div className="flex w-full max-w-[331px] flex-col items-start gap-9">
         <RecipeIngredientSection
           selectedIngredients={selectedIngredients}
           requiredIngredients={requiredIngredients}

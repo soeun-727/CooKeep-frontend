@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import RecipeRecordContentSection from "../../components/myCookeep/record/RecipeRecordContentSection";
-import RecipeDetailYoutube from "../../components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import privateIcon from "../../assets/mycookeep/record/private_icon.svg";
-import publicIcon from "../../assets/mycookeep/record/public_icon.svg";
-import optionIcon from "../../assets/mycookeep/record/options.svg";
-import RecordViewImageCard from "../../components/myCookeep/record/RecordViewImageCard";
+import BackHeader from "@/components/ui/BackHeader";
+import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
+import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
+import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import optionIcon from "@/assets/mycookeep/record/options.svg";
+import RecordViewImageCard from "@/components/myCookeep/record/RecordViewImageCard";
 import { useEffect, useState } from "react";
 import {
   deleteDailyRecipe,
@@ -13,12 +13,12 @@ import {
   MyRecipeDetail,
   updateDailyRecipe,
   updateRecipeVisibility,
-} from "../../api/myRecipe";
-import Button from "../../components/ui/Button";
-import DoublecheckModal from "../../components/ui/DoublecheckModal";
-import { uploadImage } from "../../api/image";
+} from "@/api/myRecipe";
+import Button from "@/components/ui/Button";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
+import { uploadImage } from "@/api/image";
 import imageCompression from "browser-image-compression";
-import PhotoRewardModal from "../../components/myCookeep/record/PhotoRewardModal";
+import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 
 export default function RecordDetailPage() {
   const navigate = useNavigate();
@@ -189,13 +189,13 @@ export default function RecordDetailPage() {
           <div className="absolute left-0 w-full">
             <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
           </div>
-          <div className="absolute right-2 top-2 flex items-center">
+          <div className="absolute top-2 right-2 flex items-center">
             {isMenuOpen && (
               <div className="absolute right-2 top-10 flex flex-col items-center justify-center bg-gray-0 rounded-[10px] w-[130px] h-[72px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
                 {/* 수정하기 버튼 */}
                 <button
                   onClick={handleEdit}
-                  className="w-full h-[34px] typo-caption !font-semibold hover:bg-gray-50 transition-colors"
+                  className="typo-caption h-[34px] w-full !font-semibold transition-colors hover:bg-gray-50"
                 >
                   수정하기
                 </button>
@@ -206,7 +206,7 @@ export default function RecordDetailPage() {
                 {/* 삭제하기 버튼 */}
                 <button
                   onClick={handleDeleteClick}
-                  className="w-full h-[34px] typo-caption !font-semibold hover:bg-gray-50 transition-colors"
+                  className="typo-caption h-[34px] w-full !font-semibold transition-colors hover:bg-gray-50"
                 >
                   삭제하기
                 </button>
@@ -216,15 +216,15 @@ export default function RecordDetailPage() {
             {/* 옵션 아이콘 버튼 */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="w-9 h-9 flex items-center justify-center relative z-[110]"
+              className="relative z-[110] flex h-9 w-9 items-center justify-center"
             >
               <img src={optionIcon} className="w-1" alt="option" />
             </button>
           </div>
         </div>
       </div>
-      <div className="flex-1 mx-auto w-full max-w-[450px] px-4 flex flex-col">
-        <div className="pt-[51px] flex flex-col gap-[10px]">
+      <div className="mx-auto flex w-full max-w-[450px] flex-1 flex-col px-4">
+        <div className="flex flex-col gap-[10px] pt-[51px]">
           <RecordViewImageCard
             title={tempTitle}
             imageSrc={currentImageUrl} // ← record.recipeImageUrl 대신
@@ -305,7 +305,7 @@ export default function RecordDetailPage() {
                 <span className="typo-label text-gray-80">쿠킵스 공개</span>
               </button>
             </div>
-            <div className=" flex mt-2 mb-2">
+            <div className="mt-2 mb-2 flex">
               <Button
                 size="L"
                 variant="black"

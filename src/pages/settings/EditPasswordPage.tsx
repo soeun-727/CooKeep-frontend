@@ -1,14 +1,14 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import TextField from "../../components/ui/TextField";
-import Button from "../../components/ui/Button";
-import { verifyCurrentPassword, changePassword } from "../../api/user";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
+import { verifyCurrentPassword, changePassword } from "@/api/user";
 
-import pwIcon from "../../assets/login/key.svg";
-import pwImage from "../../assets/login/pw.svg";
-import openpwImage from "../../assets/signup/openpw.svg";
-import checkIcon from "../../assets/signup/check.svg";
+import pwIcon from "@/assets/login/key.svg";
+import pwImage from "@/assets/login/pw.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+import checkIcon from "@/assets/signup/check.svg";
 
 export default function EditPasswordPage() {
   const navigate = useNavigate();
@@ -301,7 +301,7 @@ export default function EditPasswordPage() {
             <p className="typo-result-title pt-[295px] pb-[18px]">
               비밀번호 변경 완료
             </p>
-            <img src={checkIcon} alt="성공" className="w-[40px] h-[40px]" />
+            <img src={checkIcon} alt="성공" className="h-[40px] w-[40px]" />
             <Button
               size="L"
               variant="black"

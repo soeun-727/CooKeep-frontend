@@ -1,13 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useAddIngredientStore } from "../../../../stores/useAddIngredientStore";
-import editIcon from "../../../../assets/recipe/rename.svg";
-import { CATEGORY_ID_TO_SERVER_KEY } from "../../../../constants/category";
-import { DEFAULT_EXPIRY_DAYS } from "../../../../constants/expiry";
+import { useEffect, useRef, useState } from "react";
+import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
+import editIcon from "@/assets/recipe/rename.svg";
+import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
+import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
 import {
   registerCustomIngredient,
   type CategoryType,
   type CustomIngredientRequest,
-} from "../../../../api/ingredient";
+} from "@/api/ingredient";
 
 interface CustomProps {
   isOpen: boolean;
@@ -17,13 +17,13 @@ interface CustomProps {
   confirmText?: string;
 }
 
-const Custom: React.FC<CustomProps> = ({
+export default function Custom({
   isOpen,
   onClose,
   onConfirm,
   categories,
   confirmText = "추가",
-}) => {
+}: CustomProps) {
   const { searchTerm } = useAddIngredientStore();
   const [localName, setLocalName] = useState(searchTerm);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
@@ -111,9 +111,9 @@ const Custom: React.FC<CustomProps> = ({
               </h2>
               <button
                 onClick={() => setIsEditing(true)}
-                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                className="rounded-full p-1 transition-colors hover:bg-gray-100"
               >
-                <img src={editIcon} alt="edit" className="w-3 h-3" />
+                <img src={editIcon} alt="edit" className="h-3 w-3" />
               </button>
             </div>
           )}
@@ -123,7 +123,7 @@ const Custom: React.FC<CustomProps> = ({
           '{localName}'의 카테고리를 선택해주세요
         </p>
 
-        <div className="w-40 h-40 flex-1 overflow-y-auto no-scrollbar grid grid-cols-3 gap-2 mb-4">
+        <div className="no-scrollbar mb-4 grid h-40 w-40 flex-1 grid-cols-3 gap-2 overflow-y-auto">
           {categories.map((cat) => (
             <button
               key={cat.id}
@@ -137,7 +137,7 @@ const Custom: React.FC<CustomProps> = ({
                     : "bg-gray-0 hover:bg-gray-50"
                 } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
             >
-              <div className="w-[18px] flex items-center justify-center">
+              <div className="flex w-[18px] items-center justify-center">
                 <img
                   src={cat.image}
                   alt={cat.name}
@@ -166,6 +166,4 @@ const Custom: React.FC<CustomProps> = ({
       </div>
     </div>
   );
-};
-
-export default Custom;
+}

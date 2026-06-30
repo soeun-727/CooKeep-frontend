@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
-import tempFoodPhoto from "../../../assets/mycookeep/record/temp_food_photo.svg";
-import editIcon from "../../../assets/fridge/edit_memo.svg";
+import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
+import editIcon from "@/assets/fridge/edit_memo.svg";
 
 interface RecordWriteImageCardProps {
   title: string;
@@ -32,7 +32,7 @@ export default function RecordWriteImageCard({
 
   return (
     <>
-      <div className="flex flex-col items-start w-full max-w-[450px] mx-auto">
+      <div className="mx-auto flex w-full max-w-[450px] flex-col items-start">
         {/* 이미지 영역 */}
         <div
           onClick={() => {
@@ -40,37 +40,30 @@ export default function RecordWriteImageCard({
               fileInputRef.current?.click(); // 직접 호출
             }
           }}
-          className="relative
-          w-full
-          h-[153px]
-          rounded-t-[6px]
-          overflow-hidden
-          shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-          cursor-pointer
-        "
+          className="relative h-[153px] w-full cursor-pointer overflow-hidden rounded-t-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
         >
           <img
             src={imageSrc || tempFoodPhoto}
             alt="레시피 이미지"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
           {imageSrc && (
             <div
-              className="absolute inset-0 flex justify-center items-center"
+              className="absolute inset-0 flex items-center justify-center"
               style={{
                 background:
                   "linear-gradient(0deg, rgba(32,32,32,0.5), rgba(32,32,32,0.5))",
               }}
             >
               <div
-                className="flex flex-col items-center gap-4 w-[208px]"
+                className="flex w-[208px] flex-col items-center gap-4"
                 onClick={(e) => e.stopPropagation()}
               >
                 <p className="text-gray-0 text-[14px] font-medium text-center">
                   사진을 변경하거나 삭제할 수 있습니다
                 </p>
 
-                <div className="flex gap-2 w-full">
+                <div className="flex w-full gap-2">
                   {/* 변경 */}
                   <button
                     onClick={() => fileInputRef.current?.click()} // 직접 호출
@@ -125,14 +118,7 @@ export default function RecordWriteImageCard({
                 onChange={(e) => setLocalTitle(e.target.value)}
                 onBlur={handleBlur}
                 onKeyDown={(e) => e.key === "Enter" && handleBlur()}
-                className="
-                flex-1
-                min-w-0
-                text-[18px]
-                font-semibold
-                leading-[26px]
-                outline-none
-              "
+                className="min-w-0 flex-1 text-[18px] leading-[26px] font-semibold outline-none"
               />
             ) : (
               <h2
@@ -152,7 +138,7 @@ export default function RecordWriteImageCard({
             <img
               src={editIcon}
               alt="제목 수정"
-              className="w-[18px] h-[18px] flex-shrink-0 cursor-pointer"
+              className="h-[18px] w-[18px] flex-shrink-0 cursor-pointer"
               onClick={() => setIsEditing(true)}
             />
           </div>

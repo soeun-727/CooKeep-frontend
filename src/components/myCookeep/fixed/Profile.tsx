@@ -1,11 +1,11 @@
 import MyCookeepHeader from "./MyCookeepHeader";
-import { groundImg, refreshIcon, renameIcon } from "../../../assets";
+import { groundImg, refreshIcon, renameIcon } from "@/assets/index";
 import { useNavigate } from "react-router-dom";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, memo } from "react";
 import ProfileEditModal from "../modals/ProfileEditModal";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
-import { getProfileInfo, type ProfileData } from "../../../api/user";
-import { GOAL_TYPE_MAP } from "../../../utils/mapping";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { getProfileInfo, type ProfileData } from "@/api/user";
+import { GOAL_TYPE_MAP } from "@/utils/mapping";
 
 function Profile() {
   const navigate = useNavigate();
@@ -16,19 +16,6 @@ function Profile() {
   const [showBubble, setShowBubble] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  // const fetchProfile = useCallback(async () => {
-  //   // setIsLoading(true);
-  //   try {
-  //     const response = await getProfileInfo();
-  //     if (response.status === "OK") {
-  //       setProfile(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.error("프로필 로딩 실패:", error);
-  //   } finally {
-  //     // setIsLoading(false);
-  //   }
-  // }, []);
   const fetchProfile = useCallback(async () => {
     try {
       const response = await getProfileInfo();
@@ -41,9 +28,6 @@ function Profile() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   fetchProfile();
-  // }, [fetchProfile, location.key]);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProfile();
@@ -71,17 +55,6 @@ function Profile() {
     setIsEditModalOpen(false);
   };
 
-  // if (isLoading)
-  //   return (
-  //     <div className="flex justify-center pt-20">유저 데이터 로딩 중...</div>
-  //   );
-  // if (!profile)
-  //   return (
-  //     <div className="flex justify-center pt-20">
-  //       데이터를 불러올 수 없습니다.
-  //     </div>
-  //   );
-
   const currentGoalEntry = Object.entries(GOAL_TYPE_MAP).find(
     ([, g]) => g.value === profile?.weeklyGoal?.goalActionType,
   );
@@ -104,29 +77,22 @@ function Profile() {
         <div className="w-full h-[260px] bg-gradient-to-b from-green to-green-deep rounded-b-[36px] flex flex-col items-center justify-center">
           <MyCookeepHeader />
 
-          <div className="flex w-[361px] mt-5 items-center justify-start">
+          <div className="mt-5 flex w-[361px] items-center justify-start">
             {/* 식물 사진 및 수정 버튼 */}
             <div className="relative w-31 h-31 -ml-[7.5px] shrink-0 inline-block">
-              {/* <img
-                src={profile?.profilePlantImageUrl || groundImg}
-                alt="profileBackground"
-                loading="eager"
-                decoding="async"
-                className="w-full p-6 rounded-full object-cover"
-              /> */}
               <img
                 src={profile.profilePlantImageUrl || groundImg}
                 alt="profileBackground"
                 loading="eager"
                 decoding="async"
                 onLoad={() => setImgLoaded(true)}
-                className={`w-full p-6 rounded-full object-cover transition-opacity duration-200 ${
+                className={`w-full rounded-full object-cover p-6 transition-opacity duration-200 ${
                   imgLoaded ? "opacity-100" : "opacity-0"
                 }`}
               />
 
               <button
-                className="absolute bottom-4.5 right-5 transition-transform active:scale-90"
+                className="absolute right-5 bottom-4.5 transition-transform active:scale-90"
                 onClick={() => {
                   console.log("프로필 수정 버튼 클릭됨");
                   setIsEditModalOpen(true);
@@ -178,12 +144,12 @@ function Profile() {
                   },
                 })
               }
-              className="w-6 flex items-center justify-center h-full"
+              className="flex h-full w-6 items-center justify-center"
             >
               <img
                 src={renameIcon}
                 alt="rename"
-                className="brightness-0 invert-[100%] w-4"
+                className="w-4 brightness-0 invert-[100%]"
               />
             </button>
           </div>
@@ -191,8 +157,8 @@ function Profile() {
           {/* 말풍선 섹션: showBubble 여부에 따라 투명도만 조절 */}
           {!profile?.weeklyGoal?.goalActionType && (
             <div
-              className={`absolute top-[245px] flex justify-center animate-float-bubble shrink-0 transition-opacity duration-1000 ease-in-out ${
-                showBubble ? "opacity-100" : "opacity-0 pointer-events-none"
+              className={`animate-float-bubble absolute top-[245px] flex shrink-0 justify-center transition-opacity duration-1000 ease-in-out ${
+                showBubble ? "opacity-100" : "pointer-events-none opacity-0"
               }`}
             >
               <div
@@ -220,4 +186,4 @@ function Profile() {
   );
 }
 
-export default React.memo(Profile);
+export default memo(Profile);

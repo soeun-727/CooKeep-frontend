@@ -1,12 +1,12 @@
-import Button from "../../ui/Button";
-import cookChar from "../../../assets/recipe/main/cook_char.svg";
+import Button from "@/components/ui/Button";
+import cookChar from "@/assets/recipe/main/cook_char.svg";
 import { useState } from "react";
 
-interface Props {
+interface GuestRecipeIntroProps {
   onNext: () => void;
 }
 
-export default function GuestRecipeIntro({ onNext }: Props) {
+export default function GuestRecipeIntro({ onNext }: GuestRecipeIntroProps) {
   const [isDimmed, setIsDimmed] = useState(false);
 
   return (
@@ -33,13 +33,13 @@ export default function GuestRecipeIntro({ onNext }: Props) {
       )}
 
       {/* 컨텐츠 영역: 부모의 z-index를 제거해야 자식의 z-index가 딤드(z-90)와 직접 경쟁할 수 있습니다. */}
-      <div className="flex flex-col items-center w-[361px] gap-[28px] mt-[203.62px] relative">
+      <div className="relative mt-[203.62px] flex w-[361px] flex-col items-center gap-[28px]">
         {/* 캐릭터와 타이틀: 딤드보다 뒤에 있어야 하므로 낮은 z-index 부여 */}
-        <div className="flex flex-col items-center gap-[28px] relative z-10">
+        <div className="relative z-10 flex flex-col items-center gap-[28px]">
           <img
             src={cookChar}
             alt="요리 캐릭터"
-            className="w-[162.5px] h-[116.646px]"
+            className="h-[116.646px] w-[162.5px]"
           />
           <h1 className="text-center text-[28px] font-semibold leading-[36px] text-gray-80">
             지금 있는 재료로
@@ -50,7 +50,7 @@ export default function GuestRecipeIntro({ onNext }: Props) {
 
         {/* 버튼 영역: isDimmed일 때 딤드(z-90)보다 높은 z-index 부여 */}
         <div
-          className={`w-[249px] h-[44px] relative ${isDimmed ? "z-[100]" : "z-20"}`}
+          className={`relative h-[44px] w-[249px] ${isDimmed ? "z-[100]" : "z-20"}`}
         >
           <Button
             size="S"
@@ -59,7 +59,7 @@ export default function GuestRecipeIntro({ onNext }: Props) {
               if (!isDimmed) return;
               onNext();
             }}
-            className="w-full h-full"
+            className="h-full w-full"
           >
             요리할 재료 선택하기
           </Button>

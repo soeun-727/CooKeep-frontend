@@ -1,16 +1,20 @@
 // src/pages/settings/components/FaqCategoryItem.tsx
 import { useState } from "react";
-import type { FaqItem } from "../../../constants/faqData";
+import type { FaqItem } from "@/constants/faqData";
 import FaqItemComponent from "./FaqItem";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
+import arrowIcon from "@/assets/signup/arrowright.svg";
 
-type Props = {
+interface FaqCategoryItemProps {
   title: string;
   items: FaqItem[];
   defaultOpen?: boolean;
-};
+}
 
-export default function FaqCategoryItem({ title, items, defaultOpen }: Props) {
+export default function FaqCategoryItem({
+  title,
+  items,
+  defaultOpen,
+}: FaqCategoryItemProps) {
   const [open, setOpen] = useState(defaultOpen ?? false);
 
   return (
@@ -21,8 +25,7 @@ export default function FaqCategoryItem({ title, items, defaultOpen }: Props) {
     >
       {/* 카테고리 헤더 */}
       <div
-        className={`flex w-full items-center justify-between px-[12px] cursor-pointer 
-    ${open ? "pt-[12px] pb-[6px]" : "py-[12px]"}`}
+        className={`flex w-full cursor-pointer items-center justify-between px-[12px] ${open ? "pt-[12px] pb-[6px]" : "py-[12px]"}`}
         onClick={() => setOpen((prev) => !prev)}
       >
         <p
@@ -33,7 +36,7 @@ export default function FaqCategoryItem({ title, items, defaultOpen }: Props) {
         <img
           src={arrowIcon}
           alt="약관 보기 화살표"
-          className={`w-[24px] h-[24px] transition-transform ${
+          className={`h-[24px] w-[24px] transition-transform ${
             open ? "-rotate-90" : "rotate-90"
           }`}
         />

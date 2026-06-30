@@ -1,30 +1,25 @@
-import tempRecipeImage from "../../../assets/cookeeps/main/temp_recipe_cookeeps.svg";
-import tempIcon from "../../../assets/recipe/main/temp_recipe_title.svg";
+import tempRecipeImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
+import tempIcon from "@/assets/recipe/main/temp_recipe_title.svg";
 
-interface Props {
+interface RecipeDetailImageCardProps {
   images?: string[];
   title: string;
 }
 
-export default function RecipeDetailImageCard({ images, title }: Props) {
+export default function RecipeDetailImageCard({
+  images,
+  title,
+}: RecipeDetailImageCardProps) {
   const imageSrc = images && images.length > 0 ? images[0] : tempRecipeImage;
 
   return (
-    <div className="flex flex-col items-start w-full max-w-[450px] mx-auto">
+    <div className="mx-auto flex w-full max-w-[450px] flex-col items-start">
       {/* 이미지 영역 */}
-      <div
-        className="
-    w-full
-    h-[153px]
-    rounded-t-[6px]
-    overflow-hidden
-    shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-  "
-      >
+      <div className="h-[153px] w-full overflow-hidden rounded-t-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
         <img
           src={imageSrc}
           alt="레시피 이미지"
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
         />
       </div>
 
@@ -44,7 +39,7 @@ export default function RecipeDetailImageCard({ images, title }: Props) {
           <img
             src={tempIcon}
             alt="레시피 아이콘"
-            className="w-[36px] h-[36px] flex-shrink-0 aspect-square"
+            className="aspect-square h-[36px] w-[36px] flex-shrink-0"
           />
 
           {/* 제목 */}

@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
-import { useRecipeStore } from "../../../../stores/useRecipeStore";
-import tempIcon from "../../../../assets/mycookeep/record/fork_knife_plate.svg";
-import unlikedIcon from "../../../../assets/recipe/unliked.svg";
-import likedIcon from "../../../../assets/recipe/liked.svg";
-import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
+import { useRecipeStore } from "@/stores/useRecipeStore";
+import tempIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
+import unlikedIcon from "@/assets/recipe/unliked.svg";
+import likedIcon from "@/assets/recipe/liked.svg";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
-interface Props {
+interface RecipeTitleProps {
   name: string;
 }
 
-export default function RecipeTitle({ name }: Props) {
+export default function RecipeTitle({ name }: RecipeTitleProps) {
   const { sessionId: paramSessionId } = useParams();
   const { sessionId: flowSessionId } = useRecipeFlowStore();
 
@@ -46,7 +46,7 @@ export default function RecipeTitle({ name }: Props) {
       <img
         src={tempIcon}
         alt="레시피 아이콘"
-        className="flex-shrink-0 w-[36px] h-[36px]"
+        className="h-[36px] w-[36px] flex-shrink-0"
       />
 
       {/* 레시피 이름 */}
@@ -60,12 +60,12 @@ export default function RecipeTitle({ name }: Props) {
       {/* 즐겨찾기 버튼 */}
       <button
         onClick={handleToggleLike}
-        className="flex-shrink-0 w-[22px] h-[18px] aspect-square"
+        className="aspect-square h-[18px] w-[22px] flex-shrink-0"
       >
         <img
           src={isLiked ? likedIcon : unlikedIcon}
           alt={isLiked ? "즐겨찾기됨" : "즐겨찾기 안됨"}
-          className="object-contain w-full h-full"
+          className="h-full w-full object-contain"
         />
       </button>
     </div>

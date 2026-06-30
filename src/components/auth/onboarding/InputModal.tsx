@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import editIcon from "../../../assets/recipe/rename.svg";
+import editIcon from "@/assets/recipe/rename.svg";
 
 interface InputModalProps {
   onClose: () => void;
@@ -66,9 +66,9 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
               </h2>
               <button
                 onClick={() => setIsEditing(true)}
-                className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+                className="rounded-full p-1 transition-colors hover:bg-gray-100"
               >
-                <img src={editIcon} alt="edit" className="w-3 h-3" />
+                <img src={editIcon} alt="edit" className="h-3 w-3" />
               </button>
             </div>
           )}

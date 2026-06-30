@@ -8,7 +8,7 @@ import {
   updateIngredientStorage,
   type ConsumeRewardResponse,
   type StorageType,
-} from "../api/ingredient";
+} from "@/api/ingredient";
 
 export interface Ingredient {
   id: number;

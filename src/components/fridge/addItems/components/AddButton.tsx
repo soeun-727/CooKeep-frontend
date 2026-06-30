@@ -1,8 +1,8 @@
 // src/components/fridge/FloatingAddButton.tsx
 import { useNavigate } from "react-router-dom";
-import { useIngredientStore } from "../../../../stores/useIngredientStore";
-import plusIcon from "../../../../assets/fridge/items/plus.svg";
-import inactivePlusIcon from "../../../../assets/fridge/items/plusInactive.svg";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import plusIcon from "@/assets/fridge/items/plus.svg";
+import inactivePlusIcon from "@/assets/fridge/items/plusInactive.svg";
 import { useState } from "react";
 
 export default function AddButton() {
@@ -33,7 +33,7 @@ export default function AddButton() {
       <img
         src={isSelected ? inactivePlusIcon : plusIcon}
         alt="add"
-        className="w-6 h-6"
+        className="h-6 w-6"
       />
     </button>
   );

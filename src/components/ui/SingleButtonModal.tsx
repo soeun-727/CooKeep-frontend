@@ -1,16 +1,16 @@
 import Button from "./Button";
 
-type Props = {
+interface SingleButtonModalProps {
   message: string;
   buttonText?: string;
   onClose: () => void;
-};
+}
 
 export default function SingleButtonModal({
   message,
   buttonText = "확인",
   onClose,
-}: Props) {
+}: SingleButtonModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-80">
       <div

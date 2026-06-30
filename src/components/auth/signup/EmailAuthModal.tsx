@@ -1,5 +1,5 @@
-import CautionIcon from "../../../assets/signup/icon_caution.svg";
-import Button from "../../ui/Button";
+import CautionIcon from "@/assets/signup/icon_caution.svg";
+import Button from "@/components/ui/Button";
 
 export type EmailAuthModalType = "send" | "verify" | "already" | "help";
 
@@ -18,12 +18,12 @@ const maskEmail = (email: string) => {
   return `${visible}****@${domain}`;
 };
 
-const EmailAuthModal = ({
+export default function EmailAuthModal({
   type,
   email,
   onConfirm,
   onLogin,
-}: EmailAuthModalProps) => {
+}: EmailAuthModalProps) {
   const isSend = type === "send";
   const isVerify = type === "verify";
   const isAlready = type === "already";
@@ -69,12 +69,12 @@ const EmailAuthModal = ({
           <img
             src={CautionIcon}
             alt="주의"
-            className="mb-2 w-[20px] h-[20px]"
+            className="mb-2 h-[20px] w-[20px]"
           />
         )}
         {/* 메인 메시지 */}
         <p
-          className={`text-center leading-[20px] typo-body2 whitespace-pre-wrap ${isHelp ? "-mt-[6px]" : ""}`}
+          className={`typo-body2 text-center leading-[20px] whitespace-pre-wrap ${isHelp ? "-mt-[6px]" : ""}`}
         >
           {isSend && "인증번호가 발송되었어요"}
           {isVerify && "인증에 성공하였습니다"}
@@ -115,6 +115,4 @@ const EmailAuthModal = ({
       </div>
     </>
   );
-};
-
-export default EmailAuthModal;
+}

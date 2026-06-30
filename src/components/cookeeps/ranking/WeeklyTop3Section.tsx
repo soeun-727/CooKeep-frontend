@@ -1,9 +1,9 @@
 import { memo } from "react";
-import { WateringRankItem } from "../../../api/cookeeps";
+import { WateringRankItem } from "@/api/cookeeps";
 import RankingCard from "./RankingCard";
-import plantBefore from "../../../assets/cookeeps/plant/plant_before.svg";
-import thinkingChar from "../../../assets/character/thinking_char.svg";
-import { plantChar } from "../../../assets";
+import plantBefore from "@/assets/cookeeps/plant/plant_before.svg";
+import thinkingChar from "@/assets/character/thinking_char.svg";
+import { plantChar } from "@/assets/index";
 
 interface WeeklyTop3SectionProps {
   users: WateringRankItem[];
@@ -38,7 +38,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   return (
     <div className="flex flex-col items-center gap-[26px] w-full min-h-[202px] py-[18px] rounded-[6px] bg-green-light shadow-md">
       <div className="flex flex-col items-center gap-[2px]">
-        <h2 className="text-[18px] font-semibold text-gray-800 text-center">
+        <h2 className="text-center text-[18px] font-semibold text-gray-800">
           {currentMonth}월 식물 돌봄
           <span className="text-green-deep"> TOP3 </span>쿠킵이
         </h2>
@@ -70,7 +70,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
               <img
                 src={thinkingChar}
                 alt="thinking"
-                className="w-[83px] h-[79px] flex-shrink-0"
+                className="h-[79px] w-[83px] flex-shrink-0"
               />
 
               <div className="text-[16px] font-semibold leading-[24px] text-gray-80 text-center">
@@ -83,7 +83,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         )}
       </div>
 
-      <div className="flex typo-body2 !font-semibold gap-1 -mt-[6px]">
+      <div className="typo-body2 -mt-[6px] flex gap-1 !font-semibold">
         <span>이번 달에 나는 총</span>
         <div className="flex gap-[2px]">
           <img src={plantChar} className="w-4.5" />

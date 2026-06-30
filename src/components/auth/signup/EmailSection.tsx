@@ -1,9 +1,9 @@
 // src/components/auth/signup/EmailSection.tsx
 import { useState, useEffect } from "react";
-import Button from "../../ui/Button";
-import TextField from "../../ui/TextField";
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 import { useNavigate } from "react-router-dom";
-import { useSignupStore } from "../../../stores/useSignupStore";
+import { useSignupStore } from "@/stores/useSignupStore";
 import axios from "axios";
 import EmailAuthModal from "./EmailAuthModal";
 
@@ -99,7 +99,7 @@ export default function EmailSection() {
   };
 
   return (
-    <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="mx-auto w-[361px] pt-[241px]">
       <div className="relative w-[361px]">
         <div className="typo-h1">이메일 인증</div>
         <div className="relative mt-[12px]">

@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import nextIcon from "../../../assets/fridge/addItem/forward.svg";
-import prevIcon from "../../../assets/fridge/addItem/backward.svg";
-import todaySign from "../../../assets/mycookeep/today.svg";
-import { CalendarRecipe, getCalendarRecipes } from "../../../api/myRecipe";
+import nextIcon from "@/assets/fridge/addItem/forward.svg";
+import prevIcon from "@/assets/fridge/addItem/backward.svg";
+import todaySign from "@/assets/mycookeep/today.svg";
+import { CalendarRecipe, getCalendarRecipes } from "@/api/myRecipe";
 
-interface Props {
+interface CalendarProps {
   onDateClick: (date: string) => void;
 }
 
-export default function Calendar({ onDateClick }: Props) {
+export default function Calendar({ onDateClick }: CalendarProps) {
   const [viewDate, setViewDate] = useState(new Date());
   const [apiRecords, setApiRecords] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -68,15 +68,15 @@ export default function Calendar({ onDateClick }: Props) {
         </h2>
         <div className="flex gap-1">
           <button onClick={prevMonth} className="p-2">
-            <img src={prevIcon} className="w-4 h-4" alt="prev" />
+            <img src={prevIcon} className="h-4 w-4" alt="prev" />
           </button>
           <button onClick={nextMonth} className="p-2">
-            <img src={nextIcon} className="w-4 h-4" alt="next" />
+            <img src={nextIcon} className="h-4 w-4" alt="next" />
           </button>
         </div>
       </div>
       {/* 2. 요일 */}
-      <div className="grid grid-cols-7 w-full mb-2">
+      <div className="mb-2 grid w-full grid-cols-7">
         {daysOfWeek.map((day) => (
           <div key={day} className="text-center typo-body2 text-green">
             {day}
@@ -84,7 +84,7 @@ export default function Calendar({ onDateClick }: Props) {
         ))}
       </div>
       {/* 3. 날짜 그리드 */}
-      <div className="grid grid-cols-7 w-full relative gap-y-[6px] mb-[13px]">
+      <div className="relative mb-[13px] grid w-full grid-cols-7 gap-y-[6px]">
         {Array.from({ length: firstDayOfMonth }).map((_, i) => (
           <div key={`empty-${i}`} />
         ))}
@@ -126,7 +126,7 @@ export default function Calendar({ onDateClick }: Props) {
                 <img
                   src={todaySign}
                   alt="today"
-                  className="absolute -top-3 z-40 w-18 max-w-none pointer-events-none drop-shadow-md"
+                  className="pointer-events-none absolute -top-3 z-40 w-18 max-w-none drop-shadow-md"
                 />
               )}
 
@@ -152,11 +152,11 @@ export default function Calendar({ onDateClick }: Props) {
         `}
               >
                 {photoUrl && (
-                  <div className="absolute inset-0 rounded-full overflow-hidden">
+                  <div className="absolute inset-0 overflow-hidden rounded-full">
                     <img
                       src={photoUrl}
                       alt="record"
-                      className="w-full h-full object-cover brightness-75"
+                      className="h-full w-full object-cover brightness-75"
                     />
                   </div>
                 )}

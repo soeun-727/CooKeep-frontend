@@ -1,6 +1,6 @@
 import React from "react";
-import check from "../../../assets/fridge/check.svg";
-import checkOn from "../../../assets/fridge/check_selected.svg";
+import check from "@/assets/fridge/check.svg";
+import checkOn from "@/assets/fridge/check_selected.svg";
 
 interface ItemProps {
   image: string;
@@ -14,7 +14,7 @@ interface ItemProps {
   style?: React.CSSProperties;
 }
 
-const Item: React.FC<ItemProps> = ({
+export default function Item({
   image,
   name,
   leftDays,
@@ -23,7 +23,7 @@ const Item: React.FC<ItemProps> = ({
   onDetail,
   className = "",
   style,
-}) => {
+}: ItemProps) {
   return (
     <div
       onClick={onDetail}
@@ -38,7 +38,7 @@ const Item: React.FC<ItemProps> = ({
       style={style}
     >
       <div className="flex flex-col items-start">
-        <span className="w-[85px] pt-[10px] text-left truncate typo-caption font-bold block leading-none">
+        <span className="typo-caption block w-[85px] truncate pt-[10px] text-left leading-none font-bold">
           {name}
         </span>
         <span
@@ -50,29 +50,27 @@ const Item: React.FC<ItemProps> = ({
         </span>
       </div>
 
-      <div className="flex justify-between items-end w-full flex-1 pb-1.5">
+      <div className="flex w-full flex-1 items-end justify-between pb-1.5">
         <button
           onClick={(e) => {
             e.stopPropagation();
             onSelect?.();
           }}
-          className="flex-shrink-0 z-10 w-9 h-9 -ml-2 flex justify-start"
+          className="z-10 -ml-2 flex h-9 w-9 flex-shrink-0 justify-start"
         >
           <img
             src={isSelected ? checkOn : check}
-            className="w-full object-contain flex-shrink-0"
+            className="w-full flex-shrink-0 object-contain"
             alt="check"
           />
         </button>
 
         <img
-          className="w-10 h-10 object-contain flex-shrink-0 -translate-x-1 -translate-y-[3px]"
+          className="h-10 w-10 flex-shrink-0 -translate-x-1 -translate-y-[3px] object-contain"
           src={image}
           alt={name}
         />
       </div>
     </div>
   );
-};
-
-export default Item;
+}

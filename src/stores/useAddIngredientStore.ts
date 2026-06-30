@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { IngredientType, StorageType, UnitType } from "../api/ingredient";
+import type { IngredientType, StorageType, UnitType } from "@/api/ingredient";
 
 export interface MasterItem {
   id: number | string;

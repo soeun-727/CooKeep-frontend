@@ -1,28 +1,31 @@
-import { type Ingredient } from "../../../stores/useIngredientStore";
-import header from "../../../assets/guest/fridge_header.svg";
-import Storage from "../../fridge/main/Storage";
-import fridgeIcon from "../../../assets/fridge/fridge.svg";
-import freezerIcon from "../../../assets/fridge/freezer.svg";
-import pantryIcon from "../../../assets/fridge/pantry.svg";
-import strawberry from "../../../assets/guest/strawberry.svg";
-import egg from "../../../assets/guest/egg.svg";
-import noodles from "../../../assets/guest/noodles.svg";
-import bagel from "../../../assets/guest/bagel.svg";
-import banana from "../../../assets/guest/banana.svg";
-import milk from "../../../assets/guest/milk.svg";
-import FAB from "../../../assets/guest/fab.svg";
-import notice from "../../../assets/guest/fab_2.svg";
+import { type Ingredient } from "@/stores/useIngredientStore";
+import header from "@/assets/guest/fridge_header.svg";
+import Storage from "@/components/fridge/main/Storage";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
+import freezerIcon from "@/assets/fridge/freezer.svg";
+import pantryIcon from "@/assets/fridge/pantry.svg";
+import strawberry from "@/assets/guest/strawberry.svg";
+import egg from "@/assets/guest/egg.svg";
+import noodles from "@/assets/guest/noodles.svg";
+import bagel from "@/assets/guest/bagel.svg";
+import banana from "@/assets/guest/banana.svg";
+import milk from "@/assets/guest/milk.svg";
+import FAB from "@/assets/guest/fab.svg";
+import notice from "@/assets/guest/fab_2.svg";
 import { useState } from "react";
-import Button from "../../ui/Button";
-import FloatingNotice from "../../recipe/main/FloatingNotice";
-import Item from "../../fridge/items/Item";
+import Button from "@/components/ui/Button";
+import FloatingNotice from "@/components/recipe/main/FloatingNotice";
+import Item from "@/components/fridge/items/Item";
 
-interface Props {
+interface GuestFridgeProps {
   onNext: () => void;
   mode?: "fridge" | "recipe";
 }
 
-export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
+export default function GuestFridge({
+  onNext,
+  mode = "fridge",
+}: GuestFridgeProps) {
   const [isDimmed, setIsDimmed] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
@@ -107,12 +110,12 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
       )}
 
       <div
-        className={`flex flex-col w-full gap-7 relative ${mode === "recipe" ? "pb-20" : ""}`}
+        className={`relative flex w-full flex-col gap-7 ${mode === "recipe" ? "pb-20" : ""}`}
       >
         <object data={header} className="w-full" />
         <div className="relative w-full">
           {mode === "recipe" && (
-            <div className="absolute -top-[120px] left-1/2 -translate-x-1/2 z-[130] w-full flex justify-center">
+            <div className="absolute -top-[120px] left-1/2 z-[130] flex w-full -translate-x-1/2 justify-center">
               <FloatingNotice text="요리할 재료를 선택해 주세요" />
             </div>
           )}
@@ -120,7 +123,7 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
             <div className="absolute inset-0 z-[120] cursor-pointer" />
           )}
 
-          <div className="flex flex-col gap-[10px] w-full relative z-0">
+          <div className="relative z-0 flex w-full flex-col gap-[10px]">
             <Storage
               category="냉장"
               image={fridgeIcon}
@@ -145,14 +148,14 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
           </div>
 
           {mode === "recipe" && isDimmed && (
-            <div className="absolute inset-0 z-[100] pointer-events-none w-[354px] left-1/2 -translate-x-1/2">
+            <div className="pointer-events-none absolute inset-0 left-1/2 z-[100] w-[354px] -translate-x-1/2">
               <Item
                 image={guestIngredients[0].image}
                 name={guestIngredients[0].name}
                 leftDays={guestIngredients[0].dDay}
                 isSelected={selectedIds.includes(1)}
                 onSelect={() => handleSelect(1)}
-                className="absolute !z-[110] pointer-events-auto"
+                className="pointer-events-auto absolute !z-[110]"
                 style={{ top: "55px", left: "0px" }}
               />
               <Item
@@ -161,7 +164,7 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
                 leftDays={guestIngredients[1].dDay}
                 isSelected={selectedIds.includes(2)}
                 onSelect={() => handleSelect(2)}
-                className="absolute !z-[110] pointer-events-auto"
+                className="pointer-events-auto absolute !z-[110]"
                 style={{ top: "55px", left: "120px" }}
               />
               <Item
@@ -170,7 +173,7 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
                 leftDays={guestIngredients[5].dDay}
                 isSelected={selectedIds.includes(6)}
                 onSelect={() => handleSelect(6)}
-                className="absolute !z-[110] pointer-events-auto"
+                className="pointer-events-auto absolute !z-[110]"
                 style={{ top: "238px", left: "0px" }}
               />
               <Item
@@ -179,7 +182,7 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
                 leftDays={guestIngredients[3].dDay}
                 isSelected={selectedIds.includes(4)}
                 onSelect={() => handleSelect(4)}
-                className="absolute !z-[110] pointer-events-auto"
+                className="pointer-events-auto absolute !z-[110]"
                 style={{ top: "421px", left: "0px" }}
               />
             </div>
@@ -188,12 +191,12 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
       </div>
 
       {mode === "fridge" ? (
-        <div className="absolute -bottom-15 right-[31px] flex flex-col items-end z-[130]">
+        <div className="absolute right-[31px] -bottom-15 z-[130] flex flex-col items-end">
           {isDimmed && (
             <div className="relative w-full">
               <object
                 data={notice}
-                className="absolute -bottom-4 right-[-8px] w-[270px] max-w-none"
+                className="absolute right-[-8px] -bottom-4 w-[270px] max-w-none"
               />
             </div>
           )}
@@ -212,7 +215,7 @@ export default function GuestFridge({ onNext, mode = "fridge" }: Props) {
           </button>
         </div>
       ) : (
-        <div className="fixed bottom-[34px] left-1/2 -translate-x-1/2 z-[130]">
+        <div className="fixed bottom-[34px] left-1/2 z-[130] -translate-x-1/2">
           <Button
             size="L"
             variant="black"

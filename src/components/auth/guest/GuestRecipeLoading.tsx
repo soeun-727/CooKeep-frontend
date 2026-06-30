@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import CheckIcon from "../../../assets/recipe/check.svg";
-import RecipeLoadingSpinner from "../../recipe/main/loading/RecipeLoadingSpinner";
-import StepMessage from "../../recipe/main/loading/StepMessage";
+import CheckIcon from "@/assets/recipe/check.svg";
+import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
+import StepMessage from "@/components/recipe/main/loading/StepMessage";
 
 interface RecipeLoadingUIProps {
   onComplete?: () => void;
@@ -42,18 +42,18 @@ export default function GuestRecipeLoading({
     <div className="flex flex-col items-center pt-[139px] text-center bg-background">
       <RecipeLoadingSpinner />
 
-      <div className="flex flex-col items-center w-[361px] gap-2 mb-[49px]">
+      <div className="mb-[49px] flex w-[361px] flex-col items-center gap-2">
         <h1 className="typo-result-title">오늘의 요리 준비 중...</h1>
         <p className="typo-button text-green-deep font-bold">
           나에게 딱 맞는 레시피를 찾고 있어요
         </p>
       </div>
 
-      <div className="flex flex-col w-[321px] gap-3">
+      <div className="flex w-[321px] flex-col gap-3">
         {messages.slice(0, step).map((msg, idx) => (
           <div
             key={idx}
-            className="animate-fadeIn transition-all duration-500 transform translate-y-0"
+            className="animate-fadeIn translate-y-0 transform transition-all duration-500"
           >
             <StepMessage message={msg} icon={CheckIcon} />
           </div>

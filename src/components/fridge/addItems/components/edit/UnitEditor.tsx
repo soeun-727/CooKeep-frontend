@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Button from "../../../../ui/Button";
-import { getKoreanUnit } from "../../../../../utils/mapping";
+import Button from "@/components/ui/Button";
+import { getKoreanUnit } from "@/utils/mapping";
 
 interface QuantityEditorProps {
   value: string;
@@ -36,7 +36,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
   }, [value]);
 
   return (
-    <div className="flex flex-col gap-[18px] items-center mt-[18px]">
+    <div className="mt-[18px] flex flex-col items-center gap-[18px]">
       {!isCustomInput ? (
         <>
           <div className="flex flex-col gap-3">
@@ -64,7 +64,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
           </div>
 
           {/* 하단 제어 버튼 */}
-          <div className="flex flex-col pb-16 mt-[-4px]">
+          <div className="mt-[-4px] flex flex-col pb-16">
             <Button
               size="S"
               variant="black"
@@ -77,14 +77,14 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
         </>
       ) : (
         /* 3. 직접 입력 모드 UI */
-        <div className="flex flex-col items-center gap-6 w-full pb-16">
+        <div className="flex w-full flex-col items-center gap-6 pb-16">
           <div className="w-full px-10">
             <input
               type="string"
               autoFocus
               value={customValue}
               onChange={(e) => setCustomValue(e.target.value)}
-              className="w-full text-center text-3xl font-bold border-b-2 border-black pb-2 outline-none"
+              className="w-full border-b-2 border-black pb-2 text-center text-3xl font-bold outline-none"
               placeholder="개"
             />
           </div>

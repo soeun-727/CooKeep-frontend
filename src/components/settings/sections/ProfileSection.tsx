@@ -1,22 +1,22 @@
 // src/pages/settings/sections/ProfileSection.tsx
 import { useEffect, useRef, useState } from "react";
-import SettingsInputItem from "../components/SettingsInputItem";
+import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
 import axios from "axios";
-import { MyProfileResponse, updateNickname } from "../../../api/user";
-import SingleButtonModal from "../../ui/SingleButtonModal";
+import { MyProfileResponse, updateNickname } from "@/api/user";
+import SingleButtonModal from "@/components/ui/SingleButtonModal";
 
 const MASKED_PASSWORD = "********";
 
-type ProfileInfo = {
+interface ProfileInfo {
   nickname: string;
   email: string;
-};
+}
 
-type Props = {
+interface ProfileSectionProps {
   profile: MyProfileResponse["data"];
-};
+}
 
-export default function ProfileSection({ profile }: Props) {
+export default function ProfileSection({ profile }: ProfileSectionProps) {
   const MAX_NICKNAME_LENGTH = 10;
 
   const [isEditingNickname, setIsEditingNickname] = useState(false);

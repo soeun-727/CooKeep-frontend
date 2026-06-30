@@ -1,13 +1,13 @@
 // src/pages/settings/EditEmailPage.tsx
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import checkIcon from "../../assets/signup/check.svg";
-import TextField from "../../components/ui/TextField";
-import Button from "../../components/ui/Button";
+import checkIcon from "@/assets/signup/check.svg";
+import TextField from "@/components/ui/TextField";
+import Button from "@/components/ui/Button";
 import axios from "axios";
-import { updateEmail } from "../../api/user";
-import { useEmailUpdateStore } from "../../stores/useEmailUpdateStore";
-import EmailAuthModal from "../../components/auth/signup/EmailAuthModal"; // 추가
+import { updateEmail } from "@/api/user";
+import { useEmailUpdateStore } from "@/stores/useEmailUpdateStore";
+import EmailAuthModal from "@/components/auth/signup/EmailAuthModal"; // 추가
 
 type ModalType = "send" | "verify" | "help"; // 추가
 
@@ -213,7 +213,7 @@ export default function EditEmailPage() {
             <p className="typo-result-title w-full pt-[295px] pb-[18px]">
               이메일 주소 변경 완료
             </p>
-            <img src={checkIcon} alt="성공" className="w-[40px] h-[40px]" />
+            <img src={checkIcon} alt="성공" className="h-[40px] w-[40px]" />
             <Button
               size="L"
               variant="black"

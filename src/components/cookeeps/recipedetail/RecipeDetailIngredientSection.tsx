@@ -1,10 +1,12 @@
-import { Ingredient, IngredientsJson } from "../../../api/dailyAiRecipe";
+import { Ingredient, IngredientsJson } from "@/api/dailyAiRecipe";
 
-interface Props {
+interface RecipeDetailIngredientSectionProps {
   ingredients: IngredientsJson;
 }
 
-export default function RecipeDetailIngredientSection({ ingredients }: Props) {
+export default function RecipeDetailIngredientSection({
+  ingredients,
+}: RecipeDetailIngredientSectionProps) {
   const { user_ingredients, additional_ingredients, optional_ingredients } =
     ingredients;
 
@@ -27,7 +29,7 @@ export default function RecipeDetailIngredientSection({ ingredients }: Props) {
   );
 
   return (
-    <div className="flex flex-col gap-8 w-full">
+    <div className="flex w-full flex-col gap-8">
       {/* 내가 가진 재료 */}
       <div>
         <span className="typo-body2 text-gray-80">내가 가지고 있는 재료</span>

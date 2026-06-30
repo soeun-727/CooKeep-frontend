@@ -3,12 +3,12 @@ interface Step {
   description: string;
 }
 
-interface Props {
+interface RecipeStepSectionProps {
   steps: Step[];
   difficulty: string;
 }
 
-export default function RecipeStepSection({ steps }: Props) {
+export default function RecipeStepSection({ steps }: RecipeStepSectionProps) {
   // 숫자와 공백을 제거하는 함수
   const formatDescription = (text: string) => {
     // 1. 2. 혹은 1) 2) 형태의 시작 패턴을 제거합니다.
@@ -16,12 +16,12 @@ export default function RecipeStepSection({ steps }: Props) {
   };
 
   return (
-    <div className="flex flex-col items-start gap-[10px] w-full">
+    <div className="flex w-full flex-col items-start gap-[10px]">
       {/* 제목 */}
       <span className="typo-body2 text-gray-50 self-stretch">레시피</span>
 
       {/* 단계 리스트 */}
-      <div className="flex flex-col items-start gap-[8px] w-full">
+      <div className="flex w-full flex-col items-start gap-[8px]">
         {/* {steps.map((step) => (
           <div
             key={step.order}
@@ -37,7 +37,7 @@ export default function RecipeStepSection({ steps }: Props) {
           </div>
         ))} */}
         {steps.map((step) => (
-          <div key={step.order} className="flex items-start gap-3 w-full">
+          <div key={step.order} className="flex w-full items-start gap-3">
             {/* 번호 버튼 */}
             <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-gray-80 text-gray-0 text-xs font-semibold flex-shrink-0 ">
               {step.order}
