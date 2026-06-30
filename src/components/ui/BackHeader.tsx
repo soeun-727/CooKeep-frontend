@@ -8,7 +8,16 @@ interface BackHeaderProps {
 
 export default function BackHeader({ title, onBack }: BackHeaderProps) {
   return (
-    <header className="fixed top-0 z-50 flex h-12 w-full max-w-[450px] items-center bg-[#FAFAFA] px-4 py-4">
+    <header
+      className="
+    fixed top-0 z-50
+    w-full max-w-[450px]
+    h-12
+    flex items-center
+    px-4 py-4
+    bg-background
+  "
+    >
       <button
         type="button"
         onClick={onBack}

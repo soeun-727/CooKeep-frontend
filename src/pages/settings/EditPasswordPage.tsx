@@ -122,8 +122,8 @@ export default function EditPasswordPage() {
   }, [location.state, verifiedFromEmail, navigate]);
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA]">
-      <div className="mx-auto w-[361px] pt-[241px]">
+    <div className="relative min-h-screen bg-background">
+      <div className="pt-[241px] w-[361px] mx-auto">
         <div className="typo-h1">비밀번호 변경</div>
 
         {/* 기존 비밀번호 */}
@@ -253,7 +253,9 @@ export default function EditPasswordPage() {
         </div>
 
         {error && (
-          <p className="mt-[8px] text-center text-sm text-red-500">{error}</p>
+          <p className="text-semantic-negative text-sm text-center mt-[8px]">
+            {error}
+          </p>
         )}
 
         <Button
@@ -261,7 +263,7 @@ export default function EditPasswordPage() {
           variant="black"
           disabled={!isFormValid}
           onClick={handleSubmit}
-          className={`mt-[31px] ${!isFormValid ? "" : "!text-[#32E389]"}`}
+          className={`mt-[31px] ${!isFormValid ? "" : "!text-green"}`}
         >
           비밀번호 재설정
         </Button>
@@ -269,9 +271,9 @@ export default function EditPasswordPage() {
 
       {/* 5회 실패 모달 */}
       {showAuthModal && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="flex w-[254px] flex-col items-center gap-[16px] rounded-[10px] bg-white px-[28px] pt-[25px] pb-[25px]">
-            <p className="typo-label self-stretch text-center text-[#111]">
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-gray-80">
+          <div className="w-[254px] flex flex-col items-center pt-[25px] px-[28px] pb-[25px] gap-[16px] rounded-[10px] bg-gray-0">
+            <p className="typo-label text-gray-80 text-center self-stretch">
               비밀번호가 5회 일치하지 않았어요
               <br />
               본인인증을 진행해 주세요
@@ -296,8 +298,8 @@ export default function EditPasswordPage() {
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
-          <div className="flex w-[361px] flex-col items-center">
+        <div className="absolute inset-0 z-50 flex justify-center bg-background">
+          <div className="w-[361px] flex flex-col items-center">
             <p className="typo-result-title pt-[295px] pb-[18px]">
               비밀번호 변경 완료
             </p>
@@ -305,7 +307,7 @@ export default function EditPasswordPage() {
             <Button
               size="L"
               variant="black"
-              className="mt-[48px] !text-[#32E389]"
+              className="mt-[48px] !text-green"
               onClick={() => navigate("/settings")}
             >
               확인

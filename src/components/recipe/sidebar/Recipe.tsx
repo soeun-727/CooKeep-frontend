@@ -45,7 +45,7 @@ export default function Recipe({
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, i) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
-        <span key={i} className="font-bold text-[var(--color-green-deep)]">
+        <span key={i} className="text-green-deep font-bold">
           {part}
         </span>
       ) : (
@@ -77,7 +77,7 @@ export default function Recipe({
               setIsEditing(false);
             }
           }}
-          className="typo-body2 mx-2 min-w-0 flex-1 rounded-sm border border-stone-300 bg-white px-1 outline-none"
+          className="flex-1 min-w-0 mx-2 px-1 typo-body2 border border-gray-30 outline-none bg-gray-0 rounded-sm"
         />
       ) : (
         <button onClick={onSelect} className="min-w-0 flex-1">

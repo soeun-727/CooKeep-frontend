@@ -13,12 +13,12 @@ export default function AddMoreModal({
 }: AddMoreModalProps) {
   return (
     <div
-      className="fixed inset-0 z-60 flex items-center justify-center bg-black/40"
+      className="fixed inset-0 bg-gray-80 flex items-center justify-center z-60"
       onClick={onCancel}
     >
       <div
-        className="flex w-[240px] flex-col items-center gap-2 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]"
-        onClick={e => e.stopPropagation()}
+        className="flex flex-col items-center gap-2 w-[240px] px-[28px] pt-[35px] pb-[25px] bg-gray-0 rounded-[10px]"
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center justify-center gap-4 self-stretch">
           <img src={character} className="h-[90px] w-[85px]" alt="thinking" />

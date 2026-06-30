@@ -18,12 +18,25 @@ export default function RecipeIntroPage() {
   }, []);
 
   return (
-    <div className="relative flex h-[calc(100vh-90px)] justify-center bg-[#FAFAFA]">
+    <div className="relative h-[calc(100vh-90px)] flex justify-center bg-background">
       {/* 헤더 */}
       <RecipeHeader transparent />
 
       {/* 배경 blur */}
-      <div className="pointer-events-none absolute top-[72px] left-1/2 z-0 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-[#1FC16F]/15 blur-[100px]" />
+      <div
+        className="
+          absolute
+          top-[72px]
+          left-1/2
+          -translate-x-1/2
+          w-[450px]
+          h-[450px]
+          rounded-full 
+         bg-green-deep/15 blur-[100px]
+          pointer-events-none
+          z-0
+        "
+      />
 
       {/* 콘텐츠 */}
       <div className="z-10 mt-[203.62px] flex w-[361px] flex-col items-center gap-[28px]">
@@ -33,8 +46,8 @@ export default function RecipeIntroPage() {
           className="h-[116.646px] w-[162.5px]"
         />
 
-        <div className="flex h-[144px] flex-col items-center gap-[28px] self-stretch">
-          <h1 className="text-center text-[28px] leading-[36px] font-semibold text-[#202020]">
+        <div className="flex flex-col items-center h-[144px] gap-[28px] self-stretch">
+          <h1 className="text-center text-[28px] font-semibold leading-[36px] text-gray-80">
             지금 있는 재료로
             <br />
             요리해볼까요?

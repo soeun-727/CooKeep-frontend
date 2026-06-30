@@ -50,13 +50,28 @@ export default function TextField({
           autoComplete={autoComplete}
           onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`h-[48px] w-full rounded-[6px] border bg-white px-3 py-2 font-['Pretendard'] text-sm leading-5 text-[#202020] placeholder:font-medium placeholder:text-stone-300 focus:outline-none disabled:bg-[#ECECEC] ${leftIcon ? "pl-11" : ""} ${rightIcon ? "pr-10" : ""} ${
-            errorMessage
-              ? "border-[#D91F1F]"
-              : successMessage
-                ? "border-[#1FA43C]"
-                : "border-[#DDDDDD]"
-          } `}
+          className={`
+    w-full h-[48px]
+    border
+    rounded-[6px]
+    px-3 py-2
+    bg-gray-0
+    text-gray-80 
+    font-['Pretendard'] text-sm leading-5
+    placeholder:font-medium
+    placeholder:text-gray-30
+    disabled:bg-gray-10
+    focus:outline-none
+    ${leftIcon ? "pl-11" : ""}
+        ${rightIcon ? "pr-10" : ""}
+    ${
+      errorMessage
+        ? "border-semantic-negative"
+        : successMessage
+          ? "border-semantic-positive"
+          : "border-gray-10"
+    }
+  `}
         />
 
         {rightIcon && (
@@ -67,13 +82,20 @@ export default function TextField({
       </div>
 
       <p
-        className={`mt-1 min-h-[14px] pl-2 text-[10px] leading-[14px] ${
-          errorMessage
-            ? "text-[#D91F1F]"
-            : successMessage
-              ? "text-[#1FA43C]"
-              : "text-transparent"
-        } `}
+        className={`
+    mt-1
+    pl-2
+    text-[10px]
+    leading-[14px]
+    min-h-[14px]
+    ${
+      errorMessage
+        ? "text-semantic-negative"
+        : successMessage
+          ? "text-semantic-positive"
+          : "text-transparent"
+    }
+  `}
       >
         {errorMessage || successMessage || "placeholder"}
       </p>

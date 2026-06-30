@@ -14,8 +14,8 @@ export default function RecipeRecordContentSection({
   recipe,
 }: RecipeRecordContentSectionProps) {
   return (
-    <section className="flex w-full flex-col rounded-md bg-white p-4 shadow">
-      <div className="flex w-full flex-col gap-9">
+    <section className="flex flex-col w-full bg-gray-0 rounded-md shadow p-4">
+      <div className="flex flex-col w-full gap-9">
         <RecipeDetailIngredientSection ingredients={recipe.ingredients} />
         <RecipeDetailStepSection steps={recipe.steps} />
       </div>

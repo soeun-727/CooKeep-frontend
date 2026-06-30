@@ -15,7 +15,7 @@ export default function Progress({ currentStep }: ProgressProps) {
       <div className="h-1 w-[361px] overflow-hidden rounded-full bg-gray-200">
         {/* 실제 채워지는 게이지 */}
         <div
-          className="h-full bg-gradient-to-r from-emerald-400 to-green-400 transition-all duration-500 ease-out"
+          className="h-full bg-green-gradient transition-all duration-500 ease-out"
           style={{ width: `${progressWidth}%` }}
         />
       </div>

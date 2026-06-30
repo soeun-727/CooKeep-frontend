@@ -35,23 +35,46 @@ export default function SettingsInputItem({
   return (
     <div className="flex h-[80px] w-full flex-col gap-2">
       {/* label */}
-      <span className="typo-body px-3 text-[#202020]">{label}</span>
+      <span className="typo-body text-gray-80 px-3">{label}</span>
 
       {/* input-like box */}
-      <div className="flex h-[44px] w-full items-center justify-between rounded-[6px] border border-[#DDD] px-3">
+      <div
+        className="
+          flex
+          items-center
+          justify-between
+          w-full
+          h-[44px]
+          px-3
+          border
+          border-gray-10
+          rounded-[6px]
+        "
+      >
         {/* value */}
-        <span className="typo-body2 text-[#AEAEAE]">{value}</span>
+        <span className="typo-body2 text-gray-50">{value}</span>
 
         {/* button */}
         <button
           type="button"
           onClick={handleClick}
           disabled={disabled}
-          className={`typo-caption flex w-[115px] items-center justify-center rounded-full px-[18px] py-1 transition-colors ${
-            disabled
-              ? "cursor-not-allowed bg-stone-300 text-white" // 비활성화 스타일
-              : "cursor-pointer bg-[#202020] text-white active:bg-[#404040]" // 활성화 스타일
-          } `}
+          className={`
+            flex
+            items-center
+            justify-center
+            w-[115px]
+            px-[18px]
+            py-1
+            rounded-full
+            transition-colors
+            typo-caption
+            ${
+              disabled
+                ? "bg-gray-30 text-gray-0 cursor-not-allowed" // 비활성화 스타일
+                : "bg-gray-80 text-gray-0 cursor-pointer active:bg-gray-80" // 활성화 스타일
+            }
+          `}
         >
           {buttonText}
         </button>

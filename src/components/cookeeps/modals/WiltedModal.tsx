@@ -21,16 +21,16 @@ export default function WiltedModal({
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* modal */}
       <div
-        className="relative flex w-[280px] flex-col items-center gap-7 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]"
-        onClick={e => e.stopPropagation()}
+        className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-gray-0 flex flex-col items-center gap-7"
+        onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex w-full flex-col items-center gap-7">
-          <p className="typo-body text-center whitespace-pre-line text-[#202020]">
-            <span className="text-(--color-green-deep)">{plant} </span>
+        <div className="w-full flex flex-col items-center gap-7">
+          <p className="typo-body text-gray-80 text-center whitespace-pre-line">
+            <span className="text-green-deep">{plant} </span>
             이/가 시들었어요 T.T
             {"\n"}
             다시 살려서 이어 키워볼까요?
@@ -41,7 +41,7 @@ export default function WiltedModal({
         <div className="flex w-full flex-col gap-2 font-semibold">
           <Button
             variant="green"
-            className="!w-[224px] !bg-(--color-green)"
+            className="!w-[224px] !bg-green"
             onClick={onRecover} // 회복
           >
             회복하기 (쿠키 5개 사용)
@@ -49,7 +49,7 @@ export default function WiltedModal({
 
           <Button
             variant="black"
-            className="!w-[224px] !bg-stone-300"
+            className="!w-[224px] !bg-gray-30"
             onClick={onAbandon} // 포기
           >
             포기하기

@@ -33,8 +33,8 @@ export default function ItemsGrid({ items }: ItemsGridProps) {
         <div className="mt-4 mb-50 flex flex-col items-center gap-[10px]">
           <img src={character} className="w-[50px]" />
           <button>
-            <div className="items-justify-center flex h-6 w-[125px] flex-col rounded-full bg-black">
-              <span className="typo-caption py-1 text-center text-white">
+            <div className="flex flex-col items-justify-center rounded-full bg-black w-[125px] h-6">
+              <span className="typo-caption text-gray-0 text-center py-1">
                 찾는 재료가 없어요
               </span>
             </div>

@@ -40,13 +40,14 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
                   key={num}
                   disabled={isInitialValue}
                   onClick={() => handleQuickSelect(num)}
-                  className={`typo-body h-12 w-12 rounded-[6px] transition-all ${
-                    isInitialValue
-                      ? "cursor-not-allowed bg-gray-200 text-zinc-500"
-                      : isNewlySelected
-                        ? "border border-[var(--color-green-deep)] bg-[var(--color-green-light)] text-black"
-                        : "text-zinc-500 active:bg-zinc-200"
-                  }`}
+                  className={`h-12 w-12 rounded-[6px] typo-body transition-all
+                ${
+                  isInitialValue
+                    ? "bg-gray-200 text-gray-50 cursor-not-allowed"
+                    : isNewlySelected
+                      ? "bg-green-light text-black border border-green-deep"
+                      : "text-gray-50 active:bg-gray-30"
+                }`}
                 >
                   {num}
                 </button>

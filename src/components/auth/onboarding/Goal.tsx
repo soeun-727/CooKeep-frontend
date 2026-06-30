@@ -34,14 +34,14 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
         </h3>
       </div>
 
-      <div className="mt-[46px] w-[361px]">
-        <div className="overflow-hidden rounded-md border border-[#D1D1D1] bg-white transition-all">
+      <div className="w-[361px] mt-[46px]">
+        <div className="border rounded-md overflow-hidden border-gray-10 bg-gray-0 transition-all">
           {/* 클릭 영역: 아코디언 헤더 */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="flex h-[48px] w-full items-center justify-between px-5 text-left"
           >
-            <span className="typo-body2 text-black">{currentGoal.title}</span>
+            <span className="typo-body2 text-gray-80">{currentGoal.title}</span>
             <svg
               className={`h-5 w-5 transition-transform duration-300 ${
                 isOpen ? "rotate-180" : ""
@@ -73,7 +73,9 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
                     onSelect({ id: goal.id, title: goal.title });
                     setIsOpen(false);
                   }}
-                  className={`typo-body2 h-[48px] w-full px-5 text-left transition-colors ${goal.id === currentGoal.id ? "bg-[#F9F9F9] font-semibold text-(--color-green)" : "bg-white text-gray-500 hover:bg-gray-50"} `}
+                  className={`w-full h-[48px] px-5 text-left typo-body2 transition-colors 
+                    ${goal.id === currentGoal.id ? "text-green font-semibold bg-gray-50" : "text-gray-80 bg-gray-0 hover:bg-gray-50"}
+                  `}
                 >
                   {goal.title}
                 </button>

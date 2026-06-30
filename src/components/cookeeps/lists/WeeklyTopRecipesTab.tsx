@@ -25,8 +25,8 @@ export default function WeeklyTopRecipesTab() {
   const top3 = recipes.slice(0, 3);
 
   const getRankStyle = (rank: number) => {
-    if (rank === 1) return "bg-[#32E389] text-white";
-    if (rank === 2 || rank === 3) return "bg-black text-white";
+    if (rank === 1) return "bg-green text-gray-0";
+    if (rank === 2 || rank === 3) return "bg-gray-80 text-gray-0";
     return "bg-gray-200 text-gray-500";
   };
 
@@ -35,7 +35,7 @@ export default function WeeklyTopRecipesTab() {
       <div className="flex w-[361px] flex-col">
         {recipes.length === 0 ? (
           // 레시피 없을 때
-          <div className="flex h-[200px] items-center justify-center text-[14px] text-[#7D7D7D]">
+          <div className="h-[200px] flex items-center justify-center text-[14px] text-gray-50">
             아직 등록된 레시피가 없어요
           </div>
         ) : (
@@ -58,14 +58,14 @@ export default function WeeklyTopRecipesTab() {
                 </div>
 
                 {/* 제목 + 좋아요 */}
-                <div className="flex flex-1 items-center justify-between">
-                  <p className="truncate text-[14px] font-medium text-[#202020]">
+                <div className="flex justify-between items-center flex-1">
+                  <p className="truncate text-[14px] text-gray-80 font-medium">
                     {item.title}
                   </p>
 
                   <div className="flex items-center gap-[4px]">
-                    <img src={likeGray} className="h-[18px] w-[18px]" />
-                    <span className="text-[12px] text-[#7D7D7D]">
+                    <img src={likeGray} className="w-[18px] h-[18px]" />
+                    <span className="text-[12px] text-gray-50">
                       {item.likeCount}
                     </span>
                   </div>
@@ -80,11 +80,11 @@ export default function WeeklyTopRecipesTab() {
                 }}
               >
                 {/* 유저 뱃지 */}
-                <div className="absolute top-2 left-2 flex h-[20px] items-center gap-[4px] rounded-full bg-black/60 px-[12px]">
-                  <span className="text-[12px] font-medium text-[#32E389]">
+                <div className="absolute top-2 left-2 flex items-center h-[20px] gap-[4px]  px-[12px] rounded-full bg-gray-80">
+                  <span className="text-green text-[12px] font-medium">
                     {item.nickname}
                   </span>
-                  <span className="text-[12px] font-medium text-white">
+                  <span className="text-gray-0 text-[12px] font-medium ">
                     님의 레시피
                   </span>
                 </div>

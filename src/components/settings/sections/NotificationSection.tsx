@@ -39,7 +39,6 @@ export default function NotificationSection({
     setLoading(true);
 
     try {
-      // 1️⃣ [수정] 푸시 연동/해제를 먼저 시도합니다.
       if (next) {
         const isSuccess = await registerPushNotification();
         if (!isSuccess) {
@@ -48,11 +47,9 @@ export default function NotificationSection({
           return;
         }
       } else {
-        // 🚀 토글을 끌 때 서버 DB에서 구독 정보를 먼저 확실히 지웁니다.
         await unsubscribePush();
       }
 
-      // 2️⃣ [수정] 위 작업이 성공했을 때만 마케팅 동의 상태를 업데이트합니다.
       await updateMarketingPush(next);
 
       onStateChange(next);

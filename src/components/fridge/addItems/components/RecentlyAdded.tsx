@@ -18,13 +18,13 @@ export default function RecentlyAdded() {
           onClick={() => setIsOpen(!isOpen)}
           className={`relative z-30 flex h-6 w-[139px] items-center justify-center gap-2 rounded-t-[15px] transition-all duration-300 ${
             isOpen
-              ? "bg-white shadow-[0_-10px_20px_-5px_rgba(17,17,17,0.1)]" // 메뉴바와 연결되는 느낌의 그림자
-              : "bg-white"
+              ? "bg-gray-0 shadow-[0_-10px_20px_-5px_rgba(17,17,17,0.1)]" // 메뉴바와 연결되는 느낌의 그림자
+              : "bg-gray-0"
           }`}
         >
           <span
             className={`typo-caption transition-colors duration-300 ${
-              isOpen ? "text-[var(--color-green-deep)]" : "text-zinc-500"
+              isOpen ? "text-green-deep" : "text-gray-50"
             }`}
           >
             최근 추가한 재료
@@ -32,8 +32,8 @@ export default function RecentlyAdded() {
           <div
             className={`h-2 w-2 border-r-2 border-b-2 transition-all duration-300 ${
               isOpen
-                ? "-translate-y-[1px] rotate-45 border-[var(--color-green-deep)]"
-                : "translate-y-[2px] rotate-[225deg] border-zinc-500"
+                ? "rotate-45 -translate-y-[1px] border-green-deep"
+                : "rotate-[225deg] translate-y-[2px] border-gray-50"
             }`}
           />
         </button>
@@ -41,7 +41,7 @@ export default function RecentlyAdded() {
 
       {/* 2. 메뉴바 (361px 너비) */}
       <div
-        className={`relative z-20 w-[361px] overflow-hidden rounded-t-[10px] bg-white shadow-[0_-1px_100px_-4px_rgba(17,17,17,0.15)] transition-all duration-300 ease-in-out ${
+        className={`w-[361px] bg-gray-0 rounded-t-[10px] shadow-[0_-1px_100px_-4px_rgba(17,17,17,0.15)] overflow-hidden transition-all duration-300 ease-in-out relative z-20 ${
           isOpen
             ? "mt-[-1px] max-h-[100px] opacity-100" // 버튼과 겹치게 하여 경계선 제거
             : "pointer-events-none max-h-0 opacity-0"
@@ -65,7 +65,7 @@ export default function RecentlyAdded() {
                       className="h-7 w-7 object-contain"
                     />
                   </div>
-                  <span className="w-11 truncate text-center text-[10px] text-zinc-600">
+                  <span className="text-[10px] truncate w-11 text-center text-gray-80">
                     {item.name}
                   </span>
                 </button>

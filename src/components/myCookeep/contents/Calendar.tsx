@@ -12,7 +12,7 @@ interface CalendarProps {
 
 export default function Calendar({ onDateClick }: CalendarProps) {
   const [viewDate, setViewDate] = useState(new Date());
-  const [apiRecords, setApiRecords] = useState<Record<string, string>>({}); // 서버 데이터를 담을 상태
+  const [apiRecords, setApiRecords] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
   const year = viewDate.getFullYear();
@@ -57,11 +57,15 @@ export default function Calendar({ onDateClick }: CalendarProps) {
 
   return (
     <div
-      className={`mx-auto flex w-[357px] flex-col items-center justify-center rounded-[6px] bg-white/10 p-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"} `}
+      className={`
+    flex flex-col w-[357px] mx-auto items-center justify-center rounded-[6px] p-4 
+    bg-gray-0/10 transition-opacity duration-200
+    ${isLoading ? "opacity-50 pointer-events-none" : "opacity-100"}
+  `}
     >
       {/* 1. 헤더 */}
-      <div className="mt-[13px] mb-2 flex w-full items-center justify-between px-2">
-        <h2 className="typo-h3 text-neutral-900">
+      <div className="flex items-center justify-between w-full px-2 mt-[13px] mb-2">
+        <h2 className="typo-h3 text-gray-80">
           {monthName} {year}
         </h2>
         <div className="flex gap-1">
@@ -75,11 +79,8 @@ export default function Calendar({ onDateClick }: CalendarProps) {
       </div>
       {/* 2. 요일 */}
       <div className="mb-2 grid w-full grid-cols-7">
-        {daysOfWeek.map(day => (
-          <div
-            key={day}
-            className="typo-body2 text-center text-(--color-green)"
-          >
+        {daysOfWeek.map((day) => (
+          <div key={day} className="text-center typo-body2 text-green">
             {day}
           </div>
         ))}
@@ -93,8 +94,6 @@ export default function Calendar({ onDateClick }: CalendarProps) {
         {Array.from({ length: daysInMonth }).map((_, i) => {
           const day = i + 1;
           const dateStr = getFormattedDate(day);
-
-          // 🚀 데이터 존재 여부 확인
           const hasRecord = Object.prototype.hasOwnProperty.call(
             apiRecords,
             dateStr,
@@ -136,16 +135,24 @@ export default function Calendar({ onDateClick }: CalendarProps) {
               {/* 연속 배경 */}
               {isContinuous && (
                 <div
-                  className={`absolute top-1/2 z-0 h-12 -translate-y-1/2 bg-[#96E8BE] ${hasPrev && hasNext ? "right-[-60%] left-[-60%] rounded-none" : ""} ${hasPrev && !hasNext ? "right-[-2px] left-[-60%] rounded-r-full" : ""} ${!hasPrev && hasNext ? "right-[-60%] left-[-2px] rounded-l-full" : ""} `}
+                  className={`
+            absolute top-1/2 -translate-y-1/2 h-12 bg-green-light z-0
+            ${hasPrev && hasNext ? "left-[-60%] right-[-60%] rounded-none" : ""}
+            ${hasPrev && !hasNext ? "left-[-60%] right-[-2px] rounded-r-full" : ""}
+            ${!hasPrev && hasNext ? "left-[-2px] right-[-60%] rounded-l-full" : ""}
+          `}
                 />
               )}
 
               {/* 날짜 버튼 */}
               <button
                 onClick={() => onDateClick(dateStr)}
-                className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full transition-all ${hasRecord ? "scale-105" : "hover:bg-zinc-50"} ${hasRecord && !photoUrl ? "bg-[#96E8BE]" : ""} `}
+                className={`
+          relative z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all
+          ${hasRecord ? "scale-105" : "hover:bg-gray-10"}
+          ${hasRecord && !photoUrl ? "bg-green-light" : ""} 
+        `}
               >
-                {/* 🚀 사진이 있을 때만 이미지를 보여줌 */}
                 {photoUrl && (
                   <div className="absolute inset-0 overflow-hidden rounded-full">
                     <img
@@ -157,8 +164,8 @@ export default function Calendar({ onDateClick }: CalendarProps) {
                 )}
 
                 <span
-                  className={`typo-h2 relative z-20 !font-normal ${
-                    hasRecord ? "text-white" : "text-neutral-800"
+                  className={`relative z-20 typo-h2 !font-normal ${
+                    hasRecord ? "text-gray-0" : "text-gray-80"
                   }`}
                 >
                   {day}

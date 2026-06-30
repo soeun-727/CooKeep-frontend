@@ -32,12 +32,12 @@ export default function RecipeDetailIngredientSection({
     <div className="flex w-full flex-col gap-8">
       {/* 내가 가진 재료 */}
       <div>
-        <span className="typo-body2 text-[#202020]">내가 가지고 있는 재료</span>
-        <div className="mt-2 flex flex-wrap gap-[5px]">
+        <span className="typo-body2 text-gray-80">내가 가지고 있는 재료</span>
+        <div className="flex flex-wrap gap-[5px] mt-2">
           {user_ingredients.map((item, idx) => (
             <span
               key={idx}
-              className="h-[20px] rounded-full bg-[#1FC16F] px-[12px] text-[12px] text-white"
+              className="h-[20px] px-[12px] rounded-full bg-green-deep text-gray-0 text-[12px]"
             >
               {formatIngredient(item)}
             </span>
@@ -48,12 +48,12 @@ export default function RecipeDetailIngredientSection({
       {/* 추가로 필요한 재료 */}
       {additional_ingredients.length > 0 && (
         <div>
-          <span className="typo-body2 text-[#202020]">추가로 필요한 재료</span>
-          <div className="mt-2 flex flex-wrap gap-[5px]">
+          <span className="typo-body2 text-gray-80">추가로 필요한 재료</span>
+          <div className="flex flex-wrap gap-[5px] mt-2">
             {additional_ingredients.map((item, idx) => (
               <span
                 key={idx}
-                className="h-[20px] rounded-full bg-[#EBEBEB] px-[12px] text-[12px] text-[#7D7D7D]"
+                className="h-[20px] px-[12px] rounded-full bg-gray-10 text-gray-50 text-[12px]"
               >
                 {formatIngredient(item)}
               </span>
@@ -65,7 +65,7 @@ export default function RecipeDetailIngredientSection({
       {/* 대체/생략 가능 재료 - description 위에, 재료 아래 */}
       {/* {optional_ingredients.length > 0 && (
         <div>
-          <span className="typo-body2 text-[#7D7D7D]">
+          <span className="typo-body2 text-gray-50">
             대체 / 생략 가능 재료
           </span>
 
@@ -74,13 +74,13 @@ export default function RecipeDetailIngredientSection({
               <div key={idx} className="flex items-start w-full"> */}
       {/* 왼쪽: 재료 영역 (폭 고정) */}
       {/* <div className="w-[80px] flex justify-start">
-                  <span className="px-3 py-[2px] rounded-full bg-[#EBEBEB] text-[12px] text-[#7D7D7D]">
+                  <span className="px-3 py-[2px] rounded-full bg-gray-10 text-[12px] text-gray-50">
                     {item.name}
                   </span>
                 </div> */}
 
       {/* 오른쪽: 설명 */}
-      {/* <span className="text-sm text-[#202020] leading-5">
+      {/* <span className="text-sm text-gray-80 leading-5">
                   {item.name}
                 </span>
               </div>
@@ -90,20 +90,18 @@ export default function RecipeDetailIngredientSection({
       )} */}
       {optional_ingredients.length > 0 && (
         <div className="flex flex-col gap-4">
-          <span className="typo-body2 text-[#7D7D7D]">
-            대체 / 생략 가능 재료
-          </span>
+          <span className="typo-body2 text-gray-50">대체 / 생략 가능 재료</span>
           {Object.entries(groupedOptional).map(
             ([description, items], groupIdx) => (
               <div key={groupIdx} className="flex flex-col gap-2">
                 {/* description 먼저 */}
-                <span className="typo-body2 text-[#202020]">{description}</span>
+                <span className="typo-body2 text-gray-80">{description}</span>
                 {/* 재료 태그들 */}
                 <div className="flex flex-wrap gap-[5px]">
                   {items.map((item, idx) => (
                     <span
                       key={idx}
-                      className="rounded-full bg-[#EBEBEB] px-3 py-[2px] text-[12px] text-[#7D7D7D]"
+                      className="px-3 py-[2px] rounded-full bg-gray-10 text-[12px] text-gray-50"
                     >
                       {formatIngredient(item)}
                     </span>

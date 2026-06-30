@@ -8,7 +8,7 @@ export default function RecipeDetailStepSection({
   return (
     <div className="flex w-full flex-col items-start gap-[10px]">
       {/* 제목 */}
-      <span className="typo-body2 self-stretch text-[#7D7D7D]">레시피</span>
+      <span className="typo-body2 text-gray-50 self-stretch">레시피</span>
 
       {/* 단계 리스트 */}
       <div className="flex w-full flex-col items-start gap-[8px]">
@@ -19,14 +19,14 @@ export default function RecipeDetailStepSection({
           return (
             <div key={stepOrder} className="flex w-full items-start gap-3">
               {/* 번호 */}
-              <div className="flex w-[30px] flex-shrink-0 items-start justify-center">
-                <div className="flex h-[20px] w-[30px] items-center justify-center rounded-full bg-[#202020] text-xs leading-[16px] font-semibold text-white">
+              <div className="flex items-start justify-center w-[30px] flex-shrink-0">
+                <div className="flex items-center justify-center w-[30px] h-[20px] leading-[16px] rounded-full bg-gray-80 text-gray-0 text-xs font-semibold">
                   {stepOrder}
                 </div>
               </div>
 
               {/* 설명 */}
-              <p className="typo-body2 flex-1 leading-[24px] text-[#202020]">
+              <p className="flex-1 text-gray-80 typo-body2 leading-[24px]">
                 {cleanDescription}
               </p>
             </div>

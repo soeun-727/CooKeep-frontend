@@ -26,7 +26,7 @@ export default function ListItem({
   return (
     <div
       onClick={onSelect}
-      className={`flex h-12 w-[335px] items-center justify-between rounded-[6px] px-2 py-[10px] ${isSelected ? "bg-gray-200" : "bg-[#FAFAFA]"}`}
+      className={`w-[335px] h-12 rounded-[6px] flex items-center justify-between px-2 py-[10px] ${isSelected ? "bg-gray-200" : "bg-background"}`}
     >
       <img
         src={img}
@@ -40,7 +40,7 @@ export default function ListItem({
           className="flex w-[38px] items-center justify-between transition-transform active:scale-90"
         >
           <img src={likeGray} alt="like" className="w-4" />
-          <span className="typo-caption text-zinc-500">{likes}</span>
+          <span className="typo-caption text-gray-50">{likes}</span>
         </button>
       ) : (
         <button

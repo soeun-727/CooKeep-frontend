@@ -41,7 +41,7 @@ export default function ListLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex h-[100dvh] flex-col overflow-hidden bg-[#FAFAFA]">
+    <div className="flex flex-col h-[100dvh] overflow-hidden bg-background">
       {/* 항상 고정 */}
       <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
 

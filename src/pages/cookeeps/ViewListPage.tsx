@@ -126,7 +126,7 @@ export default function ViewListPage({ type }: ViewListPageProps) {
               />
             ))
           : !isLoading && (
-              <p className="typo-body mt-10 text-center text-zinc-400">
+              <p className="mt-10 text-gray-30 typo-body text-center">
                 {searchTerm ? "검색 결과가 없습니다." : "목록이 비어 있습니다."}
               </p>
             )}
