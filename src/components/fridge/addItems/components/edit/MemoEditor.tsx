@@ -26,7 +26,7 @@ export default function MemoEditor({ value, onSave }: MemoEditorProps) {
         onChange={handleChange}
         maxLength={MAX_LENGTH}
         placeholder="메모를 입력해주세요(최대 100글자)"
-        className="typo-body h-49 w-[361px] resize-none rounded-[10px] border border-[#D1D1D1] p-3 text-center outline-none"
+        className="w-[361px] h-49 p-3 rounded-[10px] border border-gray-10 text-center outline-none resize-none typo-body"
       />
 
       {/* 저장 버튼으로 명시적 저장 */}

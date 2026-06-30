@@ -68,14 +68,14 @@ export default function PlantGrowthCard({
           />
         </div>
 
-        <div className="rounded-xl bg-white px-[15px] pt-[23px] pb-2 shadow">
-          <div className="mx-auto flex max-w-[360px] flex-col items-center">
-            <div className="flex h-9 w-full items-center justify-between">
-              <div className="flex h-[26px] items-center justify-center gap-2">
-                <span className="text-[18px] font-semibold text-[#202020]">
+        <div className="bg-gray-0 rounded-xl shadow px-[15px] pt-[23px] pb-2">
+          <div className="flex flex-col items-center max-w-[360px] mx-auto">
+            <div className="flex justify-between items-center w-full h-9">
+              <div className="flex items-center justify-center gap-2 h-[26px]">
+                <span className="text-[18px] font-semibold text-gray-80">
                   {plantName}
                 </span>
-                <span className="mt-1 text-xs text-[#7D7D7D]">
+                <span className="text-xs text-gray-50 mt-1">
                   {dateText} 기준
                 </span>
               </div>

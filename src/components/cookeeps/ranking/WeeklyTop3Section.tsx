@@ -39,11 +39,11 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   const isRankingEmpty = users.length === 0;
 
   return (
-    <div className="flex min-h-[202px] w-full flex-col items-center gap-[26px] rounded-[6px] bg-[#E6FBEB] py-[18px] shadow-md">
+    <div className="flex flex-col items-center gap-[26px] w-full min-h-[202px] py-[18px] rounded-[6px] bg-green-light shadow-md">
       <div className="flex flex-col items-center gap-[2px]">
         <h2 className="text-center text-[18px] font-semibold text-gray-800">
           {currentMonth}월 식물 돌봄
-          <span className="text-[#1FC16F]"> TOP3 </span>쿠킵이
+          <span className="text-green-deep"> TOP3 </span>쿠킵이
         </h2>
       </div>
 
@@ -68,15 +68,15 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         })}
 
         {isRankingEmpty && (
-          <div className="absolute inset-0 flex items-center justify-center rounded-[6px] bg-[#E6FBEBCC]">
-            <div className="flex h-[143px] w-full max-w-[343px] items-center justify-center gap-[24px] px-[20px] py-[18px]">
+          <div className="absolute inset-0 flex justify-center items-center rounded-[6px] bg-green-light/80">
+            <div className="flex w-full max-w-[343px] h-[143px] px-[20px] py-[18px] justify-center items-center gap-[24px]">
               <img
                 src={thinkingChar}
                 alt="thinking"
                 className="h-[79px] w-[83px] flex-shrink-0"
               />
 
-              <div className="text-center text-[16px] leading-[24px] font-semibold text-[#202020]">
+              <div className="text-[16px] font-semibold leading-[24px] text-gray-80 text-center">
                 쿠킵이들의 식물 살펴보는 중..
                 <br />
                 순위가 곧 공개돼요
@@ -90,7 +90,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         <span>이번 달에 나는 총</span>
         <div className="flex gap-[2px]">
           <img src={plantChar} className="w-4.5" />
-          <span className="text-(--color-green-deep)">{myCount}회</span>
+          <span className="text-green-deep">{myCount}회</span>
         </div>
         <span>주었어요!</span>
       </div>

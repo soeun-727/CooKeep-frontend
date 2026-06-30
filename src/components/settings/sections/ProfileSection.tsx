@@ -79,11 +79,14 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
     <section className="px-4">
       <div className="flex flex-col gap-[22px]">
         {/* ===== 닉네임 (inline edit) ===== */}
-        <div className="relative flex h-20 w-full flex-col gap-2">
-          <span className="typo-body px-3 text-[#202020]">닉네임</span>
+        <div className="flex flex-col h-20 gap-2 w-full relative">
+          <span className="typo-body text-gray-80 px-3">닉네임</span>
 
           <div
-            className={`flex h-[44px] w-full items-center justify-between rounded-[6px] border px-3 transition-colors ${isNicknameError ? "border-[#D91F1F]" : "border-[#DDD]"} `}
+            className={`
+            flex items-center justify-between w-full h-[44px] px-3 border rounded-[6px] transition-colors
+            ${isNicknameError ? "border-semantic-negative" : "border-gray-10"}
+          `}
           >
             {isEditingNickname ? (
               <>
@@ -95,25 +98,50 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
                       prev ? { ...prev, nickname: e.target.value } : prev,
                     )
                   }
-                  className="typo-body2 h-full w-45 flex-1 text-[#202020] outline-none"
+                  className="
+                    flex-1
+                    h-full
+                    w-45
+                    outline-none
+                    typo-body2
+                    text-gray-80
+                  "
                 />
                 <button
                   onClick={handleNicknameSave}
                   disabled={!account.nickname?.trim() || isNicknameError}
-                  className="typo-caption w-[115px] rounded-full bg-[#202020] px-[18px] py-1 font-medium text-white"
+                  className="
+                    w-[115px]
+                    px-[18px]
+                    py-1
+                    rounded-full
+                    bg-gray-80
+                    text-gray-0
+                    typo-caption
+                    font-medium
+                  "
                 >
                   변경 완료
                 </button>
               </>
             ) : (
               <>
-                <span className="typo-body2 text-[#AEAEAE]">
+                <span className="typo-body2 text-gray-50">
                   {account.nickname}
                 </span>
 
                 <button
                   onClick={() => setIsEditingNickname(true)}
-                  className="typo-caption w-[115px] rounded-full bg-[#202020] px-[18px] py-1 font-medium text-white"
+                  className="
+                    w-[115px]
+                    px-[18px]
+                    py-1
+                    rounded-full
+                    bg-gray-80
+                    text-gray-0
+                    typo-caption
+                    font-medium
+                  "
                 >
                   닉네임 변경
                 </button>
@@ -125,14 +153,14 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
               <>
                 {/* 1. 글자 수 초과 에러 */}
                 {isNicknameError && (
-                  <span className="typo-caption leading-0 text-[#D91F1F]">
+                  <span className="text-semantic-negative typo-caption leading-0">
                     {MAX_NICKNAME_LENGTH}글자 이내로 설정해주세요
                   </span>
                 )}
 
                 {/* 2. 빈 값 에러 (추가) */}
                 {!account.nickname.trim() && (
-                  <span className="typo-caption leading-0 text-[#D91F1F]">
+                  <span className="text-semantic-negative typo-caption leading-0">
                     닉네임을 입력해주세요
                   </span>
                 )}

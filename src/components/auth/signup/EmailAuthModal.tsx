@@ -46,11 +46,11 @@ export default function EmailAuthModal({
     <>
       {/* 배경 오버레이 */}
       <div
-        className="fixed inset-0 z-[100] bg-[rgba(17,17,17,0.5)]"
+        className="fixed inset-0 z-[100] bg-black-overlay"
         onClick={onConfirm} // 배경 클릭 시 닫히게 하고 싶으면 유지
       />
       <div
-        className="fixed left-1/2 z-[110] -translate-x-1/2 rounded-[10px] bg-white"
+        className="fixed z-[110] left-1/2 -translate-x-1/2 bg-gray-0 rounded-[10px]"
         style={{
           top: isHelp ? 308 : isSend ? 359 : 343,
           width: isHelp ? 256 : 240,
@@ -87,18 +87,18 @@ export default function EmailAuthModal({
         {/* 부가 텍스트 */}
         {/* 이메일 표시 - send / verify / already 모두 동일하게 */}
         {/* {(isSend || isVerify || isAlready) && email && (
-          <p className="text-[12px] text-[#7D7D7D] text-center">{email}</p>
+          <p className="text-[12px] text-gray-50 text-center">{email}</p>
         )} */}
 
         {/* 마스킹된 이메일 표시 */}
         {(isVerify || isAlready) && email && (
-          <p className="text-center text-[12px] text-[#7D7D7D]">
+          <p className="text-[12px] text-gray-50 text-center">
             {maskEmail(email)}
           </p>
         )}
 
         {isHelp && (
-          <p className="text-center text-[12px] text-[#7D7D7D]">
+          <p className="text-[12px] text-gray-50 text-center">
             문제가 지속되나요?
           </p>
         )}
@@ -107,7 +107,9 @@ export default function EmailAuthModal({
         <Button
           size="S"
           onClick={isAlready ? onLogin : isHelp ? handleOpenKakao : onConfirm}
-          className={` ${isBlackButton ? "!w-[200px] !bg-[#202020]" : "!w-[184px] !bg-[#32E389]"} `}
+          className={`
+    ${isBlackButton ? "!w-[200px] !bg-gray-80" : "!w-[184px] !bg-green"}
+  `}
         >
           {buttonText}
         </Button>

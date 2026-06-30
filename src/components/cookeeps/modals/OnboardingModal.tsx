@@ -43,7 +43,7 @@ const ONBOARDING_DATA = [
         ].map((item, i) => (
           <div key={i} className="flex flex-col items-center gap-[3px]">
             <img src={item.src} className="w-[37px]" alt={item.label} />
-            <span className="text-[8px] font-medium text-stone-500">
+            <span className="text-[8px] font-medium text-gray-50">
               {item.label}
             </span>
           </div>
@@ -83,12 +83,12 @@ export default function OnboardingModal({
   return (
     <div className="fixed inset-0 z-60 flex items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
 
       {/* Modal Container */}
       <div
-        className="relative box-border flex max-h-[267px] min-h-[246px] w-[258px] max-w-[258px] min-w-[258px] flex-col gap-3 overflow-hidden rounded-[10px] bg-white px-7 py-[25px] shadow-xl"
-        onClick={e => e.stopPropagation()}
+        className="relative box-border w-[258px] min-w-[258px] max-w-[258px] min-h-[246px] max-h-[267px] px-7 py-[25px] gap-3 rounded-[10px] bg-gray-0 flex flex-col shadow-xl overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
       >
         {/* 1. Slider Content (상하 중앙 정렬을 위해 flex-1 사용) */}
         <div className="flex w-full flex-1 items-center overflow-hidden">
@@ -142,8 +142,8 @@ export default function OnboardingModal({
               {ONBOARDING_DATA.map((_, index) => (
                 <div
                   key={index}
-                  className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                    currentIndex === index ? "bg-zinc-500" : "bg-stone-100"
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                    currentIndex === index ? "bg-gray-50" : "bg-gray-30"
                   }`}
                 />
               ))}

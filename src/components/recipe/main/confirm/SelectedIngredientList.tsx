@@ -17,17 +17,28 @@ export default function SelectedIngredientList({
     <section className="mx-auto flex w-full max-w-[361px] flex-col items-center gap-4 px-4">
       {/* 제목 / 설명 */}
       <div className="flex flex-col items-center gap-[2px]">
-        <h2 className="text-center text-[20px] leading-[28px] font-semibold text-[#1FC16F]">
+        <h2 className="text-[20px] font-semibold leading-[28px] text-green-deep text-center">
           내가 선택한 재료
         </h2>
-        <p className="text-center text-[12px] leading-[16px] text-[#7D7D7D]">
+        <p className="text-[12px] leading-[16px] text-gray-50 text-center">
           보유한 재료로 AI가 레시피를 추천해줘요
         </p>
       </div>
 
       {/* 재료 컨테이너 */}
-      <div className="grid w-full grid-cols-5 justify-items-center gap-y-2 rounded-[10px] bg-white px-[5px] py-[9px] shadow-[0_-1px_80px_-4px_rgba(32,32,32,0.1)]">
-        {sortedIngredients.map(item => {
+      <div
+        className="
+    w-full
+    grid grid-cols-5
+    justify-items-center
+    gap-y-2
+    px-[5px] py-[9px]
+    rounded-[10px]
+    bg-gray-0
+    shadow-[0_-1px_80px_-4px_rgba(32,32,32,0.1)]
+  "
+      >
+        {sortedIngredients.map((item) => {
           const isUrgent = item.dDay <= 3;
           console.log(item.name, item.expiryDate, item.dDay);
 
@@ -35,11 +46,18 @@ export default function SelectedIngredientList({
             <div key={item.id} className="relative">
               {/* 유통기한 */}
               <span
-                className={`absolute right-[44px] bottom-[56px] inline-flex items-center justify-center rounded-full border bg-white px-[5px] py-[1px] text-[8px] leading-2.5 whitespace-nowrap ${
-                  isUrgent
-                    ? "border-[#D91F1F] text-[#D91F1F]"
-                    : "border-[#D1D1D1] text-[#7D7D7D]"
-                } `}
+                className={`
+          absolute bottom-[56px] right-[44px]
+          inline-flex items-center justify-center
+          px-[5px] py-[1px] whitespace-nowrap leading-2.5
+          text-[8px]
+          rounded-full border bg-gray-0
+          ${
+            isUrgent
+              ? "border-semantic-negative text-semantic-negative"
+              : "border-gray-10 text-gray-50"
+          }
+        `}
               >
                 {item.dDay >= 0 ? `D-${item.dDay}` : `D+${Math.abs(item.dDay)}`}
               </span>
@@ -52,7 +70,7 @@ export default function SelectedIngredientList({
                     alt={item.name}
                     className="h-[44px] w-[44px] object-cover"
                   />
-                  <span className="line-clamp-1 text-center text-[12px] leading-[16px] font-medium text-[#202020]">
+                  <span className="text-[12px] font-medium leading-[16px] text-gray-80 text-center line-clamp-1">
                     {item.name}
                   </span>
                 </div>
@@ -65,7 +83,7 @@ export default function SelectedIngredientList({
             key={`empty-${idx}`}
             className="flex h-[70px] w-[70px] items-center justify-center"
           >
-            <div className="h-[8px] w-[8px] rounded-full bg-[#EBEBEB] shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
+            <div className="w-[8px] h-[8px] rounded-full bg-gray-10 shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
           </div>
         ))}
       </div>

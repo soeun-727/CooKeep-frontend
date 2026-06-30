@@ -27,8 +27,8 @@ export default function AgreementList({
 
   if (agreementPage) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100">
-        <div className="min-h-[100dvh] w-full max-w-[450px] bg-[#FAFAFA]">
+      <div className="fixed inset-0 z-50 bg-gray-100 flex items-center justify-center">
+        <div className="w-full max-w-[450px] min-h-[100dvh] bg-background">
           {" "}
           {/*overflow-y-auto*/}
           <AgreementPage
@@ -53,10 +53,10 @@ export default function AgreementList({
   return (
     <div className="mt-[26px]">
       {/* 전체 동의 */}
-      <label className="relative flex h-[48px] w-full max-w-[361px] cursor-pointer items-center rounded-[6px] border border-[#D1D1D1] px-4">
+      <label className="relative flex items-center px-4 h-[48px] max-w-[361px] w-full rounded-[6px] border border-gray-10 cursor-pointer">
         <input
           type="checkbox"
-          className="peer h-4 w-4 cursor-pointer appearance-none rounded-sm border border-[#7D7D7D] checked:bg-(--color-green)"
+          className="peer w-4 h-4 appearance-none border border-gray-50 rounded-sm checked:bg-green cursor-pointer"
           checked={isAllChecked}
           onChange={e =>
             updateAgreements({
@@ -66,10 +66,8 @@ export default function AgreementList({
             })
           }
         />
-        <span className="typo-label ml-[16px] text-[#202020]">
-          약관 전체동의
-        </span>
-        <span className="pointer-events-none invisible absolute left-4 flex h-4 w-4 items-center justify-center text-lg font-bold text-white peer-checked:visible">
+        <span className="ml-[16px] typo-label text-gray-80">약관 전체동의</span>
+        <span className="absolute left-4 w-4 h-4 flex items-center justify-center pointer-events-none text-gray-0 text-lg font-bold peer-checked:visible invisible">
           ✓
         </span>
       </label>
@@ -85,7 +83,7 @@ export default function AgreementList({
               {item.key !== "policy" ? (
                 <input
                   type="checkbox"
-                  className="h-4 w-4 accent-[#7D7D7D]"
+                  className="w-4 h-4 accent-gray-50"
                   checked={agreements[item.key]}
                   onChange={e =>
                     updateAgreements({ [item.key]: e.target.checked })
@@ -95,7 +93,7 @@ export default function AgreementList({
                 <span className="inline-block h-4 w-4" />
               )}
 
-              <span className="typo-label text-[#7D7D7D]">{item.label}</span>
+              <span className="typo-label text-gray-50">{item.label}</span>
             </label>
 
             <button type="button" onClick={() => setAgreementPage(item)}>

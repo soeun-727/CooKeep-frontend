@@ -181,8 +181,8 @@ export default function AccountSection({
                     {/* 약관 영역 */}
                     <div className="mt-[90px]">
                       {/* 전체 동의 */}
-                      <label className="relative flex h-[48px] w-full cursor-pointer items-center rounded-[6px] border border-[#D1D1D1] px-3">
-                        <div className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
+                      <label className="relative flex items-center px-3 h-[48px] w-full rounded-[6px] border border-gray-10 cursor-pointer">
+                        <div className="relative w-6 h-6 flex-shrink-0 flex items-center justify-center">
                           <input
                             type="checkbox"
                             className="peer absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none"
@@ -207,7 +207,7 @@ export default function AccountSection({
                           />
                         </div>
 
-                        <span className="typo-label ml-[12px] text-[#202020]">
+                        <span className="ml-[12px] typo-label text-gray-80">
                           약관 전체동의
                         </span>
                       </label>
@@ -247,7 +247,7 @@ export default function AccountSection({
                                 <span className="inline-block h-5 w-5 flex-shrink-0" />
                               )}
 
-                              <span className="typo-label truncate text-[#7D7D7D]">
+                              <span className="typo-label text-gray-50 truncate">
                                 {item.label}
                               </span>
                             </label>
@@ -279,7 +279,7 @@ export default function AccountSection({
                         disabled={!isSignupEnabled || loading}
                         onClick={onSubmit}
                         className={`mt-[8px] ${
-                          !isSignupEnabled || loading ? "" : "!text-[#32E389]"
+                          !isSignupEnabled || loading ? "" : "!text-green"
                         }`}
                       >
                         {loading ? "가입 중..." : "회원가입"}

@@ -16,23 +16,23 @@ export default function AlertModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[160] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[160] flex items-center justify-center bg-black-overlay">
       <div className="absolute inset-0" onClick={onClose}></div>
-      <div className="relative flex w-60 flex-col items-center gap-4 rounded-[10px] bg-white px-7 pt-[35px] pb-[25px] text-center">
+      <div className="relative w-60 bg-gray-0 rounded-[10px] flex flex-col items-center text-center px-7 pt-[35px] pb-[25px] gap-4">
         <img src={icon} className="w-20" />
-        <div className="typo-body2 font-medium text-neutral-900">
+        <div className="typo-body2 font-medium text-gray-80">
           섭취완료!
           <br />
           냉장고가 가벼워졌어요!
           {rewardPoints !== undefined && rewardPoints !== null && (
-            <div className="typo-body !font-bold text-(--color-green-deep)">
+            <div className="typo-body text-green-deep !font-bold">
               쿠키 +{rewardPoints} 🍪
             </div>
           )}
         </div>
         <button
           onClick={onClose}
-          className="typo-button h-11 w-46 rounded-[10px] bg-(--color-green) text-white"
+          className="w-46 h-11 typo-button text-gray-0 bg-green rounded-[10px]"
         >
           {buttonText}
         </button>

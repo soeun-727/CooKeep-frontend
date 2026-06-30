@@ -318,8 +318,8 @@ export default function CookeepsPage() {
       </div>
 
       {isFreeWaterMode && (
-        <div className="pointer-events-none absolute inset-0 z-40">
-          <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 z-40 pointer-events-none">
+          <div className="absolute inset-0 bg-gray-80" />
         </div>
       )}
 

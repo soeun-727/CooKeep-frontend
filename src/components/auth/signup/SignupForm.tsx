@@ -147,7 +147,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
           />
 
           {serverError && (
-            <p className="mt-2 text-center text-sm text-red-500">
+            <p className="text-semantic-negative text-sm text-center mt-2">
               {serverError}
             </p>
           )}

@@ -2,8 +2,8 @@ import loadingChar from "@/assets/character/char_loading.svg";
 
 export default function LoadingScreen() {
   return (
-    <div className="flex h-full w-full items-center justify-center bg-[#FAFAFA]">
-      <div className="flex w-[143px] flex-col items-center gap-2">
+    <div className="w-full h-full flex items-center justify-center bg-background">
+      <div className="flex flex-col items-center gap-2 w-[143px]">
         {/* 이미지 + 텍스트 */}
         <div className="flex w-full flex-col items-center gap-3">
           <img
@@ -12,7 +12,7 @@ export default function LoadingScreen() {
             className="h-[91px] w-[110.375px]"
           />
 
-          <p className="text-center text-[12px] leading-[16px] font-medium text-[#7D7D7D]">
+          <p className="text-gray-50 text-center text-[12px] leading-[16px] font-medium">
             로딩중... 잠시만 기다려주세요!
           </p>
         </div>

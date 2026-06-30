@@ -22,8 +22,8 @@ export default function FaqCategoryItem({
 
   return (
     <div
-      className={`flex w-full flex-col items-start self-stretch rounded-[6px] border border-[#D1D1D1] ${
-        open ? "bg-[#ECECEC]" : "bg-white"
+      className={`flex flex-col items-start self-stretch w-full rounded-[6px] border border-gray-10 ${
+        open ? "bg-gray-10" : "bg-gray-0"
       }`}
     >
       {/* 카테고리 헤더 */}
@@ -32,7 +32,7 @@ export default function FaqCategoryItem({
         onClick={() => setOpen(prev => !prev)}
       >
         <p
-          className={`typo-label ${open ? "text-[#1FC16F]" : "text-[#202020]"}`}
+          className={`typo-label ${open ? "text-green-deep" : "text-gray-80"}`}
         >
           {title}
         </p>

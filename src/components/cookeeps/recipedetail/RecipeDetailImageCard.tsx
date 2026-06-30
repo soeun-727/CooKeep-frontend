@@ -24,7 +24,16 @@ export default function RecipeDetailImageCard({
       </div>
 
       {/* 제목 영역 */}
-      <div className="flex w-full items-center justify-center self-stretch rounded-b-[6px] bg-white px-3 py-[12px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
+      <div
+        className="
+          flex justify-center items-center self-stretch
+          w-full
+          bg-gray-0
+          rounded-b-[6px]
+          shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
+          px-3 py-[12px]
+        "
+      >
         <div className="flex w-full items-center gap-2 px-2">
           {/* 아이콘 */}
           <img
@@ -34,7 +43,15 @@ export default function RecipeDetailImageCard({
           />
 
           {/* 제목 */}
-          <h2 className="flex-1 text-[18px] leading-[26px] font-semibold text-[#202020]">
+          <h2
+            className="
+              flex-1
+              text-gray-80
+              text-[18px]
+              font-semibold
+              leading-[26px]
+            "
+          >
             {title}
           </h2>
         </div>

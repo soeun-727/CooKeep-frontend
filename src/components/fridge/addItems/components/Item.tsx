@@ -23,23 +23,23 @@ function Item({
     <button
       type="button"
       onClick={onSelect}
-      className={`relative flex h-[90px] w-[90px] flex-col items-center justify-center rounded-[6px] border px-4 py-[13px] ${isSelected ? "border-[var(--color-green-deep)] bg-[var(--color-green-light)]" : "border-[#D1D1D1] bg-white"}`}
-    >
+      className={`relative flex flex-col w-[90px] h-[90px] rounded-[6px] border items-center justify-center px-4 py-[13px]
+        ${isSelected ? "bg-green-light border-green-deep" : "bg-gray-0 border-gray-10"}`}>
       {isCustom && (
         <img
           src={deleteIcon}
           alt="delete"
-          className="absolute top-[9px] right-[10px] z-10 h-3 cursor-pointer"
-          onClick={e => {
+          className="absolute right-[10px] top-[9px] h-3 z-10 cursor-pointer"
+          onClick={(e) => {
             e.stopPropagation();
             onDelete?.(e);
           }}
         />
       )}
-      <div className="flex flex-col items-center justify-center gap-[2px]">
-        <img src={image} className="h-12 w-12" />
+      <div className="flex flex-col gap-[2px] items-center justify-center">
+        <img src={image} className="w-12 h-12" />
 
-        <span className="typo-caption w-[58px] truncate !font-bold whitespace-nowrap">
+        <span className="typo-caption !font-bold truncate whitespace-nowrap w-[58px]">
           {name}
         </span>
       </div>

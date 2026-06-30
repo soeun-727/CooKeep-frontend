@@ -185,16 +185,16 @@ export default function RecordDetailPage() {
   if (!record) return null;
 
   return (
-    <div className="no-scrollbar flex h-full flex-1 flex-col overflow-y-auto bg-[#FAFAFA]">
+    <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-background">
       {/* 3. 헤더 영역: 스크롤 시 상단에 고정되도록 sticky 유지 */}
-      <div className="sticky top-0 z-[120] w-full bg-[#FAFAFA]">
-        <div className="relative mx-auto flex w-full max-w-[450px] items-center justify-center">
+      <div className="sticky top-0 z-[120] bg-background w-full">
+        <div className="relative w-full flex justify-center items-center w-full max-w-[450px] mx-auto">
           <div className="absolute left-0 w-full">
             <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
           </div>
           <div className="absolute top-2 right-2 flex items-center">
             {isMenuOpen && (
-              <div className="animate-fadeIn absolute top-10 right-2 z-50 flex h-[72px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-[10px] bg-white shadow-[0_1px_8.2px_-2px_#11111140]">
+              <div className="absolute right-2 top-10 flex flex-col items-center justify-center bg-gray-0 rounded-[10px] w-[130px] h-[72px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
                 {/* 수정하기 버튼 */}
                 <button
                   onClick={handleEdit}
@@ -204,7 +204,7 @@ export default function RecordDetailPage() {
                 </button>
 
                 {/* 구분선 */}
-                <div className="h-[0.5px] w-[80px] bg-[#D1D1D1]" />
+                <div className="w-[80px] h-[0.5px] bg-gray-10" />
 
                 {/* 삭제하기 버튼 */}
                 <button
@@ -266,12 +266,12 @@ export default function RecordDetailPage() {
                 el.style.height = `${el.scrollHeight}px`;
               }}
               placeholder="글자 수 최대 500자"
-              className="typo-body w-full resize-none overflow-hidden rounded-[10px] bg-white px-[10px] py-3 text-center text-[#202020] outline-none placeholder:text-[#7D7D7D]"
+              className="overflow-hidden w-full rounded-[10px] bg-gray-0 px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none"
               rows={1}
             />
           ) : (
             record.description && (
-              <div className="typo-body w-full rounded-[10px] border border-gray-100 bg-white px-[15px] py-4 text-center break-words whitespace-pre-wrap text-[#202020] shadow-sm">
+              <div className="w-full rounded-[10px] bg-gray-0 px-[15px] py-4 text-center typo-body text-gray-80 shadow-sm whitespace-pre-wrap break-words border border-gray-100">
                 {record.description}
               </div>
             )
@@ -286,24 +286,26 @@ export default function RecordDetailPage() {
               <button
                 disabled={!isEditing}
                 onClick={() => setTempIsPublic(false)} // ← 즉시 API 말고 임시저장
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === false ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
+              ${tempIsPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
                   <img src={privateIcon} className="w-[24px]" alt="private" />
                 </div>
-                <span className="typo-label text-[#202020]">나만 보기</span>
+                <span className="typo-label text-gray-80">나만 보기</span>
               </button>
 
               {/* 쿠킵스 공개 버튼 */}
               <button
                 disabled={!isEditing}
                 onClick={() => setTempIsPublic(true)} // ← 즉시 API 말고 임시저장
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === true ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors
+              ${tempIsPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
                   <img src={publicIcon} className="w-[36px]" alt="public" />
                 </div>
-                <span className="typo-label text-[#202020]">쿠킵스 공개</span>
+                <span className="typo-label text-gray-80">쿠킵스 공개</span>
               </button>
             </div>
             <div className="mt-2 mb-2 flex">
