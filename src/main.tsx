@@ -32,13 +32,14 @@ const updateSW = registerSW({
   },
 });
 
-// 새 SW가 제어권 잡는 순간 reload — 이게 없으면 확인 눌러도 구버전 유지될 수 있음
-let refreshing = false;
-navigator.serviceWorker?.addEventListener("controllerchange", () => {
-  if (refreshing) return;
-  refreshing = true;
-  window.location.reload();
-});
+// 새 SW가 제어권 잡는 순간 reload — window 객체와 프로덕션 환경 체크로 무한 새로고침 방지
+if (import.meta.env.PROD) {
+  navigator.serviceWorker?.addEventListener("controllerchange", () => {
+    if ((window as any).__PWA_REFRESHING__) return;
+    (window as any).__PWA_REFRESHING__ = true;
+    window.location.reload();
+  });
+}
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
