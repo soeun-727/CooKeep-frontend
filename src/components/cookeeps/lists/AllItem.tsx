@@ -28,13 +28,13 @@ export default function AllItem({
   return (
     <div
       onClick={onSelect}
-      className={`flex h-12 w-[361px] cursor-pointer items-center justify-between rounded-[6px] px-2 py-[10px] transition-colors ${
-        isSelected ? "bg-gray-200" : "bg-[#FAFAFA]"
+      className={`w-[361px] h-12 rounded-[6px] flex items-center justify-between px-2 py-[10px] cursor-pointer transition-colors ${
+        isSelected ? "bg-gray-200" : "bg-background"
       }`}
     >
       {/* 순위 배지 */}
       <div
-        className={`typo-caption flex h-5 w-[30px] flex-shrink-0 items-center justify-center rounded-[100px] bg-gray-200 font-bold text-zinc-500`} // ${getRankStyle()}
+        className={`flex items-center justify-center w-[30px] h-5 rounded-[100px] typo-caption flex-shrink-0 font-bold bg-gray-200 text-gray-50 `} // ${getRankStyle()}
       >
         {rank}
       </div>
@@ -53,7 +53,7 @@ export default function AllItem({
           <LikeGray className="h-[18px] w-[18px] text-[#C3C3C3]" />
 
           {/* 숫자 오른쪽 정렬 */}
-          <span className="typo-caption ml-0.5 flex-1 text-right whitespace-nowrap text-zinc-500">
+          <span className="flex-1 text-right ml-0.5 typo-caption text-gray-50 whitespace-nowrap">
             {likes ?? 0}
           </span>
         </div>

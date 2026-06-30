@@ -22,7 +22,11 @@ export default function SplashPage() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex justify-center overflow-hidden transition-colors duration-700 ${step >= 2 ? "bg-emerald-400" : "bg-[#FAFAFA]"} `}
+      className={`
+    fixed inset-0 flex justify-center z-[9999] overflow-hidden
+    transition-colors duration-700
+    ${step >= 2 ? "bg-emerald-400" : "bg-background"}
+  `}
     >
       <div
         className={`relative flex h-full w-full max-w-[450px] items-center justify-center transition-opacity duration-500 ease-in-out ${isFadingOut ? "opacity-0" : "opacity-100"} ${isFadingOut ? "" : "pointer-events-auto"} `}

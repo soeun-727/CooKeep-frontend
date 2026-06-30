@@ -55,10 +55,10 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
                 onClick={() => handleQuickSelect(storage)}
                 className={`typo-body h-11 w-[361px] rounded-[10px] font-bold transition-all ${
                   isInitialValue
-                    ? "cursor-not-allowed bg-gray-200 text-zinc-500"
+                    ? "bg-gray-200 text-gray-50 cursor-not-allowed"
                     : isNewlySelected
-                      ? "border border-[var(--color-green-deep)] bg-[var(--color-green-light)] text-black"
-                      : "border border-[#D1D1D1] text-zinc-500 active:bg-zinc-200"
+                      ? "bg-green-light text-black border border-green-deep"
+                      : "border border-gray-10 text-gray-50 active:bg-gray-30"
                 }`}
               >
                 <div className="flex justify-center gap-[6px]">

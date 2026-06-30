@@ -1,0 +1,106 @@
+html {
+  font-family: var(--font-sans);
+  -webkit-text-size-adjust: 100%;
+}
+
+body,
+#root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .typo-display {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .typo-h1 {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .typo-h2 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .typo-h3 {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+  }
+
+  .typo-l {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .typo-l-strong {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .typo-m {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .typo-m-strong {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .typo-body {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .typo-body2 {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .typo-label {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .typo-caption {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .typo-caption-strong {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .typo-button {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .typo-result-title {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 36px;
+    color: #202020;
+    text-align: center;
+  }
+}

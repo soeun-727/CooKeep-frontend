@@ -50,13 +50,14 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
                   key={unit}
                   disabled={isInitialValue}
                   onClick={() => handleQuickSelect(unit)}
-                  className={`typo-body h-11 w-[361px] rounded-[10px] !font-bold transition-all ${
-                    isInitialValue
-                      ? "cursor-not-allowed bg-gray-200 text-zinc-500"
-                      : isNewlySelected
-                        ? "border border-[var(--color-green-deep)] bg-[var(--color-green-light)] text-black"
-                        : "border border-[#D1D1D1] text-zinc-500 active:bg-zinc-200"
-                  }`}
+                  className={`h-11 w-[361px] rounded-[10px] typo-body !font-bold transition-all
+                ${
+                  isInitialValue
+                    ? "bg-gray-200 text-gray-50 cursor-not-allowed"
+                    : isNewlySelected
+                      ? "bg-green-light text-black border border-green-deep"
+                      : "border border-gray-10 text-gray-50 active:bg-gray-30"
+                }`}
                 >
                   {unit}
                 </button>
@@ -70,7 +71,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
               size="S"
               variant="black"
               onClick={() => setIsCustomInput(true)}
-              className="border border-[#D1D1D1] !bg-white text-zinc-500"
+              className="!bg-gray-0 border border-gray-10 text-gray-50"
             >
               직접 입력하기
             </Button>

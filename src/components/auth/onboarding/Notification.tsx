@@ -43,34 +43,29 @@ export default function Notification({ onNext }: NotificationProps) {
     setIsLoading(true);
     try {
       if (isAgreed) {
-        // 1️⃣ 브라우저 푸시 구독을 먼저 시도합니다.
         const isSuccess = await registerPushNotification();
 
         if (isSuccess) {
-          // 구독 성공 시에만 서버에 동의(true) 상태를 저장합니다.
           await updatePushConsent(true);
         } else {
-          // 권한 거절 등으로 실패 시, 서버에는 비동의(false) 상태로 저장하거나
-          // 알림을 띄워 사용자에게 알립니다.
           await updatePushConsent(false);
           alert(
             "알림 권한이 거부되었습니다. 원활한 이용을 위해 브라우저 설정을 확인해주세요.",
           );
         }
       } else {
-        // 2️⃣ 사용자가 '괜찮아요'를 누른 경우 바로 비동의 처리
         await updatePushConsent(false);
       }
     } catch (error) {
       console.error("알림 설정 중 오류 발생:", error);
     } finally {
       setIsLoading(false);
-      onNext(); // 성공하든 실패하든 다음 온보딩 단계로 이동
+      onNext();
     }
   };
 
   return (
-    <div className="relative mx-auto flex h-screen w-[361px] flex-col overflow-hidden bg-[#fafafa]">
+    <div className="flex flex-col w-[361px] mx-auto h-screen overflow-hidden relative bg-background">
       <div className="mt-[107px] shrink-0">
         <h1 className="typo-h1 text-left">
           쿠킵 루틴, 알림으로 받아보시겠어요?
@@ -90,8 +85,8 @@ export default function Notification({ onNext }: NotificationProps) {
           height: "calc(100dvh - 500px)",
         }}
       >
-        <div className="absolute top-0 left-0 z-10 h-12 w-full bg-gradient-to-b from-[#fafafa] to-transparent" />
-        <div className="animate-roll flex flex-col gap-[6px]">
+        <div className="absolute top-0 left-0 w-full h-12 bg-blur-to-t z-10" />
+        <div className="flex flex-col gap-[6px] animate-roll">
           {INFINITE_DATA.map((data, index) => (
             <ExampleNotification
               key={index}
@@ -100,10 +95,10 @@ export default function Notification({ onNext }: NotificationProps) {
             />
           ))}
         </div>
-        <div className="absolute bottom-0 left-0 z-10 h-12 w-full bg-gradient-to-t from-[#fafafa] to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-12 bg-blur-to-b z-10" />
       </div>
 
-      <div className="fixed bottom-0 left-1/2 z-50 w-[361px] -translate-x-1/2 bg-[#fafafa] pb-[34px]">
+      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[361px] bg-background z-50 pb-[34px]">
         <div className="flex justify-end">
           <img src={char} className="mb-[26.5px] w-[95px]" alt="character" />
         </div>

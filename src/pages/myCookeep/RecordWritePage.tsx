@@ -84,54 +84,6 @@ export default function RecordWritePage() {
     alwaysKeepResolution: false,
   };
 
-  // const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const files = e.target.files;
-  //   if (!files || files.length === 0 || isUploading) return;
-
-  //   const file = files[0];
-
-  //   // 초고용량 방어
-  //   if (file.size > 15 * 1024 * 1024) {
-  //     alert("이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.");
-  //     return;
-  //   }
-
-  //   setIsUploading(true);
-
-  //   try {
-  //     // 1️⃣ 이미지 압축
-  //     const compressedBlob = await imageCompression(file, compressionOptions);
-
-  //     const compressedFile = new File([compressedBlob], file.name, {
-  //       type: compressedBlob.type,
-  //     });
-
-  //     // 2️⃣ 새 이미지 업로드
-  //     const response = await uploadImage(compressedFile);
-  //     const newUrl = response.data.imageUrl;
-
-  //     // 3️⃣ 기존 이미지 삭제 (업로드 성공 후!)
-  //     if (image?.url) {
-  //       try {
-  //         await deleteImage(image.url);
-  //       } catch (err) {
-  //         console.warn("기존 이미지 삭제 실패 (무시)", err);
-  //       }
-  //     }
-
-  //     // 4️⃣ 스토어 교체
-  //     setImage({ url: newUrl });
-  //   } catch (error) {
-  //     console.error("이미지 업로드 에러:", error);
-  //     alert("이미지 업로드 중 오류가 발생했습니다.");
-  //   } finally {
-  //     setIsUploading(false);
-  //     if (e.target) e.target.value = "";
-  //   }
-  // };
-
-  // RecordWritePage.tsx
-
   const handleUpload = async () => {
     if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
       alert("레시피 정보가 로드되지 않았습니다.");
@@ -156,24 +108,17 @@ export default function RecordWritePage() {
           String(response.status) === "200" ||
           response.status === "OK")
       ) {
-        // 핵심: navigate 전에 ref를 true로 설정
-        // isUploadedRef.current = true;
-
         const rewards: string[] = [];
-        // 우선순위 A-3: 주간 목표 달성 (먼저 큐에 넣기)
         if (response.data?.weeklyGoalAchieved) {
           rewards.push("WEEKLY_GOAL");
         }
-        // 우선순위 C-1: 레시피 기록 보상 (항상)
         rewards.push("RECIPE_RECORD");
-        // 우선순위 C-2: 사진 있으면 추가
         if (image?.url) {
           rewards.push("PHOTO_UPLOAD");
         }
 
         setRewardQueue(rewards);
         setIsSuccess(true);
-        // isUploadedRef.current = true; ← 여기서 아래로 올렸음
       } else {
         alert("업로드에 실패했습니다.");
       }
@@ -192,15 +137,15 @@ export default function RecordWritePage() {
   if (!recipeDetail) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-b-2 border-[#32E389]"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green"></div>
       </div>
     );
   }
 
   return (
     <>
-      <div className="no-scrollbar flex h-full flex-1 flex-col overflow-y-auto bg-[#FAFAFA]">
-        <div className="sticky top-0 z-[120] shrink-0 bg-[#FAFAFA]">
+      <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-background">
+        <div className="sticky top-0 z-[120] bg-background shrink-0">
           <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
         </div>
 
@@ -228,13 +173,6 @@ export default function RecordWritePage() {
                   });
                   const response = await uploadImage(compressedFile);
                   const newUrl = response.data.imageUrl;
-                  // if (image?.url) {
-                  //   try {
-                  //     await deleteImage(image.url);
-                  //   } catch (err) {
-                  //     console.warn("기존 이미지 삭제 실패", err);
-                  //   }
-                  // }
                   setImage({ url: newUrl });
                 } catch {
                   alert("이미지 업로드 중 오류가 발생했습니다.");
@@ -244,13 +182,6 @@ export default function RecordWritePage() {
               }}
               onChangeTitle={setTitle}
               onDeleteImage={async () => {
-                // if (image?.url) {
-                //   try {
-                //     await deleteImage(image.url);
-                //   } catch (err) {
-                //     console.warn("이미지 삭제 실패", err);
-                //   }
-                // }
                 setImage(null);
               }}
             />
@@ -284,20 +215,20 @@ export default function RecordWritePage() {
               onChange={e => setMemo(e.target.value.slice(0, 500))}
               onInput={handleMemoInput}
               placeholder="글자 수 최대 500자"
-              className="typo-body w-full resize-none overflow-hidden rounded-[10px] bg-white px-[10px] py-3 text-center text-[#202020] outline-none placeholder:text-[#7D7D7D]"
+              className="w-full rounded-[10px] bg-gray-0 px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none overflow-hidden"
               rows={1}
             />
           </div>
 
           <div className="animate-float-bubble relative mt-[15px] flex shrink-0 justify-center">
             <div
-              className="relative z-10 inline-flex items-center justify-center rounded-[3px] bg-white px-[16px] py-[9px] text-center text-[12px] font-medium text-[#32E389] shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+              className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-gray-0 text-green text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
               style={{ width: 206, height: 36 }}
             >
               나만의 팁 작성하기
             </div>
             <div
-              className="absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45 bg-white"
+              className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-gray-0 rotate-45 z-0"
               style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
             />
           </div>
@@ -306,30 +237,30 @@ export default function RecordWritePage() {
             <div className="flex w-full justify-center gap-[9px]">
               <button
                 onClick={() => setIsPublic(false)}
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
                   <img
                     src={privateIcon}
                     alt="private"
                     className="h-[24px] w-[24px]"
                   />
                 </div>
-                <span className="typo-label text-[#202020]">나만 보기</span>
+                <span className="typo-label text-gray-80">나만 보기</span>
               </button>
 
               <button
                 onClick={() => setIsPublic(true)}
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-[#96E8BE]" : "bg-[#EBEBEB]"}`}
+                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-white">
+                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
                   <img
                     src={publicIcon}
                     alt="public"
                     className="h-[36px] w-[36px]"
                   />
                 </div>
-                <span className="typo-label text-[#202020]">
+                <span className="typo-label text-gray-80">
                   쿠킵스에 공개하기
                 </span>
               </button>
@@ -339,7 +270,7 @@ export default function RecordWritePage() {
               size="L"
               variant="black"
               disabled={isPublic === null || isUploading}
-              className={`${isPublic === null ? "text-white" : "!text-[#32E389]"}`}
+              className={`${isPublic === null ? "text-gray-0" : "!text-green"}`}
               onClick={handleUpload}
             >
               레시피 업로드하기

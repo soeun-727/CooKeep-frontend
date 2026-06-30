@@ -92,11 +92,11 @@ export default function Custom({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
+    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-black-overlay">
       <div className="absolute inset-0" onClick={onClose}></div>
 
-      <div className="relative flex h-[316px] w-[280px] flex-col items-center rounded-[10px] bg-white px-7 py-[35px] shadow-xl">
-        <div className="mb-4 flex w-full items-center justify-center gap-1">
+      <div className="relative w-[280px] h-[316px] bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[35px]">
+        <div className="w-full flex items-center justify-center gap-1 mb-4">
           {isEditing ? (
             <input
               ref={inputRef}
@@ -104,12 +104,12 @@ export default function Custom({
               value={localName}
               onChange={e => setLocalName(e.target.value)}
               onBlur={finishEditing}
-              onKeyDown={e => e.key === "Enter" && finishEditing()}
-              className="typo-body w-[180px] border-b border-zinc-300 text-center font-bold text-neutral-900 outline-none"
+              onKeyDown={(e) => e.key === "Enter" && finishEditing()}
+              className="typo-body w-[180px] text-center font-bold text-gray-80 border-b border-gray-30 outline-none"
             />
           ) : (
-            <div className="group flex items-center justify-center gap-1">
-              <h2 className="typo-body max-w-[180px] truncate text-center font-bold break-all text-neutral-900">
+            <div className="flex items-center justify-center gap-1 group">
+              <h2 className="typo-body max-w-[180px] text-center font-bold text-gray-80 break-all truncate">
                 '{localName}'
               </h2>
               <button
@@ -122,7 +122,7 @@ export default function Custom({
           )}
         </div>
 
-        <p className="mb-4 text-center text-[12px] leading-none text-zinc-500">
+        <p className="text-[12px] text-gray-50 mb-4 leading-none text-center">
           '{localName}'의 카테고리를 선택해주세요
         </p>
 
@@ -133,11 +133,12 @@ export default function Custom({
               type="button"
               disabled={isLoading}
               onClick={() => setSelectedCategoryId(cat.id)}
-              className={`flex h-12 w-12 flex-col items-center gap-[2px] rounded-[6px] pt-2 transition-all ${
-                selectedCategoryId === cat.id
-                  ? "bg-gray-100 ring-1 ring-gray-300 ring-inset"
-                  : "bg-white hover:bg-gray-50"
-              } ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
+              className={`flex flex-col items-center pt-2 rounded-[6px] transition-all w-12 h-12 gap-[2px]
+                ${
+                  selectedCategoryId === cat.id
+                    ? "bg-gray-100 ring-1 ring-inset ring-gray-300"
+                    : "bg-gray-0 hover:bg-gray-50"
+                } ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
             >
               <div className="flex w-[18px] items-center justify-center">
                 <img
@@ -146,7 +147,7 @@ export default function Custom({
                   className="object-contain"
                 />
               </div>
-              <span className="w-[26px] truncate text-[10px] leading-none font-semibold whitespace-nowrap text-zinc-500">
+              <span className="w-[26px] truncate text-[10px] whitespace-nowrap leading-none font-semibold text-gray-50">
                 {cat.name}
               </span>
             </button>
@@ -156,11 +157,12 @@ export default function Custom({
         <button
           onClick={handleConfirm}
           disabled={selectedCategoryId === null || isLoading}
-          className={`typo-label h-11 w-full rounded-[10px] text-white transition-colors ${
-            selectedCategoryId !== null && !isLoading
-              ? "bg-[var(--color-green-deep)]"
-              : "cursor-not-allowed bg-zinc-300"
-          }`}
+          className={`typo-label w-full h-11 text-gray-0 rounded-[10px] transition-colors
+            ${
+              selectedCategoryId !== null && !isLoading
+                ? "bg-green-deep"
+                : "bg-gray-30 cursor-not-allowed"
+            }`}
         >
           {confirmText}
         </button>

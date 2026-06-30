@@ -42,10 +42,10 @@ export default function ProfileEditModal({
       {/* 모달 본체 */}
       <div
         key={selectedId ?? "modal"}
-        className="animate-slide-up relative flex w-full max-w-[450px] flex-col rounded-t-[30px] bg-white px-4 py-[19px]"
+        className="relative w-full max-w-[450px] bg-gray-0 rounded-t-[30px] py-[19px] px-4 animate-slide-up flex flex-col"
       >
-        <div className="flex h-10 items-center justify-center p-2">
-          <h3 className="typo-body text-neutral-900">
+        <div className="flex justify-center items-center h-10 p-2">
+          <h3 className="typo-body text-gray-80">
             프로필로 설정할 식물을 선택해주세요
           </h3>
         </div>
@@ -79,11 +79,14 @@ export default function ProfileEditModal({
 
                 <button
                   onClick={() => setSelectedId(plant.userPlantId)}
-                  className={`relative flex aspect-square w-full items-center justify-center rounded-full transition-all ${
-                    selectedId === plant.userPlantId
-                      ? "border-2 border-(--color-green)"
-                      : "border-2 border-transparent"
-                  } `}
+                  className={`
+                      relative w-full aspect-square rounded-full transition-all flex items-center justify-center
+                      ${
+                        selectedId === plant.userPlantId
+                          ? "border-2 border-green"
+                          : "border-2 border-transparent"
+                      }
+                    `}
                 >
                   <div className="h-full w-full rounded-full">
                     <img

@@ -41,12 +41,12 @@ export default function GuestRecipeLoading({
   }, [step, onComplete, onNext, messages.length]);
 
   return (
-    <div className="flex flex-col items-center bg-[#FAFAFA] pt-[139px] text-center">
+    <div className="flex flex-col items-center pt-[139px] text-center bg-background">
       <RecipeLoadingSpinner />
 
       <div className="mb-[49px] flex w-[361px] flex-col items-center gap-2">
         <h1 className="typo-result-title">오늘의 요리 준비 중...</h1>
-        <p className="typo-button font-bold text-[#1FC16F]">
+        <p className="typo-button text-green-deep font-bold">
           나에게 딱 맞는 레시피를 찾고 있어요
         </p>
       </div>

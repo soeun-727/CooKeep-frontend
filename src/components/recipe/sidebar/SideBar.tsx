@@ -118,7 +118,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     <>
       {/* 1. 배경 오버레이 */}
       <div
-        className={`fixed inset-0 z-[120] bg-[#11111160] transition-opacity duration-300 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
+        className={`fixed inset-0 z-[120] bg-black-overlay
+          transition-opacity duration-300
+          ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
         onClick={onClose}
       />
 
@@ -133,7 +135,25 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               <div className="no-scrollbar flex-1 overflow-y-auto px-[26px] py-[35px]">
                 <div className="w-[290px]">
                   <div
-                    className={`rounded-[6px] bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_>_div]:!w-full [&_input]:border-none [&_input]:bg-white [&_input]:text-[14px] [&_input]:leading-[20px] [&_input]:font-medium [&_input]:text-[#C3C3C3] [&_input]:outline-none [&_input::placeholder]:text-[#C3C3C3] [&_p]:hidden`}
+                    className={`
+    rounded-[6px]
+    bg-gray-0
+    shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
+    
+    [&_>_div]:!w-full
+    [&_p]:hidden
+    
+    [&_input]:outline-none
+    [&_input]:border-none
+    [&_input]:bg-gray-0
+    
+    [&_input]:text-gray-30
+    [&_input]:text-[14px]
+    [&_input]:font-medium
+    [&_input]:leading-[20px]
+    
+    [&_input::placeholder]:text-gray-30
+  `}
                   >
                     <TextField
                       value={searchTerm}
