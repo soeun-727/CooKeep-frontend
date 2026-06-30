@@ -1,21 +1,22 @@
 // src/pages/recipe/RecipeSelectPage.tsx
 import { useNavigate } from "react-router-dom";
 
-import Button from "@/components/ui/Button";
-import BackHeader from "@/components/ui/BackHeader";
-import Search from "@/components/fridge/features/Search";
-import Sort from "@/components/fridge/features/Sort";
-import Storage from "@/components/fridge/main/Storage";
-import IngredientGrid from "@/components/fridge/items/IngredientGrid";
-import FloatingNotice from "@/components/recipe/main/FloatingNotice";
-
 import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
-import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
-import fridgeIcon from "@/assets/fridge/fridge.svg";
 import freezerIcon from "@/assets/fridge/freezer.svg";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
 import pantryIcon from "@/assets/fridge/pantry.svg";
+
+import Search from "@/components/fridge/features/Search";
+import Sort from "@/components/fridge/features/Sort";
+import IngredientGrid from "@/components/fridge/items/IngredientGrid";
+import Storage from "@/components/fridge/main/Storage";
+import FloatingNotice from "@/components/recipe/main/FloatingNotice";
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+
+import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
 export default function RecipeSelectPage() {
   const navigate = useNavigate();
@@ -32,8 +33,8 @@ export default function RecipeSelectPage() {
   const { sortedIngredients } = useSortedIngredients();
 
   const filteredIngredients = sortedIngredients
-    .filter((item) => (viewCategory ? item.category === viewCategory : true))
-    .filter((item) =>
+    .filter(item => (viewCategory ? item.category === viewCategory : true))
+    .filter(item =>
       searchTerm
         ? item.name.toLowerCase().includes(searchTerm.toLowerCase())
         : true,
@@ -43,7 +44,7 @@ export default function RecipeSelectPage() {
   const { setSelectedIngredients } = useRecipeFlowStore();
 
   const handleConfirm = () => {
-    const selectedIngredients = ingredients.filter((item) =>
+    const selectedIngredients = ingredients.filter(item =>
       selectedIds.includes(item.id),
     );
 
@@ -89,17 +90,17 @@ export default function RecipeSelectPage() {
             <Storage
               category="냉장"
               image={fridgeIcon}
-              ingredients={ingredients.filter((i) => i.category === "냉장")}
+              ingredients={ingredients.filter(i => i.category === "냉장")}
             />
             <Storage
               category="냉동"
               image={freezerIcon}
-              ingredients={ingredients.filter((i) => i.category === "냉동")}
+              ingredients={ingredients.filter(i => i.category === "냉동")}
             />
             <Storage
               category="상온"
               image={pantryIcon}
-              ingredients={ingredients.filter((i) => i.category === "상온")}
+              ingredients={ingredients.filter(i => i.category === "상온")}
             />
           </>
         )}

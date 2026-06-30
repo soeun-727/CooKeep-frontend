@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+
 import fullLikeIcon from "@/assets/cookeeps/main/full_like_cookeeps.svg";
 
 interface RecipeRankCardProps {

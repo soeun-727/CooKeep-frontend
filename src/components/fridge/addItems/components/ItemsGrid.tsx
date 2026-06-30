@@ -1,13 +1,16 @@
-import Item from "./Item";
-import character from "@/assets/character/confused_char.svg";
+import { useState } from "react";
+
+import { deleteCustomIngredient } from "@/api/ingredient";
 import {
   AddSourceItem,
   useAddIngredientStore,
 } from "@/stores/useAddIngredientStore";
-import { deleteCustomIngredient } from "@/api/ingredient";
-import { useState } from "react";
-import DeleteConfirmModal from "../../modals/DeleteConfirmModal";
 import { AxiosError } from "axios";
+
+import character from "@/assets/character/confused_char.svg";
+
+import DeleteConfirmModal from "../../modals/DeleteConfirmModal";
+import Item from "./Item";
 
 interface ItemsGridProps {
   items: AddSourceItem[];
@@ -110,14 +113,14 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
       <div className="flex w-full flex-col items-center justify-center pt-[10px] pb-25">
         <div className="flex w-[294px] flex-col">
           <div className="grid grid-cols-3 justify-items-center gap-3">
-            {items.map((item) => (
+            {items.map(item => (
               <Item
                 key={item.id}
                 name={item.name}
                 image={item.image}
                 isCustom={item.type === "CUSTOM"}
                 isSelected={selectedItems.some(
-                  (i) => String(i.id) === String(item.id),
+                  i => String(i.id) === String(item.id),
                 )}
                 onSelect={() => toggleItem(item)}
                 onDelete={() => handleItemDeleteClick(item.id, item.name)}

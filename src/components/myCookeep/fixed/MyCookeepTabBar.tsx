@@ -34,7 +34,7 @@ export default function MyCookeepTabBar({
   };
   return (
     <div className="flex h-13 w-full items-center justify-around bg-white">
-      {tabs.map((tab) => {
+      {tabs.map(tab => {
         const isActive = activeTab === tab.id;
         return (
           <button

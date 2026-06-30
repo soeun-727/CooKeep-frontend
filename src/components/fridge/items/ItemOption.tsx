@@ -1,18 +1,21 @@
 import { useState } from "react";
-import eaten from "@/assets/fridge/eaten.svg";
-import thrown from "@/assets/fridge/thrown.svg";
-import { useIngredientStore } from "@/stores/useIngredientStore";
-import DoublecheckModal from "@/components/ui/DoublecheckModal";
-import AlertModal from "@/components/ui/AlertModal";
 import { useNavigate } from "react-router-dom";
+
+import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRewardStore } from "@/stores/useRewardStore";
+
+import eaten from "@/assets/fridge/eaten.svg";
+import thrown from "@/assets/fridge/thrown.svg";
+
+import AlertModal from "@/components/ui/AlertModal";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
 
 export default function ItemOption() {
   const navigate = useNavigate();
   const { selectedIds, ingredients, deleteSelected } = useIngredientStore();
   const { setSelectedIngredients } = useRecipeFlowStore();
-  const enqueue = useRewardStore((s) => s.enqueue);
+  const enqueue = useRewardStore(s => s.enqueue);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [modalType, setModalType] = useState<"eaten" | "thrown">("eaten");
@@ -24,7 +27,7 @@ export default function ItemOption() {
     return null;
   }
   const firstItemName =
-    ingredients.find((item) => item.id === selectedIds[0])?.name ?? "재료";
+    ingredients.find(item => item.id === selectedIds[0])?.name ?? "재료";
 
   const modalTitle =
     selectedIds.length === 1
@@ -37,7 +40,7 @@ export default function ItemOption() {
   };
 
   const handleRecipeRecommend = () => {
-    const selectedIngredients = ingredients.filter((item) =>
+    const selectedIngredients = ingredients.filter(item =>
       selectedIds.includes(item.id),
     );
     setSelectedIngredients(selectedIngredients);

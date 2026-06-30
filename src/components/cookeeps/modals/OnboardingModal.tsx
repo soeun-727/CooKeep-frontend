@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
-import Button from "@/components/ui/Button";
+
 import {
-  cookingChar,
-  earth,
-  plant,
-  tree,
-  seedling,
-  seeds,
-  disabledLeft,
-  disabledRight,
   abledLeft,
   abledRight,
+  cookingChar,
+  disabledLeft,
+  disabledRight,
+  earth,
+  plant,
+  seedling,
+  seeds,
+  tree,
 } from "@/assets/index";
+
+import Button from "@/components/ui/Button";
 
 interface OnboardingModalProps {
   isOpen: boolean;
@@ -71,11 +73,11 @@ export default function OnboardingModal({
   const isLastStep = currentIndex === ONBOARDING_DATA.length - 1;
 
   const handlePrev = () => {
-    if (!isFirstStep) setCurrentIndex((prev) => prev - 1);
+    if (!isFirstStep) setCurrentIndex(prev => prev - 1);
   };
 
   const handleNext = () => {
-    if (!isLastStep) setCurrentIndex((prev) => prev + 1);
+    if (!isLastStep) setCurrentIndex(prev => prev + 1);
   };
 
   return (
@@ -86,7 +88,7 @@ export default function OnboardingModal({
       {/* Modal Container */}
       <div
         className="relative box-border flex max-h-[267px] min-h-[246px] w-[258px] max-w-[258px] min-w-[258px] flex-col gap-3 overflow-hidden rounded-[10px] bg-white px-7 py-[25px] shadow-xl"
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
       >
         {/* 1. Slider Content (상하 중앙 정렬을 위해 flex-1 사용) */}
         <div className="flex w-full flex-1 items-center overflow-hidden">
@@ -94,7 +96,7 @@ export default function OnboardingModal({
             className="flex w-full transition-transform duration-300 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {ONBOARDING_DATA.map((item) => (
+            {ONBOARDING_DATA.map(item => (
               <div
                 key={item.id}
                 className="flex min-w-full shrink-0 flex-col items-center justify-center gap-4"

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import editIcon from "@/assets/recipe/rename.svg";
 
 interface InputModalProps {
@@ -53,7 +54,7 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
               ref={inputRef}
               type="text"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              onChange={e => setInputValue(e.target.value)}
               onBlur={() => setIsEditing(false)}
               onKeyDown={handleKeyDown}
               placeholder="직접 입력"

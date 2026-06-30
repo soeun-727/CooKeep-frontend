@@ -1,11 +1,15 @@
-import { useNavigate } from "react-router-dom";
 import { memo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { DailyRecipe } from "@/api/myRecipe";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+
 import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
 import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
-import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
-import SelectViewTypeModal from "./SelectViewTypeModal";
-import { DailyRecipe } from "@/api/myRecipe";
 import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
+
+import SelectViewTypeModal from "./SelectViewTypeModal";
+
 interface RecordCardProps {
   record: DailyRecipe;
 }
@@ -14,9 +18,9 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
   const navigate = useNavigate();
   const { updateRecordVisibility } = useCookeepRecordStore();
   const record =
-    useCookeepRecordStore((state) =>
+    useCookeepRecordStore(state =>
       state.records.find(
-        (r) => String(r.dailyRecipeId) === String(initialRecord.dailyRecipeId),
+        r => String(r.dailyRecipeId) === String(initialRecord.dailyRecipeId),
       ),
     ) || initialRecord;
   const [isOptionOpen, setIsOptionOpen] = useState(false);
@@ -27,7 +31,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
   };
 
   const toggleOption = () => {
-    setIsOptionOpen((prev) => !prev);
+    setIsOptionOpen(prev => !prev);
   };
 
   // 모달
@@ -88,7 +92,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
           <div className="absolute right-2 bottom-2 flex flex-col items-center">
             {/* 옵션 버튼 (위에서 쑥 내려옴) */}
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 handleTryChangeVisibility(!isPublic);
               }}
@@ -107,7 +111,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
 
             {/* 현재 상태 버튼 */}
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 toggleOption();
               }}

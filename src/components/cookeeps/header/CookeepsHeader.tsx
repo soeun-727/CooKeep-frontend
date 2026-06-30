@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import PlantShortcutTooltip from "./PlantShortcutTooltip";
-import settings from "@/assets/cookeeps/main/settings_cookeeps.svg";
-import Logo from "@/assets/cookeeps/main/logo_cookeeps_black.svg";
-import cookieIcon from "@/assets/cookeeps/main/cookeeps_cookie.svg";
-import bookIcon from "@/assets/cookeeps/main/cookeeps_book.svg";
+
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import bookIcon from "@/assets/cookeeps/main/cookeeps_book.svg";
+import cookieIcon from "@/assets/cookeeps/main/cookeeps_cookie.svg";
+import Logo from "@/assets/cookeeps/main/logo_cookeeps_black.svg";
+import settings from "@/assets/cookeeps/main/settings_cookeeps.svg";
+
+import PlantShortcutTooltip from "./PlantShortcutTooltip";
 
 export default function CookeepsHeader() {
   const navigate = useNavigate();
   const location = useLocation();
-  const cookie = useCookeepsStore((s) => s.cookie);
+  const cookie = useCookeepsStore(s => s.cookie);
 
   const TOOLTIP_KEY = "cookeepsPlantShortcutSeen";
 

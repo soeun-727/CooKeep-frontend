@@ -1,14 +1,16 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import { changePassword, verifyCurrentPassword } from "@/api/user";
 import axios from "axios";
-import TextField from "@/components/ui/TextField";
-import Button from "@/components/ui/Button";
-import { verifyCurrentPassword, changePassword } from "@/api/user";
 
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
-import openpwImage from "@/assets/signup/openpw.svg";
 import checkIcon from "@/assets/signup/check.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 
 export default function EditPasswordPage() {
   const navigate = useNavigate();
@@ -129,7 +131,7 @@ export default function EditPasswordPage() {
           <TextField
             type={showCurrentPassword ? "text" : "password"}
             value={currentPassword}
-            onChange={(value) => {
+            onChange={value => {
               setCurrentPassword(value);
               setIsCurrentPwValid(null);
               setError(undefined);

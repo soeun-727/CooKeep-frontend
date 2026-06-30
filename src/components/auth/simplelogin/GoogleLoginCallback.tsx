@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { useAuthStore } from "@/stores/useAuthStore";
+
 import { loadingChar } from "@/assets/index";
 
 export default function GoogleLoginCallback() {
   const navigate = useNavigate();
-  const loginSocial = useAuthStore((state) => state.loginSocial);
+  const loginSocial = useAuthStore(state => state.loginSocial);
   const hasCalledAPI = useRef(false);
 
   useEffect(() => {

@@ -1,10 +1,15 @@
 import React from "react";
-import Button from "@/components/ui/Button";
-import BackHeader from "@/components/ui/BackHeader";
-import type { AgreementItem } from "@/constants/agreements";
 import ReactMarkdown from "react-markdown";
+
 import remarkGfm from "remark-gfm";
+
 import { blankCheck, grayCheck } from "@/assets/index";
+
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+
+import type { AgreementItem } from "@/constants/agreements";
+
 interface Agreements {
   terms: boolean;
   privacy: boolean;
@@ -49,7 +54,7 @@ export default function AgreementPage({
                 <input
                   type="checkbox"
                   checked={isChecked}
-                  onChange={(e) =>
+                  onChange={e =>
                     updateAgreements({ [agreement.key]: e.target.checked })
                   }
                   className="peer absolute inset-0 z-10 h-full w-full cursor-default appearance-none"

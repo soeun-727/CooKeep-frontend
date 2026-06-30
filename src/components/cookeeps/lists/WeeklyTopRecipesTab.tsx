@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { getWeeklyRanking, RecipeRankItem } from "@/api/cookeeps";
-import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
-import { likeGray } from "@/assets";
-// import LikeGray from "@/assets/cookeeps/like.svg?react";
 import { useNavigate } from "react-router-dom";
+
+import { RecipeRankItem, getWeeklyRanking } from "@/api/cookeeps";
+import { likeGray } from "@/assets";
+
+import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 
 export default function WeeklyTopRecipesTab() {
   const [recipes, setRecipes] = useState<RecipeRankItem[]>([]);
@@ -39,7 +40,7 @@ export default function WeeklyTopRecipesTab() {
           </div>
         ) : (
           // 레시피 있을 때
-          top3.map((item) => (
+          top3.map(item => (
             <div
               key={item.dailyRecipeId}
               onClick={() =>
@@ -64,7 +65,6 @@ export default function WeeklyTopRecipesTab() {
 
                   <div className="flex items-center gap-[4px]">
                     <img src={likeGray} className="h-[18px] w-[18px]" />
-                    {/* <LikeGray className="w-[18px] h-[18px]" /> */}
                     <span className="text-[12px] text-[#7D7D7D]">
                       {item.likeCount}
                     </span>

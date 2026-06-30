@@ -1,5 +1,6 @@
-import api from "./axios";
 import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
+
+import api from "./axios";
 
 // --- 공통 타입 정의 ---
 export type CategoryType =
@@ -186,7 +187,7 @@ export const registerCustomIngredient = (data: CustomIngredientRequest) => {
 
 /** [POST] 식재료 냉장고 최종 추가 (Bulk) */
 export const addIngredients = (data: AddIngredientRequest) => {
-  const sanitizedIngredients = data.ingredients.map((ing) => {
+  const sanitizedIngredients = data.ingredients.map(ing => {
     const item: any = {
       type: ing.type.toUpperCase(),
       referenceId: Number(ing.referenceId),

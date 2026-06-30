@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
 // import LoadingIcon from @/componentsassets/recipe/main/LoadingIcon.svg";
 import CheckIcon from "@/assets/recipe/check.svg";
-import StepMessage from "@/components/recipe/main/loading/StepMessage";
-import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
+import StepMessage from "@/components/recipe/main/loading/StepMessage";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();

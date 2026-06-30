@@ -1,4 +1,4 @@
-import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching";
+import { cleanupOutdatedCaches, precacheAndRoute } from "workbox-precaching";
 
 // 서비스 워커 타입 정의
 declare const self: ServiceWorkerGlobalScope & {
@@ -12,7 +12,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 console.log("서비스 워커 로드 완료: " + new Date().toLocaleTimeString());
 
 // 2. 푸시 이벤트 리스너 (하나로 통합)
-self.addEventListener("push", (event) => {
+self.addEventListener("push", event => {
   console.log("[Service Worker] 푸시 이벤트 수신됨!");
 
   let data = { title: "CooKeep", body: "", url: "/" };
@@ -40,12 +40,12 @@ self.addEventListener("push", (event) => {
 });
 
 // 3. 알림 클릭 리스너
-self.addEventListener("notificationclick", (event) => {
+self.addEventListener("notificationclick", event => {
   event.notification.close();
   const url = event.notification.data?.url ?? "/";
 
   event.waitUntil(
-    self.clients.matchAll({ type: "window" }).then((clientList) => {
+    self.clients.matchAll({ type: "window" }).then(clientList => {
       for (const client of clientList) {
         if (client.url.includes(url) && "focus" in client) {
           return (client as WindowClient).focus();
@@ -57,7 +57,7 @@ self.addEventListener("notificationclick", (event) => {
 });
 
 // 4. 업데이트 메시지 리스너 추가
-self.addEventListener("message", (event) => {
+self.addEventListener("message", event => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
   }

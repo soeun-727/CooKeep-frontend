@@ -1,4 +1,5 @@
 import Button from "@/components/ui/Button";
+
 interface FooterProps {
   onNext: () => void;
   onPrev: () => void;

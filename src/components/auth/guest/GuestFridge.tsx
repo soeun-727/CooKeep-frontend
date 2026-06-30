@@ -1,21 +1,24 @@
+import { useState } from "react";
+
 import { type Ingredient } from "@/stores/useIngredientStore";
-import header from "@/assets/guest/fridge_header.svg";
-import Storage from "@/components/fridge/main/Storage";
-import fridgeIcon from "@/assets/fridge/fridge.svg";
+
 import freezerIcon from "@/assets/fridge/freezer.svg";
+import fridgeIcon from "@/assets/fridge/fridge.svg";
 import pantryIcon from "@/assets/fridge/pantry.svg";
-import strawberry from "@/assets/guest/strawberry.svg";
-import egg from "@/assets/guest/egg.svg";
-import noodles from "@/assets/guest/noodles.svg";
 import bagel from "@/assets/guest/bagel.svg";
 import banana from "@/assets/guest/banana.svg";
-import milk from "@/assets/guest/milk.svg";
+import egg from "@/assets/guest/egg.svg";
 import FAB from "@/assets/guest/fab.svg";
 import notice from "@/assets/guest/fab_2.svg";
-import { useState } from "react";
-import Button from "@/components/ui/Button";
-import FloatingNotice from "@/components/recipe/main/FloatingNotice";
+import header from "@/assets/guest/fridge_header.svg";
+import milk from "@/assets/guest/milk.svg";
+import noodles from "@/assets/guest/noodles.svg";
+import strawberry from "@/assets/guest/strawberry.svg";
+
 import Item from "@/components/fridge/items/Item";
+import Storage from "@/components/fridge/main/Storage";
+import FloatingNotice from "@/components/recipe/main/FloatingNotice";
+import Button from "@/components/ui/Button";
 
 interface GuestFridgeProps {
   onNext: () => void;
@@ -94,12 +97,12 @@ export default function GuestFridge({
   ];
 
   const handleSelect = (id: number) => {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id],
+    setSelectedIds(prev =>
+      prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id],
     );
   };
 
-  const isAllRequiredSelected = REQUIRED_IDS.every((id) =>
+  const isAllRequiredSelected = REQUIRED_IDS.every(id =>
     selectedIds.includes(id),
   );
 
@@ -127,23 +130,17 @@ export default function GuestFridge({
             <Storage
               category="냉장"
               image={fridgeIcon}
-              ingredients={guestIngredients.filter(
-                (i) => i.category === "냉장",
-              )}
+              ingredients={guestIngredients.filter(i => i.category === "냉장")}
             />
             <Storage
               category="냉동"
               image={freezerIcon}
-              ingredients={guestIngredients.filter(
-                (i) => i.category === "냉동",
-              )}
+              ingredients={guestIngredients.filter(i => i.category === "냉동")}
             />
             <Storage
               category="상온"
               image={pantryIcon}
-              ingredients={guestIngredients.filter(
-                (i) => i.category === "상온",
-              )}
+              ingredients={guestIngredients.filter(i => i.category === "상온")}
             />
           </div>
 
@@ -202,7 +199,7 @@ export default function GuestFridge({
           )}
           <button
             className="relative translate-y-4"
-            onClick={(e) => {
+            onClick={e => {
               if (!isDimmed) {
                 setIsDimmed(true);
               } else {

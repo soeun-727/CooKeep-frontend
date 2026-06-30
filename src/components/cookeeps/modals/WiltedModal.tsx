@@ -1,5 +1,6 @@
-import Button from "@/components/ui/Button";
 import characterIcon from "@/assets/character/crying_char.svg";
+
+import Button from "@/components/ui/Button";
 
 interface WiltedModalProps {
   plant: string;
@@ -25,7 +26,7 @@ export default function WiltedModal({
       {/* modal */}
       <div
         className="relative flex w-[280px] flex-col items-center gap-7 rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]"
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
       >
         <div className="flex w-full flex-col items-center gap-7">
           <p className="typo-body text-center whitespace-pre-line text-[#202020]">

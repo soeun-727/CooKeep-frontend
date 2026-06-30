@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import TextField from "@/components/ui/TextField";
-import Button from "@/components/ui/Button";
-import { useEditPasswordAuthStore } from "@/stores/useEditPasswordAuthStore";
+
 import { getMyProfile } from "@/api/user";
+import { useEditPasswordAuthStore } from "@/stores/useEditPasswordAuthStore";
+import axios from "axios";
+
 import FindEmailAuthModal from "@/components/auth/find/FindEmailAuthModal";
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 
 export default function EditPasswordEmailSection() {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ export default function EditPasswordEmailSection() {
         setTimeLeft(0);
         setCodeError("인증번호가 만료되었습니다");
       } else {
-        setTimeLeft((prev) => prev - 1);
+        setTimeLeft(prev => prev - 1);
       }
     }, 1000);
     return () => clearTimeout(timer);
@@ -95,7 +97,7 @@ export default function EditPasswordEmailSection() {
       setCodeError("인증번호 재발송 횟수를 초과했습니다");
       return;
     }
-    setResendCount((prev) => prev + 1);
+    setResendCount(prev => prev + 1);
     await handleSendCode();
   };
 
@@ -154,7 +156,7 @@ export default function EditPasswordEmailSection() {
       <div className="mt-[5px]">
         <TextField
           value={code}
-          onChange={(v) => {
+          onChange={v => {
             const onlyNumber = v.replace(/[^0-9]/g, "");
             setCode(onlyNumber);
             if (codeError) setCodeError(undefined);

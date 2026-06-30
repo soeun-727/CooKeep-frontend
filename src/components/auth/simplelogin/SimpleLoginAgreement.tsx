@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "@/components/ui/BackHeader";
-import Button from "@/components/ui/Button";
-import illustration from "@/assets/character/default_char.svg";
-import shadow from "@/assets/character/char_shadow.svg";
-import AgreementList from "./AgreementList";
+
 import { updateAgreements } from "@/api/onboarding";
 import { registerPushNotification } from "@/api/push";
+
+import shadow from "@/assets/character/char_shadow.svg";
+import illustration from "@/assets/character/default_char.svg";
+
+import BackHeader from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+
+import AgreementList from "./AgreementList";
 
 export default function SimpleLoginAgreement() {
   const navigate = useNavigate();
@@ -62,8 +66,8 @@ export default function SimpleLoginAgreement() {
           <div className="flex items-center justify-center">
             <AgreementList
               agreements={agreements}
-              updateAgreements={(next) =>
-                setAgreements((prev) => ({ ...prev, ...next }))
+              updateAgreements={next =>
+                setAgreements(prev => ({ ...prev, ...next }))
               }
             />
           </div>

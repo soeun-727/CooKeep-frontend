@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
+
 import editIcon from "@/assets/fridge/edit_memo.svg";
+import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
 
 interface RecordWriteImageCardProps {
   title: string;
@@ -57,7 +58,7 @@ export default function RecordWriteImageCard({
             >
               <div
                 className="flex w-[208px] flex-col items-center gap-4"
-                onClick={(e) => e.stopPropagation()}
+                onClick={e => e.stopPropagation()}
               >
                 <p className="text-center text-[14px] font-medium text-white">
                   사진을 변경하거나 삭제할 수 있습니다
@@ -90,7 +91,7 @@ export default function RecordWriteImageCard({
             accept="image/*"
             ref={fileInputRef}
             hidden
-            onChange={(e) => {
+            onChange={e => {
               const file = e.target.files?.[0];
               if (file) onImageChange(file); // File 객체를 부모로 전달
               e.target.value = "";
@@ -106,9 +107,9 @@ export default function RecordWriteImageCard({
               <input
                 autoFocus
                 value={localTitle}
-                onChange={(e) => setLocalTitle(e.target.value)}
+                onChange={e => setLocalTitle(e.target.value)}
                 onBlur={handleBlur}
-                onKeyDown={(e) => e.key === "Enter" && handleBlur()}
+                onKeyDown={e => e.key === "Enter" && handleBlur()}
                 className="min-w-0 flex-1 text-[18px] leading-[26px] font-semibold outline-none"
               />
             ) : (
@@ -133,7 +134,7 @@ export default function RecordWriteImageCard({
         >
           <div
             className="flex w-[254px] flex-col items-center gap-4 rounded-[10px] bg-white px-[28px] py-[25px]"
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           >
             <p className="text-center text-[14px] font-medium text-[#202020]">
               사진을 삭제할까요?
