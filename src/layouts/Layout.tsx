@@ -1,4 +1,3 @@
-// src/components/layout/Layout.tsx
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
@@ -37,7 +36,7 @@ export default function Layout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col w-full h-dvh bg-background overflow-hidden">
+    <div className="bg-background flex h-dvh w-full flex-col overflow-hidden">
       <main
         className={`no-scrollbar flex flex-1 flex-col overflow-y-auto ${showTabBar ? "pb-[56px]" : ""} `}
       >

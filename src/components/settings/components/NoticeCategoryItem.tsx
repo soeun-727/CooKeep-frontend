@@ -1,4 +1,3 @@
-// src/pages/settings/components/NoticeCategoryItem.tsx
 import { useState } from "react";
 
 import arrowIcon from "@/assets/signup/arrowright.svg";
@@ -18,7 +17,7 @@ export default function NoticeCategoryItem({
 
   return (
     <div
-      className={`flex flex-col items-start self-stretch w-full rounded-[6px] border border-gray-10 ${
+      className={`border-gray-10 flex w-full flex-col items-start self-stretch rounded-[6px] border ${
         open ? "bg-gray-10" : "bg-gray-0"
       }`}
     >

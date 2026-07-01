@@ -5,7 +5,6 @@ import { resetPasswordApi } from "@/api/auth";
 import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import axios from "axios";
 
-// 아이콘
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
 import checkIcon from "@/assets/signup/check.svg";
@@ -147,7 +146,7 @@ export default function ResetPassword() {
       </div>
 
       {error && (
-        <p className="text-semantic-negative text-sm text-center">{error}</p>
+        <p className="text-semantic-negative text-center text-sm">{error}</p>
       )}
 
       <Button
@@ -156,16 +155,16 @@ export default function ResetPassword() {
         variant="black"
         disabled={!isFormValid}
         onClick={handleSubmit}
-        className="mt-[31px] !text-green disabled:!text-gray-0"
+        className="!text-green disabled:!text-gray-0 mt-[31px]"
       >
         비밀번호 재설정
       </Button>
 
       {/* AppLayout 영역 전체를 덮는 팝업 */}
       {isSuccess && (
-        <div className="absolute inset-0 z-50 flex justify-center bg-background">
-          <div className="w-[361px] flex flex-col items-center">
-            <p className="typo-h1 text-gray-80 text-center font-bold text-[28px] leading-[36px] pt-[241px] pb-[18px]">
+        <div className="bg-background absolute inset-0 z-50 flex justify-center">
+          <div className="flex w-[361px] flex-col items-center">
+            <p className="typo-h1 text-gray-80 pt-[241px] pb-[18px] text-center text-[28px] leading-[36px] font-bold">
               비밀번호 변경 완료
             </p>
             {/*중앙정렬 안하고 피그마 기준으로 pt-[241px] 이걸로 맞춤*/}
@@ -182,7 +181,7 @@ export default function ResetPassword() {
                 reset();
                 navigate("/login");
               }}
-              className="mt-[48px] !text-green"
+              className="!text-green mt-[48px]"
             >
               로그인하기
             </Button>

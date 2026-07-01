@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
-// import { useRecipeStore, type RecipeItem } from @/componentsstores/useRecipeStore";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
 
@@ -47,15 +46,7 @@ export default function RecordSelectPage() {
       <div
         key={recipe.aiRecipeId}
         onClick={() => setSelectedRecipeId(recipe.aiRecipeId)}
-        className={`
-        flex justify-between items-center
-        w-full
-        px-3 py-2
-        rounded-[6px]
-        cursor-pointer
-        transition
-        ${isSelected ? "bg-gray-10" : ""}
-      `}
+        className={`flex w-full cursor-pointer items-center justify-between rounded-[6px] px-3 py-2 transition ${isSelected ? "bg-gray-10" : ""} `}
       >
         {/* 왼쪽: 좋아요 + 제목 */}
         <div className="flex items-center gap-3">
@@ -65,12 +56,7 @@ export default function RecordSelectPage() {
             className="h-[15px] w-[18px] shrink-0"
           />
           <span
-            className={`
-    flex-1
-    truncate
-    typo-body2
-    ${isSelected ? "text-green-deep" : "text-gray-80"}
-  `}
+            className={`typo-body2 flex-1 truncate ${isSelected ? "text-green-deep" : "text-gray-80"} `}
           >
             {recipe.title}
           </span>
@@ -84,38 +70,23 @@ export default function RecordSelectPage() {
       {/* 헤더 */}
       <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
       {/* 검색 */}
-      <div className="w-full max-w-[390px] px-4 mt-1 pt-[54px]">
-        <div
-          className="
-      flex items-center justify-center
-      w-full
-      rounded-[6px]
-      bg-searchbar
-      shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-    "
-        >
-          <div className="flex items-center gap-2 w-full p-3">
+      <div className="mt-1 w-full max-w-[390px] px-4 pt-[54px]">
+        <div className="bg-searchbar flex w-full items-center justify-center rounded-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
+          <div className="flex w-full items-center gap-2 p-3">
             <input
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
               placeholder="레시피를 검색하세요"
-              className="
-          flex-1
-          h-[24px]
-          bg-transparent
-          outline-none
-          typo-body2
-          text-gray-50
-        "
+              className="typo-body2 h-[24px] flex-1 bg-transparent text-gray-50 outline-none"
             />
             <img src={searchIcon} alt="검색" className="h-6 w-6 shrink-0" />
           </div>
         </div>
       </div>
 
-      <div className="w-full px-4 mt-7">
-        <div className="mx-auto max-w-[361px] flex justify-center">
-          <div className="h-[28px] px-2 rounded-[6px] bg-gray-80 flex items-center">
+      <div className="mt-7 w-full px-4">
+        <div className="mx-auto flex max-w-[361px] justify-center">
+          <div className="bg-gray-80 flex h-[28px] items-center rounded-[6px] px-2">
             <span className="typo-caption text-gray-0">
               내가 요리한 레시피들이에요
             </span>

@@ -1,4 +1,3 @@
-// src/components/header/BackHeader.tsx
 import BackIcon from "@/assets/back.svg";
 
 interface BackHeaderProps {

@@ -34,13 +34,13 @@ export default function Initial() {
     window.location.href = GOOGLE_AUTH_URL;
   };
   return (
-    <div className="flex flex-col items-center bg-background min-h-screen relative">
-      <div className="absolute top-[3px] left-0 right-0 flex justify-center pointer-events-none z-0">
+    <div className="bg-background relative flex min-h-screen flex-col items-center">
+      <div className="pointer-events-none absolute top-[3px] right-0 left-0 z-0 flex justify-center">
         <img src={confetti} className="w-86" />
       </div>
       {/* 상단 텍스트 영역 */}
-      <div className="w-full flex flex-col mt-[86px] items-center">
-        <h1 className="text-[19px] font-semibold flex gap-1">
+      <div className="mt-[86px] flex w-full flex-col items-center">
+        <h1 className="flex gap-1 text-[19px] font-semibold">
           <span className="text-green-deep">재료 관리</span>
           <span className="text-gray-80">부터,</span>
           <span className="text-green-deep">요리 기록</span>
@@ -68,9 +68,6 @@ export default function Initial() {
         </div>
       </div>
 
-      {/* <div className="flex-1" /> */}
-
-      {/* <div className="flex flex-col items-center justify-center mb-[34px]"> */}
       <div className="mt-[24px] flex flex-col items-center justify-center">
         {/* SNS 로그인 */}
         <span className="typo-caption text-gray-50">
@@ -97,7 +94,7 @@ export default function Initial() {
         </button>
         <button
           onClick={() => navigate("/guest")}
-          className="mt-5 typo-body !font-bold text-green-deep mb-[50px]"
+          className="typo-body text-green-deep mt-5 mb-[50px] !font-bold"
         >
           쿠킵이 처음인가요? 둘러보기
         </button>

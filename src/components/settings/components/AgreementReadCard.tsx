@@ -1,4 +1,3 @@
-// src/components/settings/components/AgreementReadCard.tsx
 import React from "react";
 import ReactMarkdown from "react-markdown";
 

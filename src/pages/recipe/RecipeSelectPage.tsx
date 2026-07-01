@@ -1,4 +1,3 @@
-// src/pages/recipe/RecipeSelectPage.tsx
 import { useNavigate } from "react-router-dom";
 
 import { useIngredientStore } from "@/stores/useIngredientStore";

@@ -46,11 +46,11 @@ export default function EmailAuthModal({
     <>
       {/* 배경 오버레이 */}
       <div
-        className="fixed inset-0 z-[100] bg-black-overlay"
+        className="bg-black-overlay fixed inset-0 z-[100]"
         onClick={onConfirm} // 배경 클릭 시 닫히게 하고 싶으면 유지
       />
       <div
-        className="fixed z-[110] left-1/2 -translate-x-1/2 bg-gray-0 rounded-[10px]"
+        className="bg-gray-0 fixed left-1/2 z-[110] -translate-x-1/2 rounded-[10px]"
         style={{
           top: isHelp ? 308 : isSend ? 359 : 343,
           width: isHelp ? 256 : 240,
@@ -84,21 +84,15 @@ export default function EmailAuthModal({
             "통신 환경에 따라\n발송이 지연되거나 차단될 수 있어요.\n\n스팸 메일함을 확인하시거나,\n잠시 후 다시 시도해주세요."}
         </p>
 
-        {/* 부가 텍스트 */}
-        {/* 이메일 표시 - send / verify / already 모두 동일하게 */}
-        {/* {(isSend || isVerify || isAlready) && email && (
-          <p className="text-[12px] text-gray-50 text-center">{email}</p>
-        )} */}
-
         {/* 마스킹된 이메일 표시 */}
         {(isVerify || isAlready) && email && (
-          <p className="text-[12px] text-gray-50 text-center">
+          <p className="text-center text-[12px] text-gray-50">
             {maskEmail(email)}
           </p>
         )}
 
         {isHelp && (
-          <p className="text-[12px] text-gray-50 text-center">
+          <p className="text-center text-[12px] text-gray-50">
             문제가 지속되나요?
           </p>
         )}
@@ -107,9 +101,7 @@ export default function EmailAuthModal({
         <Button
           size="S"
           onClick={isAlready ? onLogin : isHelp ? handleOpenKakao : onConfirm}
-          className={`
-    ${isBlackButton ? "!w-[200px] !bg-gray-80" : "!w-[184px] !bg-green"}
-  `}
+          className={` ${isBlackButton ? "!bg-gray-80 !w-[200px]" : "!bg-green !w-[184px]"} `}
         >
           {buttonText}
         </Button>

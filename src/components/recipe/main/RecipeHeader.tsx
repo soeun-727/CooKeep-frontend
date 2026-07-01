@@ -1,4 +1,3 @@
-// components/recipe/main/RecipeHeader.tsx
 import { useState } from "react";
 
 import menuIcon from "@/assets/recipe/main/menu.svg";
@@ -23,13 +22,7 @@ export default function RecipeHeader({
   return (
     <>
       <header
-        className={`
-    fixed top-0 left-0 right-0 z-50    
-    h-[56px]
-    mx-auto max-w-[450px]
-    flex items-center px-4
-    ${transparent ? "bg-transparent" : "bg-background"}
-  `}
+        className={`fixed top-0 right-0 left-0 z-50 mx-auto flex h-[56px] max-w-[450px] items-center px-4 ${transparent ? "bg-transparent" : "bg-background"} `}
       >
         {/* 사이드바 버튼 */}
         <button
@@ -41,7 +34,7 @@ export default function RecipeHeader({
 
         {/* 제목: title props가 있을 때만 렌더링 */}
         {title && (
-          <h1 className="text-[16px] font-semibold text-gray-80">{title}</h1>
+          <h1 className="text-gray-80 text-[16px] font-semibold">{title}</h1>
         )}
       </header>
 

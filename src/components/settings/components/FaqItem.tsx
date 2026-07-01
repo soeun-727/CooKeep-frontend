@@ -1,4 +1,3 @@
-// src/pages/settings/components/FaqItem.tsx
 interface FaqItemProps {
   question: string;
   answer: string | React.ReactNode;

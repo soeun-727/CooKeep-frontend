@@ -1,4 +1,3 @@
-// src/components/cookeeps/plant/preloadPlantImages.ts
 import type { PlantType } from "@/stores/useCookeepsStore";
 
 import { PLANT_IMAGES, type PlantStage } from "./PlantImages";

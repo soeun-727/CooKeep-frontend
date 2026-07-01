@@ -1,4 +1,3 @@
-// src/pages/recipe/confirm/RecipeConfirmPage.tsx
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

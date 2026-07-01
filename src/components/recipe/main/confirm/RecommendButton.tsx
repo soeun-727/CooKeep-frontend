@@ -1,4 +1,3 @@
-// RecommendButton.tsx
 import Button from "@/components/ui/Button";
 
 interface RecommendButtonProps {

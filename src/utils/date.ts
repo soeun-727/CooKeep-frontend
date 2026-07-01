@@ -1,4 +1,3 @@
-// src/utils/date.ts
 export const getKoreaToday = () => {
   const now = new Date();
   const kstOffset = 9 * 60 * 60 * 1000;

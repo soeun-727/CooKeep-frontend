@@ -1,4 +1,3 @@
-// src/components/ui/FloatingNotice.tsx
 interface FloatingNoticeProps {
   text: string;
 }

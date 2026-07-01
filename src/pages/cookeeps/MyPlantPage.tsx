@@ -8,7 +8,7 @@ import { PLANT_DATA } from "@/constants/plantData";
 
 export default function MyPlantPage() {
   const navigate = useNavigate();
-  // const grownPlants = tempGrownPlants; // 임시 데이터 사용
+
   const myPlants = useCookeepsStore(s => s.myPlants);
 
   const grownPlants = myPlants.filter(p => p.isHarvested);
@@ -17,13 +17,13 @@ export default function MyPlantPage() {
   );
 
   return (
-    <div className="relative min-h-screen bg-background pt-[110px]">
+    <div className="bg-background relative min-h-screen pt-[110px]">
       <BackHeader title="내가 키운 식재료" onBack={() => navigate(-1)} />
 
       {grownPlants.length === 0 ? (
         <p className="mt-20 text-center text-gray-400">
           아직 다 키운 식물이 없어요
-        </p> // 그냥 임의로 넣어보았는데 괜찮을지....
+        </p>
       ) : (
         <>
           {/* 3열 그리드 */}
@@ -31,7 +31,7 @@ export default function MyPlantPage() {
             {grownPlants.map(plant => (
               <div
                 key={plant.userPlantId}
-                className="flex flex-col items-center justify-center w-[90px] p-[12.504px_16px_13.496px_16px] rounded-[6px] border border-gray-10 bg-gray-0"
+                className="border-gray-10 bg-gray-0 flex w-[90px] flex-col items-center justify-center rounded-[6px] border p-[12.504px_16px_13.496px_16px]"
               >
                 <div className="flex w-[58px] flex-col items-center gap-[4px]">
                   <img
@@ -41,7 +41,7 @@ export default function MyPlantPage() {
                     loading="lazy"
                   />
                   <span
-                    className="text-[12px] font-bold leading-[16px] text-center text-gray-80 overflow-hidden"
+                    className="text-gray-80 overflow-hidden text-center text-[12px] leading-[16px] font-bold"
                     style={{
                       display: "-webkit-box",
                       WebkitLineClamp: 1,
@@ -56,8 +56,8 @@ export default function MyPlantPage() {
           </div>
 
           {/* 카드와 하단 안내 간격 32px */}
-          <div className="mt-[32px] flex justify-center items-center h-[32px] w-[137px] mx-auto rounded-[6px] bg-gray-30">
-            <span className="text-[12px] font-normal leading-[16px] text-gray-0 text-center">
+          <div className="bg-gray-30 mx-auto mt-[32px] flex h-[32px] w-[137px] items-center justify-center rounded-[6px]">
+            <span className="text-gray-0 text-center text-[12px] leading-[16px] font-normal">
               키우기를 끝낸 식재료예요
             </span>
           </div>

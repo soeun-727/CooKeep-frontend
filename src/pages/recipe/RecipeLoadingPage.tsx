@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
-// import LoadingIcon from @/componentsassets/recipe/main/LoadingIcon.svg";
 import CheckIcon from "@/assets/recipe/check.svg";
 
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
@@ -49,12 +48,6 @@ export default function RecipeLoadingPage() {
 
   return (
     <div className="flex h-screen flex-col items-center pt-[139px] text-center">
-      {/* 로딩 아이콘 */}
-      {/* <img
-        src={LoadingIcon}
-        className="w-20 h-20 animate-spin mb-10"
-        alt="loading"
-      /> */}
       <RecipeLoadingSpinner />
 
       {/* 타이틀 / 서브타이틀 */}

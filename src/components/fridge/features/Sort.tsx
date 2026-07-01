@@ -9,7 +9,7 @@ import sortIcon from "@/assets/fridge/sort.svg";
 
 interface SortProps {
   categoryIcon: string;
-  viewCategory: string; // 추가: 카테고리 텍스트를 받아야 합니다.
+  viewCategory: string;
 }
 
 export default function Sort({ categoryIcon, viewCategory }: SortProps) {
@@ -22,16 +22,16 @@ export default function Sort({ categoryIcon, viewCategory }: SortProps) {
   ];
   return (
     <>
-      <div className="w-full flex flex-col items-center mt-[3px] mb-4">
-        <div className="w-[353px] relative items-center justify-center flex">
-          <div className="flex items-center justify-center bg-gray-80 rounded-[6px] h-[22px] w-[59px] px-2 gap-1 text-gray-0 text-3">
+      <div className="mt-[3px] mb-4 flex w-full flex-col items-center">
+        <div className="relative flex w-[353px] items-center justify-center">
+          <div className="bg-gray-80 text-gray-0 text-3 flex h-[22px] w-[59px] items-center justify-center gap-1 rounded-[6px] px-2">
             <img src={categoryIcon} alt="category" className="w-3" />
             <span className="typo-caption">{viewCategory}</span>
           </div>
 
           <div className="absolute right-0 flex items-center">
             {isMenuOpen && (
-              <div className="absolute right-[34px] bottom-0 flex flex-col items-center justify-center bg-gray-0 rounded-[10px] w-[130px] h-[104px] shadow-[0_1px_8.2px_-2px_#11111140] animate-fadeIn z-50 overflow-hidden">
+              <div className="bg-gray-0 animate-fadeIn absolute right-[34px] bottom-0 z-50 flex h-[104px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-[10px] shadow-[0_1px_8.2px_-2px_#11111140]">
                 {options.map((option, index) => (
                   <div
                     key={option}
@@ -48,7 +48,7 @@ export default function Sort({ categoryIcon, viewCategory }: SortProps) {
                     </button>
                     {/* 구분선 */}
                     {index < options.length - 1 && (
-                      <div className="w-[105px] h-[0.5px] bg-gray-10" />
+                      <div className="bg-gray-10 h-[0.5px] w-[105px]" />
                     )}
                   </div>
                 ))}

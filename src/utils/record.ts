@@ -1,4 +1,3 @@
-// src/utils/record.ts
 import { getKoreaToday } from "./date";
 
 export const getTodayKey = () => getKoreaToday();

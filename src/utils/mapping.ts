@@ -1,5 +1,3 @@
-// src/utils/mapping.ts
-
 export const UNIT_MAP: Record<string, string> = {
   PIECE: "개",
   COUNT: "개",

@@ -1,4 +1,3 @@
-// src/components/auth/MainHeader.tsx
 import { useNavigate } from "react-router-dom";
 
 import { useIngredientStore } from "@/stores/useIngredientStore";
@@ -24,10 +23,10 @@ export default function MainHeader({ isAllView }: MainHeaderProps) {
   };
 
   return (
-    <header className="fixed top-0 z-50 pointer-events-none w-full max-w-[450px]">
-      <div className="mx-auto max-w-[450px] pointer-events-auto">
-        <div className="flex items-center justify-between bg-background">
-          <div className="h-12 flex-1 flex">
+    <header className="pointer-events-none fixed top-0 z-50 w-full max-w-[450px]">
+      <div className="pointer-events-auto mx-auto max-w-[450px]">
+        <div className="bg-background flex items-center justify-between">
+          <div className="flex h-12 flex-1">
             {isAllView ? (
               <button onClick={handleBack}>
                 <img className="ml-[18px] h-9" src={backIcon} />

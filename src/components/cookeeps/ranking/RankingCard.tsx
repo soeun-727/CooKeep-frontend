@@ -1,4 +1,3 @@
-// crown은 require 대신 import로
 import crownBronze from "@/assets/cookeeps/main/crown_bronze.svg";
 import crownGold from "@/assets/cookeeps/main/crown_gold.svg";
 import crownSilver from "@/assets/cookeeps/main/crown_silver.svg";
@@ -28,7 +27,6 @@ export default function RankingCard({
     >
       {/* 왕관 영역 */}
       <div className="z-10 -mb-[7px] flex h-[26px] w-[26px] items-center justify-center p-[2px]">
-        {/* -mb-[7px]를 추가해서 아래 요소를 위로 7px 당깁니다. z-10으로 왕관을 위로 올립니다. */}
         <img
           src={crownSVGs[rank - 1]}
           alt={`${rank}등 왕관`}
@@ -38,7 +36,7 @@ export default function RankingCard({
 
       {/* 카드 박스 */}
       <div
-        className={`relative flex flex-col items-center gap-1 p-[11px_11px_10px_12px] rounded-[6px] shadow-md ${
+        className={`relative flex flex-col items-center gap-1 rounded-[6px] p-[11px_11px_10px_12px] shadow-md ${
           isFirst ? "bg-green-light" : "bg-gray-0"
         }`}
       >
@@ -54,7 +52,6 @@ export default function RankingCard({
             )}
           </div>
 
-          {/* 이름과 점수를 감싸는 컨테이너에서 gap을 제거하거나, 둘만 따로 묶습니다 */}
           <div className="flex flex-col items-center">
             {/* 이름 */}
             <p className="w-[86px] truncate text-center text-[9px] leading-tight font-medium text-gray-800">
@@ -63,7 +60,7 @@ export default function RankingCard({
 
             {/* 물 주기 횟수 */}
             <p
-              className={`w-[86px] text-[12px] font-semibold text-center truncate leading-tight ${
+              className={`w-[86px] truncate text-center text-[12px] leading-tight font-semibold ${
                 isFirst ? "text-gray-800" : "text-green-deep"
               }`}
             >

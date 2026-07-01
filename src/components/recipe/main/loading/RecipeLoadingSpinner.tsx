@@ -1,5 +1,3 @@
-// components/recipe/main/loading/RecipeLoadingSpinner.tsx
-
 export default function RecipeLoadingSpinner() {
   // 8개의 점 배열
   const dots = Array.from({ length: 8 });
