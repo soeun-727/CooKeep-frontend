@@ -13,6 +13,8 @@ import openpwImage from "@/assets/signup/openpw.svg";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
+import { validatePassword } from "@/utils/validatePassword";
+
 export default function ResetPassword() {
   const { email, isVerified, reset } = useFindPasswordStore();
   const navigate = useNavigate();
@@ -23,8 +25,6 @@ export default function ResetPassword() {
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [error, setError] = useState<string | undefined>();
   const [isSuccess, setIsSuccess] = useState(false);
-  const validatePassword = (pw: string) =>
-    pw.length >= 8 && /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw);
 
   useEffect(() => {
     if (!isSuccess && (!isVerified || !email)) {
