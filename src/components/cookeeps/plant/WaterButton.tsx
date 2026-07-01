@@ -65,15 +65,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
           <div className="absolute -top-10 flex flex-col items-center">
             {/* 말풍선 본문 */}
             <div
-              className="
-        inline-flex items-center justify-center
-        px-[10px] py-[3px]
-        bg-gray-0 rounded-[3px]
-        text-[8px] font-medium text-gray-50
-        leading-[10px] text-center
-        whitespace-nowrap
-        shadow-sm
-      "
+              className="bg-gray-0 inline-flex items-center justify-center rounded-[3px] px-[10px] py-[3px] text-center text-[8px] leading-[10px] font-medium whitespace-nowrap text-gray-50 shadow-sm"
               style={{ width: "164px", height: "23px" }}
             >
               아래 버튼을 클릭하여 식물에게 물을 줘보세요!
@@ -99,14 +91,11 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
 
             setModalOpen(true);
           }}
-          className={`w-full max-w-[280px] min-w-[211px] h-[40px]
-        rounded-full font-bold text-[16px]
-        flex items-center justify-center gap-1
-        ${
-          disabled
-            ? "bg-gray-300 text-gray-400"
-            : "bg-gray-80 text-green shadow active:scale-95"
-        }`}
+          className={`flex h-[40px] w-full max-w-[280px] min-w-[211px] items-center justify-center gap-1 rounded-full text-[16px] font-bold ${
+            disabled
+              ? "bg-gray-300 text-gray-400"
+              : "bg-gray-80 text-green shadow active:scale-95"
+          }`}
         >
           물 주기( -{/* 2. 이모지 대신 img 태그 삽입 */}
           <img

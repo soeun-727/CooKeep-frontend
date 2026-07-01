@@ -21,14 +21,14 @@ export default function WiltedModal({
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
+      <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
 
       {/* modal */}
       <div
-        className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-gray-0 flex flex-col items-center gap-7"
-        onClick={(e) => e.stopPropagation()}
+        className="bg-gray-0 relative flex w-[280px] flex-col items-center gap-7 rounded-[10px] px-[28px] pt-[35px] pb-[25px]"
+        onClick={e => e.stopPropagation()}
       >
-        <div className="w-full flex flex-col items-center gap-7">
+        <div className="flex w-full flex-col items-center gap-7">
           <p className="typo-body text-gray-80 text-center whitespace-pre-line">
             <span className="text-green-deep">{plant} </span>
             이/가 시들었어요 T.T
@@ -41,7 +41,7 @@ export default function WiltedModal({
         <div className="flex w-full flex-col gap-2 font-semibold">
           <Button
             variant="green"
-            className="!w-[224px] !bg-green"
+            className="!bg-green !w-[224px]"
             onClick={onRecover} // 회복
           >
             회복하기 (쿠키 5개 사용)
@@ -49,7 +49,7 @@ export default function WiltedModal({
 
           <Button
             variant="black"
-            className="!w-[224px] !bg-gray-30"
+            className="!bg-gray-30 !w-[224px]"
             onClick={onAbandon} // 포기
           >
             포기하기

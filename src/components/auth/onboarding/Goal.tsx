@@ -34,8 +34,8 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
         </h3>
       </div>
 
-      <div className="w-[361px] mt-[46px]">
-        <div className="border rounded-md overflow-hidden border-gray-10 bg-gray-0 transition-all">
+      <div className="mt-[46px] w-[361px]">
+        <div className="border-gray-10 bg-gray-0 overflow-hidden rounded-md border transition-all">
           {/* 클릭 영역: 아코디언 헤더 */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -73,9 +73,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
                     onSelect({ id: goal.id, title: goal.title });
                     setIsOpen(false);
                   }}
-                  className={`w-full h-[48px] px-5 text-left typo-body2 transition-colors 
-                    ${goal.id === currentGoal.id ? "text-green font-semibold bg-gray-50" : "text-gray-80 bg-gray-0 hover:bg-gray-50"}
-                  `}
+                  className={`typo-body2 h-[48px] w-full px-5 text-left transition-colors ${goal.id === currentGoal.id ? "text-green bg-gray-50 font-semibold" : "text-gray-80 bg-gray-0 hover:bg-gray-50"} `}
                 >
                   {goal.title}
                 </button>

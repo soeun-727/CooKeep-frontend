@@ -57,11 +57,7 @@ export default function GuestPage() {
           e.stopPropagation();
           navigate("/");
         }}
-        className="absolute top-5 right-4 z-[200]
-                   inline-flex py-2 px-[22px]
-                   items-center justify-center gap-[8px]
-                   rounded-full bg-gray-10/80
-                   text-gray-50 text-[14px] font-medium"
+        className="bg-gray-10/80 absolute top-5 right-4 z-[200] inline-flex items-center justify-center gap-[8px] rounded-full px-[22px] py-2 text-[14px] font-medium text-gray-50"
       >
         메인으로 돌아가기
       </button>

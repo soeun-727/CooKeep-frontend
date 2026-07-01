@@ -70,8 +70,8 @@ export default function Storage({
         <div className="relative z-10 px-[20px] pt-[5px] pb-[11px]">
           <div className="flex h-10 w-full items-center justify-between">
             {/* 카테고리 태그 */}
-            <div className="flex items-center justify-center bg-gray-80 rounded-[6px] h-[22px] min-w-[59px] px-2 gap-1 text-green">
-              <img src={image} alt="category" className="w-3 h-3" />
+            <div className="bg-gray-80 text-green flex h-[22px] min-w-[59px] items-center justify-center gap-1 rounded-[6px] px-2">
+              <img src={image} alt="category" className="h-3 w-3" />
               <span className="typo-caption leading-none whitespace-nowrap">
                 {category}
               </span>

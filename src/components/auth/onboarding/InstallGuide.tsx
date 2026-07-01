@@ -27,7 +27,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
           />
 
           {/* 하단 그라데이션 오버레이 */}
-          <div className="absolute bottom-0 max-w-[449px] w-full max-h-[58px] h-full bg-fade-overlay" />
+          <div className="bg-fade-overlay absolute bottom-0 h-full max-h-[58px] w-full max-w-[449px]" />
         </div>
 
         {/* ================= 상단 (로고 + 제목 + 소제목) ================= */}
@@ -44,7 +44,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
             </h1>
           </div>
 
-          <p className="w-full text-center typo-button text-green-deep">
+          <p className="typo-button text-green-deep w-full text-center">
             더 쉽고 빠르게 서비스를 이용할 수 있어요
           </p>
         </div>
@@ -52,7 +52,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
         {/* ================= 설명 영역 ================= */}
         <div className="mt-[27px] flex w-[362px] flex-col items-start gap-[7px]">
           {/* iOS */}
-          <div className="flex flex-col items-center gap-[4px] self-stretch px-[14px] py-[10px] bg-gray-0 rounded-[6px]">
+          <div className="bg-gray-0 flex flex-col items-center gap-[4px] self-stretch rounded-[6px] px-[14px] py-[10px]">
             {/* 내용 영역 */}
             <div className="flex flex-col items-center gap-[10px] self-stretch">
               {/* 아이콘 */}
@@ -64,11 +64,11 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
 
               {/* 텍스트 영역 */}
               <div className="flex flex-col items-start gap-[4px] self-stretch">
-                <p className="typo-body text-gray-80 text-center self-stretch font-semibold">
+                <p className="typo-body text-gray-80 self-stretch text-center font-semibold">
                   iOS 사용자는 Safari에서 열어주세요
                 </p>
 
-                <p className="text-[12px] font-medium leading-[20px] text-gray-80 text-center self-stretch">
+                <p className="text-gray-80 self-stretch text-center text-[12px] leading-[20px] font-medium">
                   Safari 공유 버튼 → ‘홈 화면에 추가’
                 </p>
               </div>
@@ -76,7 +76,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
           </div>
 
           {/* Android */}
-          <div className="flex flex-col items-start gap-[4px] self-stretch px-[14px] py-[10px] bg-gray-0 rounded-[6px]">
+          <div className="bg-gray-0 flex flex-col items-start gap-[4px] self-stretch rounded-[6px] px-[14px] py-[10px]">
             {/* 내용 영역 */}
             <div className="flex flex-col items-center gap-[10px] self-stretch">
               {/* 아이콘 */}
@@ -88,11 +88,11 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
 
               {/* 텍스트 영역 */}
               <div className="flex flex-col items-start gap-[4px] self-stretch">
-                <p className="text-[16px] font-semibold leading-[20px] text-gray-80 text-center self-stretch">
+                <p className="text-gray-80 self-stretch text-center text-[16px] leading-[20px] font-semibold">
                   Android 사용자는 Chrome을 추천드려요
                 </p>
 
-                <p className="text-[12px] font-medium leading-[20px] text-gray-80 text-center self-stretch">
+                <p className="text-gray-80 self-stretch text-center text-[12px] leading-[20px] font-medium">
                   우측 상단 메뉴 → ‘홈 화면에 추가’
                 </p>
               </div>

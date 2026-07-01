@@ -37,11 +37,11 @@ export default function SpecificGoal({
 
       <div className="mt-[46px] flex w-[361px] flex-col items-start">
         <div
-          className={`w-full h-12 px-3 flex items-center border rounded-md bg-gray-0 transition-all ${
+          className={`bg-gray-0 flex h-12 w-full items-center rounded-md border px-3 transition-all ${
             isError ? "border-semantic-negative" : "border-gray-10"
           }`}
         >
-          <span className="typo-body2 whitespace-pre text-gray-80">
+          <span className="typo-body2 text-gray-80 whitespace-pre">
             {titleParts[0]}
           </span>
           <input
@@ -50,7 +50,7 @@ export default function SpecificGoal({
             value={count}
             onChange={handleChange}
             placeholder="3"
-            className={`typo-body2 font-bold underline outline-none bg-transparent w-5 text-center transition-colors ${
+            className={`typo-body2 w-5 bg-transparent text-center font-bold underline transition-colors outline-none ${
               isError ? "text-semantic-negative" : "text-semantic-positive"
             }`}
           />
@@ -59,7 +59,7 @@ export default function SpecificGoal({
 
         {/* 에러 메시지: 범위가 벗어났거나 비어있지 않을 때만 표시 */}
         {isError && (
-          <p className="text-semantic-negative text-[10px] mt-[5px] ml-3 animate-fadeIn">
+          <p className="text-semantic-negative animate-fadeIn mt-[5px] ml-3 text-[10px]">
             1~10 사이의 숫자로 입력해주세요
           </p>
         )}

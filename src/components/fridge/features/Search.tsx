@@ -22,19 +22,7 @@ export default function Search() {
     <div className="w-full pt-1 pb-[26px]">
       <div className="mx-auto w-[361px] transition-all duration-200">
         <div
-          className={`
-          relative
-          w-full 
-          rounded-[6px]
-          overflow-hidden
-          shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-          [&_p]:hidden
-          [&_input]:w-full
-          [&_input]:border-none 
-          [&_input]:outline-none 
-          [&_input::placeholder]:text-gray-50
-          ${hasText ? "[&_input]: bg-gray-0" : "[&_input]:bg-searchbar "}
-      `}
+          className={`relative w-full overflow-hidden rounded-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_input]:w-full [&_input]:border-none [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${hasText ? "[&_input]: bg-gray-0" : "[&_input]:bg-searchbar"} `}
         >
           <TextField
             value={searchTerm}

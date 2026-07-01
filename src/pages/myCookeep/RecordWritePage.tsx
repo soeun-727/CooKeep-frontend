@@ -137,15 +137,15 @@ export default function RecordWritePage() {
   if (!recipeDetail) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green"></div>
+        <div className="border-green h-8 w-8 animate-spin rounded-full border-b-2"></div>
       </div>
     );
   }
 
   return (
     <>
-      <div className="flex-1 flex flex-col h-full overflow-y-auto no-scrollbar bg-background">
-        <div className="sticky top-0 z-[120] bg-background shrink-0">
+      <div className="no-scrollbar bg-background flex h-full flex-1 flex-col overflow-y-auto">
+        <div className="bg-background sticky top-0 z-[120] shrink-0">
           <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
         </div>
 
@@ -215,20 +215,20 @@ export default function RecordWritePage() {
               onChange={e => setMemo(e.target.value.slice(0, 500))}
               onInput={handleMemoInput}
               placeholder="글자 수 최대 500자"
-              className="w-full rounded-[10px] bg-gray-0 px-[10px] py-3 text-center typo-body text-gray-80 placeholder:text-gray-50 resize-none outline-none overflow-hidden"
+              className="bg-gray-0 typo-body text-gray-80 w-full resize-none overflow-hidden rounded-[10px] px-[10px] py-3 text-center outline-none placeholder:text-gray-50"
               rows={1}
             />
           </div>
 
           <div className="animate-float-bubble relative mt-[15px] flex shrink-0 justify-center">
             <div
-              className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-gray-0 text-green text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+              className="bg-gray-0 text-green relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
               style={{ width: 206, height: 36 }}
             >
               나만의 팁 작성하기
             </div>
             <div
-              className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-gray-0 rotate-45 z-0"
+              className="bg-gray-0 absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45"
               style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
             />
           </div>
@@ -239,7 +239,7 @@ export default function RecordWritePage() {
                 onClick={() => setIsPublic(false)}
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
+                <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
                   <img
                     src={privateIcon}
                     alt="private"
@@ -253,7 +253,7 @@ export default function RecordWritePage() {
                 onClick={() => setIsPublic(true)}
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
-                <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-gray-0">
+                <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
                   <img
                     src={publicIcon}
                     alt="public"

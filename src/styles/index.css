@@ -240,53 +240,111 @@ img[src$=".svg"] {
    ========================================================================== */
 
 @keyframes fade-in {
-  0% { opacity: 0; transform: scale(0.96); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translate(-50%, -60%); }
-  10% { opacity: 1; transform: translate(-50%, -50%); }
-  90% { opacity: 1; transform: translate(-50%, -50%); }
-  100% { opacity: 0; transform: translate(-50%, -40%); }
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
 }
 
 @keyframes roll {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 @keyframes roll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes roll-down {
-  0% { transform: translateY(-50%); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes float-loop {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-25px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
 }
 
 @keyframes floatBubble {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 @keyframes loading-dot {
-  0%, 100% { background-color: #d9d9d9; }
-  33% { background-color: #2d2d2d; }
+  0%,
+  100% {
+    background-color: #d9d9d9;
+  }
+  33% {
+    background-color: #2d2d2d;
+  }
 }
 
 @keyframes dot-chase {
-  0%, 100% { background-color: #d9d9d9; }
-  50% { background-color: #1fc16f; }
+  0%,
+  100% {
+    background-color: #d9d9d9;
+  }
+  50% {
+    background-color: #1fc16f;
+  }
 }
 
 @keyframes wave-loading {
-  0%, 75%, 100% { transform: translateY(0); background: #ebebeb; }
-  35% { transform: translateY(-7px); background: #7d7d7d; }
+  0%,
+  75%,
+  100% {
+    transform: translateY(0);
+    background: #ebebeb;
+  }
+  35% {
+    transform: translateY(-7px);
+    background: #7d7d7d;
+  }
 }
