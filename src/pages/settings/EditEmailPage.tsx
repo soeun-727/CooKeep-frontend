@@ -1,4 +1,3 @@
-// src/pages/settings/EditEmailPage.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +10,8 @@ import checkIcon from "@/assets/signup/check.svg";
 import EmailAuthModal from "@/components/auth/signup/EmailAuthModal";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
+
+import { formatTime } from "@/utils/formateTime";
 
 // 추가
 
@@ -51,9 +52,6 @@ export default function EditEmailPage() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [timeLeft, timerActive]);
-
-  const formatTime = (s: number) =>
-    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
   const handleSendCode = async () => {
     if (!isEmailValid || isSending) return;
@@ -130,8 +128,8 @@ export default function EditEmailPage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-background">
-      <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="bg-background relative min-h-screen">
+      <div className="mx-auto w-[361px] pt-[241px]">
         <div className="typo-h1">이메일 주소 변경</div>
 
         <div className="relative mt-[12px]">
@@ -150,8 +148,7 @@ export default function EditEmailPage() {
                 type="button"
                 onClick={handleSendCode}
                 disabled={!isEmailValid || isSending}
-                className={`w-[102px] h-[24px] rounded-full typo-caption text-gray-0
-                  ${isEmailValid ? "bg-gray-80" : "bg-gray-30"}`}
+                className={`typo-caption text-gray-0 h-[24px] w-[102px] rounded-full ${isEmailValid ? "bg-gray-80" : "bg-gray-30"}`}
               >
                 {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
               </button>
@@ -191,7 +188,7 @@ export default function EditEmailPage() {
         <button
           type="button"
           onClick={() => setModalType("help")} // 이제 동작함
-          className="mt-6 w-[361px] typo-caption text-gray-50 text-center underline cursor-pointer bg-transparent"
+          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-gray-50 underline"
         >
           인증 번호가 발송되지 않나요?
         </button>
@@ -213,8 +210,8 @@ export default function EditEmailPage() {
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="absolute inset-0 z-50 flex justify-center bg-background">
-          <div className="w-[361px] flex flex-col items-center">
+        <div className="bg-background absolute inset-0 z-50 flex justify-center">
+          <div className="flex w-[361px] flex-col items-center">
             <p className="typo-result-title w-full pt-[295px] pb-[18px]">
               이메일 주소 변경 완료
             </p>
@@ -222,7 +219,7 @@ export default function EditEmailPage() {
             <Button
               size="L"
               variant="black"
-              className="mt-[48px] !text-green"
+              className="!text-green mt-[48px]"
               onClick={() => navigate("/settings")}
             >
               확인

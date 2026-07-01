@@ -1,4 +1,3 @@
-// src/components/auth/signup/EmailSection.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +6,8 @@ import axios from "axios";
 
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
+
+import { formatTime } from "@/utils/formateTime";
 
 import EmailAuthModal from "./EmailAuthModal";
 
@@ -40,14 +41,6 @@ export default function EmailSection() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [timeLeft, timerActive]);
-
-  const formatTime = (seconds: number) => {
-    const m = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (seconds % 60).toString().padStart(2, "0");
-    return `${m}:${s}`;
-  };
 
   const [isSending, setIsSending] = useState(false);
 
@@ -121,9 +114,7 @@ export default function EmailSection() {
                 type="button"
                 onClick={isCodeSent ? handleSendCode : handleSendCode}
                 disabled={!isEmailValid || isSending}
-                className={`w-[102px] h-[24px] rounded-full typo-caption text-gray-0
-                  ${isEmailValid ? "bg-gray-80" : "bg-gray-30"}
-                  disabled:cursor-not-allowed`}
+                className={`typo-caption text-gray-0 h-[24px] w-[102px] rounded-full ${isEmailValid ? "bg-gray-80" : "bg-gray-30"} disabled:cursor-not-allowed`}
               >
                 {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
               </button>
@@ -164,7 +155,7 @@ export default function EmailSection() {
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="mt-6 w-[361px] typo-caption text-gray-50 text-center underline cursor-pointer bg-transparent"
+          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-gray-50 underline"
         >
           인증 번호가 발송되지 않나요?
         </button>

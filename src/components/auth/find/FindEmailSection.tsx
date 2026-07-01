@@ -6,9 +6,9 @@ import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
-import FindEmailAuthModal from "./FindEmailAuthModal";
+import { formatTime } from "@/utils/formateTime";
 
-// import axios from "axios";
+import FindEmailAuthModal from "./FindEmailAuthModal";
 
 export default function FindEmailSection() {
   const { email, setEmail, isCodeSent, sendCode, verifyCode } =
@@ -40,14 +40,6 @@ export default function FindEmailSection() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [timeLeft, timerActive]);
-
-  const formatTime = (seconds: number) => {
-    const m = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (seconds % 60).toString().padStart(2, "0");
-    return `${m}:${s}`;
-  };
 
   // 인증번호 발송
   const handleSendCode = async () => {
@@ -119,12 +111,11 @@ export default function FindEmailSection() {
                 type="button"
                 onClick={isCodeSent ? handleResend : handleSendCode}
                 disabled={!isEmailValid}
-                className={`w-[102px] h-[24px] rounded-full  typo-caption text-gray-0
-          ${
-            isEmailValid
-              ? "bg-gray-80 border-gray-80"
-              : "bg-gray-30 border-gray-30"
-          } disabled:cursor-not-allowed`}
+                className={`typo-caption text-gray-0 h-[24px] w-[102px] rounded-full ${
+                  isEmailValid
+                    ? "bg-gray-80 border-gray-80"
+                    : "bg-gray-30 border-gray-30"
+                } disabled:cursor-not-allowed`}
               >
                 {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
               </button>
@@ -164,7 +155,7 @@ export default function FindEmailSection() {
         <button
           type="button"
           onClick={() => setModalType("help")}
-          className="mt-6 w-[361px] typo-caption text-gray-50 text-center underline cursor-pointer bg-transparent"
+          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-gray-50 underline"
         >
           인증 번호가 발송되지 않나요?
         </button>
