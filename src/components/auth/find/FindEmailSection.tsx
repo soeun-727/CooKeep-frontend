@@ -6,7 +6,10 @@ import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
+import { ModalType } from "@/types/emailModal";
+
 import { formatTime } from "@/utils/formateTime";
+import { validateEmail } from "@/utils/validateUtil";
 
 import FindEmailAuthModal from "./FindEmailAuthModal";
 
@@ -19,10 +22,7 @@ export default function FindEmailSection() {
   const [timeLeft, setTimeLeft] = useState(300);
   const [timerActive, setTimerActive] = useState(false);
 
-  type ModalType = "send" | "verify" | "notRegistered" | "help";
   const [modalType, setModalType] = useState<ModalType | null>(null);
-
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   const navigate = useNavigate();
 
@@ -102,7 +102,7 @@ export default function FindEmailSection() {
             disabled={isCodeSent}
             placeholder="이메일 주소 입력"
             errorMessage={
-              !isEmailValid && email
+              !validateEmail(email) && email
                 ? "이메일 주소를 다시 확인해주세요"
                 : undefined
             }
@@ -110,9 +110,9 @@ export default function FindEmailSection() {
               <button
                 type="button"
                 onClick={isCodeSent ? handleResend : handleSendCode}
-                disabled={!isEmailValid}
+                disabled={!validateEmail(email)}
                 className={`typo-caption text-gray-0 h-[24px] w-[102px] rounded-full ${
-                  isEmailValid
+                  validateEmail(email)
                     ? "bg-gray-80 border-gray-80"
                     : "bg-gray-30 border-gray-30"
                 } disabled:cursor-not-allowed`}
