@@ -7,29 +7,9 @@ import char from "@/assets/character/noti_char.svg";
 
 import Button from "@/components/ui/Button";
 
-import ExampleNotification from "./ExampleNotification";
+import { NOTI_EXAMPLE_DATA } from "@/constants/onboarding";
 
-const EXAMPLE_DATA = [
-  {
-    title: "유통기한 임박 🚨",
-    description: "두부 유통기한이 하루 남았어요!\n지금 요리하러 가볼까요?",
-  },
-  {
-    title: "주간 목표 달성 🎉",
-    description:
-      "'주 3회 요리하기' 목표를 달성했어요\n쿠키 리워드를 확인해보세요!",
-  },
-  {
-    title: "식물에 물 줄 시간 🌱",
-    description:
-      "토마토가 시들고 있어요\n보유하신 쿠키를 사용해 물을 줄 수 있어요",
-  },
-  {
-    title: "오늘의 쿠킵 레시피 🍳",
-    description:
-      "지금 있는 재료로 만들 수 있는 요리가 있어요\n지금 레시피를 확인해보세요!",
-  },
-];
+import ExampleNotification from "./ExampleNotification";
 
 interface NotificationProps {
   onNext: () => void;
@@ -37,7 +17,7 @@ interface NotificationProps {
 
 export default function Notification({ onNext }: NotificationProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const INFINITE_DATA = [...EXAMPLE_DATA, ...EXAMPLE_DATA];
+  const INFINITE_DATA = [...NOTI_EXAMPLE_DATA, ...NOTI_EXAMPLE_DATA];
 
   const handlePushConsent = async (isAgreed: boolean) => {
     setIsLoading(true);
@@ -65,7 +45,7 @@ export default function Notification({ onNext }: NotificationProps) {
   };
 
   return (
-    <div className="flex flex-col w-[361px] mx-auto h-screen overflow-hidden relative bg-background">
+    <div className="bg-background relative mx-auto flex h-screen w-[361px] flex-col overflow-hidden">
       <div className="mt-[107px] shrink-0">
         <h1 className="typo-h1 text-left">
           쿠킵 루틴, 알림으로 받아보시겠어요?
@@ -85,8 +65,8 @@ export default function Notification({ onNext }: NotificationProps) {
           height: "calc(100dvh - 500px)",
         }}
       >
-        <div className="absolute top-0 left-0 w-full h-12 bg-blur-to-t z-10" />
-        <div className="flex flex-col gap-[6px] animate-roll">
+        <div className="bg-blur-to-t absolute top-0 left-0 z-10 h-12 w-full" />
+        <div className="animate-roll flex flex-col gap-[6px]">
           {INFINITE_DATA.map((data, index) => (
             <ExampleNotification
               key={index}
@@ -95,10 +75,10 @@ export default function Notification({ onNext }: NotificationProps) {
             />
           ))}
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-12 bg-blur-to-b z-10" />
+        <div className="bg-blur-to-b absolute bottom-0 left-0 z-10 h-12 w-full" />
       </div>
 
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[361px] bg-background z-50 pb-[34px]">
+      <div className="bg-background fixed bottom-0 left-1/2 z-50 w-[361px] -translate-x-1/2 pb-[34px]">
         <div className="flex justify-end">
           <img src={char} className="mb-[26.5px] w-[95px]" alt="character" />
         </div>

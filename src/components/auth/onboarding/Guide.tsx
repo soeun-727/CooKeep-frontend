@@ -1,59 +1,14 @@
 import { TouchEvent, useState } from "react";
 
-import image1 from "@/assets/onboarding/guide_1.svg";
 import image1_2 from "@/assets/onboarding/guide_1_2.svg";
-import image2 from "@/assets/onboarding/guide_2.svg";
-import image3 from "@/assets/onboarding/guide_3.svg";
-import image4 from "@/assets/onboarding/guide_4.svg";
 
 import Button from "@/components/ui/Button";
+
+import { ONBOARDING_DATA } from "@/constants/onboarding";
 
 interface GuideProps {
   onNext: () => void;
 }
-
-const ONBOARDING_DATA = [
-  {
-    id: 1,
-    img: image1,
-    title: (
-      <div>
-        <span className="text-green">냉장고</span> 식재료를 한눈에 관리해요
-      </div>
-    ),
-    text: "등록만 하면 유통기한을 알아서 챙겨드려요!",
-  },
-  {
-    id: 2,
-    img: image2,
-    title: (
-      <div>
-        나에게 딱 맞는 <span className="text-green">AI 레시피</span>를 만들어요
-      </div>
-    ),
-    text: "가진 재료와 취향에 맞게 추천드릴게요!",
-  },
-  {
-    id: 3,
-    img: image3,
-    title: (
-      <div>
-        완성한 요리를 <span className="text-green">MY 쿠킵</span>에 기록해요
-      </div>
-    ),
-    text: "직접 만든 요리를 나만의 팁과 함께\n남기고, 관리할 수 있어요!",
-  },
-  {
-    id: 4,
-    img: image4,
-    title: (
-      <div>
-        <span className="text-green">쿠킵스</span>에서 식재료를 키우고, 공유해요
-      </div>
-    ),
-    text: "쿠키로 식재료를 키우고,\n다른 쿠킵이들의 레시피를 구경해보세요!",
-  },
-];
 
 export default function Guide({ onNext }: GuideProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
