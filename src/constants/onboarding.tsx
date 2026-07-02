@@ -3,7 +3,12 @@ import image2 from "@/assets/onboarding/guide_2.svg";
 import image3 from "@/assets/onboarding/guide_3.svg";
 import image4 from "@/assets/onboarding/guide_4.svg";
 
-ONBOARDING_GOALS.find((goal) => goal.id === "cook")?.title;
+export const ONBOARDING_GOALS = [
+  { id: "cook", title: "주 n회 요리하기" },
+  { id: "photo", title: "요리 사진 n번 기록하기" },
+  { id: "expired", title: "유통기한 임박 재료 n개 사용하기" },
+  { id: "like", title: "레시피에 좋아요 n회 남기기" },
+];
 
 export const ONBOARDING_DATA = [
   {
