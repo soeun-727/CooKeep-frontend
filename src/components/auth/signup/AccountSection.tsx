@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useSignupStore } from "@/stores/useSignupStore";
 
-import { blankCheck, grayCheck, greenCheck } from "@/assets/index";
+import { blankCheck, CheckboxCheckIcon } from "@/assets/index";
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
 import arrowIcon from "@/assets/signup/arrowright.svg";
@@ -200,11 +200,7 @@ export default function AccountSection({
                             alt="unchecked"
                             className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                           />
-                          <img
-                            src={greenCheck}
-                            alt="checked"
-                            className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
-                          />
+                          <CheckboxCheckIcon className="text-green pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block" />
                         </div>
 
                         <span className="typo-label text-gray-80 ml-[12px]">
@@ -237,11 +233,7 @@ export default function AccountSection({
                                     alt="unchecked"
                                     className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                                   />
-                                  <img
-                                    src={grayCheck}
-                                    alt="checked"
-                                    className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
-                                  />
+                                  <CheckboxCheckIcon className="pointer-events-none z-0 hidden h-4 w-4 object-contain text-gray-50 peer-checked:block" />
                                 </div>
                               ) : (
                                 <span className="inline-block h-5 w-5 flex-shrink-0" />

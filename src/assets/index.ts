@@ -43,8 +43,7 @@ export { default as chatbox } from "./signup/textIcon.svg";
 export { default as servingChar } from "./character/serve_char.svg";
 export { default as congratsChar } from "./character/congrats_char.svg";
 export { default as confetti } from "./signup/confetti.svg";
-export { default as greenCheck } from "./signup/greenCheck.svg";
-export { default as grayCheck } from "./signup/grayCheck.svg";
+export { default as CheckboxCheckIcon } from "./signup/checkboxCheck.svg?react";
 export { default as blankCheck } from "./signup/blankCheck.svg";
 export { default as plantChar } from "./character/plant_char.svg";
 
