@@ -14,26 +14,20 @@ import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
 import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
-import type { AgreementItem } from "@/constants/agreements";
 
-import { validatePassword } from "@/utils/validatePassword";
+import { AgreementItem, AuthAgreements } from "@/types/auth";
+
+import { validatePassword } from "@/utils/validateUtil";
 
 import AgreementPage from "./AgreementPage";
-
-interface Agreements {
-  terms: boolean;
-  privacy: boolean;
-  marketing: boolean;
-  policy: boolean;
-}
 
 interface AccountSectionProps {
   password: string;
   setPassword: (value: string) => void;
   passwordConfirm: string;
   setPasswordConfirm: (value: string) => void;
-  agreements: Agreements;
-  updateAgreements: (next: Partial<Agreements>) => void;
+  agreements: AuthAgreements;
+  updateAgreements: (next: Partial<AuthAgreements>) => void;
   onSubmit: () => void;
   isSignupEnabled: boolean;
   setHideHeader: (hide: boolean) => void;

@@ -13,7 +13,7 @@ import openpwImage from "@/assets/signup/openpw.svg";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
-import { validatePassword } from "@/utils/validatePassword";
+import { validatePassword } from "@/utils/validateUtil";
 
 export default function ResetPassword() {
   const { email, isVerified, reset } = useFindPasswordStore();

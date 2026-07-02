@@ -3,15 +3,14 @@ import { useState } from "react";
 import arrowIcon from "@/assets/signup/arrowright.svg";
 
 import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
-import type { AgreementItem } from "@/constants/agreements";
+
+import { AgreementItem, AuthAgreements } from "@/types/auth";
 
 import AgreementPage from "../signup/AgreementPage";
 
 interface AgreementListProps {
-  agreements: Record<AgreementItem["key"], boolean>;
-  updateAgreements: (
-    next: Partial<Record<AgreementItem["key"], boolean>>,
-  ) => void;
+  agreements: AuthAgreements;
+  updateAgreements: (next: Partial<AuthAgreements>) => void;
 }
 
 export default function AgreementList({
@@ -27,8 +26,8 @@ export default function AgreementList({
 
   if (agreementPage) {
     return (
-      <div className="fixed inset-0 z-50 bg-gray-100 flex items-center justify-center">
-        <div className="w-full max-w-[450px] min-h-[100dvh] bg-background">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100">
+        <div className="bg-background min-h-[100dvh] w-full max-w-[450px]">
           {" "}
           {/*overflow-y-auto*/}
           <AgreementPage
@@ -53,10 +52,10 @@ export default function AgreementList({
   return (
     <div className="mt-[26px]">
       {/* 전체 동의 */}
-      <label className="relative flex items-center px-4 h-[48px] max-w-[361px] w-full rounded-[6px] border border-gray-10 cursor-pointer">
+      <label className="border-gray-10 relative flex h-[48px] w-full max-w-[361px] cursor-pointer items-center rounded-[6px] border px-4">
         <input
           type="checkbox"
-          className="peer w-4 h-4 appearance-none border border-gray-50 rounded-sm checked:bg-green cursor-pointer"
+          className="peer checked:bg-green h-4 w-4 cursor-pointer appearance-none rounded-sm border border-gray-50"
           checked={isAllChecked}
           onChange={e =>
             updateAgreements({
@@ -66,8 +65,8 @@ export default function AgreementList({
             })
           }
         />
-        <span className="ml-[16px] typo-label text-gray-80">약관 전체동의</span>
-        <span className="absolute left-4 w-4 h-4 flex items-center justify-center pointer-events-none text-gray-0 text-lg font-bold peer-checked:visible invisible">
+        <span className="typo-label text-gray-80 ml-[16px]">약관 전체동의</span>
+        <span className="text-gray-0 pointer-events-none invisible absolute left-4 flex h-4 w-4 items-center justify-center text-lg font-bold peer-checked:visible">
           ✓
         </span>
       </label>
@@ -83,7 +82,7 @@ export default function AgreementList({
               {item.key !== "policy" ? (
                 <input
                   type="checkbox"
-                  className="w-4 h-4 accent-gray-50"
+                  className="h-4 w-4 accent-gray-50"
                   checked={agreements[item.key]}
                   onChange={e =>
                     updateAgreements({ [item.key]: e.target.checked })

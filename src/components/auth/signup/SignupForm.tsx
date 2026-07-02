@@ -6,19 +6,15 @@ import { registerPushNotification } from "@/api/push";
 import { useSignupStore } from "@/stores/useSignupStore";
 import axios from "axios";
 
+import { AuthAgreements } from "@/types/auth";
+
 import { saveTokens } from "@/utils/auth";
+import { validatePassword } from "@/utils/validateUtil";
 
 import AccountSection from "./AccountSection";
 import EmailAuthModal from "./EmailAuthModal";
 import EmailSection from "./EmailSection";
 import SuccessSection from "./SuccessSection";
-
-interface Agreements {
-  terms: boolean;
-  privacy: boolean;
-  marketing: boolean;
-  policy: boolean;
-}
 
 interface SignupFormProps {
   setHideHeader: (hide: boolean) => void;
@@ -41,15 +37,14 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   // 약관 동의
-  const [agreements, setAgreements] = useState<Agreements>({
+  const [agreements, setAgreements] = useState<AuthAgreements>({
     terms: false,
     privacy: false,
     marketing: false,
     policy: false,
   });
 
-  const isPasswordValid =
-    password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
+  const isPasswordValid = validatePassword(password);
 
   const isPasswordMatch = password === passwordConfirm;
   const isRequiredAgreed = agreements.terms && agreements.privacy;
@@ -120,7 +115,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
     }
   };
 
-  const updateAgreements = (next: Partial<Agreements>) => {
+  const updateAgreements = (next: Partial<AuthAgreements>) => {
     setAgreements({ ...agreements, ...next });
   };
 
@@ -147,7 +142,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
           />
 
           {serverError && (
-            <p className="text-semantic-negative text-sm text-center mt-2">
+            <p className="text-semantic-negative mt-2 text-center text-sm">
               {serverError}
             </p>
           )}
