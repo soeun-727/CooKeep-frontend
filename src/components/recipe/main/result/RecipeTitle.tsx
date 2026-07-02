@@ -57,7 +57,7 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
       >
         {/* 변경된 부분: img 태그 대신 SVGR 컴포넌트 사용 */}
         <HeartIcon
-          className={`h-full w-full fill-current stroke-[#EBEBEB] stroke-[2px] ${isLiked ? "text-[#C3C3C3]" : "text-transparent"}`}
+          className={`stroke-gray-10 h-full w-full fill-current stroke-[2px] ${isLiked ? "text-gray-30" : "text-transparent"}`}
         />
       </button>
     </div>

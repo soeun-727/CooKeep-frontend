@@ -50,7 +50,7 @@ export default function RecordSelectPage() {
         {/* 왼쪽: 좋아요 + 제목 */}
         <div className="flex items-center gap-3">
           <HeartIcon
-            className={`h-[15px] w-[18px] shrink-0 fill-current stroke-[#EBEBEB] stroke-[2px] ${recipe.isPinned ? "text-[#C3C3C3]" : "text-transparent"}`}
+            className={`stroke-gray-10 h-[15px] w-[18px] shrink-0 fill-current stroke-[2px] ${recipe.isPinned ? "text-gray-30" : "text-transparent"}`}
           />
           <span
             className={`typo-body2 flex-1 truncate ${isSelected ? "text-green-deep" : "text-gray-80"} `}
