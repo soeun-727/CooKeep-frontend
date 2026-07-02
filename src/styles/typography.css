@@ -76,6 +76,7 @@ body,
   --font-weight-typo-result-title: 700;
 }
 
+/* TODO: 수정사항 반영시 없어질 경우 제거 하기 */
 .typo-result-title {
   color: #202020;
   text-align: center;
