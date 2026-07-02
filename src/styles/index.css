@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "./global.css";
+@import "./typography.css";
+
+@theme {
+}
 
 html,
 body,
@@ -6,6 +11,8 @@ body,
   min-height: 100dvh;
   margin: 0;
   background-color: #fafafa;
+  font-family: var(--font-family-sans);
+  -webkit-text-size-adjust: 100%;
 }
 
 body,
@@ -14,6 +21,10 @@ body,
   flex-direction: column;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .scroll-container {
@@ -29,194 +40,311 @@ img[src$=".svg"] {
   -webkit-backface-visibility: hidden;
 }
 
-@layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
+/* ==========================================================================
+   일반 및 애니메이션 유틸리티 클래스 정의 (@utility 사용)
+   ========================================================================== */
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scroll-snap-x {
-    scroll-snap-type: x mandatory;
-  }
-  .scroll-snap-start {
-    scroll-snap-align: start;
-  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-      transform: scale(0.96);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  .animate-fade-in {
-    animation: fade-in 0.6s ease forwards;
-  }
+@utility scroll-snap-x {
+  scroll-snap-type: x mandatory;
+}
 
-  @keyframes fadeInOut {
-    0% {
-      opacity: 0;
-      transform: translate(-50%, -60%);
-    }
-    10% {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
-    90% {
-      opacity: 1;
-      transform: translate(-50%, -50%);
-    }
-    100% {
-      opacity: 0;
-      transform: translate(-50%, -40%);
-    }
-  }
-  .animate-fade-in-out {
-    animation: fadeInOut 5s ease forwards;
-  }
+@utility scroll-snap-start {
+  scroll-snap-align: start;
+}
 
-  @keyframes roll {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-50%);
-    }
-  }
-  @keyframes roll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-  @keyframes roll-down {
-    0% {
-      transform: translateY(-50%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  @keyframes float-loop {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-25px);
-    }
-  }
+@utility animate-fade-in {
+  animation: fade-in 0.6s ease forwards;
+}
 
-  .animate-roll {
-    animation: roll 10s linear infinite;
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  .animate-roll-down {
-    animation: roll-down 20s linear infinite;
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  .animate-roll-left {
-    display: flex;
-    width: max-content;
-    gap: 0;
-    white-space: nowrap;
-    animation: roll-left 10s linear infinite;
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-  }
-  .animate-float {
-    animation: float-loop 3s ease-in-out infinite;
-    transform: translateZ(0);
-  }
+@utility animate-fade-in-out {
+  animation: fadeInOut 5s ease forwards;
+}
 
-  @keyframes floatBubble {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-6px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  .animate-float-bubble {
-    animation: floatBubble 2s ease-in-out infinite;
-  }
+@utility animate-roll {
+  animation: roll 10s linear infinite;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
 
-  @keyframes loading-dot {
-    0%,
-    100% {
-      background-color: #d9d9d9;
-    }
-    33% {
-      background-color: #2d2d2d;
-    }
-  }
-  .animate-dot {
-    animation: loading-dot 1.2s infinite;
-  }
-  .delay-200 {
-    animation-delay: 0.4s;
-  }
-  .delay-400 {
-    animation-delay: 0.8s;
-  }
+@utility animate-roll-down {
+  animation: roll-down 20s linear infinite;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
 
-  @keyframes dot-chase {
-    0%,
-    100% {
-      background-color: #d9d9d9;
-    }
-    50% {
-      background-color: #1fc16f;
-    }
-  }
-  .animate-dot-chase {
-    animation: dot-chase 1.2s infinite ease-in-out;
-  }
+@utility animate-roll-left {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  white-space: nowrap;
+  animation: roll-left 10s linear infinite;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
 
-  @keyframes wave-loading {
-    0%,
-    75%,
-    100% {
-      transform: translateY(0);
-      background: #ebebeb;
-    }
-    35% {
-      transform: translateY(-7px);
-      background: #7d7d7d;
-    }
-  }
-  .wave-dot {
-    width: 9.6px;
-    height: 9.6px;
-    border-radius: 9999px;
-    background: #ebebeb;
-    animation: wave-loading 1.2s infinite ease-in-out;
-  }
-  .wave-dot:nth-child(1) {
+@utility animate-float {
+  animation: float-loop 3s ease-in-out infinite;
+  transform: translateZ(0);
+}
+
+@utility animate-float-bubble {
+  animation: floatBubble 2s ease-in-out infinite;
+}
+
+@utility animate-dot {
+  animation: loading-dot 1.2s infinite;
+}
+
+@utility delay-200 {
+  animation-delay: 0.4s;
+}
+
+@utility delay-400 {
+  animation-delay: 0.8s;
+}
+
+@utility animate-dot-chase {
+  animation: dot-chase 1.2s infinite ease-in-out;
+}
+
+@utility wave-dot {
+  width: 9.6px;
+  height: 9.6px;
+  border-radius: 9999px;
+  background: #ebebeb;
+  animation: wave-loading 1.2s infinite ease-in-out;
+
+  &:nth-child(1) {
     animation-delay: 0s;
   }
-  .wave-dot:nth-child(2) {
+  &:nth-child(2) {
     animation-delay: 0.18s;
   }
-  .wave-dot:nth-child(3) {
+  &:nth-child(3) {
     animation-delay: 0.36s;
+  }
+}
+
+/* ==========================================================================
+   타이포그래피 유틸리티 클래스 정의 (@utility 사용)
+   ========================================================================== */
+
+@utility typo-display {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+@utility typo-h1 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+@utility typo-h2 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@utility typo-h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@utility typo-l {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility typo-l-strong {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility typo-m {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility typo-m-strong {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility typo-body {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility typo-body2 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility typo-label {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility typo-caption {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@utility typo-caption-strong {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@utility typo-button {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility typo-result-title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  color: #202020;
+  text-align: center;
+}
+
+/* ==========================================================================
+   표준 CSS 애니메이션 Keyframes 정의
+   ========================================================================== */
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  10% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  90% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+}
+
+@keyframes roll {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes roll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes roll-down {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-loop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+@keyframes floatBubble {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes loading-dot {
+  0%,
+  100% {
+    background-color: #d9d9d9;
+  }
+  33% {
+    background-color: #2d2d2d;
+  }
+}
+
+@keyframes dot-chase {
+  0%,
+  100% {
+    background-color: #d9d9d9;
+  }
+  50% {
+    background-color: #1fc16f;
+  }
+}
+
+@keyframes wave-loading {
+  0%,
+  75%,
+  100% {
+    transform: translateY(0);
+    background: #ebebeb;
+  }
+  35% {
+    transform: translateY(-7px);
+    background: #7d7d7d;
   }
 }

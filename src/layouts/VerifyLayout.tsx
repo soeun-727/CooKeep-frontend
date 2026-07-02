@@ -6,7 +6,7 @@ export default function VerifyLayout() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background min-h-screen">
       <BackHeader title="본인인증" onBack={() => navigate(-1)} />
       <Outlet />
     </div>

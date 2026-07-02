@@ -13,9 +13,9 @@ export default function GuestLast({ onNext }: { onNext: () => void }) {
       <div className="typo-body text-green-deep !font-bold">
         마음에 드는 레시피, 그냥 놓치기 아쉽다면
       </div>
-      <img src={char} className="h-64 mt-17" />
-      <div className="fixed bottom-[34px] left-1/2 -translate-x-1/2 z-[130]">
-        <div className="typo-body text-center text-gray-50 pb-4">
+      <img src={char} className="mt-17 h-64" />
+      <div className="fixed bottom-[34px] left-1/2 z-[130] -translate-x-1/2">
+        <div className="typo-body pb-4 text-center text-gray-50">
           지금 쿠킵에 가입하고 나만의 레시피를 저장해보세요!
         </div>
         <Button

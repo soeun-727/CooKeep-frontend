@@ -42,27 +42,27 @@ export default function Statistics() {
     );
 
   return (
-    <div className="h-[354px] py-6 w-full flex flex-col items-center bg-gray-0 overflow-hidden relative">
+    <div className="bg-gray-0 relative flex h-[354px] w-full flex-col items-center overflow-hidden py-6">
       <div
         className={`flex w-full flex-col items-center transition-transform duration-500 ease-in-out ${
           isExpanded ? "-translate-y-[230px]" : "translate-y-0"
         }`}
       >
-        <div className="flex flex-col items-center w-full h-[307px] shrink-0">
-          <div className="flex flex-col typo-caption text-gray-0 bg-black rounded-[6px] w-[157px] h-[26px] text-center justify-center mt-5">
+        <div className="flex h-[307px] w-full shrink-0 flex-col items-center">
+          <div className="typo-caption text-gray-0 mt-5 flex h-[26px] w-[157px] flex-col justify-center rounded-[6px] bg-black text-center">
             나의 식재료 소비 달성 현황
           </div>
 
           <div className="mt-6 flex w-77 justify-between pt-[6.5px]">
             <div className="flex w-1/2 flex-col items-center justify-center gap-[6.5px]">
               <CircleGraph percentage={stats.totalRate} />
-              <span className="typo-caption !text-[10px] text-gray-50 text-center leading-tight">
+              <span className="typo-caption text-center !text-[10px] leading-tight text-gray-50">
                 (실제 소비 음식/전체 음식) %
               </span>
             </div>
             <div className="flex w-1/2 flex-col items-center justify-center gap-[6.5px]">
               <CircleGraph percentage={stats.nearExpiryRate} />
-              <span className="typo-caption !text-[10px] text-gray-50 text-center leading-tight">
+              <span className="typo-caption text-center !text-[10px] leading-tight text-gray-50">
                 (실제 소비 음식/폐기 임박 음식) %
               </span>
             </div>
@@ -98,7 +98,7 @@ export default function Statistics() {
                 alt="tree"
                 className="h-20 w-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-green-deep font-medium">
+              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 나무 0.03그루 심기
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function Statistics() {
                 alt="car"
                 className="h-20 w-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-green-deep font-medium">
+              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 자동차 4km 미주행
               </div>
             </div>
@@ -118,13 +118,13 @@ export default function Statistics() {
                 alt="elec"
                 className="h-20 w-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-green-light text-green-deep font-medium">
+              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 자동차 4km 미주행
               </div>
             </div>
           </div>
 
-          <span className="typo-caption text-gray-30 text-[10px] text-center">
+          <span className="typo-caption text-gray-30 text-center text-[10px]">
             국제 평균 식품 폐기물 탄소 배출 계수 기준 추정치
           </span>
         </div>

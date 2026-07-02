@@ -38,19 +38,7 @@ export default function SettingsInputItem({
       <span className="typo-body text-gray-80 px-3">{label}</span>
 
       {/* input-like box */}
-      <div
-        className="
-          flex
-          items-center
-          justify-between
-          w-full
-          h-[44px]
-          px-3
-          border
-          border-gray-10
-          rounded-[6px]
-        "
-      >
+      <div className="border-gray-10 flex h-[44px] w-full items-center justify-between rounded-[6px] border px-3">
         {/* value */}
         <span className="typo-body2 text-gray-50">{value}</span>
 
@@ -59,22 +47,11 @@ export default function SettingsInputItem({
           type="button"
           onClick={handleClick}
           disabled={disabled}
-          className={`
-            flex
-            items-center
-            justify-center
-            w-[115px]
-            px-[18px]
-            py-1
-            rounded-full
-            transition-colors
-            typo-caption
-            ${
-              disabled
-                ? "bg-gray-30 text-gray-0 cursor-not-allowed" // 비활성화 스타일
-                : "bg-gray-80 text-gray-0 cursor-pointer active:bg-gray-80" // 활성화 스타일
-            }
-          `}
+          className={`typo-caption flex w-[115px] items-center justify-center rounded-full px-[18px] py-1 transition-colors ${
+            disabled
+              ? "bg-gray-30 text-gray-0 cursor-not-allowed" // 비활성화 스타일
+              : "bg-gray-80 text-gray-0 active:bg-gray-80 cursor-pointer" // 활성화 스타일
+          } `}
         >
           {buttonText}
         </button>

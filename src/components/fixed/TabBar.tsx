@@ -40,9 +40,9 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-[150] mx-auto w-full max-w-[450px] bg-gray-0 border-t border-gray-0 pb-sab shadow-sm">
-      <div className="h-14 flex justify-around items-center">
-        {tabs.map((tab) => (
+    <nav className="bg-gray-0 border-gray-0 pb-sab fixed right-0 bottom-0 left-0 z-[150] mx-auto w-full max-w-[450px] border-t shadow-sm">
+      <div className="flex h-14 items-center justify-around">
+        {tabs.map(tab => (
           <Tab
             key={tab.title}
             image={tab.image}

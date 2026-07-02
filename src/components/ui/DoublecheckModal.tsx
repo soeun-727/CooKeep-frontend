@@ -42,19 +42,19 @@ export default function DoublecheckModal({
   const buttonWidth = isSingular ? "w-[184px]" : "w-[95px]";
 
   return createPortal(
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black-overlay">
+    <div className="bg-black-overlay fixed inset-0 z-[999] flex items-center justify-center">
       <div
         className="absolute inset-0 cursor-default"
         onClick={closeOnOverlayClick ? onClose : undefined}
       ></div>
 
       {/* 모달 박스 */}
-      <div className="relative w-[254px] bg-gray-0 rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[25px] animate-popIn">
-        <h2 className="typo-body w-[198px] mb-2 text-center font-bold text-gray-80">
+      <div className="bg-gray-0 animate-popIn relative flex w-[254px] flex-col items-center rounded-[10px] px-7 py-[25px] shadow-xl">
+        <h2 className="typo-body text-gray-80 mb-2 w-[198px] text-center font-bold">
           {title}
         </h2>
         {description && (
-          <p className="mb-4 typo-body2 w-[198px] text-center font-medium text-gray-80 whitespace-pre-wrap">
+          <p className="typo-body2 text-gray-80 mb-4 w-[198px] text-center font-medium whitespace-pre-wrap">
             {description}
           </p>
         )}
@@ -64,14 +64,14 @@ export default function DoublecheckModal({
               onConfirm();
               onClose();
             }}
-            className={`typo-label h-11 text-gray-0 rounded-[10px] transition-colors active:opacity-80 ${confirmBtnColor} ${buttonWidth}`}
+            className={`typo-label text-gray-0 h-11 rounded-[10px] transition-colors active:opacity-80 ${confirmBtnColor} ${buttonWidth}`}
           >
             {confirmText}
           </button>
           {!isSingular && (
             <button
               onClick={onClose}
-              className="typo-label w-[95px] h-11 text-gray-0 bg-gray-30 rounded-[10px] active:opacity-80"
+              className="typo-label text-gray-0 bg-gray-30 h-11 w-[95px] rounded-[10px] active:opacity-80"
             >
               {cancelText}
             </button>

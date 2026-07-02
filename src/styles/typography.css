@@ -1,5 +1,5 @@
 html {
-  font-family: var(--font-sans);
+  font-family: var(--font-family-sans);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -11,96 +11,73 @@ body,
   -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .typo-display {
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 48px;
-  }
+@theme {
+  /* --- Font Sizes & Line Heights --- */
+  --font-size-typo-display: 40px;
+  --font-size-typo-display--line-height: 48px;
 
-  .typo-h1 {
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 40px;
-  }
+  --font-size-typo-h1: 32px;
+  --font-size-typo-h1--line-height: 40px;
 
-  .typo-h2 {
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 32px;
-  }
+  --font-size-typo-h2: 24px;
+  --font-size-typo-h2--line-height: 32px;
 
-  .typo-h3 {
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 28px;
-  }
+  --font-size-typo-h3: 20px;
+  --font-size-typo-h3--line-height: 28px;
 
-  .typo-l {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-  }
+  --font-size-typo-l: 16px;
+  --font-size-typo-l--line-height: 24px;
 
-  .typo-l-strong {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-  }
+  --font-size-typo-l-strong: 16px;
+  --font-size-typo-l-strong--line-height: 24px;
 
-  .typo-m {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-  }
+  --font-size-typo-m: 14px;
+  --font-size-typo-m--line-height: 20px;
 
-  .typo-m-strong {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-  }
+  --font-size-typo-m-strong: 14px;
+  --font-size-typo-m-strong--line-height: 20px;
 
-  .typo-body {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-  }
+  --font-size-typo-body: 16px;
+  --font-size-typo-body--line-height: 24px;
 
-  .typo-body2 {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 20px;
-  }
+  --font-size-typo-body2: 14px;
+  --font-size-typo-body2--line-height: 20px;
 
-  .typo-label {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-  }
+  --font-size-typo-label: 14px;
+  --font-size-typo-label--line-height: 20px;
 
-  .typo-caption {
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 18px;
-  }
+  --font-size-typo-caption: 12px;
+  --font-size-typo-caption--line-height: 18px;
 
-  .typo-caption-strong {
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 18px;
-  }
+  --font-size-typo-caption-strong: 12px;
+  --font-size-typo-caption-strong--line-height: 18px;
 
-  .typo-button {
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
-  }
+  --font-size-typo-button: 16px;
+  --font-size-typo-button--line-height: 24px;
 
-  .typo-result-title {
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 36px;
-    color: #202020;
-    text-align: center;
-  }
+  --font-size-typo-result-title: 28px;
+  --font-size-typo-result-title--line-height: 36px;
+
+  /* --- Font Weights --- */
+  --font-weight-typo-display: 700;
+  --font-weight-typo-h1: 700;
+  --font-weight-typo-h2: 700;
+  --font-weight-typo-h3: 600;
+  --font-weight-typo-l: 400;
+  --font-weight-typo-l-strong: 600;
+  --font-weight-typo-m: 400;
+  --font-weight-typo-m-strong: 600;
+  --font-weight-typo-body: 500;
+  --font-weight-typo-body2: 500;
+  --font-weight-typo-label: 600;
+  --font-weight-typo-caption: 400;
+  --font-weight-typo-caption-strong: 600;
+  --font-weight-typo-button: 700;
+  --font-weight-typo-result-title: 700;
+}
+
+/* TODO: 수정사항 반영시 없어질 경우 제거 하기 */
+.typo-result-title {
+  color: #202020;
+  text-align: center;
 }

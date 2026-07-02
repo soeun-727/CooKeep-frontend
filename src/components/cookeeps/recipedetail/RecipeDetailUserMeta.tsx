@@ -22,16 +22,7 @@ export default function RecipeDetailUserMeta({
   return (
     <div className="flex w-full items-center justify-between p-1">
       {/* 유저 pill */}
-      <div
-        className="
-  flex items-center
-  h-[20px]
-  px-3
-  gap-1
-  rounded-full
-  bg-gray-80
-"
-      >
+      <div className="bg-gray-80 flex h-[20px] items-center gap-1 rounded-full px-3">
         <span className="text-green text-[12px] font-medium">{userName}</span>
         <span className="text-gray-0 text-[12px] font-medium">님의 레시피</span>
       </div>

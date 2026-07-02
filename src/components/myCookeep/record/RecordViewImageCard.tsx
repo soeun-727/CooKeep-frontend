@@ -59,7 +59,7 @@ export default function RecordViewImageCard({
                 className="flex w-[208px] flex-col items-center gap-4"
                 onClick={e => e.stopPropagation()} // 내부 클릭만 막기
               >
-                <p className="text-gray-0 text-[14px] font-medium text-center leading-[20px]">
+                <p className="text-gray-0 text-center text-[14px] leading-[20px] font-medium">
                   사진을{" "}
                   {imageSrc
                     ? "변경하거나 삭제할 수 있습니다"
@@ -75,10 +75,7 @@ export default function RecordViewImageCard({
                       fileInputRef.current?.click();
                       // setShowImageOptions(false);
                     }}
-                    className={`
-      h-[44px] rounded-[10px] text-gray-0 text-[14px] font-semibold
-      ${imageSrc ? "flex-1 bg-green" : "w-[160px] bg-green"}
-    `}
+                    className={`text-gray-0 h-[44px] rounded-[10px] text-[14px] font-semibold ${imageSrc ? "bg-green flex-1" : "bg-green w-[160px]"} `}
                   >
                     {imageSrc ? "변경" : "추가"}
                   </button>
@@ -90,7 +87,7 @@ export default function RecordViewImageCard({
                         // setShowImageOptions(false);
                         setIsDeleteModalOpen(true); // 🔥 바로 삭제 X → 모달
                       }}
-                      className="flex-1 h-[44px] rounded-[10px] bg-gray-30 text-gray-0 text-[14px] font-semibold"
+                      className="bg-gray-30 text-gray-0 h-[44px] flex-1 rounded-[10px] text-[14px] font-semibold"
                     >
                       삭제
                     </button>
@@ -121,16 +118,7 @@ export default function RecordViewImageCard({
         </div>
 
         {/* 제목 영역 */}
-        <div
-          className="
-          flex items-center
-          w-full
-          bg-gray-0
-          rounded-b-[6px]
-          shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-          px-3 py-[12px]
-        "
-        >
+        <div className="bg-gray-0 flex w-full items-center rounded-b-[6px] px-3 py-[12px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
           {/* 왼쪽 아이콘 + 제목 */}
           <div className="flex flex-1 items-center gap-[4px] px-2">
             {/* 기본 아이콘 */}
@@ -150,7 +138,7 @@ export default function RecordViewImageCard({
                 placeholder={title}
               />
             ) : (
-              <h2 className="flex-1 text-gray-80 text-[18px] font-semibold leading-[26px]">
+              <h2 className="text-gray-80 flex-1 text-[18px] leading-[26px] font-semibold">
                 {title}
               </h2>
             )}
@@ -159,14 +147,14 @@ export default function RecordViewImageCard({
       </div>
       {isDeleteModalOpen && (
         <div
-          className="fixed inset-0 bg-gray-80 flex items-center justify-center z-50"
+          className="bg-gray-80 fixed inset-0 z-50 flex items-center justify-center"
           onClick={() => setIsDeleteModalOpen(false)}
         >
           <div
-            className="w-[254px] bg-gray-0 rounded-[10px] px-[28px] py-[25px] flex flex-col items-center gap-4"
-            onClick={(e) => e.stopPropagation()}
+            className="bg-gray-0 flex w-[254px] flex-col items-center gap-4 rounded-[10px] px-[28px] py-[25px]"
+            onClick={e => e.stopPropagation()}
           >
-            <p className="text-gray-80 text-[14px] font-medium text-center">
+            <p className="text-gray-80 text-center text-[14px] font-medium">
               사진을 삭제할까요?
             </p>
 
@@ -176,14 +164,14 @@ export default function RecordViewImageCard({
                   onImageDelete?.();
                   setIsDeleteModalOpen(false);
                 }}
-                className="flex-1 h-[44px] rounded-[10px] bg-gray-80 text-gray-0 font-semibold"
+                className="bg-gray-80 text-gray-0 h-[44px] flex-1 rounded-[10px] font-semibold"
               >
                 네
               </button>
 
               <button
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="flex-1 h-[44px] rounded-[10px] bg-gray-30 text-gray-0 font-semibold"
+                className="bg-gray-30 text-gray-0 h-[44px] flex-1 rounded-[10px] font-semibold"
               >
                 아니오
               </button>
