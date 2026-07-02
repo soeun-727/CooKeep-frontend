@@ -59,7 +59,7 @@ export default function Recipe({
       <button onClick={onLike} className="flex-shrink-0 px-2">
         {/* 변경된 부분: isLiked 상태에 따라 fill(채우기) 색상과 테두리 색상을 동적으로 부여 */}
         <HeartIcon
-          className={`h-[18px] w-[18px] fill-current stroke-[#EBEBEB] stroke-[2px] ${isLiked ? "text-[#C3C3C3]" : "text-transparent"}`}
+          className={`stroke-gray-10 h-[18px] w-[18px] fill-current stroke-[2px] ${isLiked ? "text-gray-30" : "text-transparent"}`}
         />
       </button>
 
@@ -77,7 +77,7 @@ export default function Recipe({
               setIsEditing(false);
             }
           }}
-          className="flex-1 min-w-0 mx-2 px-1 typo-body2 border border-gray-30 outline-none bg-gray-0 rounded-sm"
+          className="typo-body2 border-gray-30 bg-gray-0 mx-2 min-w-0 flex-1 rounded-sm border px-1 outline-none"
         />
       ) : (
         <button onClick={onSelect} className="min-w-0 flex-1">
