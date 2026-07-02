@@ -1,17 +1,17 @@
 import sortIcon from "@/assets/fridge/sort.svg";
 
+import { COOKEEPS_SORT_OPIONS } from "@/constants/cookeeps";
+
 interface SortProps {
   currentOrder: string;
   onSortChange: (order: string) => void;
 }
 
 export default function SortAll({ currentOrder, onSortChange }: SortProps) {
-  const options = ["좋아요 순", "최신 순", "오래된 순"];
-
   const handleClick = () => {
-    const currentIndex = options.indexOf(currentOrder);
-    const nextIndex = (currentIndex + 1) % options.length;
-    onSortChange(options[nextIndex]);
+    const currentIndex = COOKEEPS_SORT_OPIONS.indexOf(currentOrder);
+    const nextIndex = (currentIndex + 1) % COOKEEPS_SORT_OPIONS.length;
+    onSortChange(COOKEEPS_SORT_OPIONS[nextIndex]);
   };
 
   return (

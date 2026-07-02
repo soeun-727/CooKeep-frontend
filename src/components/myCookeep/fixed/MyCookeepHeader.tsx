@@ -6,12 +6,12 @@ import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import settings from "@/assets/cookeeps/main/settings_cookeeps.svg";
 import { cookieIcon, myLogo } from "@/assets/index";
 
+import { TOOLTIP_KEY } from "@/constants/cookeeps";
+
 export default function MyCookeepHeader() {
   const navigate = useNavigate();
   const location = useLocation();
   const cookie = useCookeepsStore(s => s.cookie);
-
-  const TOOLTIP_KEY = "cookeepsPlantShortcutSeen";
 
   const [showTooltip, setShowTooltip] = useState(() => {
     return !localStorage.getItem(TOOLTIP_KEY);
@@ -42,7 +42,7 @@ export default function MyCookeepHeader() {
       {/* 오른쪽 */}
       <div className="flex items-center gap-2">
         {/* 쿠키 */}
-        <button className="flex h-[28px] items-center gap-1 rounded-full bg-gray-0 px-3 py-[2px] text-black">
+        <button className="bg-gray-0 flex h-[28px] items-center gap-1 rounded-full px-3 py-[2px] text-black">
           <img src={cookieIcon} alt="cookie" className="h-4 w-4" />
           <span className="text-[12px] leading-4 font-medium">{cookie} 개</span>
         </button>
