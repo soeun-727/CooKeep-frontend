@@ -43,7 +43,7 @@ const ONBOARDING_DATA = [
         기록해요
       </div>
     ),
-    text: "직접 만든 요리를 나만의 팁과 함께 남기고, 관리할 수 있어요!",
+    text: "직접 만든 요리를 팁과 함께 남기고, 관리할 수 있어요!",
   },
   {
     id: 4,
@@ -54,7 +54,7 @@ const ONBOARDING_DATA = [
         공유해요
       </div>
     ),
-    text: "쿠키로 식재료를 키우고,\n다른 쿠킵이들의 레시피를 구경해보세요!",
+    text: "식재료를 키우고,다른 쿠킵이들의 레시피를 구경하세요!",
   },
 ];
 
@@ -125,7 +125,7 @@ export default function Guide({ onNext }: GuideProps) {
 
         {/* 텍스트 */}
         <div className="mt-6 px-4 text-center">
-          <div className="typo-h2">{title}</div>
+          <div className="typo-h2 tracking-[-0.6px]">{title}</div>
           <p className="typo-l-strong mt-2 whitespace-pre-wrap text-gray-50">
             {text}
           </p>
