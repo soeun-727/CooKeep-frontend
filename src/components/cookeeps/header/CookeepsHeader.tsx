@@ -53,7 +53,7 @@ export default function CookeepsHeader() {
       {/* 오른쪽 */}
       <div className="flex items-center gap-2">
         {/* 쿠키 */}
-        <button className="flex h-[28px] items-center gap-1 rounded-full bg-gray-80 px-3 py-[2px] text-gray-0 shadow">
+        <button className="bg-gray-80 text-gray-0 flex h-[28px] items-center gap-1 rounded-full px-3 py-[2px] shadow">
           <img src={cookieIcon} alt="cookie" className="h-4 w-4" />
           <span className="text-[12px] leading-4 font-medium">{cookie} </span>
         </button>
@@ -62,7 +62,7 @@ export default function CookeepsHeader() {
         <div className="relative">
           <button
             onClick={handleMyPlantClick}
-            className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-gray-80"
+            className="bg-gray-80 flex h-[28px] w-[28px] items-center justify-center rounded-full"
           >
             <img src={bookIcon} alt="my plant" className="h-4 w-4" />
           </button>
@@ -77,7 +77,7 @@ export default function CookeepsHeader() {
               state: { from: location.pathname },
             })
           }
-          className="flex mr-3 h-[28px] w-[28px] items-center justify-center rounded-full bg-gray-80"
+          className="bg-gray-80 mr-3 flex h-[28px] w-[28px] items-center justify-center rounded-full"
         >
           <img
             src={settings}

@@ -135,8 +135,8 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
               className="animate-fadeIn mt-30 mb-50 flex flex-col items-center justify-center gap-3"
             >
               <img src={character} className="w-23" alt="no result" />
-              <div className="bg-black rounded-[100px] h-6 py-1 px-[18px] flex justify-center items-center">
-                <span className="typo-caption text-gray-0 text-center py-1">
+              <div className="flex h-6 items-center justify-center rounded-[100px] bg-black px-[18px] py-1">
+                <span className="typo-caption text-gray-0 py-1 text-center">
                   직접 재료 추가하기
                 </span>
               </div>

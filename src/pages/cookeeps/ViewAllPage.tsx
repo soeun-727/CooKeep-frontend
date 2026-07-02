@@ -130,13 +130,13 @@ export default function ViewAllPage() {
               className="flex h-10 w-full items-center justify-center"
             >
               {isLoading && (
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-semantic-positive" />
+                <div className="border-semantic-positive h-5 w-5 animate-spin rounded-full border-b-2" />
               )}
             </div>
           </div>
         ) : (
           !isLoading && (
-            <p className="mt-10 text-gray-30 typo-body text-center">
+            <p className="text-gray-30 typo-body mt-10 text-center">
               검색 결과가 없습니다.
             </p>
           )

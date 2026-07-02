@@ -32,8 +32,8 @@ export default function RecentlyAdded() {
           <div
             className={`h-2 w-2 border-r-2 border-b-2 transition-all duration-300 ${
               isOpen
-                ? "rotate-45 -translate-y-[1px] border-green-deep"
-                : "rotate-[225deg] translate-y-[2px] border-gray-50"
+                ? "border-green-deep -translate-y-[1px] rotate-45"
+                : "translate-y-[2px] rotate-[225deg] border-gray-50"
             }`}
           />
         </button>
@@ -41,7 +41,7 @@ export default function RecentlyAdded() {
 
       {/* 2. 메뉴바 (361px 너비) */}
       <div
-        className={`w-[361px] bg-gray-0 rounded-t-[10px] shadow-[0_-1px_100px_-4px_rgba(17,17,17,0.15)] overflow-hidden transition-all duration-300 ease-in-out relative z-20 ${
+        className={`bg-gray-0 relative z-20 w-[361px] overflow-hidden rounded-t-[10px] shadow-[0_-1px_100px_-4px_rgba(17,17,17,0.15)] transition-all duration-300 ease-in-out ${
           isOpen
             ? "mt-[-1px] max-h-[100px] opacity-100" // 버튼과 겹치게 하여 경계선 제거
             : "pointer-events-none max-h-0 opacity-0"
@@ -65,7 +65,7 @@ export default function RecentlyAdded() {
                       className="h-7 w-7 object-contain"
                     />
                   </div>
-                  <span className="text-[10px] truncate w-11 text-center text-gray-80">
+                  <span className="text-gray-80 w-11 truncate text-center text-[10px]">
                     {item.name}
                   </span>
                 </button>

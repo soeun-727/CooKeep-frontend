@@ -35,17 +35,17 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
   };
 
   return (
-    <div className="flex flex-col w-[357px] mx-auto items-center justify-center rounded-[6px] py-[13px] px-4 mb-[34px] shadow-[0px_10px_60px_0px_rgba(0,0,0,0.1)] bg-gray-0">
+    <div className="bg-gray-0 mx-auto mb-[34px] flex w-[357px] flex-col items-center justify-center rounded-[6px] px-4 py-[13px] shadow-[0px_10px_60px_0px_rgba(0,0,0,0.1)]">
       {/* 1. 달력 헤더 (월 이동) */}
       <div className="flex h-11 w-[325px] items-center justify-between">
         <h2 className="typo-h3 font-semibold">
           {monthName} {year}
         </h2>
         <div>
-          <button onClick={prevMonth} className="p-2 text-gray-30">
+          <button onClick={prevMonth} className="text-gray-30 p-2">
             <img src={prevIcon} alt="back" />
           </button>
-          <button onClick={nextMonth} className="p-2 text-gray-30">
+          <button onClick={nextMonth} className="text-gray-30 p-2">
             <img src={nextIcon} alt="next" />
           </button>
         </div>
@@ -53,8 +53,8 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
 
       {/* 2. 요일 표시 */}
       <div className="mb-2 grid w-full grid-cols-7">
-        {daysOfWeek.map((day) => (
-          <div key={day} className="text-center typo-body2 text-green py-2">
+        {daysOfWeek.map(day => (
+          <div key={day} className="typo-body2 text-green py-2 text-center">
             {day}
           </div>
         ))}
@@ -85,14 +85,13 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
             <button
               key={day}
               onClick={() => handleDateClick(day)}
-              className={`h-10 w-10 mx-auto flex items-center justify-center rounded-full typo-h2 text-gray-80 transition-all !font-normal
-                ${
-                  isNewlySelected
-                    ? "!bg-green-light !border !border-green-deep !font-semibold"
-                    : isNewlySelected || isCurrent
-                      ? "!bg-gray-30 !text-gray-50 !cursor-not-allowed"
-                      : "hover:bg-gray-10"
-                }`}
+              className={`typo-h2 text-gray-80 mx-auto flex h-10 w-10 items-center justify-center rounded-full !font-normal transition-all ${
+                isNewlySelected
+                  ? "!bg-green-light !border-green-deep !border !font-semibold"
+                  : isNewlySelected || isCurrent
+                    ? "!bg-gray-30 !cursor-not-allowed !text-gray-50"
+                    : "hover:bg-gray-10"
+              }`}
             >
               {day}
             </button>

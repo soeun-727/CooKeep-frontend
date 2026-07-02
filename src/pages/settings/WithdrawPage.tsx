@@ -98,12 +98,12 @@ export default function WithdrawPage() {
         {/* ===== 상단 문구 ===== */}
         <div className="flex items-start justify-between">
           <div>
-            <p className="text-[22px] font-bold leading-[32px] text-gray-80">
+            <p className="text-gray-80 text-[22px] leading-[32px] font-bold">
               Cookeep을 <span className="text-semantic-negative">탈퇴</span>
               하시나요?
             </p>
 
-            <p className="mt-1 text-[14px] font-medium leading-[20px] text-gray-50">
+            <p className="mt-1 text-[14px] leading-[20px] font-medium text-gray-50">
               <span className="font-semibold">{username}</span> 님,
               이별인가요..?? 너무 아쉬워요...
             </p>
@@ -117,16 +117,16 @@ export default function WithdrawPage() {
         </div>
 
         {/* ===== 안내 박스 ===== */}
-        <div className="mt-[26px] rounded-[6px] border border-gray-10 bg-gray-10 p-[12px] space-y-[6px]">
-          <p className="text-[14px] font-medium leading-[20px] text-gray-80">
+        <div className="border-gray-10 bg-gray-10 mt-[26px] space-y-[6px] rounded-[6px] border p-[12px]">
+          <p className="text-gray-80 text-[14px] leading-[20px] font-medium">
             - 회원 탈퇴 시 함께 쌓아온 냉장고 재료, 레시피, 요리 기록이 모두
             삭제돼요. T_T
           </p>
-          <p className="text-[14px] font-medium leading-[20px] text-gray-80">
+          <p className="text-gray-80 text-[14px] leading-[20px] font-medium">
             - 탈퇴일 포함 30일동안 재가입이 불가하며, 재가입 시 사용자의 이전
             이용 내역은 복구되지 않습니다.
           </p>
-          <p className="text-[14px] font-medium leading-[20px] text-gray-80">
+          <p className="text-gray-80 text-[14px] leading-[20px] font-medium">
             - 탈퇴 고객의 개인정보는 관련 법령에 따라 일정 기간 보관 후 자동
             파기됩니다.
           </p>
@@ -138,14 +138,7 @@ export default function WithdrawPage() {
           className="mx-2 mt-3 flex items-center gap-2"
         >
           <span
-            className={`
-      w-[18px] h-[18px]
-      rounded-full
-      flex items-center justify-center
-      border
-      transition
-      ${agree ? "bg-green-deep border-green-deep" : "bg-gray-0 border-gray-10"}
-    `}
+            className={`flex h-[18px] w-[18px] items-center justify-center rounded-full border transition ${agree ? "bg-green-deep border-green-deep" : "bg-gray-0 border-gray-10"} `}
           >
             {agree && (
               <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
@@ -160,7 +153,7 @@ export default function WithdrawPage() {
             )}
           </span>
 
-          <span className="text-[14px] font-medium leading-[20px] text-gray-50 px-[12px]">
+          <span className="px-[12px] text-[14px] leading-[20px] font-medium text-gray-50">
             유의사항을 전부 확인했습니다
           </span>
         </button>
@@ -170,11 +163,7 @@ export default function WithdrawPage() {
           <button
             onClick={() => setReasonOpen(v => !v)}
             aria-expanded={reasonOpen}
-            className={`
-    flex w-full h-[48px] items-center gap-3 px-3
-    border border-gray-10 bg-gray-0
-    ${reasonOpen ? "rounded-t-[6px] border-b-0" : "rounded-[6px]"}
-  `}
+            className={`border-gray-10 bg-gray-0 flex h-[48px] w-full items-center gap-3 border px-3 ${reasonOpen ? "rounded-t-[6px] border-b-0" : "rounded-[6px]"} `}
           >
             {isCustom ? (
               <input
@@ -185,7 +174,7 @@ export default function WithdrawPage() {
                 onClick={e => e.stopPropagation()}
               />
             ) : (
-              <span className="flex-1 text-[14px] font-medium text-gray-80 text-left">
+              <span className="text-gray-80 flex-1 text-left text-[14px] font-medium">
                 {selectedReason ?? "탈퇴 사유를 알려주세요"}
               </span>
             )}
@@ -200,29 +189,15 @@ export default function WithdrawPage() {
           </button>
 
           {reasonOpen && (
-            <div
-              className="
-      w-full
-      flex flex-col
-      border border-gray-10
-      border-t-0
-      rounded-b-[6px]
-      bg-gray-0
-      overflow-hidden
-    "
-            >
-              {reasons.map((reason) => (
+            <div className="border-gray-10 bg-gray-0 flex w-full flex-col overflow-hidden rounded-b-[6px] border border-t-0">
+              {reasons.map(reason => (
                 <button
                   key={reason}
                   onClick={() => {
                     setSelectedReason(reason);
                     setReasonOpen(false);
                   }}
-                  className={`
-          flex items-center px-3 py-3
-          text-[14px] font-medium text-left
-          ${selectedReason === reason ? "bg-gray-10" : "bg-gray-0"}
-        `}
+                  className={`flex items-center px-3 py-3 text-left text-[14px] font-medium ${selectedReason === reason ? "bg-gray-10" : "bg-gray-0"} `}
                 >
                   {reason}
                 </button>
@@ -247,7 +222,7 @@ export default function WithdrawPage() {
       {/* ===== 더블체크 모달 ===== */}
       {openModal && (
         <div
-          className="fixed inset-0 z-[150] flex items-center justify-center bg-black-overlay"
+          className="bg-black-overlay fixed inset-0 z-[150] flex items-center justify-center"
           role="dialog"
           aria-modal="true"
         >
@@ -256,8 +231,8 @@ export default function WithdrawPage() {
             onClick={() => setOpenModal(false)}
           />
 
-          <div className="relative w-[254px] bg-gray-0 rounded-[10px] flex flex-col items-center">
-            <h2 className="mt-[35px] mb-4 font-bold text-[16px] text-gray-80">
+          <div className="bg-gray-0 relative flex w-[254px] flex-col items-center rounded-[10px]">
+            <h2 className="text-gray-80 mt-[35px] mb-4 text-[16px] font-bold">
               정말 탈퇴하시겠어요?
             </h2>
 
@@ -266,7 +241,7 @@ export default function WithdrawPage() {
               <button
                 onClick={handleWithdraw}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-gray-30 text-gray-0"
+                className="bg-gray-30 text-gray-0 h-[44px] w-[95px] rounded-[10px]"
               >
                 {isSubmitting ? "처리중" : "네"}
               </button>
@@ -275,7 +250,7 @@ export default function WithdrawPage() {
               <button
                 onClick={() => setOpenModal(false)}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-green text-gray-0"
+                className="bg-green text-gray-0 h-[44px] w-[95px] rounded-[10px]"
               >
                 아니오
               </button>

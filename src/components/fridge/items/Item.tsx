@@ -30,12 +30,11 @@ export default function Item({
       onClick={onDetail}
       role="button"
       tabIndex={0}
-      className={`w-[114px] h-20 rounded-[6px] border flex flex-col 
-        items-start shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)] overflow-hidden pl-[11px] ${
-          isSelected
-            ? "border-emerald-400 bg-green-light"
-            : "border-gray-10 bg-gray-0"
-        } ${className}`}
+      className={`flex h-20 w-[114px] flex-col items-start overflow-hidden rounded-[6px] border pl-[11px] shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)] ${
+        isSelected
+          ? "bg-green-light border-emerald-400"
+          : "border-gray-10 bg-gray-0"
+      } ${className}`}
       style={style}
     >
       <div className="flex flex-col items-start">
@@ -43,7 +42,7 @@ export default function Item({
           {name}
         </span>
         <span
-          className={`text-left text-[10px] font-semibold leading-tight whitespace-nowrap mt-0.5 ${
+          className={`mt-0.5 text-left text-[10px] leading-tight font-semibold whitespace-nowrap ${
             leftDays < 3 ? "text-red-600" : "text-gray-30"
           }`}
         >

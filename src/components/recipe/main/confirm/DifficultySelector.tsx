@@ -34,11 +34,11 @@ export default function DifficultySelector() {
   return (
     <section className="mx-auto mt-[38px] flex w-full max-w-[361px] flex-col items-center gap-4">
       {/* 제목 영역 */}
-      <div className="flex flex-col items-center gap-[2px] w-[188px]">
-        <h2 className="w-full text-center text-[20px] font-semibold leading-[28px] text-gray-80">
+      <div className="flex w-[188px] flex-col items-center gap-[2px]">
+        <h2 className="text-gray-80 w-full text-center text-[20px] leading-[28px] font-semibold">
           난이도 선택
         </h2>
-        <p className="text-[12px] leading-[16px] text-gray-50 text-center">
+        <p className="text-center text-[12px] leading-[16px] text-gray-50">
           선택한 난이도에 따라 요리가 달라져요
         </p>
       </div>
@@ -52,7 +52,7 @@ export default function DifficultySelector() {
             <button
               key={opt.key}
               onClick={() => setDifficulty(opt.key)}
-              className="w-full flex justify-center items-center rounded-[6px] bg-gray-0 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+              className="bg-gray-0 flex w-full items-center justify-center rounded-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
             >
               <div className="flex w-full items-center gap-2 p-3">
                 <div className="flex w-full items-center gap-3">
@@ -65,7 +65,7 @@ export default function DifficultySelector() {
 
                   {/* 텍스트 */}
                   <div className="flex-1">
-                    <p className="text-[16px] text-left font-medium leading-[24px] text-gray-80">
+                    <p className="text-gray-80 text-left text-[16px] leading-[24px] font-medium">
                       <span className="text-green-deep">{opt.time}</span>{" "}
                       {opt.desc}
                     </p>
@@ -74,14 +74,10 @@ export default function DifficultySelector() {
                   {/* 선택 버튼 */}
                   <div className="flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center">
                     <div
-                      className={`
-      w-[24px] h-[24px] rounded-full
-      border-2 flex items-center justify-center
-      ${selected ? "border-green" : "border-gray-30"}
-    `}
+                      className={`flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 ${selected ? "border-green" : "border-gray-30"} `}
                     >
                       {selected && (
-                        <div className="w-[14px] h-[14px] rounded-full bg-green" />
+                        <div className="bg-green h-[14px] w-[14px] rounded-full" />
                       )}
                     </div>
                   </div>

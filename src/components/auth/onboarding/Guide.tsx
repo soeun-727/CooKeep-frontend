@@ -113,14 +113,14 @@ export default function Guide({ onNext }: GuideProps) {
       onTouchEnd={handleTouchEnd}
     >
       {/* 상단 영역 */}
-      <div className="pt-24">
+      <div className="pt-[70px]">
         {/* 인디케이터 */}
         <div className="flex justify-center gap-2">
           {ONBOARDING_DATA.map((_, index) => (
             <div
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-1.5 h-1.5 rounded-full cursor-pointer ${
+              className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
                 currentIndex === index ? "bg-green" : "bg-gray-30"
               }`}
             />
@@ -128,9 +128,9 @@ export default function Guide({ onNext }: GuideProps) {
         </div>
 
         {/* 텍스트 */}
-        <div className="mt-10 px-4 text-center">
-          <div className="typo-h1 !text-[22px]">{title}</div>
-          <p className="whitespace-pre-wrap typo-body text-gray-50 mt-2">
+        <div className="mt-6 px-4 text-center">
+          <div className="typo-h2">{title}</div>
+          <p className="typo-l-strong mt-2 whitespace-pre-wrap text-gray-50">
             {text}
           </p>
         </div>
@@ -168,7 +168,7 @@ export default function Guide({ onNext }: GuideProps) {
           </div>
         </div>
 
-        <div className="absolute bottom-0 w-full h-56 bg-blur-to-b pointer-events-none z-10" />
+        <div className="bg-blur-to-b pointer-events-none absolute bottom-0 z-10 h-56 w-full" />
 
         {/* 버튼 */}
         <div

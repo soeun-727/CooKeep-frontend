@@ -8,21 +8,13 @@ export default function RecipeDetailMemo({
   memo,
 }: RecipeDetailMemoProps) {
   return (
-    <div className="w-full px-1 flex justify-center">
-      <div
-        className="
-          flex flex-col items-center justify-center gap-2
-          w-full max-w-[450px]
-          px-4 py-3
-          rounded-[10px]
-          bg-gray-0
-        "
-      >
-        <span className="text-gray-50 text-[16px] font-semibold whitespace-nowrap">
+    <div className="flex w-full justify-center px-1">
+      <div className="bg-gray-0 flex w-full max-w-[450px] flex-col items-center justify-center gap-2 rounded-[10px] px-4 py-3">
+        <span className="text-[16px] font-semibold whitespace-nowrap text-gray-50">
           {userName}
         </span>
 
-        <span className="text-gray-50 text-[16px] font-semibold whitespace-pre-wrap break-words w-full text-center">
+        <span className="w-full text-center text-[16px] font-semibold break-words whitespace-pre-wrap text-gray-50">
           “{memo}”
         </span>
       </div>

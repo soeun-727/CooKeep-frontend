@@ -122,8 +122,8 @@ export default function EditPasswordPage() {
   }, [location.state, verifiedFromEmail, navigate]);
 
   return (
-    <div className="relative min-h-screen bg-background">
-      <div className="pt-[241px] w-[361px] mx-auto">
+    <div className="bg-background relative min-h-screen">
+      <div className="mx-auto w-[361px] pt-[241px]">
         <div className="typo-h1">비밀번호 변경</div>
 
         {/* 기존 비밀번호 */}
@@ -253,7 +253,7 @@ export default function EditPasswordPage() {
         </div>
 
         {error && (
-          <p className="text-semantic-negative text-sm text-center mt-[8px]">
+          <p className="text-semantic-negative mt-[8px] text-center text-sm">
             {error}
           </p>
         )}
@@ -271,9 +271,9 @@ export default function EditPasswordPage() {
 
       {/* 5회 실패 모달 */}
       {showAuthModal && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-gray-80">
-          <div className="w-[254px] flex flex-col items-center pt-[25px] px-[28px] pb-[25px] gap-[16px] rounded-[10px] bg-gray-0">
-            <p className="typo-label text-gray-80 text-center self-stretch">
+        <div className="bg-gray-80 absolute inset-0 z-50 flex items-center justify-center">
+          <div className="bg-gray-0 flex w-[254px] flex-col items-center gap-[16px] rounded-[10px] px-[28px] pt-[25px] pb-[25px]">
+            <p className="typo-label text-gray-80 self-stretch text-center">
               비밀번호가 5회 일치하지 않았어요
               <br />
               본인인증을 진행해 주세요
@@ -298,8 +298,8 @@ export default function EditPasswordPage() {
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="absolute inset-0 z-50 flex justify-center bg-background">
-          <div className="w-[361px] flex flex-col items-center">
+        <div className="bg-background absolute inset-0 z-50 flex justify-center">
+          <div className="flex w-[361px] flex-col items-center">
             <p className="typo-result-title pt-[295px] pb-[18px]">
               비밀번호 변경 완료
             </p>
@@ -307,7 +307,7 @@ export default function EditPasswordPage() {
             <Button
               size="L"
               variant="black"
-              className="mt-[48px] !text-green"
+              className="!text-green mt-[48px]"
               onClick={() => navigate("/settings")}
             >
               확인

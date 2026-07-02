@@ -14,17 +14,17 @@ export default function ComebackRewardModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[170] flex items-center justify-center bg-black-overlay">
+    <div className="bg-black-overlay fixed inset-0 z-[170] flex items-center justify-center">
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* 전체 */}
-      <div className="relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-gray-0 px-[28px] pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
         {/* 내용 + 버튼 */}
         <div className="flex w-full flex-col items-center gap-[28px]">
           {/* 내용 */}
           <div className="flex flex-col items-center gap-[20px]">
             {/* 🔥 텍스트1 (맨 위) */}
-            <div className="w-[202px] text-center typo-body2 text-gray-80">
+            <div className="typo-body2 text-gray-80 w-[202px] text-center">
               쿠킵은 기다리고 있었어요!
             </div>
 
@@ -32,7 +32,7 @@ export default function ComebackRewardModal({
             <img src={icon} className="h-[56px] w-[60px]" alt="comeback" />
 
             {/* 🔥 텍스트2 */}
-            <div className="w-[202px] text-center typo-body2 text-gray-80">
+            <div className="typo-body2 text-gray-80 w-[202px] text-center">
               오랜만에 오신 기념으로
               <br />
               쿠키를 준비했어요

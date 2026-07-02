@@ -109,7 +109,7 @@ export default function GuestFridge({
   return (
     <div onClick={() => setIsDimmed(true)} className="relative w-full">
       {isDimmed && (
-        <div className="absolute inset-0 z-90 bg-black-overlay left-1/2 -translate-x-1/2 max-w-[450px] w-full h-full" />
+        <div className="bg-black-overlay absolute inset-0 left-1/2 z-90 h-full w-full max-w-[450px] -translate-x-1/2" />
       )}
 
       <div

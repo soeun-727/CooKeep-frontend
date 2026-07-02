@@ -12,31 +12,10 @@ export default function SingleButtonModal({
   onClose,
 }: SingleButtonModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-80">
-      <div
-        className="
-          flex flex-col items-center gap-2
-          w-[240px]
-          px-[28px]
-          py-[25px]
-          rounded-[10px]
-          bg-gray-0
-        "
-      >
-        <div
-          className="
-            flex flex-col items-start gap-4
-            self-stretch
-          "
-        >
-          <p
-            className="
-              self-stretch
-              text-center
-              text-gray-80
-              typo-body2
-            "
-          >
+    <div className="bg-gray-80 fixed inset-0 z-50 flex items-center justify-center">
+      <div className="bg-gray-0 flex w-[240px] flex-col items-center gap-2 rounded-[10px] px-[28px] py-[25px]">
+        <div className="flex flex-col items-start gap-4 self-stretch">
+          <p className="text-gray-80 typo-body2 self-stretch text-center">
             {message}
           </p>
 
