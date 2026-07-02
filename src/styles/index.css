@@ -1,7 +1,7 @@
 @import "tailwindcss";
+@import "pretendard/dist/web/variable/pretendardvariable.css";
 @import "./global.css";
 @import "./typography.css";
-
 @theme {
 }
 
@@ -11,7 +11,7 @@ body,
   min-height: 100dvh;
   margin: 0;
   background-color: #fafafa;
-  font-family: var(--font-family-sans);
+  font-family: var(--font-sans);
   -webkit-text-size-adjust: 100%;
 }
 
