@@ -1,11 +1,4 @@
-import {
-  calendar,
-  calendarOn,
-  record,
-  recordOn,
-  stats,
-  statsOn,
-} from "@/assets/index";
+import { calendarIcon, recordIcon, statsIcon } from "@/assets/index";
 
 interface MyCookeepTabBarProps {
   activeTab: string;
@@ -19,9 +12,9 @@ export default function MyCookeepTabBar({
   onActiveTabClick,
 }: MyCookeepTabBarProps) {
   const tabs = [
-    { id: "record", img: record, onImg: recordOn },
-    { id: "calendar", img: calendar, onImg: calendarOn },
-    { id: "statistics", img: stats, onImg: statsOn },
+    { id: "record", Icon: recordIcon },
+    { id: "calendar", Icon: calendarIcon },
+    { id: "statistics", Icon: statsIcon },
   ];
   const handleTabClick = (tabId: string) => {
     if (activeTab === tabId) {
@@ -36,16 +29,18 @@ export default function MyCookeepTabBar({
     <div className="bg-gray-0 flex h-13 w-full items-center justify-around">
       {tabs.map(tab => {
         const isActive = activeTab === tab.id;
+        const Icon = tab.Icon;
         return (
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
             className="relative flex flex-1 items-center justify-center py-3 transition-all"
           >
-            <img
-              src={isActive ? tab.onImg : tab.img}
-              alt={tab.id}
-              className="h-6 w-6 object-contain"
+            <Icon
+              className={`h-6 w-6 transition-colors duration-200 ${
+                isActive ? "text-gray-80" : "text-gray-10"
+              }`}
+              aria-label={tab.id}
             />
 
             {isActive && (
