@@ -18,7 +18,7 @@ const ONBOARDING_DATA = [
     img: image1,
     title: (
       <div>
-        <span className="text-green">냉장고</span> 식재료를 한눈에 관리해요
+        <span className="text-green-deep">냉장고</span> 식재료를 한눈에 관리해요
       </div>
     ),
     text: "등록만 하면 유통기한을 알아서 챙겨드려요!",
@@ -28,7 +28,8 @@ const ONBOARDING_DATA = [
     img: image2,
     title: (
       <div>
-        나에게 딱 맞는 <span className="text-green">AI 레시피</span>를 만들어요
+        나에게 딱 맞는 <span className="text-green-deep">AI 레시피</span>를
+        만들어요
       </div>
     ),
     text: "가진 재료와 취향에 맞게 추천드릴게요!",
@@ -38,17 +39,19 @@ const ONBOARDING_DATA = [
     img: image3,
     title: (
       <div>
-        완성한 요리를 <span className="text-green">MY 쿠킵</span>에 기록해요
+        완성한 요리를 <span className="text-green-deep">MY 쿠킵</span>에
+        기록해요
       </div>
     ),
-    text: "직접 만든 요리를 나만의 팁과 함께\n남기고, 관리할 수 있어요!",
+    text: "직접 만든 요리를 나만의 팁과 함께 남기고, 관리할 수 있어요!",
   },
   {
     id: 4,
     img: image4,
     title: (
       <div>
-        <span className="text-green">쿠킵스</span>에서 식재료를 키우고, 공유해요
+        <span className="text-green-deep">쿠킵스</span>에서 식재료를 키우고,
+        공유해요
       </div>
     ),
     text: "쿠키로 식재료를 키우고,\n다른 쿠킵이들의 레시피를 구경해보세요!",
@@ -97,13 +100,6 @@ export default function Guide({ onNext }: GuideProps) {
     }
   };
 
-  // 미사용 핸들러 주석 처리
-  // const handleSliderClick = () => {
-  //   if (currentIndex < 3) {
-  //     handleNext();
-  //   }
-  // };
-
   return (
     <div
       className="flex h-full flex-col overflow-hidden select-none"
@@ -121,14 +117,14 @@ export default function Guide({ onNext }: GuideProps) {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
-                currentIndex === index ? "bg-green" : "bg-gray-30"
+                currentIndex === index ? "bg-green" : "bg-gray-10"
               }`}
             />
           ))}
         </div>
 
         {/* 텍스트 */}
-        <div className="mt-6 px-4 text-center">
+        <div className="mt-6 text-center">
           <div className="typo-h2">{title}</div>
           <p className="typo-l-strong mt-2 whitespace-pre-wrap text-gray-50">
             {text}
@@ -153,7 +149,7 @@ export default function Guide({ onNext }: GuideProps) {
                 className="relative flex min-w-full items-end justify-center"
               >
                 <object
-                  className="pointer-events-none h-[61.6vh] max-h-[524px] min-h-[320px] border-none object-contain outline-none"
+                  className="pointer-events-none h-[61.6vh] max-h-[520px] min-h-[320px] border-none object-contain outline-none"
                   data={data.img}
                 />
 

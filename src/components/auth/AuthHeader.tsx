@@ -21,7 +21,7 @@ export default function AuthHeader() {
 
       <p className="typo-label flex items-center gap-[6px]">
         <span className="text-gray-50">맛있는 습관이 이어지는 곳,</span>
-        <span className="text--green-deep">쿠킵</span>
+        <span className="text-green-deep">쿠킵</span>
       </p>
     </header>
   );
