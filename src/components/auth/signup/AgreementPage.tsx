@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 import remarkGfm from "remark-gfm";
 
-import { blankCheck, grayCheck } from "@/assets/index";
+import { blankCheck, CheckboxCheckIcon } from "@/assets/index";
 
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
@@ -58,11 +58,7 @@ export default function AgreementPage({
                   alt="unchecked"
                   className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                 />
-                <img
-                  src={grayCheck}
-                  alt="checked"
-                  className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
-                />
+                <CheckboxCheckIcon className="pointer-events-none z-0 hidden h-4 w-4 object-contain text-gray-50 peer-checked:block" />
               </div>
             ) : (
               <span className="inline-block h-4 w-4" />
