@@ -1,2 +1,2 @@
-export const validatePassword = (pw: string) =>
-  pw.length >= 8 && /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw);
+export const validatePassword = (password: string) =>
+  password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
