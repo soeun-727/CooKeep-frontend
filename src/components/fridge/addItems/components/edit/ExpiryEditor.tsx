@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-import prevIcon from "@/assets/fridge/addItem/backward.svg";
-import nextIcon from "@/assets/fridge/addItem/forward.svg";
+import PrevIcon from "@/assets/fridge/addItem/backward.svg?react";
 
 import { daysOfWeek } from "@/constants/dateOfWeek";
 
@@ -46,10 +45,10 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
         </h2>
         <div>
           <button onClick={prevMonth} className="text-gray-30 p-2">
-            <img src={prevIcon} alt="back" />
+            <PrevIcon className="text-gray-30 h-4 w-4" />
           </button>
           <button onClick={nextMonth} className="text-gray-30 p-2">
-            <img src={nextIcon} alt="next" />
+            <PrevIcon className="text-gray-30 h-4 w-4 rotate-180" />
           </button>
         </div>
       </div>
