@@ -47,10 +47,7 @@ export { default as plantChar } from "./character/plant_char.svg";
 export { default as logoBlack } from "./splash/black_logo.svg";
 export { default as logoWhite } from "./splash/white_logo.svg";
 export { default as logoChar } from "./splash/logo_char.svg";
-export { default as disabledLeft } from "./cookeeps/disabled_left.svg";
-export { default as disabledRight } from "./cookeeps/disabled_right.svg";
-export { default as abledLeft } from "./cookeeps/abled_left.svg";
-export { default as abledRight } from "./cookeeps/abled_right.svg";
+export { default as TriangleArrowIcon } from "./cookeeps/abled_left.svg?react";
 export { default as loadingChar } from "./character/loading_char.svg";
 
 export { default as FridgeIcon } from "./fridge/fridge.svg?react";

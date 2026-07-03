@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 
-import {
-  abledLeft,
-  abledRight,
-  disabledLeft,
-  disabledRight,
-} from "@/assets/index";
+import { TriangleArrowIcon } from "@/assets/index";
 
 import Button from "@/components/ui/Button";
 
@@ -92,10 +87,9 @@ export default function OnboardingModal({
               disabled={isFirstStep}
               className="flex w-6 items-center justify-center p-1 outline-none"
             >
-              <img
-                src={isFirstStep ? disabledLeft : abledLeft}
-                alt="이전"
-                className="h-[10px] w-2 object-contain"
+              <TriangleArrowIcon
+                aria-label="이전"
+                className={`h-[10px] w-2 ${isFirstStep ? "text-gray-30" : "text-gray-50"}`}
               />
             </button>
 
@@ -117,10 +111,9 @@ export default function OnboardingModal({
               disabled={isLastStep}
               className="flex w-6 items-center justify-center p-1 outline-none"
             >
-              <img
-                src={isLastStep ? disabledRight : abledRight}
-                alt="다음"
-                className="h-[10px] w-2 object-contain"
+              <TriangleArrowIcon
+                aria-label="다음"
+                className={`h-[10px] w-2 scale-x-[-1] ${isLastStep ? "text-gray-30" : "text-gray-50"}`}
               />
             </button>
           </div>
