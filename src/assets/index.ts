@@ -21,9 +21,9 @@ export { default as cookieIcon } from "./mycookeep/green_cookie.svg";
 export { default as groundImg } from "./cookeeps/plant/plant_before.svg";
 export { default as renameIcon } from "./recipe/rename.svg";
 export { default as refreshIcon } from "./mycookeep/refresh.svg";
-export { default as recordIcon } from "./mycookeep/record.svg?react";
-export { default as calendarIcon } from "./mycookeep/calendar.svg?react";
-export { default as statsIcon } from "./mycookeep/stats.svg?react";
+export { default as RecordIcon } from "./mycookeep/record.svg?react";
+export { default as CalendarIcon } from "./mycookeep/calendar.svg?react";
+export { default as StatsIcon } from "./mycookeep/stats.svg?react";
 
 export { default as triButton } from "./mycookeep/triButton.svg";
 export { default as treeIcon } from "./mycookeep/tree.svg";

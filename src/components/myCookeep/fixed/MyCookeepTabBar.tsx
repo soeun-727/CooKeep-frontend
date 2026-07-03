@@ -1,4 +1,4 @@
-import { calendarIcon, recordIcon, statsIcon } from "@/assets/index";
+import { CalendarIcon, RecordIcon, StatsIcon } from "@/assets/index";
 
 interface MyCookeepTabBarProps {
   activeTab: string;
@@ -12,9 +12,9 @@ export default function MyCookeepTabBar({
   onActiveTabClick,
 }: MyCookeepTabBarProps) {
   const tabs = [
-    { id: "record", Icon: recordIcon },
-    { id: "calendar", Icon: calendarIcon },
-    { id: "statistics", Icon: statsIcon },
+    { id: "record", Icon: RecordIcon },
+    { id: "calendar", Icon: CalendarIcon },
+    { id: "statistics", Icon: StatsIcon },
   ];
   const handleTabClick = (tabId: string) => {
     if (activeTab === tabId) {
