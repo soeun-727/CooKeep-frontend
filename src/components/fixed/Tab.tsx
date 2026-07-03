@@ -1,8 +1,10 @@
+import type { IconComponent } from "@/types/icon";
+
 interface TabProps {
   title: string;
   isSelected?: boolean;
   onClick?: () => void;
-  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  Icon: IconComponent;
   iconColor: string;
 }
 
