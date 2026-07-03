@@ -5,7 +5,7 @@ import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
 
-import searchIcon from "@/assets/recipe/search.svg";
+import { SearchIcon } from "@/assets/index";
 import HeartIcon from "@/assets/recipe/heart.svg?react";
 
 import BackHeader from "@/components/ui/BackHeader";
@@ -76,7 +76,10 @@ export default function RecordSelectPage() {
               placeholder="레시피를 검색하세요"
               className="typo-body2 h-[24px] flex-1 bg-transparent text-gray-50 outline-none"
             />
-            <img src={searchIcon} alt="검색" className="h-6 w-6 shrink-0" />
+            <SearchIcon
+              aria-label="검색"
+              className="text-gray-30 h-6 w-6 shrink-0"
+            />
           </div>
         </div>
       </div>

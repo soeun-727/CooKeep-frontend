@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { searchIcon } from "@/assets/index";
+=======
+// src/components/headers/ViewAllHeader.tsx
+import { SearchIcon } from "@/assets/index";
+>>>>>>> 755b120 (refactor: 냉장고와 레시피에 있는 search관련 이미지 중복 assets 정리하기)
 
 import TextField from "@/components/ui/TextField";
 
@@ -28,7 +33,7 @@ export default function ViewAllHeader({
             const value = e.target ? e.target.value : e;
             onSearchChange(value);
           }}
-          rightIcon={<img src={searchIcon} />}
+          rightIcon={<SearchIcon className="h-6 w-6 text-gray-50" />}
         />
       </div>
 
