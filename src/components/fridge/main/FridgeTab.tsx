@@ -4,10 +4,12 @@ import { getRefrigeratorHome } from "@/api/ingredient";
 import { getPushEligibility } from "@/api/user";
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
-import freezerIcon from "@/assets/fridge/freezer.svg";
-import fridgeIcon from "@/assets/fridge/fridge.svg";
-import pantryIcon from "@/assets/fridge/pantry.svg";
-import { loadingChar } from "@/assets/index";
+import {
+  loadingChar,
+  FreezerIcon,
+  FridgeIcon,
+  PantryIcon,
+} from "@/assets/index";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
@@ -91,9 +93,9 @@ export default function FridgeTab() {
   }, [ingredients, selectedIngredientId]);
 
   const getCategoryIcon = (category: string | null) => {
-    if (category === "냉동") return freezerIcon;
-    if (category === "상온") return pantryIcon;
-    return fridgeIcon;
+    if (category === "냉동") return FreezerIcon;
+    if (category === "상온") return PantryIcon;
+    return FridgeIcon;
   };
 
   const isSearching = searchTerm.trim().length > 0;
@@ -139,17 +141,17 @@ export default function FridgeTab() {
         <div className="flex flex-col gap-[10px]">
           <Storage
             category="냉장"
-            image={fridgeIcon}
+            icon={FridgeIcon}
             ingredients={ingredients.filter(i => i.category === "냉장")}
           />
           <Storage
             category="냉동"
-            image={freezerIcon}
+            icon={FreezerIcon}
             ingredients={ingredients.filter(i => i.category === "냉동")}
           />
           <Storage
             category="상온"
-            image={pantryIcon}
+            icon={PantryIcon}
             ingredients={ingredients.filter(i => i.category === "상온")}
           />
         </div>

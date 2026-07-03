@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import type { MasterItem } from "@/stores/useAddIngredientStore";
 
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+import type { IconComponent } from "@/types/icon";
+
 import deleteIcon from "@/assets/fridge/delete.svg";
-import frozenIcon from "@/assets/fridge/freezer.svg";
-import coldIcon from "@/assets/fridge/fridge.svg";
 import memoIcon from "@/assets/fridge/memo.svg";
-import roomIcon from "@/assets/fridge/pantry.svg";
 import renameIcon from "@/assets/recipe/rename.svg";
 
 import EditModal from "@/components/ui/EditModal";
@@ -23,10 +23,10 @@ import UnitEditor from "./components/edit/UnitEditor";
 
 interface DetailedItemProps extends MasterItem {}
 
-const STORAGE_ICONS: Record<string, string> = {
-  FRIDGE: coldIcon,
-  FREEZER: frozenIcon,
-  PANTRY: roomIcon,
+const STORAGE_ICONS: Record<string, IconComponent> = {
+  FRIDGE: FridgeIcon,
+  FREEZER: FreezerIcon,
+  PANTRY: PantryIcon,
 };
 
 const STORAGE_NAMES: Record<string, string> = {
@@ -52,7 +52,7 @@ export default function DetailedItem(item: DetailedItemProps) {
     "storage" | "expiry" | "quantity" | "unit" | "memo" | null
   >(null);
 
-  const currentIcon = STORAGE_ICONS[item.storageType] || coldIcon;
+  const CurrentIcon = STORAGE_ICONS[item.storageType] || FridgeIcon;
   const currentText = STORAGE_NAMES[item.storageType] || "냉장";
 
   const handleUpdate = (value: any) => {
@@ -146,13 +146,9 @@ export default function DetailedItem(item: DetailedItemProps) {
             <span className="w-[42px]">보관장소</span>
             <div
               onClick={() => setModalType("storage")}
-              className="flex h-8 min-w-[59px] cursor-pointer items-center gap-1 rounded-[6px] bg-black px-2"
+              className="text-green-deep flex h-8 min-w-[59px] cursor-pointer items-center gap-1 rounded-[6px] bg-black px-2"
             >
-              <img
-                src={currentIcon}
-                alt={item.storageType}
-                className="h-[15px]"
-              />
+              <CurrentIcon className="h-[15px]" />
               <span className="text-green-deep whitespace-nowrap">
                 {currentText}
               </span>

@@ -15,9 +15,9 @@ import {
 import character from "@/assets/character/tip_char.svg";
 import bubbleTail from "@/assets/fridge/bubble_tail_left.svg";
 import memoIcon from "@/assets/fridge/edit_memo.svg";
-import freezerIcon from "@/assets/fridge/freezer.svg";
-import fridgeIcon from "@/assets/fridge/fridge.svg";
-import pantryIcon from "@/assets/fridge/pantry.svg";
+
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+import type { IconComponent } from "@/types/icon";
 
 import EditModal from "@/components/ui/EditModal";
 
@@ -81,13 +81,13 @@ export default function IngredientDetailModal({
     };
   }, [ingredient.id]);
 
-  const storageIconMap: Record<string, string> = {
-    냉장: fridgeIcon,
-    냉동: freezerIcon,
-    상온: pantryIcon,
-    FRIDGE: fridgeIcon,
-    FREEZER: freezerIcon,
-    PANTRY: pantryIcon,
+  const storageIconMap: Record<string, IconComponent> = {
+    냉장: FridgeIcon,
+    냉동: FreezerIcon,
+    상온: PantryIcon,
+    FRIDGE: FridgeIcon,
+    FREEZER: FreezerIcon,
+    PANTRY: PantryIcon,
   };
 
   const handleSaveMemo = async () => {
@@ -109,6 +109,9 @@ export default function IngredientDetailModal({
     );
 
   const displayTip = displayData.aiTip || ingredient.tip;
+
+  const StorageIcon =
+    storageIconMap[displayData.storage || displayData.category] || FridgeIcon;
 
   return (
     <div className="fixed inset-0 z-200 flex items-center justify-center p-4">
@@ -197,15 +200,7 @@ export default function IngredientDetailModal({
                     <span className="text-gray-80 self-stretch truncate text-center text-[12px] leading-4 font-semibold">
                       보관장소
                     </span>
-                    <img
-                      src={
-                        storageIconMap[
-                          displayData.storage || displayData.category
-                        ]
-                      }
-                      className="h-5 w-5 brightness-0"
-                      alt="icon"
-                    />
+                    <StorageIcon className="text-gray-80 h-5 w-5" />
                   </div>
                   <div
                     className="bg-gray-10 flex h-full flex-1 cursor-pointer flex-col items-center justify-center py-[5px]"
