@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AiRecipeSessionItem } from "@/api/aiSession";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
-import searchIcon from "@/assets/recipe/search.svg";
+import { SearchIcon } from "@/assets/index";
 
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import TextField from "@/components/ui/TextField";
@@ -139,7 +139,9 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                       value={searchTerm}
                       placeholder="레시피를 검색하세요"
                       onChange={value => setSearchTerm(value)}
-                      rightIcon={<img src={searchIcon} className="" />}
+                      rightIcon={
+                        <SearchIcon className="text-gray-30 h-6 w-6" />
+                      }
                     />
                   </div>
                 </div>

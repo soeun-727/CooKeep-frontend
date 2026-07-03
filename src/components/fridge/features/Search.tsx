@@ -1,7 +1,6 @@
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
-import searchIcon from "@/assets/fridge/search.svg";
-import searchOnIcon from "@/assets/fridge/search_on.svg";
+import { SearchIcon } from "@/assets/index";
 
 import TextField from "@/components/ui/TextField";
 
@@ -31,10 +30,9 @@ export default function Search() {
             onChange={handleSearch}
             rightIcon={
               <div className="flex items-center justify-center transition-opacity duration-200">
-                <img
-                  src={hasText ? searchOnIcon : searchIcon}
-                  alt="search"
-                  className={hasText ? "cursor-pointer" : "cursor-default"}
+                <SearchIcon
+                  aria-label="search"
+                  className={`h-6 w-6 ${hasText ? "text-gray-80 cursor-pointer" : "cursor-default text-gray-50"}`}
                 />
               </div>
             }
