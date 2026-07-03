@@ -52,3 +52,7 @@ export { default as disabledRight } from "./cookeeps/disabled_right.svg";
 export { default as abledLeft } from "./cookeeps/abled_left.svg";
 export { default as abledRight } from "./cookeeps/abled_right.svg";
 export { default as loadingChar } from "./character/loading_char.svg";
+
+export { default as FridgeIcon } from "./fridge/fridge.svg?react";
+export { default as FreezerIcon } from "./fridge/freezer.svg?react";
+export { default as PantryIcon } from "./fridge/pantry.svg?react";
