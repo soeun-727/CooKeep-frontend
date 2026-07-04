@@ -6,7 +6,7 @@ import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
-import { ModalType } from "@/types/emailModal";
+import { FindEmailAuthType } from "@/types/modal";
 
 import { formatTime } from "@/utils/formateTime";
 import { validateEmail } from "@/utils/validateUtil";
@@ -22,7 +22,7 @@ export default function FindEmailSection() {
   const [timeLeft, setTimeLeft] = useState(300);
   const [timerActive, setTimerActive] = useState(false);
 
-  const [modalType, setModalType] = useState<ModalType | null>(null);
+  const [modalType, setModalType] = useState<FindEmailAuthType | null>(null);
 
   const navigate = useNavigate();
 

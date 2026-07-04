@@ -11,11 +11,9 @@ import EmailAuthModal from "@/components/auth/signup/EmailAuthModal";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
+import { EditEmailType } from "@/types/modal";
+
 import { formatTime } from "@/utils/formateTime";
-
-// 추가
-
-type ModalType = "send" | "verify" | "help"; // 추가
 
 export default function EditEmailPage() {
   const navigate = useNavigate();
@@ -35,7 +33,7 @@ export default function EditEmailPage() {
   const [timerActive, setTimerActive] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const [modalType, setModalType] = useState<ModalType | null>(null); // 추가
+  const [modalType, setModalType] = useState<EditEmailType | null>(null);
 
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 

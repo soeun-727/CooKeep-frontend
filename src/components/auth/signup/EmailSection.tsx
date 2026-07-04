@@ -7,6 +7,8 @@ import axios from "axios";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
+import { EmailAuthType } from "@/types/modal";
+
 import { formatTime } from "@/utils/formateTime";
 
 import EmailAuthModal from "./EmailAuthModal";
@@ -20,8 +22,7 @@ export default function EmailSection() {
   const [timeLeft, setTimeLeft] = useState(300);
   const [timerActive, setTimerActive] = useState(false);
 
-  type ModalType = "send" | "verify" | "already" | "help";
-  const [modalType, setModalType] = useState<ModalType | null>(null);
+  const [modalType, setModalType] = useState<EmailAuthType | null>(null);
 
   // 이메일 유효성 검사
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);

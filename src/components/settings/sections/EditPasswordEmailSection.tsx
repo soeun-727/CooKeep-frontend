@@ -9,6 +9,8 @@ import FindEmailAuthModal from "@/components/auth/find/FindEmailAuthModal";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
+import { EditPasswordEmailType } from "@/types/modal";
+
 import { formatTime } from "@/utils/formateTime";
 
 export default function EditPasswordEmailSection() {
@@ -23,8 +25,9 @@ export default function EditPasswordEmailSection() {
   const [registeredEmail, setRegisteredEmail] = useState("");
   const [isSending, setIsSending] = useState(false);
 
-  type ModalType = "send" | "verify" | "help" | "mismatch";
-  const [modalType, setModalType] = useState<ModalType | null>(null);
+  const [modalType, setModalType] = useState<EditPasswordEmailType | null>(
+    null,
+  );
 
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
