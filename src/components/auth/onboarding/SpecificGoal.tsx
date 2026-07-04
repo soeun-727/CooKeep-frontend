@@ -26,9 +26,9 @@ export default function SpecificGoal({
 
   return (
     <div className="flex w-full flex-col items-center px-4">
-      <div className="mt-[46px] w-full">
-        <h1 className="typo-h2 !text-[22px]">이번 주 목표부터 정해볼까요?</h1>
-        <h3 className="typo-l !text-[18px] !leading-[26px] text-gray-50">
+      <div className="mt-[46px] w-full gap-2">
+        <h1 className="typo-h2">이번 주 목표부터 정해볼까요?</h1>
+        <h3 className="typo-l text-gray-50">
           목표를 이룰 수 있도록 쿠킵이 도와줄게요
         </h3>
       </div>
@@ -57,7 +57,7 @@ export default function SpecificGoal({
 
         {/* 에러 메시지: 범위가 벗어났거나 비어있지 않을 때만 표시 */}
         {isError && (
-          <p className="text-semantic-negative animate-fadeIn mt-[5px] ml-3 text-[10px]">
+          <p className="text-semantic-negative animate-fadeIn typo-caption mt-[5px] ml-3">
             1~10 사이의 숫자로 입력해주세요
           </p>
         )}

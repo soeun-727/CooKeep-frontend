@@ -109,21 +109,21 @@ export default function Preference() {
     return (
       <div className="mt-50 flex flex-col items-center justify-center text-center">
         <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-m text-zinc-500">로딩 중...</div>
+        <div className="typo-m text-gray-50">로딩 중...</div>
       </div>
     );
 
   return (
     <div className="flex w-full flex-col items-center px-4">
-      <div className="mt-[46px] w-full">
-        <h1 className="typo-h2 !text-[22px]">먹지 못하는 재료가 있나요?</h1>
-        <h3 className="typo-l !text-[18px] !leading-[26px] text-gray-50">
+      <div className="mt-[46px] w-full gap-2">
+        <h1 className="typo-h2">먹지 못하는 재료가 있나요?</h1>
+        <h3 className="typo-l text-gray-50">
           해당 재료는 레시피에서 제외할게요
         </h3>
       </div>
       <div className="relative mt-[46px] flex w-full flex-col items-center">
         <div
-          className={`relative w-full transition-all duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-m font-weight-500 [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${
+          className={`relative w-full transition-all duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-m [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${
             isDropdownOpen
               ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
               : ""
@@ -155,7 +155,7 @@ export default function Preference() {
               className="flex h-7 items-center gap-1 rounded-[100px] bg-gray-200 px-1 px-3"
             >
               <img src={xIcon} className="h-3 w-3" />
-              <span className="typo-caption !font-medium text-gray-50">
+              <span className="typo-m text-gray-50">
                 {ingredient.ingredient}
               </span>
             </div>
@@ -163,7 +163,7 @@ export default function Preference() {
         </div>
 
         {hasText && (
-          <ul className="bg-gray-0 border-gray-10 typo-m font-weight-500 absolute top-12 z-50 max-h-[200px] w-full overflow-y-auto rounded-b-[6px] border !border-t-0">
+          <ul className="bg-gray-0 border-gray-10 typo-m absolute top-12 z-50 max-h-[200px] w-full overflow-y-auto rounded-b-[6px] border !border-t-0">
             {filteredIngredients.map(item => (
               <li
                 key={item.defaultIngredientId}

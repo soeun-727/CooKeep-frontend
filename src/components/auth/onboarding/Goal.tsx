@@ -18,9 +18,9 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
 
   return (
     <div className="flex w-full flex-col items-center px-4">
-      <div className="mt-[46px] w-full">
-        <h1 className="typo-h2 !text-[22px]">이번 주 목표부터 정해볼까요?</h1>
-        <h3 className="typo-l !text-[18px] !leading-[26px] text-gray-50">
+      <div className="mt-[46px] w-full gap-2">
+        <h1 className="typo-h2">이번 주 목표부터 정해볼까요?</h1>
+        <h3 className="typo-l text-gray-50">
           목표를 이룰 수 있도록 쿠킵이 도와줄게요
         </h3>
       </div>
