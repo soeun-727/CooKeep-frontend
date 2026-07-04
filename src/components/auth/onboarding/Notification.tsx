@@ -65,26 +65,21 @@ export default function Notification({ onNext }: NotificationProps) {
   };
 
   return (
-    <div className="bg-background relative mx-auto flex h-screen w-[361px] flex-col overflow-hidden">
-      <div className="mt-[107px] shrink-0">
-        <h1 className="typo-h1 text-left">
-          쿠킵 루틴, 알림으로 받아보시겠어요?
+    <div className="bg-background relative mx-auto flex h-screen w-full flex-col overflow-hidden px-4">
+      <div className="mt-[107px] flex shrink-0 flex-col gap-2">
+        <h1 className="typo-h2 text-left">
+          쿠킵 루틴,
+          <br />
+          알림으로 받아보시겠어요?
         </h1>
-        <p className="typo-body2 mt-1 text-left break-keep text-gray-500">
-          유통기한 임박, 주간 목표, 물 주기처럼 까먹지 않게
+        <p className="typo-l text-left break-keep text-gray-50">
+          까먹지 않게 필요한 순간에만 도와드릴게요
           <br />
-          필요한 순간에만 도와드릴게요.
-          <br />
-          언제든지 설정에서 변경할 수 있어요.
+          언제든지 설정에서 변경할 수 있어요!
         </p>
       </div>
 
-      <div
-        className="relative mt-14 flex flex-col items-center justify-start overflow-hidden"
-        style={{
-          height: "calc(100dvh - 500px)",
-        }}
-      >
+      <div className="relative mt-14 flex h-75 flex-col items-center justify-start overflow-hidden">
         <div className="bg-blur-to-t absolute top-0 left-0 z-10 h-12 w-full" />
         <div className="animate-roll flex flex-col gap-[6px]">
           {INFINITE_DATA.map((data, index) => (
@@ -104,8 +99,8 @@ export default function Notification({ onNext }: NotificationProps) {
         </div>
         <div className="flex flex-col gap-2">
           <Button
-            size="S"
-            variant="black"
+            size="L"
+            variant="green"
             onClick={() => handlePushConsent(true)}
             disabled={isLoading}
           >
@@ -113,7 +108,7 @@ export default function Notification({ onNext }: NotificationProps) {
           </Button>
           <Button
             size="S"
-            className="!bg-gray-300"
+            className="!bg-gray-30"
             onClick={() => handlePushConsent(false)}
             disabled={isLoading}
           >
