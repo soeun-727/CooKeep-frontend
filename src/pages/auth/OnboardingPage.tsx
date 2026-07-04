@@ -68,18 +68,6 @@ export default function Onboarding() {
   const handleSaveOnboarding = async (isForcedSkip: boolean = false) => {
     setIsLoading(true);
     try {
-      // const requestBody = {
-      //   dislikedIngredients: selectedIngredients.map((item) => item.ingredient),
-      //   // 건너뛰기일 경우 null 또는 백엔드가 원하는 빈 값 처리
-      //   goalActionType: isForcedSkip
-      //     ? null // 또는 "" (백엔드 명세에 따라 결정)
-      //     : GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
-      //   targetCount: isForcedSkip
-      //     ? null // 또는 0 (건너뛰기 시 값이 없음을 명시)
-      //     : parseInt(goalCount || "0", 10),
-      // };
-
-      // NaN 안 생기게 수정
       let requestBody;
 
       if (isForcedSkip) {
@@ -90,8 +78,6 @@ export default function Onboarding() {
           targetCount: null,
         };
 
-        // 여기서 바로 요청 보내도 됨 (아래 로직 타지 않게)
-        // 이렇게 단순하게 해도 됨
         await saveOnboardingData(requestBody); // response 변수 제거
         setSelectedGoal({ id: "", title: "" });
         setGoalCount("");
@@ -150,7 +136,7 @@ export default function Onboarding() {
     <div className="bg-background flex h-[100dvh] flex-col items-center">
       <AuthHeader />
       {step !== 0 && (
-        <div className="mx-auto w-full max-w-[361px]">
+        <div className="mx-auto w-full px-4">
           <Progress currentStep={step} />
         </div>
       )}
