@@ -6,17 +6,29 @@ import prevIcon from "@/assets/fridge/addItem/backward.svg";
 import nextIcon from "@/assets/fridge/addItem/forward.svg";
 import todaySign from "@/assets/mycookeep/today.svg";
 
+import { daysOfWeek } from "@/constants/dateOfWeek";
+
+import useCalendar from "@/utils/calendar";
+import { formatCalendarDate, getDateKey } from "@/utils/formatDate";
+
 interface CalendarProps {
   onDateClick: (date: string) => void;
 }
 
 export default function Calendar({ onDateClick }: CalendarProps) {
-  const [viewDate, setViewDate] = useState(new Date());
+  const {
+    year,
+    month,
+    monthName,
+    firstDayOfMonth,
+    daysInMonth,
+    prevMonth,
+    nextMonth,
+  } = useCalendar();
+
   const [apiRecords, setApiRecords] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const year = viewDate.getFullYear();
-  const month = viewDate.getMonth();
   const nowDate = new Date();
 
   useEffect(() => {
@@ -44,27 +56,12 @@ export default function Calendar({ onDateClick }: CalendarProps) {
     fetchRecords();
   }, [year, month]);
 
-  const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const firstDayOfMonth = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  const prevMonth = () => setViewDate(new Date(year, month - 1, 1));
-  const nextMonth = () => setViewDate(new Date(year, month + 1, 1));
-  const monthName = viewDate.toLocaleString("en-US", { month: "long" });
-
-  const getFormattedDate = (d: number) =>
-    `${year}.${String(month + 1).padStart(2, "0")}.${String(d).padStart(2, "0")}`;
-
   return (
     <div
-      className={`
-    flex flex-col w-[357px] mx-auto items-center justify-center rounded-[6px] p-4 
-    bg-gray-0/10 transition-opacity duration-200
-    ${isLoading ? "opacity-50 pointer-events-none" : "opacity-100"}
-  `}
+      className={`bg-gray-0/10 mx-auto flex w-[357px] flex-col items-center justify-center rounded-[6px] p-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"} `}
     >
       {/* 1. 헤더 */}
-      <div className="flex items-center justify-between w-full px-2 mt-[13px] mb-2">
+      <div className="mt-[13px] mb-2 flex w-full items-center justify-between px-2">
         <h2 className="typo-h3 text-gray-80">
           {monthName} {year}
         </h2>
@@ -79,8 +76,8 @@ export default function Calendar({ onDateClick }: CalendarProps) {
       </div>
       {/* 2. 요일 */}
       <div className="mb-2 grid w-full grid-cols-7">
-        {daysOfWeek.map((day) => (
-          <div key={day} className="text-center typo-body2 text-green">
+        {daysOfWeek.map(day => (
+          <div key={day} className="typo-body2 text-green text-center">
             {day}
           </div>
         ))}
@@ -93,7 +90,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
 
         {Array.from({ length: daysInMonth }).map((_, i) => {
           const day = i + 1;
-          const dateStr = getFormattedDate(day);
+          const dateStr = formatCalendarDate(year, month, day);
           const hasRecord = Object.prototype.hasOwnProperty.call(
             apiRecords,
             dateStr,
@@ -108,8 +105,9 @@ export default function Calendar({ onDateClick }: CalendarProps) {
           // 연속 배경 계산
           const prevDate = new Date(year, month, day - 1);
           const nextDate = new Date(year, month, day + 1);
-          const prevKey = `${prevDate.getFullYear()}.${String(prevDate.getMonth() + 1).padStart(2, "0")}.${String(prevDate.getDate()).padStart(2, "0")}`;
-          const nextKey = `${nextDate.getFullYear()}.${String(nextDate.getMonth() + 1).padStart(2, "0")}.${String(nextDate.getDate()).padStart(2, "0")}`;
+
+          const prevKey = getDateKey(prevDate);
+          const nextKey = getDateKey(nextDate);
 
           const hasPrev = Object.prototype.hasOwnProperty.call(
             apiRecords,
@@ -135,23 +133,14 @@ export default function Calendar({ onDateClick }: CalendarProps) {
               {/* 연속 배경 */}
               {isContinuous && (
                 <div
-                  className={`
-            absolute top-1/2 -translate-y-1/2 h-12 bg-green-light z-0
-            ${hasPrev && hasNext ? "left-[-60%] right-[-60%] rounded-none" : ""}
-            ${hasPrev && !hasNext ? "left-[-60%] right-[-2px] rounded-r-full" : ""}
-            ${!hasPrev && hasNext ? "left-[-2px] right-[-60%] rounded-l-full" : ""}
-          `}
+                  className={`bg-green-light absolute top-1/2 z-0 h-12 -translate-y-1/2 ${hasPrev && hasNext ? "right-[-60%] left-[-60%] rounded-none" : ""} ${hasPrev && !hasNext ? "right-[-2px] left-[-60%] rounded-r-full" : ""} ${!hasPrev && hasNext ? "right-[-60%] left-[-2px] rounded-l-full" : ""} `}
                 />
               )}
 
               {/* 날짜 버튼 */}
               <button
                 onClick={() => onDateClick(dateStr)}
-                className={`
-          relative z-10 w-10 h-10 rounded-full flex items-center justify-center transition-all
-          ${hasRecord ? "scale-105" : "hover:bg-gray-10"}
-          ${hasRecord && !photoUrl ? "bg-green-light" : ""} 
-        `}
+                className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full transition-all ${hasRecord ? "scale-105" : "hover:bg-gray-10"} ${hasRecord && !photoUrl ? "bg-green-light" : ""} `}
               >
                 {photoUrl && (
                   <div className="absolute inset-0 overflow-hidden rounded-full">
@@ -164,7 +153,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
                 )}
 
                 <span
-                  className={`relative z-20 typo-h2 !font-normal ${
+                  className={`typo-h2 relative z-20 !font-normal ${
                     hasRecord ? "text-gray-0" : "text-gray-80"
                   }`}
                 >
