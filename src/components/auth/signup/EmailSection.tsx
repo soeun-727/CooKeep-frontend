@@ -10,6 +10,7 @@ import TextField from "@/components/ui/TextField";
 import { EmailAuthType } from "@/types/modal";
 
 import { formatTime } from "@/utils/formateTime";
+import { validateEmail } from "@/utils/validateUtil";
 
 import EmailAuthModal from "./EmailAuthModal";
 
@@ -25,7 +26,7 @@ export default function EmailSection() {
   const [modalType, setModalType] = useState<EmailAuthType | null>(null);
 
   // 이메일 유효성 검사
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isEmailValid = validateEmail(email);
   const navigate = useNavigate();
 
   // 타이머

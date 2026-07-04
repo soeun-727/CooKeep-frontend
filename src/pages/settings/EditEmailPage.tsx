@@ -14,6 +14,7 @@ import TextField from "@/components/ui/TextField";
 import { EditEmailType } from "@/types/modal";
 
 import { formatTime } from "@/utils/formateTime";
+import { validateEmail } from "@/utils/validateUtil";
 
 export default function EditEmailPage() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function EditEmailPage() {
   const [isSending, setIsSending] = useState(false);
   const [modalType, setModalType] = useState<EditEmailType | null>(null);
 
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isEmailValid = validateEmail(email);
 
   useEffect(() => {
     if (!timerActive) return;

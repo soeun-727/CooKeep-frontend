@@ -12,6 +12,7 @@ import TextField from "@/components/ui/TextField";
 import { EditPasswordEmailType } from "@/types/modal";
 
 import { formatTime } from "@/utils/formateTime";
+import { validateEmail } from "@/utils/validateUtil";
 
 export default function EditPasswordEmailSection() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function EditPasswordEmailSection() {
     null,
   );
 
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isEmailValid = validateEmail(email);
 
   // 등록된 이메일 조회
   useEffect(() => {
