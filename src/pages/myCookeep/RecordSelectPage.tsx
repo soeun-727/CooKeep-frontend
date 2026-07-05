@@ -5,9 +5,8 @@ import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
 
-import liked from "@/assets/recipe/liked.svg";
 import searchIcon from "@/assets/recipe/search.svg";
-import unliked from "@/assets/recipe/unliked.svg";
+import HeartIcon from "@/assets/recipe/heart.svg?react";
 
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
@@ -50,10 +49,8 @@ export default function RecordSelectPage() {
       >
         {/* 왼쪽: 좋아요 + 제목 */}
         <div className="flex items-center gap-3">
-          <img
-            src={recipe.isPinned ? liked : unliked}
-            alt="like"
-            className="h-[15px] w-[18px] shrink-0"
+          <HeartIcon
+            className={`h-[15px] w-[18px] shrink-0 fill-current stroke-[#EBEBEB] stroke-[2px] ${recipe.isPinned ? "text-[#C3C3C3]" : "text-transparent"}`}
           />
           <span
             className={`typo-body2 flex-1 truncate ${isSelected ? "text-green-deep" : "text-gray-80"} `}

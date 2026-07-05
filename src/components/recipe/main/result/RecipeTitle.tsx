@@ -4,8 +4,7 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
 import tempIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
-import likedIcon from "@/assets/recipe/liked.svg";
-import unlikedIcon from "@/assets/recipe/unliked.svg";
+import HeartIcon from "@/assets/recipe/heart.svg?react";
 
 interface RecipeTitleProps {
   name: string;
@@ -56,10 +55,9 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
         onClick={handleToggleLike}
         className="aspect-square h-[18px] w-[22px] flex-shrink-0"
       >
-        <img
-          src={isLiked ? likedIcon : unlikedIcon}
-          alt={isLiked ? "즐겨찾기됨" : "즐겨찾기 안됨"}
-          className="h-full w-full object-contain"
+        {/* 변경된 부분: img 태그 대신 SVGR 컴포넌트 사용 */}
+        <HeartIcon
+          className={`h-full w-full fill-current stroke-[#EBEBEB] stroke-[2px] ${isLiked ? "text-[#C3C3C3]" : "text-transparent"}`}
         />
       </button>
     </div>

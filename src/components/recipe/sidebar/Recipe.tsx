@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import deleteIcon from "@/assets/recipe/delete.svg";
-import liked from "@/assets/recipe/liked.svg";
+import HeartIcon from "@/assets/recipe/heart.svg?react";
 import rename from "@/assets/recipe/rename.svg";
-import unliked from "@/assets/recipe/unliked.svg";
 
 interface RecipeProps {
   isLiked: boolean;
@@ -58,7 +57,10 @@ export default function Recipe({
   return (
     <div className="mx-auto flex h-[34px] w-[277px] items-center justify-between">
       <button onClick={onLike} className="flex-shrink-0 px-2">
-        <img src={isLiked ? liked : unliked} alt="like" className="w-[18px]" />
+        {/* 변경된 부분: isLiked 상태에 따라 fill(채우기) 색상과 테두리 색상을 동적으로 부여 */}
+        <HeartIcon
+          className={`h-[18px] w-[18px] fill-current stroke-[#EBEBEB] stroke-[2px] ${isLiked ? "text-[#C3C3C3]" : "text-transparent"}`}
+        />
       </button>
 
       {isEditing ? (
