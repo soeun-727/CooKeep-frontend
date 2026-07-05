@@ -31,14 +31,9 @@ export default function SettingsLayout() {
   };
 
   return (
-    // <div className="min-h-screen">
-    //   <BackHeader title="회원정보" onBack={handleBack} />
-    //   <Outlet />
-    // </div>
     <div className="flex h-screen flex-col">
       <BackHeader title="회원정보" onBack={handleBack} />
 
-      {/* 여기가 핵심 */}
       <div className="no-scrollbar flex-1 overflow-y-auto">
         <Outlet />
       </div>

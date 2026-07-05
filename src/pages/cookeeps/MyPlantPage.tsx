@@ -8,7 +8,7 @@ import { PLANT_DATA } from "@/constants/plantData";
 
 export default function MyPlantPage() {
   const navigate = useNavigate();
-  // const grownPlants = tempGrownPlants; // 임시 데이터 사용
+
   const myPlants = useCookeepsStore(s => s.myPlants);
 
   const grownPlants = myPlants.filter(p => p.isHarvested);
@@ -23,7 +23,7 @@ export default function MyPlantPage() {
       {grownPlants.length === 0 ? (
         <p className="mt-20 text-center text-gray-400">
           아직 다 키운 식물이 없어요
-        </p> // 그냥 임의로 넣어보았는데 괜찮을지....
+        </p>
       ) : (
         <>
           {/* 3열 그리드 */}

@@ -12,7 +12,6 @@ interface AppLayoutProps {
   children: React.ReactNode;
 }
 
-// AppLayout.tsx
 export default function AppLayout({ children }: AppLayoutProps) {
   const isLoading = useLoadingStore(s => s.isLoading);
 
@@ -29,7 +28,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
             <LoadingScreen />
           </div>
         )}
-        {/* 추가 - z-index를 LoadingScreen(50)보다 높게 */}
+
         {current === "COMEBACK" && (
           <ComebackRewardModal isOpen={true} onClose={dequeue} />
         )}

@@ -68,9 +68,6 @@ export default function Initial() {
         </div>
       </div>
 
-      {/* <div className="flex-1" /> */}
-
-      {/* <div className="flex flex-col items-center justify-center mb-[34px]"> */}
       <div className="mt-[24px] flex flex-col items-center justify-center">
         {/* SNS 로그인 */}
         <span className="typo-caption text-gray-50">

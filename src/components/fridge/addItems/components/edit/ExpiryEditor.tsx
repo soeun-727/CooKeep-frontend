@@ -2,6 +2,11 @@ import { useState } from "react";
 
 import PrevIcon from "@/assets/fridge/addItem/backward.svg?react";
 
+import { daysOfWeek } from "@/constants/dateOfWeek";
+
+import useCalendar from "@/utils/calendar";
+import { formatDate } from "@/utils/formatDate";
+
 interface ExpiryEditorProps {
   value: string; // "2026.01.20" 형식
   onSave: (val: string) => void;
@@ -10,27 +15,25 @@ interface ExpiryEditorProps {
 export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
   const currentDate = value ? new Date(value.replace(/\./g, "-")) : null;
   const initialDate = currentDate || new Date();
-  const [viewDate, setViewDate] = useState(
-    new Date(initialDate.getFullYear(), initialDate.getMonth(), 1),
-  );
+
+  const {
+    year,
+    month,
+    monthName,
+    firstDayOfMonth,
+    daysInMonth,
+    prevMonth,
+    nextMonth,
+  } = useCalendar(initialDate);
+
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const year = viewDate.getFullYear();
-  const month = viewDate.getMonth();
-  const firstDayOfMonth = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const prevMonth = () => setViewDate(new Date(year, month - 1, 1));
-  const nextMonth = () => setViewDate(new Date(year, month + 1, 1));
-  const monthName = viewDate.toLocaleString("en-US", { month: "long" });
 
   const handleDateClick = (day: number) => {
-    const newDate = new Date(year, month, day, 12, 0, 0);
+    const newDate = new Date(year, month, day, 12);
+
     setSelectedDate(newDate);
 
-    const formattedDate = `${newDate.getFullYear()}.${String(
-      newDate.getMonth() + 1,
-    ).padStart(2, "0")}.${String(newDate.getDate()).padStart(2, "0")}`;
-    setTimeout(() => onSave(formattedDate), 250);
+    setTimeout(() => onSave(formatDate(newDate)), 250);
   };
 
   return (

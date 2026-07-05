@@ -1,9 +1,4 @@
-export interface AgreementItem {
-  key: "terms" | "privacy" | "marketing" | "policy";
-  label: string;
-  required: boolean;
-  content: string;
-}
+import { AgreementItem } from "@/types/auth";
 
 export const AGREEMENTS: AgreementItem[] = [
   {

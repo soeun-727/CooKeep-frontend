@@ -1,4 +1,3 @@
-// src/stores/useCookeepsStore.ts
 import { getMyCookies } from "@/api/cookies";
 import { claimPendingReward } from "@/api/cookies";
 import {

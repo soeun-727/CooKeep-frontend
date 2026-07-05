@@ -51,8 +51,6 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         {order.map(idx => {
           const user = filledUsers[idx];
 
-          // 데이터가 3개 미만일 경우를 대비한 가드
-          // if (!user) return <div key={`empty-${idx}`} className="w-[80px]" />;
           const isFirst = user.rank === 1;
 
           return (

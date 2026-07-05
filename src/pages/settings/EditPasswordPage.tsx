@@ -12,6 +12,8 @@ import openpwImage from "@/assets/signup/openpw.svg";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
+import { validatePassword } from "@/utils/validateUtil";
+
 export default function EditPasswordPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,9 +40,6 @@ export default function EditPasswordPage() {
 
   const [error, setError] = useState<string | undefined>();
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const validatePassword = (pw: string) =>
-    pw.length >= 8 && /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw);
 
   const isPasswordValid = password ? validatePassword(password) : false;
   const isPasswordMatch =

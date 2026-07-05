@@ -11,7 +11,7 @@ import type { IconComponent } from "@/types/icon";
 
 interface SortProps {
   categoryIcon: IconComponent;
-  viewCategory: string; // 추가: 카테고리 텍스트를 받아야 합니다.
+  viewCategory: string;
 }
 
 export default function Sort({

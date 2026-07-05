@@ -1,4 +1,3 @@
-// src/layouts/ListLayout.tsx
 import { useEffect, useRef, useState } from "react";
 import {
   Outlet,

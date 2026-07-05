@@ -1,4 +1,3 @@
-// src/pages/settings/components/SettingsLinkItem.tsx
 import { useNavigate } from "react-router-dom";
 
 interface SettingsLinkItemProps {

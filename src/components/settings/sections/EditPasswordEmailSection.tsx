@@ -9,6 +9,11 @@ import FindEmailAuthModal from "@/components/auth/find/FindEmailAuthModal";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
+import { EditPasswordEmailType } from "@/types/modal";
+
+import { formatTime } from "@/utils/formateTime";
+import { validateEmail } from "@/utils/validateUtil";
+
 export default function EditPasswordEmailSection() {
   const navigate = useNavigate();
   const { email, setEmail, isCodeSent, sendCode, verifyCode, reset } =
@@ -21,10 +26,11 @@ export default function EditPasswordEmailSection() {
   const [registeredEmail, setRegisteredEmail] = useState("");
   const [isSending, setIsSending] = useState(false);
 
-  type ModalType = "send" | "verify" | "help" | "mismatch";
-  const [modalType, setModalType] = useState<ModalType | null>(null);
+  const [modalType, setModalType] = useState<EditPasswordEmailType | null>(
+    null,
+  );
 
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isEmailValid = validateEmail(email);
 
   // 등록된 이메일 조회
   useEffect(() => {
@@ -53,9 +59,6 @@ export default function EditPasswordEmailSection() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [timeLeft, timerActive]);
-
-  const formatTime = (s: number) =>
-    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
   const [resendCount, setResendCount] = useState(0);
   const MAX_RESEND = 3;

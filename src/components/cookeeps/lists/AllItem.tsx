@@ -1,4 +1,3 @@
-// import { likeGray } from "@/assets/index";
 import LikeGray from "@/assets/cookeeps/like.svg?react";
 
 interface ItemProps {

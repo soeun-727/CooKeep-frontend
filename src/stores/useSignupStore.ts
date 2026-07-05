@@ -1,4 +1,3 @@
-// src/store/useSignupStore.ts
 import { sendSignupCodeApi, verifySignupCodeApi } from "@/api/auth";
 import axios from "axios";
 import { create } from "zustand";

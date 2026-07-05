@@ -1,5 +1,3 @@
-// src/types/myPlant.ts
-
 export interface MyPlant {
   userPlantId: number;
   plantName: string; // "감자"

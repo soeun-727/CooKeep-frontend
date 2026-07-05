@@ -1,4 +1,3 @@
-// src/stores/useFindPasswordStore.ts
 import { sendPasswordCodeApi, verifyPasswordCodeApi } from "@/api/auth";
 import axios from "axios";
 import { create } from "zustand";

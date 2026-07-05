@@ -1,4 +1,3 @@
-// src/constants/mockNoticeData.ts
 export type NoticeItemType = {
   id: number;
   title: string;

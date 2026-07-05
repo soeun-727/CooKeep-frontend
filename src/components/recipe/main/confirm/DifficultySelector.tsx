@@ -1,32 +1,6 @@
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
-import easyImg from "@/assets/recipe/main/easyImg.svg";
-import hardImg from "@/assets/recipe/main/hardImg.svg";
-import normalImg from "@/assets/recipe/main/temp_recipe_title.svg";
-
-const options = [
-  {
-    key: "EASY",
-    title: "Easy",
-    time: "10분 이내",
-    desc: "빠르고 간편하게",
-    image: easyImg,
-  },
-  {
-    key: "NORMAL",
-    title: "Normal",
-    time: "30분 이내",
-    desc: "적당히 차려먹기",
-    image: normalImg,
-  },
-  {
-    key: "HARD",
-    title: "Hard",
-    time: "30분 이상",
-    desc: "제대로 요리하기",
-    image: hardImg,
-  },
-] as const;
+import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
 export default function DifficultySelector() {
   const { difficulty, setDifficulty } = useRecipeFlowStore();
@@ -45,7 +19,7 @@ export default function DifficultySelector() {
 
       {/* 난이도 선택 리스트 */}
       <div className="flex w-full flex-col items-start gap-2">
-        {options.map(opt => {
+        {DIFFICULTY_OPTIONS.map(opt => {
           const selected = difficulty === opt.key;
 
           return (

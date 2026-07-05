@@ -1,4 +1,3 @@
-// src/pages/settings/components/FaqCategoryItem.tsx
 import { useState } from "react";
 
 import arrowIcon from "@/assets/signup/arrowright.svg";

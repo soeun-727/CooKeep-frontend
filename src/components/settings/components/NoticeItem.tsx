@@ -1,5 +1,3 @@
-// src/pages/settings/components/NoticeItem.tsx
-
 interface NoticeItemProps {
   title: string;
   content: string;

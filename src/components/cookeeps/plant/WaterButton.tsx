@@ -1,4 +1,3 @@
-// WaterButton.tsx
 import { useEffect, useState } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";

@@ -1,5 +1,3 @@
-// src/pages/settings/components/SettingsToggleItem.tsx
-
 interface SettingsToggleItemProps {
   label: string;
   checked: boolean;

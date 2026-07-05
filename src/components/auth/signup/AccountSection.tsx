@@ -14,24 +14,20 @@ import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
 import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
-import type { AgreementItem } from "@/constants/agreements";
+
+import { AgreementItem, AuthAgreements } from "@/types/auth";
+
+import { validatePassword } from "@/utils/validateUtil";
 
 import AgreementPage from "./AgreementPage";
-
-interface Agreements {
-  terms: boolean;
-  privacy: boolean;
-  marketing: boolean;
-  policy: boolean;
-}
 
 interface AccountSectionProps {
   password: string;
   setPassword: (value: string) => void;
   passwordConfirm: string;
   setPasswordConfirm: (value: string) => void;
-  agreements: Agreements;
-  updateAgreements: (next: Partial<Agreements>) => void;
+  agreements: AuthAgreements;
+  updateAgreements: (next: Partial<AuthAgreements>) => void;
   onSubmit: () => void;
   isSignupEnabled: boolean;
   setHideHeader: (hide: boolean) => void;
@@ -56,8 +52,6 @@ export default function AccountSection({
   // store에서 인증된 이메일 읽기
   const verifiedEmail = useSignupStore(state => state.email);
 
-  const isPasswordValid =
-    password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
   const isPasswordMatch = password === passwordConfirm;
   const isAllChecked =
     agreements.terms && agreements.privacy && agreements.marketing;
@@ -123,12 +117,12 @@ export default function AccountSection({
                     onChange={setPassword}
                     placeholder="영문, 숫자 포함 8자 이상의 비밀번호"
                     errorMessage={
-                      password && !isPasswordValid
+                      password && !validatePassword(password)
                         ? "영문, 숫자 포함 8자 이상의 비밀번호를 사용해 주세요"
                         : undefined
                     }
                     successMessage={
-                      password && isPasswordValid
+                      password && validatePassword(password)
                         ? "사용 가능한 비밀번호입니다"
                         : undefined
                     }

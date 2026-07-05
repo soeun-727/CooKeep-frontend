@@ -8,20 +8,14 @@ import { CheckboxCheckIcon, blankCheck } from "@/assets/index";
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
-import type { AgreementItem } from "@/constants/agreements";
+import type { AgreementItem, AuthAgreements } from "@/types/auth";
 
-interface Agreements {
-  terms: boolean;
-  privacy: boolean;
-  marketing: boolean;
-  policy: boolean;
-}
 interface AgreementPageProps {
   agreement: AgreementItem;
   isChecked: boolean;
   onBack: () => void;
   onConfirm: (key: AgreementItem["key"]) => void;
-  updateAgreements: (next: Partial<Agreements>) => void;
+  updateAgreements: (next: Partial<AuthAgreements>) => void;
   children?: React.ReactNode;
 }
 
