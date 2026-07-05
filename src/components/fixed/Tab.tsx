@@ -18,24 +18,16 @@ export default function Tab({
   return (
     <button
       onClick={onClick}
-      className={`bg-gray-0 relative flex h-14 flex-1 flex-col items-center justify-center gap-[2px] transition-all ${
-        isSelected ? "shadow-[inset_0_0_2px_0_rgba(17,17,17,0.1)]" : ""
-      }`}
+      className="bg-gray-0 flex w-full flex-col items-center gap-1 px-4 py-2"
     >
-      {isSelected && (
-        <div className="bg-green-gradient absolute top-0 left-0 h-[2px] w-full" />
-      )}
-
       <Icon
         style={{ color: iconColor }}
-        className="h-[25px] w-[25px]"
+        className="h-6 w-6"
         aria-label={title}
       />
 
       <span
-        className={`text-center text-[10px] leading-3 font-semibold tracking-[0.1px] ${
-          isSelected ? "text-gray-80" : "text-gray-30"
-        }`}
+        className={`typo-caption-strong ${isSelected ? "text-green" : "text-gray-30"}`}
       >
         {title}
       </span>
