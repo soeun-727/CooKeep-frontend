@@ -6,9 +6,8 @@ import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
 
-import liked from "@/assets/recipe/liked.svg";
-import searchIcon from "@/assets/recipe/search.svg";
-import unliked from "@/assets/recipe/unliked.svg";
+import { SearchIcon } from "@/assets/index";
+import HeartIcon from "@/assets/recipe/heart.svg?react";
 
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
@@ -51,10 +50,8 @@ export default function RecordSelectPage() {
       >
         {/* 왼쪽: 좋아요 + 제목 */}
         <div className="flex items-center gap-3">
-          <img
-            src={recipe.isPinned ? liked : unliked}
-            alt="like"
-            className="h-[15px] w-[18px] shrink-0"
+          <HeartIcon
+            className={`stroke-gray-10 h-[15px] w-[18px] shrink-0 fill-current stroke-[2px] ${recipe.isPinned ? "text-gray-30" : "text-transparent"}`}
           />
           <span
             className={`typo-body2 flex-1 truncate ${isSelected ? "text-green-deep" : "text-gray-80"} `}
@@ -80,7 +77,10 @@ export default function RecordSelectPage() {
               placeholder="레시피를 검색하세요"
               className="typo-body2 h-[24px] flex-1 bg-transparent text-gray-50 outline-none"
             />
-            <img src={searchIcon} alt="검색" className="h-6 w-6 shrink-0" />
+            <SearchIcon
+              aria-label="검색"
+              className="text-gray-30 h-6 w-6 shrink-0"
+            />
           </div>
         </div>
       </div>

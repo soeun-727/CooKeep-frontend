@@ -15,7 +15,7 @@ import {
 } from "@/stores/useAddIngredientStore";
 
 import defaultChar from "@/assets/character/default_char.svg";
-import searchIcon from "@/assets/fridge/search_on.svg";
+import { SearchIcon } from "@/assets/index";
 
 import TextField from "@/components/ui/TextField";
 
@@ -159,7 +159,7 @@ export default function AddItem() {
             value={searchTerm}
             placeholder="재료명을 검색하세요"
             onChange={value => setSearchTerm(value)}
-            rightIcon={<img src={searchIcon} className="" />}
+            rightIcon={<SearchIcon className="text-gray-80 h-6 w-6" />}
           />
         </div>
         <div className="mt-4 w-[401px] shrink-0 pl-[31px]">

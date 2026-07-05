@@ -1,5 +1,5 @@
 // src/components/headers/ViewListHeader.tsx
-import { bookmark, like, searchIcon } from "@/assets/index";
+import { bookmark, like, SearchIcon } from "@/assets/index";
 
 import TextField from "@/components/ui/TextField";
 
@@ -29,7 +29,7 @@ export default function ViewListHeader({
             const value = e.target ? e.target.value : e;
             onSearchChange(value);
           }}
-          rightIcon={<img src={searchIcon} />}
+          rightIcon={<SearchIcon className="h-6 w-6 text-gray-50" />}
         />
       </div>
 
