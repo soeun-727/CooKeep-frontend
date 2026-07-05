@@ -1,4 +1,3 @@
-// src/types/record.ts
 import type { RecipeContent } from "./recipe";
 
 export interface CookeepRecord {

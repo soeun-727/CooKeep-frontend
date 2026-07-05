@@ -1,17 +1,19 @@
+import type { IconComponent } from "@/types/icon";
+
 interface TabProps {
-  image: string;
-  selectedImage: string;
   title: string;
   isSelected?: boolean;
   onClick?: () => void;
+  Icon: IconComponent;
+  iconColor: string;
 }
 
 export default function Tab({
-  image,
-  selectedImage,
   title,
   isSelected = false,
   onClick,
+  Icon,
+  iconColor,
 }: TabProps) {
   return (
     <button
@@ -24,10 +26,10 @@ export default function Tab({
         <div className="bg-green-gradient absolute top-0 left-0 h-[2px] w-full" />
       )}
 
-      <img
+      <Icon
+        style={{ color: iconColor }}
         className="h-[25px] w-[25px]"
-        src={isSelected ? selectedImage : image}
-        alt={title}
+        aria-label={title}
       />
 
       <span

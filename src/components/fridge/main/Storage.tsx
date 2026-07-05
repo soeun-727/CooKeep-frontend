@@ -8,13 +8,14 @@ import plus from "@/assets/fridge/plus.svg";
 import plusDisabled from "@/assets/fridge/plusDisabled.svg";
 
 import Item from "../items/Item";
+import type { IconComponent } from "@/types/icon";
 
 interface StorageIngredient extends Ingredient {
   className?: string; // 기존 Ingredient에 className이 있을 수도 있다고 알려줌
 }
 interface StorageProps {
   category: string;
-  image: string;
+  icon: IconComponent;
   ingredients: StorageIngredient[];
   onItemClick?: (id: number) => void;
 }
@@ -28,7 +29,7 @@ function chunk<T>(arr: T[], size: number): T[][] {
 
 export default function Storage({
   category,
-  image,
+  icon: Icon,
   ingredients,
   onItemClick,
 }: StorageProps) {
@@ -71,7 +72,7 @@ export default function Storage({
           <div className="flex h-10 w-full items-center justify-between">
             {/* 카테고리 태그 */}
             <div className="bg-gray-80 text-green flex h-[22px] min-w-[59px] items-center justify-center gap-1 rounded-[6px] px-2">
-              <img src={image} alt="category" className="h-3 w-3" />
+              <Icon className="h-3 w-3" />
               <span className="typo-caption leading-none whitespace-nowrap">
                 {category}
               </span>

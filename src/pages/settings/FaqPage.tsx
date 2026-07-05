@@ -1,4 +1,3 @@
-// src/pages/settings/FaqPage.tsx
 import { useLocation, useNavigate } from "react-router-dom";
 
 import FaqCategoryItem from "@/components/settings/components/FaqCategoryItem";

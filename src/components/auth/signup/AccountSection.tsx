@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useSignupStore } from "@/stores/useSignupStore";
 
-import { blankCheck, grayCheck, greenCheck } from "@/assets/index";
+import { blankCheck, CheckboxCheckIcon } from "@/assets/index";
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
 import arrowIcon from "@/assets/signup/arrowright.svg";
@@ -14,24 +14,20 @@ import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
 import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
-import type { AgreementItem } from "@/constants/agreements";
+
+import { AgreementItem, AuthAgreements } from "@/types/auth";
+
+import { validatePassword } from "@/utils/validateUtil";
 
 import AgreementPage from "./AgreementPage";
-
-interface Agreements {
-  terms: boolean;
-  privacy: boolean;
-  marketing: boolean;
-  policy: boolean;
-}
 
 interface AccountSectionProps {
   password: string;
   setPassword: (value: string) => void;
   passwordConfirm: string;
   setPasswordConfirm: (value: string) => void;
-  agreements: Agreements;
-  updateAgreements: (next: Partial<Agreements>) => void;
+  agreements: AuthAgreements;
+  updateAgreements: (next: Partial<AuthAgreements>) => void;
   onSubmit: () => void;
   isSignupEnabled: boolean;
   setHideHeader: (hide: boolean) => void;
@@ -56,8 +52,6 @@ export default function AccountSection({
   // store에서 인증된 이메일 읽기
   const verifiedEmail = useSignupStore(state => state.email);
 
-  const isPasswordValid =
-    password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
   const isPasswordMatch = password === passwordConfirm;
   const isAllChecked =
     agreements.terms && agreements.privacy && agreements.marketing;
@@ -123,12 +117,12 @@ export default function AccountSection({
                     onChange={setPassword}
                     placeholder="영문, 숫자 포함 8자 이상의 비밀번호"
                     errorMessage={
-                      password && !isPasswordValid
+                      password && !validatePassword(password)
                         ? "영문, 숫자 포함 8자 이상의 비밀번호를 사용해 주세요"
                         : undefined
                     }
                     successMessage={
-                      password && isPasswordValid
+                      password && validatePassword(password)
                         ? "사용 가능한 비밀번호입니다"
                         : undefined
                     }
@@ -200,11 +194,7 @@ export default function AccountSection({
                             alt="unchecked"
                             className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                           />
-                          <img
-                            src={greenCheck}
-                            alt="checked"
-                            className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
-                          />
+                          <CheckboxCheckIcon className="text-green pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block" />
                         </div>
 
                         <span className="typo-label text-gray-80 ml-[12px]">
@@ -237,11 +227,7 @@ export default function AccountSection({
                                     alt="unchecked"
                                     className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                                   />
-                                  <img
-                                    src={grayCheck}
-                                    alt="checked"
-                                    className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
-                                  />
+                                  <CheckboxCheckIcon className="pointer-events-none z-0 hidden h-4 w-4 object-contain text-gray-50 peer-checked:block" />
                                 </div>
                               ) : (
                                 <span className="inline-block h-5 w-5 flex-shrink-0" />

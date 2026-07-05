@@ -6,8 +6,7 @@ import {
 } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
-import searchOnIcon from "@/assets/fridge/search_on.svg";
-import { loadingChar, searchIcon } from "@/assets/index";
+import { loadingChar, SearchIcon } from "@/assets/index";
 import xIcon from "@/assets/onboarding/x.svg";
 
 import TextField from "@/components/ui/TextField";
@@ -136,10 +135,9 @@ export default function Preference() {
             onChange={setSearchTerm}
             rightIcon={
               <div className="flex items-center justify-center transition-opacity duration-200">
-                <img
-                  src={hasText ? searchOnIcon : searchIcon}
-                  alt="search"
-                  className={hasText ? "cursor-pointer" : "cursor-default"}
+                <SearchIcon
+                  aria-label="search"
+                  className={`h-6 w-6 ${hasText ? "text-gray-80 cursor-pointer" : "cursor-default text-gray-50"}`}
                 />
               </div>
             }

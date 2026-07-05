@@ -6,9 +6,12 @@ import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
-import FindEmailAuthModal from "./FindEmailAuthModal";
+import { FindEmailAuthType } from "@/types/modal";
 
-// import axios from "axios";
+import { formatTime } from "@/utils/formateTime";
+import { validateEmail } from "@/utils/validateUtil";
+
+import FindEmailAuthModal from "./FindEmailAuthModal";
 
 export default function FindEmailSection() {
   const { email, setEmail, isCodeSent, sendCode, verifyCode } =
@@ -19,10 +22,7 @@ export default function FindEmailSection() {
   const [timeLeft, setTimeLeft] = useState(300);
   const [timerActive, setTimerActive] = useState(false);
 
-  type ModalType = "send" | "verify" | "notRegistered" | "help";
-  const [modalType, setModalType] = useState<ModalType | null>(null);
-
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const [modalType, setModalType] = useState<FindEmailAuthType | null>(null);
 
   const navigate = useNavigate();
 
@@ -40,14 +40,6 @@ export default function FindEmailSection() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [timeLeft, timerActive]);
-
-  const formatTime = (seconds: number) => {
-    const m = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (seconds % 60).toString().padStart(2, "0");
-    return `${m}:${s}`;
-  };
 
   // 인증번호 발송
   const handleSendCode = async () => {
@@ -110,7 +102,7 @@ export default function FindEmailSection() {
             disabled={isCodeSent}
             placeholder="이메일 주소 입력"
             errorMessage={
-              !isEmailValid && email
+              !validateEmail(email) && email
                 ? "이메일 주소를 다시 확인해주세요"
                 : undefined
             }
@@ -118,9 +110,9 @@ export default function FindEmailSection() {
               <button
                 type="button"
                 onClick={isCodeSent ? handleResend : handleSendCode}
-                disabled={!isEmailValid}
+                disabled={!validateEmail(email)}
                 className={`typo-caption text-gray-0 h-[24px] w-[102px] rounded-full ${
-                  isEmailValid
+                  validateEmail(email)
                     ? "bg-gray-80 border-gray-80"
                     : "bg-gray-30 border-gray-30"
                 } disabled:cursor-not-allowed`}

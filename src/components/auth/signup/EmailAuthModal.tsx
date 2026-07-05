@@ -84,12 +84,6 @@ export default function EmailAuthModal({
             "통신 환경에 따라\n발송이 지연되거나 차단될 수 있어요.\n\n스팸 메일함을 확인하시거나,\n잠시 후 다시 시도해주세요."}
         </p>
 
-        {/* 부가 텍스트 */}
-        {/* 이메일 표시 - send / verify / already 모두 동일하게 */}
-        {/* {(isSend || isVerify || isAlready) && email && (
-          <p className="text-[12px] text-gray-50 text-center">{email}</p>
-        )} */}
-
         {/* 마스킹된 이메일 표시 */}
         {(isVerify || isAlready) && email && (
           <p className="text-center text-[12px] text-gray-50">

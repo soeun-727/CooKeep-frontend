@@ -1,4 +1,3 @@
-// src/pages/settings/sections/ProfileSection.tsx
 import { useEffect, useRef, useState } from "react";
 
 import { MyProfileResponse, updateNickname } from "@/api/user";

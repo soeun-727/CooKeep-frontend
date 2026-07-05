@@ -1,3 +1,5 @@
+import { ONBOARDING_GOALS } from "@/constants/onboarding";
+
 interface SpecificGoalProps {
   selectedGoal: { id: string; title: string };
   count: string; // 부모로부터 받은 현재 숫자 값
@@ -9,9 +11,10 @@ export default function SpecificGoal({
   count,
   onCountChange,
 }: SpecificGoalProps) {
-  const displayTitle = selectedGoal.title || "주 n회 요리하기";
+  const DEFAULT_GOAL = ONBOARDING_GOALS[0].title;
 
-  // displayTitle을 기준으로 글자를 자릅니다.
+  const displayTitle = selectedGoal.title || DEFAULT_GOAL;
+
   const titleParts = displayTitle.split("n");
 
   const numValue = parseInt(count, 10);

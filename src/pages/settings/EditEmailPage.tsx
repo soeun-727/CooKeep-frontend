@@ -1,4 +1,3 @@
-// src/pages/settings/EditEmailPage.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,9 +11,10 @@ import EmailAuthModal from "@/components/auth/signup/EmailAuthModal";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 
-// 추가
+import { EditEmailType } from "@/types/modal";
 
-type ModalType = "send" | "verify" | "help"; // 추가
+import { formatTime } from "@/utils/formateTime";
+import { validateEmail } from "@/utils/validateUtil";
 
 export default function EditEmailPage() {
   const navigate = useNavigate();
@@ -34,9 +34,9 @@ export default function EditEmailPage() {
   const [timerActive, setTimerActive] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isSending, setIsSending] = useState(false);
-  const [modalType, setModalType] = useState<ModalType | null>(null); // 추가
+  const [modalType, setModalType] = useState<EditEmailType | null>(null);
 
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isEmailValid = validateEmail(email);
 
   useEffect(() => {
     if (!timerActive) return;
@@ -51,9 +51,6 @@ export default function EditEmailPage() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [timeLeft, timerActive]);
-
-  const formatTime = (s: number) =>
-    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
 
   const handleSendCode = async () => {
     if (!isEmailValid || isSending) return;

@@ -1,4 +1,3 @@
-// src/components/auth/signup/EmailSection.tsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -7,6 +6,11 @@ import axios from "axios";
 
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
+
+import { EmailAuthType } from "@/types/modal";
+
+import { formatTime } from "@/utils/formateTime";
+import { validateEmail } from "@/utils/validateUtil";
 
 import EmailAuthModal from "./EmailAuthModal";
 
@@ -19,11 +23,10 @@ export default function EmailSection() {
   const [timeLeft, setTimeLeft] = useState(300);
   const [timerActive, setTimerActive] = useState(false);
 
-  type ModalType = "send" | "verify" | "already" | "help";
-  const [modalType, setModalType] = useState<ModalType | null>(null);
+  const [modalType, setModalType] = useState<EmailAuthType | null>(null);
 
   // 이메일 유효성 검사
-  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const isEmailValid = validateEmail(email);
   const navigate = useNavigate();
 
   // 타이머
@@ -40,14 +43,6 @@ export default function EmailSection() {
     }, 1000);
     return () => clearTimeout(timer);
   }, [timeLeft, timerActive]);
-
-  const formatTime = (seconds: number) => {
-    const m = Math.floor(seconds / 60)
-      .toString()
-      .padStart(2, "0");
-    const s = (seconds % 60).toString().padStart(2, "0");
-    return `${m}:${s}`;
-  };
 
   const [isSending, setIsSending] = useState(false);
 

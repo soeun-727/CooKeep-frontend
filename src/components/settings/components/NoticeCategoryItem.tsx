@@ -1,4 +1,3 @@
-// src/pages/settings/components/NoticeCategoryItem.tsx
 import { useState } from "react";
 
 import arrowIcon from "@/assets/signup/arrowright.svg";

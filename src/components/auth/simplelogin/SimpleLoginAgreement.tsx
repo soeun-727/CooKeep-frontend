@@ -10,12 +10,14 @@ import illustration from "@/assets/character/default_char.svg";
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
+import { AuthAgreements } from "@/types/auth";
+
 import AgreementList from "./AgreementList";
 
 export default function SimpleLoginAgreement() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [agreements, setAgreements] = useState<Record<string, boolean>>({
+  const [agreements, setAgreements] = useState<AuthAgreements>({
     terms: false,
     privacy: false,
     marketing: false,

@@ -1,4 +1,3 @@
-// src/pages/settings/TermsPage.tsx
 import { useNavigate } from "react-router-dom";
 
 import AgreementReadCard from "@/components/settings/components/AgreementReadCard";

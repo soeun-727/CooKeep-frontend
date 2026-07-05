@@ -6,12 +6,12 @@ import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import settings from "@/assets/cookeeps/main/settings_cookeeps.svg";
 import { cookieIcon, myLogo } from "@/assets/index";
 
+import { TOOLTIP_KEY } from "@/constants/cookeeps";
+
 export default function MyCookeepHeader() {
   const navigate = useNavigate();
   const location = useLocation();
   const cookie = useCookeepsStore(s => s.cookie);
-
-  const TOOLTIP_KEY = "cookeepsPlantShortcutSeen";
 
   const [showTooltip, setShowTooltip] = useState(() => {
     return !localStorage.getItem(TOOLTIP_KEY);

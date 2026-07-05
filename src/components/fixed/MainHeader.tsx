@@ -1,4 +1,3 @@
-// src/components/auth/MainHeader.tsx
 import { useNavigate } from "react-router-dom";
 
 import { useIngredientStore } from "@/stores/useIngredientStore";
