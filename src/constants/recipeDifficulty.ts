@@ -1,6 +1,6 @@
 import easyImg from "@/assets/recipe/main/easyImg.svg";
 import hardImg from "@/assets/recipe/main/hardImg.svg";
-import normalImg from "@/assets/recipe/main/normalImg.svg";
+import normalImg from "@/assets/recipe/main/temp_recipe_title.svg";
 
 export const DIFFICULTY_OPTIONS = [
   {
