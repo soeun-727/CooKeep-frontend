@@ -61,7 +61,7 @@ export default function Guide({ onNext }: GuideProps) {
       onTouchEnd={handleTouchEnd}
     >
       {/* 상단 영역 */}
-      <div className="pt-24">
+      <div className="pt-[70px]">
         {/* 인디케이터 */}
         <div className="flex justify-center gap-2">
           {ONBOARDING_DATA.map((_, index) => (
@@ -76,9 +76,9 @@ export default function Guide({ onNext }: GuideProps) {
         </div>
 
         {/* 텍스트 */}
-        <div className="mt-10 px-4 text-center">
-          <div className="typo-h1 !text-[22px]">{title}</div>
-          <p className="typo-body mt-2 whitespace-pre-wrap text-gray-50">
+        <div className="mt-6 px-4 text-center">
+          <div className="typo-h2">{title}</div>
+          <p className="typo-l-strong mt-2 whitespace-pre-wrap text-gray-50">
             {text}
           </p>
         </div>

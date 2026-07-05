@@ -34,20 +34,13 @@ export default function SupportPage() {
         {/* 이메일 버튼 */}
         <button
           onClick={handleOpenKakao}
-          className="
-    flex items-center justify-center
-    h-[56px]
-    rounded-[10px]
-    bg-gray-80
-    typo-body
-    text-[white]
-  "
+          className="bg-gray-80 typo-body flex h-[56px] items-center justify-center rounded-[10px] text-[white]"
         >
           채널 문의 바로가기
         </button>
 
         {/* 운영 시간 안내 */}
-        <p className="-mt-[23px] typo-caption text-gray-50">
+        <p className="typo-caption -mt-[23px] text-gray-50">
           운영 시간: 평일 10:00–18:00 (주말·공휴일 제외)
           <br />
           영업일 기준 2–3일 이내에 답변드려요

@@ -75,7 +75,7 @@ export default function Recipe({
               setIsEditing(false);
             }
           }}
-          className="flex-1 min-w-0 mx-2 px-1 typo-body2 border border-gray-30 outline-none bg-gray-0 rounded-sm"
+          className="typo-body2 border-gray-30 bg-gray-0 mx-2 min-w-0 flex-1 rounded-sm border px-1 outline-none"
         />
       ) : (
         <button onClick={onSelect} className="min-w-0 flex-1">

@@ -33,15 +33,7 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
 
   return (
     <div
-      className="
-        flex items-center justify-center self-stretch
-        w-full max-w-[361px]
-        bg-gray-0
-        rounded-[6px]
-        shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-        p-4
-        mx-auto
-      "
+      className="bg-gray-0 mx-auto flex w-full max-w-[361px] items-center justify-center self-stretch rounded-[6px] p-4 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
       style={{ gap: "8px" }}
     >
       {/* 왼쪽 이미지 */}
@@ -53,7 +45,7 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
 
       {/* 레시피 이름 */}
       <h2
-        className="flex-1 text-[18px] font-semibold leading-[26px] text-gray-80"
+        className="text-gray-80 flex-1 text-[18px] leading-[26px] font-semibold"
         style={{ flex: "1 0 0" }}
       >
         {name}

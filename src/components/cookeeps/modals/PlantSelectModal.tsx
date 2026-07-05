@@ -36,10 +36,10 @@ export default function PlantSelectModal({
 
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center">
-      <div className="absolute inset-0 bg-gray-80" />
+      <div className="bg-gray-80 absolute inset-0" />
 
       {/* 모달 영역 */}
-      <div className="relative w-[258px] bg-gray-0 rounded-[10px] flex flex-col items-center pt-[35px] pb-[25px] px-7 gap-4">
+      <div className="bg-gray-0 relative flex w-[258px] flex-col items-center gap-4 rounded-[10px] px-7 pt-[35px] pb-[25px]">
         <h2 className="typo-body text-center">
           키우고 싶은 식재료를
           <br />
@@ -64,12 +64,11 @@ export default function PlantSelectModal({
               >
                 {/* 아이콘 컨테이너 */}
                 <div
-                  className={`relative w-[60px] h-[60px] flex flex-col items-center justify-center rounded-[6px] transition-all gap-[2px] overflow-hidden
-                ${
-                  selectedId === plant.id
-                    ? "bg-green-light"
-                    : "bg-gray-0 group-hover:bg-gray-100"
-                }`}
+                  className={`relative flex h-[60px] w-[60px] flex-col items-center justify-center gap-[2px] overflow-hidden rounded-[6px] transition-all ${
+                    selectedId === plant.id
+                      ? "bg-green-light"
+                      : "bg-gray-0 group-hover:bg-gray-100"
+                  }`}
                 >
                   <img
                     src={plant.img}
@@ -82,9 +81,9 @@ export default function PlantSelectModal({
                     {plant.text}
                   </span>
                   {isHarvested && (
-                    <div className="absolute inset-0 bg-black-overlay flex items-center justify-center">
-                      <div className="flex items-center justify-center w-[43px] h-5 bg-green-light/90 border-[0.5px] border-green-deep rounded-[3px]">
-                        <span className="text-green-deep text-[10px] font-semibold leading-none">
+                    <div className="bg-black-overlay absolute inset-0 flex items-center justify-center">
+                      <div className="bg-green-light/90 border-green-deep flex h-5 w-[43px] items-center justify-center rounded-[3px] border-[0.5px]">
+                        <span className="text-green-deep text-[10px] leading-none font-semibold">
                           수확완료
                         </span>
                       </div>
