@@ -39,7 +39,7 @@ export const ONBOARDING_DATA = [
         완성한 요리를 <span className="text-green">MY 쿠킵</span>에 기록해요
       </div>
     ),
-    text: "직접 만든 요리를 나만의 팁과 함께\n남기고, 관리할 수 있어요!",
+    text: "직접 만든 요리를 팁과 함께 남기고, 관리할 수 있어요!",
   },
   {
     id: 4,
@@ -49,7 +49,7 @@ export const ONBOARDING_DATA = [
         <span className="text-green">쿠킵스</span>에서 식재료를 키우고, 공유해요
       </div>
     ),
-    text: "쿠키로 식재료를 키우고,\n다른 쿠킵이들의 레시피를 구경해보세요!",
+    text: "식재료를 키우고, 다른 쿠킵이들의 레시피를 구경하세요!",
   },
 ];
 

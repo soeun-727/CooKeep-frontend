@@ -8,10 +8,10 @@ export interface OnboardingIngredient {
 }
 
 export interface RawIngredient {
-  ingredientId: number;
-  name: string;
-  leftDays: number;
-  imageUrl: string;
+  defaultIngredientId: number;
+  ingredient: string;
+  leftDays?: number;
+  imageUrl?: string;
 }
 
 export interface OnboardingResponse {
@@ -51,7 +51,7 @@ export const updateAgreements = (marketingConsent: boolean) => {
 /** 4. [PATCH] 온보딩 과정 중 푸시 알림 동의 수정 */
 export const updatePushConsent = async (isAgreed: boolean) => {
   const res = await api.patch("/api/onboarding/push-consent", {
-    pushConsent: isAgreed, // 백엔드 필드명에 맞춰주세요 (예: marketingPush 등)
+    pushConsent: isAgreed,
   });
   return res.data;
 };

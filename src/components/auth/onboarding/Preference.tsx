@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 
 import {
   OnboardingIngredient,
-  RawIngredient,
   getOnboardingIngredients,
 } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
@@ -31,15 +30,10 @@ export default function Preference() {
       try {
         setIsLoading(true);
         const res = await getOnboardingIngredients();
-        const ingredientsList: RawIngredient[] = res.data?.data?.ingredients;
+        const ingredientsList = res.data?.data?.ingredients;
 
         if (ingredientsList && Array.isArray(ingredientsList)) {
-          const mapped = ingredientsList.map(item => ({
-            defaultIngredientId: item.ingredientId,
-            ingredient: item.name,
-          }));
-
-          setAllIngredients(mapped);
+          setAllIngredients(ingredientsList);
         }
       } catch (error) {
         console.error("재료 로드 실패:", error);
@@ -114,21 +108,21 @@ export default function Preference() {
     return (
       <div className="mt-50 flex flex-col items-center justify-center text-center">
         <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-body2 text-zinc-500">로딩 중...</div>
+        <div className="typo-m text-gray-50">로딩 중...</div>
       </div>
     );
 
   return (
-    <div className="flex w-full flex-col items-center">
-      <div className="mt-[46px] w-[361px]">
-        <h1 className="typo-h1 !text-[22px]">먹지 못하는 식재료가 있나요?</h1>
-        <h3 className="typo-h3 text-gray-500">
+    <div className="flex w-full flex-col items-center px-4">
+      <div className="mt-[46px] w-full gap-2">
+        <h1 className="typo-h2">먹지 못하는 재료가 있나요?</h1>
+        <h3 className="typo-l text-gray-50">
           해당 재료는 레시피에서 제외할게요
         </h3>
       </div>
-      <div className="relative mt-[46px] flex flex-col items-center">
+      <div className="relative mt-[46px] flex w-full flex-col items-center">
         <div
-          className={`relative w-[361px] transition-all duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-body2 overflow-hidden [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${
+          className={`relative w-full transition-all duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-m [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${
             isDropdownOpen
               ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
               : ""
@@ -137,7 +131,7 @@ export default function Preference() {
           <TextField
             value={searchTerm}
             type="text"
-            placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
+            placeholder="ex. 고구마, 초코우유..."
             onChange={setSearchTerm}
             rightIcon={
               <div className="flex items-center justify-center transition-opacity duration-200">
@@ -151,7 +145,7 @@ export default function Preference() {
         </div>
 
         {/* 선택된 재료 */}
-        <div className="mt-[18px] flex w-[361px] flex-wrap gap-[6px]">
+        <div className="mt-[18px] flex w-full flex-wrap gap-[6px]">
           {selectedIngredients.map(ingredient => (
             <div
               key={ingredient.defaultIngredientId}
@@ -159,7 +153,7 @@ export default function Preference() {
               className="flex h-7 items-center gap-1 rounded-[100px] bg-gray-200 px-1 px-3"
             >
               <img src={xIcon} className="h-3 w-3" />
-              <span className="typo-caption !font-medium text-gray-50">
+              <span className="typo-m text-gray-50">
                 {ingredient.ingredient}
               </span>
             </div>
@@ -167,12 +161,16 @@ export default function Preference() {
         </div>
 
         {hasText && (
-          <ul className="bg-gray-0 border-gray-10 typo-body2 absolute top-12 z-50 max-h-[200px] w-[361px] overflow-y-auto rounded-b-[6px] border !border-t-0">
+          <ul className="bg-gray-0 border-gray-10 typo-m absolute top-12 z-50 max-h-[200px] w-full overflow-y-auto rounded-b-[6px] border !border-t-0">
             {filteredIngredients.map(item => (
               <li
                 key={item.defaultIngredientId}
-                onClick={() => handleSelect(item)}
-                className="h-12 cursor-pointer p-3 hover:bg-gray-100"
+                onClick={() => {
+                  setTimeout(() => {
+                    handleSelect(item);
+                  }, 300);
+                }}
+                className="hover:bg-gray-10 active:bg-gray-10 h-12 cursor-pointer p-3 transition-colors"
               >
                 {highlightText(item.ingredient, searchTerm.trim())}
               </li>
