@@ -18,8 +18,8 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   const handleSelect = (name: string) => {
     onSelect(name);
 
-    if (name === "냉장고") navigate("/fridge");
-    else if (name === "레시피") navigate("/recipe");
+    if (name === "레시피") navigate("/recipe");
+    else if (name === "냉장고") navigate("/fridge");
     else if (name === "쿠킵스") navigate("/cookeeps");
     else if (name === "MY쿠킵") {
       navigate("/mycookeep", {
@@ -29,19 +29,18 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   };
 
   const tabs = [
-    { title: "냉장고", Icon: FridgeIcon },
     { title: "레시피", Icon: RecipeIcon },
+    { title: "냉장고", Icon: FridgeIcon },
     { title: "쿠킵스", Icon: CookeepsIcon },
-    { title: "MY쿠킵", Icon: MycookeepIcon },
+    { title: "마이쿠킵", Icon: MycookeepIcon },
   ];
 
   return (
-    <nav className="bg-gray-0 border-gray-0 pb-sab fixed right-0 bottom-0 left-0 z-[150] mx-auto w-full max-w-[450px] border-t shadow-sm">
-      <div className="flex h-14 items-center justify-around">
+    <nav className="bg-gray-0 border-gray-0 fixed right-0 bottom-0 left-0 z-[150] mx-auto w-full max-w-[450px] border-t shadow-sm">
+      <div className="flex h-16 items-center justify-around">
         {tabs.map(tab => {
           const isSelected = selectedTab === tab.title;
 
-          // 약속된 헥사코드를 조건에 따라 주입합니다.
           const iconColor = isSelected
             ? "var(--color-green)"
             : "var(--color-gray-30)";
