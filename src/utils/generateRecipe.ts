@@ -2,7 +2,6 @@ import type { Ingredient } from "@/stores/useIngredientStore";
 
 import { MOCK_RECIPES } from "@/constants/mockRecipes";
 
-// import type { Difficulty } from "@/stores/useRecipeFlowStore";
 import type { Recipe } from "@/types/recipe";
 
 export function generateRecipe(

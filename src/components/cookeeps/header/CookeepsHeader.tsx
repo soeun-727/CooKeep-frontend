@@ -8,14 +8,14 @@ import cookieIcon from "@/assets/cookeeps/main/cookeeps_cookie.svg";
 import Logo from "@/assets/cookeeps/main/logo_cookeeps_black.svg";
 import settings from "@/assets/cookeeps/main/settings_cookeeps.svg";
 
+import { TOOLTIP_KEY } from "@/constants/cookeeps";
+
 import PlantShortcutTooltip from "./PlantShortcutTooltip";
 
 export default function CookeepsHeader() {
   const navigate = useNavigate();
   const location = useLocation();
   const cookie = useCookeepsStore(s => s.cookie);
-
-  const TOOLTIP_KEY = "cookeepsPlantShortcutSeen";
 
   const [showTooltip, setShowTooltip] = useState(() => {
     return !localStorage.getItem(TOOLTIP_KEY);

@@ -4,6 +4,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 import { clearTokens, saveTokens } from "@/utils/auth";
+import { validateEmail, validatePassword } from "@/utils/validateUtil";
 
 import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
 import { useEmailUpdateStore } from "./useEmailUpdateStore";
@@ -160,19 +161,19 @@ export const useAuthStore = create<AuthState>()(
       },
 
       setEmail: email => {
-        const trimmed = email.trim();
+        const emailTrimmed = email.trim();
 
-        const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+        const isValidEmail = validateEmail(emailTrimmed);
 
         set(state => ({
-          email: trimmed,
+          email: emailTrimmed,
           isValidEmail,
           canLogin: isValidEmail && state.isValidPW,
         }));
       },
 
       setPassword: password => {
-        const isValidPW = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password);
+        const isValidPW = validatePassword(password);
         set(state => ({
           password,
           isValidPW,

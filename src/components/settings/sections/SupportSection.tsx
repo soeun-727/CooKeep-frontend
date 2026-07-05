@@ -1,4 +1,3 @@
-// src/pages/settings/sections/SupportSection.tsx
 import SettingsLinkItem from "@/components/settings/components/SettingsLinkItem";
 
 export default function SupportSection() {

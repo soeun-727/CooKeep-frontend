@@ -1,8 +1,5 @@
-// import { useState } from "react";
 import likeIcon from "@/assets/cookeeps/main/like_cookeeps.svg";
 import saveIcon from "@/assets/cookeeps/main/save_cookeeps.svg";
-
-// 저장눌렀을때 아이콘 확정되면 수정
 
 interface RecipeDetailUserMetaProps {
   userName: string;

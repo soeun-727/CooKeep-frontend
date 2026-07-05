@@ -1,55 +1,15 @@
 import { useEffect, useState } from "react";
 
-import {
-  TriangleArrowIcon,
-  cookingChar,
-  earth,
-  plant,
-  seedling,
-  seeds,
-  tree,
-} from "@/assets/index";
+import { TriangleArrowIcon } from "@/assets/index";
 
 import Button from "@/components/ui/Button";
+
+import { COOKEEPS_ONBOARDING_DATA } from "@/constants/cookeeps";
 
 interface OnboardingModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
-
-const ONBOARDING_DATA = [
-  {
-    id: 1,
-    img: earth,
-    text: "요리는 나를 위한 선택이자,\n결국엔 지구를 위한 선택이기도 해요",
-  },
-  {
-    id: 2,
-    img: cookingChar,
-    text: "집에 있는 재료로 요리하고\nCooKeep에 기록하면\n쿠키를 받고, 식물을 키울 수 있어요",
-  },
-  {
-    id: 3,
-    img: (
-      <div className="flex items-end gap-[4px] pb-1">
-        {[
-          { src: seeds, label: "씨앗" },
-          { src: seedling, label: "새싹" },
-          { src: plant, label: "성장" },
-          { src: tree, label: "완성" },
-        ].map((item, i) => (
-          <div key={i} className="flex flex-col items-center gap-[3px]">
-            <img src={item.src} className="w-[37px]" alt={item.label} />
-            <span className="text-[8px] font-medium text-gray-50">
-              {item.label}
-            </span>
-          </div>
-        ))}
-      </div>
-    ),
-    text: "식물을 다 키우면 새로운 씨앗과\n쿠키 선물이 기다리고 있어요!",
-  },
-];
 
 export default function OnboardingModal({
   isOpen,
@@ -67,7 +27,7 @@ export default function OnboardingModal({
   if (!isOpen) return null;
 
   const isFirstStep = currentIndex === 0;
-  const isLastStep = currentIndex === ONBOARDING_DATA.length - 1;
+  const isLastStep = currentIndex === COOKEEPS_ONBOARDING_DATA.length - 1;
 
   const handlePrev = () => {
     if (!isFirstStep) setCurrentIndex(prev => prev - 1);
@@ -93,7 +53,7 @@ export default function OnboardingModal({
             className="flex w-full transition-transform duration-300 ease-in-out"
             style={{ transform: `translateX(-${currentIndex * 100}%)` }}
           >
-            {ONBOARDING_DATA.map(item => (
+            {COOKEEPS_ONBOARDING_DATA.map(item => (
               <div
                 key={item.id}
                 className="flex min-w-full shrink-0 flex-col items-center justify-center gap-4"
@@ -135,7 +95,7 @@ export default function OnboardingModal({
 
             {/* Dots 중앙 정렬 */}
             <div className="flex items-center justify-center gap-2">
-              {ONBOARDING_DATA.map((_, index) => (
+              {COOKEEPS_ONBOARDING_DATA.map((_, index) => (
                 <div
                   key={index}
                   className={`h-1.5 w-1.5 rounded-full transition-colors ${

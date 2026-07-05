@@ -3,15 +3,14 @@ import { useState } from "react";
 import arrowIcon from "@/assets/signup/arrowright.svg";
 
 import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
-import type { AgreementItem } from "@/constants/agreements";
+
+import { AgreementItem, AuthAgreements } from "@/types/auth";
 
 import AgreementPage from "../signup/AgreementPage";
 
 interface AgreementListProps {
-  agreements: Record<AgreementItem["key"], boolean>;
-  updateAgreements: (
-    next: Partial<Record<AgreementItem["key"], boolean>>,
-  ) => void;
+  agreements: AuthAgreements;
+  updateAgreements: (next: Partial<AuthAgreements>) => void;
 }
 
 export default function AgreementList({

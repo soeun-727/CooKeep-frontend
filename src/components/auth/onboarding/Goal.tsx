@@ -1,18 +1,6 @@
 import { useState } from "react";
 
-// const goals = [
-//   { id: "COOKING", title: "주 n회 요리하기" },
-//   { id: "PHOTO_RECORD", title: "요리 사진 n번 기록하기" },
-//   { id: "USE_EXPIRING_INGREDIENT", title: "유통기한 임박 재료 n개 사용하기" },
-//   { id: "RECIPE_LIKE", title: "레시피에 좋아요 n회 남기기" },
-// ];
-
-const goals = [
-  { id: "cook", title: "주 n회 요리하기" },
-  { id: "photo", title: "요리 사진 n번 기록하기" },
-  { id: "expired", title: "유통기한 임박 재료 n개 사용하기" },
-  { id: "like", title: "레시피에 좋아요 n회 남기기" },
-];
+import { ONBOARDING_GOALS } from "@/constants/onboarding";
 
 interface GoalProps {
   selectedGoal: { id: string; title: string };
@@ -21,7 +9,7 @@ interface GoalProps {
 
 export default function Goal({ selectedGoal, onSelect }: GoalProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const currentGoal = selectedGoal.id ? selectedGoal : goals[0];
+  const currentGoal = selectedGoal.id ? selectedGoal : ONBOARDING_GOALS[0];
 
   return (
     <div className="flex w-full flex-col items-center">
@@ -66,7 +54,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
             }`}
           >
             <div className="flex flex-col">
-              {goals.map(goal => (
+              {ONBOARDING_GOALS.map(goal => (
                 <button
                   key={goal.id}
                   onClick={() => {

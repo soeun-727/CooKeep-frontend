@@ -1,4 +1,3 @@
-// src/components/auth/Signup.tsx
 import { useEffect, useState } from "react";
 
 import { useSignupStore } from "@/stores/useSignupStore";

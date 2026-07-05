@@ -5,17 +5,29 @@ import { CalendarRecipe, getCalendarRecipes } from "@/api/myRecipe";
 import PrevIcon from "@/assets/fridge/addItem/backward.svg?react";
 import todaySign from "@/assets/mycookeep/today.svg";
 
+import { daysOfWeek } from "@/constants/dateOfWeek";
+
+import useCalendar from "@/utils/calendar";
+import { formatCalendarDate, getDateKey } from "@/utils/formatDate";
+
 interface CalendarProps {
   onDateClick: (date: string) => void;
 }
 
 export default function Calendar({ onDateClick }: CalendarProps) {
-  const [viewDate, setViewDate] = useState(new Date());
+  const {
+    year,
+    month,
+    monthName,
+    firstDayOfMonth,
+    daysInMonth,
+    prevMonth,
+    nextMonth,
+  } = useCalendar();
+
   const [apiRecords, setApiRecords] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const year = viewDate.getFullYear();
-  const month = viewDate.getMonth();
   const nowDate = new Date();
 
   useEffect(() => {
@@ -42,17 +54,6 @@ export default function Calendar({ onDateClick }: CalendarProps) {
 
     fetchRecords();
   }, [year, month]);
-
-  const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const firstDayOfMonth = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-  const prevMonth = () => setViewDate(new Date(year, month - 1, 1));
-  const nextMonth = () => setViewDate(new Date(year, month + 1, 1));
-  const monthName = viewDate.toLocaleString("en-US", { month: "long" });
-
-  const getFormattedDate = (d: number) =>
-    `${year}.${String(month + 1).padStart(2, "0")}.${String(d).padStart(2, "0")}`;
 
   return (
     <div
@@ -88,7 +89,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
 
         {Array.from({ length: daysInMonth }).map((_, i) => {
           const day = i + 1;
-          const dateStr = getFormattedDate(day);
+          const dateStr = formatCalendarDate(year, month, day);
           const hasRecord = Object.prototype.hasOwnProperty.call(
             apiRecords,
             dateStr,
@@ -103,8 +104,9 @@ export default function Calendar({ onDateClick }: CalendarProps) {
           // 연속 배경 계산
           const prevDate = new Date(year, month, day - 1);
           const nextDate = new Date(year, month, day + 1);
-          const prevKey = `${prevDate.getFullYear()}.${String(prevDate.getMonth() + 1).padStart(2, "0")}.${String(prevDate.getDate()).padStart(2, "0")}`;
-          const nextKey = `${nextDate.getFullYear()}.${String(nextDate.getMonth() + 1).padStart(2, "0")}.${String(nextDate.getDate()).padStart(2, "0")}`;
+
+          const prevKey = getDateKey(prevDate);
+          const nextKey = getDateKey(nextDate);
 
           const hasPrev = Object.prototype.hasOwnProperty.call(
             apiRecords,

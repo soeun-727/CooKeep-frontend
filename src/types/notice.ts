@@ -1,5 +1,3 @@
-// src/types/notice.ts
-
 // API 응답 타입
 export interface NoticeApi {
   noticeId: number;

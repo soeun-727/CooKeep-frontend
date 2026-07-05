@@ -1,4 +1,3 @@
-// layouts/CookeepsLayout.tsx
 import { Outlet } from "react-router-dom";
 
 export default function CookeepsLayout() {

@@ -1,4 +1,3 @@
-// src/pages/settings/components/SettingsInputItem.tsx
 import { useLocation, useNavigate } from "react-router-dom";
 
 interface SettingsInputItemProps {

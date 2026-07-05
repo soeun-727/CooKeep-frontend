@@ -5,7 +5,6 @@ import { resetPasswordApi } from "@/api/auth";
 import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import axios from "axios";
 
-// 아이콘
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
 import checkIcon from "@/assets/signup/check.svg";
@@ -13,6 +12,8 @@ import openpwImage from "@/assets/signup/openpw.svg";
 
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
+
+import { validatePassword } from "@/utils/validateUtil";
 
 export default function ResetPassword() {
   const { email, isVerified, reset } = useFindPasswordStore();
@@ -24,8 +25,6 @@ export default function ResetPassword() {
   const [showPasswordConfirm, setShowPasswordConfirm] = useState(false);
   const [error, setError] = useState<string | undefined>();
   const [isSuccess, setIsSuccess] = useState(false);
-  const validatePassword = (pw: string) =>
-    pw.length >= 8 && /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw);
 
   useEffect(() => {
     if (!isSuccess && (!isVerified || !email)) {

@@ -1,5 +1,3 @@
-// src/pages/settings/faqData.ts
-
 export type FaqItem = {
   id: number;
   question: string;
