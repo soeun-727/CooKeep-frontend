@@ -6,6 +6,7 @@ import {
 } from "@/stores/useIngredientStore";
 
 import sortIcon from "@/assets/fridge/sort.svg";
+
 import type { IconComponent } from "@/types/icon";
 
 interface SortProps {
