@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 import remarkGfm from "remark-gfm";
 
-import type { AgreementItem } from "@/constants/agreements";
+import type { AgreementItem } from "@/types/auth";
 
 interface AgreementReadCardProps {
   agreement: AgreementItem;
