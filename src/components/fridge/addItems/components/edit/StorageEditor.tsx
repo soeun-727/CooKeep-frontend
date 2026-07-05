@@ -1,11 +1,7 @@
 import { useEffect, useState } from "react";
 
-import freezerIcon from "@/assets/fridge/addItem/freezer.svg";
-import freezerSelected from "@/assets/fridge/addItem/freezer_selected.svg";
-import fridgeIcon from "@/assets/fridge/addItem/fridge.svg";
-import fridgeSelected from "@/assets/fridge/addItem/fridge_selected.svg";
-import pantryIcon from "@/assets/fridge/addItem/pantry.svg";
-import pantrySelected from "@/assets/fridge/addItem/pantry_selected.svg";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+import type { IconComponent } from "@/types/icon";
 
 import { getKoreanStorage } from "@/utils/mapping";
 
@@ -13,10 +9,10 @@ interface StorageEditorProps {
   value: string;
   onSave: (val: string) => void;
 }
-const STORAGE_CONFIG: Record<string, { default: string; selected: string }> = {
-  냉장: { default: fridgeIcon, selected: fridgeSelected },
-  냉동: { default: freezerIcon, selected: freezerSelected },
-  상온: { default: pantryIcon, selected: pantrySelected },
+const STORAGE_ICONS: Record<string, IconComponent> = {
+  냉장: FridgeIcon,
+  냉동: FreezerIcon,
+  상온: PantryIcon,
 };
 
 export default function StorageEditor({ value, onSave }: StorageEditorProps) {
@@ -45,9 +41,7 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
             const isInitialValue = storage === koreanValue;
             const isNewlySelected =
               selectedStorage === storage && !isInitialValue;
-            const iconSrc = isNewlySelected
-              ? STORAGE_CONFIG[storage].selected
-              : STORAGE_CONFIG[storage].default;
+            const Icon = STORAGE_ICONS[storage];
             return (
               <button
                 key={storage}
@@ -55,14 +49,14 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
                 onClick={() => handleQuickSelect(storage)}
                 className={`typo-body h-11 w-[361px] rounded-[10px] font-bold transition-all ${
                   isInitialValue
-                    ? "bg-gray-200 text-gray-50 cursor-not-allowed"
+                    ? "cursor-not-allowed bg-gray-200 text-gray-50"
                     : isNewlySelected
-                      ? "bg-green-light text-black border border-green-deep"
-                      : "border border-gray-10 text-gray-50 active:bg-gray-30"
+                      ? "bg-green-light border-green-deep border text-black"
+                      : "border-gray-10 active:bg-gray-30 border text-gray-50"
                 }`}
               >
                 <div className="flex justify-center gap-[6px]">
-                  <img src={iconSrc} alt={storage} className="w-3" />
+                  <Icon className="w-3" />
                   <span>{storage}</span>
                 </div>
               </button>

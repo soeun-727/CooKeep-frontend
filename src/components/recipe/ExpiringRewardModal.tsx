@@ -10,10 +10,10 @@ export default function ExpiringRewardModal({
   onConfirm,
 }: ExpiringRewardModalProps) {
   return createPortal(
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black-overlay">
-      <div className="w-[258px] bg-gray-0 rounded-[10px] px-[28px] pt-[35px] pb-[25px] flex flex-col items-center gap-[18px]">
+    <div className="bg-black-overlay fixed inset-0 z-[999] flex items-center justify-center">
+      <div className="bg-gray-0 flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
         <div className="flex flex-col items-center gap-[20px]">
-          <p className="w-[202px] text-center text-[14px] font-medium leading-[20px] text-gray-80">
+          <p className="text-gray-80 w-[202px] text-center text-[14px] leading-[20px] font-medium">
             유통기한 임박 재료를 살렸어요!
             <br />
             선물로 쿠키 3개를 드려요

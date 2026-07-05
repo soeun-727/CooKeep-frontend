@@ -1,37 +1,39 @@
+import type { IconComponent } from "@/types/icon";
+
 interface TabProps {
-  image: string;
-  selectedImage: string;
   title: string;
   isSelected?: boolean;
   onClick?: () => void;
+  Icon: IconComponent;
+  iconColor: string;
 }
 
-export default function Tab ({
-  image,
-  selectedImage,
+export default function Tab({
   title,
   isSelected = false,
   onClick,
+  Icon,
+  iconColor,
 }: TabProps) {
   return (
     <button
       onClick={onClick}
-      className={`relative gap-[2px] flex flex-1 flex-col items-center justify-center transition-all h-14 bg-gray-0 ${
+      className={`bg-gray-0 relative flex h-14 flex-1 flex-col items-center justify-center gap-[2px] transition-all ${
         isSelected ? "shadow-[inset_0_0_2px_0_rgba(17,17,17,0.1)]" : ""
       }`}
     >
       {isSelected && (
-        <div className="absolute top-0 left-0 w-full h-[2px] bg-green-gradient" />
+        <div className="bg-green-gradient absolute top-0 left-0 h-[2px] w-full" />
       )}
 
-      <img
+      <Icon
+        style={{ color: iconColor }}
         className="h-[25px] w-[25px]"
-        src={isSelected ? selectedImage : image}
-        alt={title}
+        aria-label={title}
       />
 
       <span
-        className={`font-semibold text-[10px] leading-3 tracking-[0.1px] text-center ${
+        className={`text-center text-[10px] leading-3 font-semibold tracking-[0.1px] ${
           isSelected ? "text-gray-80" : "text-gray-30"
         }`}
       >

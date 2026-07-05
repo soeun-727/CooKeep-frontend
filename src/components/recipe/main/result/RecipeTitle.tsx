@@ -4,8 +4,7 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
 import tempIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
-import likedIcon from "@/assets/recipe/liked.svg";
-import unlikedIcon from "@/assets/recipe/unliked.svg";
+import HeartIcon from "@/assets/recipe/heart.svg?react";
 
 interface RecipeTitleProps {
   name: string;
@@ -33,15 +32,7 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
 
   return (
     <div
-      className="
-        flex items-center justify-center self-stretch
-        w-full max-w-[361px]
-        bg-gray-0
-        rounded-[6px]
-        shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-        p-4
-        mx-auto
-      "
+      className="bg-gray-0 mx-auto flex w-full max-w-[361px] items-center justify-center self-stretch rounded-[6px] p-4 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
       style={{ gap: "8px" }}
     >
       {/* 왼쪽 이미지 */}
@@ -53,7 +44,7 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
 
       {/* 레시피 이름 */}
       <h2
-        className="flex-1 text-[18px] font-semibold leading-[26px] text-gray-80"
+        className="text-gray-80 flex-1 text-[18px] leading-[26px] font-semibold"
         style={{ flex: "1 0 0" }}
       >
         {name}
@@ -64,10 +55,9 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
         onClick={handleToggleLike}
         className="aspect-square h-[18px] w-[22px] flex-shrink-0"
       >
-        <img
-          src={isLiked ? likedIcon : unlikedIcon}
-          alt={isLiked ? "즐겨찾기됨" : "즐겨찾기 안됨"}
-          className="h-full w-full object-contain"
+        {/* 변경된 부분: img 태그 대신 SVGR 컴포넌트 사용 */}
+        <HeartIcon
+          className={`stroke-gray-10 h-full w-full fill-current stroke-[2px] ${isLiked ? "text-gray-30" : "text-transparent"}`}
         />
       </button>
     </div>

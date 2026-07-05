@@ -65,7 +65,7 @@ export default function Notification({ onNext }: NotificationProps) {
   };
 
   return (
-    <div className="flex flex-col w-[361px] mx-auto h-screen overflow-hidden relative bg-background">
+    <div className="bg-background relative mx-auto flex h-screen w-[361px] flex-col overflow-hidden">
       <div className="mt-[107px] shrink-0">
         <h1 className="typo-h1 text-left">
           쿠킵 루틴, 알림으로 받아보시겠어요?
@@ -85,8 +85,8 @@ export default function Notification({ onNext }: NotificationProps) {
           height: "calc(100dvh - 500px)",
         }}
       >
-        <div className="absolute top-0 left-0 w-full h-12 bg-blur-to-t z-10" />
-        <div className="flex flex-col gap-[6px] animate-roll">
+        <div className="bg-blur-to-t absolute top-0 left-0 z-10 h-12 w-full" />
+        <div className="animate-roll flex flex-col gap-[6px]">
           {INFINITE_DATA.map((data, index) => (
             <ExampleNotification
               key={index}
@@ -95,10 +95,10 @@ export default function Notification({ onNext }: NotificationProps) {
             />
           ))}
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-12 bg-blur-to-b z-10" />
+        <div className="bg-blur-to-b absolute bottom-0 left-0 z-10 h-12 w-full" />
       </div>
 
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[361px] bg-background z-50 pb-[34px]">
+      <div className="bg-background fixed bottom-0 left-1/2 z-50 w-[361px] -translate-x-1/2 pb-[34px]">
         <div className="flex justify-end">
           <img src={char} className="mb-[26.5px] w-[95px]" alt="character" />
         </div>

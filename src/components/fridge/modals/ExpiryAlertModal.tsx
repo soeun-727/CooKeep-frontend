@@ -24,10 +24,10 @@ export default function ExpiryAlertModal({
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
+      <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
 
       {/* modal */}
-      <div className="relative w-[280px] px-[28px] pt-[35px] pb-[25px] rounded-[10px] bg-gray-0 flex flex-col items-center gap-2">
+      <div className="bg-gray-0 relative flex w-[280px] flex-col items-center gap-2 rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
         {/* content */}
         <div className="flex w-full flex-col items-center gap-4">
           <img
@@ -47,7 +47,7 @@ export default function ExpiryAlertModal({
         <div className="mt-2 flex w-full flex-col gap-2">
           <Button
             variant="green"
-            className="!w-[224px] bg-green"
+            className="bg-green !w-[224px]"
             onClick={() => {
               onClose();
               navigate("/recipe/select");
@@ -58,7 +58,7 @@ export default function ExpiryAlertModal({
 
           <Button
             variant="black"
-            className="!w-[224px] bg-gray-30"
+            className="bg-gray-30 !w-[224px]"
             onClick={onClose}
           >
             나중에 요리할게요

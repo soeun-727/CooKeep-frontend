@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AiRecipeSessionItem } from "@/api/aiSession";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
-import searchIcon from "@/assets/recipe/search.svg";
+import { SearchIcon } from "@/assets/index";
 
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import TextField from "@/components/ui/TextField";
@@ -118,9 +118,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     <>
       {/* 1. 배경 오버레이 */}
       <div
-        className={`fixed inset-0 z-[120] bg-black-overlay
-          transition-opacity duration-300
-          ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        className={`bg-black-overlay fixed inset-0 z-[120] transition-opacity duration-300 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
         onClick={onClose}
       />
 
@@ -135,31 +133,15 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
               <div className="no-scrollbar flex-1 overflow-y-auto px-[26px] py-[35px]">
                 <div className="w-[290px]">
                   <div
-                    className={`
-    rounded-[6px]
-    bg-gray-0
-    shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-    
-    [&_>_div]:!w-full
-    [&_p]:hidden
-    
-    [&_input]:outline-none
-    [&_input]:border-none
-    [&_input]:bg-gray-0
-    
-    [&_input]:text-gray-30
-    [&_input]:text-[14px]
-    [&_input]:font-medium
-    [&_input]:leading-[20px]
-    
-    [&_input::placeholder]:text-gray-30
-  `}
+                    className={`bg-gray-0 [&_input]:bg-gray-0 [&_input]:text-gray-30 [&_input::placeholder]:text-gray-30 rounded-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_>_div]:!w-full [&_input]:border-none [&_input]:text-[14px] [&_input]:leading-[20px] [&_input]:font-medium [&_input]:outline-none [&_p]:hidden`}
                   >
                     <TextField
                       value={searchTerm}
                       placeholder="레시피를 검색하세요"
                       onChange={value => setSearchTerm(value)}
-                      rightIcon={<img src={searchIcon} className="" />}
+                      rightIcon={
+                        <SearchIcon className="text-gray-30 h-6 w-6" />
+                      }
                     />
                   </div>
                 </div>

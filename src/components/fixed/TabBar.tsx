@@ -1,13 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import cookeepsIcon from "@/assets/fixed/cookeeps.svg";
-import cookeepsOnIcon from "@/assets/fixed/cookeepsTab.svg";
-import fridgeIcon from "@/assets/fixed/fridge.svg";
-import fridgeOnIcon from "@/assets/fixed/fridgeTab.svg";
-import mycookeepIcon from "@/assets/fixed/mycookeep.svg";
-import mycookeepOnIcon from "@/assets/fixed/mycookeepTab.svg";
-import recipeIcon from "@/assets/fixed/recipe.svg";
-import recipeOnIcon from "@/assets/fixed/recipeTab.svg";
+import CookeepsIcon from "@/assets/fixed/cookeepsTab.svg?react";
+import FridgeIcon from "@/assets/fixed/fridgeTab.svg?react";
+import MycookeepIcon from "@/assets/fixed/mycookeepTab.svg?react";
+import RecipeIcon from "@/assets/fixed/recipeTab.svg?react";
 
 import Tab from "./Tab";
 
@@ -33,25 +29,34 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   };
 
   const tabs = [
-    { title: "냉장고", image: fridgeIcon, selectedImage: fridgeOnIcon },
-    { title: "레시피", image: recipeIcon, selectedImage: recipeOnIcon },
-    { title: "쿠킵스", image: cookeepsIcon, selectedImage: cookeepsOnIcon },
-    { title: "MY쿠킵", image: mycookeepIcon, selectedImage: mycookeepOnIcon },
+    { title: "냉장고", Icon: FridgeIcon },
+    { title: "레시피", Icon: RecipeIcon },
+    { title: "쿠킵스", Icon: CookeepsIcon },
+    { title: "MY쿠킵", Icon: MycookeepIcon },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-[150] mx-auto w-full max-w-[450px] bg-gray-0 border-t border-gray-0 pb-sab shadow-sm">
-      <div className="h-14 flex justify-around items-center">
-        {tabs.map((tab) => (
-          <Tab
-            key={tab.title}
-            image={tab.image}
-            selectedImage={tab.selectedImage}
-            title={tab.title}
-            isSelected={selectedTab === tab.title}
-            onClick={() => handleSelect(tab.title)}
-          />
-        ))}
+    <nav className="bg-gray-0 border-gray-0 pb-sab fixed right-0 bottom-0 left-0 z-[150] mx-auto w-full max-w-[450px] border-t shadow-sm">
+      <div className="flex h-14 items-center justify-around">
+        {tabs.map(tab => {
+          const isSelected = selectedTab === tab.title;
+
+          // 약속된 헥사코드를 조건에 따라 주입합니다.
+          const iconColor = isSelected
+            ? "var(--color-green)"
+            : "var(--color-gray-30)";
+
+          return (
+            <Tab
+              key={tab.title}
+              title={tab.title}
+              isSelected={isSelected}
+              onClick={() => handleSelect(tab.title)}
+              Icon={tab.Icon}
+              iconColor={iconColor}
+            />
+          );
+        })}
       </div>
     </nav>
   );

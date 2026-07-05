@@ -4,9 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
-import freezerIcon from "@/assets/fridge/freezer.svg";
-import fridgeIcon from "@/assets/fridge/fridge.svg";
-import pantryIcon from "@/assets/fridge/pantry.svg";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
 import Search from "@/components/fridge/features/Search";
 import Sort from "@/components/fridge/features/Sort";
@@ -61,9 +59,9 @@ export default function RecipeSelectPage() {
   };
 
   const getIcon = (category: string) => {
-    if (category === "냉장") return fridgeIcon;
-    if (category === "냉동") return freezerIcon;
-    return pantryIcon;
+    if (category === "냉장") return FridgeIcon;
+    if (category === "냉동") return FreezerIcon;
+    return PantryIcon;
   };
 
   return (
@@ -89,17 +87,17 @@ export default function RecipeSelectPage() {
           <>
             <Storage
               category="냉장"
-              image={fridgeIcon}
+              icon={FridgeIcon}
               ingredients={ingredients.filter(i => i.category === "냉장")}
             />
             <Storage
               category="냉동"
-              image={freezerIcon}
+              icon={FreezerIcon}
               ingredients={ingredients.filter(i => i.category === "냉동")}
             />
             <Storage
               category="상온"
-              image={pantryIcon}
+              icon={PantryIcon}
               ingredients={ingredients.filter(i => i.category === "상온")}
             />
           </>

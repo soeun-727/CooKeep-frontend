@@ -2,9 +2,8 @@ import { useState } from "react";
 
 import { type Ingredient } from "@/stores/useIngredientStore";
 
-import freezerIcon from "@/assets/fridge/freezer.svg";
-import fridgeIcon from "@/assets/fridge/fridge.svg";
-import pantryIcon from "@/assets/fridge/pantry.svg";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+
 import bagel from "@/assets/guest/bagel.svg";
 import banana from "@/assets/guest/banana.svg";
 import egg from "@/assets/guest/egg.svg";
@@ -109,7 +108,7 @@ export default function GuestFridge({
   return (
     <div onClick={() => setIsDimmed(true)} className="relative w-full">
       {isDimmed && (
-        <div className="absolute inset-0 z-90 bg-black-overlay left-1/2 -translate-x-1/2 max-w-[450px] w-full h-full" />
+        <div className="bg-black-overlay absolute inset-0 left-1/2 z-90 h-full w-full max-w-[450px] -translate-x-1/2" />
       )}
 
       <div
@@ -129,17 +128,17 @@ export default function GuestFridge({
           <div className="relative z-0 flex w-full flex-col gap-[10px]">
             <Storage
               category="냉장"
-              image={fridgeIcon}
+              icon={FridgeIcon}
               ingredients={guestIngredients.filter(i => i.category === "냉장")}
             />
             <Storage
               category="냉동"
-              image={freezerIcon}
+              icon={FreezerIcon}
               ingredients={guestIngredients.filter(i => i.category === "냉동")}
             />
             <Storage
               category="상온"
-              image={pantryIcon}
+              icon={PantryIcon}
               ingredients={guestIngredients.filter(i => i.category === "상온")}
             />
           </div>

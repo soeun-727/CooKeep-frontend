@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import type { MasterItem } from "@/stores/useAddIngredientStore";
 
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+import type { IconComponent } from "@/types/icon";
+
 import deleteIcon from "@/assets/fridge/delete.svg";
-import frozenIcon from "@/assets/fridge/freezer.svg";
-import coldIcon from "@/assets/fridge/fridge.svg";
 import memoIcon from "@/assets/fridge/memo.svg";
-import roomIcon from "@/assets/fridge/pantry.svg";
 import renameIcon from "@/assets/recipe/rename.svg";
 
 import EditModal from "@/components/ui/EditModal";
@@ -23,10 +23,10 @@ import UnitEditor from "./components/edit/UnitEditor";
 
 interface DetailedItemProps extends MasterItem {}
 
-const STORAGE_ICONS: Record<string, string> = {
-  FRIDGE: coldIcon,
-  FREEZER: frozenIcon,
-  PANTRY: roomIcon,
+const STORAGE_ICONS: Record<string, IconComponent> = {
+  FRIDGE: FridgeIcon,
+  FREEZER: FreezerIcon,
+  PANTRY: PantryIcon,
 };
 
 const STORAGE_NAMES: Record<string, string> = {
@@ -52,7 +52,7 @@ export default function DetailedItem(item: DetailedItemProps) {
     "storage" | "expiry" | "quantity" | "unit" | "memo" | null
   >(null);
 
-  const currentIcon = STORAGE_ICONS[item.storageType] || coldIcon;
+  const CurrentIcon = STORAGE_ICONS[item.storageType] || FridgeIcon;
   const currentText = STORAGE_NAMES[item.storageType] || "냉장";
 
   const handleUpdate = (value: any) => {
@@ -114,10 +114,10 @@ export default function DetailedItem(item: DetailedItemProps) {
   };
 
   return (
-    <div className="relative w-[345px] h-[198px] rounded-[6px] bg-gray-0 shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
-      <div className="flex p-6 gap-6">
-        <div className="flex flex-col items-start w-[99px] h-34">
-          <div className="w-20 h-20 rounded-[6px] flex items-center justify-center border border-gray-10 p-[14px]">
+    <div className="bg-gray-0 relative h-[198px] w-[345px] rounded-[6px] shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+      <div className="flex gap-6 p-6">
+        <div className="flex h-34 w-[99px] flex-col items-start">
+          <div className="border-gray-10 flex h-20 w-20 items-center justify-center rounded-[6px] border p-[14px]">
             <img
               src={item.image}
               className="h-13 w-13 object-contain"
@@ -134,7 +134,7 @@ export default function DetailedItem(item: DetailedItemProps) {
             }}
             className="group relative z-[20] flex h-6 w-full cursor-pointer items-center justify-center pl-[2px]"
           >
-            <span className="text-[10px] truncate flex-1 text-gray-30">
+            <span className="text-gray-30 flex-1 truncate text-[10px]">
               {item.memo || "메모를 남겨주세요"}
             </span>
             <img src={memoIcon} alt="edit memo" className="w-6 flex-shrink-0" />
@@ -146,13 +146,9 @@ export default function DetailedItem(item: DetailedItemProps) {
             <span className="w-[42px]">보관장소</span>
             <div
               onClick={() => setModalType("storage")}
-              className="flex h-8 min-w-[59px] cursor-pointer items-center gap-1 rounded-[6px] bg-black px-2"
+              className="text-green-deep flex h-8 min-w-[59px] cursor-pointer items-center gap-1 rounded-[6px] bg-black px-2"
             >
-              <img
-                src={currentIcon}
-                alt={item.storageType}
-                className="h-[15px]"
-              />
+              <CurrentIcon className="h-[15px]" />
               <span className="text-green-deep whitespace-nowrap">
                 {currentText}
               </span>
@@ -160,8 +156,8 @@ export default function DetailedItem(item: DetailedItemProps) {
           </div>
           <div className="flex items-center gap-3">
             <span className="w-[42px]">유통기한</span>
-            <div className="flex w-[122px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
-              <span className="w-[58px] h-4">
+            <div className="border-gray-10 flex h-8 w-[122px] items-center justify-between rounded-[6px] border px-[10px] py-3">
+              <span className="h-4 w-[58px]">
                 {item.expiration
                   ? item.expiration.replace(/-/g, ".")
                   : calculateExpiryDate(0)}
@@ -176,8 +172,8 @@ export default function DetailedItem(item: DetailedItemProps) {
           </div>
           <div className="flex items-center gap-3">
             <span className="w-[42px]">수량</span>
-            <div className="flex w-[66px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
-              <span className="w-[58px] h-4">{item.quantity || 1}</span>
+            <div className="border-gray-10 flex h-8 w-[66px] items-center justify-between rounded-[6px] border px-[10px] py-3">
+              <span className="h-4 w-[58px]">{item.quantity || 1}</span>
               <img
                 onClick={() => setModalType("quantity")}
                 src={renameIcon}
@@ -188,8 +184,8 @@ export default function DetailedItem(item: DetailedItemProps) {
           </div>
           <div className="flex items-center gap-3">
             <span className="w-[42px]">단위</span>
-            <div className="flex w-[66px] h-8 border border-gray-10 rounded-[6px] items-center justify-between px-[10px] py-3">
-              <span className="w-[58px] h-4">
+            <div className="border-gray-10 flex h-8 w-[66px] items-center justify-between rounded-[6px] border px-[10px] py-3">
+              <span className="h-4 w-[58px]">
                 {UNIT_NAMES[item.unit] || item.unit || "개"}
               </span>
               <img

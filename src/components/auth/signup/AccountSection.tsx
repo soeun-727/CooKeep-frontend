@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useSignupStore } from "@/stores/useSignupStore";
 
-import { blankCheck, grayCheck, greenCheck } from "@/assets/index";
+import { blankCheck, CheckboxCheckIcon } from "@/assets/index";
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
 import arrowIcon from "@/assets/signup/arrowright.svg";
@@ -181,8 +181,8 @@ export default function AccountSection({
                     {/* 약관 영역 */}
                     <div className="mt-[90px]">
                       {/* 전체 동의 */}
-                      <label className="relative flex items-center px-3 h-[48px] w-full rounded-[6px] border border-gray-10 cursor-pointer">
-                        <div className="relative w-6 h-6 flex-shrink-0 flex items-center justify-center">
+                      <label className="border-gray-10 relative flex h-[48px] w-full cursor-pointer items-center rounded-[6px] border px-3">
+                        <div className="relative flex h-6 w-6 flex-shrink-0 items-center justify-center">
                           <input
                             type="checkbox"
                             className="peer absolute inset-0 z-10 h-full w-full cursor-pointer appearance-none"
@@ -200,14 +200,10 @@ export default function AccountSection({
                             alt="unchecked"
                             className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                           />
-                          <img
-                            src={greenCheck}
-                            alt="checked"
-                            className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
-                          />
+                          <CheckboxCheckIcon className="text-green pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block" />
                         </div>
 
-                        <span className="ml-[12px] typo-label text-gray-80">
+                        <span className="typo-label text-gray-80 ml-[12px]">
                           약관 전체동의
                         </span>
                       </label>
@@ -237,17 +233,13 @@ export default function AccountSection({
                                     alt="unchecked"
                                     className="pointer-events-none z-0 block h-full w-full object-contain peer-checked:hidden"
                                   />
-                                  <img
-                                    src={grayCheck}
-                                    alt="checked"
-                                    className="pointer-events-none z-0 hidden h-4 w-4 object-contain peer-checked:block"
-                                  />
+                                  <CheckboxCheckIcon className="pointer-events-none z-0 hidden h-4 w-4 object-contain text-gray-50 peer-checked:block" />
                                 </div>
                               ) : (
                                 <span className="inline-block h-5 w-5 flex-shrink-0" />
                               )}
 
-                              <span className="typo-label text-gray-50 truncate">
+                              <span className="typo-label truncate text-gray-50">
                                 {item.label}
                               </span>
                             </label>

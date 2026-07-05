@@ -21,8 +21,8 @@ export default function EditModal({
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       {/* 모달 본체 */}
-      <div className="relative w-full max-w-[450px] bg-gray-0 rounded-t-[30px] py-[19px] px-4 animate-slide-up gap-[18px]">
-        <div className="flex justify-center items-center h-10 p-2 mb-[26px]">
+      <div className="bg-gray-0 animate-slide-up relative w-full max-w-[450px] gap-[18px] rounded-t-[30px] px-4 py-[19px]">
+        <div className="mb-[26px] flex h-10 items-center justify-center p-2">
           <h3 className="typo-body mt-[19px]">{title}</h3>
         </div>
 

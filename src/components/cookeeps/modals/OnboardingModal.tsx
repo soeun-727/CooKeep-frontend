@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 
 import {
-  abledLeft,
-  abledRight,
+  TriangleArrowIcon,
   cookingChar,
-  disabledLeft,
-  disabledRight,
   earth,
   plant,
   seedling,
@@ -83,12 +80,12 @@ export default function OnboardingModal({
   return (
     <div className="fixed inset-0 z-60 flex items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-gray-80" onClick={onClose} />
+      <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
 
       {/* Modal Container */}
       <div
-        className="relative box-border w-[258px] min-w-[258px] max-w-[258px] min-h-[246px] max-h-[267px] px-7 py-[25px] gap-3 rounded-[10px] bg-gray-0 flex flex-col shadow-xl overflow-hidden"
-        onClick={(e) => e.stopPropagation()}
+        className="bg-gray-0 relative box-border flex max-h-[267px] min-h-[246px] w-[258px] max-w-[258px] min-w-[258px] flex-col gap-3 overflow-hidden rounded-[10px] px-7 py-[25px] shadow-xl"
+        onClick={e => e.stopPropagation()}
       >
         {/* 1. Slider Content (상하 중앙 정렬을 위해 flex-1 사용) */}
         <div className="flex w-full flex-1 items-center overflow-hidden">
@@ -130,10 +127,9 @@ export default function OnboardingModal({
               disabled={isFirstStep}
               className="flex w-6 items-center justify-center p-1 outline-none"
             >
-              <img
-                src={isFirstStep ? disabledLeft : abledLeft}
-                alt="이전"
-                className="h-[10px] w-2 object-contain"
+              <TriangleArrowIcon
+                aria-label="이전"
+                className={`h-[10px] w-2 ${isFirstStep ? "text-gray-30" : "text-gray-50"}`}
               />
             </button>
 
@@ -142,7 +138,7 @@ export default function OnboardingModal({
               {ONBOARDING_DATA.map((_, index) => (
                 <div
                   key={index}
-                  className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                  className={`h-1.5 w-1.5 rounded-full transition-colors ${
                     currentIndex === index ? "bg-gray-50" : "bg-gray-30"
                   }`}
                 />
@@ -155,10 +151,9 @@ export default function OnboardingModal({
               disabled={isLastStep}
               className="flex w-6 items-center justify-center p-1 outline-none"
             >
-              <img
-                src={isLastStep ? disabledRight : abledRight}
-                alt="다음"
-                className="h-[10px] w-2 object-contain"
+              <TriangleArrowIcon
+                aria-label="다음"
+                className={`h-[10px] w-2 scale-x-[-1] ${isLastStep ? "text-gray-30" : "text-gray-50"}`}
               />
             </button>
           </div>

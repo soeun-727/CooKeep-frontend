@@ -42,9 +42,9 @@ export default function NoticePage() {
   return (
     <>
       <BackHeader title="공지사항" onBack={() => navigate(-1)} />
-      <main className="pt-[75px] px-4 pb-[34px] flex flex-col gap-[14px] min-h-screen">
+      <main className="flex min-h-screen flex-col gap-[14px] px-4 pt-[75px] pb-[34px]">
         {error ? (
-          <p className="text-center text-semantic-negative">
+          <p className="text-semantic-negative text-center">
             공지사항을 불러오지 못했습니다.
           </p>
         ) : notices.length === 0 ? (
@@ -56,7 +56,7 @@ export default function NoticePage() {
             <NoticeCategoryItem key={notice.id} category={notice} />
           ))
         )}
-        <p className="pt-[2px] text-center typo-label text-gray-80">
+        <p className="typo-label text-gray-80 pt-[2px] text-center">
           오늘 한 끼부터, 쿠킵으로 이어가볼까요?
         </p>
       </main>
