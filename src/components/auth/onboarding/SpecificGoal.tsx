@@ -28,23 +28,21 @@ export default function SpecificGoal({
   };
 
   return (
-    <div className="flex w-full flex-col items-center">
-      <div className="mt-[46px] w-[361px]">
-        <h1 className="typo-h1 !text-[22px]">
-          이번 주 달성하고 싶은 목표를 세워보세요!
-        </h1>
-        <h3 className="typo-h3 text-gray-500">
+    <div className="flex w-full flex-col items-center px-4">
+      <div className="mt-[46px] w-full gap-2">
+        <h1 className="typo-h2">이번 주 목표부터 정해볼까요?</h1>
+        <h3 className="typo-l text-gray-50">
           목표를 이룰 수 있도록 쿠킵이 도와줄게요
         </h3>
       </div>
 
-      <div className="mt-[46px] flex w-[361px] flex-col items-start">
+      <div className="mt-[46px] flex w-full flex-col items-start">
         <div
           className={`bg-gray-0 flex h-12 w-full items-center rounded-md border px-3 transition-all ${
             isError ? "border-semantic-negative" : "border-gray-10"
           }`}
         >
-          <span className="typo-body2 text-gray-80 whitespace-pre">
+          <span className="typo-m text-gray-80 whitespace-pre">
             {titleParts[0]}
           </span>
           <input
@@ -53,16 +51,16 @@ export default function SpecificGoal({
             value={count}
             onChange={handleChange}
             placeholder="3"
-            className={`typo-body2 w-5 bg-transparent text-center font-bold underline transition-colors outline-none ${
-              isError ? "text-semantic-negative" : "text-semantic-positive"
+            className={`typo-m w-5 bg-transparent text-center underline underline-offset-2 transition-colors outline-none ${
+              isError ? "text-semantic-negative" : "text-green-deep"
             }`}
           />
-          <span className="typo-body2 text-gray-80">{titleParts[1]}</span>
+          <span className="typo-m text-gray-80">{titleParts[1]}</span>
         </div>
 
         {/* 에러 메시지: 범위가 벗어났거나 비어있지 않을 때만 표시 */}
         {isError && (
-          <p className="text-semantic-negative animate-fadeIn mt-[5px] ml-3 text-[10px]">
+          <p className="text-semantic-negative animate-fadeIn typo-caption mt-[5px] ml-3">
             1~10 사이의 숫자로 입력해주세요
           </p>
         )}

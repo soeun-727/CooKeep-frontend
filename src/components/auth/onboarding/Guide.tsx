@@ -69,7 +69,7 @@ export default function Guide({ onNext }: GuideProps) {
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`h-1.5 w-1.5 cursor-pointer rounded-full ${
-                currentIndex === index ? "bg-green" : "bg-gray-30"
+                currentIndex === index ? "bg-green" : "bg-gray-10"
               }`}
             />
           ))}
@@ -77,7 +77,7 @@ export default function Guide({ onNext }: GuideProps) {
 
         {/* 텍스트 */}
         <div className="mt-6 px-4 text-center">
-          <div className="typo-h2">{title}</div>
+          <div className="typo-h2 tracking-[-0.6px]">{title}</div>
           <p className="typo-l-strong mt-2 whitespace-pre-wrap text-gray-50">
             {text}
           </p>
@@ -101,7 +101,7 @@ export default function Guide({ onNext }: GuideProps) {
                 className="relative flex min-w-full items-end justify-center"
               >
                 <object
-                  className="pointer-events-none h-[61.6vh] max-h-[524px] min-h-[320px] border-none object-contain outline-none"
+                  className="pointer-events-none h-[61.6vh] max-h-[520px] min-h-[320px] border-none object-contain outline-none"
                   data={data.img}
                 />
 
