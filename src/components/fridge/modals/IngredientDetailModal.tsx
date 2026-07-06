@@ -15,11 +15,11 @@ import {
 import character from "@/assets/character/tip_char.svg";
 import bubbleTail from "@/assets/fridge/bubble_tail_left.svg";
 import memoIcon from "@/assets/fridge/edit_memo.svg";
+
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+import type { IconComponent } from "@/types/icon";
 
 import EditModal from "@/components/ui/EditModal";
-
-import type { IconComponent } from "@/types/icon";
 
 import { getKoreanUnit } from "@/utils/mapping";
 

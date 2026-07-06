@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import type { MasterItem } from "@/stores/useAddIngredientStore";
 
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+import type { IconComponent } from "@/types/icon";
+
 import deleteIcon from "@/assets/fridge/delete.svg";
 import memoIcon from "@/assets/fridge/memo.svg";
-import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 import renameIcon from "@/assets/recipe/rename.svg";
 
 import EditModal from "@/components/ui/EditModal";
-
-import type { IconComponent } from "@/types/icon";
 
 import { calculateExpiryDate } from "@/utils/expiryDate";
 

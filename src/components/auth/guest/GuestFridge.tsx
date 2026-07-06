@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import { type Ingredient } from "@/stores/useIngredientStore";
 
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+
 import bagel from "@/assets/guest/bagel.svg";
 import banana from "@/assets/guest/banana.svg";
 import egg from "@/assets/guest/egg.svg";
@@ -11,7 +13,6 @@ import header from "@/assets/guest/fridge_header.svg";
 import milk from "@/assets/guest/milk.svg";
 import noodles from "@/assets/guest/noodles.svg";
 import strawberry from "@/assets/guest/strawberry.svg";
-import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
 import Item from "@/components/fridge/items/Item";
 import Storage from "@/components/fridge/main/Storage";

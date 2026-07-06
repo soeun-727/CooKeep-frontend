@@ -6,7 +6,7 @@ import {
 } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
-import { SearchIcon, loadingChar } from "@/assets/index";
+import { loadingChar, SearchIcon } from "@/assets/index";
 import xIcon from "@/assets/onboarding/x.svg";
 
 import TextField from "@/components/ui/TextField";

@@ -105,9 +105,6 @@ export default defineConfig({
 
       injectManifest: {
         swDest: "dist/sw.js",
-        dontCacheBustURLsMatching: /\.[0-9a-f]{8}\./,
-        globPatterns: ["**/*.{js,css,html}"],
-        maximumFileSizeToCacheInBytes: 1024 * 1024,
       },
       devOptions: {
         enabled: true,
