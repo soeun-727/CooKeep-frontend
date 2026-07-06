@@ -71,12 +71,17 @@ export default function NotificationSection({
   };
 
   return (
-    <section className="mt-[128px] px-4">
-      <SettingsToggleItem
-        label="PUSH 수신 동의"
-        checked={enabled}
-        onChange={handleToggle}
-      />
+    <section className="flex w-full flex-col items-start gap-1">
+      {/* 알림 라벨 */}
+      <div className="flex w-full items-center gap-2 py-1">
+        <span className="typo-l-strong text-gray-30 flex-1">알림 설정</span>
+      </div>
+
+      {/* 내용 + 토글 */}
+      <div className="flex h-10 w-full items-center justify-between py-[2px]">
+        <span className="typo-l-strong text-gray-80">PUSH 수신 동의</span>
+        <SettingsToggleItem checked={enabled} onChange={handleToggle} />
+      </div>
 
       {showConfirm && (
         <ConfirmModal

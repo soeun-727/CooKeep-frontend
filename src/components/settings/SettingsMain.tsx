@@ -6,13 +6,17 @@ import { MyProfileResponse, getMyProfile } from "@/api/user";
 import { loadingChar } from "@/assets";
 import { useAuthStore } from "@/stores/useAuthStore";
 
-import logoutIcon from "@/assets/settings/logout.svg";
+// import logoutIcon from "@/assets/settings/logout.svg";
 
 import ConfirmModal from "@/components/ui/ConfirmModal";
 
 import NotificationSection from "./sections/NotificationSection";
 import ProfileSection from "./sections/ProfileSection";
-import SupportSection from "./sections/SupportSection";
+// import SupportSection from "./sections/SupportSection";
+import NoticeSection from "./sections/NoticeSection";
+import HelpCenterSection from "./sections/HelpCenterSection";
+import TermsSection from "./sections/TermsSection";
+import AccountSection from "./sections/AccountSection";
 
 export default function SettingsMain() {
   const navigate = useNavigate();
@@ -50,6 +54,14 @@ export default function SettingsMain() {
     navigate("/", { replace: true });
   };
 
+  //추가
+  const handleWithdraw = async () => {
+    try {
+      await unsubscribePush();
+    } catch (e) {}
+    navigate("/settings/withdraw");
+  };
+
   const handleNotificationChange = (isAgreed: boolean) => {
     if (profile) {
       setProfile({ ...profile, marketingPush: isAgreed });
@@ -60,53 +72,32 @@ export default function SettingsMain() {
     return (
       <div className="mt-50 flex flex-col items-center justify-center text-center">
         <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-body2 text-zinc-500">
-          회원정보를 불러오는 중...
-        </div>
+        <div className="typo-body2 text-gray-50">회원정보를 불러오는 중...</div>
       </div>
     );
 
   return (
     <>
-      <main className="px-4 pt-[103px]">
-        <div className="space-y-6">
+      {/* 헤더(84px)는 별도 컴포넌트, 여기서는 그만큼 여백만 확보 */}
+      <main className="flex w-full flex-col items-start gap-[30px] bg-[#FAFAFA] px-4 pt-[103px] pb-[30px]">
+        {/* User Info Container: ProfileSection ~ 탈퇴하기 */}
+        <div className="flex w-full flex-col items-start gap-1">
           <ProfileSection profile={profile} />
-          <NotificationSection
-            marketingPush={profile.marketingPush}
-            onStateChange={handleNotificationChange}
-          />
-          <SupportSection />
-        </div>
 
-        {/* ===== 하단 버튼 영역 ===== */}
-        <div className="mt-[14px] flex flex-col items-center">
-          {/* 로그아웃 */}
-          <button
-            onClick={() => setOpenLogoutModal(true)}
-            className="inline-flex items-center gap-1"
-          >
-            <img
-              src={logoutIcon}
-              alt="logout"
-              className="aspect-square h-6 w-6"
+          {/* NotificationSection ~ 탈퇴하기 그룹: padding 0 4px, gap 16 */}
+          <div className="flex w-full flex-col items-start gap-4 px-1">
+            <NotificationSection
+              marketingPush={profile.marketingPush}
+              onStateChange={handleNotificationChange}
             />
-            <span className="text-gray-80 text-[14px] leading-[20px] font-medium">
-              로그아웃
-            </span>
-          </button>
-
-          {/* 탈퇴하기 */}
-          <button
-            onClick={async () => {
-              try {
-                await unsubscribePush();
-              } catch (e) {}
-              navigate("/settings/withdraw");
-            }}
-            className="mt-[42px] text-[12px] leading-[16px] font-normal text-gray-50 underline"
-          >
-            탈퇴하기
-          </button>
+            <NoticeSection />
+            <HelpCenterSection />
+            <TermsSection />
+            <AccountSection
+              onLogoutClick={() => setOpenLogoutModal(true)}
+              onWithdrawClick={handleWithdraw}
+            />
+          </div>
         </div>
       </main>
 

@@ -31,29 +31,58 @@ export default function SettingsInputItem({
     }
   };
 
+  //   return (
+  //     <div className="flex h-[80px] w-full flex-col gap-2">
+  //       {/* label */}
+  //       <span className="typo-l-strong text-gray-80 px-3">{label}</span>
+
+  //       {/* input-like box */}
+  //       <div className="border-gray-10 flex h-[44px] w-full items-center justify-between rounded-[6px] border px-3">
+  //         {/* value */}
+  //         <span className="typo-body2 text-gray-50">{value}</span>
+
+  //         {/* button */}
+  //         <button
+  //           type="button"
+  //           onClick={handleClick}
+  //           disabled={disabled}
+  //           className={`typo-caption flex w-[115px] items-center justify-center rounded-full px-[18px] py-1 transition-colors ${
+  //             disabled
+  //               ? "bg-gray-30 text-gray-0 cursor-not-allowed" // 비활성화 스타일
+  //               : "bg-gray-80 text-gray-0 active:bg-gray-80 cursor-pointer" // 활성화 스타일
+  //           } `}
+  //         >
+  //           {buttonText}
+  //         </button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
   return (
-    <div className="flex h-[80px] w-full flex-col gap-2">
-      {/* label */}
-      <span className="typo-body text-gray-80 px-3">{label}</span>
+    <div className="flex w-full flex-col items-start">
+      <div className="flex w-full items-center gap-1 p-1">
+        <span className="typo-l-strong text-gray-80">{label}</span>
+      </div>
 
-      {/* input-like box */}
-      <div className="border-gray-10 flex h-[44px] w-full items-center justify-between rounded-[6px] border px-3">
-        {/* value */}
-        <span className="typo-body2 text-gray-50">{value}</span>
+      <div className="min-h-[70px] w-full">
+        <div className="border-gray-10 flex h-12 w-full min-w-0 items-center gap-3 rounded-xl border bg-white px-3">
+          <span className="typo-body2 min-w-0 flex-1 truncate text-gray-50">
+            {value}
+          </span>
 
-        {/* button */}
-        <button
-          type="button"
-          onClick={handleClick}
-          disabled={disabled}
-          className={`typo-caption flex w-[115px] items-center justify-center rounded-full px-[18px] py-1 transition-colors ${
-            disabled
-              ? "bg-gray-30 text-gray-0 cursor-not-allowed" // 비활성화 스타일
-              : "bg-gray-80 text-gray-0 active:bg-gray-80 cursor-pointer" // 활성화 스타일
-          } `}
-        >
-          {buttonText}
-        </button>
+          <button
+            type="button"
+            onClick={handleClick}
+            disabled={disabled}
+            className={`typo-caption shrink-0 rounded-full px-3 py-[6px] transition-colors ${
+              disabled
+                ? "bg-gray-30 text-gray-0 cursor-not-allowed"
+                : "bg-gray-80 text-gray-0 cursor-pointer"
+            }`}
+          >
+            {buttonText}
+          </button>
+        </div>
       </div>
     </div>
   );
