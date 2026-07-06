@@ -13,7 +13,7 @@ export default function FridgePage() {
   const isAllViewMode = location.pathname.includes("fridge") && !!viewCategory;
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex flex-1 flex-col">
       <MainHeader isAllView={isAllViewMode} />
 
       <div className="flex flex-1 flex-col">
