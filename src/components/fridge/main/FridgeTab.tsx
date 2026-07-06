@@ -13,6 +13,7 @@ import {
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
+import { AppBar } from "../AppBar";
 import Search from "../features/Search";
 import Sort from "../features/Sort";
 import IngredientGrid from "../items/IngredientGrid";
@@ -111,8 +112,12 @@ export default function FridgeTab() {
   }
 
   return (
-    <div className="flex w-full flex-col pt-[calc(env(safe-area-inset-top)+3rem)] transition-all">
-      <Search />
+    <div className="flex w-full flex-col">
+      <div className="mb-6 flex-col flex gap-3 px-4">
+        <AppBar />
+        <Search />
+      </div>
+
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal
           isOpen={isExpiryModalOpen}
