@@ -2,12 +2,16 @@ interface ConfirmModalProps {
   message: string;
   onConfirm: () => void;
   onCancel: () => void;
+  confirmButtonClassName?: string;
+  cancelButtonClassName?: string;
 }
 
 export default function ConfirmModal({
   message,
   onConfirm,
   onCancel,
+  confirmButtonClassName,
+  cancelButtonClassName,
 }: ConfirmModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -15,29 +19,31 @@ export default function ConfirmModal({
       <div className="bg-black-overlay absolute inset-0" onClick={onCancel} />
 
       {/* Modal */}
-      <div className="bg-gray-0 relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 relative z-10 flex w-[300px] flex-col items-center gap-6 rounded-2xl p-6 shadow-[0_4px_16px_rgba(17,17,17,0.1)]">
         {/* Text */}
-        <p className="typo-body2 text-gray-80 text-center">{message}</p>
+        <div className="flex w-full flex-col items-center gap-3">
+          <p className="typo-l-strong text-gray-80 text-center">{message}</p>
+        </div>
 
         {/* Buttons */}
-        <div className="mt-4 flex w-full gap-2">
+        <div className="flex w-full gap-2">
           {/* 확인(아니오) */}
           <button
             onClick={onConfirm}
-            className="bg-gray-80 flex h-[44px] flex-1 items-center justify-center rounded-[10px]"
+            className={`flex h-11 flex-1 items-center justify-center rounded-xl ${
+              confirmButtonClassName ?? "bg-gray-80"
+            }`}
           >
-            <span className="text-gray-0 text-[14px] leading-[24px] font-semibold">
-              네
-            </span>
+            <span className="text-gray-0 typo-l-strong">네</span>
           </button>
           {/* 취소(아니오) */}
           <button
             onClick={onCancel}
-            className="bg-gray-30 flex h-[44px] flex-1 items-center justify-center rounded-[10px]"
+            className={`flex h-11 flex-1 items-center justify-center rounded-xl ${
+              cancelButtonClassName ?? "bg-gray-30"
+            }`}
           >
-            <span className="text-gray-0 text-[14px] leading-[24px] font-semibold">
-              아니오
-            </span>
+            <span className="text-gray-0 typo-l-strong">아니오</span>
           </button>
         </div>
       </div>

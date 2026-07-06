@@ -104,6 +104,8 @@ export default function SettingsMain() {
           message="로그아웃 하시겠습니까?"
           onConfirm={handleLogoutConfirm}
           onCancel={() => setOpenLogoutModal(false)}
+          confirmButtonClassName="bg-gray-30"
+          cancelButtonClassName="bg-gray-80"
         />
       )}
     </>

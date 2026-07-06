@@ -88,6 +88,7 @@ export default function NotificationSection({
           message="PUSH 수신에 동의하시겠습니까?"
           onConfirm={handleConfirm}
           onCancel={handleCancel}
+          confirmButtonClassName="bg-green"
         />
       )}
     </section>
