@@ -7,9 +7,8 @@ import character from "@/assets/character/clear_char.svg";
 import plus from "@/assets/fridge/plus.svg";
 import plusDisabled from "@/assets/fridge/plusDisabled.svg";
 
-import type { IconComponent } from "@/types/icon";
-
 import Item from "../items/Item";
+import type { IconComponent } from "@/types/icon";
 
 interface StorageIngredient extends Ingredient {
   className?: string; // 기존 Ingredient에 className이 있을 수도 있다고 알려줌

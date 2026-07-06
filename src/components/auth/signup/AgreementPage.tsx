@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 import remarkGfm from "remark-gfm";
 
-import { CheckboxCheckIcon, blankCheck } from "@/assets/index";
+import { blankCheck, CheckboxCheckIcon } from "@/assets/index";
 
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";

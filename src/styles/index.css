@@ -13,7 +13,6 @@ body,
   background-color: #fafafa;
   font-family: var(--font-sans);
   -webkit-text-size-adjust: 100%;
-  touch-action: manipulation;
 }
 
 body,
@@ -41,7 +40,10 @@ img[src$=".svg"] {
   -webkit-backface-visibility: hidden;
 }
 
-/* 일반 및 애니메이션 유틸리티 클래스 정의 (@utility 사용) */
+/* ==========================================================================
+   일반 및 애니메이션 유틸리티 클래스 정의 (@utility 사용)
+   ========================================================================== */
+
 @utility no-scrollbar {
   &::-webkit-scrollbar {
     display: none;
@@ -137,15 +139,114 @@ img[src$=".svg"] {
   }
 }
 
-/* 표준 CSS 애니메이션 Keyframes 정의 */
+/* ==========================================================================
+   타이포그래피 유틸리티 클래스 정의 (@utility 사용)
+   ========================================================================== */
+
+@utility typo-display {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 48px;
+}
+
+@utility typo-h1 {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+@utility typo-h2 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+@utility typo-h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+@utility typo-l {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility typo-l-strong {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility typo-m {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility typo-m-strong {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility typo-body {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility typo-body2 {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility typo-label {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility typo-caption {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@utility typo-caption-strong {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+@utility typo-button {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility typo-result-title {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 36px;
+  color: #202020;
+  text-align: center;
+}
+
+/* ==========================================================================
+   표준 CSS 애니메이션 Keyframes 정의
+   ========================================================================== */
+
 @keyframes fade-in {
   0% {
     opacity: 0;
-    transform: scale(0.96) translateZ(0);
+    transform: scale(0.96);
   }
   100% {
     opacity: 1;
-    transform: scale(1) translateZ(0);
+    transform: scale(1);
   }
 }
 
@@ -246,19 +347,4 @@ img[src$=".svg"] {
     transform: translateY(-7px);
     background: #7d7d7d;
   }
-}
-
-/* ios 병목 해결 */
-.nav-bar-container {
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-  will-change: transform;
-  -webkit-overflow-scrolling: touch;
-}
-
-button,
-a,
-.nav-item {
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
 }

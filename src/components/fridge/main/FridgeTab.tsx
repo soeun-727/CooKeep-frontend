@@ -5,10 +5,10 @@ import { getPushEligibility } from "@/api/user";
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
 import {
+  loadingChar,
   FreezerIcon,
   FridgeIcon,
   PantryIcon,
-  loadingChar,
 } from "@/assets/index";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
