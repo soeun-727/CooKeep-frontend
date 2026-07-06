@@ -116,7 +116,7 @@ export default function IngredientDetailModal({
   return (
     <div className="fixed inset-0 z-200 flex items-center justify-center p-4">
       <div className="bg-gray-80 absolute inset-0" onClick={handleModalClose} />
-      <div className="no-scrollbar animate-fadeIn relative z-10 max-h-[90vh] w-full max-w-[330px] overflow-y-auto rounded-[6px] bg-gradient-to-b from-[#F5F5F5] to-white px-5 py-6 shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+      <div className="no-scrollbar animate-fadeIn shadow-plant relative z-10 max-h-[90vh] w-full max-w-[330px] overflow-y-auto rounded-[6px] bg-gradient-to-b from-[#F5F5F5] to-white px-5 py-6">
         <div className="mx-auto flex w-full max-w-[290px] flex-col items-center gap-5">
           <div className="flex flex-col items-center gap-2 self-stretch">
             <span className="text-gray-80 text-center text-[16px] leading-6 font-semibold">
@@ -164,7 +164,7 @@ export default function IngredientDetailModal({
             </div>
 
             <div className="flex flex-col items-start gap-[14px] self-stretch">
-              <div className="bg-gray-0 flex w-full items-center gap-2 rounded-[6px] px-3 py-3 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
+              <div className="bg-gray-0 shadow-search flex w-full items-center gap-2 rounded-[6px] px-3 py-3">
                 {isEditing ? (
                   <input
                     type="text"
@@ -253,7 +253,7 @@ export default function IngredientDetailModal({
                       alt=""
                       className="absolute bottom-[12px] left-[-14px] z-20 w-[27.2px]"
                     />
-                    <div className="border-gray-10 bg-gray-0 relative z-10 flex min-h-[56px] w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] px-[17.6px] py-[10px] shadow-sm">
+                    <div className="border-gray-10 bg-gray-0 relative z-10 flex min-h-[56px] w-full flex-col items-start gap-[3.2px] rounded-[4.8px] border-[0.8px] px-[17.6px] py-[10px]">
                       <span className="text-green self-stretch text-[8px] leading-[12px] font-semibold">
                         TIP
                       </span>

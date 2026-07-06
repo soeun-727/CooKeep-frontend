@@ -68,7 +68,7 @@ export default function RecordSelectPage() {
       <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
       {/* 검색 */}
       <div className="mt-1 w-full max-w-[390px] px-4 pt-[54px]">
-        <div className="bg-searchbar flex w-full items-center justify-center rounded-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
+        <div className="bg-searchbar shadow-search flex w-full items-center justify-center rounded-[6px]">
           <div className="flex w-full items-center gap-2 p-3">
             <input
               value={searchTerm}

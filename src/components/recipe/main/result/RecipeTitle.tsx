@@ -32,7 +32,7 @@ export default function RecipeTitle({ name }: RecipeTitleProps) {
 
   return (
     <div
-      className="bg-gray-0 mx-auto flex w-full max-w-[361px] items-center justify-center self-stretch rounded-[6px] p-4 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+      className="bg-gray-0 shadow-search mx-auto flex w-full max-w-[361px] items-center justify-center self-stretch rounded-[6px] p-4"
       style={{ gap: "8px" }}
     >
       {/* 왼쪽 이미지 */}

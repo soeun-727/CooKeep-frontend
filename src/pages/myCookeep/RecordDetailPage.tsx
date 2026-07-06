@@ -194,7 +194,7 @@ export default function RecordDetailPage() {
           </div>
           <div className="absolute top-2 right-2 flex items-center">
             {isMenuOpen && (
-              <div className="bg-gray-0 animate-fadeIn absolute top-10 right-2 z-50 flex h-[72px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-[10px] shadow-[0_1px_8.2px_-2px_#11111140]">
+              <div className="bg-gray-0 animate-fadeIn shadow-plant absolute top-10 right-2 z-50 flex h-[72px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-[10px]">
                 {/* 수정하기 버튼 */}
                 <button
                   onClick={handleEdit}
@@ -271,7 +271,7 @@ export default function RecordDetailPage() {
             />
           ) : (
             record.description && (
-              <div className="bg-gray-0 typo-body text-gray-80 w-full rounded-[10px] border border-gray-100 px-[15px] py-4 text-center break-words whitespace-pre-wrap shadow-sm">
+              <div className="bg-gray-0 typo-body text-gray-80 w-full rounded-[10px] border border-gray-100 px-[15px] py-4 text-center break-words whitespace-pre-wrap">
                 {record.description}
               </div>
             )

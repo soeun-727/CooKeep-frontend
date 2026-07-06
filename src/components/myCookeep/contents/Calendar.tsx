@@ -125,7 +125,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
                 <img
                   src={todaySign}
                   alt="today"
-                  className="pointer-events-none absolute -top-3 z-40 w-18 max-w-none drop-shadow-md"
+                  className="pointer-events-none absolute -top-3 z-40 w-18 max-w-none"
                 />
               )}
 

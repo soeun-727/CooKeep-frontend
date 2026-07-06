@@ -26,7 +26,7 @@ export default function SelectedIngredientList({
       </div>
 
       {/* 재료 컨테이너 */}
-      <div className="bg-gray-0 grid w-full grid-cols-5 justify-items-center gap-y-2 rounded-[10px] px-[5px] py-[9px] shadow-[0_-1px_80px_-4px_rgba(32,32,32,0.1)]">
+      <div className="bg-gray-0 grid w-full grid-cols-5 justify-items-center gap-y-2 rounded-[10px] px-[5px] py-[9px]">
         {sortedIngredients.map(item => {
           const isUrgent = item.dDay <= 3;
           console.log(item.name, item.expiryDate, item.dDay);
@@ -65,7 +65,7 @@ export default function SelectedIngredientList({
             key={`empty-${idx}`}
             className="flex h-[70px] w-[70px] items-center justify-center"
           >
-            <div className="bg-gray-10 h-[8px] w-[8px] rounded-full shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
+            <div className="bg-gray-10 h-[8px] w-[8px] rounded-full" />
           </div>
         ))}
       </div>
