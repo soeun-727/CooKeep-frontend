@@ -30,6 +30,11 @@
     #34d399,
     #22c55e
   );
+
+  --radius-S: 8px;
+
+  --shadow-container: 0 4px 16px 0 rgba(17, 17, 17, 0.1);
+
   --font-sans:
     "Pretendard Variable", "Pretendard", ui-sans-serif, system-ui,
     -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
