@@ -11,11 +11,12 @@ import {
   loadingChar,
 } from "@/assets/index";
 
+import { BackHeader } from "@/components/fixed/BackHeader";
+
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
 import { AppBar } from "../AppBar";
 import Search from "../features/Search";
-import Sort from "../features/Sort";
 import IngredientGrid from "../items/IngredientGrid";
 import ItemOption from "../items/ItemOption";
 import NoResultView from "../items/NoResultView";
@@ -93,11 +94,11 @@ export default function FridgeTab() {
     return ingredients.find(i => i.id === selectedIngredientId) || null;
   }, [ingredients, selectedIngredientId]);
 
-  const getCategoryIcon = (category: string | null) => {
-    if (category === "냉동") return FreezerIcon;
-    if (category === "상온") return PantryIcon;
-    return FridgeIcon;
-  };
+  // const getCategoryIcon = (category: string | null) => {
+  //   if (category === "냉동") return FreezerIcon;
+  //   if (category === "상온") return PantryIcon;
+  //   return FridgeIcon;
+  // };
 
   const isSearching = searchTerm.trim().length > 0;
   const isListView = !!viewCategory && !isSearching;
@@ -113,8 +114,12 @@ export default function FridgeTab() {
 
   return (
     <div className="flex w-full flex-col">
-      <div className="mb-6 flex-col flex gap-3 px-4">
-        <AppBar />
+      <div className="mb-6 flex flex-col gap-3 px-4">
+        {isListView ? (
+          <BackHeader title="냉장고" sortIcon={true} />
+        ) : (
+          <AppBar />
+        )}
         <Search />
       </div>
 
@@ -133,15 +138,9 @@ export default function FridgeTab() {
             <NoResultView />
           </div>
         ))}
-      {isListView && (
-        <>
-          <Sort
-            categoryIcon={getCategoryIcon(viewCategory)}
-            viewCategory={viewCategory!}
-          />
-          <IngredientGrid items={sortedIngredients} />
-        </>
-      )}
+
+      {isListView && <IngredientGrid items={sortedIngredients} />}
+
       {!isSearching && !viewCategory && (
         <div className="flex flex-col gap-[10px]">
           <Storage
@@ -161,7 +160,9 @@ export default function FridgeTab() {
           />
         </div>
       )}
+
       <ItemOption />
+
       {selectedIngredient && (
         <IngredientDetailModal
           key={selectedIngredient.id}
