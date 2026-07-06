@@ -95,7 +95,7 @@ export default function Custom({
     <div className="bg-black-overlay fixed inset-0 z-[150] flex items-center justify-center">
       <div className="absolute inset-0" onClick={onClose}></div>
 
-      <div className="bg-gray-0 relative flex h-[316px] w-[280px] flex-col items-center rounded-[10px] px-7 py-[35px] shadow-xl">
+      <div className="bg-gray-0 shadow-container relative flex h-[316px] w-[280px] flex-col items-center rounded-[10px] px-7 py-[35px]">
         <div className="mb-4 flex w-full items-center justify-center gap-1">
           {isEditing ? (
             <input

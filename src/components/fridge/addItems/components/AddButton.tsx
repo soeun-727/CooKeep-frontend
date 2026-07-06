@@ -18,7 +18,7 @@ export default function AddButton() {
       onClick={() => navigate("/fridge/add")}
       onTouchStart={() => setIsSelected(true)}
       onTouchEnd={() => setIsSelected(false)}
-      className="active:bg-gray-30 absolute right-[31px] bottom-[calc(84px+env(safe-area-inset-bottom))] z-40 flex h-12 w-12 items-center justify-center rounded-full bg-black shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)] transition-all active:scale-95"
+      className="active:bg-gray-30 shadow-add-button absolute right-[31px] bottom-[calc(84px+env(safe-area-inset-bottom))] z-40 flex h-12 w-12 items-center justify-center rounded-full bg-black transition-all active:scale-95"
     >
       <img
         src={isSelected ? inactivePlusIcon : plusIcon}

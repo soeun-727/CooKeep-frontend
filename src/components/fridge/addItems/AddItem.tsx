@@ -154,7 +154,7 @@ export default function AddItem() {
   return (
     <>
       <div className="mt-1 flex h-full w-full flex-col items-center overflow-hidden">
-        <div className="[&_input::placeholder]:text-gray-30 shrink-0 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_input]:border-none [&_input]:outline-none [&_p]:hidden">
+        <div className="[&_input::placeholder]:text-gray-30 shadow-search shrink-0 [&_input]:border-none [&_input]:outline-none [&_p]:hidden">
           <TextField
             value={searchTerm}
             placeholder="재료명을 검색하세요"
