@@ -58,7 +58,7 @@ export default function PlantGrowthCard({
 
   return (
     <div className="-mt-[46px] flex justify-center">
-      <div className="relative z-50 w-full max-w-[450px] shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)]">
+      <div className="plant relative z-50 w-full max-w-[450px]">
         <div className="absolute -top-[20px] left-1/2 z-50 -translate-x-1/2">
           <WaterButton
             onSuccess={() => {
