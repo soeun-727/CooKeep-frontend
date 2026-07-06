@@ -6,13 +6,10 @@ import { MyProfileResponse, getMyProfile } from "@/api/user";
 import { loadingChar } from "@/assets";
 import { useAuthStore } from "@/stores/useAuthStore";
 
-// import logoutIcon from "@/assets/settings/logout.svg";
-
 import ConfirmModal from "@/components/ui/ConfirmModal";
 
 import NotificationSection from "./sections/NotificationSection";
 import ProfileSection from "./sections/ProfileSection";
-// import SupportSection from "./sections/SupportSection";
 import NoticeSection from "./sections/NoticeSection";
 import HelpCenterSection from "./sections/HelpCenterSection";
 import TermsSection from "./sections/TermsSection";
@@ -84,7 +81,7 @@ export default function SettingsMain() {
         <div className="flex w-full flex-col items-start gap-1">
           <ProfileSection profile={profile} />
 
-          {/* NotificationSection ~ 탈퇴하기 그룹: padding 0 4px, gap 16 */}
+          {/* NotificationSection ~ 탈퇴하기 그룹 */}
           <div className="flex w-full flex-col items-start gap-4 px-1">
             <NotificationSection
               marketingPush={profile.marketingPush}

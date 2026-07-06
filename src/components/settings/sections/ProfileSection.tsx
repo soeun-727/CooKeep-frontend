@@ -5,6 +5,7 @@ import axios from "axios";
 
 import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
 import SingleButtonModal from "@/components/ui/SingleButtonModal";
+import ClearIcon from "@/assets/settings/clear(x)_Icon.svg?react";
 
 const MASKED_PASSWORD = "********";
 
@@ -72,6 +73,15 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
         alert("알 수 없는 오류가 발생했습니다.");
       }
     }
+  };
+
+  const handleCloseDuplicateModal = () => {
+    setOpenDuplicateModal(false);
+
+    requestAnimationFrame(() => {
+      nicknameInputRef.current?.focus();
+      nicknameInputRef.current?.select();
+    });
   };
 
   return (
@@ -148,7 +158,7 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
         </div>
 
         {/* Input Field 래퍼: 최소 70px, 내용 넘칠 때 대비해 min-h로 */}
-        <div className="flex min-h-[70px] w-full flex-col items-center gap-1">
+        <div className="flex h-[70px] w-full flex-col items-center gap-[2px]">
           <div
             className={`flex h-12 w-full min-w-0 items-center gap-3 rounded-xl border bg-white px-3 ${
               isNicknameError ? "border-semantic-negative" : "border-gray-10"
@@ -164,6 +174,22 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
                   }
                   className="typo-body2 text-gray-80 h-full min-w-0 flex-1 outline-none"
                 />
+
+                {account.nickname.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setAccount(prev => ({
+                        ...prev,
+                        nickname: prev.nickname.slice(0, -1),
+                      }))
+                    }
+                    className="ml-3 flex h-6 w-6 shrink-0 items-center justify-center"
+                  >
+                    <ClearIcon className="h-6 w-6" />
+                  </button>
+                )}
+
                 <button
                   onClick={handleNicknameSave}
                   disabled={!account.nickname.trim() || isNicknameError}
@@ -187,20 +213,21 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
             )}
           </div>
 
-          {isEditingNickname && (
-            <div className="w-full px-2">
-              {isNicknameError && (
-                <span className="text-semantic-negative typo-caption">
-                  {MAX_NICKNAME_LENGTH}글자 이내로 설정해주세요
-                </span>
-              )}
-              {!account.nickname.trim() && (
-                <span className="text-semantic-negative typo-caption">
+          <div className="h-[18px] w-full px-2">
+            {isEditingNickname && isNicknameError && (
+              <span className="typo-caption text-semantic-negative">
+                {MAX_NICKNAME_LENGTH}글자 이내로 설정해주세요
+              </span>
+            )}
+
+            {isEditingNickname &&
+              !isNicknameError &&
+              !account.nickname.trim() && (
+                <span className="typo-caption text-semantic-negative">
                   닉네임을 입력해주세요
                 </span>
               )}
-            </div>
-          )}
+          </div>
         </div>
       </div>
 
@@ -224,7 +251,7 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
       {openDuplicateModal && (
         <SingleButtonModal
           message="이미 사용 중인 닉네임입니다."
-          onClose={() => setOpenDuplicateModal(false)}
+          onClose={handleCloseDuplicateModal}
         />
       )}
     </section>
