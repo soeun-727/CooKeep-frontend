@@ -15,7 +15,7 @@ export default function NoticeSection() {
       <div className="flex w-full flex-col items-start">
         <SettingsMenuRow
           label="서비스 소개"
-          onClick={() => navigate("/settings/about")}
+          onClick={() => navigate("/settings/notice")}
         />
         <SettingsMenuRow
           //   label={`버전 업데이트 (v${APP_VERSION})`}
