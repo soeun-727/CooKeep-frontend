@@ -16,7 +16,7 @@ import { BackHeader } from "@/components/fixed/BackHeader";
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
 import { AppBar } from "../AppBar";
-import Search from "../features/Search";
+import { Search } from "../features/Search";
 import IngredientGrid from "../items/IngredientGrid";
 import ItemOption from "../items/ItemOption";
 import NoResultView from "../items/NoResultView";
@@ -25,8 +25,14 @@ import IngredientDetailModal from "../modals/IngredientDetailModal";
 import Storage from "./Storage";
 
 export default function FridgeTab() {
-  const { ingredients, setIngredients, searchTerm, viewCategory } =
-    useIngredientStore();
+  const {
+    ingredients,
+    setIngredients,
+    searchTerm,
+    viewCategory,
+    setSearchTerm,
+    setViewCategory,
+  } = useIngredientStore();
   const { selectedIngredientId, closeDetail } = useIngredientStore();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -85,6 +91,16 @@ export default function FridgeTab() {
   }, []);
 
   const { filteredIngredients, sortedIngredients } = useSortedIngredients();
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+
+    // 검색 시작 시 전체보기(카테고리 뷰) 해제
+    if (value.trim().length > 0) {
+      setViewCategory(null);
+    }
+  };
+
   const todayIngredients = useMemo(
     () => ingredients.filter(i => i.dDay === 0),
     [ingredients],
@@ -93,12 +109,6 @@ export default function FridgeTab() {
     if (!selectedIngredientId) return null;
     return ingredients.find(i => i.id === selectedIngredientId) || null;
   }, [ingredients, selectedIngredientId]);
-
-  // const getCategoryIcon = (category: string | null) => {
-  //   if (category === "냉동") return FreezerIcon;
-  //   if (category === "상온") return PantryIcon;
-  //   return FridgeIcon;
-  // };
 
   const isSearching = searchTerm.trim().length > 0;
   const isListView = !!viewCategory && !isSearching;
@@ -120,7 +130,11 @@ export default function FridgeTab() {
         ) : (
           <AppBar />
         )}
-        <Search />
+        <Search
+          placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
       </div>
 
       {isExpiryModalOpen && todayIngredients.length > 0 && (

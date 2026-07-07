@@ -15,15 +15,13 @@ import {
 } from "@/stores/useAddIngredientStore";
 
 import defaultChar from "@/assets/character/default_char.svg";
-import { SearchIcon } from "@/assets/index";
-
-import TextField from "@/components/ui/TextField";
 
 import { INGREDIENT_CATEGORIES } from "@/constants/category";
 import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
 
 import { calculateExpiryDate } from "@/utils/expiryDate";
 
+import { Search } from "../features/Search";
 import AddItemFooter from "./AddItemFooter";
 import Category from "./components/Category";
 import Custom from "./components/Custom";
@@ -153,17 +151,17 @@ export default function AddItem() {
 
   return (
     <>
-      <div className="mt-1 flex h-full w-full flex-col items-center overflow-hidden">
-        <div className="[&_input::placeholder]:text-gray-30 shrink-0 shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_input]:border-none [&_input]:outline-none [&_p]:hidden">
-          <TextField
-            value={searchTerm}
+      <div className="mt-1 flex h-full w-full flex-col items-center gap-3 overflow-hidden">
+        <section className="w-full px-4">
+          <Search
             placeholder="재료명을 검색하세요"
+            value={searchTerm}
             onChange={value => setSearchTerm(value)}
-            rightIcon={<SearchIcon className="text-gray-80 h-6 w-6" />}
           />
-        </div>
-        <div className="mt-4 w-[401px] shrink-0 pl-[31px]">
-          <div className="no-scrollbar flex gap-[6px] overflow-x-auto scroll-smooth pr-8 pb-2">
+        </section>
+
+        <div className="w-full px-4">
+          <div className="no-scrollbar flex gap-[5px] overflow-x-auto scroll-smooth">
             {INGREDIENT_CATEGORIES.map(category => (
               <div key={category.id} className="flex-shrink-0">
                 <Category

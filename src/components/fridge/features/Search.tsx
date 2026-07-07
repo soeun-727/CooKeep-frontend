@@ -1,28 +1,20 @@
-import { useIngredientStore } from "@/stores/useIngredientStore";
-
 import { SearchIcon } from "@/assets/index";
 
 import TextField from "@/components/ui/TextField";
 
-//재료 검색
-export default function Search() {
-  const { searchTerm, setSearchTerm, setViewCategory } = useIngredientStore();
-  const handleSearch = (value: string) => {
-    setSearchTerm(value);
-
-    // 일단 추가: 검색 시작 시 전체보기 해제
-    if (value.trim().length > 0) {
-      setViewCategory(null);
-    }
-  };
-
-  const hasText = searchTerm.trim().length > 0;
+interface SearchProps {
+  placeholder: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+export const Search = ({ placeholder, value, onChange }: SearchProps) => {
+  const hasText = value.trim().length > 0;
   return (
     <TextField
-      value={searchTerm}
+      value={value}
       type="text"
-      placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
-      onChange={handleSearch}
+      placeholder={placeholder}
+      onChange={onChange}
       rightIcon={
         <div className="flex items-center justify-center transition-opacity duration-200">
           <SearchIcon
@@ -33,4 +25,4 @@ export default function Search() {
       }
     />
   );
-}
+};
