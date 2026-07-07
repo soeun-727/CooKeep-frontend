@@ -8,6 +8,7 @@ import {
 import { AxiosError } from "axios";
 
 import character from "@/assets/character/confused_char.svg";
+import PlusIcon from "@/assets/fridge/plus.svg?react";
 
 import DeleteConfirmModal from "../../modals/DeleteConfirmModal";
 import Item from "./Item";
@@ -80,8 +81,24 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
 
   return (
     <>
-      <div className="flex w-full flex-col items-center justify-center pt-[10px] pb-25">
-        <div className="flex flex-col">
+      {isSearchEmpty ? (
+        <div className="flex h-full w-full flex-1 flex-col items-center justify-center gap-4">
+          <img src={character} className="w-23" alt="no result" />
+          <button
+            type="button"
+            onClick={() => setModalOpen(true)}
+            className="animate-fadeIn items-center justify-center"
+          >
+            <div className="bg-gray-80 flex items-center justify-center gap-2 rounded-[12px] px-4 py-2">
+              <p className="typo-label text-gray-0 text-center">
+                직접 재료 추가하기
+              </p>
+              <PlusIcon className="text-gray-0 h-5 w-5" />
+            </div>
+          </button>
+        </div>
+      ) : (
+        <div className="mb-6 flex w-full flex-col items-center justify-center pt-[10px]">
           <div className="grid grid-cols-3 justify-items-center gap-3">
             {items.map(item => (
               <Item
@@ -97,23 +114,8 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
               />
             ))}
           </div>
-
-          {isSearchEmpty && (
-            <button
-              type="button"
-              onClick={() => setModalOpen(true)}
-              className="animate-fadeIn mt-30 mb-50 flex flex-col items-center justify-center gap-3"
-            >
-              <img src={character} className="w-23" alt="no result" />
-              <div className="flex h-6 items-center justify-center rounded-[100px] bg-black px-[18px] py-1">
-                <span className="typo-caption text-gray-0 py-1 text-center">
-                  직접 재료 추가하기
-                </span>
-              </div>
-            </button>
-          )}
         </div>
-      </div>
+      )}
 
       {deleteTarget && (
         <DeleteConfirmModal
