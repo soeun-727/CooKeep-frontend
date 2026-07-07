@@ -7,6 +7,10 @@ import SettingsSectionLabel from "@/components/settings/components/SettingsSecti
 export default function HelpCenterSection() {
   const navigate = useNavigate();
 
+  const handleFeedbackClick = () => {
+    // TODO: 피드백 폼 URL 연결 예정
+  };
+
   return (
     <section className="flex w-full flex-col items-start gap-1">
       <SettingsSectionLabel label="고객센터" />
@@ -16,13 +20,10 @@ export default function HelpCenterSection() {
           onClick={() => navigate("/support")}
         />
         <SettingsMenuRow
-          label="자주 하는 질문 / FAQ"
+          label="자주 하는 질문 (FAQ)"
           onClick={() => navigate("/settings/faq")}
         />
-        <SettingsMenuRow
-          label="사용 후기 / 피드백"
-          onClick={() => navigate("/settings/feedback")}
-        />
+        <SettingsMenuRow label="의견 남기기" onClick={handleFeedbackClick} />
       </div>
     </section>
   );
