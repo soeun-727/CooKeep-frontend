@@ -1,16 +1,18 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
-import AppLayout from "@/layouts/AppLayout";
-import Layout from "@/layouts/Layout";
 import AddItemLayout from "@/layouts/AddItemLayout";
+import AppLayout from "@/layouts/AppLayout";
 import CookeepsLayout from "@/layouts/CookeepsLayout";
+import Layout from "@/layouts/Layout";
+import ListLayout from "@/layouts/ListLayout";
 import SettingsLayout from "@/layouts/SettingsLayout";
 import VerifyLayout from "@/layouts/VerifyLayout";
-import ListLayout from "@/layouts/ListLayout";
+
 import FindLayout from "@/components/auth/find/FindLayout";
 import RequireFindAuth from "@/components/auth/find/RequireFindAuth";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+
 import { useAuthStore } from "./stores/useAuthStore";
 
 const SplashPage = lazy(() => import("@/pages/SplashPage"));

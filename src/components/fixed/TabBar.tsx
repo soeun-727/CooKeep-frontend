@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 import CookeepsIcon from "@/assets/fixed/cookeepsTab.svg?react";
 import FridgeIcon from "@/assets/fixed/fridgeTab.svg?react";

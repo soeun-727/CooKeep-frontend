@@ -1,10 +1,11 @@
+import { memo, useCallback } from "react";
+
 import {
   type Ingredient,
   useIngredientStore,
 } from "@/stores/useIngredientStore";
 
 import Item from "./Item";
-import { memo, useCallback } from "react";
 
 export default memo(function IngredientGrid({
   items,

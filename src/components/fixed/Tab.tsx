@@ -1,5 +1,6 @@
-import type { IconComponent } from "@/types/icon";
 import { memo, useCallback } from "react";
+
+import type { IconComponent } from "@/types/icon";
 
 interface TabProps {
   title: string;

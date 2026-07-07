@@ -1,5 +1,6 @@
-import { CalendarIcon, RecordIcon, StatsIcon } from "@/assets/index";
 import { memo, useCallback } from "react";
+
+import { CalendarIcon, RecordIcon, StatsIcon } from "@/assets/index";
 
 const TABS = [
   { id: "record", Icon: RecordIcon },

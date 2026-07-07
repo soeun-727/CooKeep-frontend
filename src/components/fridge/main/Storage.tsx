@@ -1,3 +1,5 @@
+import { memo, useCallback } from "react";
+
 import {
   type Ingredient,
   useIngredientStore,
@@ -7,9 +9,9 @@ import character from "@/assets/character/clear_char.svg";
 import plus from "@/assets/fridge/plus.svg";
 import plusDisabled from "@/assets/fridge/plusDisabled.svg";
 
-import Item from "../items/Item";
 import type { IconComponent } from "@/types/icon";
-import { memo, useCallback } from "react";
+
+import Item from "../items/Item";
 
 interface StorageIngredient extends Ingredient {
   className?: string; // 기존 Ingredient에 className이 있을 수도 있다고 알려줌

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+
 import type { IconComponent } from "@/types/icon";
 
 import { getKoreanStorage } from "@/utils/mapping";

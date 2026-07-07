@@ -1,9 +1,10 @@
+import { memo, useCallback, useMemo } from "react";
+
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
 import { SearchIcon } from "@/assets/index";
 
 import TextField from "@/components/ui/TextField";
-import { memo, useCallback, useMemo } from "react";
 
 //재료 검색
 export default memo(function Search() {
