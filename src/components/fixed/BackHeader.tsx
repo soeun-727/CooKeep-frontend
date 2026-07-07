@@ -14,12 +14,20 @@ interface BackHeaderProps {
 
 export const BackHeader = ({ title, sortIcon }: BackHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { setSortOrder } = useIngredientStore();
+  const { viewCategory, setViewCategory, setSortOrder } = useIngredientStore();
+
+  const handleBack = () => {
+    if (viewCategory) {
+      setViewCategory("");
+    } else {
+      window.history.back();
+    }
+  };
 
   return (
     <section className="relative flex items-center justify-between py-2">
       {/* 뒤로가기 버튼 */}
-      <button type="button" onClick={() => window.history.back()}>
+      <button type="button" onClick={() => handleBack()}>
         <BackIcon className="h-10 w-10" />
       </button>
 
