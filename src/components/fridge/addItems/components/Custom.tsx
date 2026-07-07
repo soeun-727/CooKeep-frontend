@@ -1,32 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 
-
-
-import { type CategoryType, type CustomIngredientRequest, registerCustomIngredient } from "@/api/ingredient";
+import {
+  type CategoryType,
+  type CustomIngredientRequest,
+  registerCustomIngredient,
+} from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
-
-
 
 import editIcon from "@/assets/recipe/rename.svg";
 
-
-
 import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
 import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 interface CustomProps {
   isOpen: boolean;
@@ -112,7 +96,7 @@ export default function Custom({
       <div className="absolute inset-0" onClick={onClose}></div>
 
       <div className="bg-gray-0 relative flex w-[300px] flex-col items-center gap-6 rounded-[10px] p-6 shadow-xl">
-        <section className="flex flex-col gap-3 items-center">
+        <section className="flex flex-col items-center gap-3">
           <div className="mb-4 flex w-full items-center justify-center gap-1">
             {isEditing ? (
               <input
