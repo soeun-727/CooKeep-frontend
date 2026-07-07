@@ -76,7 +76,7 @@ export default function ItemOption() {
         <div className="bg-gray-0 border-gray-10 flex h-11 border-[0.5px]">
           <button
             onClick={() => handleOpenModal("eaten")}
-            className="active:bg-green-light flex-1 transition-all active:shadow-[inset_0_-1px_20px_-4px_rgba(0,0,0,0.25)]"
+            className="active:bg-green-light active:shadow-container flex-1 transition-all"
           >
             <div className="flex h-11 items-center justify-center gap-[3px]">
               <span className="typo-body2">다 먹었어요</span>
@@ -86,7 +86,7 @@ export default function ItemOption() {
 
           <button
             onClick={() => handleOpenModal("thrown")}
-            className="border-gray-10 active:bg-green-light flex-1 border-x-[0.5px] transition-all active:shadow-[inset_0_1px_6.7px_0_rgba(17,17,17,0.2)]"
+            className="border-gray-10 active:bg-green-light active:shadow-container flex-1 border-x-[0.5px] transition-all"
           >
             <div className="flex h-11 items-center justify-center gap-[3px]">
               <span className="typo-body2">버렸어요</span>

@@ -41,7 +41,7 @@ export default function RecordWriteImageCard({
               fileInputRef.current?.click(); // 직접 호출
             }
           }}
-          className="relative h-[153px] w-full cursor-pointer overflow-hidden rounded-t-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+          className="shadow-search relative h-[153px] w-full cursor-pointer overflow-hidden rounded-t-[6px]"
         >
           <img
             src={imageSrc || tempFoodPhoto}
@@ -100,7 +100,7 @@ export default function RecordWriteImageCard({
         </div>
 
         {/* 제목 영역 */}
-        <div className="bg-gray-0 flex w-full items-center justify-center self-stretch rounded-b-[6px] px-3 py-[12px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
+        <div className="bg-gray-0 shadow-search flex w-full items-center justify-center self-stretch rounded-b-[6px] px-3 py-[12px]">
           <div className="flex w-full min-w-0 items-center gap-2 px-2">
             {/* 제목 */}
             {isEditing ? (

@@ -30,7 +30,7 @@ export default function Item({
       onClick={onDetail}
       role="button"
       tabIndex={0}
-      className={`flex h-20 w-[114px] flex-col items-start overflow-hidden rounded-[6px] border pl-[11px] shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)] ${
+      className={`shadow-plant flex h-20 w-[114px] flex-col items-start overflow-hidden rounded-[6px] border pl-[11px] ${
         isSelected
           ? "bg-green-light border-emerald-400"
           : "border-gray-10 bg-gray-0"

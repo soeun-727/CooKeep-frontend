@@ -15,7 +15,7 @@ export default function RecipeDetailImageCard({
   return (
     <div className="mx-auto flex w-full max-w-[450px] flex-col items-start">
       {/* 이미지 영역 */}
-      <div className="h-[153px] w-full overflow-hidden rounded-t-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
+      <div className="shadow-search h-[153px] w-full overflow-hidden rounded-t-[6px]">
         <img
           src={imageSrc}
           alt="레시피 이미지"
@@ -24,7 +24,7 @@ export default function RecipeDetailImageCard({
       </div>
 
       {/* 제목 영역 */}
-      <div className="bg-gray-0 flex w-full items-center justify-center self-stretch rounded-b-[6px] px-3 py-[12px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
+      <div className="bg-gray-0 shadow-search flex w-full items-center justify-center self-stretch rounded-b-[6px] px-3 py-[12px]">
         <div className="flex w-full items-center gap-2 px-2">
           {/* 아이콘 */}
           <img

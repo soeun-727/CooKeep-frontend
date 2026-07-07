@@ -70,7 +70,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
       <div className="mx-auto flex w-full max-w-[360px] flex-col gap-[9px]">
         {/* 이미지 */}
         <div
-          className="relative h-[160px] w-full cursor-pointer overflow-hidden rounded-[6px] shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25),0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+          className="shadow-plant relative h-[160px] w-full cursor-pointer overflow-hidden rounded-[6px]"
           onClick={() => navigate(`/mycookeep/record/${record.dailyRecipeId}`)}
         >
           <img
@@ -96,7 +96,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
                 e.stopPropagation();
                 handleTryChangeVisibility(!isPublic);
               }}
-              className={`bg-gray-0 mb-2 flex h-9 w-9 items-center justify-center rounded-full shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] transition-all duration-200 ease-out ${
+              className={`bg-gray-0 shadow-search mb-2 flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 ease-out ${
                 isOptionOpen
                   ? "translate-y-0 scale-100 opacity-100"
                   : "pointer-events-none translate-y-2 scale-95 opacity-0"
@@ -115,7 +115,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
                 e.stopPropagation();
                 toggleOption();
               }}
-              className="bg-gray-0 flex h-9 w-9 items-center justify-center rounded-full shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+              className="bg-gray-0 shadow-search flex h-9 w-9 items-center justify-center rounded-full"
             >
               <img
                 src={isPublic ? publicIcon : privateIcon}

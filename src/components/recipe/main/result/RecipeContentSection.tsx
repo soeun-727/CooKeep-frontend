@@ -25,7 +25,7 @@ export default function RecipeContentSection({
 }: RecipeContentSectionProps) {
   return (
     <section
-      className="bg-gray-0 mx-auto flex w-full max-w-[361px] flex-col items-center rounded-[6px] px-[15px] py-[22px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+      className="bg-gray-0 shadow-search mx-auto flex w-full max-w-[361px] flex-col items-center rounded-[6px] px-[15px] py-[22px]"
       style={{ gap: "8px" }}
     >
       {/* 내부 세부 섹션 */}

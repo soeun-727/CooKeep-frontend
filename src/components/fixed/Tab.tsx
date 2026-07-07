@@ -18,9 +18,7 @@ export default function Tab({
   return (
     <button
       onClick={onClick}
-      className={`bg-gray-0 relative flex h-14 flex-1 flex-col items-center justify-center gap-[2px] transition-all ${
-        isSelected ? "shadow-[inset_0_0_2px_0_rgba(17,17,17,0.1)]" : ""
-      }`}
+      className="bg-gray-0 relative flex h-14 flex-1 flex-col items-center justify-center gap-[2px] transition-all"
     >
       {isSelected && (
         <div className="bg-green-gradient absolute top-0 left-0 h-[2px] w-full" />

@@ -82,7 +82,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
               variant="green"
               onClick={onNext}
               disabled={!isSelected}
-              className="!w-full shadow-lg"
+              className="!w-full"
             >
               재료 추가하기
             </Button>
