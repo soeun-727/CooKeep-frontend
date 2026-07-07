@@ -76,7 +76,10 @@ export default function SettingsMain() {
   return (
     <>
       {/* 헤더(84px)는 별도 컴포넌트, 여기서는 그만큼 여백만 확보 */}
-      <main className="flex w-full flex-col items-start gap-[30px] bg-[#FAFAFA] px-4 pt-[103px] pb-[30px]">
+      <main
+        className="flex w-full flex-col items-start gap-[30px] bg-[#FAFAFA] px-4 pb-[30px]"
+        style={{ paddingTop: "calc(env(safe-area-inset-top) + 40px + 30px)" }}
+      >
         {/* User Info Container: ProfileSection ~ 탈퇴하기 */}
         <div className="flex w-full flex-col items-start gap-1">
           <ProfileSection profile={profile} />
