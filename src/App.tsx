@@ -1,57 +1,85 @@
-import { useEffect, useState } from "react";
+import { lazy, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
-import AddItemLayout from "@/layouts/AddItemLayout";
 import AppLayout from "@/layouts/AppLayout";
-import CookeepsLayout from "@/layouts/CookeepsLayout";
 import Layout from "@/layouts/Layout";
-import ListLayout from "@/layouts/ListLayout";
+import AddItemLayout from "@/layouts/AddItemLayout";
+import CookeepsLayout from "@/layouts/CookeepsLayout";
 import SettingsLayout from "@/layouts/SettingsLayout";
 import VerifyLayout from "@/layouts/VerifyLayout";
-import SplashPage from "@/pages/SplashPage";
-import FindPage from "@/pages/auth/FindPage";
-import GuestPage from "@/pages/auth/GuestPage";
-import InitialPage from "@/pages/auth/InitialPage";
-import LoginPage from "@/pages/auth/LoginPage";
-import OnboardingPage from "@/pages/auth/OnboardingPage";
-import SignupPage from "@/pages/auth/SignupPage";
-import SimpleLoginAgreementPage from "@/pages/auth/SimpleLoginAgreementPage";
-import CookeepsPage from "@/pages/cookeeps/CookeepsPage";
-import MyPlantPage from "@/pages/cookeeps/MyPlantPage";
-import RecipeDetailPage from "@/pages/cookeeps/RecipeDetailPage";
-import ViewAllPage from "@/pages/cookeeps/ViewAllPage";
-import ViewListPage from "@/pages/cookeeps/ViewListPage";
-import AddItemPage from "@/pages/fridge/AddItemPage";
-import FridgePage from "@/pages/fridge/FridgePage";
-import MyCookeepPage from "@/pages/myCookeep/MyCookeepPage";
-import RecordDetailPage from "@/pages/myCookeep/RecordDetailPage";
-import RecordSelectPage from "@/pages/myCookeep/RecordSelectPage";
-import RecordWritePage from "@/pages/myCookeep/RecordWritePage";
-import SetGoalPage from "@/pages/myCookeep/SetGoalPage";
-import RecipeConfirmPage from "@/pages/recipe/RecipeConfirmPage";
-import RecipeIntroPage from "@/pages/recipe/RecipeIntroPage";
-import RecipeLoadingPage from "@/pages/recipe/RecipeLoadingPage";
-import RecipePage from "@/pages/recipe/RecipePage";
-import RecipeResultPage from "@/pages/recipe/RecipeResultPage";
-import RecipeSelectPage from "@/pages/recipe/RecipeSelectPage";
-import EditEmailPage from "@/pages/settings/EditEmailPage";
-import EditPasswordPage from "@/pages/settings/EditPasswordPage";
-import FaqPage from "@/pages/settings/FaqPage";
-import NoticePage from "@/pages/settings/NoticePage";
-import SettingsPage from "@/pages/settings/SettingsPage";
-import SupportPage from "@/pages/settings/SupportPage";
-import TermsPage from "@/pages/settings/TermsPage";
-import WithdrawDonePage from "@/pages/settings/WithdrawDonePage";
-import WithdrawPage from "@/pages/settings/WithdrawPage";
-import { useAuthStore } from "@/stores/useAuthStore";
-
+import ListLayout from "@/layouts/ListLayout";
 import FindLayout from "@/components/auth/find/FindLayout";
 import RequireFindAuth from "@/components/auth/find/RequireFindAuth";
-import ResetPassword from "@/components/auth/find/ResetPassword";
-import GoogleLoginCallback from "@/components/auth/simplelogin/GoogleLoginCallback";
-import KakaoLoginCallback from "@/components/auth/simplelogin/KakaoLoginCallback";
-import Details from "@/components/fridge/addItems/Details";
-import EditPasswordEmailSection from "@/components/settings/sections/EditPasswordEmailSection";
+
+const SplashPage = lazy(() => import("@/pages/SplashPage"));
+const InitialPage = lazy(() => import("@/pages/auth/InitialPage"));
+const LoginPage = lazy(() => import("@/pages/auth/LoginPage"));
+const GuestPage = lazy(() => import("@/pages/auth/GuestPage"));
+const OnboardingPage = lazy(() => import("@/pages/auth/OnboardingPage"));
+const SignupPage = lazy(() => import("@/pages/auth/SignupPage"));
+const SimpleLoginAgreementPage = lazy(
+  () => import("@/pages/auth/SimpleLoginAgreementPage"),
+);
+const FindPage = lazy(() => import("@/pages/auth/FindPage"));
+const KakaoLoginCallback = lazy(
+  () => import("@/components/auth/simplelogin/KakaoLoginCallback"),
+);
+const GoogleLoginCallback = lazy(
+  () => import("@/components/auth/simplelogin/GoogleLoginCallback"),
+);
+const ResetPassword = lazy(
+  () => import("@/components/auth/find/ResetPassword"),
+);
+
+const FridgePage = lazy(() => import("@/pages/fridge/FridgePage"));
+const AddItemPage = lazy(() => import("@/pages/fridge/AddItemPage"));
+const Details = lazy(() => import("@/components/fridge/addItems/Details"));
+
+const RecipePage = lazy(() => import("@/pages/recipe/RecipePage"));
+const RecipeIntroPage = lazy(() => import("@/pages/recipe/RecipeIntroPage"));
+const RecipeSelectPage = lazy(() => import("@/pages/recipe/RecipeSelectPage"));
+const RecipeConfirmPage = lazy(
+  () => import("@/pages/recipe/RecipeConfirmPage"),
+);
+const RecipeLoadingPage = lazy(
+  () => import("@/pages/recipe/RecipeLoadingPage"),
+);
+const RecipeResultPage = lazy(() => import("@/pages/recipe/RecipeResultPage"));
+
+const CookeepsPage = lazy(() => import("@/pages/cookeeps/CookeepsPage"));
+const MyPlantPage = lazy(() => import("@/pages/cookeeps/MyPlantPage"));
+const RecipeDetailPage = lazy(
+  () => import("@/pages/cookeeps/RecipeDetailPage"),
+);
+const ViewAllPage = lazy(() => import("@/pages/cookeeps/ViewAllPage"));
+const ViewListPage = lazy(() => import("@/pages/cookeeps/ViewListPage"));
+
+const MyCookeepPage = lazy(() => import("@/pages/myCookeep/MyCookeepPage"));
+const SetGoalPage = lazy(() => import("@/pages/myCookeep/SetGoalPage"));
+const RecordSelectPage = lazy(
+  () => import("@/pages/myCookeep/RecordSelectPage"),
+);
+const RecordWritePage = lazy(() => import("@/pages/myCookeep/RecordWritePage"));
+const RecordDetailPage = lazy(
+  () => import("@/pages/myCookeep/RecordDetailPage"),
+);
+
+const SettingsPage = lazy(() => import("@/pages/settings/SettingsPage"));
+const EditEmailPage = lazy(() => import("@/pages/settings/EditEmailPage"));
+const EditPasswordPage = lazy(
+  () => import("@/pages/settings/EditPasswordPage"),
+);
+const EditPasswordEmailSection = lazy(
+  () => import("@/components/settings/sections/EditPasswordEmailSection"),
+);
+const FaqPage = lazy(() => import("@/pages/settings/FaqPage"));
+const NoticePage = lazy(() => import("@/pages/settings/NoticePage"));
+const TermsPage = lazy(() => import("@/pages/settings/TermsPage"));
+const WithdrawPage = lazy(() => import("@/pages/settings/WithdrawPage"));
+const WithdrawDonePage = lazy(
+  () => import("@/pages/settings/WithdrawDonePage"),
+);
+const SupportPage = lazy(() => import("@/pages/settings/SupportPage"));
 
 export default function App() {
   const navigate = useNavigate();
