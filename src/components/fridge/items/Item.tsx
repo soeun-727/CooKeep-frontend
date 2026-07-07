@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 
 import check from "@/assets/fridge/check.svg";
 import checkOn from "@/assets/fridge/check_selected.svg";
@@ -15,7 +15,7 @@ interface ItemProps {
   style?: React.CSSProperties;
 }
 
-export default function Item({
+export default memo(function Item({
   image,
   name,
   leftDays,
@@ -25,6 +25,14 @@ export default function Item({
   className = "",
   style,
 }: ItemProps) {
+  const handleSelect = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onSelect?.();
+    },
+    [onSelect],
+  );
+
   return (
     <div
       onClick={onDetail}
@@ -52,10 +60,7 @@ export default function Item({
 
       <div className="flex w-full flex-1 items-end justify-between pb-1.5">
         <button
-          onClick={e => {
-            e.stopPropagation();
-            onSelect?.();
-          }}
+          onClick={handleSelect}
           className="z-10 -ml-2 flex h-9 w-9 flex-shrink-0 justify-start"
         >
           <img
@@ -73,4 +78,4 @@ export default function Item({
       </div>
     </div>
   );
-}
+});

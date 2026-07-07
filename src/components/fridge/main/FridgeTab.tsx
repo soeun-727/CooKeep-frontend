@@ -92,14 +92,34 @@ export default function FridgeTab() {
     return ingredients.find(i => i.id === selectedIngredientId) || null;
   }, [ingredients, selectedIngredientId]);
 
-  const getCategoryIcon = (category: string | null) => {
+  const isSearching = searchTerm.trim().length > 0;
+  const isListView = !!viewCategory && !isSearching;
+
+  const fridgeItems = useMemo(
+    () => ingredients.filter(i => i.category === "냉장"),
+    [ingredients],
+  );
+  const freezerItems = useMemo(
+    () => ingredients.filter(i => i.category === "냉동"),
+    [ingredients],
+  );
+  const pantryItems = useMemo(
+    () => ingredients.filter(i => i.category === "상온"),
+    [ingredients],
+  );
+
+  const getCategoryIcon = useCallback((category: string | null) => {
     if (category === "냉동") return FreezerIcon;
     if (category === "상온") return PantryIcon;
     return FridgeIcon;
-  };
+  }, []);
 
-  const isSearching = searchTerm.trim().length > 0;
-  const isListView = !!viewCategory && !isSearching;
+  const handleCloseExpiryModal = useCallback(
+    () => setIsExpiryModalOpen(false),
+    [],
+  );
+
+  const handleUpdate = useCallback(() => loadData(), [loadData]);
 
   if (isLoading) {
     return (
@@ -111,12 +131,12 @@ export default function FridgeTab() {
   }
 
   return (
-    <div className="flex w-full flex-col pt-[calc(env(safe-area-inset-top)+3rem)] transition-all">
+    <div className="flex w-full flex-col pt-[calc(env(safe-area-inset-top)+3rem)]">
       <Search />
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal
           isOpen={isExpiryModalOpen}
-          onClose={() => setIsExpiryModalOpen(false)}
+          onClose={handleCloseExpiryModal}
           items={todayIngredients}
         />
       )}
@@ -142,17 +162,17 @@ export default function FridgeTab() {
           <Storage
             category="냉장"
             icon={FridgeIcon}
-            ingredients={ingredients.filter(i => i.category === "냉장")}
+            ingredients={fridgeItems}
           />
           <Storage
             category="냉동"
             icon={FreezerIcon}
-            ingredients={ingredients.filter(i => i.category === "냉동")}
+            ingredients={freezerItems}
           />
           <Storage
             category="상온"
             icon={PantryIcon}
-            ingredients={ingredients.filter(i => i.category === "상온")}
+            ingredients={pantryItems}
           />
         </div>
       )}
@@ -162,7 +182,7 @@ export default function FridgeTab() {
           key={selectedIngredient.id}
           ingredient={selectedIngredient}
           onClose={closeDetail}
-          onUpdate={() => loadData()}
+          onUpdate={handleUpdate}
         />
       )}
     </div>
