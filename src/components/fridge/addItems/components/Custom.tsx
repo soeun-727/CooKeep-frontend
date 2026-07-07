@@ -1,16 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 
-import {
-  type CategoryType,
-  type CustomIngredientRequest,
-  registerCustomIngredient,
-} from "@/api/ingredient";
+
+
+import { type CategoryType, type CustomIngredientRequest, registerCustomIngredient } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
+
+
 
 import editIcon from "@/assets/recipe/rename.svg";
 
+
+
 import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
 import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 interface CustomProps {
   isOpen: boolean;
@@ -95,63 +111,65 @@ export default function Custom({
     <div className="bg-black-overlay fixed inset-0 z-[150] flex items-center justify-center">
       <div className="absolute inset-0" onClick={onClose}></div>
 
-      <div className="bg-gray-0 relative flex h-[316px] w-[280px] flex-col items-center rounded-[10px] px-7 py-[35px] shadow-xl">
-        <div className="mb-4 flex w-full items-center justify-center gap-1">
-          {isEditing ? (
-            <input
-              ref={inputRef}
-              type="text"
-              value={localName}
-              onChange={e => setLocalName(e.target.value)}
-              onBlur={finishEditing}
-              onKeyDown={e => e.key === "Enter" && finishEditing()}
-              className="typo-body text-gray-80 border-gray-30 w-[180px] border-b text-center font-bold outline-none"
-            />
-          ) : (
-            <div className="group flex items-center justify-center gap-1">
-              <h2 className="typo-body text-gray-80 max-w-[180px] truncate text-center font-bold break-all">
-                '{localName}'
-              </h2>
+      <div className="bg-gray-0 relative flex w-[300px] flex-col items-center gap-6 rounded-[10px] p-6 shadow-xl">
+        <section className="flex flex-col gap-3 items-center">
+          <div className="mb-4 flex w-full items-center justify-center gap-1">
+            {isEditing ? (
+              <input
+                ref={inputRef}
+                type="text"
+                value={localName}
+                onChange={e => setLocalName(e.target.value)}
+                onBlur={finishEditing}
+                onKeyDown={e => e.key === "Enter" && finishEditing()}
+                className="typo-body text-gray-80 border-gray-30 w-[180px] border-b text-center font-bold outline-none"
+              />
+            ) : (
+              <div className="group flex items-center justify-center gap-1">
+                <h2 className="typo-body text-gray-80 max-w-[180px] truncate text-center font-bold break-all">
+                  '{localName}'
+                </h2>
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="rounded-full p-1 transition-colors hover:bg-gray-100"
+                >
+                  <img src={editIcon} alt="edit" className="h-3 w-3" />
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className="no-scrollbar grid w-full flex-1 grid-cols-2 gap-1 overflow-y-auto">
+            {categories.map(cat => (
               <button
-                onClick={() => setIsEditing(true)}
-                className="rounded-full p-1 transition-colors hover:bg-gray-100"
+                key={cat.id}
+                type="button"
+                disabled={isLoading}
+                onClick={() => setSelectedCategoryId(cat.id)}
+                className={`flex items-center gap-1 rounded-[6px] px-3 py-2 transition-all ${
+                  selectedCategoryId === cat.id
+                    ? "bg-gray-10"
+                    : "bg-gray-0 hover:bg-gray-10"
+                } ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
               >
-                <img src={editIcon} alt="edit" className="h-3 w-3" />
-              </button>
-            </div>
-          )}
-        </div>
-
-        <p className="mb-4 text-center text-[12px] leading-none text-gray-50">
-          '{localName}'의 카테고리를 선택해주세요
-        </p>
-
-        <div className="no-scrollbar mb-4 grid h-40 w-40 flex-1 grid-cols-3 gap-2 overflow-y-auto">
-          {categories.map(cat => (
-            <button
-              key={cat.id}
-              type="button"
-              disabled={isLoading}
-              onClick={() => setSelectedCategoryId(cat.id)}
-              className={`flex h-12 w-12 flex-col items-center gap-[2px] rounded-[6px] pt-2 transition-all ${
-                selectedCategoryId === cat.id
-                  ? "bg-gray-100 ring-1 ring-gray-300 ring-inset"
-                  : "bg-gray-0 hover:bg-gray-50"
-              } ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
-            >
-              <div className="flex w-[18px] items-center justify-center">
                 <img
                   src={cat.image}
                   alt={cat.name}
-                  className="object-contain"
+                  className="h-5 w-5 object-contain"
                 />
-              </div>
-              <span className="w-[26px] truncate text-[10px] leading-none font-semibold whitespace-nowrap text-gray-50">
-                {cat.name}
-              </span>
-            </button>
-          ))}
-        </div>
+                <span className="typo-label whitespace-nowrap text-gray-50">
+                  {cat.name === "양념 · 소스 · 조미료"
+                    ? cat.name.replace(" · 조미료", "")
+                    : cat.name}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <p className="typo-m text-gray-80">
+            추가할 재료의 카테고리를 선택해주세요
+          </p>
+        </section>
 
         <button
           onClick={handleConfirm}
