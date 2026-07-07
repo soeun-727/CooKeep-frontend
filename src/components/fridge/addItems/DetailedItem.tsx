@@ -204,7 +204,7 @@ export default function DetailedItem(item: DetailedItemProps) {
           e.stopPropagation();
           setIsDeleteModalOpen(true);
         }}
-        className="absolute right-1 bottom-1 z-30 p-1 transition-all active:scale-90"
+        className="absolute right-1 bottom-1 z-30 p-1 active:scale-90"
       >
         <img alt="deleteButton" src={deleteIcon} className="w-10" />
       </button>

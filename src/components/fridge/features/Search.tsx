@@ -34,7 +34,7 @@ export default memo(function Search() {
 
   return (
     <div className="w-full pt-1 pb-[26px]">
-      <div className="mx-auto w-[361px] transition-all duration-200">
+      <div className="mx-auto w-[361px] duration-200">
         <div
           className={`shadow-search relative w-full overflow-hidden rounded-[6px] [&_input]:w-full [&_input]:border-none [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${hasText ? "[&_input]: bg-gray-0" : "[&_input]:bg-searchbar"} `}
         >

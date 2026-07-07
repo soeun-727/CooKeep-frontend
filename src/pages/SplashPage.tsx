@@ -32,14 +32,14 @@ export default function SplashPage() {
 
         {/* 원형 배경 */}
         <div
-          className={`absolute top-1/2 left-1/2 z-10 h-[300vmax] w-[300vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 transition-all duration-700 ease-out ${step >= 2 ? "scale-100" : "scale-0"} `}
+          className={`absolute top-1/2 left-1/2 z-10 h-[300vmax] w-[300vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-400 duration-700 ease-out ${step >= 2 ? "scale-100" : "scale-0"} `}
         />
 
         <div className="relative flex items-center justify-center">
           {/* 캐릭터 */}
           <img
             src={logoChar}
-            className={`absolute right-full z-30 transition-all duration-500 ${
+            className={`absolute right-full z-30 duration-500 ${
               step === 0
                 ? "-translate-x-6 opacity-0"
                 : step < 4
@@ -50,7 +50,7 @@ export default function SplashPage() {
 
           {/* 로고 컨테이너 */}
           <div
-            className={`relative z-30 transition-all duration-500 ${
+            className={`relative z-30 duration-500 ${
               step === 0
                 ? "translate-x-0"
                 : step < 4
@@ -74,7 +74,7 @@ export default function SplashPage() {
 
         {/* 슬로건 */}
         <div
-          className={`absolute bottom-0 z-30 w-full pb-8 text-center text-xs leading-5 font-semibold text-green-100 transition-all duration-700 ease-out ${step >= 5 ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"} `}
+          className={`absolute bottom-0 z-30 w-full pb-8 text-center text-xs leading-5 font-semibold text-green-100 duration-700 ease-out ${step >= 5 ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"} `}
         >
           맛있는 습관이 이어지는 곳, 쿠킵
         </div>

@@ -104,7 +104,7 @@ export default memo(function Storage({
             <button
               disabled={!isScrollable}
               onClick={handleViewCategory}
-              className="group flex items-center gap-1 transition-all active:scale-95"
+              className="group flex items-center gap-1 active:scale-95"
             >
               <span
                 className={`typo-caption !text-[13px] !font-semibold transition-colors ${

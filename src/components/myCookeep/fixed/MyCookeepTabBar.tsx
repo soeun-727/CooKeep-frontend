@@ -34,7 +34,7 @@ export default function MyCookeepTabBar({
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
-            className="relative flex flex-1 items-center justify-center py-3 transition-all"
+            className="relative flex flex-1 items-center justify-center py-3"
           >
             <Icon
               className={`h-6 w-6 transition-colors duration-200 ${
