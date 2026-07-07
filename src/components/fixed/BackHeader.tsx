@@ -9,10 +9,10 @@ import { SortDropdown } from "../fridge/features/SortDropdown";
 
 interface BackHeaderProps {
   title: string;
-  sortIcon: boolean;
+  sortIcon?: boolean;
 }
 
-export const BackHeader = ({ title, sortIcon }: BackHeaderProps) => {
+export const BackHeader = ({ title, sortIcon = false }: BackHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { viewCategory, setViewCategory, setSortOrder } = useIngredientStore();
 
