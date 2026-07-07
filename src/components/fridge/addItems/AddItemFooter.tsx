@@ -62,14 +62,17 @@ export default function AddItemFooter() {
   };
 
   return (
-    <div className="fixed bottom-[34px] left-1/2 z-50 flex -translate-x-1/2 flex-col items-center">
-      <div className="-mb-1">
-        <RecentlyAdded />
-      </div>
-      <div className="relative z-20">
-        <Selected />
-      </div>
-      <div className="mt-[14px] flex w-[300px] gap-[6px]">
+    <div className="fixed bottom-0 left-1/2 z-50 flex -translate-x-1/2 flex-col items-center gap-4">
+      <section>
+        <div className="-mb-1">
+          <RecentlyAdded />
+        </div>
+        <div className="relative z-20">
+          <Selected />
+        </div>
+      </section>
+
+      <section className="flex w-full gap-2">
         <div className="flex-1">
           <Button
             size="S"
@@ -92,7 +95,7 @@ export default function AddItemFooter() {
             재료 추가하기
           </Button>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
