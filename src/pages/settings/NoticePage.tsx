@@ -40,24 +40,29 @@ export default function NoticePage() {
 
   return (
     <>
-      <BackHeader title="공지사항" onBack={() => navigate(-1)} />
-      <main className="flex min-h-screen flex-col gap-[14px] px-4 pt-[75px] pb-[34px]">
-        {error ? (
-          <p className="text-semantic-negative text-center">
-            공지사항을 불러오지 못했습니다.
+      <BackHeader title="서비스 소개" onBack={() => navigate(-1)} />
+      <main className="pb-safe flex min-h-screen flex-col px-4 pt-[52px]">
+        <div className="flex flex-col gap-3">
+          {error ? (
+            <p className="text-semantic-negative text-center">
+              공지사항을 불러오지 못했습니다.
+            </p>
+          ) : notices.length === 0 ? (
+            <p className="text-center text-gray-500">
+              등록된 공지사항이 없습니다.
+            </p>
+          ) : (
+            notices.map(notice => (
+              <NoticeCategoryItem key={notice.id} category={notice} />
+            ))
+          )}
+        </div>
+
+        <div className="mt-auto px-4 pb-2">
+          <p className="typo-caption-strong text-center text-gray-50">
+            오늘 한 끼부터, 쿠킵으로 이어가볼까요?
           </p>
-        ) : notices.length === 0 ? (
-          <p className="text-center text-gray-500">
-            등록된 공지사항이 없습니다.
-          </p>
-        ) : (
-          notices.map(notice => (
-            <NoticeCategoryItem key={notice.id} category={notice} />
-          ))
-        )}
-        <p className="typo-label text-gray-80 pt-[2px] text-center">
-          오늘 한 끼부터, 쿠킵으로 이어가볼까요?
-        </p>
+        </div>
       </main>
     </>
   );

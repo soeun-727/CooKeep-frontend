@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import arrowIcon from "@/assets/signup/arrowright.svg";
+import ArrowIcon from "@/assets/signup/arrowright.svg?react";
 
 import { Notice } from "@/types/notice";
 
@@ -17,26 +17,26 @@ export default function NoticeCategoryItem({
 
   return (
     <div
-      className={`border-gray-10 flex w-full flex-col items-start self-stretch rounded-[6px] border ${
+      className={`border-gray-10 flex flex-col self-stretch rounded-xl border px-3 ${
         open ? "bg-gray-10" : "bg-gray-0"
       }`}
     >
       {/* 헤더 */}
       <div
-        className={`flex w-full cursor-pointer items-center justify-between px-[12px] ${
-          open ? "pt-[12px] pb-[6px]" : "py-[12px]"
+        onClick={() => setOpen(!open)}
+        className={`flex h-12 cursor-pointer items-center gap-5 ${
+          open ? "py-3" : ""
         }`}
-        onClick={() => setOpen(prev => !prev)}
       >
         <p
-          className={`typo-label ${open ? "text-green-deep" : "text-gray-80"}`}
+          className={`flex-1 truncate ${
+            open ? "typo-m-strong text-green-deep" : "typo-m text-gray-80"
+          }`}
         >
           {category.title}
         </p>
-        <img
-          src={arrowIcon}
-          alt="공지사항 열기 화살표"
-          className={`h-[24px] w-[24px] transition-transform ${
+        <ArrowIcon
+          className={`h-6 w-6 transition-transform ${
             open ? "-rotate-90" : "rotate-90"
           }`}
         />
@@ -44,9 +44,12 @@ export default function NoticeCategoryItem({
 
       {/* 내용 */}
       {open && (
-        <div className="flex w-full flex-col gap-[14px] px-[12px] pb-[12px]">
-          <NoticeItem title={category.title} content={category.content} />
-        </div>
+        <>
+          <div className="bg-gray-30 h-[1.5px] w-full" />
+          <div className="flex w-full flex-col gap-3 py-3">
+            <NoticeItem notice={category} />
+          </div>
+        </>
       )}
     </div>
   );
