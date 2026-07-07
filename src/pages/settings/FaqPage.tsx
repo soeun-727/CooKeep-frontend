@@ -13,7 +13,7 @@ export default function FaqPage() {
   return (
     <>
       <BackHeader title="FAQ" onBack={() => navigate(-1)} />
-      <main className="flex flex-col gap-[14px] px-4 pt-[75px] pb-[50px]">
+      <main className="flex flex-col gap-3 px-4 pt-[52px] pb-12">
         {faqCategories.map(category => (
           <FaqCategoryItem
             key={category.id}
