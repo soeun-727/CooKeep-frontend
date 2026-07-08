@@ -24,7 +24,7 @@ export default function SettingsToggleItem({
       />
       {/* thumb: 28x28 */}
       <span
-        className={`absolute top-1 left-[2px] h-7 w-7 rounded-full shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] transition-transform ${
+        className={`shadow-search absolute top-1 left-[2px] h-7 w-7 rounded-full transition-transform ${
           checked ? "bg-green translate-x-[20px]" : "bg-gray-30 translate-x-0"
         }`}
       />

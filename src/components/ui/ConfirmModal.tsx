@@ -19,7 +19,7 @@ export default function ConfirmModal({
       <div className="bg-black-overlay absolute inset-0" onClick={onCancel} />
 
       {/* Modal */}
-      <div className="bg-gray-0 relative z-10 flex w-[300px] flex-col items-center gap-6 rounded-2xl p-6 shadow-[0_4px_16px_rgba(17,17,17,0.1)]">
+      <div className="bg-gray-0 shadow-container relative z-10 flex w-[300px] flex-col items-center gap-6 rounded-2xl p-6">
         {/* Text */}
         <div className="flex w-full flex-col items-center gap-3">
           <p className="typo-l-strong text-gray-80 text-center">{message}</p>

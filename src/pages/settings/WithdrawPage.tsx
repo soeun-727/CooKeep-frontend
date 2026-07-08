@@ -286,7 +286,7 @@ export default function WithdrawPage() {
             onClick={() => setOpenModal(false)}
           />
 
-          <div className="bg-gray-0 relative flex w-[300px] flex-col items-center justify-center gap-6 rounded-[16px] p-6 shadow-[0_4px_16px_0_rgba(17,17,17,0.10)]">
+          <div className="bg-gray-0 shadow-container relative flex w-[300px] flex-col items-center justify-center gap-6 rounded-[16px] p-6">
             <div className="flex w-full flex-col items-center gap-3">
               <p className="typo-l-strong text-gray-80 w-full text-center">
                 정말 탈퇴하시겠어요?
