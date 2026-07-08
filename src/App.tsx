@@ -90,6 +90,7 @@ export default function App() {
       "/simplelogin",
       "/findpw", // 추가
       "/reset-password", // 추가
+      "/settings/withdraw/done", // 추가
     ];
     const isPublic = publicPaths.includes(path);
 

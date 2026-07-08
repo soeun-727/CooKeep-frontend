@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import checkImg from "@/assets/signup/check.svg";
+import CheckIcon from "@/assets/signup/check.svg?react";
 
 import Button from "@/components/ui/Button";
 
@@ -28,22 +28,29 @@ export default function WithdrawDonePage() {
   }, [location, navigate]);
 
   return (
-    <main className="mx-auto max-w-[450px] px-4 pt-[295px] text-center">
-      <h1 className="typo-result-title">탈퇴 완료</h1>
+    <main className="mx-auto flex min-h-dvh w-full max-w-[450px] flex-col px-4">
+      {/* status bar */}
+      <div className="h-[40px]" />
 
-      <img
-        src={checkImg}
-        alt="완료"
-        className="mx-auto mt-[18px] h-[48px] w-[48px] brightness-[1.6] grayscale"
-      />
+      <div className="flex flex-1 flex-col items-center pt-[120px]">
+        <div className="flex w-full flex-col items-center gap-4">
+          <CheckIcon className="text-green h-10 w-10" />
 
-      <div className="mt-[48px]">
+          <h1 className="typo-h2 text-gray-80 text-center">회원 탈퇴 완료</h1>
+        </div>
+      </div>
+
+      {/* 남는 공간 */}
+      <div className="flex-1" />
+
+      <div className="mt-auto w-full px-4 pt-6 pb-[calc(env(safe-area-inset-bottom)+16px)]">
         <Button
           size="L"
+          variant="green"
+          className="!w-full !rounded-[12px]"
           onClick={() => navigate("/", { replace: true })}
-          className="!text-green"
         >
-          메인으로 돌아가기
+          로그인
         </Button>
       </div>
     </main>
