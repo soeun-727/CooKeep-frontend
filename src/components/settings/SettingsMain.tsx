@@ -77,28 +77,40 @@ export default function SettingsMain() {
     <>
       {/* 헤더(84px)는 별도 컴포넌트, 여기서는 그만큼 여백만 확보 */}
       <main
-        className="flex w-full flex-col items-start gap-[30px] bg-[#FAFAFA] px-4 pb-[30px]"
-        style={{ paddingTop: "calc(env(safe-area-inset-top) + 40px + 30px)" }}
+        className="flex min-h-screen w-full flex-col bg-[#FAFAFA] px-4"
+        style={{
+          paddingTop: "calc(env(safe-area-inset-top) + 40px + 30px)",
+        }}
       >
-        {/* User Info Container: ProfileSection ~ 탈퇴하기 */}
-        <div className="flex w-full flex-col items-start gap-1">
-          <ProfileSection profile={profile} />
+        <div className="flex w-full flex-col items-start gap-[30px]">
+          {/* User Info Container: ProfileSection ~ 탈퇴하기 */}
+          <div className="flex w-full flex-col items-start gap-1">
+            <ProfileSection profile={profile} />
 
-          {/* NotificationSection ~ 탈퇴하기 그룹 */}
-          <div className="flex w-full flex-col items-start gap-4 px-1">
-            <NotificationSection
-              marketingPush={profile.marketingPush}
-              onStateChange={handleNotificationChange}
-            />
-            <NoticeSection />
-            <HelpCenterSection />
-            <TermsSection />
-            <AccountSection
-              onLogoutClick={() => setOpenLogoutModal(true)}
-              onWithdrawClick={handleWithdraw}
-            />
+            {/* NotificationSection ~ 탈퇴하기 그룹 */}
+            <div className="flex w-full flex-col items-start gap-4 px-1">
+              <NotificationSection
+                marketingPush={profile.marketingPush}
+                onStateChange={handleNotificationChange}
+              />
+              <NoticeSection />
+              <HelpCenterSection />
+              <TermsSection />
+              <AccountSection
+                onLogoutClick={() => setOpenLogoutModal(true)}
+                onWithdrawClick={handleWithdraw}
+              />
+            </div>
           </div>
         </div>
+        <footer
+          className="mt-auto flex flex-col items-center px-4 pt-[30px]"
+          style={{
+            paddingBottom: "calc(env(safe-area-inset-bottom) + 34px)",
+          }}
+        >
+          <p className="typo-caption text-gray-50"> ver {__APP_VERSION__}</p>
+        </footer>
       </main>
 
       {/* 로그아웃 모달 */}

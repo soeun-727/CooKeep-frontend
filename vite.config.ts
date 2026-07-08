@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { VitePWA } from "vite-plugin-pwa";
 import svgr from "vite-plugin-svgr";
 import path from "path";
+import pkg from "./package.json"; // 버전관리용
 
 export default defineConfig({
   plugins: [
@@ -134,5 +135,8 @@ export default defineConfig({
       "@/utils": path.resolve(__dirname, "./src/utils"),
       "@public": path.resolve(__dirname, "./public"),
     },
+  },
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
   },
 });

@@ -276,3 +276,17 @@ CooKeep(이하 ‘운영진’)은 「개인정보 보호법」 등 관련 법�
 시행일자: 2026년 4월 30일`,
   },
 ];
+
+//TODO: 회원가입 수정할때 없애기
+export const AGREEMENT_NOTICE: Record<AgreementItem["key"], string> = {
+  terms: `공고일자: 2026년 4월 30일 / 시행일자: 2026년 4월 30일`,
+
+  privacy: `개인정보처리자: CooKeep 운영진
+문의처: cookeep2026@gmail.com
+시행일자: 2026년 4월 30일`,
+
+  marketing: `시행일자: 2026년 4월 30일`,
+
+  policy: `공고일자: 2026년 4월 30일
+시행일자: 2026년 4월 30일`,
+};
