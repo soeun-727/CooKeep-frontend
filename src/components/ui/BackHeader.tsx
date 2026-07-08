@@ -16,7 +16,7 @@ export default function BackHeader({ title, onBack }: BackHeaderProps) {
         <BackIcon className="h-8 w-8" />
       </button>
 
-      <h1 className="typo-l-strong text-gray-80 absolute left-1/2 -translate-x-1/2">
+      <h1 className="typo-l-strong text-gray-80 absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
         {title}
       </h1>
 

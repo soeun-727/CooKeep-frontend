@@ -40,7 +40,7 @@ import FaqPage from "@/pages/settings/FaqPage";
 import NoticePage from "@/pages/settings/NoticePage";
 import SettingsPage from "@/pages/settings/SettingsPage";
 import SupportPage from "@/pages/settings/SupportPage";
-import TermsPage from "@/pages/settings/TermsPage";
+import AgreementDetailPage from "./pages/settings/AgreementDetailPage";
 import WithdrawDonePage from "@/pages/settings/WithdrawDonePage";
 import WithdrawPage from "@/pages/settings/WithdrawPage";
 import { useAuthStore } from "@/stores/useAuthStore";
@@ -163,7 +163,7 @@ export default function App() {
           </Route>
           <Route path="faq" element={<FaqPage />} />
           <Route path="notice" element={<NoticePage />} />
-          <Route path="terms" element={<TermsPage />} />
+          <Route path=":agreementKey" element={<AgreementDetailPage />} />
           <Route path="withdraw" element={<WithdrawPage />} />
         </Route>
         <Route path="/settings/withdraw/done" element={<WithdrawDonePage />} />
