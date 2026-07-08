@@ -17,7 +17,6 @@ import EditIcon from "@/assets/fridge/edit_memo.svg?react";
 import MemoIcon from "@/assets/fridge/memo.svg?react";
 
 import EditModal from "@/components/ui/EditModal";
-import TextField from "@/components/ui/TextField";
 
 import { getKoreanUnit } from "@/utils/mapping";
 
