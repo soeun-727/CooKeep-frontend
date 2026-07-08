@@ -37,7 +37,7 @@ export default function Storage({
     useIngredientStore();
   // 3개 이상일 때만 전체보기 활성화
   const isScrollable = ingredients.length > 3;
-  const pages = chunk(ingredients, 3);
+  const topIngredients = ingredients.slice(0, 3);
 
   return (
     <div className="relative z-0 min-h-[173px] w-full">
@@ -83,39 +83,29 @@ export default function Storage({
 
       {/* 아이템 리스트 */}
       {ingredients.length > 0 ? (
-        <div className="relative z-10 mx-auto w-full px-4">
-          <div className="no-scrollbar scroll-snap-x scroll-snap-mandatory flex gap-[6px] overflow-x-auto pb-2">
-            {pages.map((page, pageIndex) => (
-              <div
-                key={pageIndex}
-                className="scroll-snap-start flex flex-shrink-0 justify-start gap-[6px]"
-              >
-                {page.map(item => (
-                  <div className="flex flex-col">
-                    <Item
-                      key={item.id}
-                      name={item.name}
-                      leftDays={item.dDay}
-                      image={item.image}
-                      isSelected={selectedIds.includes(item.id)}
-                      onSelect={() => {
-                        if (onItemClick) {
-                          onItemClick(item.id);
-                        } else {
-                          toggleSelect(item.id);
-                        }
-                      }}
-                      onDetail={() => {
-                        if (!onItemClick) openDetail(item.id);
-                      }}
-                      className={item.className}
-                    />
-                    <div className="-z-10 mt-[-14px] h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
+        <div className="flex max-w-[375px] px-4 mx-auto justify-between">
+          {topIngredients.map(item => (
+            <div key={item.id} className="flex flex-col">
+              <Item
+                name={item.name}
+                leftDays={item.dDay}
+                image={item.image}
+                isSelected={selectedIds.includes(item.id)}
+                onSelect={() => {
+                  if (onItemClick) {
+                    onItemClick(item.id);
+                  } else {
+                    toggleSelect(item.id);
+                  }
+                }}
+                onDetail={() => {
+                  if (!onItemClick) openDetail(item.id);
+                }}
+                className={item.className}
+              />
+              <div className="-z-10 mt-[-14px] h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+            </div>
+          ))}
         </div>
       ) : (
         <div className="animate-fadeIn flex h-20 flex-col items-center justify-between">
