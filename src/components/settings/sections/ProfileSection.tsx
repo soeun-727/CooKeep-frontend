@@ -5,7 +5,7 @@ import axios from "axios";
 
 import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
 import SingleButtonModal from "@/components/ui/SingleButtonModal";
-import ClearIcon from "@/assets/settings/clear(x)_Icon.svg?react";
+import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
 
 const MASKED_PASSWORD = "********";
 
@@ -24,6 +24,7 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
   const [isEditingNickname, setIsEditingNickname] = useState(false);
   const nicknameInputRef = useRef<HTMLInputElement>(null);
   const [openDuplicateModal, setOpenDuplicateModal] = useState(false);
+  const [isNicknameFocused, setIsNicknameFocused] = useState(false);
 
   const isSocialLogin = profile.authProvider !== "LOCAL";
 
@@ -41,6 +42,15 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
   }, [isEditingNickname]);
 
   const isNicknameError = account.nickname.length > MAX_NICKNAME_LENGTH;
+
+  const handleClearNickname = () => {
+    setAccount(prev => ({
+      ...prev,
+      nickname: "",
+    }));
+
+    nicknameInputRef.current?.focus();
+  };
 
   const handleNicknameSave = async () => {
     // 1. 앞뒤 공백 제거한 값을 변수에 담기
@@ -85,70 +95,6 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
   };
 
   return (
-    // <section className="px-4">
-    //   <div className="flex flex-col gap-[22px]">
-    //     {/* ===== 닉네임 (inline edit) ===== */}
-    //     <div className="relative flex h-20 w-full flex-col gap-2">
-    //       <span className="typo-body text-gray-80 px-3">닉네임</span>
-
-    //       <div
-    //         className={`flex h-[44px] w-full items-center justify-between rounded-[6px] border px-3 transition-colors ${isNicknameError ? "border-semantic-negative" : "border-gray-10"} `}
-    //       >
-    //         {isEditingNickname ? (
-    //           <>
-    //             <input
-    //               ref={nicknameInputRef}
-    //               value={account?.nickname || ""}
-    //               onChange={e =>
-    //                 setAccount(prev =>
-    //                   prev ? { ...prev, nickname: e.target.value } : prev,
-    //                 )
-    //               }
-    //               className="typo-body2 text-gray-80 h-full w-45 flex-1 outline-none"
-    //             />
-    //             <button
-    //               onClick={handleNicknameSave}
-    //               disabled={!account.nickname?.trim() || isNicknameError}
-    //               className="bg-gray-80 text-gray-0 typo-caption w-[115px] rounded-full px-[18px] py-1 font-medium"
-    //             >
-    //               변경 완료
-    //             </button>
-    //           </>
-    //         ) : (
-    //           <>
-    //             <span className="typo-body2 text-gray-50">
-    //               {account.nickname}
-    //             </span>
-
-    //             <button
-    //               onClick={() => setIsEditingNickname(true)}
-    //               className="bg-gray-80 text-gray-0 typo-caption w-[115px] rounded-full px-[18px] py-1 font-medium"
-    //             >
-    //               닉네임 변경
-    //             </button>
-    //           </>
-    //         )}
-    //       </div>
-    //       <div className="absolute top-19 px-2">
-    //         {isEditingNickname && (
-    //           <>
-    //             {/* 1. 글자 수 초과 에러 */}
-    //             {isNicknameError && (
-    //               <span className="text-semantic-negative typo-caption leading-0">
-    //                 {MAX_NICKNAME_LENGTH}글자 이내로 설정해주세요
-    //               </span>
-    //             )}
-
-    //             {/* 2. 빈 값 에러 (추가) */}
-    //             {!account.nickname.trim() && (
-    //               <span className="text-semantic-negative typo-caption leading-0">
-    //                 닉네임을 입력해주세요
-    //               </span>
-    //             )}
-    //           </>
-    //         )}
-    //       </div>
-    //     </div>
     <section className="flex w-full flex-col items-start gap-[4px]">
       {/* ===== 닉네임 (inline edit) ===== */}
       <div className="relative flex w-full flex-col items-start">
@@ -168,22 +114,23 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
               <>
                 <input
                   ref={nicknameInputRef}
-                  value={account?.nickname || ""}
+                  value={account.nickname}
                   onChange={e =>
-                    setAccount(prev => ({ ...prev, nickname: e.target.value }))
+                    setAccount(prev => ({
+                      ...prev,
+                      nickname: e.target.value,
+                    }))
                   }
+                  onFocus={() => setIsNicknameFocused(true)}
+                  onBlur={() => setIsNicknameFocused(false)}
                   className="typo-body2 text-gray-80 h-full min-w-0 flex-1 outline-none"
                 />
 
-                {account.nickname.length > 0 && (
+                {isNicknameFocused && account.nickname.length > 0 && (
                   <button
                     type="button"
-                    onClick={() =>
-                      setAccount(prev => ({
-                        ...prev,
-                        nickname: prev.nickname.slice(0, -1),
-                      }))
-                    }
+                    onMouseDown={e => e.preventDefault()}
+                    onClick={handleClearNickname}
                     className="ml-3 flex h-6 w-6 shrink-0 items-center justify-center"
                   >
                     <ClearIcon className="h-6 w-6" />

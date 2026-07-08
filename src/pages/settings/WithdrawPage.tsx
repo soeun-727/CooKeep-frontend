@@ -7,7 +7,7 @@ import { useAuthStore } from "@/stores/useAuthStore";
 
 import CharacterImg from "@/assets/character/sad_char_faded.svg?react";
 import ArrowIcon from "@/assets/signup/arrowright.svg?react";
-import ClearIcon from "@/assets/settings/clear(x)_Icon.svg?react";
+import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
 import Shadow from "@/assets/character/char_shadow.svg?react";
 import AgreeUnchecked from "@/assets/signup/blankCheck.svg?react";
 import AgreeChecked from "@/assets/signup/checkboxCheck.svg?react";
