@@ -15,11 +15,11 @@ import {
 import character from "@/assets/character/tip_char.svg";
 import bubbleTail from "@/assets/fridge/bubble_tail_left.svg";
 import memoIcon from "@/assets/fridge/edit_memo.svg";
-
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
-import type { IconComponent } from "@/types/icon";
 
 import EditModal from "@/components/ui/EditModal";
+
+import type { IconComponent } from "@/types/icon";
 
 import { getKoreanUnit } from "@/utils/mapping";
 
@@ -114,8 +114,11 @@ export default function IngredientDetailModal({
     storageIconMap[displayData.storage || displayData.category] || FridgeIcon;
 
   return (
-    <div className="fixed inset-0 z-200 flex items-center justify-center p-4">
-      <div className="bg-gray-80 absolute inset-0" onClick={handleModalClose} />
+    <div className="fixed inset-0 flex items-center justify-center p-4">
+      <div
+        className="bg-gray-80/50 absolute inset-0 mx-auto max-w-[450px]"
+        onClick={handleModalClose}
+      />
       <div className="no-scrollbar animate-fadeIn relative z-10 max-h-[90vh] w-full max-w-[330px] overflow-y-auto rounded-[6px] bg-gradient-to-b from-[#F5F5F5] to-white px-5 py-6 shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
         <div className="mx-auto flex w-full max-w-[290px] flex-col items-center gap-5">
           <div className="flex flex-col items-center gap-2 self-stretch">

@@ -1,38 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
 import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRewardStore } from "@/stores/useRewardStore";
 
-
-
 import EatenIcon from "@/assets/fridge/eaten.svg?react";
 import ThrownIcon from "@/assets/fridge/thrown.svg?react";
 
-
-
 import AlertModal from "@/components/ui/AlertModal";
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default function ItemOption() {
   const navigate = useNavigate();
@@ -114,7 +91,7 @@ export default function ItemOption() {
   return (
     <>
       {/* 하단 옵션 바 */}
-      <div className="fixed bottom-[calc(62px+env(safe-area-inset-bottom))] left-1/2 z-60 w-full max-w-[450px] -translate-x-1/2 px-4 pt-8 pb-3">
+      <div className="fixed bottom-[calc(62px+env(safe-area-inset-bottom))] left-1/2 z-40 w-full max-w-[450px] -translate-x-1/2 px-4 pt-8 pb-3">
         <div className="flex gap-1">
           {menuTitle.map((item, index) => {
             const Icon = item.icon;
@@ -130,7 +107,9 @@ export default function ItemOption() {
                     {item.text}
                   </span>
 
-                  {Icon && <Icon className="group-hover:text-green text-gray-30 h-5 w-5" />}
+                  {Icon && (
+                    <Icon className="group-hover:text-green text-gray-30 h-5 w-5" />
+                  )}
                 </div>
               </button>
             );

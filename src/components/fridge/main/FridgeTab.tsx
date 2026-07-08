@@ -178,12 +178,19 @@ export default function FridgeTab() {
       <ItemOption />
 
       {selectedIngredient && (
-        <IngredientDetailModal
-          key={selectedIngredient.id}
-          ingredient={selectedIngredient}
-          onClose={closeDetail}
-          onUpdate={() => loadData()}
-        />
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          onClick={closeDetail}
+        >
+          <div onClick={e => e.stopPropagation()}>
+            <IngredientDetailModal
+              key={selectedIngredient.id}
+              ingredient={selectedIngredient}
+              onClose={closeDetail}
+              onUpdate={() => loadData()}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
