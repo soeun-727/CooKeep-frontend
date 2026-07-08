@@ -47,7 +47,7 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
       <div className="bg-black-overlay absolute inset-0" onClick={onClose} />
 
       {/* modal */}
-      <div className="bg-gray-0 relative flex h-44 w-70 flex-col items-center rounded-[10px] px-7 pt-[35px] pb-[25px] shadow-xl">
+      <div className="bg-gray-0 shadow-container relative flex h-44 w-70 flex-col items-center rounded-[10px] px-7 pt-[35px] pb-[25px]">
         <div className="mb-4 flex w-full items-center justify-center gap-1">
           {isEditing ? (
             <input

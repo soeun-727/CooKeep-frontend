@@ -17,7 +17,7 @@ export default function SortAll({ currentOrder, onSortChange }: SortProps) {
   return (
     <button
       onClick={handleClick}
-      className="bg-gray-0 inline-flex items-center gap-[2px] rounded-full px-[20px] py-[8px] shadow-[0_-36px_30.6px_rgba(0,0,0,0.05)]"
+      className="bg-gray-0 shadow-hover inline-flex items-center gap-[2px] rounded-full px-[20px] py-[8px]"
     >
       <span className="text-[12px] leading-[16px] font-medium text-gray-50">
         {currentOrder}

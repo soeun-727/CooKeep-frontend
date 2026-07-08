@@ -37,7 +37,7 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
   };
 
   return (
-    <div className="bg-gray-0 mx-auto mb-[34px] flex w-[357px] flex-col items-center justify-center rounded-[6px] px-4 py-[13px] shadow-[0px_10px_60px_0px_rgba(0,0,0,0.1)]">
+    <div className="bg-gray-0 mx-auto mb-[34px] flex w-[357px] flex-col items-center justify-center rounded-[6px] px-4 py-[13px]">
       {/* 1. 달력 헤더 (월 이동) */}
       <div className="flex h-11 w-[325px] items-center justify-between">
         <h2 className="typo-h3 font-semibold">

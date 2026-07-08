@@ -16,7 +16,7 @@ export default function GoalcheckModal({
   return (
     <div className="bg-black-overlay fixed inset-0 z-[150] flex items-center justify-center">
       <div className="absolute inset-0" onClick={onClose}></div>
-      <div className="bg-gray-0 relative flex h-43 w-[254px] flex-col items-center rounded-[10px] shadow-xl">
+      <div className="bg-gray-0 relative flex h-43 w-[254px] flex-col items-center rounded-[10px]">
         <h2 className="typo-body text-gray-80 mt-[35px] mb-2 h-6 w-[198px] text-center">
           이번 주 목표, 이걸로 가볼까요?
         </h2>

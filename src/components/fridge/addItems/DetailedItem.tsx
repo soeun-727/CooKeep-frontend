@@ -114,7 +114,7 @@ export default function DetailedItem(item: DetailedItemProps) {
   };
 
   return (
-    <div className="bg-gray-0 relative h-[198px] w-[345px] rounded-[6px] shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+    <div className="bg-gray-0 shadow-plant relative h-[198px] w-[345px] rounded-[6px]">
       <div className="flex gap-6 p-6">
         <div className="flex h-34 w-[99px] flex-col items-start">
           <div className="border-gray-10 flex h-20 w-20 items-center justify-center rounded-[6px] border p-[14px]">

@@ -36,7 +36,7 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   ];
 
   return (
-    <nav className="bg-gray-0 border-gray-0 pb-sab fixed right-0 bottom-0 left-0 z-[150] mx-auto w-full max-w-[450px] border-t shadow-sm">
+    <nav className="bg-gray-0 border-gray-0 pb-sab fixed right-0 bottom-0 left-0 z-[150] mx-auto w-full max-w-[450px] border-t">
       <div className="flex h-14 items-center justify-around">
         {tabs.map(tab => {
           const isSelected = selectedTab === tab.title;
