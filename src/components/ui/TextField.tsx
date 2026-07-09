@@ -50,7 +50,7 @@ export default function TextField({
           autoComplete={autoComplete}
           onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`bg-gray-0 text-gray-80 placeholder:text-gray-30 disabled:bg-gray-10 h-[48px] w-full rounded-[6px] border px-3 py-2 font-['Pretendard'] text-sm leading-5 placeholder:font-medium focus:outline-none ${leftIcon ? "pl-11" : ""} ${rightIcon ? "pr-10" : ""} ${
+          className={`bg-gray-0 text-gray-80 placeholder:text-gray-30 disabled:bg-gray-10 typo-m h-[48px] w-full rounded-[6px] border px-3 py-2 focus:outline-none ${leftIcon ? "pl-11" : ""} ${rightIcon ? "pr-10" : ""} ${
             errorMessage
               ? "border-semantic-negative"
               : successMessage

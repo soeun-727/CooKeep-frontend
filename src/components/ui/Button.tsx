@@ -23,13 +23,13 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const sizeStyles = {
-    S: "w-[361px] h-[44px]",
-    L: "w-[361px] h-[56px]",
+    S: "w-full h-[44px]",
+    L: "w-full h-[56px]",
   };
 
   const baseStyle = `
     inline-flex items-center justify-center gap-2
-    rounded-[10px]
+    rounded-M
     transition
     whitespace-nowrap
   `;
@@ -46,7 +46,7 @@ export default function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-button ${className} `}
+      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-l-strong max-w-[450px] ${className} `}
     >
       {children}
     </button>

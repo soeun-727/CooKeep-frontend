@@ -64,13 +64,15 @@ export default function RecipeSelectPage() {
   };
 
   return (
-    <div className="flex w-full flex-col pb-32">
+    <div className="flex w-full flex-col pb-5">
       <BackHeader title="재료 선택" onBack={handleBack} />
 
       {!viewCategory && <FloatingNotice text="요리할 재료를 선택해 주세요" />}
 
-      <div className="mt-[48px]">
-        <Search />
+      <div className="mt-13">
+        <div className="flex items-center px-4">
+          <Search />
+        </div>
 
         {viewCategory || searchTerm ? (
           <>
@@ -83,7 +85,7 @@ export default function RecipeSelectPage() {
             <IngredientGrid items={filteredIngredients} />
           </>
         ) : (
-          <>
+          <div className="flex flex-col gap-3">
             <Storage
               category="냉장"
               icon={FridgeIcon}
@@ -99,12 +101,12 @@ export default function RecipeSelectPage() {
               icon={PantryIcon}
               ingredients={ingredients.filter(i => i.category === "상온")}
             />
-          </>
+          </div>
         )}
       </div>
 
       {!viewCategory && (
-        <div className="fixed bottom-[34px] left-1/2 -translate-x-1/2">
+        <div className="fixed bottom-[34px] left-1/2 flex w-full max-w-[450px] -translate-x-1/2 items-center px-4">
           <Button
             size="L"
             variant="black"

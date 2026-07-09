@@ -4,8 +4,7 @@ import {
 } from "@/stores/useIngredientStore";
 
 import character from "@/assets/character/clear_char.svg";
-import plus from "@/assets/fridge/plus.svg";
-import plusDisabled from "@/assets/fridge/plusDisabled.svg";
+import ArrowIcon from "@/assets/cookeeps/arrow.svg?react";
 
 import Item from "../items/Item";
 import type { IconComponent } from "@/types/icon";
@@ -43,7 +42,7 @@ export default function Storage({
     <div className="relative z-0 min-h-[173px] w-full">
       {/* 배경 레이어 */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex flex-col overflow-hidden">
-        <div className="h-[115px] w-full rounded-t-[36px] bg-[#E3EBE6]" />
+        <div className="rounded-t-L h-[115px] w-full bg-[#E3EBE6]" />
         <div className="relative flex h-12 w-full flex-col bg-[#75D99F]">
           <div className="absolute inset-0 mt-[7px] flex items-start justify-center gap-[6px]">
             {ingredients[0] ? (
@@ -63,41 +62,36 @@ export default function Storage({
             )}
           </div>
         </div>
-        <div className="h-[10px] w-full bg-[#54BE81]" />
+        <div className="h-[7px] w-full bg-[#54BE81]" />
       </div>
 
       {/* 상단 헤더 */}
-      <div className="mx-auto max-w-[393px]">
-        <div className="relative z-10 px-[20px] pt-[5px] pb-[11px]">
-          <div className="flex h-10 w-full items-center justify-between">
-            {/* 카테고리 태그 */}
-            <div className="bg-gray-80 text-green flex h-[22px] min-w-[59px] items-center justify-center gap-1 rounded-[6px] px-2">
-              <Icon className="h-3 w-3" />
-              <span className="typo-caption leading-none whitespace-nowrap">
-                {category}
-              </span>
-            </div>
-
-            {/* 전체보기 */}
-            <button
-              disabled={!isScrollable}
-              onClick={() => setViewCategory(category)}
-              className="group flex items-center gap-1 transition-all active:scale-95"
-            >
-              <span
-                className={`typo-caption !text-[13px] !font-semibold transition-colors ${
-                  isScrollable ? "text-green-deep" : "text-gray-50"
-                }`}
-              >
-                전체보기
-              </span>
-              <img
-                src={isScrollable ? plus : plusDisabled}
-                className="w-3 transition-opacity"
-                alt="plus"
-              />
-            </button>
+      <div className="mx-auto max-w-[393px] pb-3">
+        <div className="relative z-10 flex items-center justify-between px-4 py-2">
+          {/* 카테고리 태그 */}
+          <div className="bg-gray-80 text-green flex items-center justify-center gap-1 rounded-[6px] px-3 py-1">
+            <Icon className="h-5 w-5" />
+            <span className="typo-m-strong whitespace-nowrap">{category}</span>
           </div>
+          {/* 전체보기 */}
+          <button
+            disabled={!isScrollable}
+            onClick={() => setViewCategory(category)}
+            className="group flex items-center"
+          >
+            <span
+              className={`typo-label ${
+                isScrollable ? "text-green-deep" : "text-gray-50"
+              }`}
+            >
+              전체보기
+            </span>
+            <div className="flex h-5 w-5 items-center justify-center">
+              <ArrowIcon
+                className={`w-2 ${isScrollable ? "text-green-deep" : "text-gray-30"}`}
+              />
+            </div>
+          </button>
         </div>
       </div>
 
