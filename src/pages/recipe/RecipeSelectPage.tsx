@@ -67,7 +67,15 @@ export default function RecipeSelectPage() {
     <div className="flex w-full flex-col pb-5">
       <BackHeader title="재료 선택" onBack={handleBack} />
 
-      {!viewCategory && <FloatingNotice text="요리할 재료를 선택해 주세요" />}
+      {!viewCategory && (
+        <FloatingNotice
+          text={
+            selectedIds.length > 0
+              ? "다른 재료도 골라볼까요?"
+              : "요리할 재료를 선택해 주세요"
+          }
+        />
+      )}
 
       <div className="mt-13">
         <div className="flex items-center px-4">
