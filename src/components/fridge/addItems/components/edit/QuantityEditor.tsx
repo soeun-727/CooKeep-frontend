@@ -44,7 +44,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
                     isNewlySelected
                       ? "border-green-deep bg-green-light text-green-deep border"
                       : isInitialValue
-                        ? "bg-gray-10 text-gray-80"
+                        ? "bg-gray-10 text-gray-50"
                         : "text-gray-50"
                   }`}
                 >

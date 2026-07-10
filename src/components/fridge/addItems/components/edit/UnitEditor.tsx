@@ -38,44 +38,39 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
   }, [value]);
 
   return (
-    <div className="mt-[18px] flex flex-col items-center gap-[18px]">
+    <div className="flex w-full flex-col items-center gap-6">
       {!isCustomInput ? (
-        <>
-          <div className="flex flex-col gap-3">
-            {units.map(unit => {
-              const isInitialValue = unit === koreanValue;
-              const isNewlySelected = selectedUnit === unit && !isInitialValue;
-              return (
-                <button
-                  key={unit}
-                  disabled={isInitialValue}
-                  onClick={() => handleQuickSelect(unit)}
-                  className={`typo-body h-11 w-[361px] rounded-[10px] !font-bold transition-all ${
-                    isInitialValue
-                      ? "cursor-not-allowed bg-gray-200 text-gray-50"
-                      : isNewlySelected
-                        ? "bg-green-light border-green-deep border text-black"
-                        : "border-gray-10 active:bg-gray-30 border text-gray-50"
-                  }`}
-                >
-                  {unit}
-                </button>
-              );
-            })}
-          </div>
+        <div className="flex w-full flex-col gap-3">
+          {units.map(unit => {
+            const isInitialValue = unit === koreanValue;
+            const isNewlySelected = selectedUnit === unit && !isInitialValue;
 
-          {/* 하단 제어 버튼 */}
-          <div className="mt-[-4px] flex flex-col pb-16">
-            <Button
-              size="S"
-              variant="black"
-              onClick={() => setIsCustomInput(true)}
-              className="!bg-gray-0 border-gray-10 border text-gray-50"
-            >
-              직접 입력하기
-            </Button>
-          </div>
-        </>
+            return (
+              <button
+                key={unit}
+                onClick={() => handleQuickSelect(unit)}
+                className={`typo-body h-12 w-12 w-full rounded-[6px] transition-all ${
+                  isNewlySelected
+                    ? "border-green-deep bg-green-light text-green-deep border"
+                    : isInitialValue
+                      ? "bg-gray-10 text-gray-50"
+                      : "border-gray-10 border text-gray-50"
+                }`}
+              >
+                {unit}
+              </button>
+            );
+          })}
+
+          <Button
+            size="S"
+            variant="black"
+            onClick={() => setIsCustomInput(true)}
+            className="border-gray-10 !bg-gray-0 border text-gray-50"
+          >
+            직접 입력하기
+          </Button>
+        </div>
       ) : (
         /* 3. 직접 입력 모드 UI */
         <div className="flex w-full flex-col items-center gap-6 pb-16">

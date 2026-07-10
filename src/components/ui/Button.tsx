@@ -23,8 +23,8 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const sizeStyles = {
-    S: "w-[361px] h-[44px]",
-    L: "w-[361px] h-[56px]",
+    S: "h-[44px]",
+    L: "h-[56px]",
   };
 
   const baseStyle = `
@@ -46,7 +46,7 @@ export default function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-button ${className} `}
+      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-button w-full ${className} `}
     >
       {children}
     </button>
