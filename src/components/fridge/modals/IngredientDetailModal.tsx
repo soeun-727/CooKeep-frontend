@@ -296,10 +296,10 @@ export default function IngredientDetailModal({
         onClose={() => setOpenEditor(null)}
         title={
           openEditor === "storage"
-            ? "보관장소 수정"
+            ? "보관 장소를 선택해주세요"
             : openEditor === "expiry"
-              ? "유통기한 수정"
-              : "수량 수정"
+              ? "유통기한을 선택해주세요"
+              : "수량을 선택해주세요"
         }
       >
         {openEditor === "storage" && (
