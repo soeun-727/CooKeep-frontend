@@ -27,3 +27,12 @@ export interface IngredientItem {
   unit: string;
   description?: string | null;
 }
+
+export type RecipeCategory =
+  | "SOUP"
+  | "RICE"
+  | "NOODLES"
+  | "FRIED"
+  | "HEALTHY"
+  | "DESSERT"
+  | "RANDOM";

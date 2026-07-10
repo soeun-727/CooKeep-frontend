@@ -6,11 +6,11 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import cookChar from "@/assets/recipe/main/cook_char.svg";
 import LightBulbIcon from "@/assets/recipe/main/lightbulb.svg?react";
-import selectIcon from "@/assets/recipe/main/selectIcon.svg";
 import randomIcon from "@/assets/recipe/main/randomIcon.svg";
+import selectIcon from "@/assets/recipe/main/selectIcon.svg";
 
-import RecipeHeader from "@/components/recipe/main/RecipeHeader";
 import RecipeGenerateButton from "@/components/recipe/main/RecipeGenerateButton";
+import RecipeHeader from "@/components/recipe/main/RecipeHeader";
 
 export default function RecipeIntroPage() {
   const navigate = useNavigate();

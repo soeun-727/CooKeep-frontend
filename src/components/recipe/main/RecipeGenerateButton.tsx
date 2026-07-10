@@ -1,5 +1,6 @@
-import ArrowIcon from "@/assets/cookeeps/arrow.svg?react";
 import { useState } from "react";
+
+import ArrowIcon from "@/assets/cookeeps/arrow.svg?react";
 
 interface RecipeGenerateButtonProps {
   image: string;

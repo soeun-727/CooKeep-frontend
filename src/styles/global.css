@@ -5,6 +5,7 @@
   --color-green-medium: #96e8be;
   --color-green: #32e389;
   --color-green-deep: #1fc16f;
+  --color-green-exception: #f4f9f4;
 
   --color-gray-100: #111111;
   --color-gray-80: #202020;
@@ -44,6 +45,7 @@
   --shadow-add-button: 0 1px 8.2px -2px rgba(17, 17, 17, 0.25);
   --shadow-recent-t: 0 4px 16px 0px rgba(17, 17, 17, 0.1);
   --shadow-recent-b: 0 -1px 100px -4px rgba(17, 17, 17, 0.15);
+  --shadow-inner: 0 2px 5.2px -4px rgba(0, 0, 0, 0.25);
 
   --font-sans:
     "Pretendard Variable", "Pretendard", ui-sans-serif, system-ui,

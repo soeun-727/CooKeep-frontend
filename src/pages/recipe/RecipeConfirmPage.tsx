@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
@@ -10,11 +11,20 @@ import BackHeader from "@/components/ui/BackHeader";
 
 export default function RecipeConfirmPage() {
   const navigate = useNavigate();
-  const { selectedIngredients, difficulty } = useRecipeFlowStore();
+  const { selectedIngredients, setSelectedIngredients, difficulty } =
+    useRecipeFlowStore();
+
+  const { toggleSelect } = useIngredientStore();
 
   const handleRecommend = () => {
     if (!difficulty) return;
     navigate("/recipe/loading");
+  };
+
+  const handleRemoveIngredient = (id: number) => {
+    const updatedList = selectedIngredients.filter(item => item.id !== id);
+    setSelectedIngredients(updatedList);
+    toggleSelect(id);
   };
 
   useEffect(() => {
@@ -24,11 +34,14 @@ export default function RecipeConfirmPage() {
   }, [selectedIngredients]);
 
   return (
-    <div className="flex w-full flex-col pb-32">
-      <BackHeader title="레시피 추천" onBack={() => navigate(-1)} />
+    <div className="flex min-h-screen w-full flex-col pb-5">
+      <BackHeader title="재료선택" onBack={() => navigate(-1)} />
 
-      <div className="mt-[70px] flex flex-col gap-8 px-5">
-        <SelectedIngredientList ingredients={selectedIngredients} />
+      <div className="no-scrollbar mt-[70px] flex flex-col gap-[30px] overflow-y-auto px-4">
+        <SelectedIngredientList
+          ingredients={selectedIngredients}
+          onRemove={handleRemoveIngredient}
+        />
 
         <DifficultySelector />
 

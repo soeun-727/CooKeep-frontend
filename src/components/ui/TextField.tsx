@@ -30,7 +30,7 @@ export default function TextField({
   onBlur,
 }: TextFieldProps) {
   return (
-    <div className="w-full max-w-[361px]">
+    <div className="w-full">
       {label && (
         <label className="mb-1 block text-sm font-medium">{label}</label>
       )}
