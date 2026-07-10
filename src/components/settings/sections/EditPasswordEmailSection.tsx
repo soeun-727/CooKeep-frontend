@@ -13,6 +13,7 @@ import { EditPasswordEmailType } from "@/types/modal";
 
 import { formatTime } from "@/utils/formateTime";
 import { validateEmail } from "@/utils/validateUtil";
+import BackHeader from "@/components/ui/BackHeader";
 
 export default function EditPasswordEmailSection() {
   const navigate = useNavigate();
@@ -129,79 +130,87 @@ export default function EditPasswordEmailSection() {
   };
 
   return (
-    <div className="mx-auto w-[361px] pt-[241px]">
-      <div className="typo-h1">이메일 인증</div>
+    <div className="bg-background relative flex min-h-screen flex-col">
+      <BackHeader title="본인 인증" onBack={() => navigate(-1)} />
 
-      <div className="mt-[12px]">
-        <TextField
-          value={email}
-          onChange={setEmail}
-          placeholder="이메일 주소 입력"
-          disabled={isCodeSent}
-          errorMessage={
-            email && !isEmailValid
-              ? "이메일 주소를 다시 확인해 주세요"
-              : undefined
-          }
-          rightIcon={
-            <button
-              type="button"
-              onClick={isCodeSent ? handleResend : handleSendCode}
-              disabled={!isEmailValid || isSending || resendCount >= MAX_RESEND}
-              className={`typo-caption text-gray-0 h-[24px] w-[102px] rounded-full ${isEmailValid ? "bg-gray-80" : "bg-gray-30"} disabled:cursor-not-allowed`}
-            >
-              {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
-            </button>
-          }
-        />
-      </div>
+      <main className="flex flex-1 flex-col px-4 pt-[40px]">
+        <div className="mt-[120px] flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <div className="w-full px-1 py-2">
+              <h1 className="typo-h2">이메일 인증</h1>
+            </div>
+            <div>
+              <TextField
+                value={email}
+                onChange={setEmail}
+                placeholder="이메일 주소 입력"
+                disabled={isCodeSent}
+                errorMessage={
+                  email && !isEmailValid
+                    ? "이메일 주소를 다시 확인해 주세요"
+                    : undefined
+                }
+                rightIcon={
+                  <button
+                    type="button"
+                    onClick={isCodeSent ? handleResend : handleSendCode}
+                    disabled={
+                      !isEmailValid || isSending || resendCount >= MAX_RESEND
+                    }
+                    className={`typo-caption text-gray-0 rounded-full px-3 py-1.5 whitespace-nowrap transition-colors disabled:cursor-not-allowed ${
+                      isEmailValid ? "bg-gray-80" : "bg-gray-30"
+                    }`}
+                  >
+                    {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
+                  </button>
+                }
+              />
 
-      <div className="mt-[5px]">
-        <TextField
-          value={code}
-          onChange={v => {
-            const onlyNumber = v.replace(/[^0-9]/g, "");
-            setCode(onlyNumber);
-            if (codeError) setCodeError(undefined);
-          }}
-          placeholder="인증번호 입력"
-          disabled={!isCodeSent}
-          errorMessage={codeError}
-        />
+              <TextField
+                value={code}
+                onChange={v => {
+                  const onlyNumber = v.replace(/[^0-9]/g, "");
+                  setCode(onlyNumber);
+                  if (codeError) setCodeError(undefined);
+                }}
+                placeholder="인증번호 입력"
+                disabled={!isCodeSent}
+                errorMessage={codeError}
+              />
+            </div>
 
-        <Button
-          size="S"
-          disabled={!isCodeSent || timeLeft === 0 || code.length !== 6}
-          onClick={handleVerify}
-          className="mt-[31px]"
-        >
-          <span className="typo-button">
-            인증하기 {isCodeSent && `(${formatTime(timeLeft)})`}
-          </span>
-        </Button>
-
-        <button
-          type="button"
-          onClick={() => setModalType("help")}
-          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-gray-50 underline"
-        >
-          인증 번호가 발송되지 않나요?
-        </button>
-      </div>
-
-      {/* 불일치 모달 */}
-      {modalType === "mismatch" && (
-        <>
-          <div className="bg-black-overlay fixed inset-0 z-[100]" />
-          <div className="bg-gray-0 fixed top-[343px] left-1/2 z-[110] flex w-[240px] -translate-x-1/2 flex-col items-center gap-4 rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
-            <p className="text-center text-[14px] leading-[20px] font-medium text-gray-100">
-              등록된 이메일과 일치하지 않습니다
-            </p>
             <Button
               size="S"
-              onClick={() => setModalType(null)}
-              className="!bg-green !w-[184px]"
+              disabled={!isCodeSent || timeLeft === 0 || code.length !== 6}
+              onClick={handleVerify}
             >
+              <span className="typo-button">
+                인증하기 {isCodeSent && `(${formatTime(timeLeft)})`}
+              </span>
+            </Button>
+          </div>
+          <button
+            type="button"
+            onClick={() => setModalType("help")}
+            className="typo-m w-full text-center text-gray-50 underline"
+          >
+            인증 번호가 발송되지 않나요?
+          </button>
+        </div>
+      </main>
+
+      {/* 불일치 모달 (피그마에 없는데 원래 있길래 확인 필요) */}
+      {modalType === "mismatch" && (
+        <>
+          {/* Overlay */}
+          <div className="bg-black-overlay fixed inset-0 z-[100]" />
+
+          {/* Modal */}
+          <div className="bg-gray-0 shadow-container fixed top-1/2 left-1/2 z-[110] flex w-[300px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-6 rounded-xl p-6">
+            <p className="typo-l-strong text-center whitespace-pre-wrap">
+              등록된 이메일과 일치하지 않습니다
+            </p>
+            <Button size="S" variant="black" onClick={() => setModalType(null)}>
               확인
             </Button>
           </div>
