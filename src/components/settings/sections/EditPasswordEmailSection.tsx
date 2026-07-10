@@ -147,7 +147,7 @@ export default function EditPasswordEmailSection() {
                 disabled={isCodeSent}
                 errorMessage={
                   email && !isEmailValid
-                    ? "이메일 주소를 다시 확인해 주세요"
+                    ? "잘못된 이메일 주소입니다"
                     : undefined
                 }
                 rightIcon={

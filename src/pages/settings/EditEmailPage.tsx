@@ -144,9 +144,7 @@ export default function EditEmailPage() {
               placeholder="새 이메일 주소 입력"
               disabled={isCodeSent}
               errorMessage={
-                email && !isEmailValid
-                  ? "이메일 주소를 다시 확인해 주세요"
-                  : undefined
+                email && !isEmailValid ? "잘못된 이메일 주소입니다" : undefined
               }
               rightIcon={
                 <button

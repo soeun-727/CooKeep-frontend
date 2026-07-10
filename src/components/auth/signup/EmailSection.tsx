@@ -107,9 +107,7 @@ export default function EmailSection() {
             placeholder="이메일 주소 입력"
             disabled={isVerified || isCodeSent}
             errorMessage={
-              !isEmailValid && email
-                ? "이메일 주소를 다시 확인해 주세요"
-                : undefined
+              !isEmailValid && email ? "잘못된 이메일 주소입니다" : undefined
             }
             rightIcon={
               <button
