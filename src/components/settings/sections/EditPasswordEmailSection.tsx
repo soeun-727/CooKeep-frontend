@@ -180,7 +180,7 @@ export default function EditPasswordEmailSection() {
             </div>
 
             <Button
-              size="S"
+              size="L"
               disabled={!isCodeSent || timeLeft === 0 || code.length !== 6}
               onClick={handleVerify}
             >
