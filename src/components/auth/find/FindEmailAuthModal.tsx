@@ -1,4 +1,4 @@
-import CautionIcon from "@/assets/signup/icon_caution.svg";
+import CautionIcon from "@/assets/signup/icon_caution.svg?react";
 
 import Button from "@/components/ui/Button";
 
@@ -15,27 +15,63 @@ interface FindEmailAuthModalProps {
   onSignup?: () => void;
 }
 
+const maskEmail = (email: string) => {
+  const [local, domain] = email.split("@");
+  if (!domain) return email;
+
+  if (local.length <= 4) {
+    return `${"*".repeat(local.length)}@${domain}`;
+  }
+
+  return `${local.slice(0, local.length - 4)}****@${domain}`;
+};
+
+const modalConfig = {
+  send: {
+    title: "인증번호가 발송되었어요",
+    buttonText: "확인",
+    variant: "green" as const,
+  },
+  verify: {
+    title: "인증에 성공했어요",
+    buttonText: "확인",
+    variant: "green" as const,
+  },
+  notRegistered: {
+    title:
+      "해당 이메일로 가입된 계정을\n찾을 수 없어요\n회원가입을 먼저 진행해 주세요",
+    buttonText: "회원가입하기",
+    variant: "green" as const,
+  },
+  help: {
+    title:
+      "통신 환경에 따라\n발송이 지연되거나 차단될 수 있어요.\n스팸 메일함을 확인하시거나,\n잠시 후 다시 시도해주세요.",
+    buttonText: "채널 문의 바로가기",
+    variant: "black" as const,
+  },
+} as const;
+
 export default function FindEmailAuthModal({
   type,
   email,
   onConfirm,
   onSignup,
 }: FindEmailAuthModalProps) {
-  const isSend = type === "send";
-  const isVerify = type === "verify";
-  const isNotRegistered = type === "notRegistered";
-  const isHelp = type === "help";
+  const config = modalConfig[type];
   const KAKAO_CHANNEL_URL = "https://pf.kakao.com/_xfSKxhX";
 
   const handleOpenKakao = () => {
     window.open(KAKAO_CHANNEL_URL, "_blank", "noopener,noreferrer");
   };
 
-  const maskEmail = (email: string) => {
-    const [local, domain] = email.split("@");
-    if (!domain) return email;
-    const visible = local.slice(0, Math.max(1, local.length - 4));
-    return `${visible}****@${domain}`;
+  const handleButtonClick = () => {
+    if (type === "notRegistered" && onSignup) {
+      onSignup();
+    } else if (type === "help") {
+      handleOpenKakao();
+    } else {
+      onConfirm();
+    }
   };
 
   return (
@@ -45,81 +81,36 @@ export default function FindEmailAuthModal({
         className="bg-black-overlay fixed inset-0 z-[100]"
         onClick={onConfirm} // 배경 클릭 시 닫히게 하고 싶으면 유지
       />
-      <div
-        className="bg-gray-0 fixed left-1/2 z-[110] -translate-x-1/2 rounded-[10px]"
-        style={{
-          top: isHelp ? 308 : isSend ? 359 : 343,
-          width: isHelp ? 256 : 240,
-          minHeight: isHelp ? 236 : isSend ? 134 : 166,
-          paddingTop: isHelp ? 25 : 35,
-          paddingRight: 28,
-          paddingBottom: 25,
-          paddingLeft: 28,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          gap: 16,
-        }}
-      >
-        {isHelp && (
-          <img
-            src={CautionIcon}
-            alt="주의"
-            className="mb-2 h-[20px] w-[20px]"
-          />
-        )}
+      <div className="bg-gray-0 shadow-container fixed top-1/2 left-1/2 z-[110] flex w-[300px] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center gap-6 rounded-xl p-6">
+        <div className="flex w-full flex-col items-center gap-3">
+          {type === "help" && <CautionIcon className="text-gray-80 h-5 w-5" />}
 
-        <p className="text-center text-[14px] leading-[20px] font-medium text-gray-100">
-          {isSend && "인증번호가 발송되었어요"}
-          {isVerify && "인증에 성공하셨습니다"}
-          {isNotRegistered && (
-            <>
-              해당 이메일로 가입된 계정을 <br />
-              찾을 수 없어요 <br />
-              회원가입을 먼저 진행해 주세요
-            </>
-          )}
+          <div className="flex w-full flex-col items-center gap-2">
+            <p className="typo-l-strong text-gray-80 text-center whitespace-pre-wrap">
+              {config.title}
+            </p>
 
-          {isHelp && (
-            <>
-              통신 환경에 따라
-              <br />
-              발송이 지연되거나 차단될 수 있어요.
-              <br />
-              <br />
-              스팸 메일함을 확인하시거나,
-              <br />
-              잠시 후 다시 시도해주세요.
-            </>
-          )}
-        </p>
+            {type === "verify" && email && (
+              <p className="typo-m text-gray-80 text-center">
+                {maskEmail(email)}
+              </p>
+            )}
 
-        {isVerify && email && (
-          <p className="text-center text-[12px] text-gray-50">
-            {maskEmail(email)}
-          </p>
-        )}
-
-        {isHelp && (
-          <p className="text-center text-[12px] text-gray-50">
-            문제가 지속되나요?
-          </p>
-        )}
+            {type === "help" && (
+              <p className="typo-m text-gray-80 text-center">
+                문제가 지속되나요?
+              </p>
+            )}
+          </div>
+        </div>
 
         <Button
           size="S"
-          onClick={
-            isNotRegistered ? onSignup : isHelp ? handleOpenKakao : onConfirm
-          }
-          className={`!h-[38px] ${
-            isHelp ? "!bg-gray-80 !w-[200px]" : "!bg-green !w-[184px]"
-          }`}
+          variant={config.variant}
+          className="w-full"
+          onClick={handleButtonClick}
         >
-          {isHelp
-            ? "채널 문의 바로가기"
-            : isNotRegistered
-              ? "회원가입하기"
-              : "확인"}
+          {config.buttonText}
         </Button>
       </div>
     </>
