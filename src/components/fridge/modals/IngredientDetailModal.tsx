@@ -22,6 +22,7 @@ import EditModal from "@/components/ui/EditModal";
 import { getKoreanUnit } from "@/utils/mapping";
 
 import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
+import MemoEditor from "../addItems/components/edit/MemoEditor";
 import QuantityEditor from "../addItems/components/edit/QuantityEditor";
 import StorageEditor from "../addItems/components/edit/StorageEditor";
 
@@ -31,7 +32,7 @@ interface IngredientDetailModalProps {
   onUpdate: () => void;
 }
 
-type EditorType = "storage" | "expiry" | "quantity";
+type EditorType = "storage" | "expiry" | "quantity" | "memo";
 
 export default function IngredientDetailModal({
   ingredient,
@@ -42,7 +43,6 @@ export default function IngredientDetailModal({
   const [detailData, setDetailData] = useState<any>(null);
   const [openEditor, setOpenEditor] = useState<null | EditorType>(null);
   const [isDirty, setIsDirty] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
   const [memo, setMemo] = useState("");
 
   const displayData = detailData || ingredient;
@@ -78,11 +78,17 @@ export default function IngredientDetailModal({
     };
   }, [ingredient.id]);
 
-  const handleSaveMemo = async () => {
+  const handleSaveMemo = async (value: string) => {
     try {
-      await updateIngredientMemo(Number(ingredient.id), memo);
-      await changeMemo(ingredient.id, memo);
-      setIsEditing(false);
+      await updateIngredientMemo(Number(ingredient.id), value);
+      await changeMemo(ingredient.id, value);
+
+      setMemo(value);
+      setDetailData((prev: any) => ({
+        ...prev,
+        memo: value,
+      }));
+
       setIsDirty(true);
     } catch (error) {
       console.error("메모 저장 실패:", error);
@@ -255,28 +261,10 @@ export default function IngredientDetailModal({
                   </div>
                 </div>
               )}
-            </div>
-
-            <div
-              className={`border-gray-10 flex w-full items-center justify-between gap-3 rounded-[6px] border p-3 ${
-                !isEditing ? "cursor-pointer select-none" : ""
-              }`}
-              onClick={() => {
-                if (!isEditing) setIsEditing(true);
-              }}
-            >
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={memo}
-                  autoFocus
-                  onChange={e => setMemo(e.target.value)}
-                  onBlur={handleSaveMemo}
-                  onKeyDown={e => e.key === "Enter" && handleSaveMemo()}
-                  onClick={e => e.stopPropagation()}
-                  className="border-gray-30 flex-1 border-b focus:outline-none"
-                />
-              ) : (
+              <div
+                className="border-gray-10 mt-4 flex w-full cursor-pointer items-center justify-between gap-3 rounded-[6px] border p-3"
+                onClick={() => setOpenEditor("memo")}
+              >
                 <span
                   className={`typo-m flex-1 truncate ${
                     memo ? "text-gray-80" : "text-gray-30"
@@ -284,8 +272,9 @@ export default function IngredientDetailModal({
                 >
                   {memo || "메모를 입력해주세요"}
                 </span>
-              )}
-              <MemoIcon className="text-gray-30 h-6 w-6 flex-shrink-0" />
+
+                <MemoIcon className="text-gray-30 h-6 w-6 flex-shrink-0" />
+              </div>
             </div>
           </div>
         </div>
@@ -299,7 +288,9 @@ export default function IngredientDetailModal({
             ? "보관 장소를 선택해주세요"
             : openEditor === "expiry"
               ? "유통기한을 선택해주세요"
-              : "수량을 선택해주세요"
+              : openEditor === "quantity"
+                ? "수량을 선택해주세요"
+                : "메모를 자유롭게 남겨보세요"
         }
       >
         {openEditor === "storage" && (
@@ -318,6 +309,16 @@ export default function IngredientDetailModal({
           <QuantityEditor
             value={displayData.quantity}
             onSave={val => handleUpdateField("quantity", val)}
+          />
+        )}
+        {openEditor === "memo" && (
+          <MemoEditor
+            value={memo}
+            onSave={async value => {
+              setMemo(value);
+              await handleSaveMemo(value);
+              setOpenEditor(null);
+            }}
           />
         )}
       </EditModal>
