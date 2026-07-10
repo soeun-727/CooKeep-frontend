@@ -58,7 +58,7 @@ export default function AgreementReadCard({
     <div className="border-gray-10 bg-gray-0 flex flex-col items-start self-stretch rounded-[6px] border px-3">
       <div className="rounded-M flex h-12 items-center gap-3 self-stretch py-3">
         <span className="text-gray-80 typo-m-strong flex h-6 flex-1 flex-col justify-center overflow-hidden text-ellipsis whitespace-nowrap">
-          {agreement.label}
+          {agreement.label.replace(/\s*\((필수|선택)\)$/, "")}
         </span>
       </div>
 

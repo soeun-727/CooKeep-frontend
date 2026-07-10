@@ -3,7 +3,7 @@ import { AgreementItem } from "@/types/auth";
 export const AGREEMENTS: AgreementItem[] = [
   {
     key: "terms",
-    label: "이용 약관 (필수)",
+    label: "서비스 이용 약관 (필수)",
     required: true,
     content: `
 ## 제1조 (목적)
