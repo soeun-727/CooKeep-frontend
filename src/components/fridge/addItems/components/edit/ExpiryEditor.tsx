@@ -99,14 +99,20 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
               <button
                 onClick={() => handleDateClick(day)}
                 className={`flex h-8 w-8 items-center justify-center rounded-full transition-all ${
-                  isSelected && "border-green-deep bg-green-light border"
+                  isNewlySelected
+                    ? "border-green-deep bg-green-light border"
+                    : isCurrent
+                      ? "bg-gray-10"
+                      : ""
                 }`}
               >
                 <p
                   className={`${
                     isSelected
-                      ? "typo-l-strong text-green-deep"
-                      : "typo-l text-gray-80"
+                      ? "typo-l text-gray-80"
+                      : isCurrent
+                        ? "typo-l text-gray-80"
+                        : ""
                   } `}
                 >
                   {day}
