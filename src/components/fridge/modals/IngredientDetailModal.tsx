@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { createPortal } from "react-dom";
 
 import {
   getIngredientDetail,
@@ -148,7 +149,7 @@ export default function IngredientDetailModal({
     { label: "유통기한", value: expireDate || "정보 없음", type: "expiry" },
   ];
 
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
         className="bg-gray-80/50 absolute inset-0 mx-auto max-w-[450px]"
@@ -320,6 +321,7 @@ export default function IngredientDetailModal({
           />
         )}
       </EditModal>
-    </div>
+    </div>,
+    document.body,
   );
 }
