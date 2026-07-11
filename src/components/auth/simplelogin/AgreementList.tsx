@@ -1,8 +1,10 @@
 import { useState } from "react";
 
-import arrowIcon from "@/assets/signup/arrowright.svg";
+import ArrowIcon from "@/assets/signup/arrowright.svg?react";
+import BlankCheck from "@/assets/signup/blankCheck.svg?react";
+import CheckboxCheckIcon from "@/assets/signup/checkboxCheck.svg?react";
 
-import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
+import { AGREEMENTS } from "@/constants/agreements";
 
 import { AgreementItem, AuthAgreements } from "@/types/auth";
 
@@ -26,77 +28,80 @@ export default function AgreementList({
 
   if (agreementPage) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100">
-        <div className="bg-background min-h-[100dvh] w-full max-w-[450px]">
-          {" "}
-          {/*overflow-y-auto*/}
-          <AgreementPage
-            agreement={agreementPage}
-            isChecked={agreements[agreementPage.key]}
-            onBack={() => setAgreementPage(null)}
-            updateAgreements={updateAgreements}
-            onConfirm={key => {
-              updateAgreements({ [key]: true });
-              setAgreementPage(null);
-            }}
-          >
-            <p className="typo-label text-center whitespace-pre-line">
-              {AGREEMENT_NOTICE[agreementPage.key]}
-            </p>
-          </AgreementPage>
-        </div>
+      <div className="bg-background absolute inset-0 z-50 flex flex-col">
+        {" "}
+        {/*overflow-y-auto*/}
+        <AgreementPage
+          agreement={agreementPage}
+          isChecked={agreements[agreementPage.key]}
+          onBack={() => setAgreementPage(null)}
+          updateAgreements={updateAgreements}
+          onConfirm={key => {
+            updateAgreements({ [key]: true });
+            setAgreementPage(null);
+          }}
+        ></AgreementPage>
       </div>
     );
   }
 
   return (
-    <div className="mt-[26px]">
+    <div className="mt-[26px] w-full">
       {/* 전체 동의 */}
-      <label className="border-gray-10 relative flex h-[48px] w-full max-w-[361px] cursor-pointer items-center rounded-[6px] border px-4">
-        <input
-          type="checkbox"
-          className="peer checked:bg-green h-4 w-4 cursor-pointer appearance-none rounded-sm border border-gray-50"
-          checked={isAllChecked}
-          onChange={e =>
-            updateAgreements({
-              terms: e.target.checked,
-              privacy: e.target.checked,
-              marketing: e.target.checked,
-            })
-          }
-        />
-        <span className="typo-label text-gray-80 ml-[16px]">약관 전체동의</span>
-        <span className="text-gray-0 pointer-events-none invisible absolute left-4 flex h-4 w-4 items-center justify-center text-lg font-bold peer-checked:visible">
-          ✓
-        </span>
+      <label className="border-gray-10 flex h-12 w-full items-center gap-3 rounded-xl border bg-white px-3">
+        <div className="relative flex h-6 w-6 shrink-0 items-center justify-center">
+          <input
+            type="checkbox"
+            checked={isAllChecked}
+            onChange={e =>
+              updateAgreements({
+                terms: e.target.checked,
+                privacy: e.target.checked,
+                marketing: e.target.checked,
+              })
+            }
+            className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none"
+          />
+
+          <BlankCheck className="pointer-events-none h-6 w-6 peer-checked:hidden" />
+
+          <CheckboxCheckIcon className="text-green pointer-events-none hidden h-6 w-6 peer-checked:block" />
+        </div>
+        <span className="typo-m-strong text-gray-80 flex-1">약관 전체동의</span>
       </label>
 
       {/* 개별 약관 */}
-      <div className="flex h-[138px] w-[361px] flex-col gap-[6px] px-4 py-3">
+      <div className="mt-4 flex w-full flex-col gap-1">
         {AGREEMENTS.map(item => (
           <div
             key={item.key}
-            className="mx-auto flex h-[24px] w-[337px] items-center justify-between"
+            className="flex w-full items-center justify-between rounded-xl px-3 py-2"
           >
             <label className="flex cursor-pointer items-center gap-4">
               {item.key !== "policy" ? (
-                <input
-                  type="checkbox"
-                  className="h-4 w-4 accent-gray-50"
-                  checked={agreements[item.key]}
-                  onChange={e =>
-                    updateAgreements({ [item.key]: e.target.checked })
-                  }
-                />
+                <div className="relative flex h-6 w-6 shrink-0 items-center justify-center">
+                  <input
+                    type="checkbox"
+                    checked={agreements[item.key]}
+                    onChange={e =>
+                      updateAgreements({ [item.key]: e.target.checked })
+                    }
+                    className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none"
+                  />
+
+                  <BlankCheck className="pointer-events-none h-6 w-6 peer-checked:hidden" />
+
+                  <CheckboxCheckIcon className="pointer-events-none hidden h-6 w-6 text-gray-50 peer-checked:block" />
+                </div>
               ) : (
-                <span className="inline-block h-4 w-4" />
+                <span className="inline-block h-6 w-6" />
               )}
 
-              <span className="typo-label text-gray-50">{item.label}</span>
+              <span className="typo-m flex-1 text-gray-50">{item.label}</span>
             </label>
 
             <button type="button" onClick={() => setAgreementPage(item)}>
-              <img src={arrowIcon} alt="약관 보기 화살표" />
+              <ArrowIcon className="h-6 w-6" />
             </button>
           </div>
         ))}
