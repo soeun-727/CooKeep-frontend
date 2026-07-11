@@ -41,7 +41,7 @@ export default function Initial() {
       </div>
       {/* 상단 텍스트 영역 */}
       <div className="mt-[86px] flex w-full flex-col items-center">
-        <h1 className="flex gap-1 text-[19px] font-semibold">
+        <h1 className="flex gap-1 text-[19px] leading-[19.2px] font-semibold">
           <span className="text-green-deep">재료 관리</span>
           <span className="text-gray-80">부터,</span>
           <span className="text-green-deep">요리 기록</span>
@@ -50,8 +50,10 @@ export default function Initial() {
       </div>
 
       {/* 로고 */}
-      <div className="mt-[23px] flex flex-col items-center">
-        <span className="typo-caption">1인 가구 요리 루틴 플랫폼</span>
+      <div className="mt-[24px] flex flex-col items-center">
+        <span className="text-gray-80 text-[12px] leading-[19.2px] font-semibold">
+          1인 가구 요리 루틴 플랫폼
+        </span>
         <img src={mainLogo} alt="로고" className="w-[218px]" />
       </div>
 
@@ -69,13 +71,11 @@ export default function Initial() {
         </div>
       </div>
 
-      <div className="mt-[24px] flex flex-col items-center justify-center">
+      <div className="mt-[24px] flex flex-col items-center">
         {/* SNS 로그인 */}
-        <span className="typo-caption text-gray-50">
-          SNS 계정으로 로그인하기
-        </span>
+        <span className="typo-m text-gray-50">SNS 계정으로 로그인하기</span>
 
-        <div className="mt-4 flex items-center justify-center gap-3">
+        <div className="mt-3 flex items-center justify-center gap-3">
           {/* 간편 로그인 미구현  */}
           <button onClick={handleGoogleLogin}>
             <Google className="h-11 w-11" />
@@ -85,19 +85,19 @@ export default function Initial() {
             <Kakao className="h-11 w-11" />
           </button>
         </div>
-        <div className="flex items-center justify-center gap-[9px] py-[18px]">
+        <div className="mt-4 flex items-center justify-center gap-[9px]">
           <div className="bg-gray-30 h-[1.5px] w-[42px]" />
 
           <span className="typo-caption text-gray-50">또는</span>
 
           <div className="bg-gray-30 h-[1.5px] w-[42px]" />
         </div>
-        <button onClick={() => navigate("/login")}>
-          <span className="typo-caption text-gray-50">이메일로 로그인하기</span>
+        <button onClick={() => navigate("/login")} className="mt-4">
+          <span className="typo-m text-gray-50">이메일로 로그인하기</span>
         </button>
         <button
           onClick={() => navigate("/guest")}
-          className="typo-body text-green-deep mt-5 mb-[50px] !font-bold"
+          className="typo-label text-green-deep mt-6 mb-[46px]"
         >
           쿠킵이 처음인가요? 둘러보기
         </button>
