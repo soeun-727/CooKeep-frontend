@@ -1,6 +1,7 @@
-import optionIcon from "@/assets/mycookeep/record/options.svg";
-import { ComponentType, CSSProperties, SVGProps } from "react";
+import { CSSProperties, ComponentType, SVGProps } from "react";
 import { createPortal } from "react-dom";
+
+import optionIcon from "@/assets/mycookeep/record/options.svg";
 
 interface RecipeOptionMenuProps {
   isOpen: boolean;

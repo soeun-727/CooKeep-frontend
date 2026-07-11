@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 import { AiRecipeSessionItem } from "@/api/aiSession";
 import { useRecipeStore } from "@/stores/useRecipeStore";
@@ -139,7 +139,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       <div className="shadow-container pointer-events-none fixed inset-0 z-[50] flex justify-center">
         <div className="relative h-full w-full max-w-[450px] overflow-hidden">
           <div
-            className={`rounded-tr-L rounded-br-L bg-gray-0 pointer-events-auto absolute left-0 h-full w-80 ${translateClasses}`}
+            className={`rounded-tr-L rounded-br-L bg-gray-0 pointer-events-auto absolute left-0 h-full w-80 transform transition-transform duration-300 ease-in-out ${translateClasses}`}
           >
             <div className="no-scrollbar flex h-full flex-1 flex-col gap-6 overflow-y-auto px-4 py-15">
               {/* 콘텐츠 영역 */}
