@@ -13,6 +13,8 @@ interface TextFieldProps {
   rightIcon?: React.ReactNode;
   autoComplete?: string;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
 export default function TextField({
@@ -28,6 +30,8 @@ export default function TextField({
   rightIcon,
   autoComplete,
   onBlur,
+  inputRef,
+  onFocus,
 }: TextFieldProps) {
   const message = errorMessage || successMessage;
 
@@ -75,6 +79,8 @@ export default function TextField({
           disabled={disabled}
           autoComplete={autoComplete}
           onChange={e => onChange(e.target.value)}
+          ref={inputRef}
+          onFocus={onFocus}
           onBlur={onBlur}
           className="typo-m text-gray-80 min-w-0 flex-1 self-stretch overflow-hidden bg-transparent text-ellipsis whitespace-nowrap placeholder:text-gray-50 focus:outline-none disabled:cursor-not-allowed"
         />
