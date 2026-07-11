@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-import { confetti, mainLogo } from "@/assets/index";
-import Google from "@/assets/login/Google.svg";
-import Line from "@/assets/login/Horizontal-Line.png";
-import Kakao from "@/assets/login/Kakao.svg";
+import confetti from "@/assets/signup/confetti.svg";
+import mainLogo from "@/assets/logos/mainLogo.svg";
+import Google from "@/assets/login/Google.svg?react";
+import Kakao from "@/assets/login/Kakao.svg?react";
+
 import chars from "@/assets/onboarding/Frame 781.svg";
 
 const CHAR = [chars];
@@ -77,17 +78,19 @@ export default function Initial() {
         <div className="mt-4 flex items-center justify-center gap-3">
           {/* 간편 로그인 미구현  */}
           <button onClick={handleGoogleLogin}>
-            <img src={Google} alt="구글 로고" className="" />
+            <Google className="h-11 w-11" />
           </button>
 
           <button onClick={handleKakaoLogin}>
-            <img src={Kakao} alt="카카오 로고" className="" />
+            <Kakao className="h-11 w-11" />
           </button>
         </div>
-        <div className="flex items-center justify-center gap-[22px] py-[18px]">
-          <img src={Line} alt="구분선" />
+        <div className="flex items-center justify-center gap-[9px] py-[18px]">
+          <div className="bg-gray-30 h-[1.5px] w-[42px]" />
+
           <span className="typo-caption text-gray-50">또는</span>
-          <img src={Line} alt="구분선" />
+
+          <div className="bg-gray-30 h-[1.5px] w-[42px]" />
         </div>
         <button onClick={() => navigate("/login")}>
           <span className="typo-caption text-gray-50">이메일로 로그인하기</span>
