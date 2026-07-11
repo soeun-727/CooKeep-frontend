@@ -11,7 +11,6 @@ import {
 } from "@/api/myRecipe";
 import imageCompression from "browser-image-compression";
 
-import optionIcon from "@/assets/mycookeep/record/options.svg";
 import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
 import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
 
@@ -40,9 +39,7 @@ export default function RecordDetailPage() {
     undefined,
   );
   const [isImageUploading, setIsImageUploading] = useState(false);
-  // 임시 공개여부 state 추가
   const [tempIsPublic, setTempIsPublic] = useState<boolean>(false);
-  // 사진모달
   const [showPhotoRewardModal, setShowPhotoRewardModal] = useState(false);
 
   useEffect(() => {
@@ -54,8 +51,8 @@ export default function RecordDetailPage() {
           setRecord(response.data);
           setTempTitle(response.data.title);
           setTempDescription(response.data.description || "");
-          setCurrentImageUrl(response.data.recipeImageUrl || undefined); // ← 추가
-          setTempIsPublic(response.data.isPublic); // ← 추가
+          setCurrentImageUrl(response.data.recipeImageUrl || undefined);
+          setTempIsPublic(response.data.isPublic);
         }
       } catch (error) {
         console.error("레시피 상세 조회 실패:", error);
@@ -69,13 +66,11 @@ export default function RecordDetailPage() {
     setIsMenuOpen(false);
   };
 
-  // 1. 드롭다운 메뉴에서 삭제 버튼 클릭 시
   const handleDeleteClick = () => {
     setIsMenuOpen(false);
-    setIsDeleteModalOpen(true); // 삭제 확인 모달 열기
+    setIsDeleteModalOpen(true);
   };
 
-  // 2. 모달에서 '네'를 눌렀을 때 실행될 실제 삭제 로직
   const handleConfirmDelete = async () => {
     if (!recordId || isSubmitting) return;
 
@@ -93,17 +88,15 @@ export default function RecordDetailPage() {
     }
   };
 
-  // 1. [수정 완료] 버튼 클릭 시 모달만 먼저 띄움
   const handleUpdateClick = () => {
     const imageChanged =
       currentImageUrl !== (record?.recipeImageUrl || undefined);
-    const visibilityChanged = tempIsPublic !== record?.isPublic; // ← 추가
-    // 변경사항이 아예 없으면 모달 안 띄우고 바로 종료 처리 가능
+    const visibilityChanged = tempIsPublic !== record?.isPublic;
     if (
       tempTitle === record?.title &&
       tempDescription === (record?.description || "") &&
       !imageChanged &&
-      !visibilityChanged // ← 추가
+      !visibilityChanged
     ) {
       setIsEditing(false);
       return;
@@ -111,7 +104,6 @@ export default function RecordDetailPage() {
     setIsUpdateModalOpen(true);
   };
 
-  // 2. 모달에서 '네'를 눌렀을 때 실행될 실제 수정 API 로직
   const handleConfirmUpdate = async () => {
     if (!record || !recordId) return;
     // const wasNoImage = !record.recipeImageUrl;
@@ -128,7 +120,6 @@ export default function RecordDetailPage() {
         ...(isImageChanged && { recipeImageUrl: currentImageUrl }),
         ...(wasImageDeleted && { deleteRecipeImage: true }),
       });
-      // 공개여부가 바뀐 경우에만 추가 API 호출
       if (tempIsPublic !== record.isPublic) {
         await updateRecipeVisibility(Number(recordId), tempIsPublic);
       }
@@ -180,14 +171,13 @@ export default function RecordDetailPage() {
   };
 
   const handleImageDelete = () => {
-    setCurrentImageUrl(undefined); // UI에서만 제거, 실제 삭제는 수정 완료 시 서버가 처리
+    setCurrentImageUrl(undefined);
   };
 
   if (!record) return null;
 
   return (
     <div className="no-scrollbar bg-background flex h-full flex-1 flex-col overflow-y-auto">
-      {/* 3. 헤더 영역: 스크롤 시 상단에 고정되도록 sticky 유지 */}
       <div className="bg-background sticky top-0 z-[120] w-full">
         <div className="relative mx-auto flex w-full max-w-[450px] items-center justify-center">
           <div className="absolute left-0 w-full">
@@ -207,12 +197,12 @@ export default function RecordDetailPage() {
         <div className="flex flex-col gap-[10px] pt-[51px]">
           <RecordViewImageCard
             title={tempTitle}
-            imageSrc={currentImageUrl} // ← record.recipeImageUrl 대신
+            imageSrc={currentImageUrl}
             isEditing={isEditing}
-            isImageUploading={isImageUploading} // ← 추가
+            isImageUploading={isImageUploading}
             onChangeTitle={newTitle => setTempTitle(newTitle)}
-            onImageFileSelect={handleImageFileSelect} // ← 추가
-            onImageDelete={handleImageDelete} // ← 추가
+            onImageFileSelect={handleImageFileSelect}
+            onImageDelete={handleImageDelete}
           />
 
           {/* 레시피 내용 */}
@@ -262,7 +252,7 @@ export default function RecordDetailPage() {
               {/* 나만 보기 버튼 */}
               <button
                 disabled={!isEditing}
-                onClick={() => setTempIsPublic(false)} // ← 즉시 API 말고 임시저장
+                onClick={() => setTempIsPublic(false)}
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
@@ -274,7 +264,7 @@ export default function RecordDetailPage() {
               {/* 쿠킵스 공개 버튼 */}
               <button
                 disabled={!isEditing}
-                onClick={() => setTempIsPublic(true)} // ← 즉시 API 말고 임시저장
+                onClick={() => setTempIsPublic(true)}
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
