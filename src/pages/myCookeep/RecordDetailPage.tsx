@@ -22,6 +22,7 @@ import RecordViewImageCard from "@/components/myCookeep/record/RecordViewImageCa
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
+import RecipeOptionMenu from "@/components/ui/OptionsMenu";
 
 export default function RecordDetailPage() {
   const navigate = useNavigate();
@@ -193,36 +194,12 @@ export default function RecordDetailPage() {
             <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
           </div>
           <div className="absolute top-2 right-2 flex items-center">
-            {isMenuOpen && (
-              <div className="bg-gray-0 animate-fadeIn shadow-plant absolute top-10 right-2 z-50 flex h-[72px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-[10px]">
-                {/* 수정하기 버튼 */}
-                <button
-                  onClick={handleEdit}
-                  className="typo-caption h-[34px] w-full !font-semibold transition-colors hover:bg-gray-50"
-                >
-                  수정하기
-                </button>
-
-                {/* 구분선 */}
-                <div className="bg-gray-10 h-[0.5px] w-[80px]" />
-
-                {/* 삭제하기 버튼 */}
-                <button
-                  onClick={handleDeleteClick}
-                  className="typo-caption h-[34px] w-full !font-semibold transition-colors hover:bg-gray-50"
-                >
-                  삭제하기
-                </button>
-              </div>
-            )}
-
-            {/* 옵션 아이콘 버튼 */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative z-[110] flex h-9 w-9 items-center justify-center"
-            >
-              <img src={optionIcon} className="w-1" alt="option" />
-            </button>
+            <RecipeOptionMenu
+              isOpen={isMenuOpen}
+              onToggle={() => setIsMenuOpen(!isMenuOpen)}
+              onEdit={handleEdit}
+              onDelete={handleDeleteClick}
+            />
           </div>
         </div>
       </div>

@@ -31,9 +31,7 @@ export default function TextField({
 }: TextFieldProps) {
   return (
     <div className="w-full">
-      {label && (
-        <label className="mb-1 block text-sm font-medium">{label}</label>
-      )}
+      {label && <label className="typo-m mb-1 block">{label}</label>}
 
       <div className="relative">
         {leftIcon && (
@@ -50,7 +48,7 @@ export default function TextField({
           autoComplete={autoComplete}
           onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`bg-gray-0 text-gray-80 placeholder:text-gray-30 disabled:bg-gray-10 typo-m h-[48px] w-full rounded-[6px] border px-3 py-2 focus:outline-none ${leftIcon ? "pl-11" : ""} ${rightIcon ? "pr-10" : ""} ${
+          className={`bg-gray-0 text-gray-80 placeholder:text-gray-30 disabled:bg-gray-10 typo-m rounded-M h-12 w-full border p-3 focus:outline-none ${leftIcon ? "pl-11" : ""} ${rightIcon ? "pr-10" : ""} ${
             errorMessage
               ? "border-semantic-negative"
               : successMessage

@@ -1,10 +1,12 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createPortal } from "react-dom";
 
 import { AiRecipeSessionItem } from "@/api/aiSession";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
 import { SearchIcon } from "@/assets/index";
+import XIcon from "@/assets/recipe/select/x.svg?react";
 
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import TextField from "@/components/ui/TextField";
@@ -91,89 +93,107 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         .filter(item =>
           item.title.toLowerCase().includes(searchTerm.toLowerCase()),
         )
-        .map(item => (
-          <Recipe
-            key={item.sessionId}
-            isLiked={isLiked}
-            name={item.title}
-            searchTerm={searchTerm}
-            onLike={() => toggleLike(item.sessionId)}
-            onRename={newTitle => renameRecipe(item.sessionId, newTitle)}
-            onDelete={() => {
-              // 삭제 버튼 클릭 시 모달 오픈 및 데이터 세팅
-              setSelectedRecipe({ id: item.sessionId, name: item.title });
-              setIsDeleteModalOpen(true);
-            }}
-            onSelect={() => {
-              onClose();
-              navigate(`/recipe/result/${item.sessionId}`);
-            }}
-          />
-        ))}
+        .map(item => {
+          const isCurrentActive = window.location.pathname.includes(
+            String(item.sessionId),
+          );
+          return (
+            <Recipe
+              key={item.sessionId}
+              isLiked={isLiked}
+              name={item.title}
+              searchTerm={searchTerm}
+              isActive={isCurrentActive}
+              onLike={() => toggleLike(item.sessionId)}
+              onRename={newTitle => renameRecipe(item.sessionId, newTitle)}
+              onDelete={() => {
+                setSelectedRecipe({ id: item.sessionId, name: item.title });
+                setIsDeleteModalOpen(true);
+              }}
+              onSelect={() => {
+                onClose();
+                navigate(`/recipe/result/${item.sessionId}`);
+              }}
+            />
+          );
+        })}
     </div>
   );
 
   if (!isVisible) return null;
-  return (
+  const portalTarget = document.getElementById("sidebar-portal");
+
+  if (!portalTarget) {
+    console.warn("HTML에 #sidebar-portal 엘리먼트가 존재하지 않습니다.");
+    return null;
+  }
+
+  return createPortal(
     <>
       {/* 1. 배경 오버레이 */}
       <div
-        className={`bg-black-overlay fixed inset-0 z-[120] transition-opacity duration-300 ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
-        onClick={onClose}
+        className={`bg-black-overlay fixed inset-0 z-[50] ${isOpen ? "opacity-100" : "pointer-events-none opacity-0"}`}
       />
 
       {/* 2. 사이드바 본체 */}
-      <div className="pointer-events-none fixed inset-0 z-[130] flex justify-center">
+      <div className="shadow-container pointer-events-none fixed inset-0 z-[50] flex justify-center">
         <div className="relative h-full w-full max-w-[450px] overflow-hidden">
           <div
-            className={`pointer-events-auto absolute top-[22px] left-0 h-[calc(100%-78px)] w-[342px] transform rounded-tr-[10px] rounded-br-[10px] bg-[#FFFFFFE3] transition-transform duration-300 ease-in-out ${translateClasses}`}
+            className={`rounded-tr-L rounded-br-L bg-gray-0 pointer-events-auto absolute left-0 h-full w-80 ${translateClasses}`}
           >
-            <div className="flex h-full flex-col">
+            <div className="no-scrollbar flex h-full flex-1 flex-col gap-6 overflow-y-auto px-4 py-15">
               {/* 콘텐츠 영역 */}
-              <div className="no-scrollbar flex-1 overflow-y-auto px-[26px] py-[35px]">
-                <div className="w-[290px]">
-                  <div
-                    className={`bg-gray-0 [&_input]:bg-gray-0 [&_input]:text-gray-30 [&_input::placeholder]:text-gray-30 shadow-search rounded-[6px] [&_>_div]:!w-full [&_input]:border-none [&_input]:text-[14px] [&_input]:leading-[20px] [&_input]:font-medium [&_input]:outline-none [&_p]:hidden`}
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-between px-1">
+                  <p className="typo-h3 text-gray-80">레시피 기록</p>
+                  <button
+                    onClick={onClose}
+                    className="flex h-7 w-7 items-center justify-end"
                   >
-                    <TextField
-                      value={searchTerm}
-                      placeholder="레시피를 검색하세요"
-                      onChange={value => setSearchTerm(value)}
-                      rightIcon={
-                        <SearchIcon className="text-gray-30 h-6 w-6" />
-                      }
-                    />
+                    <XIcon className="h-4 w-4" />
+                  </button>
+                </div>
+                <div
+                  className={`bg-gray-10 focus-within:bg-gray-0 [&_input]:text-gray-80 rounded-M [&_input]:border-gray-10 [&_input]:bg-transparent [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden`}
+                >
+                  <TextField
+                    value={searchTerm}
+                    placeholder="레시피를 검색하세요"
+                    onChange={value => setSearchTerm(value)}
+                    rightIcon={<SearchIcon className="h-6 w-6 text-gray-50" />}
+                  />
+                </div>
+              </div>
+
+              <div className="mt-2 flex w-full flex-col items-center">
+                {isLoading && (
+                  <div className="py-4 text-center text-sm text-gray-400">
+                    불러오는 중...
                   </div>
-                </div>
-                <div className="mt-2 flex w-full flex-col items-center">
-                  {isLoading && (
-                    <div className="py-4 text-center text-sm text-gray-400">
-                      불러오는 중...
-                    </div>
-                  )}
+                )}
 
-                  {error && (
-                    <div className="py-4 text-center text-sm text-red-400">
-                      {error}
-                    </div>
-                  )}
+                {error && (
+                  <div className="py-4 text-center text-sm text-red-400">
+                    {error}
+                  </div>
+                )}
 
-                  {pinned.length + sessions.length > 0 ? (
-                    <>
-                      {pinned.length > 0 && renderRecipeList(pinned, true)}
+                {pinned.length + sessions.length > 0 ? (
+                  <div className="flex w-full flex-col justify-start">
+                    <p className="typo-l-strong px-1">찜한 레시피</p>
+                    {pinned.length > 0 && renderRecipeList(pinned, true)}
 
-                      {pinned.length > 0 && sessions.length > 0 && (
-                        <div className="h-6" />
-                      )}
-
-                      {sessions.length > 0 && renderRecipeList(sessions, false)}
-                    </>
-                  ) : (
-                    <div className="py-20 text-center text-sm text-gray-400">
-                      저장된 레시피가 없습니다.
-                    </div>
-                  )}
-                </div>
+                    {pinned.length > 0 && sessions.length > 0 && (
+                      <div className="h-6" />
+                    )}
+                    <p className="typo-l-strong px-1">다른 레시피</p>
+                    {sessions.length > 0 && renderRecipeList(sessions, false)}
+                  </div>
+                ) : (
+                  <div className="py-20 text-center text-sm text-gray-400">
+                    저장된 레시피가 없습니다.
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -204,6 +224,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           confirmText="확인"
         />
       </div>
-    </>
+    </>,
+    portalTarget,
   );
 }

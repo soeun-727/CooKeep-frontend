@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-
-import deleteIcon from "@/assets/recipe/delete.svg";
+import KebabIcon from "@/assets/mycookeep/record/options.svg?react";
 import HeartIcon from "@/assets/recipe/heart.svg?react";
-import rename from "@/assets/recipe/rename.svg";
+import RecipeOptionMenu from "@/components/ui/OptionsMenu";
 
 interface RecipeProps {
   isLiked: boolean;
   name: string;
   searchTerm?: string;
+  isActive?: boolean;
   onLike?: () => void;
   onRename?: (newName: string) => void;
   onDelete?: () => void;
@@ -20,12 +20,15 @@ export default function Recipe({
   searchTerm = "",
   onLike,
   onRename,
+  isActive,
   onDelete,
   onSelect,
 }: RecipeProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(name);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
 
   useEffect(() => {
     if (isEditing) {
@@ -38,6 +41,17 @@ export default function Recipe({
       onRename?.(editValue);
     }
     setIsEditing(false);
+  };
+
+  const handleToggleMenu = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!isMenuOpen) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMenuPosition({
+        top: rect.bottom + window.scrollY + 4,
+        left: rect.left + window.scrollX - 30,
+      });
+    }
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const highlightText = (text: string, highlight: string) => {
@@ -55,11 +69,10 @@ export default function Recipe({
   };
 
   return (
-    <div className="mx-auto flex h-[34px] w-[277px] items-center justify-between">
-      <button onClick={onLike} className="flex-shrink-0 px-2">
-        {/* 변경된 부분: isLiked 상태에 따라 fill(채우기) 색상과 테두리 색상을 동적으로 부여 */}
+    <div className="mx-auto flex w-full items-center justify-between px-3 py-1">
+      <button onClick={onLike} className="h-8 w-8 flex-shrink-0">
         <HeartIcon
-          className={`stroke-gray-10 h-[18px] w-[18px] fill-current stroke-[2px] ${isLiked ? "text-gray-30" : "text-transparent"}`}
+          className={`stroke-gray-10 h-4 w-[18px] fill-current stroke-[2px] ${isLiked ? "text-gray-30" : "text-transparent"}`}
         />
       </button>
 
@@ -77,26 +90,40 @@ export default function Recipe({
               setIsEditing(false);
             }
           }}
-          className="typo-body2 border-gray-30 bg-gray-0 mx-2 min-w-0 flex-1 rounded-sm border px-1 outline-none"
+          className="typo-l border-gray-30 bg-gray-0 mx-2 min-w-0 flex-1 rounded-sm border px-1 outline-none"
         />
       ) : (
         <button onClick={onSelect} className="min-w-0 flex-1">
-          <span className="typo-body2 block truncate px-2 text-left">
+          <span className="typo-l block truncate text-left">
             {highlightText(name, searchTerm)}
           </span>
         </button>
       )}
-
-      <button
-        onClick={() => setIsEditing(true)}
-        className="flex-shrink-0 px-[10px]"
-      >
-        <img src={rename} alt="rename" className="w-[14px]" />
-      </button>
-
-      <button onClick={onDelete} className="flex-shrink-0 px-[10px]">
-        <img src={deleteIcon} alt="delete" className="w-[14px]" />
-      </button>
+      {isActive && (
+        <span className="text-green-deep typo-caption pt-[2px] whitespace-nowrap select-none">
+          현재 보는 중
+        </span>
+      )}
+      <RecipeOptionMenu
+        isOpen={isMenuOpen}
+        onToggle={handleToggleMenu}
+        onEdit={() => {
+          setIsEditing(true);
+          setIsMenuOpen(false);
+        }}
+        onDelete={() => {
+          onDelete?.();
+          setIsMenuOpen(false);
+        }}
+        firstOption="이름 바꾸기"
+        Icon={KebabIcon}
+        iconClassName="text-gray-30 w-full"
+        menuStyle={{
+          position: "fixed",
+          top: `${menuPosition.top}px`,
+          left: `${menuPosition.left}px`,
+        }}
+      />
     </div>
   );
 }

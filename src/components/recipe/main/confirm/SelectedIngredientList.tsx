@@ -56,9 +56,9 @@ export default function SelectedIngredientList({
               {/* 삭제 버튼 */}
               <button
                 onClick={() => onRemove(item.id)}
-                className="absolute top-[1px] right-1 h-6 w-6"
+                className="absolute top-0 right-0 flex h-6 w-6 items-start justify-end px-1 py-[3px]"
               >
-                <XIcon className="h-full w-full" />
+                <XIcon className="h-2 w-2" />
               </button>
 
               {/* 이미지 + 이름 */}
