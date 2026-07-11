@@ -37,13 +37,13 @@ export default function RecipeOptionMenu({
         createPortal(
           <>
             <div
-              className="fixed inset-0 z-[160] cursor-default"
+              className="fixed inset-0 z-[150] cursor-default"
               onClick={e => onToggle(e as any)}
             />
             <div
               onClick={e => e.stopPropagation()}
               style={menuStyle}
-              className={`bg-gray-0/90 shadow-container rounded-L absolute z-[150] flex w-31 flex-col overflow-hidden py-2 ${menuClassName}`}
+              className={`bg-gray-0/90 shadow-container rounded-L absolute z-[160] flex w-31 flex-col overflow-hidden py-2 ${menuClassName}`}
             >
               {/* 수정하기 버튼 */}
               <button
