@@ -22,17 +22,22 @@ export default function RecipeHeader({
   return (
     <>
       <header
-        className={`fixed top-0 right-0 left-0 z-50 mx-auto flex h-10 max-w-[450px] items-center px-4 py-2 ${transparent ? "bg-transparent" : "bg-background"} `}
+        className={`fixed relative top-0 right-0 left-0 z-50 mx-auto flex h-10 w-full max-w-[450px] items-center px-4 py-2 ${transparent ? "bg-transparent" : "bg-background"} `}
       >
-        {/* 사이드바 버튼 */}
         <button
           onClick={toggleSidebar}
-          className="flex h-10 items-center justify-center"
+          className="relative z-10 flex h-10 cursor-pointer items-center justify-center"
         >
           <MenuIcon className="h-full w-full" />
         </button>
 
-        {title && <h1 className="text-gray-80 typo-l-strong">{title}</h1>}
+        {title && (
+          <div className="pointer-events-none absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+            <h1 className="text-gray-80 typo-l-strong whitespace-nowrap">
+              {title}
+            </h1>
+          </div>
+        )}
       </header>
 
       {/* 사이드바 */}

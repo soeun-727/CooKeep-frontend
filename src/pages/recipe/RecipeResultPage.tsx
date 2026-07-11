@@ -63,7 +63,7 @@ export default function RecipeResultPage() {
 
       <div
         ref={scrollRef}
-        className="no-scrollbar flex flex-1 flex-col gap-9 overflow-y-auto px-4 pt-[75px]"
+        className="no-scrollbar flex flex-1 flex-col gap-9 overflow-y-auto px-4 pt-13"
       >
         {recipeHistory.map((data, index) => {
           const recipe = data.recipe;
