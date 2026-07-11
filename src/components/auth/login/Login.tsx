@@ -1,13 +1,14 @@
 import AuthHeader from "../AuthHeader";
-import LoginFooter from "./LoginFooter";
 import LoginMain from "./LoginMain";
 
 export default function Login() {
   return (
-    <div className="min-h-screen">
+    <div className="flex min-h-dvh flex-col">
       <AuthHeader />
-      <LoginMain />
-      <LoginFooter />
+
+      <main className="flex flex-1 flex-col px-4 pt-[160px]">
+        <LoginMain />
+      </main>
     </div>
   );
 }
