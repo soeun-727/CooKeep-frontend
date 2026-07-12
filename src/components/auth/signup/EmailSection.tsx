@@ -53,12 +53,12 @@ export default function EmailSection() {
       setIsSending(true);
       // 이거 추가
       useSignupStore.getState().setEmail(email);
+
+      await sendCode();
       setCode("");
       setCodeError(undefined);
       setTimeLeft(300);
       setTimerActive(true);
-
-      await sendCode();
       setModalType("send");
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
@@ -97,83 +97,87 @@ export default function EmailSection() {
   };
 
   return (
-    <div className="mx-auto w-[361px] pt-[241px]">
-      <div className="relative w-[361px]">
-        <div className="typo-h1">이메일 인증</div>
-        <div className="relative mt-[12px]">
-          <TextField
-            value={email}
-            onChange={setEmail}
-            placeholder="이메일 주소 입력"
-            disabled={isVerified || isCodeSent}
-            errorMessage={
-              !isEmailValid && email ? "잘못된 이메일 주소입니다" : undefined
+    <main className="flex w-full flex-1 flex-col px-4 pt-[40px]">
+      <div className="mt-[120px] flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
+          <div className="w-full px-1 py-2">
+            <h1 className="typo-h2">이메일 인증</h1>
+          </div>
+          <div>
+            <TextField
+              value={email}
+              onChange={setEmail}
+              placeholder="이메일 주소 입력"
+              disabled={isVerified || isCodeSent}
+              errorMessage={
+                !isEmailValid && email ? "잘못된 이메일 주소입니다" : undefined
+              }
+              rightIcon={
+                <button
+                  type="button"
+                  onClick={isCodeSent ? handleSendCode : handleSendCode}
+                  disabled={!isEmailValid || isSending}
+                  className={`typo-caption text-gray-0 rounded-full px-3 py-1.5 whitespace-nowrap transition-colors disabled:cursor-not-allowed ${
+                    isEmailValid ? "bg-gray-80" : "bg-gray-30"
+                  }`}
+                >
+                  {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
+                </button>
+              }
+            />
+
+            <TextField
+              value={code}
+              onChange={value => {
+                const onlyNumber = value.replace(/[^0-9]/g, "");
+                setCode(onlyNumber);
+                if (!onlyNumber) setCodeError(undefined);
+                else if (onlyNumber.length !== 6)
+                  setCodeError("인증번호를 다시 입력해 주세요");
+                else setCodeError(undefined);
+              }}
+              placeholder="인증번호 입력"
+              disabled={!isCodeSent || isVerified}
+              errorMessage={codeError}
+            />
+          </div>
+
+          <Button
+            size="L"
+            disabled={
+              !isCodeSent || isVerified || timeLeft === 0 || code.length !== 6
             }
-            rightIcon={
-              <button
-                type="button"
-                onClick={isCodeSent ? handleSendCode : handleSendCode}
-                disabled={!isEmailValid || isSending}
-                className={`typo-caption text-gray-0 h-[24px] w-[102px] rounded-full ${isEmailValid ? "bg-gray-80" : "bg-gray-30"} disabled:cursor-not-allowed`}
-              >
-                {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
-              </button>
-            }
-          />
+            onClick={handleVerify}
+          >
+            <span className="typo-button">
+              인증하기{" "}
+              {isCodeSent && !isVerified && `(${formatTime(timeLeft)})`}
+            </span>
+          </Button>
+
+          <button
+            type="button"
+            onClick={() => setModalType("help")}
+            className="typo-m w-full text-center text-gray-50 underline"
+          >
+            인증 번호가 발송되지 않나요?
+          </button>
         </div>
+
+        {modalType && (
+          <EmailAuthModal
+            type={modalType}
+            email={email}
+            onConfirm={() => {
+              if (modalType === "verify") {
+                useSignupStore.getState().setIsVerified(true);
+              }
+              setModalType(null);
+            }}
+            onLogin={() => navigate("/login")}
+          />
+        )}
       </div>
-
-      <div className="mt-[5px] w-[361px]">
-        <TextField
-          value={code}
-          onChange={value => {
-            const onlyNumber = value.replace(/[^0-9]/g, "");
-            setCode(onlyNumber);
-            if (!onlyNumber) setCodeError(undefined);
-            else if (onlyNumber.length !== 6)
-              setCodeError("인증번호를 다시 입력해 주세요");
-            else setCodeError(undefined);
-          }}
-          placeholder="인증번호 입력"
-          disabled={!isCodeSent || isVerified}
-          errorMessage={codeError}
-        />
-
-        <Button
-          size="S"
-          disabled={
-            !isCodeSent || isVerified || timeLeft === 0 || code.length !== 6
-          }
-          onClick={handleVerify}
-          className="mt-[31px]"
-        >
-          <span className="typo-button">
-            인증하기 {isCodeSent && !isVerified && `(${formatTime(timeLeft)})`}
-          </span>
-        </Button>
-
-        <button
-          type="button"
-          onClick={() => setModalType("help")}
-          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-gray-50 underline"
-        >
-          인증 번호가 발송되지 않나요?
-        </button>
-      </div>
-
-      {modalType && (
-        <EmailAuthModal
-          type={modalType}
-          email={email}
-          onConfirm={() => {
-            if (modalType === "verify") {
-              useSignupStore.getState().setIsVerified(true);
-            }
-            setModalType(null);
-          }}
-          onLogin={() => navigate("/login")}
-        />
-      )}
-    </div>
+    </main>
   );
 }

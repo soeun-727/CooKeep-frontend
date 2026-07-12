@@ -27,10 +27,7 @@ export default function AgreementDetailPage() {
       />
       <div className="no-scrollbar flex-1 overflow-y-auto px-4 pt-[68px]">
         <div className="mx-auto flex w-full max-w-[450px] flex-col gap-3 pb-[34px]">
-          <AgreementReadCard
-            agreement={agreement}
-            // notice={AGREEMENT_NOTICE[agreement.key]}
-          />
+          <AgreementReadCard agreement={agreement} />
           {agreement.notice && (
             <div className="flex flex-col items-start gap-2 self-stretch">
               {agreement.notice.split("\n").map((line, index) => (

@@ -15,7 +15,7 @@ export default function Signup() {
   }, [resetSignup]);
 
   return (
-    <div className="flex h-[100dvh] flex-col items-center overflow-hidden bg-gray-50">
+    <div className="flex h-[100dvh] flex-col items-center overflow-hidden">
       {!hideHeader && <AuthHeader />}
 
       <SignupForm setHideHeader={setHideHeader} />
