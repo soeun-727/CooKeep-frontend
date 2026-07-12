@@ -8,7 +8,7 @@ export default function HelpCenterSection() {
   const navigate = useNavigate();
 
   const handleFeedbackClick = () => {
-    // TODO: 피드백 폼 URL 연결 예정
+    window.open("https://forms.gle/G8FLBSARMgwmE14WA", "_blank");
   };
 
   return (
