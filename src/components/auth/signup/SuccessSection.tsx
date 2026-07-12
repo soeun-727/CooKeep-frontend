@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import Char from "@/assets/character/congrats_char.svg?react";
-import Shadow from "@/assets/character/char_shadow.svg";
-import Chatbox from "@/assets/signup/chatbox.svg?react";
-import Lightbulb from "@/assets/signup/lightbulb.svg?react";
+import shadow from "@/assets/character/char_shadow.svg";
+import chatbox from "@/assets/signup/chatbox.svg";
+import lightbulb from "@/assets/signup/lightbulb.svg";
 
 import Button from "@/components/ui/Button";
 
@@ -28,14 +28,22 @@ export default function SuccessSection() {
         </div>
       </div>
 
-      <Chatbox className="pointer-events-none absolute -right-1 bottom-[250px] w-[55px] scale-[5]" />
-      <Lightbulb className="pointer-events-none absolute bottom-[151px] -left-1 w-[91px] scale-[7]" />
+      <img
+        src={chatbox}
+        alt=""
+        className="pointer-events-none absolute -right-1 bottom-[250px] w-[55px]"
+      />
 
+      <img
+        src={lightbulb}
+        alt=""
+        className="pointer-events-none absolute bottom-[151px] -left-1 w-[91px]"
+      />
       {/* 캐릭터 + 버튼: fixed 대신 mt-auto로 하단에 붙이기 */}
       <div className="mt-auto flex w-full flex-col items-center gap-20">
         <div className="flex flex-col items-center">
           <Char className="h-[252px] w-[197px]" />
-          <img src={Shadow} className="mt-3 w-[154px] brightness-95" />
+          <img src={shadow} className="mt-3 w-[154px] brightness-95" />
         </div>
 
         <div className="background-image-bottom-fade flex w-full flex-col items-center px-4 pt-6 pb-[34px]">
