@@ -115,6 +115,9 @@ export default function EditEmailPage() {
             alert("이메일 변경 중 오류가 발생했습니다.");
           }
         }
+        reset(); // ★ 실패 시에도 store 초기화 → 이메일 입력창 다시 활성화
+        setTimerActive(false);
+        setCode("");
       }
     } else {
       if (result.errorStatus === 400)
@@ -138,45 +141,49 @@ export default function EditEmailPage() {
               <h1 className="typo-h2">이메일 인증</h1>
             </div>
 
-            <TextField
-              value={email}
-              onChange={val => setEmail(val)}
-              placeholder="새 이메일 주소 입력"
-              disabled={isCodeSent}
-              errorMessage={
-                email && !isEmailValid ? "잘못된 이메일 주소입니다" : undefined
-              }
-              rightIcon={
-                <button
-                  type="button"
-                  onClick={handleSendCode}
-                  disabled={!isEmailValid || isSending}
-                  className={`typo-caption text-gray-0 rounded-full px-3 py-1.5 whitespace-nowrap transition-colors disabled:cursor-not-allowed ${
-                    isEmailValid ? "bg-gray-80" : "bg-gray-30"
-                  } `}
-                >
-                  {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
-                </button>
-              }
-            />
-
-            <TextField
-              value={code}
-              onChange={v => {
-                const onlyNumber = v.replace(/[^0-9]/g, "");
-                setCode(onlyNumber);
-                if (!onlyNumber) {
-                  setCodeError(undefined);
-                } else if (onlyNumber.length !== 6) {
-                  setCodeError("인증번호를 다시 입력해 주세요");
-                } else {
-                  setCodeError(undefined);
+            <div className="flex w-full flex-col">
+              <TextField
+                value={email}
+                onChange={val => setEmail(val)}
+                placeholder="새 이메일 주소 입력"
+                disabled={isCodeSent}
+                errorMessage={
+                  email && !isEmailValid
+                    ? "잘못된 이메일 주소입니다"
+                    : undefined
                 }
-              }}
-              placeholder="인증번호 입력"
-              disabled={!isCodeSent || isVerified}
-              errorMessage={codeError}
-            />
+                rightIcon={
+                  <button
+                    type="button"
+                    onClick={handleSendCode}
+                    disabled={!isEmailValid || isSending}
+                    className={`typo-caption text-gray-0 rounded-full px-3 py-1.5 whitespace-nowrap transition-colors disabled:cursor-not-allowed ${
+                      isEmailValid ? "bg-gray-80" : "bg-gray-30"
+                    } `}
+                  >
+                    {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
+                  </button>
+                }
+              />
+
+              <TextField
+                value={code}
+                onChange={v => {
+                  const onlyNumber = v.replace(/[^0-9]/g, "");
+                  setCode(onlyNumber);
+                  if (!onlyNumber) {
+                    setCodeError(undefined);
+                  } else if (onlyNumber.length !== 6) {
+                    setCodeError("인증번호를 다시 입력해 주세요");
+                  } else {
+                    setCodeError(undefined);
+                  }
+                }}
+                placeholder="인증번호 입력"
+                disabled={!isCodeSent || isVerified}
+                errorMessage={codeError}
+              />
+            </div>
 
             <Button
               size="L"

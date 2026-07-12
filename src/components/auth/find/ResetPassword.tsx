@@ -70,7 +70,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="bg-background flex min-h-screen flex-col">
+    <div className="bg-background flex min-h-screen w-full flex-col">
       <main className="flex flex-1 flex-col px-4 pt-[40px]">
         <div className="mt-[120px] flex flex-col gap-6">
           <div className="flex flex-col items-center gap-4">
