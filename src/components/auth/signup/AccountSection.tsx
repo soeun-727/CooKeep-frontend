@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { useSignupStore } from "@/stores/useSignupStore";
 
-import { blankCheck, CheckboxCheckIcon } from "@/assets/index";
+import { CheckboxCheckIcon, blankCheck } from "@/assets/index";
 import pwIcon from "@/assets/login/key.svg";
 import pwImage from "@/assets/login/pw.svg";
 import arrowIcon from "@/assets/signup/arrowright.svg";

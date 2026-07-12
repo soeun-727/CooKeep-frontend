@@ -39,7 +39,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
           <img
             src={isSelected ? bagelSelected : bagel}
             alt="bagel"
-            className={`cursor-pointer transition-all ${isDimmed && !isSelected ? "relative z-20" : ""}`}
+            className={`cursor-pointer ${isDimmed && !isSelected ? "relative z-20" : ""}`}
             onClick={e => {
               if (!isDimmed) {
                 setIsDimmed(true);

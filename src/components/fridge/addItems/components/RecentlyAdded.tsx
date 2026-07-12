@@ -16,7 +16,7 @@ export default function RecentlyAdded() {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className={`relative z-30 flex h-6 w-[139px] items-center justify-center gap-2 rounded-t-[15px] transition-all duration-300 ${
+          className={`relative z-30 flex h-6 w-[139px] items-center justify-center gap-2 rounded-t-[15px] duration-300 ${
             isOpen
               ? "bg-gray-0 shadow-recent-t" // 메뉴바와 연결되는 느낌의 그림자
               : "bg-gray-0"
@@ -30,7 +30,7 @@ export default function RecentlyAdded() {
             최근 추가한 재료
           </span>
           <div
-            className={`h-2 w-2 border-r-2 border-b-2 transition-all duration-300 ${
+            className={`h-2 w-2 border-r-2 border-b-2 duration-300 ${
               isOpen
                 ? "border-green-deep -translate-y-[1px] rotate-45"
                 : "translate-y-[2px] rotate-[225deg] border-gray-50"
@@ -41,7 +41,7 @@ export default function RecentlyAdded() {
 
       {/* 2. 메뉴바 (361px 너비) */}
       <div
-        className={`bg-gray-0 shadow-recent-b relative z-20 w-[361px] overflow-hidden rounded-t-[10px] transition-all duration-300 ease-in-out ${
+        className={`bg-gray-0 shadow-recent-b relative z-20 w-[361px] overflow-hidden rounded-t-[10px] duration-300 ease-in-out ${
           isOpen
             ? "mt-[-1px] max-h-[100px] opacity-100" // 버튼과 겹치게 하여 경계선 제거
             : "pointer-events-none max-h-0 opacity-0"

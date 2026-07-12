@@ -87,7 +87,7 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
             <button
               key={day}
               onClick={() => handleDateClick(day)}
-              className={`typo-h2 text-gray-80 mx-auto flex h-10 w-10 items-center justify-center rounded-full !font-normal transition-all ${
+              className={`typo-h2 text-gray-80 mx-auto flex h-10 w-10 items-center justify-center rounded-full !font-normal ${
                 isNewlySelected
                   ? "!bg-green-light !border-green-deep !border !font-semibold"
                   : isNewlySelected || isCurrent
