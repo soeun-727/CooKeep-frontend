@@ -96,7 +96,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
                 e.stopPropagation();
                 handleTryChangeVisibility(!isPublic);
               }}
-              className={`bg-gray-0 shadow-search mb-2 flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 ease-out ${
+              className={`bg-gray-0 shadow-search mb-2 flex h-9 w-9 items-center justify-center rounded-full duration-200 ease-out ${
                 isOptionOpen
                   ? "translate-y-0 scale-100 opacity-100"
                   : "pointer-events-none translate-y-2 scale-95 opacity-0"

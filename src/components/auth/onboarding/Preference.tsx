@@ -6,7 +6,7 @@ import {
 } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
-import { loadingChar, SearchIcon } from "@/assets/index";
+import { SearchIcon, loadingChar } from "@/assets/index";
 import xIcon from "@/assets/onboarding/x.svg";
 
 import TextField from "@/components/ui/TextField";
@@ -122,7 +122,7 @@ export default function Preference() {
       </div>
       <div className="relative mt-[46px] flex w-full flex-col items-center">
         <div
-          className={`relative w-full transition-all duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-m [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${
+          className={`relative w-full duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-m [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${
             isDropdownOpen
               ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
               : ""

@@ -139,7 +139,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
               {/* 날짜 버튼 */}
               <button
                 onClick={() => onDateClick(dateStr)}
-                className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full transition-all ${hasRecord ? "scale-105" : "hover:bg-gray-10"} ${hasRecord && !photoUrl ? "bg-green-light" : ""} `}
+                className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full ${hasRecord ? "scale-105" : "hover:bg-gray-10"} ${hasRecord && !photoUrl ? "bg-green-light" : ""} `}
               >
                 {photoUrl && (
                   <div className="absolute inset-0 overflow-hidden rounded-full">

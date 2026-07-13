@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+
 import type { IconComponent } from "@/types/icon";
 
 import { getKoreanStorage } from "@/utils/mapping";
@@ -47,7 +48,7 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
                 key={storage}
                 disabled={isInitialValue}
                 onClick={() => handleQuickSelect(storage)}
-                className={`typo-body h-11 w-[361px] rounded-[10px] font-bold transition-all ${
+                className={`typo-body h-11 w-[361px] rounded-[10px] font-bold ${
                   isInitialValue
                     ? "cursor-not-allowed bg-gray-200 text-gray-50"
                     : isNewlySelected

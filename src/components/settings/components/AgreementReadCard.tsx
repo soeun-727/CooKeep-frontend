@@ -29,17 +29,23 @@ const markdownComponents: Components = {
     </strong>
   ),
   table: ({ children }) => (
-    <div className="my-4 overflow-x-auto">
-      <table className="border-gray-10 bg-gray-0 border-collapse border">
+    <div className="my-1 w-full">
+      <table className="border-gray-10 w-full table-fixed border-collapse border">
         {children}
       </table>
     </div>
   ),
+
   th: ({ children }) => (
-    <th className="typo-caption border px-3 py-1 text-gray-50">{children}</th>
+    <th className="typo-caption border-gray-10 border px-[6px] py-[5px] text-center font-normal text-gray-50">
+      {children}
+    </th>
   ),
+
   td: ({ children }) => (
-    <td className="typo-caption border px-3 py-1 text-gray-50">{children}</td>
+    <td className="typo-caption border-gray-10 border px-[6px] py-[5px] text-center text-gray-50">
+      {children}
+    </td>
   ),
   a: ({ href, children }) => (
     <a href={href} className="typo-m text-gray-50 underline">
@@ -50,7 +56,6 @@ const markdownComponents: Components = {
 
 export default function AgreementReadCard({
   agreement,
-  // notice,
 }: AgreementReadCardProps) {
   const sections = splitAgreementSections(agreement.content);
 

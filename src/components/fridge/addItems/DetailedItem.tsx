@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import type { MasterItem } from "@/stores/useAddIngredientStore";
 
-import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
-import type { IconComponent } from "@/types/icon";
-
 import deleteIcon from "@/assets/fridge/delete.svg";
 import memoIcon from "@/assets/fridge/memo.svg";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 import renameIcon from "@/assets/recipe/rename.svg";
 
 import EditModal from "@/components/ui/EditModal";
+
+import type { IconComponent } from "@/types/icon";
 
 import { calculateExpiryDate } from "@/utils/expiryDate";
 
@@ -204,7 +204,7 @@ export default function DetailedItem(item: DetailedItemProps) {
           e.stopPropagation();
           setIsDeleteModalOpen(true);
         }}
-        className="absolute right-1 bottom-1 z-30 p-1 transition-all active:scale-90"
+        className="absolute right-1 bottom-1 z-30 p-1 active:scale-90"
       >
         <img alt="deleteButton" src={deleteIcon} className="w-10" />
       </button>

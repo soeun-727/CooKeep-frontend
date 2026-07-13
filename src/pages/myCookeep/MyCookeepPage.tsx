@@ -17,6 +17,12 @@ import { hasTodayRecord } from "@/utils/record";
 
 type TabType = "record" | "calendar" | "statistics";
 
+const getKstToday = () => {
+  return new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
+    .toISOString()
+    .split("T")[0];
+};
+
 export default function MyCookeepPage() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -29,18 +35,11 @@ export default function MyCookeepPage() {
   const [enteredByBottomTab, setEnteredByBottomTab] = useState(
     location.state?.fromTab === true,
   );
-  // 쿠키 개수 표시
-  const fetchCookies = useCookeepsStore(s => s.fetchCookies); // 추가
+  const fetchCookies = useCookeepsStore(s => s.fetchCookies);
 
   useEffect(() => {
-    fetchCookies(); // 추가
+    fetchCookies();
   }, [fetchCookies]);
-
-  const getKstToday = () => {
-    return new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
-      .toISOString()
-      .split("T")[0];
-  };
 
   const fetchDailyData = useCallback(
     async (dateStr: string) => {
@@ -63,25 +62,46 @@ export default function MyCookeepPage() {
     }
   }, [activeTab, fetchDailyData]);
 
-  const handleDateClick = (dateStr: string) => {
-    const requestDate = dateStr.replaceAll(".", "-");
-    fetchDailyData(requestDate);
-  };
+  const handleDateClick = useCallback(
+    (dateStr: string) => {
+      const requestDate = dateStr.replaceAll(".", "-");
+      fetchDailyData(requestDate);
+    },
+    [fetchDailyData],
+  );
 
-  const handleTabChange = (tab: string) => {
+  const handleTabChange = useCallback((tab: string) => {
     if (tab === "record" || tab === "calendar" || tab === "statistics") {
-      setActiveTab(tab);
-      setSelectedDate(""); // 추가: 상세 보기 상태 초기화
+      setActiveTab(tab as TabType);
+      setSelectedDate("");
       setDismissed(false);
       setEnteredByBottomTab(false);
     }
-  };
+  }, []);
 
-  const handleActiveTabClick = (tab: string) => {
-    if (tab === "calendar") {
-      setRecords([]);
-    }
-  };
+  const handleActiveTabClick = useCallback(
+    (tab: string) => {
+      if (tab === "calendar") {
+        setRecords([]);
+      }
+    },
+    [setRecords],
+  );
+
+  const handleCalendarDateClick = useCallback(
+    (date: string) => {
+      setSelectedDate(date);
+      handleDateClick(date);
+    },
+    [handleDateClick],
+  );
+
+  const handleDismiss = useCallback(() => setDismissed(true), []);
+
+  const handleConfirm = useCallback(() => {
+    setDismissed(true);
+    navigate("/mycookeep/record/select");
+  }, [navigate]);
 
   const shouldShowAddMoreModal =
     activeTab === "record" &&
@@ -92,11 +112,9 @@ export default function MyCookeepPage() {
   const renderContent = () => {
     switch (activeTab) {
       case "calendar":
-        // 사용자가 날짜를 클릭해서 selectedDate가 생겼고, 데이터가 있을 때만 상세를 보여줌
         if (selectedDate && records.length > 0) {
           return (
             <div className="animate-in fade-in slide-in-from-bottom-4 flex flex-col items-center gap-6 px-4 duration-300">
-              {/* 뒤로가기 버튼 등이 있으면 더 좋겠네요! */}
               <button
                 onClick={() => setSelectedDate("")}
                 className="self-start text-sm text-gray-500"
@@ -109,14 +127,7 @@ export default function MyCookeepPage() {
             </div>
           );
         }
-        return (
-          <Calendar
-            onDateClick={date => {
-              setSelectedDate(date);
-              handleDateClick(date);
-            }}
-          />
-        );
+        return <Calendar onDateClick={handleCalendarDateClick} />;
 
       case "statistics":
         return <Statistics />;
@@ -131,7 +142,6 @@ export default function MyCookeepPage() {
     <div className="relative flex h-full min-h-0 flex-col">
       <div className="shrink-0">
         <Profile />
-
         <div className="mt-6">
           <MyCookeepTabBar
             activeTab={activeTab}
@@ -146,13 +156,7 @@ export default function MyCookeepPage() {
       </div>
 
       {shouldShowAddMoreModal && (
-        <AddMoreModal
-          onCancel={() => setDismissed(true)}
-          onConfirm={() => {
-            setDismissed(true);
-            navigate("/mycookeep/record/select");
-          }}
-        />
+        <AddMoreModal onCancel={handleDismiss} onConfirm={handleConfirm} />
       )}
     </div>
   );

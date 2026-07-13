@@ -50,7 +50,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
                   key={unit}
                   disabled={isInitialValue}
                   onClick={() => handleQuickSelect(unit)}
-                  className={`typo-body h-11 w-[361px] rounded-[10px] !font-bold transition-all ${
+                  className={`typo-body h-11 w-[361px] rounded-[10px] !font-bold ${
                     isInitialValue
                       ? "cursor-not-allowed bg-gray-200 text-gray-50"
                       : isNewlySelected
