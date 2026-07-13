@@ -1,3 +1,5 @@
+import { memo, useCallback } from "react";
+
 import {
   type Ingredient,
   useIngredientStore,
@@ -5,10 +7,8 @@ import {
 
 import character from "@/assets/character/clear_char.svg";
 import ArrowIcon from "@/assets/cookeeps/arrow.svg?react";
-
-import type { IconComponent } from "@/types/icon";
-
 import Item from "../items/Item";
+import type { IconComponent } from "@/types/icon";
 
 interface StorageIngredient extends Ingredient {
   className?: string; // 기존 Ingredient에 className이 있을 수도 있다고 알려줌
@@ -19,6 +19,7 @@ interface StorageProps {
   ingredients: StorageIngredient[];
   onItemClick?: (id: number) => void;
 }
+
 function chunk<T>(arr: T[], size: number): T[][] {
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -27,7 +28,7 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return result;
 }
 
-export default function Storage({
+export default memo(function Storage({
   category,
   icon: Icon,
   ingredients,
@@ -35,9 +36,29 @@ export default function Storage({
 }: StorageProps) {
   const { selectedIds, toggleSelect, setViewCategory, openDetail } =
     useIngredientStore();
-  // 3개 이상일 때만 전체보기 활성화
+
   const isScrollable = ingredients.length >= 3;
   const pages = chunk(ingredients, 3);
+
+  const handleViewCategory = useCallback(
+    () => setViewCategory(category),
+    [setViewCategory, category],
+  );
+
+  const handleSelect = useCallback(
+    (id: number) => {
+      if (onItemClick) onItemClick(id);
+      else toggleSelect(id);
+    },
+    [onItemClick, toggleSelect],
+  );
+
+  const handleDetail = useCallback(
+    (id: number) => {
+      if (!onItemClick) openDetail(id);
+    },
+    [onItemClick, openDetail],
+  );
 
   return (
     <div className="relative z-0 min-h-[173px] w-full">
@@ -113,16 +134,8 @@ export default function Storage({
                     leftDays={item.dDay}
                     image={item.image}
                     isSelected={selectedIds.includes(item.id)}
-                    onSelect={() => {
-                      if (onItemClick) {
-                        onItemClick(item.id);
-                      } else {
-                        toggleSelect(item.id);
-                      }
-                    }}
-                    onDetail={() => {
-                      if (!onItemClick) openDetail(item.id);
-                    }}
+                    onSelect={() => handleSelect(item.id)}
+                    onDetail={() => handleDetail(item.id)}
                     className={item.className}
                   />
                 ))}
@@ -140,4 +153,4 @@ export default function Storage({
       )}
     </div>
   );
-}
+});

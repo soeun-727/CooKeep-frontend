@@ -133,7 +133,7 @@ export default function Custom({
               type="button"
               disabled={isLoading}
               onClick={() => setSelectedCategoryId(cat.id)}
-              className={`flex h-12 w-12 flex-col items-center gap-[2px] rounded-[6px] pt-2 transition-all ${
+              className={`flex h-12 w-12 flex-col items-center gap-[2px] rounded-[6px] pt-2 ${
                 selectedCategoryId === cat.id
                   ? "bg-gray-100 ring-1 ring-gray-300 ring-inset"
                   : "bg-gray-0 hover:bg-gray-50"

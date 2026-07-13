@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
 import { useIngredientStore } from "@/stores/useIngredientStore";
@@ -35,6 +35,10 @@ export default function Layout() {
     else if (path.includes("mycookeep")) setActiveTab("MY쿠킵");
   }, [location.pathname]);
 
+  const handleSelect = useCallback((name: string) => {
+    setActiveTab(name);
+  }, []);
+
   return (
     <div className="bg-background flex h-dvh w-full flex-col overflow-hidden">
       <main
@@ -43,9 +47,7 @@ export default function Layout() {
         <Outlet />
       </main>
 
-      {showTabBar && (
-        <TabBar selectedTab={activeTab} onSelect={name => setActiveTab(name)} />
-      )}
+      {showTabBar && <TabBar selectedTab={activeTab} onSelect={handleSelect} />}
     </div>
   );
 }
