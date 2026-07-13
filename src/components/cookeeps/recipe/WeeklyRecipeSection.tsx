@@ -34,7 +34,7 @@ function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
   const isEmpty = topRecipes.length === 0;
 
   return (
-    <div className="bg-gray-0 mx-auto flex min-h-[259px] w-full max-w-md flex-col items-center gap-4 rounded-lg p-4 shadow-md">
+    <div className="bg-gray-0 shadow-plant mx-auto flex min-h-[259px] w-full max-w-md flex-col items-center gap-4 rounded-lg p-4">
       {/* 제목 */}
       <h2 className="text-center text-[18px] leading-[26px] font-semibold">
         <span className="text-green-deep">이번 주</span>{" "}

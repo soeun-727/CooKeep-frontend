@@ -39,7 +39,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   const isRankingEmpty = users.length === 0;
 
   return (
-    <div className="bg-green-light flex min-h-[202px] w-full flex-col items-center gap-[26px] rounded-[6px] py-[18px] shadow-md">
+    <div className="bg-green-light shadow-plant flex min-h-[202px] w-full flex-col items-center gap-[26px] rounded-[6px] py-[18px]">
       <div className="flex flex-col items-center gap-[2px]">
         <h2 className="text-center text-[18px] font-semibold text-gray-800">
           {currentMonth}월 식물 돌봄

@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import type { MasterItem } from "@/stores/useAddIngredientStore";
 
-import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
-import type { IconComponent } from "@/types/icon";
-
 import deleteIcon from "@/assets/fridge/delete.svg";
 import memoIcon from "@/assets/fridge/memo.svg";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 import renameIcon from "@/assets/recipe/rename.svg";
 
 import EditModal from "@/components/ui/EditModal";
+
+import type { IconComponent } from "@/types/icon";
 
 import { calculateExpiryDate } from "@/utils/expiryDate";
 
@@ -114,7 +114,7 @@ export default function DetailedItem(item: DetailedItemProps) {
   };
 
   return (
-    <div className="bg-gray-0 relative h-[198px] w-[345px] rounded-[6px] shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+    <div className="bg-gray-0 shadow-plant relative h-[198px] w-[345px] rounded-[6px]">
       <div className="flex gap-6 p-6">
         <div className="flex h-34 w-[99px] flex-col items-start">
           <div className="border-gray-10 flex h-20 w-20 items-center justify-center rounded-[6px] border p-[14px]">
@@ -204,7 +204,7 @@ export default function DetailedItem(item: DetailedItemProps) {
           e.stopPropagation();
           setIsDeleteModalOpen(true);
         }}
-        className="absolute right-1 bottom-1 z-30 p-1 transition-all active:scale-90"
+        className="absolute right-1 bottom-1 z-30 p-1 active:scale-90"
       >
         <img alt="deleteButton" src={deleteIcon} className="w-10" />
       </button>

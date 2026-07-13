@@ -49,7 +49,7 @@ export default function DoublecheckModal({
       ></div>
 
       {/* 모달 박스 */}
-      <div className="bg-gray-0 animate-popIn relative flex w-[254px] flex-col items-center rounded-[10px] px-7 py-[25px] shadow-xl">
+      <div className="bg-gray-0 animate-popIn relative flex w-[254px] flex-col items-center rounded-[10px] px-7 py-[25px]">
         <h2 className="typo-body text-gray-80 mb-2 w-[198px] text-center font-bold">
           {title}
         </h2>

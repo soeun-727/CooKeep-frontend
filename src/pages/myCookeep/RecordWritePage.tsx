@@ -222,7 +222,7 @@ export default function RecordWritePage() {
 
           <div className="animate-float-bubble relative mt-[15px] flex shrink-0 justify-center">
             <div
-              className="bg-gray-0 text-green relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+              className="bg-gray-0 text-green shadow-container relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium"
               style={{ width: 206, height: 36 }}
             >
               나만의 팁 작성하기

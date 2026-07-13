@@ -126,14 +126,14 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       <div className="pointer-events-none fixed inset-0 z-[130] flex justify-center">
         <div className="relative h-full w-full max-w-[450px] overflow-hidden">
           <div
-            className={`pointer-events-auto absolute top-[22px] left-0 h-[calc(100%-78px)] w-[342px] transform rounded-tr-[10px] rounded-br-[10px] bg-[#FFFFFFE3] shadow-2xl transition-transform duration-300 ease-in-out ${translateClasses}`}
+            className={`pointer-events-auto absolute top-[22px] left-0 h-[calc(100%-78px)] w-[342px] transform rounded-tr-[10px] rounded-br-[10px] bg-[#FFFFFFE3] transition-transform duration-300 ease-in-out ${translateClasses}`}
           >
             <div className="flex h-full flex-col">
               {/* 콘텐츠 영역 */}
               <div className="no-scrollbar flex-1 overflow-y-auto px-[26px] py-[35px]">
                 <div className="w-[290px]">
                   <div
-                    className={`bg-gray-0 [&_input]:bg-gray-0 [&_input]:text-gray-30 [&_input::placeholder]:text-gray-30 rounded-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] [&_>_div]:!w-full [&_input]:border-none [&_input]:text-[14px] [&_input]:leading-[20px] [&_input]:font-medium [&_input]:outline-none [&_p]:hidden`}
+                    className={`bg-gray-0 [&_input]:bg-gray-0 [&_input]:text-gray-30 [&_input::placeholder]:text-gray-30 shadow-search rounded-[6px] [&_>_div]:!w-full [&_input]:border-none [&_input]:text-[14px] [&_input]:leading-[20px] [&_input]:font-medium [&_input]:outline-none [&_p]:hidden`}
                   >
                     <TextField
                       value={searchTerm}

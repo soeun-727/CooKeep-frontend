@@ -79,7 +79,7 @@ export default function ProfileEditModal({
 
                 <button
                   onClick={() => setSelectedId(plant.userPlantId)}
-                  className={`relative flex aspect-square w-full items-center justify-center rounded-full transition-all ${
+                  className={`relative flex aspect-square w-full items-center justify-center rounded-full ${
                     selectedId === plant.userPlantId
                       ? "border-green border-2"
                       : "border-2 border-transparent"
