@@ -1,4 +1,4 @@
-import { memo, useCallback } from "react";
+import { memo } from "react";
 
 import {
   type Ingredient,
@@ -20,14 +20,6 @@ interface StorageProps {
   icon: IconComponent;
   ingredients: StorageIngredient[];
   onItemClick?: (id: number) => void;
-}
-
-function chunk<T>(arr: T[], size: number): T[][] {
-  const result: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
-  }
-  return result;
 }
 
 export default memo(function Storage({
