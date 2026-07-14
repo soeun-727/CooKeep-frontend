@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { InputModal } from "@/components/fridge/modals/InputModal";
 import Button from "@/components/ui/Button";
 
 import { getKoreanUnit } from "@/utils/mapping";
@@ -29,7 +30,14 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
 
   const handleCustomSubmit = () => {
     if (!customValue.trim()) return;
+
     onSave(customValue);
+    setIsCustomInput(false);
+  };
+
+  const handleClose = () => {
+    setCustomValue(getKoreanUnit(value));
+    setIsCustomInput(false);
   };
 
   useEffect(() => {
@@ -39,70 +47,48 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
 
   return (
     <div className="flex w-full flex-col items-center gap-6">
-      {!isCustomInput ? (
-        <div className="flex w-full flex-col gap-3">
-          {units.map(unit => {
-            const isInitialValue = unit === koreanValue;
-            const isNewlySelected = selectedUnit === unit && !isInitialValue;
+      <div className="flex w-full flex-col gap-3">
+        {units.map(unit => {
+          const isInitialValue = unit === koreanValue;
+          const isNewlySelected = selectedUnit === unit && !isInitialValue;
 
-            return (
-              <button
-                key={unit}
-                onClick={() => handleQuickSelect(unit)}
-                className={`typo-body h-12 w-12 w-full rounded-[6px] transition-all ${
-                  isNewlySelected
-                    ? "border-green-deep bg-green-light text-green-deep border"
-                    : isInitialValue
-                      ? "bg-gray-10 text-gray-50"
-                      : "border-gray-10 border text-gray-50"
-                }`}
-              >
-                {unit}
-              </button>
-            );
-          })}
+          return (
+            <button
+              key={unit}
+              onClick={() => handleQuickSelect(unit)}
+              className={`typo-body h-12 w-12 w-full rounded-[6px] transition-all ${
+                isNewlySelected
+                  ? "border-green-deep bg-green-light text-green-deep border"
+                  : isInitialValue
+                    ? "bg-gray-10 text-gray-50"
+                    : "border-gray-10 border text-gray-50"
+              }`}
+            >
+              {unit}
+            </button>
+          );
+        })}
 
-          <Button
-            size="S"
-            variant="black"
-            onClick={() => setIsCustomInput(true)}
-            className="border-gray-10 !bg-gray-0 border text-gray-50"
-          >
-            직접 입력하기
-          </Button>
-        </div>
-      ) : (
-        /* 3. 직접 입력 모드 UI */
-        <div className="flex w-full flex-col items-center gap-6 pb-16">
-          <div className="w-full px-10">
-            <input
-              type="string"
-              autoFocus
-              value={customValue}
-              onChange={e => setCustomValue(e.target.value)}
-              className="w-full border-b-2 border-black pb-2 text-center text-3xl font-bold outline-none"
-              placeholder="개"
-            />
-          </div>
-          <div className="flex gap-2">
-            <Button
-              size="S"
-              variant="black"
-              onClick={() => setIsCustomInput(false)}
-              className="!w-[100px]"
-            >
-              취소
-            </Button>
-            <Button
-              size="S"
-              variant="green"
-              onClick={handleCustomSubmit}
-              className="!w-[100px]"
-            >
-              확인
-            </Button>
-          </div>
-        </div>
+        <Button
+          size="S"
+          variant="black"
+          onClick={() => setIsCustomInput(true)}
+          className="border-gray-10 !bg-gray-0 border text-gray-50"
+        >
+          직접 입력하기
+        </Button>
+      </div>
+
+      {isCustomInput && (
+        <InputModal
+          title="단위를 직접 입력해주세요"
+          buttonTexts={["확인", "취소"]}
+          placeholder="[ ex. 통 ]"
+          value={customValue}
+          onChange={e => setCustomValue(e.target.value)}
+          onConfirm={handleCustomSubmit}
+          onClose={handleClose}
+        />
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 
 type ButtonSize = "S" | "L";
-type ButtonVariant = "black" | "green";
+type ButtonVariant = "black" | "green" | "gray";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -37,6 +37,7 @@ export default function Button({
   const variantStyles = {
     black: "bg-gray-100 text-gray-0",
     green: "bg-green text-gray-0",
+    gray: "bg-gray-30 text-gray-0",
   };
 
   const disabledStyle = "bg-gray-30 text-gray-0 cursor-not-allowed";
