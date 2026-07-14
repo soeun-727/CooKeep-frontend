@@ -8,7 +8,7 @@ import { useRewardStore } from "@/stores/useRewardStore";
 import EatenIcon from "@/assets/fridge/eaten.svg?react";
 import ThrownIcon from "@/assets/fridge/thrown.svg?react";
 
-import AlertModal from "@/components/ui/AlertModal";
+import EatenModal from "@/components/fridge/modals/EatenModal";
 
 import ConfirmModal from "../modals/ConfirmModal";
 
@@ -132,7 +132,7 @@ export default function ItemOption() {
       )}
 
       {/* 알림 */}
-      <AlertModal
+      <EatenModal
         isOpen={isAlertOpen}
         onClose={() => {
           setIsAlertOpen(false);

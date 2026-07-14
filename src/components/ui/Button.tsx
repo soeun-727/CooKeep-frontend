@@ -29,9 +29,10 @@ export default function Button({
 
   const baseStyle = `
     inline-flex items-center justify-center gap-2
-    rounded-[10px]
+    rounded-[12px]
     transition
     whitespace-nowrap
+    typo-l-strong
   `;
 
   const variantStyles = {
