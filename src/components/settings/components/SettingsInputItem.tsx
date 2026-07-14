@@ -39,7 +39,7 @@ export default function SettingsInputItem({
 
       <div className="min-h-[70px] w-full">
         <div className="border-gray-10 flex h-12 w-full min-w-0 items-center gap-3 rounded-xl border bg-white px-3">
-          <span className="typo-body2 min-w-0 flex-1 truncate text-gray-50">
+          <span className="typo-m min-w-0 flex-1 truncate text-gray-50">
             {value}
           </span>
 

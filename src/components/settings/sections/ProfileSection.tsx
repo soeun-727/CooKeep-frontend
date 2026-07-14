@@ -123,7 +123,7 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
                   }
                   onFocus={() => setIsNicknameFocused(true)}
                   onBlur={() => setIsNicknameFocused(false)}
-                  className="typo-body2 text-gray-80 h-full min-w-0 flex-1 outline-none"
+                  className="typo-m text-gray-80 h-full min-w-0 flex-1 outline-none"
                 />
 
                 {isNicknameFocused && account.nickname.length > 0 && (
@@ -147,7 +147,7 @@ export default function ProfileSection({ profile }: ProfileSectionProps) {
               </>
             ) : (
               <>
-                <span className="typo-body2 min-w-0 flex-1 truncate text-gray-50">
+                <span className="typo-m min-w-0 flex-1 truncate text-gray-50">
                   {account.nickname}
                 </span>
                 <button

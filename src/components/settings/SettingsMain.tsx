@@ -69,7 +69,9 @@ export default function SettingsMain() {
     return (
       <div className="mt-50 flex flex-col items-center justify-center text-center">
         <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-body2 text-gray-50">회원정보를 불러오는 중...</div>
+        <div className="text-caption text-gray-50">
+          회원정보를 불러오는 중...
+        </div>
       </div>
     );
 
@@ -77,7 +79,7 @@ export default function SettingsMain() {
     <>
       {/* 헤더(84px)는 별도 컴포넌트, 여기서는 그만큼 여백만 확보 */}
       <main
-        className="flex min-h-screen w-full flex-col bg-[#FAFAFA] px-4"
+        className="flex min-h-screen w-full flex-col px-4"
         style={{
           paddingTop: "calc(env(safe-area-inset-top) + 40px + 30px)",
         }}
