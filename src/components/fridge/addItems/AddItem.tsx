@@ -24,7 +24,7 @@ import { calculateExpiryDate } from "@/utils/expiryDate";
 import { Search } from "../features/Search";
 import AddItemFooter from "./AddItemFooter";
 import Category from "./components/Category";
-import Custom from "./components/Custom";
+import CustomIngredient from "./components/CustomIngredient";
 import ItemsGrid from "./components/ItemsGrid";
 
 export default function AddItem() {
@@ -182,7 +182,7 @@ export default function AddItem() {
         </div>
       </div>
       {isModalOpen && (
-        <Custom
+        <CustomIngredient
           isOpen={isModalOpen}
           onClose={() => setModalOpen(false)}
           categories={INGREDIENT_CATEGORIES}
