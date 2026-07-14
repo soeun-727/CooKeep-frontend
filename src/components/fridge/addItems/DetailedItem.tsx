@@ -156,7 +156,7 @@ export default function DetailedItem(item: DetailedItemProps) {
   ];
 
   return (
-    <div className="bg-gray-0 relative min-h-[154px] w-full rounded-[16px] p-4 shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+    <div className="bg-gray-0 shadow-plant relative min-h-[154px] w-full rounded-[16px] p-4">
       <button
         onClick={e => {
           e.stopPropagation();

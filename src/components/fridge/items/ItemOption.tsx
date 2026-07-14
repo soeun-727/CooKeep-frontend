@@ -101,7 +101,7 @@ export default function ItemOption() {
               <button
                 key={index}
                 onClick={item.action}
-                className="bg-gray-0 hover:bg-green-light group hover:border-green w-full rounded-full px-3 py-2 shadow-[0_4px_16px_0_rgba(17,17,17,0.1)] hover:border"
+                className="bg-gray-0 hover:bg-green-light group hover:border-green shadow-container w-full rounded-full px-3 py-2 hover:border"
               >
                 <div className="flex items-center justify-center gap-[2px]">
                   <span className="typo-label whitespace-nowrap">
