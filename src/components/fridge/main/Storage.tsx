@@ -78,7 +78,7 @@ export default memo(function Storage({
 
       {/* 아이템 리스트 */}
       {ingredients.length > 0 ? (
-        <div className="mx-auto flex max-w-[375px] justify-between px-4">
+        <div className="justify-left mx-auto flex max-w-[375px] gap-2 px-4">
           {topIngredients.map(item => (
             <div key={item.id} className="flex flex-col">
               <Item

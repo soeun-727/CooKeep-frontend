@@ -156,7 +156,7 @@ export default function IngredientDetailModal({
   ];
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
+    <div className="fixed inset-0 z-100 flex items-center justify-center">
       <div
         className="bg-gray-80/50 absolute inset-0 mx-auto max-w-[450px]"
         onClick={handleModalClose}
