@@ -17,7 +17,7 @@ const TABS = [
   { title: "냉장고", Icon: FridgeIcon },
   { title: "레시피", Icon: RecipeIcon },
   { title: "쿠킵스", Icon: CookeepsIcon },
-  { title: "MY쿠킵", Icon: MycookeepIcon },
+  { title: "마이쿠킵", Icon: MycookeepIcon },
 ] as const;
 
 const ROUTE_MAP: Record<string, string> = {
@@ -32,7 +32,7 @@ export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   const handleSelect = useCallback(
     (name: string) => {
       onSelect(name);
-      if (name === "MY쿠킵") {
+      if (name === "마이쿠킵") {
         navigate("/mycookeep", { state: { fromTab: true } });
       } else {
         navigate(ROUTE_MAP[name]);
