@@ -35,7 +35,7 @@ export default function CircleGraph({ percentage }: { percentage: number }) {
           strokeDasharray={circumference}
           strokeDashoffset={offset}
           strokeLinecap="round"
-          className="transition-all duration-1000 ease-out"
+          className="duration-1000 ease-out"
         />
       </svg>
 

@@ -33,7 +33,7 @@ export default function RecordViewImageCard({
       <div className="mx-auto flex w-full max-w-[450px] flex-col">
         {/* 이미지 */}
         <div
-          className="relative h-[153px] w-full overflow-hidden rounded-t-[6px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+          className="shadow-search relative h-[153px] w-full overflow-hidden rounded-t-[6px]"
           // onClick={() => {
           //   if (!isEditing) return;
           //   setShowImageOptions(true);
@@ -118,7 +118,7 @@ export default function RecordViewImageCard({
         </div>
 
         {/* 제목 영역 */}
-        <div className="bg-gray-0 flex w-full items-center rounded-b-[6px] px-3 py-[12px] shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]">
+        <div className="bg-gray-0 shadow-search flex w-full items-center rounded-b-[6px] px-3 py-[12px]">
           {/* 왼쪽 아이콘 + 제목 */}
           <div className="flex flex-1 items-center gap-[4px] px-2">
             {/* 기본 아이콘 */}

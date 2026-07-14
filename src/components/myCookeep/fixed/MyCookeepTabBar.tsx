@@ -1,40 +1,44 @@
+import { memo, useCallback } from "react";
+
 import { CalendarIcon, RecordIcon, StatsIcon } from "@/assets/index";
 
+const TABS = [
+  { id: "record", Icon: RecordIcon },
+  { id: "calendar", Icon: CalendarIcon },
+  { id: "statistics", Icon: StatsIcon },
+] as const;
 interface MyCookeepTabBarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
   onActiveTabClick?: (tab: string) => void;
 }
 
-export default function MyCookeepTabBar({
+export default memo(function MyCookeepTabBar({
   activeTab,
   onTabChange,
   onActiveTabClick,
 }: MyCookeepTabBarProps) {
-  const tabs = [
-    { id: "record", Icon: RecordIcon },
-    { id: "calendar", Icon: CalendarIcon },
-    { id: "statistics", Icon: StatsIcon },
-  ];
-  const handleTabClick = (tabId: string) => {
-    if (activeTab === tabId) {
-      // 이미 활성화된 탭을 클릭했을 때
-      onActiveTabClick?.(tabId);
-    } else {
-      // 새로운 탭을 클릭했을 때
-      onTabChange(tabId);
-    }
-  };
+  const handleTabClick = useCallback(
+    (tabId: string) => {
+      if (activeTab === tabId) {
+        onActiveTabClick?.(tabId);
+      } else {
+        onTabChange(tabId);
+      }
+    },
+    [activeTab, onTabChange, onActiveTabClick],
+  );
+
   return (
     <div className="bg-gray-0 flex h-13 w-full items-center justify-around">
-      {tabs.map(tab => {
+      {TABS.map(tab => {
         const isActive = activeTab === tab.id;
         const Icon = tab.Icon;
         return (
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
-            className="relative flex flex-1 items-center justify-center py-3 transition-all"
+            className="relative flex flex-1 items-center justify-center py-3"
           >
             <Icon
               className={`h-6 w-6 transition-colors duration-200 ${
@@ -51,4 +55,4 @@ export default function MyCookeepTabBar({
       })}
     </div>
   );
-}
+});

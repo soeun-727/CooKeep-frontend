@@ -60,11 +60,11 @@ export default function PlantSelectModal({
                   if (isHarvested) return;
                   setSelectedId(plant.id);
                 }}
-                className="group flex flex-col items-center transition-all"
+                className="group flex flex-col items-center"
               >
                 {/* 아이콘 컨테이너 */}
                 <div
-                  className={`relative flex h-[60px] w-[60px] flex-col items-center justify-center gap-[2px] overflow-hidden rounded-[6px] transition-all ${
+                  className={`relative flex h-[60px] w-[60px] flex-col items-center justify-center gap-[2px] overflow-hidden rounded-[6px] ${
                     selectedId === plant.id
                       ? "bg-green-light"
                       : "bg-gray-0 group-hover:bg-gray-100"

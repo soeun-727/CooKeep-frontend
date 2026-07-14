@@ -1,3 +1,5 @@
+import { memo, useCallback } from "react";
+
 import {
   type Ingredient,
   useIngredientStore,
@@ -5,8 +7,22 @@ import {
 
 import Item from "./Item";
 
-export default function IngredientGrid({ items }: { items: Ingredient[] }) {
+export default memo(function IngredientGrid({
+  items,
+}: {
+  items: Ingredient[];
+}) {
   const { selectedIds, toggleSelect, openDetail } = useIngredientStore();
+
+  const handleSelect = useCallback(
+    (id: number) => toggleSelect(id),
+    [toggleSelect],
+  );
+
+  const handleDetail = useCallback(
+    (id: number) => openDetail(id),
+    [openDetail],
+  );
 
   return (
     <div className="mx-auto grid w-full grid-cols-3 gap-x-2 gap-y-2 px-4 py-6 mb-25">
@@ -17,10 +33,10 @@ export default function IngredientGrid({ items }: { items: Ingredient[] }) {
           image={item.image}
           leftDays={item.dDay}
           isSelected={selectedIds.includes(item.id)}
-          onSelect={() => toggleSelect(item.id)}
-          onDetail={() => openDetail(item.id)}
+          onSelect={() => handleSelect(item.id)}
+          onDetail={() => handleDetail(item.id)}
         />
       ))}
     </div>
   );
-}
+});

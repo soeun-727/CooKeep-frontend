@@ -15,7 +15,7 @@ export default function AddRecordButton() {
         resetRecord();
         navigate("/mycookeep/record/select");
       }}
-      className="active:bg-gray-30 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-black shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)] transition-all active:scale-95"
+      className="active:bg-gray-30 shadow-plant z-40 flex h-12 w-12 items-center justify-center rounded-full bg-black active:scale-95"
     >
       <img
         src={plusIcon}

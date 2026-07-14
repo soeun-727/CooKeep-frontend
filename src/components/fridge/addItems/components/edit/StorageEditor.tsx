@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react";
 
+<<<<<<< HEAD
+=======
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+
+import type { IconComponent } from "@/types/icon";
+
+>>>>>>> 355533cc62d81bbd8dd9e2b59905ad80f756442a
 import { getKoreanStorage } from "@/utils/mapping";
 
 interface StorageEditorProps {

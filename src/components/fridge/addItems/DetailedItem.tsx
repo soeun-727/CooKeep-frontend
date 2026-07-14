@@ -156,13 +156,105 @@ export default function DetailedItem(item: DetailedItemProps) {
   ];
 
   return (
+<<<<<<< HEAD
     <div className="bg-gray-0 relative min-h-[154px] w-full rounded-[16px] p-4 shadow-[0px_1px_8.2px_-2px_rgba(17,17,17,0.25)]">
+=======
+    <div className="bg-gray-0 shadow-plant relative h-[198px] w-[345px] rounded-[6px]">
+      <div className="flex gap-6 p-6">
+        <div className="flex h-34 w-[99px] flex-col items-start">
+          <div className="border-gray-10 flex h-20 w-20 items-center justify-center rounded-[6px] border p-[14px]">
+            <img
+              src={item.image}
+              className="h-13 w-13 object-contain"
+              alt={item.name}
+            />
+          </div>
+          <span className="typo-caption w-[95px] truncate px-[2px] pt-[10px] text-left font-bold">
+            {item.name}
+          </span>
+          <div
+            onClick={e => {
+              e.stopPropagation();
+              setModalType("memo");
+            }}
+            className="group relative z-[20] flex h-6 w-full cursor-pointer items-center justify-center pl-[2px]"
+          >
+            <span className="text-gray-30 flex-1 truncate text-[10px]">
+              {item.memo || "메모를 남겨주세요"}
+            </span>
+            <img src={memoIcon} alt="edit memo" className="w-6 flex-shrink-0" />
+          </div>
+        </div>
+
+        <div className="typo-caption flex h-38 w-44 flex-col items-start gap-2">
+          <div className="flex items-center gap-3">
+            <span className="w-[42px]">보관장소</span>
+            <div
+              onClick={() => setModalType("storage")}
+              className="text-green-deep flex h-8 min-w-[59px] cursor-pointer items-center gap-1 rounded-[6px] bg-black px-2"
+            >
+              <CurrentIcon className="h-[15px]" />
+              <span className="text-green-deep whitespace-nowrap">
+                {currentText}
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="w-[42px]">유통기한</span>
+            <div className="border-gray-10 flex h-8 w-[122px] items-center justify-between rounded-[6px] border px-[10px] py-3">
+              <span className="h-4 w-[58px]">
+                {item.expiration
+                  ? item.expiration.replace(/-/g, ".")
+                  : calculateExpiryDate(0)}
+              </span>
+              <img
+                onClick={() => setModalType("expiry")}
+                src={renameIcon}
+                className="w-3 cursor-pointer"
+                alt="edit"
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="w-[42px]">수량</span>
+            <div className="border-gray-10 flex h-8 w-[66px] items-center justify-between rounded-[6px] border px-[10px] py-3">
+              <span className="h-4 w-[58px]">{item.quantity || 1}</span>
+              <img
+                onClick={() => setModalType("quantity")}
+                src={renameIcon}
+                className="w-3 cursor-pointer"
+                alt="edit"
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="w-[42px]">단위</span>
+            <div className="border-gray-10 flex h-8 w-[66px] items-center justify-between rounded-[6px] border px-[10px] py-3">
+              <span className="h-4 w-[58px]">
+                {UNIT_NAMES[item.unit] || item.unit || "개"}
+              </span>
+              <img
+                onClick={() => setModalType("unit")}
+                src={renameIcon}
+                className="w-3 cursor-pointer"
+                alt="edit"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+>>>>>>> 355533cc62d81bbd8dd9e2b59905ad80f756442a
       <button
         onClick={e => {
           e.stopPropagation();
           setIsDeleteModalOpen(true);
         }}
+<<<<<<< HEAD
         className="absolute top-4 right-4 z-30"
+=======
+        className="absolute right-1 bottom-1 z-30 p-1 active:scale-90"
+>>>>>>> 355533cc62d81bbd8dd9e2b59905ad80f756442a
       >
         <DeleteIcon className="h-3 w-3" />
       </button>

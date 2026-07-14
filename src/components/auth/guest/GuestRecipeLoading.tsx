@@ -55,7 +55,7 @@ export default function GuestRecipeLoading({
         {messages.slice(0, step).map((msg, idx) => (
           <div
             key={idx}
-            className="animate-fadeIn translate-y-0 transform transition-all duration-500"
+            className="animate-fadeIn translate-y-0 transform duration-500"
           >
             <StepMessage message={msg} icon={CheckIcon} />
           </div>

@@ -1,24 +1,27 @@
+import { memo, useCallback } from "react";
+
 import type { IconComponent } from "@/types/icon";
 
 interface TabProps {
   title: string;
   isSelected?: boolean;
-  onClick?: () => void;
+  onClick?: (name: string) => void;
   Icon: IconComponent;
   iconColor: string;
 }
 
-export default function Tab({
+export default memo(function Tab({
   title,
   isSelected = false,
   onClick,
   Icon,
   iconColor,
 }: TabProps) {
+  const handleClick = useCallback(() => onClick?.(title), [onClick, title]);
   return (
     <button
-      onClick={onClick}
-      className="bg-gray-0 flex w-full flex-col items-center gap-1 px-4 py-2"
+      onClick={handleClick}
+      className="bg-gray-0 relative flex h-14 flex-1 flex-col items-center justify-center gap-[2px]"
     >
       <Icon
         style={{ color: iconColor }}
@@ -33,4 +36,4 @@ export default function Tab({
       </span>
     </button>
   );
-}
+});

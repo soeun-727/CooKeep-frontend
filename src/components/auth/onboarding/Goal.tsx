@@ -21,7 +21,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
       </div>
 
       <div className="mt-[46px] w-full">
-        <div className="border-gray-10 bg-gray-0 overflow-hidden rounded-md border transition-all">
+        <div className="border-gray-10 bg-gray-0 overflow-hidden rounded-md border">
           {/* 클릭 영역: 아코디언 헤더 */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -47,7 +47,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
 
           {/* 펼쳐지는 리스트 영역 */}
           <div
-            className={`overflow-hidden transition-all duration-300 ease-in-out ${
+            className={`overflow-hidden duration-300 ease-in-out ${
               isOpen ? "max-h-[300px]" : "max-h-0"
             }`}
           >

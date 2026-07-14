@@ -113,6 +113,24 @@ export default function FridgeTab() {
   const isSearching = searchTerm.trim().length > 0;
   const isListView = !!viewCategory && !isSearching;
 
+  const fridgeItems = useMemo(
+    () => ingredients.filter(i => i.category === "냉장"),
+    [ingredients],
+  );
+  const freezerItems = useMemo(
+    () => ingredients.filter(i => i.category === "냉동"),
+    [ingredients],
+  );
+  const pantryItems = useMemo(
+    () => ingredients.filter(i => i.category === "상온"),
+    [ingredients],
+  );
+
+  const handleCloseExpiryModal = useCallback(
+    () => setIsExpiryModalOpen(false),
+    [],
+  );
+
   if (isLoading) {
     return (
       <div className="fixed inset-0 top-55 z-50 flex flex-col items-center bg-[#FAFAFA]">
@@ -140,7 +158,7 @@ export default function FridgeTab() {
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal
           isOpen={isExpiryModalOpen}
-          onClose={() => setIsExpiryModalOpen(false)}
+          onClose={handleCloseExpiryModal}
           items={todayIngredients}
         />
       )}
@@ -160,17 +178,17 @@ export default function FridgeTab() {
           <Storage
             category="냉장"
             icon={FridgeIcon}
-            ingredients={ingredients.filter(i => i.category === "냉장")}
+            ingredients={fridgeItems}
           />
           <Storage
             category="냉동"
             icon={FreezerIcon}
-            ingredients={ingredients.filter(i => i.category === "냉동")}
+            ingredients={freezerItems}
           />
           <Storage
             category="상온"
             icon={PantryIcon}
-            ingredients={ingredients.filter(i => i.category === "상온")}
+            ingredients={pantryItems}
           />
         </div>
       )}

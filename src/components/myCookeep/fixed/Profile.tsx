@@ -127,7 +127,7 @@ function Profile() {
           </div>
 
           {/* 목표 요약 바 */}
-          <div className="bg-green-deep flex h-12 w-[361px] items-center justify-between gap-3 rounded-[12px] p-3 shadow-[0px_4px_16px_-10px_rgba(0,0,0,0.25)]">
+          <div className="bg-green-deep shadow-search flex h-12 w-[361px] items-center justify-between gap-3 rounded-[12px] p-3">
             <span
               className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-gray-0" : "text-green-300"}`}
             >
@@ -166,7 +166,7 @@ function Profile() {
               }`}
             >
               <div
-                className="bg-gray-0 relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium text-gray-50 shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+                className="bg-gray-0 shadow-container relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium text-gray-50"
                 style={{ width: 227, height: 28 }}
               >
                 이번 주 달성하고 싶은 목표를 세워보세요!

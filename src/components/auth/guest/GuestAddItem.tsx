@@ -39,7 +39,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
           <img
             src={isSelected ? bagelSelected : bagel}
             alt="bagel"
-            className={`cursor-pointer transition-all ${isDimmed && !isSelected ? "relative z-20" : ""}`}
+            className={`cursor-pointer ${isDimmed && !isSelected ? "relative z-20" : ""}`}
             onClick={e => {
               if (!isDimmed) {
                 setIsDimmed(true);
@@ -82,7 +82,7 @@ export default function GuestAddItem({ onNext }: GuestAddItemProps) {
               variant="green"
               onClick={onNext}
               disabled={!isSelected}
-              className="!w-full shadow-lg"
+              className="!w-full"
             >
               재료 추가하기
             </Button>

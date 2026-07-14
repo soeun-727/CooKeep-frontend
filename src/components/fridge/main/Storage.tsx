@@ -1,3 +1,5 @@
+import { memo, useCallback } from "react";
+
 import {
   type Ingredient,
   useIngredientStore,
@@ -19,6 +21,7 @@ interface StorageProps {
   ingredients: StorageIngredient[];
   onItemClick?: (id: number) => void;
 }
+
 function chunk<T>(arr: T[], size: number): T[][] {
   const result: T[][] = [];
   for (let i = 0; i < arr.length; i += size) {
@@ -27,7 +30,7 @@ function chunk<T>(arr: T[], size: number): T[][] {
   return result;
 }
 
-export default function Storage({
+export default memo(function Storage({
   category,
   icon: Icon,
   ingredients,
@@ -83,7 +86,7 @@ export default function Storage({
 
       {/* 아이템 리스트 */}
       {ingredients.length > 0 ? (
-        <div className="flex max-w-[375px] px-4 mx-auto justify-between">
+        <div className="mx-auto flex max-w-[375px] justify-between px-4">
           {topIngredients.map(item => (
             <div key={item.id} className="flex flex-col">
               <Item
@@ -117,4 +120,4 @@ export default function Storage({
       )}
     </div>
   );
-}
+});
