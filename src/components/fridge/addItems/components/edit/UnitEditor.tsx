@@ -85,7 +85,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
           buttonTexts={["확인", "취소"]}
           placeholder="[ ex. 통 ]"
           value={customValue}
-          onChange={e => setCustomValue(e.target.value)}
+          onChange={setCustomValue}
           onConfirm={handleCustomSubmit}
           onClose={handleClose}
         />

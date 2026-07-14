@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import Button from "@/components/ui/Button";
 
 interface InputModalProps {
@@ -5,7 +7,7 @@ interface InputModalProps {
   buttonTexts?: string[];
   placeholder: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (value: string) => void;
   onConfirm: () => void;
   onClose: () => void;
 }
@@ -18,6 +20,12 @@ export const InputModal = ({
   onConfirm,
   onClose,
 }: InputModalProps) => {
+  const [isFocused, setIsFocused] = useState(false);
+  const addBrackets = (value: string) => (value ? `[${value}]` : "");
+
+  const removeBrackets = (value: string) =>
+    value.replace(/^\[/, "").replace(/\]$/, "");
+
   return (
     <div className="fixed inset-0 z-100 mx-auto flex max-w-[450px] items-center justify-center">
       {/* backdrop */}
@@ -26,17 +34,14 @@ export const InputModal = ({
         <div className="flex flex-col items-center justify-center gap-2">
           <p className="typo-l-strong">{title}</p>
           <div>
-            {value && <span className="typo-m text-gray-80">[</span>}
             <input
-              value={value}
-              onChange={onChange}
+              value={isFocused ? value : addBrackets(value)}
+              onChange={e => onChange(removeBrackets(e.target.value))}
               placeholder={placeholder}
-              style={{
-                width: value ? `calc(${value.length}ch + 0.5rem)` : "100%",
-              }}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
               className="typo-m placeholder:text-gray-30 text-gray-80 flex-1 bg-transparent text-center outline-none"
             />
-            {value && <span className="typo-m text-gray-80">]</span>}
           </div>
         </div>
 
