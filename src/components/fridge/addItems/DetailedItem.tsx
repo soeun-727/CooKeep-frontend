@@ -14,7 +14,7 @@ import type { IconComponent } from "@/types/icon";
 
 import { calculateExpiryDate } from "@/utils/expiryDate";
 
-import DeleteConfirmModal from "../modals/DeleteConfirmModal";
+import ConfirmModal from "../modals/ConfirmModal";
 import ExpiryEditor from "./components/edit/ExpiryEditor";
 import MemoEditor from "./components/edit/MemoEditor";
 import QuantityEditor from "./components/edit/QuantityEditor";
@@ -224,8 +224,9 @@ export default function DetailedItem(item: DetailedItemProps) {
         {component}
       </EditModal>
       {isDeleteModalOpen && (
-        <DeleteConfirmModal
-          ingredientName={item.name}
+        <ConfirmModal
+          title="재료를 삭제하시겠어요?"
+          subtitle={item.name}
           onConfirm={handleDeleteConfirm}
           onCancel={() => setIsDeleteModalOpen(false)}
         />

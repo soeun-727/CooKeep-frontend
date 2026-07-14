@@ -10,7 +10,7 @@ import { AxiosError } from "axios";
 import character from "@/assets/character/confused_char.svg";
 import PlusIcon from "@/assets/fridge/plus.svg?react";
 
-import DeleteConfirmModal from "../../modals/DeleteConfirmModal";
+import ConfirmModal from "../../modals/ConfirmModal";
 import Item from "./Item";
 
 interface ItemsGridProps {
@@ -118,11 +118,11 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
       )}
 
       {deleteTarget && (
-        <DeleteConfirmModal
-          ingredientName={deleteTarget.name}
+        <ConfirmModal
+          title="재료를 삭제하시겠어요?"
+          subtitle={deleteTarget.name}
           onConfirm={handleDeleteConfirm}
           onCancel={() => setDeleteTarget(null)}
-          confirmColor="green"
         />
       )}
     </>

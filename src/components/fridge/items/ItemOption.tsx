@@ -9,7 +9,8 @@ import EatenIcon from "@/assets/fridge/eaten.svg?react";
 import ThrownIcon from "@/assets/fridge/thrown.svg?react";
 
 import AlertModal from "@/components/ui/AlertModal";
-import DoublecheckModal from "@/components/ui/DoublecheckModal";
+
+import ConfirmModal from "../modals/ConfirmModal";
 
 export default function ItemOption() {
   const navigate = useNavigate();
@@ -117,19 +118,18 @@ export default function ItemOption() {
         </div>
       </div>
 
-      {/* 확인 모달 */}
-      <DoublecheckModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleConfirm}
-        title={modalTitle}
-        variant="green"
-        description={
-          modalType === "eaten"
-            ? "섭취완료로 변경하시겠습니까?"
-            : "재료를 삭제하시겠습니까?"
-        }
-      />
+      {isModalOpen && (
+        <ConfirmModal
+          title={
+            modalType === "eaten"
+              ? "섭취완료로 변경하시겠습니까?"
+              : "재료를 삭제하시겠습니까?"
+          }
+          subtitle={modalTitle}
+          onCancel={() => setIsModalOpen(false)}
+          onConfirm={handleConfirm}
+        />
+      )}
 
       {/* 알림 */}
       <AlertModal

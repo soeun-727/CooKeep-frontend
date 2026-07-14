@@ -1,62 +1,50 @@
-interface DeleteConfirmModalProps {
-  ingredientName: string;
+import Button from "@/components/ui/Button";
+
+interface ConfirmModalProps {
+  title: string;
+  subtitle?: string;
   onConfirm: () => void;
   onCancel: () => void;
-  confirmColor?: "black" | "green"; // 추가
+  buttonTexts?: string[];
+  buttonVariants?: ("black" | "green" | "gray")[];
 }
 
-export default function DeleteConfirmModal({
-  ingredientName,
+export default function ConfirmModal({
+  title,
+  subtitle,
   onConfirm,
   onCancel,
-  confirmColor = "black",
-}: DeleteConfirmModalProps) {
+  buttonTexts = ["네", "아니오"],
+  buttonVariants = ["black", "gray"],
+}: ConfirmModalProps) {
   return (
-    <div className="fixed inset-0 z-60 flex items-center justify-center">
-      {/* Overlay */}
-      <div className="bg-black-overlay absolute inset-0" onClick={onCancel} />
-
-      {/* Modal */}
-      <div className="bg-gray-0 relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] px-[28px] py-[25px]">
-        {/* 내용 + 버튼 wrapper */}
-        <div className="flex w-full flex-col items-start gap-4">
-          {/* 내용 */}
-          <div className="flex w-full flex-col items-start gap-2">
-            {/* 재료 이름 */}
-            <p className="text-gray-80 w-full text-center text-[16px] leading-[24px] font-bold">
-              {ingredientName}
-            </p>
-
-            {/* 메시지 */}
-            <p className="text-gray-80 w-full text-center text-[14px] leading-[20px] font-medium">
-              재료를 삭제하시겠어요?
-            </p>
-          </div>
-
-          {/* 버튼 */}
-          <div className="flex h-[44px] w-full gap-2">
-            {/* 네 */}
-            <button
-              onClick={onConfirm}
-              className={`flex h-[44px] flex-1 items-center justify-center rounded-[10px] ${confirmColor === "green" ? "bg-green" : "bg-gray-80"} `}
-            >
-              <span className="text-gray-0 text-[14px] leading-[24px] font-semibold">
-                네
-              </span>
-            </button>
-
-            {/* 아니오 */}
-            <button
-              onClick={onCancel}
-              className="bg-gray-30 flex h-[44px] flex-1 items-center justify-center rounded-[10px]"
-            >
-              <span className="text-gray-0 text-[14px] leading-[24px] font-semibold">
-                아니오
-              </span>
-            </button>
-          </div>
+    <div className="fixed inset-0 z-100 mx-auto flex max-w-[450px] items-center justify-center">
+      {/* backdrop */}
+      <div className="bg-gray-80/50 absolute inset-0" onClick={onCancel} />
+      <section className="z-100 flex w-[300px] flex-col gap-6 rounded-xl bg-white p-6">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <p className="typo-l-strong text-gray-80">{title}</p>
+          <p className="typo-m text-gray-80">{subtitle}</p>
         </div>
-      </div>
+
+        <div className="flex gap-2">
+          {buttonTexts.map((text, index) => (
+            <Button
+              key={text}
+              variant={buttonVariants[index] ?? "black"}
+              onClick={() => {
+                if (buttonTexts.length === 1) {
+                  onConfirm();
+                } else {
+                  index === 0 ? onConfirm() : onCancel?.();
+                }
+              }}
+            >
+              {text}
+            </Button>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
