@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
-import { generateAiRecipe } from "@/api/aiRecipe";
+import { generateAiRecipe, generateRandomAiRecipe } from "@/api/aiRecipe";
 
 import CheckIcon from "@/assets/recipe/check.svg";
 
@@ -11,6 +11,7 @@ import StepMessage from "@/components/recipe/main/loading/StepMessage";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [step, setStep] = useState(0);
   const [localError, setLocalError] = useState<string | null>(null);
@@ -22,16 +23,22 @@ export default function RecipeLoadingPage() {
   ];
 
   const { selectedIngredients, difficulty, error } = useRecipeFlowStore();
+  const isRandom = location.state?.isRandom ?? false;
 
   const handleGenerateRecipe = async () => {
     try {
       setLocalError(null);
-      const ingredientIds = selectedIngredients.map(item => item.id);
+      let data;
 
-      const data = await generateAiRecipe({
-        feature: difficulty as any,
-        ingredientIds,
-      });
+      if (isRandom) {
+        data = await generateRandomAiRecipe();
+      } else {
+        const ingredientIds = selectedIngredients.map(item => item.id);
+        data = await generateAiRecipe({
+          feature: difficulty as any,
+          ingredientIds,
+        });
+      }
 
       const flowStore = useRecipeFlowStore.getState() as any;
       if (typeof flowStore.setRecipeData === "function") {
@@ -45,7 +52,18 @@ export default function RecipeLoadingPage() {
       navigate("/recipe/result");
     } catch (err: any) {
       console.error(err);
-      setLocalError("레시피 생성 중 오류가 발생했습니다. 다시 시도해 주세요.");
+      const errorCode = err?.response?.data?.code;
+      if (errorCode === "RANDOM_RECIPE_INGREDIENT_NOT_ENOUGH") {
+        setLocalError(
+          "랜덤 레시피 생성을 위해 냉장고에 재료가 최소 3개 이상 필요합니다.",
+        );
+      } else if (errorCode === "USER_RATE_LIMIT_EXCEEDED") {
+        setLocalError("1분 내 AI 생성 횟수(3회)를 초과하였습니다.");
+      } else {
+        setLocalError(
+          "레시피 생성 중 오류가 발생했습니다. 다시 시도해 주세요.",
+        );
+      }
     }
   };
 
@@ -61,7 +79,7 @@ export default function RecipeLoadingPage() {
   }, [step, navigate]);
 
   useEffect(() => {
-    if (selectedIngredients.length === 0 || !difficulty) {
+    if (!isRandom && (selectedIngredients.length === 0 || !difficulty)) {
       navigate("/recipe/select", { replace: true });
     }
   }, []);
