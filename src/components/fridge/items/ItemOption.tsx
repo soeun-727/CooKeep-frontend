@@ -5,11 +5,12 @@ import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRewardStore } from "@/stores/useRewardStore";
 
-import eaten from "@/assets/fridge/eaten.svg";
-import thrown from "@/assets/fridge/thrown.svg";
+import EatenIcon from "@/assets/fridge/eaten.svg?react";
+import ThrownIcon from "@/assets/fridge/thrown.svg?react";
 
-import AlertModal from "@/components/ui/AlertModal";
-import DoublecheckModal from "@/components/ui/DoublecheckModal";
+import EatenModal from "@/components/fridge/modals/EatenModal";
+
+import ConfirmModal from "../modals/ConfirmModal";
 
 export default function ItemOption() {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ export default function ItemOption() {
     points: number;
     granted: boolean;
   } | null>(null);
+
   if (selectedIds.length === 0 && !isModalOpen && !isAlertOpen) {
     return null;
   }
@@ -69,60 +71,68 @@ export default function ItemOption() {
     }
   };
 
+  const menuTitle = [
+    {
+      text: "다 먹었어요",
+      icon: EatenIcon,
+      action: () => handleOpenModal("eaten"),
+    },
+    {
+      text: "버렸어요",
+      icon: ThrownIcon,
+      action: () => handleOpenModal("thrown"),
+    },
+    {
+      text: "레시피 추천받기",
+      icon: null,
+      action: () => handleRecipeRecommend(),
+    },
+  ];
+
   return (
     <>
       {/* 하단 옵션 바 */}
-      <div className="fixed bottom-[calc(56px+env(safe-area-inset-bottom))] left-1/2 z-60 w-full max-w-[450px] -translate-x-1/2">
-        <div className="bg-gray-0 border-gray-10 flex h-11 border-[0.5px]">
-          <button
-            onClick={() => handleOpenModal("eaten")}
-            className="active:bg-green-light active:shadow-container flex-1"
-          >
-            <div className="flex h-11 items-center justify-center gap-[3px]">
-              <span className="typo-body2">다 먹었어요</span>
-              <img src={eaten} className="w-4" alt="eaten" />
-            </div>
-          </button>
+      <div className="fixed bottom-[calc(62px+env(safe-area-inset-bottom))] left-1/2 z-40 w-full max-w-[450px] -translate-x-1/2 px-4 pt-8 pb-3">
+        <div className="flex gap-1">
+          {menuTitle.map((item, index) => {
+            const Icon = item.icon;
 
-          <button
-            onClick={() => handleOpenModal("thrown")}
-            className="border-gray-10 active:bg-green-light active:shadow-container flex-1 border-x-[0.5px]"
-          >
-            <div className="flex h-11 items-center justify-center gap-[3px]">
-              <span className="typo-body2">버렸어요</span>
-              <img src={thrown} className="w-4" alt="thrown" />
-            </div>
-          </button>
+            return (
+              <button
+                key={index}
+                onClick={item.action}
+                className="bg-gray-0 hover:bg-green-light group hover:border-green shadow-container w-full rounded-full px-3 py-2 hover:border"
+              >
+                <div className="flex items-center justify-center gap-[2px]">
+                  <span className="typo-label whitespace-nowrap">
+                    {item.text}
+                  </span>
 
-          <button
-            onClick={handleRecipeRecommend}
-            className="active:bg-green-light flex-1 active:shadow-[inset_0_1px_6.7px_0_rgba(17,17,17,0.2)]"
-          >
-            <div className="typo-body2 flex h-11 items-center justify-center">
-              AI 레시피 추천받기
-            </div>
-          </button>
+                  {Icon && (
+                    <Icon className="group-hover:text-green text-gray-30 h-5 w-5" />
+                  )}
+                </div>
+              </button>
+            );
+          })}
         </div>
-
-        <div className="h-[5px] w-full bg-gradient-to-b from-[#737373]/80 to-[#D9D9D9]/80" />
       </div>
 
-      {/* 확인 모달 */}
-      <DoublecheckModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleConfirm}
-        title={modalTitle}
-        variant="green"
-        description={
-          modalType === "eaten"
-            ? "섭취완료로 변경하시겠습니까?"
-            : "재료를 삭제하시겠습니까?"
-        }
-      />
+      {isModalOpen && (
+        <ConfirmModal
+          title={
+            modalType === "eaten"
+              ? "섭취완료로 변경하시겠습니까?"
+              : "재료를 삭제하시겠습니까?"
+          }
+          subtitle={modalTitle}
+          onCancel={() => setIsModalOpen(false)}
+          onConfirm={handleConfirm}
+        />
+      )}
 
       {/* 알림 */}
-      <AlertModal
+      <EatenModal
         isOpen={isAlertOpen}
         onClose={() => {
           setIsAlertOpen(false);

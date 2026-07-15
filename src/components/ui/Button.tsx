@@ -1,7 +1,7 @@
 import React from "react";
 
 type ButtonSize = "S" | "L";
-type ButtonVariant = "black" | "green";
+type ButtonVariant = "black" | "green" | "gray";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -23,20 +23,22 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const sizeStyles = {
-    S: "w-[361px] h-[44px]",
-    L: "w-[361px] h-[56px]",
+    S: "h-[44px]",
+    L: "h-[56px]",
   };
 
   const baseStyle = `
     inline-flex items-center justify-center gap-2
-    rounded-[10px]
+    rounded-[12px]
     transition
     whitespace-nowrap
+    typo-l-strong
   `;
 
   const variantStyles = {
     black: "bg-gray-100 text-gray-0",
     green: "bg-green text-gray-0",
+    gray: "bg-gray-30 text-gray-0",
   };
 
   const disabledStyle = "bg-gray-30 text-gray-0 cursor-not-allowed";
@@ -46,7 +48,7 @@ export default function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-button ${className} `}
+      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-button w-full ${className} `}
     >
       {children}
     </button>

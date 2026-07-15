@@ -227,10 +227,7 @@ export default function RecordWritePage() {
             >
               나만의 팁 작성하기
             </div>
-            <div
-              className="bg-gray-0 absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45"
-              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
-            />
+            <div className="bg-gray-0 shadow-tooltip-tail absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45" />
           </div>
 
           <div className="mt-auto flex shrink-0 flex-col items-center gap-4 pt-[64px] pb-[20px]">

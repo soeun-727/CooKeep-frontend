@@ -17,11 +17,11 @@ function Category({
     <button
       type="button"
       onClick={onSelect}
-      className={`flex h-8 min-w-12 rounded-[6px] ${isSelected ? "bg-gray-200" : "bg-gray-0"}`}
+      className={`flex h-12 rounded-[8px] px-4 py-2 ${isSelected ? "bg-gray-200" : "bg-gray-0"}`}
     >
-      <div className="flex items-center justify-center gap-[6px] p-3">
-        <img src={image} className="h-4 w-4" />
-        <span className="text-[10px] leading-none font-semibold whitespace-nowrap text-gray-50">
+      <div className="flex items-center justify-center gap-[6px]">
+        <img src={image} className="h-5 w-5" />
+        <span className="typo-label whitespace-nowrap text-gray-50">
           {name}
         </span>
       </div>
