@@ -7,37 +7,37 @@ import SoupImg from "@/assets/recipe/select/soup.svg";
 
 export const DIFFICULTY_OPTIONS = [
   {
-    key: "SOUP",
+    key: "SOUP_STEW",
     title: "Soup",
     desc: "국물류",
     image: SoupImg,
   },
   {
-    key: "RICE",
+    key: "RICE_BOWL",
     title: "Rice",
     desc: "밥류",
     image: RiceImg,
   },
   {
-    key: "NOODLES",
+    key: "NOODLE",
     title: "Noodles",
     desc: "면류",
     image: NoodlesImg,
   },
   {
-    key: "FRIED",
+    key: "STIR_FRY_GRILL",
     title: "Fried",
     desc: "볶음 · 구이",
     image: FriedImg,
   },
   {
-    key: "HEALTHY",
+    key: "SALAD_HEALTHY",
     title: "Healthy",
     desc: "건강식",
     image: HealthyImg,
   },
   {
-    key: "DESSERT",
+    key: "SNACK_DESSERT",
     title: "Dessert",
     desc: "디저트",
     image: DessertImg,

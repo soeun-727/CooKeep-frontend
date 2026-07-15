@@ -18,7 +18,13 @@ export default function RecipeConfirmPage() {
 
   const handleRecommend = () => {
     if (!difficulty) return;
-    navigate("/recipe/loading");
+
+    navigate("/recipe/loading", {
+      state: {
+        difficulty, // ex: "EASY", "NORMAL", "HARD" 등 (difficulty 타입 규격)
+        ingredientIds: selectedIngredients.map(item => item.id),
+      },
+    });
   };
 
   const handleRemoveIngredient = (id: number) => {

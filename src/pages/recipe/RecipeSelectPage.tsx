@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 
 import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
-import { generateAiRecipe } from "@/api/aiRecipe";
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
 import Search from "@/components/fridge/features/Search";
@@ -14,11 +13,9 @@ import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
-import { useState } from "react";
 
 export default function RecipeSelectPage() {
   const navigate = useNavigate();
-  const [isGenerating, setIsGenerating] = useState(false);
 
   const {
     ingredients,
@@ -40,48 +37,12 @@ export default function RecipeSelectPage() {
 
   const { setSelectedIngredients } = useRecipeFlowStore();
 
-  const handleConfirm = async () => {
-    if (isGenerating) return;
+  const handleConfirm = () => {
     const selectedIngredients = ingredients.filter(item =>
       selectedIds.includes(item.id),
     );
     setSelectedIngredients(selectedIngredients);
-
-    try {
-      setIsGenerating(true);
-      const data = await generateAiRecipe({
-        feature: "ANY",
-        ingredientIds: selectedIds,
-      });
-      const flowStore = useRecipeFlowStore.getState() as any;
-      if (typeof flowStore.setRecipeData === "function") {
-        flowStore.setRecipeData(data);
-      } else if (typeof flowStore.setRecipe === "function") {
-        flowStore.setRecipe(data);
-      } else if (typeof flowStore.setRecipeResponse === "function") {
-        flowStore.setRecipeResponse(data);
-      }
-      navigate("/recipe/confirm", { state: { recipeData: data } });
-    } catch (error: any) {
-      console.error("AI 레시피 생성 실패:", error);
-
-      const errorCode = error?.response?.data?.code;
-      if (errorCode === "RECIPE_INGREDIENTS_REQUIRED") {
-        alert(
-          "레시피 생성을 위해 하나 이상의 재료가 반드시 선택되어야 합니다.",
-        );
-      } else if (errorCode === "AI_RATE_LIMIT_EXCEEDED") {
-        alert("요청 제한 횟수를 초과했습니다. 잠시 후 다시 시도해 주세요.");
-      } else if (errorCode === "INGREDIENT_NOT_FOUND") {
-        alert("유저가 보유한 재료를 찾을 수 없습니다.");
-      } else {
-        alert(
-          "레시피를 구상하는 중에 오류가 발생했습니다. 다시 시도해 주세요.",
-        );
-      }
-    } finally {
-      setIsGenerating(false);
-    }
+    navigate("/recipe/confirm");
   };
 
   const handleBack = () => {
