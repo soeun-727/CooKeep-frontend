@@ -28,11 +28,11 @@ export interface IngredientItem {
   description?: string | null;
 }
 
-export type RecipeCategory =
-  | "SOUP"
-  | "RICE"
-  | "NOODLES"
-  | "FRIED"
-  | "HEALTHY"
-  | "DESSERT"
-  | "RANDOM";
+export type Feature =
+  | "SOUP_STEW"
+  | "RICE_BOWL"
+  | "NOODLE"
+  | "STIR_FRY_GRILL"
+  | "SALAD_HEALTHY"
+  | "SNACK_DESSERT"
+  | "ANY";

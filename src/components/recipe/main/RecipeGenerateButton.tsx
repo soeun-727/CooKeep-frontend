@@ -7,6 +7,7 @@ interface RecipeGenerateButtonProps {
   title: string;
   description: string;
   onClick: () => void;
+  disabled?: boolean;
 }
 
 export default function RecipeGenerateButton({
@@ -14,6 +15,7 @@ export default function RecipeGenerateButton({
   title,
   description,
   onClick,
+  disabled = false,
 }: RecipeGenerateButtonProps) {
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
@@ -27,6 +29,7 @@ export default function RecipeGenerateButton({
   return (
     <button
       onClick={handleClick}
+      disabled={disabled}
       className={`rounded-L flex w-full items-center gap-3 border px-3 py-4 ${isClicked ? "bg-green-light border-green-deep" : "border-gray-10"}`}
     >
       <div className="h-25 w-25">

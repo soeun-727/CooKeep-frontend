@@ -1,5 +1,4 @@
 import type { AiRecipeResponse, Difficulty } from "@/types/aiRecipe";
-
 import api from "./axios";
 
 interface GenerateAiRecipeRequest {
@@ -8,19 +7,31 @@ interface GenerateAiRecipeRequest {
   sessionId?: number;
 }
 
+// 1. AI 레시피 생성
 export const generateAiRecipe = async (
   body: GenerateAiRecipeRequest,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post(
     "/api/users/me/ai/recipes",
     body,
-    { timeout: 60000 }, // 여기만 60초
+    { timeout: 60000 }, // AI 연산 대기를 위한 60초 타임아웃
   );
 
   return response.data;
 };
 
-// 재생성
+// 2. AI 랜덤 레시피 생성 (냉장고 전체 재료 기반)
+export const generateRandomAiRecipe = async (): Promise<AiRecipeResponse> => {
+  const response = await api.post(
+    "/api/users/me/ai/recipes/random",
+    {}, // POST 요청이므로 빈 body를 전달합니다.
+    { timeout: 60000 }, // AI 연산 대기를 위한 60초 타임아웃 동일 적용
+  );
+
+  return response.data;
+};
+
+// 3. AI 레시피 재생성
 export const retryAiRecipe = async (body: {
   sessionId: number;
   difficulty: Difficulty;
@@ -32,7 +43,7 @@ export const retryAiRecipe = async (body: {
   return response.data;
 };
 
-// 채택
+// 4. AI 레시피 채택
 export const completeAiRecipe = async (sessionId: number) => {
   const response = await api.post(
     `/api/users/me/ai/recipes/${sessionId}/complete`,
