@@ -10,7 +10,7 @@ export default function SplashPage() {
     const timers = [
       setTimeout(() => setStep(1), 100), // 로고 등장
       setTimeout(() => setStep(2), 600), // 슬로건 등장
-      setTimeout(() => setIsFadingOut(true), 1500), // 유지 후 페이드아웃 (500ms 지속 → 총 2000ms)
+      setTimeout(() => setIsFadingOut(true), 1500),
     ];
 
     return () => timers.forEach(clearTimeout);
