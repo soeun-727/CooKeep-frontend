@@ -62,6 +62,10 @@ export default function RecipeResultPage() {
     }
   }, [recipeHistory.length]);
 
+  if (isLoading || (sessionId && !recipeHistory.length)) {
+    return <LoadingScreen />;
+  }
+
   if (!recipeHistory.length) {
     return (
       <div className="flex h-screen items-center justify-center text-gray-400">
@@ -99,16 +103,21 @@ export default function RecipeResultPage() {
                 description: step,
               }));
 
+              const rawFeature = difficulty || currentData.feature || "ANY";
+              const activeFeature = String(rawFeature).trim().toUpperCase();
+
               const matchedOption = DIFFICULTY_OPTIONS.find(
-                opt => opt.key === currentData.feature,
+                opt => String(opt.key).trim().toUpperCase() === activeFeature,
               );
+
               const categoryKorean =
                 matchedOption?.desc ||
-                (currentData.feature === "ANY" ? "랜덤" : "추천 요리");
+                (activeFeature === "ANY" || activeFeature === "RANDOM"
+                  ? "랜덤"
+                  : "추천 요리");
 
               return (
                 <div className="mx-auto flex w-full flex-col">
-                  {/* 1. 타이틀 섹션 */}
                   <RecipeTitle
                     name={recipe.title}
                     category={categoryKorean}
@@ -116,26 +125,22 @@ export default function RecipeResultPage() {
                   />
 
                   <div className="flex flex-col gap-3">
-                    {/* 2. 분리된 재료 정보 섹션 */}
                     <RecipeIngredientSection
                       selectedIngredients={userIngredients}
                       requiredIngredients={additionalIngredients}
                       substitutions={optionalIngredients}
                     />
 
-                    {/* 3. 분리된 요리 순서 섹션 */}
                     <RecipeStepSection
                       steps={steps}
                       difficulty={difficulty || "NORMAL"}
                     />
 
-                    {/* 4. 유튜브 참고 카드 */}
                     <RecipeYoutubeCard
                       videos={currentData.youtubeReferences || []}
                       tags={recipe.youtube_search_queries || []}
                     />
 
-                    {/* 5. 문구 */}
                     <div className="flex flex-col items-center gap-[2px]">
                       <div className="typo-caption w-full text-center text-gray-50">
                         AI가 제공하는 정보에는 실수가 있을 수 있습니다
@@ -152,7 +157,6 @@ export default function RecipeResultPage() {
                     </div>
                   </div>
 
-                  {/* 6. 버튼 */}
                   <div className="mt-6 mb-7 w-full max-w-[450px]">
                     <RecipeActionButtons
                       retryCount={retryCount}

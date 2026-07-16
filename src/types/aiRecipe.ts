@@ -1,5 +1,3 @@
-export type Difficulty = "EASY" | "NORMAL" | "HARD";
-
 export interface AiRecipeResponse {
   sessionId: number;
   changeCount: number;
@@ -38,7 +36,7 @@ export type Feature =
   | "SNACK_DESSERT"
   | "ANY";
 
-export type RecipeCategory = Feature;
+export type RecipeCategory = Feature | "RANDOM";
 
 export interface RetryAiRecipeRequest {
   sessionId: number;

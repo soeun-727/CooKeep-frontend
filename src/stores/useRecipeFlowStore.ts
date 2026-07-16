@@ -43,7 +43,6 @@ const parseAiError = (error: unknown): string => {
 const PRIORITY: Record<RewardType, number> = {
   ONBOARDING_INGREDIENT: 0,
   ONBOARDING_RECIPE: 0,
-
   WEEKLY: 1,
   EXPIRING: 2,
   COMEBACK: -1,
@@ -93,6 +92,8 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
   setDifficulty: difficulty => set({ difficulty }),
 
   generateRecipe: async () => {
+    set({ error: null });
+
     const { selectedIngredients, difficulty, sessionId, recipeHistory } = get();
 
     const hasDdayIngredient = selectedIngredients.some(i => i.dDay === 0);
@@ -104,7 +105,7 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
     if (!difficulty) return;
 
     try {
-      set({ isLoading: true, error: null });
+      set({ isLoading: true });
 
       let response: AiRecipeResponse;
       const apiDifficulty =
@@ -162,7 +163,7 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
 
   fetchSessionDetail: async (sessionId: number) => {
     try {
-      set({ isLoading: true });
+      set({ isLoading: true, error: null });
       const data = await getAiSessionDetail(sessionId);
 
       const parsedHistory: AiRecipeResponse[] = data.messages
@@ -185,10 +186,16 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
         })
         .filter((item): item is AiRecipeResponse => item !== null);
 
+      const finalFeature =
+        data.feature ??
+        parsedHistory[parsedHistory.length - 1]?.feature ??
+        "ANY";
+
       set({
         sessionId,
         recipeHistory: parsedHistory,
         isCompleted: data.completed,
+        difficulty: finalFeature as RecipeCategory,
         isLoading: false,
       });
     } catch (error) {
@@ -205,20 +212,21 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
     }
 
     try {
-      set({ isLoading: true });
+      set({ isLoading: true, error: null });
       const response = await completeAiRecipe(sessionId);
 
       const rewards: RewardType[] = [];
+      const types = response?.reward?.types || [];
 
-      if (response?.recipeRewardGranted) {
+      if (types.includes("ONBOARDING_RECIPE")) {
         rewards.push("ONBOARDING_RECIPE");
       }
 
-      if (response?.weeklyGoalAchieved) {
+      if (types.includes("BONUS_WEEKLY_GOAL_ACHIEVE")) {
         rewards.push("WEEKLY");
       }
 
-      if (response?.urgentIngredientRewardGranted) {
+      if (types.includes("BONUS_URGENT_INGREDIENT_USE")) {
         rewards.push("EXPIRING");
       }
 

@@ -36,9 +36,13 @@ export default function RecipeLoadingPage() {
     } catch (err: any) {
       console.error(err);
       const errorCode = err?.response?.data?.code;
-      if (errorCode === "RANDOM_RECIPE_INGREDIENT_NOT_ENOUGH") {
+
+      if (
+        errorCode === "INGREDIENTS_REQUIRED" ||
+        errorCode === "INGREDIENT_NOT_FOUND"
+      ) {
         setLocalError(
-          "랜덤 레시피 생성을 위해 냉장고에 재료가 최소 3개 이상 필요합니다.",
+          "레시피 생성을 위해 냉장고에 재료가 최소 3개 이상 필요합니다.",
         );
       } else if (errorCode === "USER_RATE_LIMIT_EXCEEDED") {
         setLocalError("1분 내 AI 생성 횟수(3회)를 초과하였습니다.");
@@ -62,7 +66,6 @@ export default function RecipeLoadingPage() {
   }, [step, navigate]);
 
   useEffect(() => {
-    // 예외 상태 처리 방어 코드
     if (!isRandom && (selectedIngredients.length === 0 || !difficulty)) {
       navigate("/recipe/select", { replace: true });
     }
