@@ -3,7 +3,7 @@ export { default as seeds } from "./cookeeps/seeds.svg";
 export { default as seedling } from "./cookeeps/seedling.svg";
 export { default as plant } from "./cookeeps/plant.svg";
 export { default as tree } from "./cookeeps/tree.svg";
-export { default as arrow } from "./cookeeps/arrow.svg";
+export { default as arrow } from "./icons/arrow_right.svg";
 export { default as earth } from "./cookeeps/earth.svg";
 export { default as apple } from "./cookeeps/apple.svg";
 export { default as beans } from "./cookeeps/beans.svg";
