@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
-import cookChar from "@/assets/recipe/main/cook_char.svg";
+import cookChar from "@/assets/character/cooking_hat_char.svg";
 import LightBulbIcon from "@/assets/recipe/main/lightbulb.svg?react";
 import randomIcon from "@/assets/recipe/main/randomIcon.svg";
 import selectIcon from "@/assets/recipe/main/selectIcon.svg";

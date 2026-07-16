@@ -6,7 +6,7 @@ import { AiRecipeSessionItem } from "@/api/aiSession";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
 import { SearchIcon } from "@/assets/index";
-import XIcon from "@/assets/recipe/select/x.svg?react";
+import XIcon from "@/assets/icons/x.svg?react";
 
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import TextField from "@/components/ui/TextField";

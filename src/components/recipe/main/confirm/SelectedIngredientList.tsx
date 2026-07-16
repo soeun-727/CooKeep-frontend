@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 import type { Ingredient } from "@/stores/useIngredientStore";
 
-import PlusIcon from "@/assets/recipe/select/plus.svg?react";
-import XIcon from "@/assets/recipe/select/x.svg?react";
+import PlusIcon from "@/assets/icons/plus.svg?react";
+import XIcon from "@/assets/icons/x.svg?react";
 
 interface SelectedIngredientListProps {
   ingredients: Ingredient[];

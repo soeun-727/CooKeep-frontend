@@ -6,7 +6,7 @@ import {
 } from "@/stores/useIngredientStore";
 
 import character from "@/assets/character/clear_char.svg";
-import ArrowIcon from "@/assets/cookeeps/arrow.svg?react";
+import ArrowIcon from "@/assets/icons/arrow_right.svg?react";
 
 import type { IconComponent } from "@/types/icon";
 

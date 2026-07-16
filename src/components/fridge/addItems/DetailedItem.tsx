@@ -6,7 +6,7 @@ import type { MasterItem } from "@/stores/useAddIngredientStore";
 import deleteIcon from "@/assets/fridge/delete.svg";
 import memoIcon from "@/assets/fridge/memo.svg";
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
-import renameIcon from "@/assets/recipe/rename.svg";
+import renameIcon from "@/assets/icons/rename.svg";
 
 import EditModal from "@/components/ui/EditModal";
 

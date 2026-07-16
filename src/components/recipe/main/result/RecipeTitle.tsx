@@ -4,7 +4,7 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
 import tempIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
-import HeartIcon from "@/assets/recipe/heart.svg?react";
+import HeartIcon from "@/assets/icons/heart.svg?react";
 
 interface RecipeTitleProps {
   name: string;

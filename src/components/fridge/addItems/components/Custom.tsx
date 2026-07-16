@@ -7,7 +7,7 @@ import {
 } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 
-import editIcon from "@/assets/recipe/rename.svg";
+import editIcon from "@/assets/icons/rename.svg";
 
 import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
 import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
