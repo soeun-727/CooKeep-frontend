@@ -38,7 +38,7 @@ export const retryAiRecipe = async (
   body: RetryAiRecipeRequest,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post<AiRecipeResponse>(
-    "/api/users/me/recipes/retry",
+    "/api/users/me/ai/recipes/retry",
     body,
     { timeout: 60000 },
   );
@@ -49,7 +49,7 @@ export const retryRandomAiRecipe = async (
   body: RetryAiRecipeRequest,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post<AiRecipeResponse>(
-    "/api/users/me/recipes/random/retry",
+    "/api/users/me/ai/recipes/random/retry",
     body,
     { timeout: 60000 },
   );

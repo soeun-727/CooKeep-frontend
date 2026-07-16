@@ -17,6 +17,7 @@ import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMem
 import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import BackHeader from "@/components/ui/BackHeader";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function RecipeDetailPage() {
   const navigate = useNavigate();
@@ -131,12 +132,7 @@ export default function RecipeDetailPage() {
     fetchFullDetail();
   }, [id]);
 
-  if (isLoading)
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        로딩 중...
-      </div>
-    );
+  if (isLoading) return <LoadingScreen />;
   if (!recipe)
     return (
       <div className="flex min-h-screen items-center justify-center">

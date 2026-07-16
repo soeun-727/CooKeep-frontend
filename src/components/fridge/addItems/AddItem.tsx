@@ -28,6 +28,7 @@ import AddItemFooter from "./AddItemFooter";
 import Category from "./components/Category";
 import Custom from "./components/Custom";
 import ItemsGrid from "./components/ItemsGrid";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function AddItem() {
   const {
@@ -143,13 +144,7 @@ export default function AddItem() {
     );
   }, [masterItems, searchTerm, selectedCategoryId]);
 
-  if (isLoading)
-    return (
-      <div className="mt-50 flex flex-col items-center justify-center text-center">
-        <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-body2 text-zinc-500">식재료를 불러오는 중...</div>
-      </div>
-    );
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <>

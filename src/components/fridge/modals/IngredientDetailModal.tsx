@@ -26,6 +26,7 @@ import { getKoreanUnit } from "@/utils/mapping";
 import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
 import QuantityEditor from "../addItems/components/edit/QuantityEditor";
 import StorageEditor from "../addItems/components/edit/StorageEditor";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 interface IngredientDetailModalProps {
   ingredient: Ingredient;
@@ -101,12 +102,7 @@ export default function IngredientDetailModal({
     }
   };
 
-  if (isLoading)
-    return (
-      <div className="bg-gray-80 fixed inset-0 z-60 flex items-center justify-center">
-        <div className="bg-gray-0 rounded-lg p-6 text-sm">정보 로딩 중...</div>
-      </div>
-    );
+  if (isLoading) return <LoadingScreen />;
 
   const displayTip = displayData.aiTip || ingredient.tip;
 

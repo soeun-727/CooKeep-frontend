@@ -11,6 +11,9 @@ import RecipePagination from "@/components/recipe/main/result/RecipePagination";
 import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
 import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
 
+import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+
 export default function RecipeResultPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { sessionId } = useParams();
@@ -27,7 +30,7 @@ export default function RecipeResultPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleRetry = async () => {
-    if (isLoading) return;
+    if (isLoading) return <LoadingScreen />;
     if (retryCount >= 5) return;
 
     try {
@@ -96,12 +99,19 @@ export default function RecipeResultPage() {
                 description: step,
               }));
 
+              const matchedOption = DIFFICULTY_OPTIONS.find(
+                opt => opt.key === currentData.feature,
+              );
+              const categoryKorean =
+                matchedOption?.desc ||
+                (currentData.feature === "ANY" ? "랜덤" : "추천 요리");
+
               return (
                 <div className="mx-auto flex w-full flex-col">
                   {/* 1. 타이틀 섹션 */}
                   <RecipeTitle
                     name={recipe.title}
-                    category={"밥류"}
+                    category={categoryKorean}
                     usedItems={userIngredients.length}
                   />
 

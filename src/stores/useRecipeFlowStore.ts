@@ -27,7 +27,9 @@ const parseAiError = (error: unknown): string => {
     return "AI 요청 횟수를 초과했어요. 잠시 후 다시 시도해주세요.";
   }
 
-  if (status === 400 && code === "AI_RECIPE_CHANGE_LIMIT_EXCEEDED") {
+  const isLimitExceeded =
+    status === 400 && code === "AI_RECIPE_CHANGE_LIMIT_EXCEEDED";
+  if (isLimitExceeded) {
     return "레시피 재생성은 최대 5번까지 가능합니다.";
   }
 
@@ -171,6 +173,7 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
             return {
               sessionId: data.sessionId,
               changeCount: 0,
+              feature: data.feature ?? parsed.feature ?? "ANY",
               recipe: parsed.recipe || parsed,
               youtubeReferences:
                 parsed.youtubeReferences ?? parsed.youtube_references ?? [],

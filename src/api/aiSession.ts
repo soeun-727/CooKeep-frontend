@@ -1,3 +1,4 @@
+import type { Feature } from "@/types/aiRecipe"; // 👈 Feature 타입 임포트 추가
 import api from "./axios";
 
 export interface AiRecipeSessionItem {
@@ -30,6 +31,7 @@ export interface AiSessionDetailResponse {
     sessionId: number;
     messages: AiSessionMessage[];
     completed: boolean;
+    feature?: Feature; // 👈 여기에 feature 필드를 추가합니다!
   };
 }
 
@@ -64,7 +66,7 @@ export const updateAiSessionTitle = async (
 ) => {
   const response = await api.patch(
     `/api/users/me/ai/recipes/sessions/title/${sessionId}`,
-    { title }, // Request Body
+    { title },
   );
   return response.data;
 };

@@ -21,6 +21,7 @@ import NoResultView from "../items/NoResultView";
 import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
 import Storage from "./Storage";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function FridgeTab() {
   const { ingredients, setIngredients, searchTerm, viewCategory } =
@@ -122,12 +123,7 @@ export default function FridgeTab() {
   const handleUpdate = useCallback(() => loadData(), [loadData]);
 
   if (isLoading) {
-    return (
-      <div className="fixed inset-0 top-55 z-50 flex flex-col items-center bg-[#FAFAFA]">
-        <img className="w-30 p-5 opacity-70" src={loadingChar} alt="loading" />
-        <div className="typo-body2 text-zinc-500">식재료 가져오는 중...</div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   return (
