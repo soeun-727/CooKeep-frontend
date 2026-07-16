@@ -22,11 +22,11 @@ export default function Last({ onStart }: LastProps) {
         <img src={checkChar} className="mt-[86px] w-[184px]" />
         <img src={shadow} className="w-42 brightness-93" />
 
-        <div className="fixed bottom-0 left-1/2 -translate-x-1/2 pb-[34px]">
-          <div className="-mr-4 -mb-8 flex justify-end">
-            <img src={calendarImage} className="w-44" />
+        <div className="fixed bottom-0 left-1/2 w-full -translate-x-1/2 pb-[34px]">
+          <div className="fixed -right-3 bottom-16 flex justify-end">
+            <img src={calendarImage} className="w-30 shrink-0" />
           </div>
-          <div className="relative z-10">
+          <div className="relative z-10 w-full px-4">
             <Button size="L" onClick={onStart} variant="green">
               시작하기
             </Button>

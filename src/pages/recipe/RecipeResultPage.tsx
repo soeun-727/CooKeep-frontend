@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
@@ -11,9 +11,17 @@ import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard
 
 export default function RecipeResultPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { sessionId } = useParams();
+  const location = useLocation();
 
-  const { recipeHistory, difficulty, retryCount, generateRecipe, isLoading } =
-    useRecipeFlowStore();
+  const {
+    recipeHistory,
+    difficulty,
+    retryCount,
+    generateRecipe,
+    isLoading,
+    fetchSessionDetail,
+  } = useRecipeFlowStore();
 
   const handleRetry = async () => {
     if (isLoading) return;
@@ -22,7 +30,6 @@ export default function RecipeResultPage() {
     try {
       await generateRecipe();
 
-      // 생성이 완료된 후 스크롤 이동
       setTimeout(() => {
         scrollRef.current?.scrollTo({
           top: scrollRef.current.scrollHeight,
@@ -35,19 +42,32 @@ export default function RecipeResultPage() {
     }
   };
 
-  const { sessionId } = useParams();
-  // const location = useLocation();
-  const { fetchSessionDetail } = useRecipeFlowStore();
-
-  // URL에 sessionId가 포함되어 들어왔다면 '상세보기 모드'로 간주
-  // (만약 생성 직후에도 URL에 sessionId가 붙는 구조라면, location.state 등을 활용해 구분 가능)
   const isHistoryMode = !!sessionId;
 
   useEffect(() => {
     if (sessionId) {
       fetchSessionDetail(Number(sessionId));
+    } else {
+      const incomingRecipeData = location.state?.recipeData;
+      if (incomingRecipeData) {
+        const flowStore = useRecipeFlowStore.getState() as any;
+        const currentHistory = flowStore.recipeHistory || [];
+        const isAlreadyAdded = currentHistory.some(
+          (item: any) => item.sessionId === incomingRecipeData.sessionId,
+        );
+
+        if (!isAlreadyAdded) {
+          if (typeof flowStore.setRecipeData === "function") {
+            flowStore.setRecipeData(incomingRecipeData);
+          } else if (typeof flowStore.setRecipe === "function") {
+            flowStore.setRecipe(incomingRecipeData);
+          } else if (typeof flowStore.setRecipeResponse === "function") {
+            flowStore.setRecipeResponse(incomingRecipeData);
+          }
+        }
+      }
     }
-  }, [sessionId]);
+  }, [sessionId, location.state]);
 
   if (!recipeHistory.length) {
     return (
@@ -71,7 +91,6 @@ export default function RecipeResultPage() {
 
           const isLastRecipe = index === recipeHistory.length - 1;
 
-          // 안전하게 데이터 추출
           const userIngredients = recipe.ingredients.user_ingredients || [];
           const additionalIngredients =
             recipe.ingredients.additional_ingredients || [];
@@ -122,12 +141,11 @@ export default function RecipeResultPage() {
           );
         })}
 
-        {/* 버튼 영역 */}
         <div className="mx-auto mb-7 w-full max-w-[450px] p-4">
           <RecipeActionButtons
             retryCount={retryCount}
             onRetry={handleRetry}
-            showRetryButton={!isHistoryMode} // 히스토리 모드일 때는 false
+            showRetryButton={!isHistoryMode}
             isLoading={isLoading}
           />
         </div>
