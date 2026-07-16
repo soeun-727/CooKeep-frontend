@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
@@ -12,7 +12,6 @@ import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard
 export default function RecipeResultPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const { sessionId } = useParams();
-  const location = useLocation();
 
   const {
     recipeHistory,
@@ -47,31 +46,12 @@ export default function RecipeResultPage() {
   useEffect(() => {
     if (sessionId) {
       fetchSessionDetail(Number(sessionId));
-    } else {
-      const incomingRecipeData = location.state?.recipeData;
-      if (incomingRecipeData) {
-        const flowStore = useRecipeFlowStore.getState() as any;
-        const currentHistory = flowStore.recipeHistory || [];
-        const isAlreadyAdded = currentHistory.some(
-          (item: any) => item.sessionId === incomingRecipeData.sessionId,
-        );
-
-        if (!isAlreadyAdded) {
-          if (typeof flowStore.setRecipeData === "function") {
-            flowStore.setRecipeData(incomingRecipeData);
-          } else if (typeof flowStore.setRecipe === "function") {
-            flowStore.setRecipe(incomingRecipeData);
-          } else if (typeof flowStore.setRecipeResponse === "function") {
-            flowStore.setRecipeResponse(incomingRecipeData);
-          }
-        }
-      }
     }
-  }, [sessionId, location.state]);
+  }, [sessionId]);
 
   if (!recipeHistory.length) {
     return (
-      <div className="flex h-full items-center justify-center text-gray-400">
+      <div className="flex h-screen items-center justify-center text-gray-400">
         레시피를 찾을 수 없습니다.
       </div>
     );
@@ -108,7 +88,7 @@ export default function RecipeResultPage() {
                 selectedIngredients={userIngredients}
                 requiredIngredients={additionalIngredients}
                 substitutions={optionalIngredients}
-                steps={recipe.steps.map((step, idx) => ({
+                steps={recipe.steps.map((step: string, idx: number) => ({
                   order: idx + 1,
                   description: step,
                 }))}

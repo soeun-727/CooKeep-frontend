@@ -1,7 +1,9 @@
 import {
   completeAiRecipe,
   generateAiRecipe,
+  generateRandomAiRecipe,
   retryAiRecipe,
+  retryRandomAiRecipe,
 } from "@/api/aiRecipe";
 import { getAiSessionDetail } from "@/api/aiSession";
 import axios from "axios";
@@ -40,9 +42,9 @@ const PRIORITY: Record<RewardType, number> = {
   ONBOARDING_INGREDIENT: 0,
   ONBOARDING_RECIPE: 0,
 
-  WEEKLY: 1, // A
-  EXPIRING: 2, // B
-  COMEBACK: -1, // 우선순위 제일 높음
+  WEEKLY: 1,
+  EXPIRING: 2,
+  COMEBACK: -1,
 };
 
 type RecipeFlowState = {
@@ -100,31 +102,38 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
     if (!difficulty) return;
 
     try {
-      set({ isLoading: true, error: null }); // 로딩 시작
+      set({ isLoading: true, error: null });
 
       let response: AiRecipeResponse;
-      const apiDifficulty = difficulty === "RANDOM" ? undefined : difficulty;
+      const apiDifficulty =
+        (difficulty as string) === "RANDOM" ? undefined : difficulty;
 
       if (sessionId === null) {
-        // 처음 생성 시
-        response = await generateAiRecipe({
-          ingredientIds: selectedIngredients.map(i => i.id),
-          difficulty: apiDifficulty as any,
-        });
+        if (difficulty === ("RANDOM" as any)) {
+          response = await generateRandomAiRecipe();
+        } else {
+          response = await generateAiRecipe({
+            ingredientIds: selectedIngredients.map(i => i.id),
+            feature: apiDifficulty as any,
+          });
+        }
       } else {
-        // 재요청(Retry) 시
-        response = await retryAiRecipe({
-          sessionId,
-          difficulty: apiDifficulty as any,
-          ingredientIds: selectedIngredients.map(i => i.id),
-        });
+        if (difficulty === ("RANDOM" as any)) {
+          response = await retryRandomAiRecipe({
+            sessionId,
+          });
+        } else {
+          response = await retryAiRecipe({
+            sessionId,
+          });
+        }
       }
 
       set({
         sessionId: response.sessionId,
         retryCount: response.changeCount,
         recipeHistory: [...recipeHistory, response],
-        isLoading: false, // 로딩 종료
+        isLoading: false,
       });
     } catch (error) {
       const message = parseAiError(error);

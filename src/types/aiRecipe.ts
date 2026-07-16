@@ -18,6 +18,7 @@ export interface AiRecipeResponse {
     url: string;
     thumbnail: string;
   }[];
+  feature: Feature;
 }
 
 export interface IngredientItem {
@@ -36,3 +37,9 @@ export type Feature =
   | "SALAD_HEALTHY"
   | "SNACK_DESSERT"
   | "ANY";
+
+export type RecipeCategory = Feature;
+
+export interface RetryAiRecipeRequest {
+  sessionId: number;
+}

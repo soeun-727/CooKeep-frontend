@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
-import { generateAiRecipe, generateRandomAiRecipe } from "@/api/aiRecipe";
 
 import CheckIcon from "@/assets/recipe/check.svg";
 
@@ -22,33 +21,17 @@ export default function RecipeLoadingPage() {
     "맞춤형 레시피가 완성됐어요!",
   ];
 
-  const { selectedIngredients, difficulty, error } = useRecipeFlowStore();
+  const { selectedIngredients, difficulty, generateRecipe, error } =
+    useRecipeFlowStore();
   const isRandom = location.state?.isRandom ?? false;
 
   const handleGenerateRecipe = async () => {
     try {
       setLocalError(null);
-      let data;
-
       if (isRandom) {
-        data = await generateRandomAiRecipe();
-      } else {
-        const ingredientIds = selectedIngredients.map(item => item.id);
-        data = await generateAiRecipe({
-          feature: difficulty as any,
-          ingredientIds,
-        });
+        useRecipeFlowStore.setState({ difficulty: "RANDOM" as any });
       }
-
-      const flowStore = useRecipeFlowStore.getState() as any;
-      if (typeof flowStore.setRecipeData === "function") {
-        flowStore.setRecipeData(data);
-      } else if (typeof flowStore.setRecipe === "function") {
-        flowStore.setRecipe(data);
-      } else if (typeof flowStore.setRecipeResponse === "function") {
-        flowStore.setRecipeResponse(data);
-      }
-
+      await generateRecipe();
       navigate("/recipe/result");
     } catch (err: any) {
       console.error(err);
@@ -79,6 +62,7 @@ export default function RecipeLoadingPage() {
   }, [step, navigate]);
 
   useEffect(() => {
+    // 예외 상태 처리 방어 코드
     if (!isRandom && (selectedIngredients.length === 0 || !difficulty)) {
       navigate("/recipe/select", { replace: true });
     }
