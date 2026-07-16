@@ -45,9 +45,9 @@ export default function RecipeHeader({
         {/* 왼쪽: 사이드바 버튼 */}
         <button
           onClick={toggleSidebar}
-          className="z-10 flex h-10 cursor-pointer items-center justify-center"
+          className="z-10 flex h-10 w-10 cursor-pointer items-center justify-center"
         >
-          <MenuIcon className="h-full w-full" />
+          <MenuIcon width={40} height={40} />
         </button>
 
         {/* 중앙: 타이틀 */}
@@ -65,7 +65,9 @@ export default function RecipeHeader({
             className="z-10 flex h-10 w-10 cursor-pointer items-center justify-end"
           >
             <HeartIcon
-              className={`stroke-gray-10 h-full w-full shrink-0 fill-current ${
+              width={24}
+              height={21}
+              className={`stroke-gray-10 fill-current ${
                 isLiked ? "text-gray-30" : "text-transparent"
               }`}
             />

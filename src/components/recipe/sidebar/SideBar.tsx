@@ -189,10 +189,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                         <div className="flex w-full flex-col justify-start">
                           <p className="typo-l-strong px-1">찜한 레시피</p>
                           {pinned.length > 0 && renderRecipeList(pinned, true)}
-                          {pinned.length > 0 && sessions.length > 0 && (
-                            <div className="h-6" />
-                          )}
-                          <p className="typo-l-strong px-1">다른 레시피</p>
+                          {pinned.length > 0 && sessions.length > 0}
+                          <p className="typo-l-strong mt-6 px-1">다른 레시피</p>
                           {sessions.length > 0 &&
                             renderRecipeList(sessions, false)}
                         </div>

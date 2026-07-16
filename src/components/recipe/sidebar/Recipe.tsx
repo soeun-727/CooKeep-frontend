@@ -55,9 +55,12 @@ export default function Recipe({
 
   return (
     <div className="mx-auto flex w-full items-center justify-between px-3 py-1">
-      <button onClick={onLike} className="h-8 w-8 flex-shrink-0">
+      <button
+        onClick={onLike}
+        className="flex h-8 w-8 items-center justify-start"
+      >
         <HeartIcon
-          className={`stroke-gray-10 h-4 w-[18px] fill-current stroke-[2px] ${isLiked ? "text-gray-30" : "text-transparent"}`}
+          className={`stroke-gray-10 w-[18px] fill-current stroke-[2px] ${isLiked ? "text-gray-30" : "text-transparent"}`}
         />
       </button>
 
