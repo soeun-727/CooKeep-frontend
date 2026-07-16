@@ -4,12 +4,7 @@ import { getRefrigeratorHome } from "@/api/ingredient";
 import { getPushEligibility } from "@/api/user";
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
-import {
-  FreezerIcon,
-  FridgeIcon,
-  PantryIcon,
-  loadingChar,
-} from "@/assets/index";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 

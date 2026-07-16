@@ -8,7 +8,6 @@ import {
   getMasterIngredientList,
   getRecentIngredients,
 } from "@/api/ingredient";
-import { loadingChar } from "@/assets";
 import {
   type MasterItem,
   useAddIngredientStore,
