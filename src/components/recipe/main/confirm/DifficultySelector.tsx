@@ -12,13 +12,14 @@ export default function DifficultySelector() {
 
   const handleRandomClick = () => {
     setIsRandomPending(true);
-    setDifficulty("RANDOM");
+    setDifficulty("RANDOM" as any);
     setTimeout(() => {
       setIsRandomPending(false);
     }, 200);
   };
 
-  const isRandomSelected = difficulty === "RANDOM" || isRandomPending;
+  const isRandomSelected =
+    (difficulty as string) === "RANDOM" || isRandomPending;
 
   return (
     <section className="mx-auto flex w-full flex-col items-center">

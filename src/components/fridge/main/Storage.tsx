@@ -42,11 +42,6 @@ export default memo(function Storage({
   const isScrollable = ingredients.length >= 3;
   const pages = chunk(ingredients, 3);
 
-  const handleViewCategory = useCallback(
-    () => setViewCategory(category),
-    [setViewCategory, category],
-  );
-
   const handleSelect = useCallback(
     (id: number) => {
       if (onItemClick) onItemClick(id);
