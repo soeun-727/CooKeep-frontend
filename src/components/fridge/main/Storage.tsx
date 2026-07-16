@@ -1,4 +1,4 @@
-import { memo, useCallback } from "react";
+import { memo } from "react";
 
 import {
   type Ingredient,
@@ -6,7 +6,7 @@ import {
 } from "@/stores/useIngredientStore";
 
 import character from "@/assets/character/clear_char.svg";
-import ArrowIcon from "@/assets/icons/arrow_right.svg?react";
+import ArrowRight from "@/assets/fridge/arrow_right.svg?react";
 
 import type { IconComponent } from "@/types/icon";
 
@@ -22,14 +22,6 @@ interface StorageProps {
   onItemClick?: (id: number) => void;
 }
 
-function chunk<T>(arr: T[], size: number): T[][] {
-  const result: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
-  }
-  return result;
-}
-
 export default memo(function Storage({
   category,
   icon: Icon,
@@ -38,59 +30,48 @@ export default memo(function Storage({
 }: StorageProps) {
   const { selectedIds, toggleSelect, setViewCategory, openDetail } =
     useIngredientStore();
-
-  const isScrollable = ingredients.length >= 3;
-  const pages = chunk(ingredients, 3);
-
-  const handleSelect = useCallback(
-    (id: number) => {
-      if (onItemClick) onItemClick(id);
-      else toggleSelect(id);
-    },
-    [onItemClick, toggleSelect],
-  );
-
-  const handleDetail = useCallback(
-    (id: number) => {
-      if (!onItemClick) openDetail(id);
-    },
-    [onItemClick, openDetail],
-  );
+  // 3개 이상일 때만 전체보기 활성화
+  const isScrollable = ingredients.length > 3;
+  const topIngredients = ingredients.slice(0, 3);
 
   return (
     <div className="relative z-0 min-h-[173px] w-full">
       {/* 배경 레이어 */}
       <div className="pointer-events-none absolute inset-0 -z-10 flex flex-col overflow-hidden">
-        <div className="rounded-t-L h-[115px] w-full bg-[#E3EBE6]" />
-        <div className="relative flex h-12 w-full flex-col bg-[#75D99F]">
-          <div className="absolute inset-0 mt-[7px] flex items-start justify-center gap-[6px]">
-            {ingredients[0] ? (
-              <div className="h-[26px] w-[114px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
-            ) : (
-              <div className="w-[114px]" />
-            )}
-            {ingredients[1] ? (
-              <div className="h-[26px] w-[114px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
-            ) : (
-              <div className="w-[114px]" />
-            )}
-            {ingredients[2] ? (
-              <div className="h-[26px] w-[114px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
-            ) : (
-              <div className="w-[114px]" />
-            )}
-          </div>
-        </div>
-        <div className="h-[7px] w-full bg-[#54BE81]" />
+        <div className="h-[115px] w-full rounded-t-[16px] bg-[#E3EBE6]" />
+        <div className="relative flex h-12 w-full flex-col bg-[#75D99F]"></div>
+        <div className="h-[10px] w-full bg-[#54BE81]" />
       </div>
 
       {/* 상단 헤더 */}
-      <div className="mx-auto max-w-[393px] pb-3">
-        <div className="relative z-10 flex items-center justify-between px-4 py-2">
-          {/* 카테고리 태그 */}
-          <div className="bg-gray-80 text-green flex items-center justify-center gap-1 rounded-[6px] px-3 py-1">
-            <Icon className="h-5 w-5" />
-            <span className="typo-m-strong whitespace-nowrap">{category}</span>
+      <div className="mx-auto w-full">
+        <div className="relative z-10 px-4 py-2">
+          <div className="flex h-10 w-full items-center justify-between">
+            {/* 카테고리 태그 */}
+            <div className="bg-gray-80 text-green flex h-[22px] min-w-[59px] items-center justify-center gap-1 rounded-[6px] px-2">
+              <Icon className="h-3 w-3" />
+              <span className="typo-caption leading-none whitespace-nowrap">
+                {category}
+              </span>
+            </div>
+
+            {/* 전체보기 */}
+            <button
+              disabled={!isScrollable}
+              onClick={() => setViewCategory(category)}
+              className="group flex items-center transition-all active:scale-95"
+            >
+              <span
+                className={`typo-label ${
+                  isScrollable ? "text-green-deep" : "text-gray-50"
+                }`}
+              >
+                전체보기
+              </span>
+              <ArrowRight
+                className={`${isScrollable ? "text-green-deep" : "text-gray-50"} h-5 w-5`}
+              />
+            </button>
           </div>
           {/* 전체보기 */}
           <button
@@ -106,7 +87,7 @@ export default memo(function Storage({
               전체보기
             </span>
             <div className="flex h-5 w-5 items-center justify-center">
-              <ArrowIcon
+              <ArrowRight
                 className={`w-2 ${isScrollable ? "text-green-deep" : "text-gray-30"}`}
               />
             </div>
@@ -116,29 +97,29 @@ export default memo(function Storage({
 
       {/* 아이템 리스트 */}
       {ingredients.length > 0 ? (
-        <div className="relative z-10 mx-auto w-[353px]">
-          <div className="no-scrollbar scroll-snap-x scroll-snap-mandatory flex gap-[6px] overflow-x-auto pb-2">
-            {pages.map((page, pageIndex) => (
-              <div
-                key={pageIndex}
-                className="scroll-snap-start flex flex-shrink-0 justify-start gap-[6px]"
-                style={{ width: "353px" }}
-              >
-                {page.map(item => (
-                  <Item
-                    key={item.id}
-                    name={item.name}
-                    leftDays={item.dDay}
-                    image={item.image}
-                    isSelected={selectedIds.includes(item.id)}
-                    onSelect={() => handleSelect(item.id)}
-                    onDetail={() => handleDetail(item.id)}
-                    className={item.className}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
+        <div className="justify-left mx-auto flex max-w-[375px] gap-2 px-4">
+          {topIngredients.map(item => (
+            <div key={item.id} className="flex flex-col">
+              <Item
+                name={item.name}
+                leftDays={item.dDay}
+                image={item.image}
+                isSelected={selectedIds.includes(item.id)}
+                onSelect={() => {
+                  if (onItemClick) {
+                    onItemClick(item.id);
+                  } else {
+                    toggleSelect(item.id);
+                  }
+                }}
+                onDetail={() => {
+                  if (!onItemClick) openDetail(item.id);
+                }}
+                className={item.className}
+              />
+              <div className="-z-10 mt-[-14px] h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+            </div>
+          ))}
         </div>
       ) : (
         <div className="animate-fadeIn flex h-20 flex-col items-center justify-between">

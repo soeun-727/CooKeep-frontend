@@ -33,7 +33,7 @@ export default function Layout() {
     if (path.includes("fridge")) setActiveTab("냉장고");
     else if (path.includes("recipe")) setActiveTab("레시피");
     else if (path.includes("cookeeps")) setActiveTab("쿠킵스");
-    else if (path.includes("mycookeep")) setActiveTab("MY쿠킵");
+    else if (path.includes("mycookeep")) setActiveTab("마이쿠킵");
   }, [location.pathname]);
 
   const handleSelect = useCallback((name: string) => {

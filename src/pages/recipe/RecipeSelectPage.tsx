@@ -5,7 +5,7 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
-import Search from "@/components/fridge/features/Search";
+import { Search } from "@/components/fridge/features/Search";
 import Sort from "@/components/fridge/features/Sort";
 import IngredientGrid from "@/components/fridge/items/IngredientGrid";
 import Storage from "@/components/fridge/main/Storage";
@@ -24,6 +24,7 @@ export default function RecipeSelectPage() {
     setViewCategory,
     selectedIds,
     searchTerm,
+    setSearchTerm,
   } = useIngredientStore();
 
   const { sortedIngredients } = useSortedIngredients();
@@ -59,7 +60,14 @@ export default function RecipeSelectPage() {
     if (category === "냉동") return FreezerIcon;
     return PantryIcon;
   };
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
 
+    // 검색 시작 시 전체보기(카테고리 뷰) 해제
+    if (value.trim().length > 0) {
+      setViewCategory(null);
+    }
+  };
   return (
     <div className="flex w-full flex-col pb-5">
       <BackHeader title="재료 선택" onBack={handleBack} />
@@ -76,7 +84,11 @@ export default function RecipeSelectPage() {
 
       <div className="mt-13">
         <div className="flex items-center px-4">
-          <Search />
+          <Search
+            placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
         </div>
 
         {viewCategory || searchTerm ? (

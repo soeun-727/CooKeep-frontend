@@ -33,12 +33,8 @@ export default function TextField({
     <div className="w-full">
       {label && <label className="typo-m mb-1 block">{label}</label>}
 
-      <div className="relative">
-        {leftIcon && (
-          <div className="absolute top-1/2 left-3 -translate-y-1/2">
-            {leftIcon}
-          </div>
-        )}
+      <div className="bg-gray-10 border-gray-10 flex h-[48px] gap-3 rounded-[12px] p-3">
+        {leftIcon && <div>{leftIcon}</div>}
 
         <input
           type={type}
@@ -48,7 +44,7 @@ export default function TextField({
           autoComplete={autoComplete}
           onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`bg-gray-0 text-gray-80 placeholder:text-gray-30 disabled:bg-gray-10 typo-m rounded-M h-12 w-full border p-3 focus:outline-none ${leftIcon ? "pl-11" : ""} ${rightIcon ? "pr-10" : ""} ${
+          className={`text-gray-80 typo-m flex-1 placeholder:text-gray-50 focus:outline-none ${
             errorMessage
               ? "border-semantic-negative"
               : successMessage
@@ -57,24 +53,18 @@ export default function TextField({
           } `}
         />
 
-        {rightIcon && (
-          <div className="absolute top-1/2 right-3 -translate-y-1/2">
-            {rightIcon}
-          </div>
-        )}
+        {rightIcon && <div>{rightIcon}</div>}
       </div>
 
-      <p
-        className={`mt-1 min-h-[14px] pl-2 text-[10px] leading-[14px] ${
-          errorMessage
-            ? "text-semantic-negative"
-            : successMessage
-              ? "text-semantic-positive"
-              : "text-transparent"
-        } `}
-      >
-        {errorMessage || successMessage || "placeholder"}
-      </p>
+      {(errorMessage || successMessage) && (
+        <p
+          className={`mt-1 min-h-[14px] pl-2 text-[10px] leading-[14px] ${
+            errorMessage ? "text-semantic-negative" : "text-semantic-positive"
+          } `}
+        >
+          {errorMessage || successMessage}
+        </p>
+      )}
     </div>
   );
 }

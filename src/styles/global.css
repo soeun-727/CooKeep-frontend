@@ -39,6 +39,7 @@
 
   /* x 0 y 4 흐림 16 스프레드 0 #111111 10% */
   --shadow-container: 0 4px 16px 0 rgba(17, 17, 17, 0.1);
+  --drop-shadow-container: 0 4px 16px rgba(17, 17, 17, 0.1);
   --shadow-hover: 0 -36px 30.6px rgba(0, 0, 0, 0.05);
   --shadow-search: 0 4px 16px -10px rgba(0, 0, 0, 0.25);
   --shadow-plant: 0 1px 8.2px -2px rgba(17, 17, 17, 0.25);
@@ -46,6 +47,7 @@
   --shadow-recent-t: 0 4px 16px 0px rgba(17, 17, 17, 0.1);
   --shadow-recent-b: 0 -1px 100px -4px rgba(17, 17, 17, 0.15);
   --shadow-inner: 0 2px 5.2px -4px rgba(0, 0, 0, 0.25);
+  --shadow-tooltip-tail: 0 4px 16px rgba(0, 0, 0, 0.13);
 
   --spacing-sab: calc(env(safe-area-inset-bottom, 0px));
 
