@@ -7,8 +7,10 @@ import {
 
 import character from "@/assets/character/clear_char.svg";
 import ArrowIcon from "@/assets/cookeeps/arrow.svg?react";
-import Item from "../items/Item";
+
 import type { IconComponent } from "@/types/icon";
+
+import Item from "../items/Item";
 
 interface StorageIngredient extends Ingredient {
   className?: string; // 기존 Ingredient에 className이 있을 수도 있다고 알려줌

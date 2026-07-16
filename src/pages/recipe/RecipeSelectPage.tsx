@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
 import Search from "@/components/fridge/features/Search";

@@ -3,6 +3,7 @@ import type {
   Feature,
   RetryAiRecipeRequest,
 } from "@/types/aiRecipe";
+
 import api from "./axios";
 
 export interface GenerateAiRecipeRequest {
