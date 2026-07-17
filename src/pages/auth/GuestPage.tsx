@@ -46,9 +46,9 @@ export default function GuestPage() {
 
   return (
     <div className="relative flex h-full w-full flex-1 flex-col overflow-hidden">
-      <div className="mt-[62px] w-full shrink-0" />
+      <div className="mt-10 w-full shrink-0" />
       <div className="no-scrollbar w-full flex-1 overflow-y-auto">
-        <div className="flex w-full justify-center">{renderSlide()}</div>
+        <div className="w-full">{renderSlide()}</div>
       </div>
 
       <button
@@ -56,7 +56,7 @@ export default function GuestPage() {
           e.stopPropagation();
           navigate("/");
         }}
-        className="bg-gray-10/80 absolute top-5 right-4 z-[200] inline-flex items-center justify-center gap-[8px] rounded-full px-[22px] py-2 text-[14px] font-medium text-gray-50"
+        className="bg-gray-10 typo-caption absolute top-[3px] right-4 z-[200] inline-flex items-center justify-center rounded-full px-4 py-2 text-gray-50"
       >
         메인으로 돌아가기
       </button>

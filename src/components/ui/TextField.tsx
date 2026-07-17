@@ -46,7 +46,7 @@ export default function TextField({
           autoComplete={autoComplete}
           onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`text-gray-80 placeholder:text-gray-50 typo-m flex-1 focus:outline-none ${
+          className={`text-gray-80 typo-m flex-1 placeholder:text-gray-50 focus:outline-none ${
             errorMessage
               ? "border-semantic-negative"
               : successMessage

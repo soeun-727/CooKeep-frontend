@@ -25,7 +25,7 @@ export default memo(function IngredientGrid({
   );
 
   return (
-    <div className="mx-auto grid w-full grid-cols-3 gap-x-2 gap-y-2 px-4 py-6 mb-25">
+    <div className="mx-auto mb-25 grid w-full grid-cols-3 gap-x-2 gap-y-2 px-4 py-6">
       {items.map(item => (
         <Item
           key={item.id}
