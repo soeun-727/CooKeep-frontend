@@ -9,10 +9,12 @@ import GuestRecipe from "@/components/auth/guest/GuestRecipe";
 import GuestRecipeIntro from "@/components/auth/guest/GuestRecipeIntro";
 import GuestRecipeLevel from "@/components/auth/guest/GuestRecipeLevel";
 import GuestRecipeLoading from "@/components/auth/guest/GuestRecipeLoading";
+import TabBar from "@/components/fixed/TabBar";
 
 export default function GuestPage() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
+  const [isDimmed, setIsDimmed] = useState(false);
 
   const handleNext = () => {
     setIndex(prev => prev + 1);
@@ -21,7 +23,14 @@ export default function GuestPage() {
   const renderSlide = () => {
     switch (index) {
       case 0:
-        return <GuestFridge onNext={handleNext} mode="fridge" />;
+        return (
+          <GuestFridge
+            onNext={handleNext}
+            mode="fridge"
+            isDimmed={isDimmed}
+            setIsDimmed={setIsDimmed}
+          />
+        );
       case 1:
         return <GuestAddItem onNext={handleNext} />;
       case 2:
@@ -29,7 +38,14 @@ export default function GuestPage() {
       case 3:
         return <GuestRecipeIntro onNext={handleNext} />;
       case 4:
-        return <GuestFridge onNext={handleNext} mode="recipe" />;
+        return (
+          <GuestFridge
+            onNext={handleNext}
+            mode="recipe"
+            isDimmed={isDimmed}
+            setIsDimmed={setIsDimmed}
+          />
+        );
       case 5:
         return <GuestRecipeLevel onNext={handleNext} />;
       case 6:
@@ -46,10 +62,14 @@ export default function GuestPage() {
 
   return (
     <div className="relative flex h-full w-full flex-1 flex-col overflow-hidden">
+      {isDimmed && (
+        <div className="bg-black-overlay absolute inset-0 left-1/2 z-90 h-screen w-full max-w-[450px] -translate-x-1/2" />
+      )}
       <div className="mt-10 w-full shrink-0" />
       <div className="no-scrollbar w-full flex-1 overflow-y-auto">
         <div className="w-full">{renderSlide()}</div>
       </div>
+      <TabBar selectedTab="냉장고" onSelect={() => {}} />
 
       <button
         onClick={e => {

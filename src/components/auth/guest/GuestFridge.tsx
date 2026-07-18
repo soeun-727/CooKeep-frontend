@@ -6,11 +6,12 @@ import bagel from "@/assets/guest/bagel.svg";
 import banana from "@/assets/guest/banana.svg";
 import egg from "@/assets/guest/egg.svg";
 import FAB from "@/assets/guest/fab.svg";
-import notice from "@/assets/guest/fab_2.svg";
 import milk from "@/assets/guest/milk.svg";
 import noodles from "@/assets/guest/noodles.svg";
 import strawberry from "@/assets/guest/strawberry.svg";
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+
+import Triangle from "@/assets/guest/triangle.svg?react";
 
 import Item from "@/components/fridge/items/Item";
 import Storage from "@/components/fridge/main/Storage";
@@ -21,13 +22,16 @@ import { Search } from "@/components/fridge/features/Search";
 interface GuestFridgeProps {
   onNext: () => void;
   mode?: "fridge" | "recipe";
+  isDimmed: boolean;
+  setIsDimmed: (dimmed: boolean) => void;
 }
 
 export default function GuestFridge({
   onNext,
   mode = "fridge",
+  isDimmed,
+  setIsDimmed,
 }: GuestFridgeProps) {
-  const [isDimmed, setIsDimmed] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   const REQUIRED_IDS = [1, 2, 4, 6];
@@ -105,11 +109,7 @@ export default function GuestFridge({
   );
 
   return (
-    <div onClick={() => setIsDimmed(true)} className="relative w-full">
-      {isDimmed && (
-        <div className="bg-black-overlay absolute inset-0 left-1/2 z-90 h-full w-full max-w-[450px] -translate-x-1/2" />
-      )}
-
+    <div onClick={() => setIsDimmed(true)} className="relative h-screen w-full">
       <div
         className={`relative flex w-full flex-col gap-7 ${mode === "recipe" ? "pb-20" : ""}`}
       >
@@ -192,17 +192,21 @@ export default function GuestFridge({
       </div>
 
       {mode === "fridge" ? (
-        <div className="absolute right-[31px] -bottom-15 z-[130] flex flex-col items-end">
+        <div className="fixed right-4 bottom-[calc(72px+env(safe-area-inset-bottom))] z-[130] flex flex-col items-end gap-2">
           {isDimmed && (
-            <div className="relative w-full">
-              <object
-                data={notice}
-                className="absolute right-[-8px] -bottom-4 w-[270px] max-w-none"
-              />
+            <div className="flex flex-col items-end">
+              <div className="rounded-S bg-gray-0 px-3 py-2">
+                <p className="text-green-deep typo-label">
+                  지금 냉장고에 있는 재료부터 등록해보세요!
+                </p>
+              </div>
+              <div className="-mt-1 px-4">
+                <Triangle className="w-4" />
+              </div>
             </div>
           )}
           <button
-            className="relative translate-y-4"
+            className="relative -mr-2"
             onClick={e => {
               if (!isDimmed) {
                 setIsDimmed(true);
