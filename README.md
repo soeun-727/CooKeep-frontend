@@ -48,8 +48,9 @@
 
 ## 👩‍💻Members
 
-|                                 박소은                                  |                               신지예                                |
-| :---------------------------------------------------------------------: | :-----------------------------------------------------------------: |
-| <img src="https://github.com/soeun-727.png" width="180" height="180" /> | <img src="https://github.com/ji070.png" width="180" height="180" /> |
-|               [@soeun-727](https://github.com/soeun-727)                |                 [@ji070](https://github.com/ji070)                  |
-|                                 12기 FE                                 |                               12기 FE                               |
+|                                 박소은                                  |                               신지예                                |                              신수진                                |
+| :---------------------------------------------------------------------: | :-----------------------------------------------------------------: |:-----------------------------------------------------------------: |
+| <img src="https://github.com/soeun-727.png" width="180" height="180" /> | <img src="https://github.com/ji070.png" width="180" height="180" /> |<img src="https://github.com/lemoncurdyogurt.png" width="180" height="180" /> |
+|               [@soeun-727](https://github.com/soeun-727)                |                 [@ji070](https://github.com/ji070)                  |                 [@lemoncurdyogurt](https://github.com/lemoncurdyogurt)                  |
+|                                 12기 FE                                 |                               12기 FE                               |                               12기 FE                               |
+

@@ -22,49 +22,40 @@ export default function ExpiryAlertModal({
   if (!isOpen || items.length === 0) return null;
 
   return (
-    <div className="fixed inset-0 z-100 flex items-center justify-center">
-      {/* backdrop */}
-      <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
+    <div className="fixed inset-0 z-100 mx-auto flex max-w-[450px] items-center justify-center">
+      <div className="bg-gray-80/50 absolute inset-0" onClick={onClose} />
 
-      {/* modal */}
-      <div className="bg-gray-0 relative flex w-[280px] flex-col items-center gap-2 rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
-        {/* content */}
-        <div className="flex w-full flex-col items-center gap-4">
+      <section className="bg-gray-0 relative flex w-[300px] flex-col items-center gap-6 rounded-[16px] p-6">
+        <div className="flex w-full flex-col items-center gap-3">
           <img
             src={characterImg}
             alt="알림 캐릭터"
             className="h-[60px] w-[75px]"
           />
 
-          <p className="typo-body2 text-gray-80 text-center whitespace-pre-line">
+          <p className="typo-l-strong text-gray-80 text-center whitespace-pre-line">
             유통기한이 오늘까지인 재료가 있어요!
             <br />
             지금 확인하고 요리해볼까요?
           </p>
         </div>
 
-        {/* buttons */}
-        <div className="mt-2 flex w-full flex-col gap-2">
+        <div className="flex w-full flex-col gap-2">
           <Button
             variant="green"
-            className="bg-green !w-[224px]"
             onClick={() => {
               onClose();
               navigate("/recipe/select");
             }}
           >
-            레시피 받고 요리하기
+            확인
           </Button>
 
-          <Button
-            variant="black"
-            className="bg-gray-30 !w-[224px]"
-            onClick={onClose}
-          >
-            나중에 요리할게요
+          <Button variant="gray" onClick={onClose}>
+            취소
           </Button>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

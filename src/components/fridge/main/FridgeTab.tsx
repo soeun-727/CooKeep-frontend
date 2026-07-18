@@ -11,10 +11,12 @@ import {
   loadingChar,
 } from "@/assets/index";
 
+import { BackHeader } from "@/components/fixed/BackHeader";
+
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
-import Search from "../features/Search";
-import Sort from "../features/Sort";
+import { AppBar } from "../AppBar";
+import { Search } from "../features/Search";
 import IngredientGrid from "../items/IngredientGrid";
 import ItemOption from "../items/ItemOption";
 import NoResultView from "../items/NoResultView";
@@ -23,8 +25,14 @@ import IngredientDetailModal from "../modals/IngredientDetailModal";
 import Storage from "./Storage";
 
 export default function FridgeTab() {
-  const { ingredients, setIngredients, searchTerm, viewCategory } =
-    useIngredientStore();
+  const {
+    ingredients,
+    setIngredients,
+    searchTerm,
+    viewCategory,
+    setSearchTerm,
+    setViewCategory,
+  } = useIngredientStore();
   const { selectedIngredientId, closeDetail } = useIngredientStore();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -83,6 +91,16 @@ export default function FridgeTab() {
   }, []);
 
   const { filteredIngredients, sortedIngredients } = useSortedIngredients();
+
+  const handleSearch = (value: string) => {
+    setSearchTerm(value);
+
+    // 검색 시작 시 전체보기(카테고리 뷰) 해제
+    if (value.trim().length > 0) {
+      setViewCategory(null);
+    }
+  };
+
   const todayIngredients = useMemo(
     () => ingredients.filter(i => i.dDay === 0),
     [ingredients],
@@ -108,18 +126,10 @@ export default function FridgeTab() {
     [ingredients],
   );
 
-  const getCategoryIcon = useCallback((category: string | null) => {
-    if (category === "냉동") return FreezerIcon;
-    if (category === "상온") return PantryIcon;
-    return FridgeIcon;
-  }, []);
-
   const handleCloseExpiryModal = useCallback(
     () => setIsExpiryModalOpen(false),
     [],
   );
-
-  const handleUpdate = useCallback(() => loadData(), [loadData]);
 
   if (isLoading) {
     return (
@@ -131,8 +141,20 @@ export default function FridgeTab() {
   }
 
   return (
-    <div className="flex w-full flex-col pt-[calc(env(safe-area-inset-top)+3rem)]">
-      <Search />
+    <div className="flex w-full flex-col">
+      <div className="mb-6 flex flex-col gap-3 px-4">
+        {isListView ? (
+          <BackHeader title="냉장고" sortIcon={true} />
+        ) : (
+          <AppBar />
+        )}
+        <Search
+          placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
+
       {isExpiryModalOpen && todayIngredients.length > 0 && (
         <ExpiryAlertModal
           isOpen={isExpiryModalOpen}
@@ -148,15 +170,9 @@ export default function FridgeTab() {
             <NoResultView />
           </div>
         ))}
-      {isListView && (
-        <>
-          <Sort
-            categoryIcon={getCategoryIcon(viewCategory)}
-            viewCategory={viewCategory!}
-          />
-          <IngredientGrid items={sortedIngredients} />
-        </>
-      )}
+
+      {isListView && <IngredientGrid items={sortedIngredients} />}
+
       {!isSearching && !viewCategory && (
         <div className="flex flex-col gap-[10px]">
           <Storage
@@ -176,14 +192,23 @@ export default function FridgeTab() {
           />
         </div>
       )}
+
       <ItemOption />
+
       {selectedIngredient && (
-        <IngredientDetailModal
-          key={selectedIngredient.id}
-          ingredient={selectedIngredient}
-          onClose={closeDetail}
-          onUpdate={handleUpdate}
-        />
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          onClick={closeDetail}
+        >
+          <div onClick={e => e.stopPropagation()}>
+            <IngredientDetailModal
+              key={selectedIngredient.id}
+              ingredient={selectedIngredient}
+              onClose={closeDetail}
+              onUpdate={() => loadData()}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
