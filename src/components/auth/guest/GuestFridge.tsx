@@ -109,7 +109,10 @@ export default function GuestFridge({
   );
 
   return (
-    <div onClick={() => setIsDimmed(true)} className="relative h-screen w-full">
+    <div
+      onClick={() => setIsDimmed(true)}
+      className="relative h-[calc(100dvh-40px)] w-full"
+    >
       <div
         className={`relative flex w-full flex-col gap-7 ${mode === "recipe" ? "pb-20" : ""}`}
       >
@@ -122,12 +125,12 @@ export default function GuestFridge({
         </div>
         <div className="relative w-full">
           {mode === "recipe" && (
-            <div className="absolute -top-[120px] left-1/2 z-[130] flex w-full -translate-x-1/2 justify-center">
+            <div className="absolute -top-30 left-1/2 z-130 flex w-full -translate-x-1/2 justify-center">
               <FloatingNotice text="요리할 재료를 선택해 주세요" />
             </div>
           )}
           {!isDimmed && (
-            <div className="absolute inset-0 z-[120] cursor-pointer" />
+            <div className="absolute inset-0 z-120 cursor-pointer" />
           )}
 
           <div className="relative z-0 flex w-full flex-col gap-3">
@@ -156,7 +159,7 @@ export default function GuestFridge({
                 leftDays={guestIngredients[0].dDay}
                 isSelected={selectedIds.includes(1)}
                 onSelect={() => handleSelect(1)}
-                className="pointer-events-auto absolute !z-[110]"
+                className="pointer-events-auto absolute z-110!"
                 style={{ top: "55px", left: "0px" }}
               />
               <Item
@@ -165,7 +168,7 @@ export default function GuestFridge({
                 leftDays={guestIngredients[1].dDay}
                 isSelected={selectedIds.includes(2)}
                 onSelect={() => handleSelect(2)}
-                className="pointer-events-auto absolute !z-[110]"
+                className="pointer-events-auto absolute z-110!"
                 style={{ top: "55px", left: "120px" }}
               />
               <Item
@@ -174,7 +177,7 @@ export default function GuestFridge({
                 leftDays={guestIngredients[5].dDay}
                 isSelected={selectedIds.includes(6)}
                 onSelect={() => handleSelect(6)}
-                className="pointer-events-auto absolute !z-[110]"
+                className="pointer-events-auto absolute z-110!"
                 style={{ top: "238px", left: "0px" }}
               />
               <Item
@@ -183,7 +186,7 @@ export default function GuestFridge({
                 leftDays={guestIngredients[3].dDay}
                 isSelected={selectedIds.includes(4)}
                 onSelect={() => handleSelect(4)}
-                className="pointer-events-auto absolute !z-[110]"
+                className="pointer-events-auto absolute z-110!"
                 style={{ top: "421px", left: "0px" }}
               />
             </div>
