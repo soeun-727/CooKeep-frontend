@@ -102,7 +102,7 @@ export default function App() {
       splashTimer = setTimeout(() => {
         sessionStorage.setItem("splash_watched", "true");
         setShowSplash(false);
-      }, 5500);
+      }, 2000);
     }
     return () => {
       if (splashTimer) clearTimeout(splashTimer);
