@@ -121,7 +121,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
                 handleButtonClick(e);
               }
             }}
-            className="typo-button text-gray-0 bg-green h-[38px] w-full rounded-[10px]"
+            className="typo-button text-gray-0 bg-green rounded-L h-[38px] w-full"
           >
             이 레시피대로 요리할래요
           </button>

@@ -47,7 +47,7 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
       <div className="bg-black-overlay absolute inset-0" onClick={onClose} />
 
       {/* modal */}
-      <div className="bg-gray-0 shadow-container relative flex h-44 w-70 flex-col items-center rounded-[10px] px-7 pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 shadow-container rounded-L relative flex h-44 w-70 flex-col items-center px-7 pt-[35px] pb-[25px]">
         <div className="mb-4 flex w-full items-center justify-center gap-1">
           {isEditing ? (
             <input
@@ -82,7 +82,7 @@ export default function InputModal({ onClose, onConfirm }: InputModalProps) {
         <button
           onClick={handleConfirm}
           disabled={!inputValue.trim() || isLoading}
-          className={`typo-label text-gray-0 h-11 w-full rounded-[10px] transition-colors ${
+          className={`typo-label text-gray-0 rounded-M h-11 w-full transition-colors ${
             inputValue.trim() && !isLoading
               ? "bg-green"
               : "bg-gray-30 cursor-not-allowed"
