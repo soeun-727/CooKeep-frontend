@@ -19,6 +19,7 @@ export default function GuestPage() {
   const SHOW_TABBAR_INDICES = [0, 3];
   const TITLE_MAP: Record<number, string> = {
     1: "재료 등록",
+    2: "재료 등록",
     5: "재료 선택",
     7: "오늘의 레시피",
   };
