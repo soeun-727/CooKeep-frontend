@@ -38,7 +38,7 @@ export default function StorageEditor({ value, onSave }: StorageEditorProps) {
               key={storage}
               disabled={isInitialValue}
               onClick={() => handleQuickSelect(storage)}
-              className={`h-11 rounded-[12px] transition-all ${
+              className={`rounded-M h-11 transition-all ${
                 isNewlySelected
                   ? "border-green-deep bg-green-light text-green-deep border"
                   : isInitialValue

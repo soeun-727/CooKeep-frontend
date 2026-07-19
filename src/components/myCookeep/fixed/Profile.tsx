@@ -127,7 +127,7 @@ function Profile() {
           </div>
 
           {/* 목표 요약 바 */}
-          <div className="bg-green-deep shadow-search flex h-12 w-[361px] items-center justify-between gap-3 rounded-[12px] p-3">
+          <div className="bg-green-deep shadow-search rounded-M flex h-12 w-[361px] items-center justify-between gap-3 p-3">
             <span
               className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-gray-0" : "text-green-300"}`}
             >

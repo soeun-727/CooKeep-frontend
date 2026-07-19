@@ -156,7 +156,7 @@ export default function DetailedItem(item: DetailedItemProps) {
   ];
 
   return (
-    <div className="bg-gray-0 shadow-plant relative min-h-[154px] w-full rounded-[16px] p-4">
+    <div className="bg-gray-0 shadow-plant rounded-L relative min-h-[154px] w-full p-4">
       <button
         onClick={e => {
           e.stopPropagation();
@@ -170,7 +170,7 @@ export default function DetailedItem(item: DetailedItemProps) {
       <div className="flex h-full gap-6">
         {/* 이미지 + 메모 영역 */}
         <section className="flex h-full flex-col justify-between">
-          <div className="border-gray-10 flex h-[70px] w-[70px] items-center justify-between rounded-[8px] border p-[13px]">
+          <div className="border-gray-10 rounded-S flex h-[70px] w-[70px] items-center justify-between border p-[13px]">
             <img
               src={item.image}
               className="h-full w-full object-contain"

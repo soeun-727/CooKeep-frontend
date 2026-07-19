@@ -20,7 +20,7 @@ export default function AlertModal({
   return (
     <div className="bg-black-overlay fixed inset-0 z-[160] flex items-center justify-center">
       <div className="absolute inset-0" onClick={onClose}></div>
-      <section className="bg-gray-0 relative flex w-[300px] flex-col items-center gap-6 rounded-[16px] p-6 text-center">
+      <section className="bg-gray-0 rounded-L relative flex w-[300px] flex-col items-center gap-6 p-6 text-center">
         <div className="flex flex-col items-center gap-3">
           <img src={icon} className="w-20" />
 

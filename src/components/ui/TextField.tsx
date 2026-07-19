@@ -35,7 +35,7 @@ export default function TextField({
         <label className="mb-1 block text-sm font-medium">{label}</label>
       )}
 
-      <div className="bg-gray-10 border-gray-10 flex h-[48px] gap-3 rounded-[12px] p-3">
+      <div className="bg-gray-10 border-gray-10 rounded-M flex h-[48px] gap-3 p-3">
         {leftIcon && <div>{leftIcon}</div>}
 
         <input
