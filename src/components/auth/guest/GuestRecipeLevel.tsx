@@ -1,4 +1,4 @@
-import header from "@/assets/guest/back_header.svg";
+// import header from "@/assets/guest/back_header.svg";
 import contents from "@/assets/guest/recipe_header.svg";
 
 import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
@@ -11,7 +11,7 @@ interface GuestRecipeLevelProps {
 export default function GuestRecipeLevel({ onNext }: GuestRecipeLevelProps) {
   return (
     <div className="flex flex-col items-center">
-      <object data={header} />
+      {/* <object data={header} /> */}
       <object data={contents} className="mt-[38px]" />
       <div className="-mt-[50px] w-full pb-20">
         <DifficultySelector />
