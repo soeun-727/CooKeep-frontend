@@ -14,10 +14,7 @@ interface RecipeHeaderProps {
   transparent?: boolean;
 }
 
-export default function RecipeHeader({
-  title,
-  transparent = false,
-}: RecipeHeaderProps) {
+export default function RecipeHeader({ title }: RecipeHeaderProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const { sessionId: paramSessionId } = useParams();
   const { sessionId: flowSessionId } = useRecipeFlowStore();
@@ -39,9 +36,7 @@ export default function RecipeHeader({
 
   return (
     <>
-      <header
-        className={`fixed top-0 right-0 left-0 z-50 mx-auto flex h-10 w-full max-w-[450px] items-center justify-between px-4 py-2 ${transparent ? "bg-transparent" : "bg-background"} `}
-      >
+      <header className="fixed top-0 right-0 left-0 z-50 mx-auto flex h-10 w-full max-w-[450px] items-center justify-between px-4 py-2">
         {/* 왼쪽: 사이드바 버튼 */}
         <button
           onClick={toggleSidebar}

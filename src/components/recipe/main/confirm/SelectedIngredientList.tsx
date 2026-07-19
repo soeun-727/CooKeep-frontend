@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
 import type { Ingredient } from "@/stores/useIngredientStore";
-
 import PlusIcon from "@/assets/icons/plus.svg?react";
-import XIcon from "@/assets/icons/x.svg?react";
+import SelectedItem from "./SelectedItem";
 
 interface SelectedIngredientListProps {
   ingredients: Ingredient[];
@@ -37,45 +36,11 @@ export default function SelectedIngredientList({
 
       {/* 재료 컨테이너 */}
       <div className="bg-gray-0 rounded-L border-gray-10 grid w-full grid-cols-5 justify-items-center gap-y-1 border px-2 py-3">
-        {sortedIngredients.map(item => {
-          const isUrgent = item.dDay <= 3;
-          console.log(item.name, item.expiryDate, item.dDay);
+        {sortedIngredients.map(item => (
+          <SelectedItem key={item.id} item={item} onRemove={onRemove} />
+        ))}
 
-          return (
-            <div key={item.id} className="relative h-[70px] w-full flex-1 p-1">
-              {/* 유통기한 */}
-              <span
-                className={`bg-gray-0 absolute top-[1px] left-1 inline-flex items-center justify-center rounded-full border px-1 py-[1px] text-[8px] leading-2.5 whitespace-nowrap ${
-                  isUrgent
-                    ? "border-semantic-negative text-semantic-negative"
-                    : "border-gray-30 text-gray-50"
-                } `}
-              >
-                {item.dDay >= 0 ? `D-${item.dDay}` : `D+${Math.abs(item.dDay)}`}
-              </span>
-              {/* 삭제 버튼 */}
-              <button
-                onClick={() => onRemove(item.id)}
-                className="absolute top-0 right-0 flex h-6 w-6 items-start justify-end px-1 py-[3px]"
-              >
-                <XIcon className="h-2 w-2" />
-              </button>
-
-              {/* 이미지 + 이름 */}
-              <div className="flex flex-col items-center">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="h-11 w-11 object-cover"
-                />
-                <span className="text-gray-80 typo-caption line-clamp-1">
-                  {item.name}
-                </span>
-              </div>
-            </div>
-          );
-        })}
-
+        {/* 재료 추가 버튼 */}
         <button
           onClick={() => navigate(-1)}
           className="flex h-[70px] w-full flex-1 flex-col items-center justify-center p-1"
@@ -86,6 +51,7 @@ export default function SelectedIngredientList({
           <div className="text-gray-30 typo-caption">재료 추가</div>
         </button>
 
+        {/* 빈 원 슬롯들 */}
         {Array.from({ length: emptyCount }).map((_, idx) => (
           <div
             key={`empty-${idx}`}

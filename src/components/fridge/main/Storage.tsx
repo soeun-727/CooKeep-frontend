@@ -73,25 +73,6 @@ export default memo(function Storage({
               />
             </button>
           </div>
-          {/* 전체보기 */}
-          <button
-            disabled={!isScrollable}
-            onClick={() => setViewCategory(category)}
-            className="group flex items-center"
-          >
-            <span
-              className={`typo-label ${
-                isScrollable ? "text-green-deep" : "text-gray-50"
-              }`}
-            >
-              전체보기
-            </span>
-            <div className="flex h-5 w-5 items-center justify-center">
-              <ArrowRight
-                className={`w-2 ${isScrollable ? "text-green-deep" : "text-gray-30"}`}
-              />
-            </div>
-          </button>
         </div>
       </div>
 

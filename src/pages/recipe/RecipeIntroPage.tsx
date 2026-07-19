@@ -49,9 +49,9 @@ export default function RecipeIntroPage() {
         />
       </div>
 
-      <div className="rounded-M bg-gray-exception mb-5 flex w-full gap-3 p-3">
+      <div className="rounded-M bg-gray-exception flex w-full gap-3 p-3">
         <LightBulbIcon className="h-9 w-9" />
-        <div className="flex w-full flex-col text-start text-gray-50">
+        <div className="flex w-full flex-col items-start text-gray-50">
           <span className="typo-caption-strong">쿠킵이 생성하는 레시피는</span>
           <span className="typo-caption">
             보유 재료와 취향을 반영해 추천해 드려요

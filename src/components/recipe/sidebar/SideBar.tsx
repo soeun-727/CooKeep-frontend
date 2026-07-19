@@ -149,7 +149,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 <div
                   className={`rounded-tr-L rounded-br-L bg-gray-0 pointer-events-auto absolute left-0 h-full w-80 transform transition-transform duration-300 ease-in-out ${translateClasses}`}
                 >
-                  <div className="no-scrollbar flex h-full flex-1 flex-col gap-6 overflow-y-auto px-4 py-15">
+                  <div className="no-scrollbar flex h-full flex-1 flex-col gap-6 overflow-y-auto px-4 py-[30px]">
                     <div className="flex flex-col gap-4">
                       <div className="flex justify-between px-1">
                         <p className="typo-h3 text-gray-80">레시피 기록</p>

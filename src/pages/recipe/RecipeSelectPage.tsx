@@ -82,7 +82,7 @@ export default function RecipeSelectPage() {
         />
       )}
 
-      <div className="mt-13">
+      <div className="mt-13 flex flex-col gap-6">
         <div className="flex items-center px-4">
           <Search
             placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
@@ -123,7 +123,7 @@ export default function RecipeSelectPage() {
       </div>
 
       {!viewCategory && (
-        <div className="fixed bottom-[34px] left-1/2 flex w-full max-w-[450px] -translate-x-1/2 items-center px-4">
+        <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 flex w-full max-w-[450px] -translate-x-1/2 items-center px-4">
           <Button
             size="L"
             variant="black"

@@ -30,7 +30,7 @@ export default function RecipeGenerateButton({
     <button
       onClick={handleClick}
       disabled={disabled}
-      className={`rounded-L flex w-full items-center gap-3 border px-3 py-4 ${isClicked ? "bg-green-light border-green-deep" : "border-gray-10"}`}
+      className={`bg-gray-0 rounded-L flex w-full items-center gap-3 border px-3 py-4 ${isClicked ? "bg-green-light border-green-deep" : "border-gray-10"}`}
     >
       <div className="h-25 w-25">
         <img src={image} alt="image" className="h-full w-full object-contain" />
