@@ -52,25 +52,15 @@ export default function TextField({
       : "text-transparent";
 
   return (
-    // 전체 wrapper
-    <div className="flex min-h-[70px] w-full flex-col items-center gap-1 self-stretch">
+    <div className="w-full">
       {label && (
         <label className="typo-label text-gray-80 w-full self-start">
           {label}
         </label>
       )}
 
-      {/* 내용부분(입력 박스) */}
-      <div
-        className={`flex h-12 w-full shrink-0 items-center gap-3 self-stretch rounded-xl border px-3 ${boxState} ${
-          disabled ? "cursor-not-allowed" : ""
-        }`}
-      >
-        {leftIcon && (
-          <div className="flex [aspect-ratio:1/1] h-6 w-6 shrink-0 items-center justify-center">
-            {leftIcon}
-          </div>
-        )}
+      <div className="bg-gray-10 border-gray-10 flex h-[48px] gap-3 rounded-[12px] p-3">
+        {leftIcon && <div>{leftIcon}</div>}
 
         <input
           type={type}
@@ -82,22 +72,27 @@ export default function TextField({
           ref={inputRef}
           onFocus={onFocus}
           onBlur={onBlur}
-          className="typo-m text-gray-80 min-w-0 flex-1 self-stretch overflow-hidden bg-transparent text-ellipsis whitespace-nowrap placeholder:text-gray-50 focus:outline-none disabled:cursor-not-allowed"
+          className={`text-gray-80 typo-m flex-1 placeholder:text-gray-50 focus:outline-none ${
+            errorMessage
+              ? "border-semantic-negative"
+              : successMessage
+                ? "border-semantic-positive"
+                : "border-gray-10"
+          } `}
         />
 
-        {rightIcon && (
-          <div className="flex h-6 w-fit shrink-0 items-center justify-center">
-            {rightIcon}
-          </div>
-        )}
+        {rightIcon && <div>{rightIcon}</div>}
       </div>
 
-      {/* 메시지 영역 항상 자리 차지(레이아웃 밀림 방지) */}
-      <div className="flex h-[14px] w-full shrink-0 items-center gap-2 self-stretch px-3">
-        <p className={`typo-caption truncate ${messageColor}`}>
-          {message || "placeholder"}
+      {(errorMessage || successMessage) && (
+        <p
+          className={`mt-1 min-h-[14px] pl-2 text-[10px] leading-[14px] ${
+            errorMessage ? "text-semantic-negative" : "text-semantic-positive"
+          } `}
+        >
+          {errorMessage || successMessage}
         </p>
-      </div>
+      )}
     </div>
   );
 }

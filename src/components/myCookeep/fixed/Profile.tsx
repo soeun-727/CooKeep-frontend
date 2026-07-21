@@ -171,10 +171,7 @@ function Profile() {
               >
                 이번 주 달성하고 싶은 목표를 세워보세요!
               </div>
-              <div
-                className="bg-gray-0 absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45"
-                style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
-              />
+              <div className="bg-gray-0 shadow-tooltip-tail absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45" />
             </div>
           )}
         </div>

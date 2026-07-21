@@ -39,7 +39,9 @@ function Item({
       <div className="flex flex-col items-center justify-center gap-[2px]">
         <img src={image} className="h-12 w-12" />
 
-        <span className="typo-caption w-[58px] truncate !font-bold whitespace-nowrap">
+        <span
+          className={`typo-m-strong w-[58px] truncate whitespace-nowrap ${isSelected ? "text-green-deep" : "text-gray-80"}`}
+        >
           {name}
         </span>
       </div>

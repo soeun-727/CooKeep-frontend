@@ -8,8 +8,9 @@ import {
 import { AxiosError } from "axios";
 
 import character from "@/assets/character/confused_char.svg";
+import PlusIcon from "@/assets/fridge/plus.svg?react";
 
-import DeleteConfirmModal from "../../modals/DeleteConfirmModal";
+import ConfirmModal from "../../modals/ConfirmModal";
 import Item from "./Item";
 
 interface ItemsGridProps {
@@ -78,40 +79,26 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
     }
   };
 
-  // const handleItemDelete = async (id: number | string, name: string) => {
-  //   if (!window.confirm(`'${name}' 재료를 삭제하시겠습니까?`)) return;
-
-  //   // 1. 디버깅용 로그 (브라우저 콘솔에서 확인 가능)
-  //   console.log("원본 ID:", id);
-
-  //   try {
-  //     // 2. ID가 문자열인 경우 숫자만 추출 (예: "custom_12" -> 12)
-  //     // 만약 이미 숫자라면 그대로 사용합니다.
-  //     const numericId =
-  //       typeof id === "string" ? parseInt(id.replace(/[^0-9]/g, ""), 10) : id;
-
-  //     // 3. 변환된 값이 유효한 숫자인지 최종 체크
-  //     if (isNaN(numericId as number)) {
-  //       console.error("유효하지 않은 ID 형식입니다.");
-  //       return;
-  //     }
-
-  //     // 4. API 호출
-  //     await deleteCustomIngredient(numericId as number);
-
-  //     // 5. 성공 시 UI 업데이트
-  //     deleteMasterItem(id);
-  //     onDeleteLocal(id);
-  //   } catch (error) {
-  //     console.error("삭제 실패:", error);
-  //     alert("재료 삭제에 실패했습니다.");
-  //   }
-  // };
-
   return (
     <>
-      <div className="flex w-full flex-col items-center justify-center pt-[10px] pb-25">
-        <div className="flex w-[294px] flex-col">
+      {isSearchEmpty ? (
+        <div className="flex h-full w-full flex-1 flex-col items-center justify-center gap-4">
+          <img src={character} className="w-23" alt="no result" />
+          <button
+            type="button"
+            onClick={() => setModalOpen(true)}
+            className="animate-fadeIn items-center justify-center"
+          >
+            <div className="bg-gray-80 flex items-center justify-center gap-2 rounded-[12px] px-4 py-2">
+              <p className="typo-label text-gray-0 text-center">
+                직접 재료 추가하기
+              </p>
+              <PlusIcon className="text-gray-0 h-5 w-5" />
+            </div>
+          </button>
+        </div>
+      ) : (
+        <div className="mb-6 flex w-full flex-col items-center justify-center pt-[10px]">
           <div className="grid grid-cols-3 justify-items-center gap-3">
             {items.map(item => (
               <Item
@@ -127,29 +114,15 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
               />
             ))}
           </div>
-
-          {isSearchEmpty && (
-            <button
-              type="button"
-              onClick={() => setModalOpen(true)}
-              className="animate-fadeIn mt-30 mb-50 flex flex-col items-center justify-center gap-3"
-            >
-              <img src={character} className="w-23" alt="no result" />
-              <div className="flex h-6 items-center justify-center rounded-[100px] bg-black px-[18px] py-1">
-                <span className="typo-caption text-gray-0 py-1 text-center">
-                  직접 재료 추가하기
-                </span>
-              </div>
-            </button>
-          )}
         </div>
-      </div>
+      )}
+
       {deleteTarget && (
-        <DeleteConfirmModal
-          ingredientName={deleteTarget.name}
+        <ConfirmModal
+          title="재료를 삭제하시겠어요?"
+          subtitle={deleteTarget.name}
           onConfirm={handleDeleteConfirm}
           onCancel={() => setDeleteTarget(null)}
-          confirmColor="green"
         />
       )}
     </>
