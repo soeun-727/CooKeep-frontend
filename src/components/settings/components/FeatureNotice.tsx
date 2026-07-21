@@ -1,17 +1,16 @@
+import { parseNoticeLines, removeBullet } from "@/utils/notice";
+
 interface FeatureNoticeProps {
   content: string;
 }
 
 export default function FeatureNotice({ content }: FeatureNoticeProps) {
-  const items = content
-    .split(/\r?\n/)
-    .map(line => line.trim())
-    .filter(Boolean);
+  const items = parseNoticeLines(content);
 
   return (
     <div className="flex flex-col gap-3">
       {items.map((item, idx) => {
-        const text = item.replace(/^-+\s*/, "");
+        const text = removeBullet(item);
 
         const [title, ...rest] = text.split(":");
         const description = rest.join(":").trim();

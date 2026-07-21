@@ -1,12 +1,11 @@
+import { parseNoticeLines, removeBullet } from "@/utils/notice";
+
 interface ServiceNoticeProps {
   content: string;
 }
 
 export default function ServiceNotice({ content }: ServiceNoticeProps) {
-  const lines = content
-    .split(/\r?\n/)
-    .map(line => line.trim())
-    .filter(Boolean);
+  const lines = parseNoticeLines(content);
   const footer = lines.slice(4).join(" ");
 
   return (
@@ -20,13 +19,9 @@ export default function ServiceNotice({ content }: ServiceNoticeProps) {
 
       {/* Cook / Keep */}
       <div className="flex flex-col">
-        <p className="typo-m-strong text-gray-80">
-          {lines[2].replace(/^-+\s*/, "")}
-        </p>
+        <p className="typo-m-strong text-gray-80">{removeBullet(lines[2])}</p>
 
-        <p className="typo-m-strong text-gray-80">
-          {lines[3].replace(/^-+\s*/, "")}
-        </p>
+        <p className="typo-m-strong text-gray-80">{removeBullet(lines[3])}</p>
       </div>
 
       {/* 마지막 회색 문장 */}
