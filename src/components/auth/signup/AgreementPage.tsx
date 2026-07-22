@@ -176,7 +176,7 @@ export default function AgreementPage({
           )}
           {/* 하단 버튼: 콘텐츠 위에 얹혀서 스크롤 시 그라디언트로 자연스럽게 사라짐 */}
           <div className="pointer-events-none absolute inset-x-0 bottom-0 flex justify-center px-4">
-            <div className="bg-bottom-fade pointer-events-auto flex w-full flex-col items-center pt-6 pb-[calc(32px+env(safe-area-inset-bottom))]">
+            <div className="bg-bottom-fade pointer-events-auto flex w-full flex-col items-center pt-6 pb-[34px]">
               <Button
                 size="L"
                 variant="black"
