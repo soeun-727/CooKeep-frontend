@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 
-import { type ProfileData, getProfileInfo } from "@/api/user";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
 
 import { groundImg } from "@/assets/index";
 import PlantIcon from "@/assets/mycookeep/plant.svg?react";
@@ -11,25 +11,10 @@ import ProfileEditModal from "../modals/ProfileEditModal";
 
 export const ProfileContent = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [profile, setProfile] = useState<ProfileData | null>(null);
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  const fetchProfile = useCallback(async () => {
-    try {
-      const response = await getProfileInfo();
-
-      if (response.status === "OK") {
-        setProfile(response.data);
-      }
-    } catch (error) {
-      console.error("프로필 로딩 실패:", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchProfile();
-  }, [fetchProfile]);
-
+  const profile = useMyCookeepStore(s => s.profile);
+  const fetchProfile = useMyCookeepStore(s => s.fetchProfile);
   const setProfilePlant = useCookeepsStore(s => s.setProfilePlant);
   const setProfileAuto = useCookeepsStore(s => s.setProfileAuto);
 
