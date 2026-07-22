@@ -3,8 +3,6 @@ import { useState } from "react";
 import { updatePushConsent } from "@/api/onboarding";
 import { registerPushNotification } from "@/api/push";
 
-import char from "@/assets/character/noti_char.svg";
-
 import Button from "@/components/ui/Button";
 
 import { NOTI_EXAMPLE_DATA } from "@/constants/onboarding";
