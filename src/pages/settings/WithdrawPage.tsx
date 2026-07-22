@@ -12,7 +12,7 @@ import Shadow from "@/assets/character/char_shadow.svg?react";
 import AgreeUnchecked from "@/assets/signup/blankCheck.svg?react";
 import AgreeChecked from "@/assets/signup/checkboxCheck.svg?react";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import { flushSync } from "react-dom";
 
@@ -113,8 +113,8 @@ export default function WithdrawPage() {
   if (loading) {
     return (
       <>
-        <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
-        <main className="mx-auto max-w-[375px] px-4 pt-[161px] pb-[220px]">
+        <BackHeader title="탈퇴하기" />
+        <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">
           <div className="text-center">로딩 중...</div>
         </main>
       </>
@@ -123,7 +123,7 @@ export default function WithdrawPage() {
 
   return (
     <>
-      <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
+      <BackHeader title="탈퇴하기" />
 
       <main className="mx-auto flex w-full max-w-[375px] flex-col items-center gap-[120px] px-4 pt-[161px] pb-[220px]">
         <div className="flex w-full flex-col items-center gap-3">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
@@ -10,8 +10,10 @@ import StepMessage from "@/components/recipe/main/loading/StepMessage";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [step, setStep] = useState(0);
+  const [localError, setLocalError] = useState<string | null>(null);
 
   const messages = [
     "선택한 재료를 보고 있어요...",
@@ -21,6 +23,36 @@ export default function RecipeLoadingPage() {
 
   const { selectedIngredients, difficulty, generateRecipe, error } =
     useRecipeFlowStore();
+  const isRandom = location.state?.isRandom ?? false;
+
+  const handleGenerateRecipe = async () => {
+    try {
+      setLocalError(null);
+      if (isRandom) {
+        useRecipeFlowStore.setState({ difficulty: "RANDOM" as any });
+      }
+      await generateRecipe();
+      navigate("/recipe/result");
+    } catch (err: any) {
+      console.error(err);
+      const errorCode = err?.response?.data?.code;
+
+      if (
+        errorCode === "INGREDIENTS_REQUIRED" ||
+        errorCode === "INGREDIENT_NOT_FOUND"
+      ) {
+        setLocalError(
+          "레시피 생성을 위해 냉장고에 재료가 최소 3개 이상 필요합니다.",
+        );
+      } else if (errorCode === "USER_RATE_LIMIT_EXCEEDED") {
+        setLocalError("1분 내 AI 생성 횟수(3회)를 초과하였습니다.");
+      } else {
+        setLocalError(
+          "레시피 생성 중 오류가 발생했습니다. 다시 시도해 주세요.",
+        );
+      }
+    }
+  };
 
   useEffect(() => {
     if (step < messages.length) {
@@ -29,48 +61,41 @@ export default function RecipeLoadingPage() {
     }
 
     if (step === messages.length) {
-      (async () => {
-        try {
-          await generateRecipe(); // 끝날 때까지 기다림
-          navigate("/recipe/result");
-        } catch (error) {
-          console.error(error);
-        }
-      })();
+      handleGenerateRecipe();
     }
-  }, [step, generateRecipe, navigate]);
+  }, [step, navigate]);
 
   useEffect(() => {
-    if (selectedIngredients.length === 0 || !difficulty) {
+    if (!isRandom && (selectedIngredients.length === 0 || !difficulty)) {
       navigate("/recipe/select", { replace: true });
     }
   }, []);
 
+  const displayError = error || localError;
+
   return (
-    <div className="flex h-screen flex-col items-center pt-[139px] text-center">
+    <div className="mt-40 flex h-screen w-full flex-col items-center gap-6 px-4 text-center">
       <RecipeLoadingSpinner />
 
-      {/* 타이틀 / 서브타이틀 */}
-      <div className="mb-[49px] flex w-[361px] flex-col items-center gap-2">
-        <h1 className="typo-result-title">오늘의 요리 준비 중...</h1>
-        <p className="typo-button text-green-deep font-bold">
+      <div className="flex w-full flex-col items-center gap-2">
+        <h1 className="typo-h2">오늘의 요리 준비 중...</h1>
+        <p className="typo-l text-green-deep">
           나에게 딱 맞는 레시피를 찾고 있어요
         </p>
       </div>
 
-      {/* 메시지 카드 */}
-      <div className="flex w-[321px] flex-col gap-3">
+      <div className="flex w-full flex-col gap-3">
         {messages.slice(0, step).map((msg, idx) => (
           <StepMessage key={idx} message={msg} icon={CheckIcon} />
         ))}
       </div>
-      {error && (
+      {displayError && (
         <div className="mt-6 flex flex-col items-center gap-3">
-          <p className="text-semantic-negative text-sm">{error}</p>
+          <p className="text-semantic-negative typo-caption">{displayError}</p>
 
           <button
-            onClick={() => generateRecipe()}
-            className="text-sm text-gray-500 underline"
+            onClick={handleGenerateRecipe}
+            className="typo-caption text-gray-500 underline"
           >
             다시 시도하기
           </button>

@@ -1,27 +1,68 @@
+import { useState } from "react";
+
+import { useIngredientStore } from "@/stores/useIngredientStore";
+
 import BackIcon from "@/assets/back.svg?react";
+import SortIcon from "@/assets/fridge/sort.svg?react";
+
+import { SortDropdown } from "../fridge/features/SortDropdown";
 
 interface BackHeaderProps {
   title: string;
-  onBack: () => void;
+  sortIcon?: boolean;
+  onBack?: () => void;
 }
 
-export default function BackHeader({ title, onBack }: BackHeaderProps) {
+export const BackHeader = ({
+  title,
+  sortIcon = false,
+  onBack,
+}: BackHeaderProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { viewCategory, setViewCategory, setSortOrder } = useIngredientStore();
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else if (viewCategory) {
+      setViewCategory("");
+    } else {
+      window.history.back();
+    }
+  };
+
   return (
-    <header className="bg-background fixed top-0 z-50 flex h-10 w-full max-w-[450px] items-center justify-between py-2">
-      <button
-        type="button"
-        onClick={onBack}
-        className="flex h-10 w-10 items-center justify-center"
-      >
-        <BackIcon className="h-8 w-8" />
+    <section className="relative flex items-center justify-between py-2">
+      {/* 뒤로가기 버튼 */}
+      <button type="button" onClick={() => handleBack()}>
+        <BackIcon className="h-5 w-5" />
       </button>
 
-      <h1 className="typo-l-strong text-gray-80 absolute left-1/2 -translate-x-1/2 whitespace-nowrap">
-        {title}
-      </h1>
+      {/* 타이틀 */}
+      <p className="typo-l-strong">{title}</p>
 
-      {/* 오른쪽 여백 맞추기 */}
-      <div className="h-10 w-10" />
-    </header>
+      {/* 정렬 영역 */}
+      <div className="relative flex h-10 w-10 items-center justify-center">
+        {sortIcon && (
+          <>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="relative z-10 focus:outline-none"
+            >
+              <SortIcon className="h-10 w-10" />
+            </button>
+
+            {/* 분리한 드롭다운 컴포넌트 장착 */}
+            <SortDropdown
+              isOpen={isMenuOpen}
+              onSelect={option => {
+                setSortOrder(option);
+                setIsMenuOpen(false);
+              }}
+            />
+          </>
+        )}
+      </div>
+    </section>
   );
-}
+};

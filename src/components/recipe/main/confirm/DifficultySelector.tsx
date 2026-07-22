@@ -1,24 +1,38 @@
+import { useState } from "react";
+
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
+import randomImg from "@/assets/recipe/select/random.svg";
 
 import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
 export default function DifficultySelector() {
   const { difficulty, setDifficulty } = useRecipeFlowStore();
+  const [isRandomPending, setIsRandomPending] = useState(false);
+
+  const handleRandomClick = () => {
+    setIsRandomPending(true);
+    setDifficulty("RANDOM" as any);
+    setTimeout(() => {
+      setIsRandomPending(false);
+    }, 200);
+  };
+
+  const isRandomSelected =
+    (difficulty as string) === "RANDOM" || isRandomPending;
 
   return (
-    <section className="mx-auto mt-[38px] flex w-full max-w-[361px] flex-col items-center gap-4">
+    <section className="mx-auto flex w-full flex-col items-center">
       {/* 제목 영역 */}
-      <div className="flex w-[188px] flex-col items-center gap-[2px]">
-        <h2 className="text-gray-80 w-full text-center text-[20px] leading-[28px] font-semibold">
-          난이도 선택
-        </h2>
-        <p className="text-center text-[12px] leading-[16px] text-gray-50">
-          선택한 난이도에 따라 요리가 달라져요
+      <div className="flex w-full flex-col items-center gap-1 pb-4">
+        <h2 className="text-gray-80 typo-h3 text-center">음식 종류 선택</h2>
+        <p className="typo-m text-center text-gray-50">
+          어떤 종류의 음식으로 레시피를 생성할까요?
         </p>
       </div>
 
       {/* 난이도 선택 리스트 */}
-      <div className="flex w-full flex-col items-start gap-2">
+      <div className="grid w-full grid-cols-3 gap-1">
         {DIFFICULTY_OPTIONS.map(opt => {
           const selected = difficulty === opt.key;
 
@@ -26,41 +40,44 @@ export default function DifficultySelector() {
             <button
               key={opt.key}
               onClick={() => setDifficulty(opt.key)}
-              className="bg-gray-0 shadow-search flex w-full items-center justify-center rounded-[6px]"
+              className={`rounded-S flex w-full cursor-pointer flex-col items-center justify-center border p-3 ${
+                selected
+                  ? "border-green-deep bg-green-light"
+                  : "bg-gray-0 border-gray-10"
+              }`}
             >
-              <div className="flex w-full items-center gap-2 p-3">
-                <div className="flex w-full items-center gap-3">
-                  {/* 왼쪽 이미지 */}
-                  <img
-                    src={opt.image}
-                    alt={opt.title}
-                    className="aspect-square h-[36px] w-[36px] flex-shrink-0"
-                  />
-
-                  {/* 텍스트 */}
-                  <div className="flex-1">
-                    <p className="text-gray-80 text-left text-[16px] leading-[24px] font-medium">
-                      <span className="text-green-deep">{opt.time}</span>{" "}
-                      {opt.desc}
-                    </p>
-                  </div>
-
-                  {/* 선택 버튼 */}
-                  <div className="flex h-[40px] w-[40px] flex-shrink-0 items-center justify-center">
-                    <div
-                      className={`flex h-[24px] w-[24px] items-center justify-center rounded-full border-2 ${selected ? "border-green" : "border-gray-30"} `}
-                    >
-                      {selected && (
-                        <div className="bg-green h-[14px] w-[14px] rounded-full" />
-                      )}
-                    </div>
-                  </div>
-                </div>
+              <div className="flex w-full flex-col items-center">
+                <img
+                  src={opt.image}
+                  alt={opt.title}
+                  className="aspect-square h-9 w-9 flex-shrink-0"
+                />
+                <p className="text-gray-80 typo-label">{opt.desc}</p>
               </div>
             </button>
           );
         })}
       </div>
+
+      {/* TO DO: 랜덤 레시피 로직 추가 */}
+      <button
+        onClick={handleRandomClick}
+        className={`bg-green-exception border-gray-10 rounded-S mt-2 flex w-full gap-3 border p-3 ${
+          isRandomSelected
+            ? "border-green-deep bg-green-light"
+            : "bg-green-exception border-gray-10"
+        }`}
+      >
+        <img src={randomImg} alt="random" className="w-[38px]" />
+        <div className="text-left">
+          <p
+            className={`typo-m-strong ${isRandomSelected ? "text-green-deep" : "text-gray-80"}`}
+          >
+            아무거나 추천받기
+          </p>
+          <p className="typo-m text-gray-50">쿠킵이 랜덤으로 골라드려요</p>
+        </div>
+      </button>
     </section>
   );
 }

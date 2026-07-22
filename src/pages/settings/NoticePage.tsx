@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { getNotices } from "@/api/notice";
 
 import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
 import { Notice, mapNotice } from "@/types/notice";
 
 export default function NoticePage() {
-  const navigate = useNavigate();
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -40,7 +38,7 @@ export default function NoticePage() {
 
   return (
     <>
-      <BackHeader title="서비스 소개" onBack={() => navigate(-1)} />
+      <BackHeader title="서비스 소개" />
       <main className="pb-safe flex min-h-screen flex-col px-4 pt-[52px]">
         <div className="flex flex-col gap-3">
           {error ? (

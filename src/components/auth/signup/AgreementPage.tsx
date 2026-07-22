@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import BlankCheck from "@/assets/signup/blankCheck.svg?react";
 import CheckboxCheckIcon from "@/assets/signup/checkboxCheck.svg?react";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import type { AgreementItem, AuthAgreements } from "@/types/auth";

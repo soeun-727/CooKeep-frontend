@@ -1,17 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  Outlet,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
+import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 
 import ViewAllHeader from "@/components/cookeeps/lists/ViewAllHeader";
 import ViewListHeader from "@/components/cookeeps/lists/ViewListHeader";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function ListLayout() {
-  const navigate = useNavigate();
   const location = useLocation();
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -42,7 +36,7 @@ export default function ListLayout() {
   return (
     <div className="bg-background flex h-[100dvh] flex-col overflow-hidden">
       {/* 항상 고정 */}
-      <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
+      <BackHeader title="레시피 보기" />
 
       {/* 페이지별 고정 헤더 */}
       {isViewAll && (

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import { BackHeader } from "@/components/fixed/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function AddItemLayout() {
   return (

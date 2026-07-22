@@ -7,7 +7,7 @@ import { registerPushNotification } from "@/api/push";
 import Shadow from "@/assets/character/char_shadow.svg?react";
 import Character from "@/assets/character/default_char.svg?react";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import { AuthAgreements } from "@/types/auth";

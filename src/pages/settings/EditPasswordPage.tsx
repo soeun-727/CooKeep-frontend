@@ -11,9 +11,10 @@ import CheckIcon from "@/assets/signup/check.svg?react";
 
 import Button from "@/components/ui/Button";
 import InputField from "@/components/ui/InputField";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 import { validatePassword } from "@/utils/validateUtil";
-import BackHeader from "@/components/ui/BackHeader";
+
 import { useAuthStore } from "@/stores/useAuthStore";
 
 export default function EditPasswordPage() {

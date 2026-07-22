@@ -29,7 +29,7 @@ export default function Button({
 
   const baseStyle = `
     inline-flex items-center justify-center gap-2
-    rounded-[12px]
+    rounded-M
     transition
     whitespace-nowrap
     typo-l-strong

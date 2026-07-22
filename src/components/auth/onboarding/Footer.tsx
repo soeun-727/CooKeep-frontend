@@ -20,8 +20,8 @@ export default function Footer({
   isLoading,
 }: FooterProps) {
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 px-4 pb-[34px]">
-      <div className="mx-auto flex w-full flex-col items-center gap-2">
+    <div className="fixed bottom-0 left-1/2 w-full max-w-[450px] -translate-x-1/2 px-4 pb-[34px]">
+      <div className="mx-auto flex w-full flex-col gap-2">
         <Button
           size="S"
           variant="green"
@@ -34,7 +34,7 @@ export default function Footer({
         {!isFirstStep && (
           <Button
             size="S"
-            className="bg-gray-300"
+            className="w-full bg-gray-300"
             disabled={isLoading}
             onClick={onPrev}
           >
