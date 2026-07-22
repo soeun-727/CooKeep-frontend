@@ -7,8 +7,9 @@ import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 import Calendar from "@/components/myCookeep/contents/Calendar";
 import Statistics from "@/components/myCookeep/contents/Statistics";
+import { MyCookeepGoal } from "@/components/myCookeep/fixed/MyCookeepGoal";
 import MyCookeepTabBar from "@/components/myCookeep/fixed/MyCookeepTabBar";
-import Profile from "@/components/myCookeep/fixed/Profile";
+import { ProfileContent } from "@/components/myCookeep/fixed/ProfileContent";
 import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
 import RecordCard from "@/components/myCookeep/record/RecordCard";
 import RecordEntry from "@/components/myCookeep/record/RecordEntry";
@@ -144,16 +145,25 @@ export default function MyCookeepPage() {
     <div className="relative flex flex-col gap-[30px] px-4">
       <AppBar cookieCount={cookieCount} />
       <section className="flex flex-col gap-6">
-        <Profile />
-        <div className="mt-6">
+        <ProfileContent />
+
+        {/* 이번 주 목표 및 못먹는 재료 */}
+        <div className="flex flex-col gap-2">
+          {/* <MyCookeepGoal /> */}
+          {/* TODO: 못먹는 재료 추가 */}
+        </div>
+
+        {/* 마이쿠킵 탭바 및 렌더페이지 */}
+        <div className="flex flex-col gap-4">
           <MyCookeepTabBar
             activeTab={activeTab}
             onTabChange={handleTabChange}
             onActiveTabClick={handleActiveTabClick}
           />
-        </div>
-        <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
-          {renderContent()}
+
+          <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
+            {renderContent()}
+          </div>
         </div>
       </section>
 
