@@ -6,7 +6,7 @@ import axios from "axios";
 
 import Goal from "@/components/auth/onboarding/Goal";
 import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
-import GoalcheckModal from "@/components/myCookeep/modals/GoalCheckModal";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
@@ -102,12 +102,15 @@ export default function SetGoalPage() {
         {isLastStep ? "확인" : "다음"}
       </Button>
 
-      <GoalcheckModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleConfirm}
-        description={`${selectedGoal.title.replace("n", goalCount)}`}
-      />
+      {isModalOpen && (
+        <ConfirmModal
+          title="이번 주 목표를 확정할까요?"
+          subtitle={`${selectedGoal.title.replace("n", goalCount)}`}
+          onCancel={() => setIsModalOpen(false)}
+          onConfirm={handleConfirm}
+          buttonVariants={["green", "gray"]}
+        />
+      )}
     </div>
   );
 }
