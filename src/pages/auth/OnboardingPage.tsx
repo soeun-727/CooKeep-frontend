@@ -15,7 +15,7 @@ import Preference from "@/components/auth/onboarding/Preference";
 import Progress from "@/components/auth/onboarding/Progress";
 import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
 
-import { GOAL_TYPE_MAP } from "@/utils/mapping";
+import { GOAL_TYPE_MAP } from "@/utils/getGoalDescription";
 
 export default function Onboarding() {
   const navigate = useNavigate();

@@ -10,7 +10,7 @@ import GoalcheckModal from "@/components/myCookeep/modals/GoalCheckModal";
 import BackHeader from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
-import { GOAL_TYPE_MAP } from "@/utils/mapping";
+import { GOAL_TYPE_MAP } from "@/utils/getGoalDescription";
 
 export default function SetGoalPage() {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ export default function SetGoalPage() {
     id: "cook",
     title: "주 n회 요리하기",
   });
+
   const [goalCount, setGoalCount] = useState<string>("3");
 
   const isValid = (() => {
