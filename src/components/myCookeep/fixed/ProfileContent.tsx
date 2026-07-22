@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { type ProfileData, getProfileInfo } from "@/api/user";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import { groundImg, refreshIcon } from "@/assets/index";
+import { groundImg } from "@/assets/index";
 import PlantIcon from "@/assets/mycookeep/plant.svg?react";
 import EditIcon from "@/assets/recipe/rename.svg?react";
 
