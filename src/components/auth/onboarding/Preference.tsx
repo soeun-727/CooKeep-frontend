@@ -113,14 +113,14 @@ export default function Preference() {
     );
 
   return (
-    <div className="flex w-full flex-col items-center px-4">
-      <div className="mt-[46px] w-full gap-2">
+    <div className="flex w-full flex-col items-center gap-6">
+      <div className="w-full gap-2">
         <h1 className="typo-h2">먹지 못하는 재료가 있나요?</h1>
         <h3 className="typo-l text-gray-50">
           해당 재료는 레시피에서 제외할게요
         </h3>
       </div>
-      <div className="relative mt-[46px] flex w-full flex-col items-center">
+      <div className="relative flex w-full flex-col items-center gap-4">
         <div
           className={`relative w-full duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-m [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${
             isDropdownOpen
@@ -145,7 +145,7 @@ export default function Preference() {
         </div>
 
         {/* 선택된 재료 */}
-        <div className="mt-[18px] flex w-full flex-wrap gap-[6px]">
+        <div className="flex w-full flex-wrap gap-[6px]">
           {selectedIngredients.map(ingredient => (
             <div
               key={ingredient.defaultIngredientId}

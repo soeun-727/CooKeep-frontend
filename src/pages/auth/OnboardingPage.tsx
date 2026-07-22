@@ -133,33 +133,31 @@ export default function Onboarding() {
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
 
   return (
-    <div className="bg-background flex h-[100dvh] flex-col items-center">
+    <div className="bg-background flex h-full flex-col items-center px-4">
       <AuthHeader />
+
       {step !== 0 && (
-        <div className="mx-auto w-full px-4">
+        <div className="mt-25 mb-6 w-full">
           <Progress currentStep={step} />
         </div>
       )}
-      <div
-        className={`flex w-full flex-1 flex-col items-center ${step === 0 ? "" : "px-1"}`}
-      >
-        <div className="h-full w-full">
-          {step === 0 && <Guide onNext={nextStep} />}
-          {step === 1 && <Preference />}
-          {step === 2 && (
-            <Goal selectedGoal={selectedGoal} onSelect={setSelectedGoal} />
-          )}
-          {step === 3 && (
-            <SpecificGoal
-              selectedGoal={selectedGoal}
-              count={goalCount}
-              onCountChange={setGoalCount}
-            />
-          )}
-        </div>
+
+      <div className="flex w-full flex-1 flex-col items-center">
+        {step === 0 && <Guide onNext={nextStep} />}
+        {step === 1 && <Preference />}
+        {step === 2 && (
+          <Goal selectedGoal={selectedGoal} onSelect={setSelectedGoal} />
+        )}
+        {step === 3 && (
+          <SpecificGoal
+            selectedGoal={selectedGoal}
+            count={goalCount}
+            onCountChange={setGoalCount}
+          />
+        )}
       </div>
       {step !== 0 && (
-        <div className="shrink-0">
+        <div className="w-full">
           <Footer
             onNext={nextStep}
             onPrev={prevStep}
