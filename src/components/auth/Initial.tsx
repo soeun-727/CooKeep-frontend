@@ -40,21 +40,23 @@ export default function Initial() {
         <img src={confetti} className="w-86" />
       </div>
       {/* 상단 텍스트 영역 */}
-      <div className="mt-[86px] flex w-full flex-col items-center">
-        <h1 className="flex gap-1 text-[19px] leading-[19.2px] font-semibold">
-          <span className="text-green-deep">재료 관리</span>
-          <span className="text-gray-80">부터,</span>
-          <span className="text-green-deep">요리 기록</span>
-          <span className="text-gray-80">까지!</span>
-        </h1>
-      </div>
+      <div className="mt-[86px] flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center">
+          <h1 className="flex gap-1 text-[19px] leading-[19.2px] font-semibold">
+            <span className="text-green-deep">재료 관리</span>
+            <span className="text-gray-80">부터,</span>
+            <span className="text-green-deep">요리 기록</span>
+            <span className="text-gray-80">까지!</span>
+          </h1>
+        </div>
 
-      {/* 로고 */}
-      <div className="mt-[24px] flex flex-col items-center">
-        <span className="text-gray-80 text-[12px] leading-[19.2px] font-semibold">
-          1인 가구 요리 루틴 플랫폼
-        </span>
-        <img src={mainLogo} alt="로고" className="w-[218px]" />
+        {/* 로고 */}
+        <div className="flex flex-col items-center">
+          <span className="text-gray-80 text-[12px] leading-[19.2px] font-semibold">
+            1인 가구 요리 루틴 플랫폼
+          </span>
+          <img src={mainLogo} alt="로고" className="w-[218px]" />
+        </div>
       </div>
 
       {/* 애니메이션 */}
@@ -71,33 +73,37 @@ export default function Initial() {
         </div>
       </div>
 
-      <div className="mt-[24px] flex flex-col items-center">
-        {/* SNS 로그인 */}
-        <span className="typo-m text-gray-50">SNS 계정으로 로그인하기</span>
+      <div className="mt-6 flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-3">
+            {/* SNS 로그인 */}
+            <span className="typo-m text-gray-50">SNS 계정으로 로그인하기</span>
 
-        <div className="mt-3 flex items-center justify-center gap-3">
-          {/* 간편 로그인 미구현  */}
-          <button onClick={handleGoogleLogin}>
-            <Google className="h-11 w-11" />
-          </button>
+            <div className="flex items-center justify-center gap-3">
+              {/* 간편 로그인 미구현  */}
+              <button onClick={handleGoogleLogin}>
+                <Google className="h-11 w-11" />
+              </button>
 
-          <button onClick={handleKakaoLogin}>
-            <Kakao className="h-11 w-11" />
+              <button onClick={handleKakaoLogin}>
+                <Kakao className="h-11 w-11" />
+              </button>
+            </div>
+          </div>
+          <div className="flex items-center justify-center gap-[9px]">
+            <div className="bg-gray-30 h-[1px] w-[152px]" />
+
+            <span className="typo-caption text-gray-50">또는</span>
+
+            <div className="bg-gray-30 h-[1px] w-[152px]" />
+          </div>
+          <button onClick={() => navigate("/login")}>
+            <span className="typo-m text-gray-50">이메일로 로그인하기</span>
           </button>
         </div>
-        <div className="mt-4 flex items-center justify-center gap-[9px]">
-          <div className="bg-gray-30 h-[1.5px] w-[42px]" />
-
-          <span className="typo-caption text-gray-50">또는</span>
-
-          <div className="bg-gray-30 h-[1.5px] w-[42px]" />
-        </div>
-        <button onClick={() => navigate("/login")} className="mt-4">
-          <span className="typo-m text-gray-50">이메일로 로그인하기</span>
-        </button>
         <button
           onClick={() => navigate("/guest")}
-          className="typo-label text-green-deep mt-6 mb-[46px]"
+          className="typo-label text-green-deep mb-[46px]"
         >
           쿠킵이 처음인가요? 둘러보기
         </button>
