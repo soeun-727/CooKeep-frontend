@@ -25,9 +25,9 @@ export default function RecipeIntroPage() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 px-4">
+    <div className="flex flex-col gap-[30px] items-center gap-4 px-4">
       <RecipeHeader transparent />
-      <div className="mt-[70px] flex w-full flex-col items-start gap-1 px-1">
+      <div className="flex w-full flex-col items-start gap-1 px-1">
         <img src={cookChar} alt="요리 캐릭터" className="w-25" />
         <h1 className="text-gray-80 typo-h2 py-2 text-start">
           오늘은 어떻게 요리해볼까요?

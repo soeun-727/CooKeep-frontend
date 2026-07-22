@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
-import MenuIcon from "@/assets/recipe/main/menu.svg?react";
 import HeartIcon from "@/assets/icons/heart.svg?react";
+import MenuIcon from "@/assets/recipe/main/menu.svg?react";
 
 import Sidebar from "../sidebar/SideBar";
 
@@ -36,7 +36,7 @@ export default function RecipeHeader({ title }: RecipeHeaderProps) {
 
   return (
     <>
-      <header className="fixed top-0 right-0 left-0 z-50 mx-auto flex h-10 w-full max-w-[450px] items-center justify-between px-4 py-2">
+      <header className="flex w-full max-w-[450px] items-center justify-between px-4 py-2">
         {/* 왼쪽: 사이드바 버튼 */}
         <button
           onClick={toggleSidebar}
