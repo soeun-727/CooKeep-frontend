@@ -11,7 +11,7 @@ import EyeOpenIcon from "@/assets/signup/openpw.svg?react";
 import CheckIcon from "@/assets/signup/check.svg?react";
 
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import InputField from "@/components/ui/InputField";
 
 import { validatePassword } from "@/utils/validateUtil";
 
@@ -78,7 +78,7 @@ export default function ResetPassword() {
 
             {/* 새 비밀번호 */}
             <div className="flex w-full flex-col">
-              <TextField
+              <InputField
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={setPassword}
@@ -113,7 +113,7 @@ export default function ResetPassword() {
               />
 
               {/* 새 비밀번호 확인 */}
-              <TextField
+              <InputField
                 type={showPasswordConfirm ? "text" : "password"}
                 value={confirmPassword}
                 onChange={setConfirmPassword}

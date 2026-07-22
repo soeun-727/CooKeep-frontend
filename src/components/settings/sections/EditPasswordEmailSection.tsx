@@ -7,7 +7,7 @@ import axios from "axios";
 
 import FindEmailAuthModal from "@/components/auth/find/FindEmailAuthModal";
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import InputField from "@/components/ui/InputField";
 
 import { EditPasswordEmailType } from "@/types/modal";
 
@@ -140,7 +140,7 @@ export default function EditPasswordEmailSection() {
               <h1 className="typo-h2">이메일 인증</h1>
             </div>
             <div>
-              <TextField
+              <InputField
                 value={email}
                 onChange={setEmail}
                 placeholder="이메일 주소 입력"
@@ -166,7 +166,7 @@ export default function EditPasswordEmailSection() {
                 }
               />
 
-              <TextField
+              <InputField
                 value={code}
                 onChange={v => {
                   const onlyNumber = v.replace(/[^0-9]/g, "");

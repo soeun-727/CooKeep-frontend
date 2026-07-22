@@ -5,7 +5,7 @@ import { useSignupStore } from "@/stores/useSignupStore";
 import axios from "axios";
 
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import InputField from "@/components/ui/InputField";
 
 import { EmailAuthType } from "@/types/modal";
 
@@ -104,7 +104,7 @@ export default function EmailSection() {
             <h1 className="typo-h2">이메일 인증</h1>
           </div>
           <div>
-            <TextField
+            <InputField
               value={email}
               onChange={setEmail}
               placeholder="이메일 주소 입력"
@@ -126,7 +126,7 @@ export default function EmailSection() {
               }
             />
 
-            <TextField
+            <InputField
               value={code}
               onChange={value => {
                 const onlyNumber = value.replace(/[^0-9]/g, "");

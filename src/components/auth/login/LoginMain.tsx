@@ -9,8 +9,8 @@ import EyeIcon from "@/assets/login/pw.svg?react";
 import EyeOpenIcon from "@/assets/login/openpw.svg?react";
 import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
 
+import InputField from "@/components/ui/InputField";
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
 import LoginFooter from "./LoginFooter";
 
 export default function LoginMain() {
@@ -54,7 +54,7 @@ export default function LoginMain() {
 
           {/* 입력 영역 */}
           <div className="flex w-full flex-col">
-            <TextField
+            <InputField
               value={email}
               placeholder="이메일 주소 입력"
               onChange={setEmail}
@@ -82,7 +82,7 @@ export default function LoginMain() {
               }
             />
 
-            <TextField
+            <InputField
               type={showPassword ? "text" : "password"}
               value={password}
               placeholder="영문, 숫자 포함 8자 이상의 비밀번호"

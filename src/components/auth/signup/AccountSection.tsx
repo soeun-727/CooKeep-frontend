@@ -12,7 +12,7 @@ import BlankCheck from "@/assets/signup/blankCheck.svg?react";
 import CheckboxCheckIcon from "@/assets/signup/checkboxCheck.svg?react";
 
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import InputField from "@/components/ui/InputField";
 
 import { AGREEMENTS } from "@/constants/agreements";
 import { AgreementItem, AuthAgreements } from "@/types/auth";
@@ -91,7 +91,7 @@ export default function AccountSection({
               {/* 입력 영역 */}
               <div className="flex w-full flex-col">
                 {/* 인증된 이메일 - 읽기 전용으로 표시 */}
-                <TextField
+                <InputField
                   value={verifiedEmail}
                   placeholder="이메일 주소"
                   onChange={() => {}}
@@ -100,7 +100,7 @@ export default function AccountSection({
                 />
 
                 {/* 비밀번호 */}
-                <TextField
+                <InputField
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={setPassword}
@@ -134,7 +134,7 @@ export default function AccountSection({
                 />
 
                 {/* 비밀번호 확인 */}
-                <TextField
+                <InputField
                   type={showPasswordConfirm ? "text" : "password"}
                   value={passwordConfirm}
                   onChange={setPasswordConfirm}

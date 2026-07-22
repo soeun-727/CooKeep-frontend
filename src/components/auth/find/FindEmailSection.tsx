@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import InputField from "@/components/ui/InputField";
 
 import { FindEmailAuthType } from "@/types/modal";
 
@@ -99,7 +99,7 @@ export default function FindEmailSection() {
             <h1 className="typo-h2">이메일 인증</h1>
           </div>
           <div>
-            <TextField
+            <InputField
               value={email}
               onChange={setEmail}
               disabled={isCodeSent}
@@ -124,7 +124,7 @@ export default function FindEmailSection() {
             />
 
             {/* 인증번호 입력 */}
-            <TextField
+            <InputField
               value={code}
               onChange={value => {
                 const onlyNumber = value.replace(/[^0-9]/g, "");

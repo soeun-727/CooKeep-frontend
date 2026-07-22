@@ -9,7 +9,7 @@ import CheckIcon from "@/assets/signup/check.svg?react";
 
 import EmailAuthModal from "@/components/auth/signup/EmailAuthModal";
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import InputField from "@/components/ui/InputField";
 
 import { EditEmailType } from "@/types/modal";
 
@@ -142,7 +142,7 @@ export default function EditEmailPage() {
             </div>
 
             <div className="flex w-full flex-col">
-              <TextField
+              <InputField
                 value={email}
                 onChange={val => setEmail(val)}
                 placeholder="새 이메일 주소 입력"
@@ -166,7 +166,7 @@ export default function EditEmailPage() {
                 }
               />
 
-              <TextField
+              <InputField
                 value={code}
                 onChange={v => {
                   const onlyNumber = v.replace(/[^0-9]/g, "");

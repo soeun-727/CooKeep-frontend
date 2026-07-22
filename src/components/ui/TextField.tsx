@@ -13,8 +13,6 @@ interface TextFieldProps {
   rightIcon?: React.ReactNode;
   autoComplete?: string;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  inputRef?: React.RefObject<HTMLInputElement | null>;
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
 }
 
 export default function TextField({
@@ -30,34 +28,10 @@ export default function TextField({
   rightIcon,
   autoComplete,
   onBlur,
-  inputRef,
-  onFocus,
 }: TextFieldProps) {
-  const message = errorMessage || successMessage;
-
-  // 내용부분(입력 박스) 테두리/배경 상태
-  const boxState = disabled
-    ? "border-gray-10 bg-gray-10"
-    : errorMessage
-      ? "border-semantic-negative bg-gray-0"
-      : successMessage
-        ? "border-semantic-positive bg-gray-0"
-        : "border-gray-10 bg-gray-0";
-
-  // 메시지 색상 상태
-  const messageColor = errorMessage
-    ? "text-semantic-negative"
-    : successMessage
-      ? "text-semantic-positive"
-      : "text-transparent";
-
   return (
     <div className="w-full">
-      {label && (
-        <label className="typo-label text-gray-80 w-full self-start">
-          {label}
-        </label>
-      )}
+      {label && <label className="typo-m mb-1 block">{label}</label>}
 
       <div className="bg-gray-10 border-gray-10 flex h-[48px] gap-3 rounded-[12px] p-3">
         {leftIcon && <div>{leftIcon}</div>}
@@ -69,8 +43,6 @@ export default function TextField({
           disabled={disabled}
           autoComplete={autoComplete}
           onChange={e => onChange(e.target.value)}
-          ref={inputRef}
-          onFocus={onFocus}
           onBlur={onBlur}
           className={`text-gray-80 typo-m flex-1 placeholder:text-gray-50 focus:outline-none ${
             errorMessage
