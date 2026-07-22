@@ -4,11 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
-<<<<<<< HEAD
 import BackIcon from "@/assets/back.svg?react";
-import MenuIcon from "@/assets/recipe/main/menu.svg?react";
-=======
->>>>>>> 0b541deb1df921574632e8a29528a368608a526b
 import HeartIcon from "@/assets/icons/heart.svg?react";
 import MenuIcon from "@/assets/recipe/main/menu.svg?react";
 
