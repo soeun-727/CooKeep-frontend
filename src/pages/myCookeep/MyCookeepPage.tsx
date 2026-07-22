@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getDailyRecipesByDate } from "@/api/myRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
 
 import Calendar from "@/components/myCookeep/contents/Calendar";
 import Statistics from "@/components/myCookeep/contents/Statistics";
@@ -38,10 +39,12 @@ export default function MyCookeepPage() {
     location.state?.fromTab === true,
   );
   const fetchCookies = useCookeepsStore(s => s.fetchCookies);
+  const fetchProfile = useMyCookeepStore(s => s.fetchProfile);
 
   useEffect(() => {
     fetchCookies();
-  }, [fetchCookies]);
+    fetchProfile();
+  }, [fetchCookies, fetchProfile]);
 
   const fetchDailyData = useCallback(
     async (dateStr: string) => {
@@ -141,6 +144,7 @@ export default function MyCookeepPage() {
   };
 
   const cookieCount = useCookeepsStore(s => s.cookie);
+
   return (
     <div className="relative flex flex-col gap-[30px] px-4">
       <AppBar cookieCount={cookieCount} />
@@ -149,7 +153,7 @@ export default function MyCookeepPage() {
 
         {/* 이번 주 목표 및 못먹는 재료 */}
         <div className="flex flex-col gap-2">
-          {/* <MyCookeepGoal /> */}
+          <MyCookeepGoal />
           {/* TODO: 못먹는 재료 추가 */}
         </div>
 
