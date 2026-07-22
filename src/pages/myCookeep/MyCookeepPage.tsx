@@ -12,6 +12,7 @@ import Profile from "@/components/myCookeep/fixed/Profile";
 import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
 import RecordCard from "@/components/myCookeep/record/RecordCard";
 import RecordEntry from "@/components/myCookeep/record/RecordEntry";
+import { AppBar } from "@/components/ui/AppHeader";
 
 import { hasTodayRecord } from "@/utils/record";
 
@@ -138,9 +139,11 @@ export default function MyCookeepPage() {
     }
   };
 
+  const cookieCount = useCookeepsStore(s => s.cookie);
   return (
-    <div className="relative flex h-full min-h-0 flex-col">
-      <div className="shrink-0">
+    <div className="relative flex flex-col gap-[30px] px-4">
+      <AppBar cookieCount={cookieCount} />
+      <section className="flex flex-col gap-6">
         <Profile />
         <div className="mt-6">
           <MyCookeepTabBar
@@ -149,11 +152,10 @@ export default function MyCookeepPage() {
             onActiveTabClick={handleActiveTabClick}
           />
         </div>
-      </div>
-
-      <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
-        {renderContent()}
-      </div>
+        <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
+          {renderContent()}
+        </div>
+      </section>
 
       {shouldShowAddMoreModal && (
         <AddMoreModal onCancel={handleDismiss} onConfirm={handleConfirm} />

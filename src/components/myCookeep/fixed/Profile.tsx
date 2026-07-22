@@ -9,14 +9,11 @@ import { groundImg, refreshIcon, renameIcon } from "@/assets/index";
 import { GOAL_TYPE_MAP } from "@/utils/mapping";
 
 import ProfileEditModal from "../modals/ProfileEditModal";
-import MyCookeepHeader from "./MyCookeepHeader";
 
 function Profile() {
   const navigate = useNavigate();
-  // const location = useLocation();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [profile, setProfile] = useState<ProfileData | null>(null);
-  // const [isLoading, setIsLoading] = useState(true);
   const [showBubble, setShowBubble] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
 
@@ -79,8 +76,6 @@ function Profile() {
       <div className="flex flex-col items-center justify-center">
         {/* 헤더 섹션 */}
         <div className="from-green to-green-deep flex h-[260px] w-full flex-col items-center justify-center rounded-b-[36px] bg-gradient-to-b">
-          <MyCookeepHeader />
-
           <div className="mt-5 flex w-[361px] items-center justify-start">
             {/* 식물 사진 및 수정 버튼 */}
             <div className="relative -ml-[7.5px] inline-block h-31 w-31 shrink-0">
