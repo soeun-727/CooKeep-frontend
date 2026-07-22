@@ -8,7 +8,7 @@ import { useAuthStore } from "@/stores/useAuthStore";
 import characterImg from "@/assets/character/sad_char_faded.svg";
 import arrowIcon from "@/assets/signup/arrowright.svg";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 export default function WithdrawPage() {

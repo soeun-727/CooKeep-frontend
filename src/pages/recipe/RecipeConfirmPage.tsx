@@ -6,7 +6,7 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
 import SelectedIngredientList from "@/components/recipe/main/confirm/SelectedIngredientList";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 export default function RecipeConfirmPage() {

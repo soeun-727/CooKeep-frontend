@@ -8,7 +8,7 @@ import {
 
 import ViewAllHeader from "@/components/cookeeps/lists/ViewAllHeader";
 import ViewListHeader from "@/components/cookeeps/lists/ViewListHeader";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function ListLayout() {
   const navigate = useNavigate();

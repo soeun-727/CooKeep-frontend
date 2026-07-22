@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 import { PLANT_DATA } from "@/constants/plantData";
 

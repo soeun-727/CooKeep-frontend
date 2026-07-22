@@ -18,7 +18,7 @@ import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetail
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
 import RecordViewImageCard from "@/components/myCookeep/record/RecordViewImageCard";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import RecipeOptionMenu from "@/components/ui/OptionsMenu";

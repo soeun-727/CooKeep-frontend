@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getNotices } from "@/api/notice";
 
 import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
 import { Notice, mapNotice } from "@/types/notice";

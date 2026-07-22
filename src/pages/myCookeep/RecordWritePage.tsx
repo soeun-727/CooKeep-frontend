@@ -17,7 +17,7 @@ import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
 import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
 import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 

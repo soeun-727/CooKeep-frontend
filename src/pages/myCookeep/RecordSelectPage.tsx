@@ -5,10 +5,10 @@ import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
 
-import { SearchIcon } from "@/assets/index";
 import HeartIcon from "@/assets/icons/heart.svg?react";
+import { SearchIcon } from "@/assets/index";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 export default function RecordSelectPage() {

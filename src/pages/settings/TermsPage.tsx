@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import AgreementReadCard from "@/components/settings/components/AgreementReadCard";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
 

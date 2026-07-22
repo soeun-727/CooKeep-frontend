@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
 import FaqCategoryItem from "@/components/settings/components/FaqCategoryItem";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 import { faqCategories } from "@/constants/faqData";
 

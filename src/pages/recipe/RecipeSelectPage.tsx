@@ -10,7 +10,7 @@ import Sort from "@/components/fridge/features/Sort";
 import IngredientGrid from "@/components/fridge/items/IngredientGrid";
 import Storage from "@/components/fridge/main/Storage";
 import FloatingNotice from "@/components/recipe/main/FloatingNotice";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";

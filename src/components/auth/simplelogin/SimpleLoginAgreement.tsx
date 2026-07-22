@@ -7,7 +7,7 @@ import { registerPushNotification } from "@/api/push";
 import shadow from "@/assets/character/char_shadow.svg";
 import illustration from "@/assets/character/default_char.svg";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import { AuthAgreements } from "@/types/auth";

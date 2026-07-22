@@ -16,7 +16,7 @@ import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDeta
 import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
 import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function RecipeDetailPage() {
