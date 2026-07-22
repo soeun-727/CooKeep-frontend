@@ -85,32 +85,29 @@ export default function SetGoalPage() {
     }
   };
   return (
-    <>
+    <div className="flex h-full flex-col gap-15 px-4">
       <BackHeader
         title="목표 수정"
         onBack={() => (step === 0 ? navigate(-1) : setStep(0))}
       />
 
-      <div className="relative flex min-h-screen flex-col items-center pb-32">
-        <main className="mt-10 w-full max-w-[361px]">{STEPS[step]}</main>
+      <main className="flex w-full flex-1">{STEPS[step]}</main>
 
-        <footer className="fixed bottom-0 pb-[34px]">
-          <Button
-            size="S"
-            variant="green"
-            onClick={handleNext}
-            disabled={!isValid || isLoading}
-          >
-            {isLastStep ? "확인" : "다음"}
-          </Button>
-        </footer>
-      </div>
+      <Button
+        size="S"
+        variant="green"
+        onClick={handleNext}
+        disabled={!isValid || isLoading}
+      >
+        {isLastStep ? "확인" : "다음"}
+      </Button>
+
       <GoalcheckModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onConfirm={handleConfirm}
         description={`${selectedGoal.title.replace("n", goalCount)}`}
       />
-    </>
+    </div>
   );
 }
