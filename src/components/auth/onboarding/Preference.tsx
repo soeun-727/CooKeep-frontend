@@ -6,12 +6,13 @@ import {
 } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
-import { SearchIcon, loadingChar } from "@/assets/index";
+import { SearchIcon } from "@/assets/index";
 import xIcon from "@/assets/onboarding/x.svg";
 
 import TextField from "@/components/ui/TextField";
 
 import InputModal from "./InputModal";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function Preference() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -104,13 +105,7 @@ export default function Preference() {
     );
   };
 
-  if (isLoading)
-    return (
-      <div className="mt-50 flex flex-col items-center justify-center text-center">
-        <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-m text-gray-50">로딩 중...</div>
-      </div>
-    );
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <div className="flex w-full flex-col items-center gap-6">

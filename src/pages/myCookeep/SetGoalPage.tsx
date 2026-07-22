@@ -7,7 +7,7 @@ import axios from "axios";
 import Goal from "@/components/auth/onboarding/Goal";
 import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
 import GoalcheckModal from "@/components/myCookeep/modals/GoalCheckModal";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import { GOAL_TYPE_MAP } from "@/utils/getGoalDescription";

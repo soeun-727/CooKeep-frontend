@@ -13,7 +13,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center px-4">
+    <div className="relative flex min-h-screen flex-col items-center px-4">
       <button
         onClick={() =>
           navigate("/settings/faq", {
@@ -25,7 +25,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
         자세한 설명 보기
       </button>
       {/* ================= 상단 (로고 + 제목 + 소제목) ================= */}
-      <div className="mt-[30px] flex w-full flex-col items-center gap-2">
+      <div className="mt-25 flex w-full flex-col items-center gap-2">
         <div className="flex w-full flex-col items-center gap-[2px]">
           <img src={mainLogo} alt="CooKeep Logo" className="h-7" />
           <h1 className="typo-h2">홈 화면에서 편하게 만나보세요!</h1>
@@ -38,11 +38,11 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
       <img
         src={installGuideImage}
         alt="Install Guide"
-        className="mt-15 h-[202px] w-full object-contain"
+        className="mt-15 mb-15 h-[202px] w-full object-contain"
       />
 
       {/* ================= 설명 영역 ================= */}
-      <div className="mt-30 flex w-full flex-col items-center gap-3 self-stretch text-center text-gray-50">
+      <div className="flex w-full flex-col items-center gap-3 self-stretch text-center text-gray-50">
         <div className="flex flex-col">
           <p className="typo-l-strong">iOS 사용자는 Safari에서 열어주세요</p>
           <p className="typo-l">Safari 공유 버튼 → ‘홈 화면에 추가’</p>
