@@ -10,10 +10,8 @@ import ConfirmModal from "@/components/ui/ConfirmModal";
 
 import NotificationSection from "./sections/NotificationSection";
 import ProfileSection from "./sections/ProfileSection";
-import NoticeSection from "./sections/NoticeSection";
-import HelpCenterSection from "./sections/HelpCenterSection";
-import TermsSection from "./sections/TermsSection";
-import AccountSection from "./sections/AccountSection";
+import SettingsMenuSection from "./components/SettingsMenuSection";
+import { settingsSections } from "./config/settingsMenuConfig";
 
 export default function SettingsMain() {
   const navigate = useNavigate();
@@ -95,13 +93,16 @@ export default function SettingsMain() {
                 marketingPush={profile.marketingPush}
                 onStateChange={handleNotificationChange}
               />
-              <NoticeSection />
-              <HelpCenterSection />
-              <TermsSection />
-              <AccountSection
-                onLogoutClick={() => setOpenLogoutModal(true)}
-                onWithdrawClick={handleWithdraw}
-              />
+              {settingsSections.map(section => (
+                <SettingsMenuSection
+                  key={section.title}
+                  section={section}
+                  callbacks={{
+                    logout: () => setOpenLogoutModal(true),
+                    withdraw: handleWithdraw,
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>
