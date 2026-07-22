@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import Button from "@/components/ui/Button";
 
 interface RecipeActionButtonsProps {
   retryCount: number;
@@ -30,12 +31,13 @@ export default function RecipeActionButtons({
   const latestRecipe = recipeHistory.at(-1);
 
   const isMaxed = retryCount >= maxRetry;
+  const leftRetry = maxRetry - retryCount;
 
   // 로딩 중이거나 횟수 초과 시 비활성화 로직
   const isRetryDisabled = isMaxed || isLoading;
   const retryBtnText = isLoading
     ? "레시피 생성 중..."
-    : `다른 레시피 받기 (${retryCount}/${maxRetry})`;
+    : `다른 레시피 보기 · ${leftRetry}회 남음`;
 
   const handleCookClick = async () => {
     // async 추가
@@ -62,29 +64,23 @@ export default function RecipeActionButtons({
   return (
     <div className="flex w-full flex-col items-center gap-2">
       {/* 요리할래요 버튼 */}
-      <button
+      <Button
         onClick={handleCookClick}
         disabled={!latestRecipe || isLoading || isCompleted}
-        className={`typo-button text-gray-0 h-[38px] w-full rounded-[10px] ${
-          !latestRecipe || isLoading || isCompleted ? "bg-gray-300" : "bg-green"
-        }`}
+        size="L"
+        variant="green"
       >
         이 레시피대로 요리할래요
-      </button>
-
-      {/* 히스토리 조회 모드가 아닐 때만 '다른 레시피' 버튼 표시 */}
+      </Button>
       {showRetryButton && (
-        <button
+        <Button
+          size="S"
+          variant="black"
           onClick={onRetry}
           disabled={isRetryDisabled}
-          className={`typo-button h-[38px] w-full rounded-[10px] transition-colors ${
-            isRetryDisabled
-              ? "cursor-not-allowed bg-gray-300 text-gray-50"
-              : "bg-gray-80 text-gray-0"
-          }`}
         >
           {retryBtnText}
-        </button>
+        </Button>
       )}
     </div>
   );

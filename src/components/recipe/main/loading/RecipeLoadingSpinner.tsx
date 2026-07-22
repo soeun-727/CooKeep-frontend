@@ -3,7 +3,7 @@ export default function RecipeLoadingSpinner() {
   const dots = Array.from({ length: 8 });
 
   return (
-    <div className="relative mb-10 flex h-12 w-12 items-center justify-center">
+    <div className="relative flex h-12 w-12 items-center justify-center">
       {dots.map((_, i) => (
         <div
           key={i}

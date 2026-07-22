@@ -5,7 +5,7 @@ import remarkGfm from "remark-gfm";
 
 import { CheckboxCheckIcon, blankCheck } from "@/assets/index";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import type { AgreementItem, AuthAgreements } from "@/types/auth";

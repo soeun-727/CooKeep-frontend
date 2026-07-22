@@ -1,3 +1,4 @@
+import type { Feature } from "@/types/aiRecipe";
 import api from "./axios";
 
 export interface AiRecipeSessionItem {
@@ -30,6 +31,7 @@ export interface AiSessionDetailResponse {
     sessionId: number;
     messages: AiSessionMessage[];
     completed: boolean;
+    feature?: Feature;
   };
 }
 
@@ -49,7 +51,6 @@ export const getAiSessionDetail = async (sessionId: number) => {
   return res.data.data;
 };
 
-// 즐겨찾기
 export const toggleFavoriteSession = async (sessionId: number) => {
   const response = await api.patch(
     `/api/users/me/ai/recipes/sessions/${sessionId}`,
@@ -57,19 +58,17 @@ export const toggleFavoriteSession = async (sessionId: number) => {
   return response.data;
 };
 
-// 제목 이름 수정
 export const updateAiSessionTitle = async (
   sessionId: number,
   title: string,
 ) => {
   const response = await api.patch(
     `/api/users/me/ai/recipes/sessions/title/${sessionId}`,
-    { title }, // Request Body
+    { title },
   );
   return response.data;
 };
 
-// 레시피 삭제
 export const deleteAiRecipeSession = async (sessionId: number) => {
   const response = await api.delete(
     `/api/users/me/ai/recipes/sessions/${sessionId}`,

@@ -10,7 +10,7 @@ import Sort from "@/components/fridge/features/Sort";
 import IngredientGrid from "@/components/fridge/items/IngredientGrid";
 import Storage from "@/components/fridge/main/Storage";
 import FloatingNotice from "@/components/recipe/main/FloatingNotice";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
@@ -18,7 +18,6 @@ import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 export default function RecipeSelectPage() {
   const navigate = useNavigate();
 
-  // fridge store에서 전부 관리
   const {
     ingredients,
     viewCategory,
@@ -38,14 +37,12 @@ export default function RecipeSelectPage() {
         : true,
     );
 
-  // snapshot 저장
   const { setSelectedIngredients } = useRecipeFlowStore();
 
   const handleConfirm = () => {
     const selectedIngredients = ingredients.filter(item =>
       selectedIds.includes(item.id),
     );
-
     setSelectedIngredients(selectedIngredients);
     navigate("/recipe/confirm");
   };
@@ -72,19 +69,27 @@ export default function RecipeSelectPage() {
     }
   };
   return (
-    <div className="flex w-full flex-col gap-3 pb-32">
-      <div className="w-full">
-        <BackHeader title="재료 선택" onBack={handleBack} />
-      </div>
+    <div className="flex w-full flex-col pb-5">
+      <BackHeader title="재료 선택" onBack={handleBack} />
 
-      {!viewCategory && <FloatingNotice text="요리할 재료를 선택해 주세요" />}
-
-      <div className="mt-[48px] flex flex-col gap-6">
-        <Search
-          placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
-          value={searchTerm}
-          onChange={handleSearch}
+      {!viewCategory && (
+        <FloatingNotice
+          text={
+            selectedIds.length > 0
+              ? "다른 재료도 골라볼까요?"
+              : "요리할 재료를 선택해 주세요"
+          }
         />
+      )}
+
+      <div className="mt-13 flex flex-col gap-6">
+        <div className="flex items-center px-4">
+          <Search
+            placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
 
         {viewCategory || searchTerm ? (
           <>
@@ -97,7 +102,7 @@ export default function RecipeSelectPage() {
             <IngredientGrid items={filteredIngredients} />
           </>
         ) : (
-          <>
+          <div className="flex flex-col gap-3">
             <Storage
               category="냉장"
               icon={FridgeIcon}
@@ -113,12 +118,12 @@ export default function RecipeSelectPage() {
               icon={PantryIcon}
               ingredients={ingredients.filter(i => i.category === "상온")}
             />
-          </>
+          </div>
         )}
       </div>
 
       {!viewCategory && (
-        <div className="fixed bottom-[34px] left-1/2 -translate-x-1/2">
+        <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 flex w-full max-w-[450px] -translate-x-1/2 items-center px-4">
           <Button
             size="L"
             variant="black"
