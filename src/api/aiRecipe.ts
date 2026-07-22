@@ -26,6 +26,7 @@ const extractData = <T>(response: any): T => {
 };
 
 export const generateAiRecipe = async (
+  // TODO: 난이도 선택 값 없어서 오류남 추후 수정 필요
   body: GenerateAiRecipeRequest,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
