@@ -3,9 +3,9 @@ import { useState } from "react";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
 
+import EditIcon from "@/assets/icons/rename.svg?react";
 import { groundImg } from "@/assets/index";
 import PlantIcon from "@/assets/mycookeep/plant.svg?react";
-import EditIcon from "@/assets/recipe/rename.svg?react";
 
 import ProfileEditModal from "../modals/ProfileEditModal";
 

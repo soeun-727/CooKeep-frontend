@@ -2,8 +2,8 @@ import { useNavigate } from "react-router-dom";
 
 import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
 
+import EditIcon from "@/assets/icons/rename.svg?react";
 import GoalImage from "@/assets/mycookeep/goal.svg?react";
-import EditIcon from "@/assets/recipe/rename.svg?react";
 
 import { SpeechBubble } from "@/components/ui/SpeechBubble";
 
