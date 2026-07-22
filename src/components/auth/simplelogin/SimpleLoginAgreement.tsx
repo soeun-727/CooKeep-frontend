@@ -42,53 +42,46 @@ export default function SimpleLoginAgreement() {
   };
 
   return (
-    <>
+    // 헤더 + 본문을 하나로 감싸고, px-4 / gap-10을 여기서 적용
+    <div className="bg-background relative flex min-h-dvh flex-col gap-10 px-4 pt-10">
       <BackHeader title="간편로그인" onBack={() => navigate(-1)} />
 
-      {/* 회원가입과 동일한 컨테이너 */}
-      <div className="bg-background relative flex min-h-dvh flex-col pt-10">
-        {/* 본문 */}
-        <main className="flex flex-1 flex-col px-4">
-          {/* 일러스트 */}
+      <main className="flex flex-1 flex-col">
+        {/* 일러스트 + 타이틀: flex-1로 감싸서 아래 영역이 자동으로 하단에 붙게 함 */}
+        <div className="flex flex-1 flex-col gap-4">
           <div className="flex flex-col gap-2 pt-[120px]">
             <Character className="h-[60px] w-[75px]" />
             <Shadow className="h-[11px] w-[75px]" />
           </div>
 
-          {/* 타이틀 */}
-          <div className="flex w-full flex-col items-start gap-4 px-1 py-2">
-            <h1 className="typo-h2 text-gray-80">
-              서비스 이용을 위해
-              <br />
-              약관 동의가 필요해요
-            </h1>
-          </div>
+          <h1 className="typo-h2 text-gray-80">
+            서비스 이용을 위해
+            <br />
+            약관 동의가 필요해요
+          </h1>
+        </div>
 
-          {/* 약관 영역 */}
-          <div className="mt-auto flex flex-col">
-            <AgreementList
-              agreements={agreements}
-              updateAgreements={next =>
-                setAgreements(prev => ({ ...prev, ...next }))
-              }
-            />
+        {/* 약관 + 버튼: gap-4로 간격 처리, 개별 padding 제거 */}
+        <div className="flex flex-col gap-4">
+          <AgreementList
+            agreements={agreements}
+            updateAgreements={next =>
+              setAgreements(prev => ({ ...prev, ...next }))
+            }
+          />
 
-            {/* 하단 버튼 */}
-            <div className="bg-blur-to-t pt-8 pb-6">
-              <Button
-                size="L"
-                variant="green"
-                disabled={
-                  !(agreements.terms && agreements.privacy) || isLoading
-                }
-                onClick={handleStart}
-              >
-                시작하기
-              </Button>
-            </div>
+          <div className="bg-blur-to-t pb-[34px]">
+            <Button
+              size="L"
+              variant="green"
+              disabled={!(agreements.terms && agreements.privacy) || isLoading}
+              onClick={handleStart}
+            >
+              시작하기
+            </Button>
           </div>
-        </main>
-      </div>
-    </>
+        </div>
+      </main>
+    </div>
   );
 }

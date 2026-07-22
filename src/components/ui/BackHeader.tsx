@@ -7,7 +7,7 @@ interface BackHeaderProps {
 
 export default function BackHeader({ title, onBack }: BackHeaderProps) {
   return (
-    <header className="bg-background fixed top-0 z-50 flex h-10 w-full max-w-[450px] items-center justify-between px-4 py-2">
+    <header className="bg-background fixed top-0 z-50 flex h-10 w-full max-w-[450px] items-center justify-between py-2">
       <button
         type="button"
         onClick={onBack}
