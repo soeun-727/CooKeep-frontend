@@ -12,7 +12,6 @@ import Sidebar from "../sidebar/SideBar";
 
 interface RecipeHeaderProps {
   title?: string;
-  transparent?: boolean;
 }
 
 export default function RecipeHeader({ title }: RecipeHeaderProps) {
@@ -38,7 +37,7 @@ export default function RecipeHeader({ title }: RecipeHeaderProps) {
 
   return (
     <>
-      <header className="fixed top-0 right-0 left-0 z-50 mx-auto flex h-10 w-full max-w-[450px] items-center justify-between px-4 py-2">
+      <header className="flex w-full max-w-[450px] items-center justify-between px-4 py-2">
         {title && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <h1 className="typo-l-strong text-gray-80 whitespace-nowrap">
