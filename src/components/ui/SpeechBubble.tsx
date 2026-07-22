@@ -1,13 +1,27 @@
 interface SpeechBubbleProps {
   text: string;
+  textStyle?: string;
+  trianglePosition?: "top" | "bottom";
 }
-export const SpeechBubble = ({ text }: SpeechBubbleProps) => {
+export const SpeechBubble = ({
+  text,
+  textStyle = "typo-caption-strong text-green-deep",
+  trianglePosition = "bottom",
+}: SpeechBubbleProps) => {
+  const triangle =
+    trianglePosition === "bottom" ? (
+      <div className="border-t-gray-0 absolute -bottom-[12px] mx-auto h-0 w-0 border-x-[8px] border-t-[16px] border-x-transparent" />
+    ) : (
+      <div className="border-b-gray-0 absolute -top-[12px] mx-auto h-0 w-0 border-x-[8px] border-b-[16px] border-x-transparent" />
+    );
+
   return (
-    <section className="drop-shadow-container relative z-100 flex flex-col">
-      <div className="bg-gray-0 rounded-[8px] px-3 py-1">
-        <p className="typo-caption-strong text-green-deep">{text}</p>
+    <section className="drop-shadow-container relative z-100 flex flex-col items-center">
+      {trianglePosition === "top" && triangle}
+      <div className="bg-gray-0 rounded-[8px] px-3 py-2">
+        <p className={`whitespace-nowrap ${textStyle}`}>{text}</p>
       </div>
-      <div className="absoulute border-t-gray-0 mx-auto mt-[-4px] h-0 w-0 border-x-[8px] border-t-[16px] border-x-transparent" />
+      {trianglePosition === "bottom" && triangle}
     </section>
   );
 };
