@@ -65,7 +65,7 @@ export default function RecordSelectPage() {
   return (
     <div className="flex min-h-screen w-full flex-col items-center">
       {/* 헤더 */}
-      <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
+      <BackHeader title="레시피 선택" />
       {/* 검색 */}
       <div className="mt-1 w-full max-w-[390px] px-4 pt-[54px]">
         <div className="bg-searchbar shadow-search flex w-full items-center justify-center rounded-[6px]">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   WeeklyRecipeDetailResponse,
@@ -20,7 +20,6 @@ import { BackHeader } from "@/components/ui/BackHeader";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function RecipeDetailPage() {
-  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const records = useCookeepRecordStore(state => state.records);
   const updateRecordLike = useCookeepRecordStore(
@@ -127,7 +126,7 @@ export default function RecipeDetailPage() {
   return (
     <div className="min-h-screen w-full">
       <div className="sticky top-0">
-        <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
+        <BackHeader title="레시피 보기" />
       </div>
       <div className="mx-auto w-full max-w-[450px] px-4">
         <div className="mx-auto flex flex-col pt-[51px]">

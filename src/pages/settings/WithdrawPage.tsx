@@ -81,7 +81,7 @@ export default function WithdrawPage() {
   if (loading) {
     return (
       <>
-        <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
+        <BackHeader title="탈퇴하기" />
         <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">
           <div className="text-center">로딩 중...</div>
         </main>
@@ -91,7 +91,7 @@ export default function WithdrawPage() {
 
   return (
     <>
-      <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
+      <BackHeader title="탈퇴하기" />
 
       {/* 스크롤 영역 */}
       <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">

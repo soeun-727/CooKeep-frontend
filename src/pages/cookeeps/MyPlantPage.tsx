@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 import { BackHeader } from "@/components/ui/BackHeader";
@@ -7,8 +5,6 @@ import { BackHeader } from "@/components/ui/BackHeader";
 import { PLANT_DATA } from "@/constants/plantData";
 
 export default function MyPlantPage() {
-  const navigate = useNavigate();
-
   const myPlants = useCookeepsStore(s => s.myPlants);
 
   const grownPlants = myPlants.filter(p => p.isHarvested);
@@ -18,7 +14,7 @@ export default function MyPlantPage() {
 
   return (
     <div className="bg-background relative min-h-screen pt-[110px]">
-      <BackHeader title="내가 키운 식재료" onBack={() => navigate(-1)} />
+      <BackHeader title="내가 키운 식재료" />
 
       {grownPlants.length === 0 ? (
         <p className="mt-20 text-center text-gray-400">

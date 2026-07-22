@@ -1,11 +1,8 @@
-import { useNavigate } from "react-router-dom";
-
 import image from "@/assets/settings/cs.svg";
 
 import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function SupportPage() {
-  const navigate = useNavigate();
   const KAKAO_CHANNEL_URL = "https://pf.kakao.com/_xfSKxhX";
 
   const handleOpenKakao = () => {
@@ -15,7 +12,7 @@ export default function SupportPage() {
   return (
     <>
       {/* 헤더 */}
-      <BackHeader title="고객센터" onBack={() => navigate(-1)} />
+      <BackHeader title="고객센터" />
 
       <main className="relative flex flex-col gap-12 px-4 pt-[97px]">
         {/* 상단 텍스트 */}

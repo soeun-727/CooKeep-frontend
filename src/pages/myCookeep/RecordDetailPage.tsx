@@ -181,7 +181,7 @@ export default function RecordDetailPage() {
       <div className="bg-background sticky top-0 z-[120] w-full">
         <div className="relative mx-auto flex w-full max-w-[450px] items-center justify-center">
           <div className="absolute left-0 w-full">
-            <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
+            <BackHeader title="레시피 보기" />
           </div>
           <div className="absolute top-2 right-2 flex items-center">
             <RecipeOptionMenu

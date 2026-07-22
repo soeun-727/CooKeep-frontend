@@ -43,7 +43,7 @@ export default function SimpleLoginAgreement() {
 
   return (
     <>
-      <BackHeader title="약관 동의" onBack={() => navigate(-1)} />
+      <BackHeader title="약관 동의" />
 
       {/* 회원가입과 동일한 컨테이너 */}
       <div className="flex min-h-screen flex-col">

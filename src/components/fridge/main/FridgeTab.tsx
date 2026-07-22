@@ -86,6 +86,12 @@ export default function FridgeTab() {
     loadData();
   }, []);
 
+  useEffect(() => {
+    return () => {
+      setViewCategory(null);
+    };
+  }, [setViewCategory]);
+
   const { filteredIngredients, sortedIngredients } = useSortedIngredients();
 
   const handleSearch = (value: string) => {
