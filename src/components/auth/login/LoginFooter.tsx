@@ -18,9 +18,9 @@ export default function LoginFooter() {
 
         <button
           onClick={() => navigate("/signup")}
-          className="typo-m text-gray-80 w-[77px] text-center"
+          className="typo-m text-gray-80 text-center"
         >
-          회원가입
+          회원가입하기
         </button>
       </div>
     </>

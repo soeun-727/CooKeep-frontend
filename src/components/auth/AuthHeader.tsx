@@ -10,7 +10,7 @@ export default function AuthHeader() {
   };
 
   return (
-    <header className="bg-background absolute top-0 z-50 flex w-full max-w-[450px] items-center justify-between px-4 py-2">
+    <header className="bg-background absolute top-0 z-50 flex w-full items-center justify-between px-4 py-2">
       <button
         type="button"
         onClick={handleBackClick}
