@@ -73,7 +73,7 @@ export default function NotificationSection({
   return (
     <section className="flex w-full flex-col items-start gap-1">
       {/* 알림 라벨 */}
-      <div className="flex w-full items-center gap-2 py-1">
+      <div className="flex w-full items-center py-1">
         <span className="typo-l-strong text-gray-30 flex-1">알림 설정</span>
       </div>
 
