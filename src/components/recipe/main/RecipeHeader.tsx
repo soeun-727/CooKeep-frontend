@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRecipeStore } from "@/stores/useRecipeStore";
@@ -20,6 +20,7 @@ export default function RecipeHeader({ title }: RecipeHeaderProps) {
   const { sessionId: paramSessionId } = useParams();
   const { sessionId: flowSessionId } = useRecipeFlowStore();
   const { pinned, toggleLike } = useRecipeStore();
+  const navigate = useNavigate();
   const currentSessionId = paramSessionId
     ? Number(paramSessionId)
     : flowSessionId;
@@ -48,8 +49,11 @@ export default function RecipeHeader({ title }: RecipeHeaderProps) {
 
         {/* 왼쪽: 사이드바 버튼 */}
         <button
-          onClick={toggleSidebar}
-          className="z-10 flex h-10 w-10 cursor-pointer items-center justify-start"
+          onClick={() => navigate("/recipe")}
+          disabled={!currentSessionId}
+          className={`z-10 flex h-10 w-10 items-center justify-start ${
+            currentSessionId ? "visible cursor-pointer" : "invisible"
+          }`}
         >
           <BackIcon width={21} height={20} />
         </button>
