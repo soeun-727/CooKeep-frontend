@@ -7,11 +7,11 @@ import { useRecipeStore } from "@/stores/useRecipeStore";
 
 import { SearchIcon } from "@/assets/index";
 import XIcon from "@/assets/icons/x.svg?react";
-
-import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import TextField from "@/components/ui/TextField";
 
 import Recipe from "./Recipe";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
+import { InputModal } from "@/components/fridge/modals/InputModal";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -48,18 +48,21 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
     : "-translate-x-full";
 
   const handleConfirmDelete = async () => {
-    if (selectedRecipe) {
-      try {
-        await deleteSession(selectedRecipe.id);
-        if (window.location.pathname.includes(String(selectedRecipe.id))) {
-          navigate("/recipe");
-        }
-        setIsDeleteModalOpen(false);
-        setSelectedRecipe(null);
-      } catch (err) {
-        setIsDeleteModalOpen(false);
-        setIsErrorModalOpen(true);
+    if (!selectedRecipe) return;
+
+    const recipeId = selectedRecipe.id;
+
+    setIsDeleteModalOpen(false);
+    setSelectedRecipe(null);
+
+    try {
+      await deleteSession(recipeId);
+
+      if (window.location.pathname.includes(String(recipeId))) {
+        navigate("/recipe");
       }
+    } catch (err) {
+      setIsErrorModalOpen(true);
     }
   };
 
@@ -207,44 +210,40 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
           </>,
           portalTarget,
         )}
+      {isDeleteModalOpen && (
+        <ConfirmModal
+          title="이 레시피를 삭제할까요?"
+          subtitle={selectedRecipe?.name ?? ""}
+          onConfirm={handleConfirmDelete}
+          onCancel={() => setIsDeleteModalOpen(false)}
+        />
+      )}
 
-      <DoublecheckModal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
-        onConfirm={handleConfirmDelete}
-        title="이 레시피를 삭제할까요?"
-        description={selectedRecipe?.name ?? ""}
-        variant="opposite"
-      />
-      <DoublecheckModal
-        isOpen={isRenameModalOpen}
-        onClose={() => {
-          setIsRenameModalOpen(false);
-          setSelectedRecipe(null);
-          setRenameInput("");
-        }}
-        onConfirm={handleConfirmRename}
-        title="새로운 레시피명을 입력해주세요"
-        inputValue={renameInput}
-        onInputChange={setRenameInput}
-        variant="green"
-        confirmText="변경"
-        cancelText="취소"
-      />
-      <DoublecheckModal
-        isOpen={isErrorModalOpen}
-        onClose={() => setIsErrorModalOpen(false)}
-        onConfirm={() => setIsErrorModalOpen(false)}
-        title={
-          <span className="block leading-relaxed">
-            요리 기록이 있는 레시피는
-            <br />
-            삭제할 수 없어요
-          </span>
-        }
-        variant="singular"
-        confirmText="확인"
-      />
+      {isRenameModalOpen && (
+        <InputModal
+          title="새로운 레시피명을 입력해주세요"
+          placeholder="레시피명을 입력해주세요"
+          value={renameInput}
+          onChange={setRenameInput}
+          onConfirm={handleConfirmRename}
+          onClose={() => {
+            setIsRenameModalOpen(false);
+            setSelectedRecipe(null);
+            setRenameInput("");
+          }}
+          buttonTexts={["변경", "취소"]}
+        />
+      )}
+
+      {isErrorModalOpen && (
+        <ConfirmModal
+          title="요리 기록이 있는 레시피는"
+          subtitle="삭제할 수 없어요"
+          onConfirm={() => setIsErrorModalOpen(false)}
+          onCancel={() => setIsErrorModalOpen(false)}
+          buttonTexts={["확인"]}
+        />
+      )}
     </>
   );
 }
