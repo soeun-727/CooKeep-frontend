@@ -7,7 +7,7 @@ import {
 } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 
-import EditIcon from "@/assets/recipe/rename.svg?react";
+import EditIcon from "@/assets/icons/rename.svg?react";
 
 import { InputModal } from "@/components/fridge/modals/InputModal";
 
