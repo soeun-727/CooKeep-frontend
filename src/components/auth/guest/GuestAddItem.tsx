@@ -82,7 +82,7 @@ export default function GuestAddItem({
           />
 
           {isDimmed && (
-            <div className="flex flex-col items-start">
+            <div className="flex w-full flex-col items-start">
               <div className="px-4">
                 <Triangle className="w-4 rotate-180" />
               </div>
@@ -105,10 +105,10 @@ export default function GuestAddItem({
       >
         <div className="flex w-full flex-col gap-4 px-4 pb-1">
           <div>
-            <div className="pointer-events-none -mb-1 select-none">
+            <div className="pointer-events-none -mb-1 w-full select-none">
               <RecentlyAdded />
             </div>
-            <div className="relativez-10">
+            <div className="relative z-10 w-full">
               <Selected
                 isGuest={true}
                 isGuestSelected={isSelected}
