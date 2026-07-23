@@ -6,8 +6,16 @@ interface SearchProps {
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
+  bgColor?: string;
+  rounded?: string;
 }
-export const Search = ({ placeholder, value, onChange }: SearchProps) => {
+export const Search = ({
+  placeholder,
+  value,
+  onChange,
+  bgColor,
+  rounded,
+}: SearchProps) => {
   const hasText = value.trim().length > 0;
   return (
     <TextField
@@ -15,6 +23,8 @@ export const Search = ({ placeholder, value, onChange }: SearchProps) => {
       type="text"
       placeholder={placeholder}
       onChange={onChange}
+      bgColor={bgColor}
+      rounded={rounded}
       rightIcon={
         <div className="flex items-center justify-center transition-opacity duration-200">
           <SearchIcon
