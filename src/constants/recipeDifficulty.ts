@@ -1,27 +1,45 @@
-import easyImg from "@/assets/recipe/main/easyImg.svg";
-import hardImg from "@/assets/recipe/main/hardImg.svg";
-import normalImg from "@/assets/recipe/main/temp_recipe_title.svg";
+import DessertImg from "@/assets/recipe/select/dessert.svg";
+import FriedImg from "@/assets/recipe/select/fried.svg";
+import HealthyImg from "@/assets/recipe/select/healthy.svg";
+import NoodlesImg from "@/assets/recipe/select/noodles.svg";
+import RiceImg from "@/assets/recipe/select/rice.svg";
+import SoupImg from "@/assets/recipe/select/soup.svg";
 
 export const DIFFICULTY_OPTIONS = [
   {
-    key: "EASY",
-    title: "Easy",
-    time: "10분 이내",
-    desc: "빠르고 간편하게",
-    image: easyImg,
+    key: "SOUP_STEW",
+    title: "Soup",
+    desc: "국물류",
+    image: SoupImg,
   },
   {
-    key: "NORMAL",
-    title: "Normal",
-    time: "30분 이내",
-    desc: "적당히 차려먹기",
-    image: normalImg,
+    key: "RICE_BOWL",
+    title: "Rice",
+    desc: "밥류",
+    image: RiceImg,
   },
   {
-    key: "HARD",
-    title: "Hard",
-    time: "30분 이상",
-    desc: "제대로 요리하기",
-    image: hardImg,
+    key: "NOODLE",
+    title: "Noodles",
+    desc: "면류",
+    image: NoodlesImg,
+  },
+  {
+    key: "STIR_FRY_GRILL",
+    title: "Fried",
+    desc: "볶음 · 구이",
+    image: FriedImg,
+  },
+  {
+    key: "SALAD_HEALTHY",
+    title: "Healthy",
+    desc: "건강식",
+    image: HealthyImg,
+  },
+  {
+    key: "SNACK_DESSERT",
+    title: "Dessert",
+    desc: "디저트",
+    image: DessertImg,
   },
 ] as const;

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import editIcon from "@/assets/recipe/rename.svg";
+import editIcon from "@/assets/icons/rename.svg";
 
 interface InputModalProps {
   onClose: () => void;

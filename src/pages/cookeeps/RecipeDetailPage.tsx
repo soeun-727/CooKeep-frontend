@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import {
   WeeklyRecipeDetailResponse,
@@ -16,10 +16,10 @@ import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDeta
 import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
 import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function RecipeDetailPage() {
-  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const records = useCookeepRecordStore(state => state.records);
   const updateRecordLike = useCookeepRecordStore(
@@ -32,22 +32,17 @@ export default function RecipeDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const storeRecord = records.find(r => String(r.dailyRecipeId) === id);
-  // 화면에 보여줄 데이터 (스토어에 있으면 스토어꺼, 없으면 서버에서 받아온 상세 데이터 사용)
   const isLiked = storeRecord ? storeRecord.liked : recipe?.liked;
   const isBookmarked = storeRecord
     ? storeRecord.bookmarked
     : recipe?.bookmarked;
 
-  // 좋아요 토글 핸들러
   const handleLikeToggle = async () => {
     if (!id || !recipe) return;
 
     try {
-      // 1. 스토어 업데이트 및 서버 데이터 받아오기
       const updatedData = await updateRecordLike(id);
 
-      // 2. ✅ 로컬 상태를 서버에서 준 정확한 값으로 업데이트
-      // 만약 updatedData가 없으면(스토어 로직상) 기존처럼 반전 처리
       if (updatedData) {
         setRecipe(prev =>
           prev
@@ -59,7 +54,6 @@ export default function RecipeDetailPage() {
             : null,
         );
       } else {
-        // 스토어에 records가 없는 경우(상세페이지 직접 진입 등) 대비한 fallback
         setRecipe(prev => {
           if (!prev) return prev;
           const nextLiked = !prev.liked;
@@ -75,15 +69,12 @@ export default function RecipeDetailPage() {
     }
   };
 
-  // 북마크 토글 핸들러
   const handleBookmarkToggle = async () => {
     if (!id || !recipe) return;
 
     try {
-      // 1. 스토어 업데이트 및 서버 데이터 받아오기
       const updatedData = await updateRecordBookmark(id);
 
-      // 2. ✅ 로컬 상태 동기화
       if (updatedData) {
         setRecipe(prev =>
           prev ? { ...prev, bookmarked: updatedData.bookmarked } : null,
@@ -98,23 +89,20 @@ export default function RecipeDetailPage() {
     }
   };
 
-  // RecipeDetailPage.tsx 수정 로직
-
   useEffect(() => {
     if (!id) return;
 
+    setIsLoading(true);
+    setRecipe(null);
+
     const fetchFullDetail = async () => {
       try {
-        setIsLoading(true);
-
-        // 1. 세 가지 API를 동시에 호출하여 시간을 단축합니다.
         const [detailData, likeStatus, bookmarkStatus] = await Promise.all([
           getWeeklyRecipeDetail(id),
           checkRecipeLikeStatus(Number(id)),
           checkRecipeBookmarkStatus(Number(id)),
         ]);
 
-        // 2. 서버에서 받은 상세 데이터에 실시간 상태값들을 합칩니다.
         setRecipe({
           ...detailData,
           liked: likeStatus.liked,
@@ -131,38 +119,25 @@ export default function RecipeDetailPage() {
     fetchFullDetail();
   }, [id]);
 
-  if (isLoading)
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        로딩 중...
-      </div>
-    );
-  if (!recipe)
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        레시피를 찾을 수 없습니다.
-      </div>
-    );
+  if (isLoading || !recipe) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="min-h-screen w-full">
       <div className="sticky top-0">
-        <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
+        <BackHeader title="레시피 보기" />
       </div>
       <div className="mx-auto w-full max-w-[450px] px-4">
-        {/* 헤더 */}
-
         <div className="mx-auto flex flex-col pt-[51px]">
-          {/* 유저 메타 */}
           <RecipeDetailUserMeta
             userName={recipe.nickname}
             isLiked={!!isLiked}
-            isBookmarked={!!isBookmarked} // 👈 이제 이 값이 변하면서 자식을 다시 그립니다.
+            isBookmarked={!!isBookmarked}
             onLike={handleLikeToggle}
             onBookmark={handleBookmarkToggle}
           />
 
-          {/* 메인 콘텐츠 */}
           <div className="flex w-full flex-col items-start gap-4 self-stretch">
             <div className="flex w-full flex-col items-center gap-[10px]">
               <div className="flex w-full flex-col items-start self-stretch">
@@ -172,7 +147,6 @@ export default function RecipeDetailPage() {
                 />
               </div>
 
-              {/* 레시피 내용 섹션 */}
               <RecipeDetailContentSection
                 recipe={{
                   ingredients: {
@@ -196,7 +170,6 @@ export default function RecipeDetailPage() {
             </div>
           </div>
 
-          {/* 메모 */}
           <div className="mt-4 flex w-full flex-col items-center gap-2 pb-25">
             {recipe.description && (
               <RecipeDetailMemo

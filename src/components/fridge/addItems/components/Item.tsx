@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import deleteIcon from "@/assets/recipe/delete.svg";
+import deleteIcon from "@/assets/icons/delete.svg";
 
 interface ItemProps {
   image: string;

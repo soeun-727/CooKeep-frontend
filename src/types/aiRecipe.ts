@@ -1,5 +1,3 @@
-export type Difficulty = "EASY" | "NORMAL" | "HARD";
-
 export interface AiRecipeResponse {
   sessionId: number;
   changeCount: number;
@@ -18,6 +16,7 @@ export interface AiRecipeResponse {
     url: string;
     thumbnail: string;
   }[];
+  feature: Feature;
 }
 
 export interface IngredientItem {
@@ -26,4 +25,19 @@ export interface IngredientItem {
   quantity: number;
   unit: string;
   description?: string | null;
+}
+
+export type Feature =
+  | "SOUP_STEW"
+  | "RICE_BOWL"
+  | "NOODLE"
+  | "STIR_FRY_GRILL"
+  | "SALAD_HEALTHY"
+  | "SNACK_DESSERT"
+  | "ANY";
+
+export type RecipeCategory = Feature | "RANDOM";
+
+export interface RetryAiRecipeRequest {
+  sessionId: number;
 }

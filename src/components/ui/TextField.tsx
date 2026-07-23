@@ -31,9 +31,7 @@ export default function TextField({
 }: TextFieldProps) {
   return (
     <div className="w-full">
-      {label && (
-        <label className="mb-1 block text-sm font-medium">{label}</label>
-      )}
+      {label && <label className="typo-m mb-1 block">{label}</label>}
 
       <div className="bg-gray-10 border-gray-10 rounded-M flex h-[48px] gap-3 p-3">
         {leftIcon && <div>{leftIcon}</div>}
