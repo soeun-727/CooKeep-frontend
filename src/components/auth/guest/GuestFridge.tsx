@@ -111,7 +111,7 @@ export default function GuestFridge({
   return (
     <div
       onClick={() => setIsDimmed(true)}
-      className="relative h-[calc(100dvh-40px)] w-full"
+      className="relative h-[calc(100dvh-40px)] w-full max-w-[450px]"
     >
       <div
         className={`relative flex w-full flex-col gap-7 ${mode === "recipe" ? "pb-20" : ""}`}
@@ -195,35 +195,38 @@ export default function GuestFridge({
       </div>
 
       {mode === "fridge" ? (
-        <div className="fixed right-4 bottom-[calc(72px+env(safe-area-inset-bottom))] z-[130] flex flex-col items-end gap-2">
-          {isDimmed && (
-            <div className="flex flex-col items-end">
-              <div className="rounded-S bg-gray-0 px-3 py-2">
-                <p className="text-green-deep typo-label">
-                  지금 냉장고에 있는 재료부터 등록해보세요!
-                </p>
+        <div className="pointer-events-none fixed right-0 bottom-[calc(72px+env(safe-area-inset-bottom))] left-0 z-[130] mx-auto w-full max-w-[450px] px-4">
+          <div className="pointer-events-auto flex flex-col items-end gap-2">
+            {isDimmed && (
+              <div className="flex flex-col items-end">
+                <div className="rounded-S bg-gray-0 px-3 py-2">
+                  <p className="text-green-deep typo-label whitespace-nowrap">
+                    지금 냉장고에 있는 재료부터 등록해보세요!
+                  </p>
+                </div>
+
+                <div className="-mt-1 px-4">
+                  <Triangle className="w-4" />
+                </div>
               </div>
-              <div className="-mt-1 px-4">
-                <Triangle className="w-4" />
-              </div>
-            </div>
-          )}
-          <button
-            className="relative -mr-2"
-            onClick={e => {
-              if (!isDimmed) {
-                setIsDimmed(true);
-              } else {
-                e.stopPropagation();
-                onNext();
-              }
-            }}
-          >
-            <img src={FAB} alt="add button" />
-          </button>
+            )}
+
+            <button
+              onClick={e => {
+                if (!isDimmed) {
+                  setIsDimmed(true);
+                } else {
+                  e.stopPropagation();
+                  onNext();
+                }
+              }}
+            >
+              <img src={FAB} alt="재료 추가" />
+            </button>
+          </div>
         </div>
       ) : (
-        <div className="fixed bottom-[34px] left-1/2 z-[130] -translate-x-1/2">
+        <div className="fixed right-0 bottom-[34px] left-0 z-[130] mx-auto flex w-full max-w-[450px] justify-center px-4">
           <Button
             size="L"
             variant="black"
