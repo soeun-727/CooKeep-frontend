@@ -43,7 +43,7 @@ export default function GuestPage() {
       case 1:
         return <GuestAddItem onNext={handleNext} {...dimmedProps} />;
       case 2:
-        return <GuestDetails onNext={handleNext} {...dimmedProps} />;
+        return <GuestDetails onNext={handleNext} />;
       case 3:
         return <GuestRecipeIntro onNext={handleNext} {...dimmedProps} />;
       case 4:

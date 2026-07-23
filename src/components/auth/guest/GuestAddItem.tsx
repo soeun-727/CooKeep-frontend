@@ -67,7 +67,7 @@ export default function GuestAddItem({
 
       {/* 그리드 영역 */}
       <div className="flex w-full flex-1 items-start justify-center overflow-y-auto px-4">
-        <div className="z-45 flex w-full flex-col gap-3 p-3">
+        <div className="z-70 flex w-full flex-col gap-3 p-3">
           <Item
             name="베이글"
             image={bagel}
@@ -100,10 +100,10 @@ export default function GuestAddItem({
       <div
         onClick={e => e.stopPropagation()}
         className={`absolute bottom-[env(safe-area-inset-bottom)] flex w-full justify-center ${
-          isSelected ? "z-50" : "z-auto"
+          isSelected ? "z-70" : "z-auto"
         }`}
       >
-        <div className="flex w-full flex-col gap-4 px-4 pb-1">
+        <div className="flex w-full flex-col gap-4 px-4">
           <div>
             <div className="pointer-events-none -mb-1 w-full select-none">
               <RecentlyAdded />

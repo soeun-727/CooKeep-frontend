@@ -5,8 +5,6 @@ import Button from "@/components/ui/Button";
 
 interface GuestDetailsProps {
   onNext: () => void;
-  isDimmed: boolean;
-  setIsDimmed: (isDimmed: boolean) => void;
 }
 
 const guestItem = {
@@ -28,29 +26,15 @@ const guestItem = {
   onDelete: () => {},
 };
 
-export default function GuestDetails({
-  onNext,
-  isDimmed,
-  setIsDimmed,
-}: GuestDetailsProps) {
+export default function GuestDetails({ onNext }: GuestDetailsProps) {
   return (
-    <div
-      onClick={() => setIsDimmed(true)}
-      className="bg-background relative flex h-[calc(100dvh-40px)] w-full flex-col items-center overflow-hidden"
-    >
+    <div className="bg-background relative flex h-[calc(100dvh-40px)] w-full flex-col items-center overflow-hidden">
       <div className="flex w-full flex-col items-center">
-        <div
-          className={`mt-[30px] flex w-full justify-center px-5 ${
-            isDimmed ? "relative z-[110]" : ""
-          }`}
-          onClick={e => {
-            if (isDimmed) e.stopPropagation();
-          }}
-        >
+        <div className="mt-[30px] flex w-full justify-center px-5">
           <DetailedItem {...(guestItem as any)} />
         </div>
 
-        <div className="absolute bottom-0 z-[110] flex w-full justify-center px-4 pb-1">
+        <div className="absolute bottom-0 z-[110] flex w-full justify-center px-4">
           <Button size="L" variant="black" onClick={onNext}>
             등록 완료
           </Button>
