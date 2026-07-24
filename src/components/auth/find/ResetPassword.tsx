@@ -171,11 +171,11 @@ export default function ResetPassword() {
 
       {isSuccess && (
         <div className="bg-background fixed inset-0 z-[200] flex flex-col">
-          <div className="mt-[160px] flex flex-col items-center gap-4 px-4">
+          <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
             <CheckIcon className="text-green h-10 w-10" />
             <h2 className="typo-h2">비밀번호 변경 완료</h2>
           </div>
-          <div className="bg-blur-to-t mt-auto p-4 pt-6">
+          <div className="bg-blur-to-t p-4">
             <Button
               size="L"
               variant="green"
