@@ -1,7 +1,3 @@
-import { useState } from "react";
-
-import cookChar from "@/assets/character/cooking_hat_char.svg";
-
 import Button from "@/components/ui/Button";
 
 interface GuestRecipeIntroProps {

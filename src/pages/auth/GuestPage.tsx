@@ -71,7 +71,7 @@ export default function GuestPage() {
       )}
       <div className="mt-10 w-full shrink-0" />
       <div className="no-scrollbar w-full flex-1 overflow-y-auto">
-        <div className="w-full">{renderSlide()}</div>
+        <div className="flex w-full justify-center">{renderSlide()}</div>
       </div>
       {SHOW_TABBAR_INDICES.includes(index) && (
         <TabBar

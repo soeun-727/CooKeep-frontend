@@ -17,7 +17,6 @@ import Item from "@/components/fridge/items/Item";
 import Storage from "@/components/fridge/main/Storage";
 import FloatingNotice from "@/components/recipe/main/FloatingNotice";
 import Button from "@/components/ui/Button";
-import { Search } from "@/components/fridge/features/Search";
 
 interface GuestFridgeProps {
   onNext: () => void;
@@ -116,13 +115,6 @@ export default function GuestFridge({
       <div
         className={`relative flex w-full flex-col gap-7 ${mode === "recipe" ? "pb-20" : ""}`}
       >
-        <div className="mt-3 px-4">
-          <Search
-            placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
-            value=""
-            onChange={() => {}}
-          />
-        </div>
         <div className="relative w-full">
           {mode === "recipe" && (
             <div className="absolute -top-30 left-1/2 z-130 flex w-full -translate-x-1/2 justify-center">
@@ -133,7 +125,7 @@ export default function GuestFridge({
             <div className="absolute inset-0 z-120 cursor-pointer" />
           )}
 
-          <div className="relative z-0 flex w-full flex-col gap-3">
+          <div className="relative z-0 flex w-full flex-col gap-[10px]">
             <Storage
               category="냉장"
               icon={FridgeIcon}
