@@ -110,7 +110,7 @@ export default function NicknameEditItem({
               <button
                 onClick={handleSave}
                 disabled={!nickname.trim() || isError}
-                className="bg-gray-80 text-gray-0 typo-caption shrink-0 rounded-full px-3 py-[6px] disabled:opacity-40"
+                className="bg-green text-gray-0 typo-caption shrink-0 rounded-full px-3 py-[6px] disabled:opacity-40"
               >
                 변경 완료
               </button>

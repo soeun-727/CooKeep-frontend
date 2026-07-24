@@ -81,7 +81,7 @@ export default function AccountSection({
       ) : (
         <div className="flex min-h-0 w-full flex-1 flex-col justify-between pb-[34px]">
           {/* 헤더 아래부터 */}
-          <div className="flex flex-col items-center gap-[60px] pt-[100px]">
+          <div className="flex flex-col items-center">
             {/* 내용 */}
             <div className="flex w-full flex-col items-center gap-4">
               {/* 제목 */}

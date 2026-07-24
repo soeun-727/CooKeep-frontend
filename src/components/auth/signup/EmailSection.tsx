@@ -97,8 +97,8 @@ export default function EmailSection() {
   };
 
   return (
-    <main className="flex w-full flex-1 flex-col pt-[40px]">
-      <div className="mt-[120px] flex flex-col gap-6">
+    <main className="flex w-full flex-1 flex-col">
+      <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">
           <div className="w-full px-1 py-2">
             <h1 className="typo-h2">이메일 인증</h1>

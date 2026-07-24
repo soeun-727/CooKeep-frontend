@@ -12,7 +12,7 @@ export default function SupportPage() {
   return (
     <>
       {/* 헤더 */}
-      <main className="flex min-h-screen flex-col gap-20 px-4 pb-8">
+      <main className="flex min-h-screen flex-col gap-15 px-4 pb-8">
         <BackHeader title="고객센터" />
 
         <div className="flex flex-1 flex-col justify-between">
