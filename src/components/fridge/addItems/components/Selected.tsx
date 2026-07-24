@@ -1,8 +1,29 @@
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 
-export default function Selected() {
+interface SelectedProps {
+  isGuest?: boolean;
+  isGuestSelected?: boolean;
+  guestImage?: string;
+}
+
+export default function Selected({
+  isGuest = false,
+  isGuestSelected = false,
+  guestImage,
+}: SelectedProps) {
   const { selectedItems } = useAddIngredientStore();
-  const selectedDisplay = [...selectedItems].reverse().slice(0, 5);
+
+  let selectedDisplay = [];
+
+  if (isGuest) {
+    selectedDisplay =
+      isGuestSelected && guestImage
+        ? [{ id: "guest-bagel", name: "베이글", image: guestImage }]
+        : [];
+  } else {
+    selectedDisplay = [...selectedItems].reverse().slice(0, 5);
+  }
+
   const emptySlots = Array(5 - selectedDisplay.length).fill(null);
   const allSlots = [...selectedDisplay, ...emptySlots];
 

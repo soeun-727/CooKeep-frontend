@@ -132,6 +132,28 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
             </div>
           </div>
         </div>
+
+        {/* 하단 버튼 영역 */}
+        <div className="relative z-20 mx-auto flex w-full max-w-[450px] items-center justify-center p-4">
+          {isDimmed && (
+            <object
+              data={notice}
+              className="absolute bottom-15 left-1/2 w-[178px] -translate-x-1/2"
+            />
+          )}
+          <button
+            onClick={e => {
+              if (!isDimmed) {
+                setIsDimmed(true);
+              } else {
+                handleButtonClick(e);
+              }
+            }}
+            className="typo-button text-gray-0 bg-green rounded-L h-[38px] w-full"
+          >
+            이 레시피대로 요리할래요
+          </button>
+        </div>
       </div>
 
       <OnboardingRewardModal
