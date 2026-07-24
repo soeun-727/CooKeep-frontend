@@ -7,6 +7,7 @@ import banana from "@/assets/guest/banana.svg";
 import egg from "@/assets/guest/egg.svg";
 import FAB from "@/assets/guest/fab.svg";
 import notice from "@/assets/guest/fab_2.svg";
+import header from "@/assets/guest/fridge_header.svg";
 import milk from "@/assets/guest/milk.svg";
 import noodles from "@/assets/guest/noodles.svg";
 import strawberry from "@/assets/guest/strawberry.svg";
@@ -16,7 +17,6 @@ import Item from "@/components/fridge/items/Item";
 import Storage from "@/components/fridge/main/Storage";
 import FloatingNotice from "@/components/recipe/main/FloatingNotice";
 import Button from "@/components/ui/Button";
-import { Search } from "@/components/fridge/features/Search";
 
 interface GuestFridgeProps {
   onNext: () => void;
@@ -113,13 +113,7 @@ export default function GuestFridge({
       <div
         className={`relative flex w-full flex-col gap-7 ${mode === "recipe" ? "pb-20" : ""}`}
       >
-        <div className="mt-3 px-4">
-          <Search
-            placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
-            value=""
-            onChange={() => {}}
-          />
-        </div>
+        <object data={header} className="w-full" />
         <div className="relative w-full">
           {mode === "recipe" && (
             <div className="absolute -top-[120px] left-1/2 z-[130] flex w-full -translate-x-1/2 justify-center">
@@ -130,7 +124,7 @@ export default function GuestFridge({
             <div className="absolute inset-0 z-[120] cursor-pointer" />
           )}
 
-          <div className="relative z-0 flex w-full flex-col gap-3">
+          <div className="relative z-0 flex w-full flex-col gap-[10px]">
             <Storage
               category="냉장"
               icon={FridgeIcon}
