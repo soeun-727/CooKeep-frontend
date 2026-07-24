@@ -125,11 +125,11 @@ export default function EditPasswordPage() {
   }, [location.state, verifiedFromEmail, navigate]);
 
   return (
-    <div className="bg-background flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col gap-30 px-4">
       <BackHeader title="비밀번호 변경" onBack={() => navigate(-1)} />
 
-      <main className="flex flex-1 flex-col px-4 pt-[40px]">
-        <div className="mt-[120px] flex flex-col gap-6">
+      <main className="flex flex-1 flex-col">
+        <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-4">
             <h2 className="typo-h2 w-full px-1 py-2">새 비밀번호 입력</h2>
 

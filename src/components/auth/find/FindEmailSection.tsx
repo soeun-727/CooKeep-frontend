@@ -12,6 +12,7 @@ import { formatTime } from "@/utils/formateTime";
 import { validateEmail } from "@/utils/validateUtil";
 
 import FindEmailAuthModal from "./FindEmailAuthModal";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function FindEmailSection() {
   const { email, setEmail, isCodeSent, sendCode, verifyCode } =
@@ -91,8 +92,10 @@ export default function FindEmailSection() {
   const handleResend = () => handleSendCode();
 
   return (
-    <main className="flex w-full flex-1 flex-col px-4 pt-[40px]">
-      <div className="mt-[120px] flex flex-col gap-6">
+    <main className="flex w-full flex-1 flex-col gap-30 px-4">
+      <BackHeader title="비밀번호 찾기" />
+
+      <div className="flex flex-col gap-6">
         {/* 이메일 입력 */}
         <div className="flex flex-col gap-4">
           <div className="w-full px-1 py-2">

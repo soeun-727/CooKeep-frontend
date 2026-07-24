@@ -81,13 +81,13 @@ export default function AgreementPage({
   const sections = splitAgreementSections(agreement.content);
 
   return (
-    <div className="relative flex h-[100dvh] w-full flex-col items-center overflow-hidden px-4">
+    <div className="relative flex h-[100dvh] w-full flex-col gap-3 overflow-hidden px-4">
       {/* 헤더 */}
       <BackHeader title="이용 약관" onBack={onBack} />
 
       {/* 카드 + notice가 함께 스크롤되는 영역 (버튼 아래로 이어짐) */}
       <div
-        className={`no-scrollbar flex-1 overflow-y-auto pt-[52px] ${BOTTOM_SAFE_PADDING}`}
+        className={`no-scrollbar flex-1 overflow-y-auto ${BOTTOM_SAFE_PADDING}`}
       >
         <div className="mx-auto flex w-full flex-col gap-3">
           {/* 약관 카드 */}

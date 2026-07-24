@@ -131,11 +131,11 @@ export default function EditEmailPage() {
   };
 
   return (
-    <div className="bg-background relative flex min-h-screen flex-col">
+    <div className="relative flex min-h-screen flex-col gap-30 px-4">
       <BackHeader title="이메일 주소 변경" onBack={() => navigate(-1)} />
 
-      <main className="flex flex-1 flex-col px-4 pt-[40px]">
-        <div className="mt-[120px] flex flex-col gap-6">
+      <main className="flex flex-1 flex-col">
+        <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4">
             <div className="w-full px-1 py-2">
               <h1 className="typo-h2">이메일 인증</h1>

@@ -4,9 +4,9 @@ import LoginMain from "./LoginMain";
 export default function Login() {
   return (
     <div className="flex min-h-dvh flex-col">
-      <AuthHeader />
+      <main className="flex flex-1 flex-col gap-30 px-4">
+        <AuthHeader />
 
-      <main className="flex flex-1 flex-col px-4 pt-[160px]">
         <LoginMain />
       </main>
     </div>

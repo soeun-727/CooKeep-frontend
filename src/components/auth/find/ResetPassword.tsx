@@ -14,6 +14,7 @@ import Button from "@/components/ui/Button";
 import InputField from "@/components/ui/InputField";
 
 import { validatePassword } from "@/utils/validateUtil";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function ResetPassword() {
   const { email, isVerified, reset } = useFindPasswordStore();
@@ -71,8 +72,10 @@ export default function ResetPassword() {
 
   return (
     <div className="bg-background flex min-h-screen w-full flex-col">
-      <main className="flex flex-1 flex-col px-4 pt-[40px]">
-        <div className="mt-[120px] flex flex-col gap-6">
+      <main className="flex flex-1 flex-col gap-[120px] px-4">
+        <BackHeader title="비밀번호 찾기" />
+
+        <div className="flex flex-col gap-6">
           <div className="flex flex-col items-center gap-4">
             <h2 className="typo-h2 w-full px-1 py-2">비밀번호 변경하기</h2>
 

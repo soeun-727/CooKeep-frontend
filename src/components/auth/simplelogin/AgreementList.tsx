@@ -28,7 +28,7 @@ export default function AgreementList({
 
   if (agreementPage) {
     return (
-      <div className="bg-background absolute inset-0 z-50 flex flex-col">
+      <div className="bg-background absolute inset-0 z-50 flex flex-col w-full">
         {" "}
         {/*overflow-y-auto*/}
         <AgreementPage

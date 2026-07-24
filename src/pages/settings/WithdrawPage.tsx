@@ -15,6 +15,7 @@ import AgreeChecked from "@/assets/signup/checkboxCheck.svg?react";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import { flushSync } from "react-dom";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 const REASONS = [
   "자주 사용하지 않아요",
@@ -110,22 +111,14 @@ export default function WithdrawPage() {
     }
   };
 
-  if (loading) {
-    return (
-      <>
-        <BackHeader title="탈퇴하기" />
-        <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">
-          <div className="text-center">로딩 중...</div>
-        </main>
-      </>
-    );
-  }
+  // 로딩 중일 때
+  if (loading) return <LoadingScreen />;
 
   return (
     <>
-      <BackHeader title="탈퇴하기" />
+      <main className="flex min-h-dvh w-full flex-col gap-[120px] px-4 pb-[220px]">
+        <BackHeader title="탈퇴하기" />
 
-      <main className="mx-auto flex w-full max-w-[375px] flex-col items-center gap-[120px] px-4 pt-[161px] pb-[220px]">
         <div className="flex w-full flex-col items-center gap-3">
           {/* 이미지 + 글자 */}
           <div className="flex w-full flex-col items-center gap-2 px-1">
@@ -226,7 +219,7 @@ export default function WithdrawPage() {
       </main>
 
       {/* ===== 하단 고정 영역 ===== */}
-      <div className="fixed bottom-0 left-1/2 z-20 flex w-full max-w-[375px] -translate-x-1/2 flex-col items-center">
+      <div className="fixed bottom-0 left-1/2 z-20 flex w-full -translate-x-1/2 flex-col items-center">
         <div className="flex w-full flex-col items-center px-4">
           <div className="bg-gray-10 flex w-full flex-col items-start gap-2 rounded-[12px]">
             <div className="flex w-full flex-col items-start gap-[6px] p-3">

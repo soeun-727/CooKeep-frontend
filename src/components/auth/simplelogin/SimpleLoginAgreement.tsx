@@ -43,7 +43,7 @@ export default function SimpleLoginAgreement() {
 
   return (
     // 헤더 + 본문을 하나로 감싸고, px-4 / gap-10을 여기서 적용
-    <div className="bg-background relative flex min-h-dvh flex-col gap-10 px-4 pt-10">
+    <div className="relative flex min-h-dvh flex-col gap-10 px-4">
       <BackHeader title="간편로그인" onBack={() => navigate(-1)} />
 
       <main className="flex flex-1 flex-col">

@@ -38,9 +38,9 @@ export default function NoticePage() {
 
   return (
     <>
-      <BackHeader title="서비스 소개" />
-      <main className="pb-safe flex min-h-screen flex-col px-4 pt-[52px]">
-        <div className="flex flex-col gap-3">
+      <main className="pb-safe flex min-h-screen flex-col gap-3 px-4">
+        <BackHeader title="서비스 소개" />
+        <div className="flex flex-1 flex-col gap-3">
           {error ? (
             <p className="text-semantic-negative text-center">
               공지사항을 불러오지 못했습니다.
@@ -56,7 +56,7 @@ export default function NoticePage() {
           )}
         </div>
 
-        <div className="mt-auto px-4 pb-2">
+        <div className="px-4 pb-2">
           <p className="typo-caption-strong text-center text-gray-50">
             오늘 한 끼부터, 쿠킵으로 이어가볼까요?
           </p>
