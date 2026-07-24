@@ -17,7 +17,8 @@ export default function Layout() {
     (isRecipe &&
       (location.pathname.startsWith("/recipe/select") ||
         location.pathname.startsWith("/recipe/confirm") ||
-        location.pathname.startsWith("/recipe/loading")));
+        location.pathname.startsWith("/recipe/loading") ||
+        location.pathname.startsWith("/recipe/result")));
 
   const showTabBar = !hideTabBar;
   useEffect(() => {

@@ -6,10 +6,12 @@ interface DoublecheckModalProps {
   onClose: () => void;
   title: React.ReactNode;
   description?: string;
+  inputValue?: string;
+  onInputChange?: (value: string) => void;
   onConfirm: () => void;
   confirmText?: string;
   cancelText?: string;
-  variant?: "black" | "green" | "singular";
+  variant?: "black" | "green" | "singular" | "opposite" | "singular-green";
   closeOnOverlayClick?: boolean;
 }
 
@@ -18,6 +20,8 @@ export default function DoublecheckModal({
   onClose,
   title,
   description,
+  inputValue,
+  onInputChange,
   onConfirm,
   confirmText = "네",
   cancelText = "아니오",
@@ -37,8 +41,17 @@ export default function DoublecheckModal({
 
   if (!isOpen) return null;
 
-  const isSingular = variant === "singular";
-  const confirmBtnColor = variant === "green" ? "bg-green" : "bg-black";
+  const isSingular = variant === "singular" || variant === "singular-green";
+
+  const confirmBtnColor =
+    variant === "green" || variant === "singular-green"
+      ? "bg-green"
+      : variant === "opposite"
+        ? "bg-gray-30"
+        : "bg-black";
+
+  const cancelBtnColor = variant === "opposite" ? "bg-black" : "bg-gray-30";
+
   const buttonWidth = isSingular ? "w-[184px]" : "w-[95px]";
 
   return createPortal(
@@ -46,32 +59,41 @@ export default function DoublecheckModal({
       <div
         className="absolute inset-0 cursor-default"
         onClick={closeOnOverlayClick ? onClose : undefined}
-      ></div>
-
-      {/* 모달 박스 */}
-      <div className="bg-gray-0 animate-popIn relative flex w-[254px] flex-col items-center rounded-[10px] px-7 py-[25px]">
-        <h2 className="typo-body text-gray-80 mb-2 w-[198px] text-center font-bold">
-          {title}
-        </h2>
-        {description && (
-          <p className="typo-body2 text-gray-80 mb-4 w-[198px] text-center font-medium whitespace-pre-wrap">
-            {description}
-          </p>
-        )}
-        <div className="flex gap-2">
+      />
+      <div className="bg-gray-0 animate-popIn rounded-L relative flex w-75 flex-col items-center gap-6 p-6">
+        <div className="text-gray-80 w-full gap-2 text-center">
+          <h2 className="typo-l-strong w-full">{title}</h2>
+          {description && (
+            <p className="typo-m w-full whitespace-pre-wrap">{description}</p>
+          )}
+          {onInputChange !== undefined && (
+            <input
+              type="text"
+              value={inputValue ?? ""}
+              onChange={e => onInputChange(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === "Enter") onConfirm();
+                if (e.key === "Escape") onClose();
+              }}
+              autoFocus
+              className="text-gray-80 typo-m w-full text-center outline-none"
+            />
+          )}
+        </div>
+        <div className="flex w-full gap-2">
           <button
             onClick={() => {
               onConfirm();
               onClose();
             }}
-            className={`typo-label text-gray-0 h-11 rounded-[10px] transition-colors active:opacity-80 ${confirmBtnColor} ${buttonWidth}`}
+            className={`typo-l-strong text-gray-0 rounded-M h-11 w-full ${confirmBtnColor} ${buttonWidth}`}
           >
             {confirmText}
           </button>
           {!isSingular && (
             <button
               onClick={onClose}
-              className="typo-label text-gray-0 bg-gray-30 h-11 w-[95px] rounded-[10px] active:opacity-80"
+              className={`typo-l-strong text-gray-0 rounded-M h-11 w-full ${cancelBtnColor}`}
             >
               {cancelText}
             </button>

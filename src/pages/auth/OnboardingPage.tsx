@@ -133,15 +133,15 @@ export default function Onboarding() {
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
 
   return (
-    <div className="bg-background flex h-[100dvh] flex-col items-center">
+    <div className="bg-background flex h-[100dvh] w-full flex-col items-center">
       <AuthHeader />
       {step !== 0 && (
-        <div className="mx-auto w-full px-4">
+        <div className="mx-auto flex w-full max-w-[450px] justify-center">
           <Progress currentStep={step} />
         </div>
       )}
       <div
-        className={`flex w-full flex-1 flex-col items-center ${step === 0 ? "" : "px-1"}`}
+        className={`flex w-full flex-1 flex-col ${step === 0 ? "" : "px-1"}`}
       >
         <div className="h-full w-full">
           {step === 0 && <Guide onNext={nextStep} />}
@@ -159,7 +159,7 @@ export default function Onboarding() {
         </div>
       </div>
       {step !== 0 && (
-        <div className="shrink-0">
+        <div className="w-full shrink-0 px-4">
           <Footer
             onNext={nextStep}
             onPrev={prevStep}
