@@ -10,11 +10,13 @@ import GuestRecipeIntro from "@/components/auth/guest/GuestRecipeIntro";
 import GuestRecipeLevel from "@/components/auth/guest/GuestRecipeLevel";
 import GuestRecipeLoading from "@/components/auth/guest/GuestRecipeLoading";
 import TabBar from "@/components/fixed/TabBar";
+import { GUEST_INGREDIENTS } from "@/constants/guestIngredients";
 
 export default function GuestPage() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
   const [isDimmed, setIsDimmed] = useState(false);
+  const [ingredients] = useState(GUEST_INGREDIENTS);
 
   const SHOW_TABBAR_INDICES = [0, 3];
   const TITLE_MAP: Record<number, string> = {
@@ -38,7 +40,12 @@ export default function GuestPage() {
     switch (index) {
       case 0:
         return (
-          <GuestFridge onNext={handleNext} mode="fridge" {...dimmedProps} />
+          <GuestFridge
+            onNext={handleNext}
+            mode="fridge"
+            {...dimmedProps}
+            ingredients={ingredients}
+          />
         );
       case 1:
         return <GuestAddItem onNext={handleNext} {...dimmedProps} />;
@@ -51,7 +58,13 @@ export default function GuestPage() {
           <GuestFridge onNext={handleNext} mode="recipe" {...dimmedProps} />
         );
       case 5:
-        return <GuestRecipeLevel onNext={handleNext} {...dimmedProps} />;
+        return (
+          <GuestRecipeLevel
+            onNext={handleNext}
+            {...dimmedProps}
+            ingredients={ingredients}
+          />
+        );
       case 6:
         return <GuestRecipeLoading onNext={handleNext} {...dimmedProps} />;
       case 7:

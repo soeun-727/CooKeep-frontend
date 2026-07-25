@@ -1,16 +1,13 @@
 import { useState } from "react";
 
 import { type Ingredient } from "@/stores/useIngredientStore";
+import {
+  GUEST_INGREDIENTS,
+  REQUIRED_RECIPE_IDS,
+} from "@/constants/guestIngredients";
 
-import bagel from "@/assets/guest/bagel.svg";
-import banana from "@/assets/guest/banana.svg";
-import egg from "@/assets/guest/egg.svg";
 import FAB from "@/assets/guest/fab.svg";
-import milk from "@/assets/guest/milk.svg";
-import noodles from "@/assets/guest/noodles.svg";
-import strawberry from "@/assets/guest/strawberry.svg";
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
-
 import Triangle from "@/assets/guest/triangle.svg?react";
 
 import Item from "@/components/fridge/items/Item";
@@ -24,6 +21,7 @@ interface GuestFridgeProps {
   mode?: "fridge" | "recipe";
   isDimmed: boolean;
   setIsDimmed: (dimmed: boolean) => void;
+  ingredients?: Ingredient[];
 }
 
 export default function GuestFridge({
@@ -31,80 +29,20 @@ export default function GuestFridge({
   mode = "fridge",
   isDimmed,
   setIsDimmed,
+  ingredients = GUEST_INGREDIENTS,
 }: GuestFridgeProps) {
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
-
-  const REQUIRED_IDS = [1, 2, 4, 6];
-
-  const defaultProps = {
-    quantity: 1,
-    unit: "개",
-    expiryDate: "2026-12-31",
-    createdAt: Date.now(),
-  };
-
-  const guestIngredients: Ingredient[] = [
-    {
-      id: 1,
-      name: "우유",
-      category: "냉장",
-      dDay: 1,
-      image: milk,
-      ...defaultProps,
-    },
-    {
-      id: 2,
-      name: "딸기",
-      category: "냉장",
-      dDay: 3,
-      image: strawberry,
-      ...defaultProps,
-    },
-    {
-      id: 3,
-      name: "계란",
-      category: "냉장",
-      dDay: 21,
-      image: egg,
-      ...defaultProps,
-    },
-    {
-      id: 4,
-      name: "바나나",
-      category: "상온",
-      dDay: 6,
-      image: banana,
-      ...defaultProps,
-    },
-    {
-      id: 5,
-      name: "소면",
-      category: "상온",
-      dDay: 10,
-      image: noodles,
-      ...defaultProps,
-    },
-    ...(mode === "recipe"
-      ? [
-          {
-            id: 6,
-            name: "베이글",
-            category: "냉동" as const,
-            dDay: 6,
-            image: bagel,
-            ...defaultProps,
-          },
-        ]
-      : []),
-  ];
+  const currentIngredients =
+    mode === "recipe" ? ingredients : ingredients.filter(i => i.id !== 6);
+  const getIngredient = (id: number) =>
+    currentIngredients.find(item => item.id === id);
 
   const handleSelect = (id: number) => {
     setSelectedIds(prev =>
       prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id],
     );
   };
-
-  const isAllRequiredSelected = REQUIRED_IDS.every(id =>
+  const isAllRequiredSelected = REQUIRED_RECIPE_IDS.every(id =>
     selectedIds.includes(id),
   );
 
@@ -130,71 +68,83 @@ export default function GuestFridge({
             <Storage
               category="냉장"
               icon={FridgeIcon}
-              ingredients={guestIngredients.filter(i => i.category === "냉장")}
+              ingredients={currentIngredients.filter(
+                i => i.category === "냉장",
+              )}
             />
             <Storage
               category="냉동"
               icon={FreezerIcon}
-              ingredients={guestIngredients.filter(i => i.category === "냉동")}
+              ingredients={currentIngredients.filter(
+                i => i.category === "냉동",
+              )}
             />
             <Storage
               category="상온"
               icon={PantryIcon}
-              ingredients={guestIngredients.filter(i => i.category === "상온")}
+              ingredients={currentIngredients.filter(
+                i => i.category === "상온",
+              )}
             />
           </div>
-
           {mode === "recipe" && isDimmed && (
             <div className="pointer-events-none absolute inset-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col gap-15 px-4">
-              {/* 1. 냉장 영역 위치 맞춤 (Storage 패딩 및 내부 배치 재현) */}
+              {/* 1. 냉장 영역 (우유:1, 딸기:2) */}
               <div className="flex flex-col gap-2 px-3 pt-14">
                 <div className="grid grid-cols-3 gap-2">
-                  <Item
-                    image={guestIngredients[0].image}
-                    name={guestIngredients[0].name}
-                    leftDays={guestIngredients[0].dDay}
-                    isSelected={selectedIds.includes(1)}
-                    onSelect={() => handleSelect(1)}
-                    className="pointer-events-auto !z-[110] !w-full"
-                  />
-                  <Item
-                    image={guestIngredients[1].image}
-                    name={guestIngredients[1].name}
-                    leftDays={guestIngredients[1].dDay}
-                    isSelected={selectedIds.includes(2)}
-                    onSelect={() => handleSelect(2)}
-                    className="pointer-events-auto !z-[110] !w-full"
-                  />
-                  {/* 세 번째 위치는 투명하게 공간만 확보 */}
+                  {getIngredient(1) && (
+                    <Item
+                      image={getIngredient(1)!.image}
+                      name={getIngredient(1)!.name}
+                      leftDays={getIngredient(1)!.dDay}
+                      isSelected={selectedIds.includes(1)}
+                      onSelect={() => handleSelect(1)}
+                      className="pointer-events-auto"
+                    />
+                  )}
+                  {getIngredient(2) && (
+                    <Item
+                      image={getIngredient(2)!.image}
+                      name={getIngredient(2)!.name}
+                      leftDays={getIngredient(2)!.dDay}
+                      isSelected={selectedIds.includes(2)}
+                      onSelect={() => handleSelect(2)}
+                      className="pointer-events-auto"
+                    />
+                  )}
                   <div className="h-20" />
                 </div>
               </div>
 
-              {/* 2. 냉동 영역 위치 맞춤 */}
+              {/* 2. 냉동 영역 (베이글:6) */}
               <div className="flex flex-col gap-2 px-3 pt-[42px]">
                 <div className="grid grid-cols-3 gap-2">
-                  <Item
-                    image={guestIngredients[5].image}
-                    name={guestIngredients[5].name}
-                    leftDays={guestIngredients[5].dDay}
-                    isSelected={selectedIds.includes(6)}
-                    onSelect={() => handleSelect(6)}
-                    className="pointer-events-auto !z-[110] !w-full"
-                  />
+                  {getIngredient(6) && (
+                    <Item
+                      image={getIngredient(6)!.image}
+                      name={getIngredient(6)!.name}
+                      leftDays={getIngredient(6)!.dDay}
+                      isSelected={selectedIds.includes(6)}
+                      onSelect={() => handleSelect(6)}
+                      className="pointer-events-auto !z-[110] !w-full"
+                    />
+                  )}
                 </div>
               </div>
 
-              {/* 3. 상온 영역 위치 맞춤 */}
+              {/* 3. 상온 영역 (바나나:4) */}
               <div className="flex flex-col gap-2 px-3 pt-[42px]">
                 <div className="grid grid-cols-3 gap-2">
-                  <Item
-                    image={guestIngredients[3].image}
-                    name={guestIngredients[3].name}
-                    leftDays={guestIngredients[3].dDay}
-                    isSelected={selectedIds.includes(4)}
-                    onSelect={() => handleSelect(4)}
-                    className="pointer-events-auto !z-[110] !w-full"
-                  />
+                  {getIngredient(4) && (
+                    <Item
+                      image={getIngredient(4)!.image}
+                      name={getIngredient(4)!.name}
+                      leftDays={getIngredient(4)!.dDay}
+                      isSelected={selectedIds.includes(4)}
+                      onSelect={() => handleSelect(4)}
+                      className="pointer-events-auto !z-[110] !w-full"
+                    />
+                  )}
                 </div>
               </div>
             </div>
@@ -202,6 +152,7 @@ export default function GuestFridge({
         </div>
       </div>
 
+      {/* 하단 컨트롤 영역 */}
       {mode === "fridge" ? (
         <div className="pointer-events-none fixed right-0 bottom-[calc(72px+env(safe-area-inset-bottom))] left-0 z-[130] mx-auto w-full max-w-[450px] px-4">
           <div className="pointer-events-auto flex flex-col items-end gap-2">
@@ -236,7 +187,7 @@ export default function GuestFridge({
       ) : (
         <div
           className={`fixed right-0 bottom-[env(safe-area-inset-bottom)] left-0 mx-auto flex w-full max-w-[450px] justify-center px-4 transition-all ${
-            isAllRequiredSelected ? "z-90" : "z-50"
+            isAllRequiredSelected ? "z-90" : "z-10"
           }`}
         >
           <Button

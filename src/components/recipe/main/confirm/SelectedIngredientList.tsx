@@ -16,8 +16,8 @@ export default function SelectedIngredientList({
   const MAX_PER_ROW = 5;
   const totalCountWithButton = ingredients.length + 1;
   const emptyCount =
-    totalCountWithButton < 10
-      ? 10 - totalCountWithButton
+    totalCountWithButton < MAX_PER_ROW
+      ? MAX_PER_ROW - totalCountWithButton
       : totalCountWithButton % MAX_PER_ROW === 0
         ? 0
         : MAX_PER_ROW - (totalCountWithButton % MAX_PER_ROW);
