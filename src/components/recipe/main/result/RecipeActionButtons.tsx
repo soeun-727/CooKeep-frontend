@@ -7,16 +7,20 @@ interface RecipeActionButtonsProps {
   retryCount: number;
   maxRetry?: number;
   onRetry: () => void;
+  onCook?: () => void;
   showRetryButton?: boolean;
   isLoading?: boolean;
+  isGuest?: boolean;
 }
 
 export default function RecipeActionButtons({
   retryCount,
   maxRetry = 5,
   onRetry,
-  showRetryButton = true, // 기본값은 true
+  onCook,
+  showRetryButton = true,
   isLoading = false,
+  isGuest = false,
 }: RecipeActionButtonsProps) {
   const navigate = useNavigate();
 
@@ -33,21 +37,27 @@ export default function RecipeActionButtons({
   const isMaxed = retryCount >= maxRetry;
   const leftRetry = maxRetry - retryCount;
 
-  // 로딩 중이거나 횟수 초과 시 비활성화 로직
   const isRetryDisabled = isMaxed || isLoading;
-  const retryBtnText = isLoading
-    ? "레시피 생성 중..."
-    : `다른 레시피 보기 · ${leftRetry}회 남음`;
+
+  const retryBtnText = isLoading ? (
+    "레시피 생성 중..."
+  ) : (
+    <span>
+      다른 레시피 보기 · <span className="text-green-deep">{leftRetry}</span>회{" "}
+      남음
+    </span>
+  );
 
   const handleCookClick = async () => {
-    // async 추가
+    if (onCook) {
+      onCook();
+      return;
+    }
+
     if (!latestRecipe) return;
 
     try {
-      // 1. API 호출 (채택 완료 처리)
       await completeSession();
-
-      // 2. 페이지 이동
       navigate("/mycookeep/record/select", {
         state: {
           selectedIngredients,
@@ -61,12 +71,15 @@ export default function RecipeActionButtons({
     }
   };
 
+  const isCookDisabled = isGuest
+    ? isLoading
+    : !latestRecipe || isLoading || isCompleted;
+
   return (
     <div className="flex w-full flex-col items-center gap-2">
-      {/* 요리할래요 버튼 */}
       <Button
         onClick={handleCookClick}
-        disabled={!latestRecipe || isLoading || isCompleted}
+        disabled={isCookDisabled}
         size="L"
         variant="green"
       >

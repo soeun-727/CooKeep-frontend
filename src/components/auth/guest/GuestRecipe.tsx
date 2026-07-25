@@ -1,107 +1,82 @@
-import { useRef, useState } from "react";
-
-import notice from "@/assets/guest/recipe_notice.svg";
-
+import { useEffect, useRef, useState } from "react";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
 import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
 import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
 import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
+import RecipePagination from "@/components/recipe/main/result/RecipePagination";
+import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
+import Triangle from "@/assets/guest/triangle.svg?react";
+import {
+  GUEST_RECIPE_CATEGORY,
+  GUEST_RECIPE_DATA,
+  GUEST_RECIPE_STEPS,
+} from "@/constants/guestIngredients";
 
 interface GuestRecipeResultProps {
   onNext: () => void;
+  isDimmed?: boolean;
+  setIsDimmed?: (dimmed: boolean) => void;
 }
 
-export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
+export default function GuestRecipe({
+  onNext,
+  isDimmed = false,
+  setIsDimmed,
+}: GuestRecipeResultProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [isDimmed, setIsDimmed] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const recipeData = {
-    title: "딸기 바나나 베이글 프렌치 토스트",
-    ingredients: {
-      user_ingredients: [
-        { name: "우유", quantity: 1, unit: "개" },
-        { name: "딸기", quantity: 1, unit: "팩" },
-        { name: "베이글", quantity: 1, unit: "개" },
-        { name: "바나나", quantity: 1, unit: "개" },
-      ],
-      additional_ingredients: [
-        { name: "달걀", quantity: 2, unit: "개" },
-        { name: "설탕", quantity: 3, unit: "티스푼" },
-        { name: "버터", quantity: 1, unit: "개" },
-        { name: "슈가파우더", quantity: 1, unit: "티스푼" },
-        { name: "시럽", quantity: 2, unit: "티스푼" },
-      ],
-      optional_ingredients: [
-        {
-          name: "딸기",
-          quantity: 1,
-          unit: "팩",
-          description: "이 재료는 생략 가능합니다",
-        },
-        { name: "바나나", quantity: 1, unit: "개" },
-        { name: "슈가파우더", quantity: 1, unit: "티스푼" },
-        { name: "시럽", quantity: 2, unit: "티스푼" },
-      ],
-    },
-    steps: [
-      "볼에 달걀, 우유, 설탕, 소금을 섞어 준비해주세요",
-      "빵을 달걀물에 충분히 적신 후, 버터를 두른 팬에 약불로 노릇하게 구워주세요",
-      "구운 베이글 위에 슬라이스한 딸기와 바나나를 올리고, 시럽이나 슈가파우더를 뿌려 완성해주세요",
-    ],
-    youtube_search_queries: [
-      "프렌치토스트",
-      "딸기바나나샌드위치",
-      "베이글토스트",
-    ],
-  };
+  useEffect(() => {
+    setIsDimmed?.(false);
+  }, [setIsDimmed]);
 
-  const { title, ingredients, steps, youtube_search_queries } = recipeData;
-
-  const handleButtonClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleActionClick = () => {
     setIsModalOpen(true);
   };
 
-  const formattedSteps = steps.map((step, idx) => ({
-    order: idx + 1,
-    description: step,
-  }));
+  const { title, ingredients, youtube_videos, youtube_search_queries } =
+    GUEST_RECIPE_DATA;
 
   return (
     <div
-      className="flex w-full flex-col px-4"
-      onClick={() => setIsDimmed(true)}
+      className="relative flex w-full flex-col px-4"
+      onClick={() => setIsDimmed?.(true)}
     >
-      {isDimmed && (
-        <div className="bg-black-overlay animate-fadeIn fixed inset-0 left-1/2 z-10 w-full max-w-[450px] -translate-x-1/2 transition-opacity" />
-      )}
+      <div className="mt-3 flex w-full flex-col items-center gap-3">
+        <RecipePagination currentPage={1} totalPage={1} />
 
-      <div className="mt-13 flex w-full flex-col items-center gap-3">
         <div
           ref={scrollRef}
-          className="no-scrollbar flex flex-1 flex-col gap-9 overflow-y-auto"
+          className="no-scrollbar flex w-full flex-1 flex-col gap-9 overflow-y-auto"
         >
           <div className="mx-auto flex w-full flex-col">
+            {/* 레시피 제목 영역 */}
             <RecipeTitle
               name={title}
-              category="간식/디저트"
+              category={GUEST_RECIPE_CATEGORY}
               usedItems={ingredients.user_ingredients.length}
             />
 
             <div className="flex flex-col gap-3">
+              {/* 재료 리스트 영역 */}
               <RecipeIngredientSection
                 selectedIngredients={ingredients.user_ingredients}
                 requiredIngredients={ingredients.additional_ingredients}
                 substitutions={ingredients.optional_ingredients}
               />
 
-              <RecipeStepSection steps={formattedSteps} difficulty="EASY" />
+              {/* 조리 순서 영역 */}
+              <RecipeStepSection steps={GUEST_RECIPE_STEPS} difficulty="EASY" />
 
-              <RecipeYoutubeCard videos={[]} tags={youtube_search_queries} />
+              {/* 유튜브 연관 카드 영역 */}
+              <RecipeYoutubeCard
+                videos={youtube_videos}
+                tags={youtube_search_queries}
+              />
 
-              <div className="flex flex-col items-center gap-[2px]">
+              {/* 하단 안내 텍스트 */}
+              <div className="mt-2 flex flex-col items-center gap-[2px]">
                 <div className="typo-caption w-full text-center text-gray-50">
                   AI가 제공하는 정보에는 실수가 있을 수 있습니다
                   <br />
@@ -110,52 +85,40 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
               </div>
             </div>
 
-            <div className="relative z-20 mx-auto mt-6 mb-7 flex w-full max-w-[450px] items-center justify-center p-4">
+            {/* 하단 버튼 영역 (클릭 시 온보딩 리워드 모달 오픈) */}
+            <div className="flex flex-col">
               {isDimmed && (
-                <object
-                  data={notice}
-                  className="absolute bottom-15 left-1/2 w-[178px] -translate-x-1/2"
-                />
+                <div className="z-80 flex flex-col items-center">
+                  <div className="rounded-S bg-gray-0/90 text-green-deep typo-label px-3 py-2 text-center whitespace-nowrap">
+                    레시피를 채택하면
+                    <br />
+                    재료가 자동으로 소비돼요!
+                  </div>
+                  <div className="-mt-1 px-4">
+                    <Triangle className="text-gray-0/90 w-4" />
+                  </div>
+                </div>
               )}
-              <button
-                onClick={e => {
-                  if (!isDimmed) {
-                    setIsDimmed(true);
-                  } else {
-                    handleButtonClick(e);
-                  }
-                }}
-                className="typo-button text-gray-0 bg-green h-[38px] w-full rounded-[10px]"
+
+              <div
+                className={`w-full max-w-[450px] pt-3 ${
+                  isDimmed ? "z-90" : "z-20"
+                }`}
+                onClick={e => e.stopPropagation()}
               >
-                이 레시피대로 요리할래요
-              </button>
+                <RecipeActionButtons
+                  retryCount={1}
+                  onRetry={handleActionClick}
+                  onCook={handleActionClick}
+                  isGuest={true}
+                />
+              </div>
             </div>
           </div>
         </div>
-
-        {/* 하단 버튼 영역 */}
-        <div className="relative z-20 mx-auto flex w-full max-w-[450px] items-center justify-center p-4">
-          {isDimmed && (
-            <object
-              data={notice}
-              className="absolute bottom-15 left-1/2 w-[178px] -translate-x-1/2"
-            />
-          )}
-          <button
-            onClick={e => {
-              if (!isDimmed) {
-                setIsDimmed(true);
-              } else {
-                handleButtonClick(e);
-              }
-            }}
-            className="typo-button text-gray-0 bg-green rounded-L h-[38px] w-full"
-          >
-            이 레시피대로 요리할래요
-          </button>
-        </div>
       </div>
 
+      {/* 온보딩 리워드 모달 */}
       <OnboardingRewardModal
         isOpen={isModalOpen}
         onClose={onNext}
