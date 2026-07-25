@@ -88,9 +88,9 @@ export default function GuestFridge({
             />
           </div>
           {mode === "recipe" && isDimmed && (
-            <div className="pointer-events-none absolute inset-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col gap-15 px-4">
+            <div className="pointer-events-none absolute inset-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col items-center gap-22">
               {/* 1. 냉장 영역 (우유:1, 딸기:2) */}
-              <div className="flex flex-col gap-2 px-3 pt-14">
+              <div className="flex w-full max-w-[375px] flex-col gap-2 px-4 py-2 pt-14">
                 <div className="grid grid-cols-3 gap-2">
                   {getIngredient(1) && (
                     <Item
@@ -117,7 +117,7 @@ export default function GuestFridge({
               </div>
 
               {/* 2. 냉동 영역 (베이글:6) */}
-              <div className="flex flex-col gap-2 px-3 pt-[42px]">
+              <div className="flex w-full max-w-[375px] flex-col gap-2 px-4 py-2">
                 <div className="grid grid-cols-3 gap-2">
                   {getIngredient(6) && (
                     <Item
@@ -126,14 +126,14 @@ export default function GuestFridge({
                       leftDays={getIngredient(6)!.dDay}
                       isSelected={selectedIds.includes(6)}
                       onSelect={() => handleSelect(6)}
-                      className="pointer-events-auto !z-[110] !w-full"
+                      className="pointer-events-auto"
                     />
                   )}
                 </div>
               </div>
 
               {/* 3. 상온 영역 (바나나:4) */}
-              <div className="flex flex-col gap-2 px-3 pt-[42px]">
+              <div className="flex w-full max-w-[375px] flex-col gap-2 px-4 py-2">
                 <div className="grid grid-cols-3 gap-2">
                   {getIngredient(4) && (
                     <Item
@@ -142,7 +142,7 @@ export default function GuestFridge({
                       leftDays={getIngredient(4)!.dDay}
                       isSelected={selectedIds.includes(4)}
                       onSelect={() => handleSelect(4)}
-                      className="pointer-events-auto !z-[110] !w-full"
+                      className="pointer-events-auto"
                     />
                   )}
                 </div>
