@@ -22,9 +22,11 @@ export default function ConfirmModal({
       {/* backdrop */}
       <div className="bg-gray-80/50 absolute inset-0" onClick={onCancel} />
       <section className="z-100 flex w-[300px] flex-col gap-6 rounded-xl bg-white p-6">
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div
+          className={`flex flex-col items-center justify-center ${subtitle ? "gap-2" : ""}`}
+        >
           <p className="typo-l-strong text-gray-80">{title}</p>
-          <p className="typo-m text-gray-80">{subtitle}</p>
+          {subtitle && <p className="typo-m text-gray-80">{subtitle}</p>}
         </div>
 
         <div className="flex gap-2">
