@@ -17,6 +17,7 @@ import Item from "@/components/fridge/items/Item";
 import Storage from "@/components/fridge/main/Storage";
 import FloatingNotice from "@/components/recipe/main/FloatingNotice";
 import Button from "@/components/ui/Button";
+import { Search } from "@/components/fridge/features/Search";
 
 interface GuestFridgeProps {
   onNext: () => void;
@@ -110,19 +111,23 @@ export default function GuestFridge({
   return (
     <div
       onClick={() => setIsDimmed(true)}
-      className="relative h-[calc(100dvh-40px)] w-full max-w-[450px]"
+      className="relative mt-3 h-[calc(100dvh-40px)] w-full max-w-[450px]"
     >
       <div
-        className={`relative flex w-full flex-col gap-7 ${mode === "recipe" ? "pb-20" : ""}`}
+        className={`relative flex w-full flex-col gap-6 ${mode === "recipe" ? "pb-20" : ""}`}
       >
+        <div className="px-4">
+          <Search
+            placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
+            value=""
+            onChange={() => {}}
+          />
+        </div>
         <div className="relative w-full">
           {mode === "recipe" && (
             <div className="absolute -top-30 left-1/2 z-130 flex w-full -translate-x-1/2 justify-center">
               <FloatingNotice text="요리할 재료를 선택해 주세요" />
             </div>
-          )}
-          {!isDimmed && (
-            <div className="absolute inset-0 z-120 cursor-pointer" />
           )}
 
           <div className="relative z-0 flex w-full flex-col gap-[10px]">

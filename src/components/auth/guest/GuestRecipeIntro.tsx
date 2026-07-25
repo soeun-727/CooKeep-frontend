@@ -1,4 +1,9 @@
-import Button from "@/components/ui/Button";
+import cookChar from "@/assets/character/cooking_hat_char.svg";
+import LightBulbIcon from "@/assets/recipe/main/lightbulb.svg?react";
+import randomIcon from "@/assets/recipe/main/randomIcon.svg";
+import selectIcon from "@/assets/recipe/main/selectIcon.svg";
+
+import RecipeGenerateButton from "@/components/recipe/main/RecipeGenerateButton";
 
 interface GuestRecipeIntroProps {
   onNext: () => void;
@@ -14,23 +19,39 @@ export default function GuestRecipeIntro({
   return (
     <div
       onClick={() => setIsDimmed(true)}
-      className="flex h-[calc(100dvh-40px)] justify-center"
+      className="flex h-[calc(100dvh-40px)] w-full flex-col gap-4 px-4"
     >
-      <div className="relative mt-[203.62px] flex w-[361px] flex-col items-center gap-[28px]">
-        <div
-          className={`relative h-[44px] w-[249px] ${isDimmed ? "z-[100]" : "z-20"}`}
-        >
-          <Button
-            size="S"
-            variant="green"
-            onClick={() => {
-              if (!isDimmed) return;
-              onNext();
-            }}
-            className="h-full w-full"
-          >
-            요리할 재료 선택하기
-          </Button>
+      <div className="mt-[30px] flex w-full flex-col items-start gap-1 px-1">
+        <img src={cookChar} alt="요리 캐릭터" className="w-25" />
+        <h1 className="text-gray-80 typo-h2 py-2 text-start">
+          오늘은 어떻게 요리해볼까요?
+        </h1>
+      </div>
+
+      <div className="flex w-full flex-col gap-2">
+        <div className="z-70">
+          <RecipeGenerateButton
+            image={selectIcon}
+            title="재료 직접 선택"
+            description={"내가 고른 재료로\n레시피를 추천받아요"}
+            onClick={onNext}
+          />
+        </div>
+        <RecipeGenerateButton
+          image={randomIcon}
+          title="랜덤 추천"
+          description={"오늘 뭐 먹지?\n가볍게 추천받아요"}
+          onClick={() => {}}
+        />
+      </div>
+
+      <div className="rounded-M bg-gray-exception flex w-full gap-3 p-3">
+        <LightBulbIcon className="h-9 w-9" />
+        <div className="flex w-full flex-col items-start text-gray-50">
+          <span className="typo-caption-strong">쿠킵이 생성하는 레시피는</span>
+          <span className="typo-caption">
+            보유 재료와 취향을 반영해 추천해 드려요
+          </span>
         </div>
       </div>
     </div>
