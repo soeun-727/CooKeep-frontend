@@ -111,12 +111,10 @@ export default function GuestFridge({
   return (
     <div
       onClick={() => setIsDimmed(true)}
-      className="relative mt-3 h-[calc(100dvh-40px)] w-full max-w-[450px]"
+      className="relative h-[calc(100dvh-40px)] w-full max-w-[450px]"
     >
-      <div
-        className={`relative flex w-full flex-col gap-6 ${mode === "recipe" ? "pb-20" : ""}`}
-      >
-        <div className="px-4">
+      <div className="relative flex w-full flex-col gap-6">
+        <div className="mt-3 px-4">
           <Search
             placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
             value=""
@@ -147,43 +145,58 @@ export default function GuestFridge({
           </div>
 
           {mode === "recipe" && isDimmed && (
-            <div className="pointer-events-none absolute inset-0 left-1/2 z-[100] w-[354px] -translate-x-1/2">
-              <Item
-                image={guestIngredients[0].image}
-                name={guestIngredients[0].name}
-                leftDays={guestIngredients[0].dDay}
-                isSelected={selectedIds.includes(1)}
-                onSelect={() => handleSelect(1)}
-                className="pointer-events-auto absolute z-110!"
-                style={{ top: "55px", left: "0px" }}
-              />
-              <Item
-                image={guestIngredients[1].image}
-                name={guestIngredients[1].name}
-                leftDays={guestIngredients[1].dDay}
-                isSelected={selectedIds.includes(2)}
-                onSelect={() => handleSelect(2)}
-                className="pointer-events-auto absolute z-110!"
-                style={{ top: "55px", left: "120px" }}
-              />
-              <Item
-                image={guestIngredients[5].image}
-                name={guestIngredients[5].name}
-                leftDays={guestIngredients[5].dDay}
-                isSelected={selectedIds.includes(6)}
-                onSelect={() => handleSelect(6)}
-                className="pointer-events-auto absolute z-110!"
-                style={{ top: "238px", left: "0px" }}
-              />
-              <Item
-                image={guestIngredients[3].image}
-                name={guestIngredients[3].name}
-                leftDays={guestIngredients[3].dDay}
-                isSelected={selectedIds.includes(4)}
-                onSelect={() => handleSelect(4)}
-                className="pointer-events-auto absolute z-110!"
-                style={{ top: "421px", left: "0px" }}
-              />
+            <div className="pointer-events-none absolute inset-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col gap-15 px-4">
+              {/* 1. 냉장 영역 위치 맞춤 (Storage 패딩 및 내부 배치 재현) */}
+              <div className="flex flex-col gap-2 px-3 pt-14">
+                <div className="grid grid-cols-3 gap-2">
+                  <Item
+                    image={guestIngredients[0].image}
+                    name={guestIngredients[0].name}
+                    leftDays={guestIngredients[0].dDay}
+                    isSelected={selectedIds.includes(1)}
+                    onSelect={() => handleSelect(1)}
+                    className="pointer-events-auto !z-[110] !w-full"
+                  />
+                  <Item
+                    image={guestIngredients[1].image}
+                    name={guestIngredients[1].name}
+                    leftDays={guestIngredients[1].dDay}
+                    isSelected={selectedIds.includes(2)}
+                    onSelect={() => handleSelect(2)}
+                    className="pointer-events-auto !z-[110] !w-full"
+                  />
+                  {/* 세 번째 위치는 투명하게 공간만 확보 */}
+                  <div className="h-20" />
+                </div>
+              </div>
+
+              {/* 2. 냉동 영역 위치 맞춤 */}
+              <div className="flex flex-col gap-2 px-3 pt-[42px]">
+                <div className="grid grid-cols-3 gap-2">
+                  <Item
+                    image={guestIngredients[5].image}
+                    name={guestIngredients[5].name}
+                    leftDays={guestIngredients[5].dDay}
+                    isSelected={selectedIds.includes(6)}
+                    onSelect={() => handleSelect(6)}
+                    className="pointer-events-auto !z-[110] !w-full"
+                  />
+                </div>
+              </div>
+
+              {/* 3. 상온 영역 위치 맞춤 */}
+              <div className="flex flex-col gap-2 px-3 pt-[42px]">
+                <div className="grid grid-cols-3 gap-2">
+                  <Item
+                    image={guestIngredients[3].image}
+                    name={guestIngredients[3].name}
+                    leftDays={guestIngredients[3].dDay}
+                    isSelected={selectedIds.includes(4)}
+                    onSelect={() => handleSelect(4)}
+                    className="pointer-events-auto !z-[110] !w-full"
+                  />
+                </div>
+              </div>
             </div>
           )}
         </div>
