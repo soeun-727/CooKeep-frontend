@@ -21,7 +21,7 @@ export default function GuestRecipeIntro({
       onClick={() => setIsDimmed(true)}
       className="flex h-[calc(100dvh-40px)] w-full flex-col gap-4 px-4"
     >
-      <div className="mt-[30px] flex w-full flex-col items-start gap-1 px-1">
+      <div className="pointer-events-none mt-[30px] flex w-full flex-col items-start gap-1 px-1 select-none">
         <img src={cookChar} alt="요리 캐릭터" className="w-25" />
         <h1 className="text-gray-80 typo-h2 py-2 text-start">
           오늘은 어떻게 요리해볼까요?
@@ -29,7 +29,12 @@ export default function GuestRecipeIntro({
       </div>
 
       <div className="flex w-full flex-col gap-2">
-        <div className="z-70">
+        <div
+          className={`relative ${isDimmed ? "z-[110]" : "z-20"}`}
+          onClick={e => {
+            if (isDimmed) e.stopPropagation();
+          }}
+        >
           <RecipeGenerateButton
             image={selectIcon}
             title="재료 직접 선택"
@@ -37,15 +42,18 @@ export default function GuestRecipeIntro({
             onClick={onNext}
           />
         </div>
-        <RecipeGenerateButton
-          image={randomIcon}
-          title="랜덤 추천"
-          description={"오늘 뭐 먹지?\n가볍게 추천받아요"}
-          onClick={() => {}}
-        />
+
+        <div className="pointer-events-none opacity-80 select-none">
+          <RecipeGenerateButton
+            image={randomIcon}
+            title="랜덤 추천"
+            description={"오늘 뭐 먹지?\n가볍게 추천받아요"}
+            onClick={() => {}}
+          />
+        </div>
       </div>
 
-      <div className="rounded-M bg-gray-exception flex w-full gap-3 p-3">
+      <div className="rounded-M bg-gray-exception pointer-events-none flex w-full gap-3 p-3 select-none">
         <LightBulbIcon className="h-9 w-9" />
         <div className="flex w-full flex-col items-start text-gray-50">
           <span className="typo-caption-strong">쿠킵이 생성하는 레시피는</span>
