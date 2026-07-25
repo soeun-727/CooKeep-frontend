@@ -4,7 +4,7 @@ import { registerPushNotification, unsubscribePush } from "@/api/push";
 import { updateMarketingPush } from "@/api/user";
 
 import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
-import ConfirmModal from "@/components/ui/ConfirmModal";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 
 interface NotificationSectionProps {
   marketingPush: boolean;
@@ -85,10 +85,10 @@ export default function NotificationSection({
 
       {showConfirm && (
         <ConfirmModal
-          message="마케팅 수신에 동의하시겠습니까?"
+          title="마케팅 수신에 동의하시겠습니까?"
           onConfirm={handleConfirm}
           onCancel={handleCancel}
-          confirmButtonClassName="bg-green"
+          buttonVariants={["green", "gray"]}
         />
       )}
     </section>

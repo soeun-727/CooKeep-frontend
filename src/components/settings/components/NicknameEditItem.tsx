@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { updateNickname } from "@/api/user";
 import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
-import SingleButtonModal from "@/components/ui/SingleButtonModal";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 
 interface NicknameEditItemProps {
   initialNickname: string;
@@ -146,9 +146,11 @@ export default function NicknameEditItem({
       </div>
 
       {openDuplicateModal && (
-        <SingleButtonModal
-          message="이미 존재하는 닉네임입니다"
-          onClose={handleCloseDuplicateModal}
+        <ConfirmModal
+          title="이미 존재하는 닉네임입니다"
+          buttonTexts={["확인"]}
+          onConfirm={handleCloseDuplicateModal}
+          onCancel={handleCloseDuplicateModal} // 버튼 1개여도 필수 prop이라 동일 핸들러 넘겨줌
         />
       )}
     </div>

@@ -6,7 +6,7 @@ import { MyProfileResponse, getMyProfile } from "@/api/user";
 import { loadingChar } from "@/assets";
 import { useAuthStore } from "@/stores/useAuthStore";
 
-import ConfirmModal from "@/components/ui/ConfirmModal";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 
 import NotificationSection from "./sections/NotificationSection";
 import ProfileSection from "./sections/ProfileSection";
@@ -109,11 +109,10 @@ export default function SettingsMain() {
       {/* 로그아웃 모달 */}
       {openLogoutModal && (
         <ConfirmModal
-          message="로그아웃 하시겠습니까?"
+          title="로그아웃 하시겠습니까?"
           onConfirm={handleLogoutConfirm}
           onCancel={() => setOpenLogoutModal(false)}
-          confirmButtonClassName="bg-gray-30"
-          cancelButtonClassName="bg-gray-80"
+          buttonVariants={["gray", "black"]}
         />
       )}
     </>
