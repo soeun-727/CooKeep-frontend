@@ -37,7 +37,9 @@ export default function GuestRecipeLevel({
 
   return (
     <div
-      onClick={() => setIsDimmed?.(true)}
+      onClick={() => {
+        if (!isDimmed) setIsDimmed?.(true);
+      }}
       className="relative flex w-full flex-col items-center px-4"
     >
       <div className="no-scrollbar mt-[30px] flex w-full flex-col gap-[30px] overflow-y-auto pb-28">
@@ -55,7 +57,7 @@ export default function GuestRecipeLevel({
           />
 
           {isDimmed && dessertOption && (
-            <div className="pointer-events-none absolute inset-0 z-90 mt-[86px] flex w-full flex-col items-center">
+            <div className="pointer-events-none absolute inset-0 z-[110] mt-[86px] flex w-full flex-col items-center">
               <div className="pointer-events-none flex w-full flex-col items-center gap-1 pb-4 opacity-0">
                 <h2 className="typo-h3 text-center">음식 종류 선택</h2>
                 <p className="typo-m text-center">
@@ -66,6 +68,7 @@ export default function GuestRecipeLevel({
               <div className="grid w-full grid-cols-3 gap-1">
                 <div />
                 <div />
+                {/* 오버레이 위 디저트 버튼만 클릭 가능 */}
                 <button
                   type="button"
                   onClick={e => {
@@ -95,6 +98,7 @@ export default function GuestRecipeLevel({
         </div>
       </div>
 
+      {/* 하단 AI 레시피 추천받기 버튼 */}
       <div
         className={`pointer-events-auto fixed bottom-[env(safe-area-inset-bottom)] flex w-full max-w-[450px] justify-center px-4 ${
           isDimmed ? "z-[110]" : "z-20"

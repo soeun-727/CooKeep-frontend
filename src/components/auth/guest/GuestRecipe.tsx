@@ -41,7 +41,9 @@ export default function GuestRecipe({
   return (
     <div
       className="relative flex w-full flex-col px-4"
-      onClick={() => setIsDimmed?.(true)}
+      onClick={() => {
+        if (!isDimmed) setIsDimmed?.(true);
+      }}
     >
       <div className="mt-3 flex w-full flex-col items-center gap-3">
         <RecipePagination currentPage={1} totalPage={1} />
@@ -85,11 +87,12 @@ export default function GuestRecipe({
               </div>
             </div>
 
-            {/* 하단 버튼 영역 (클릭 시 온보딩 리워드 모달 오픈) */}
-            <div className="flex flex-col">
+            {/* 하단 버튼 영역 */}
+            <div className="relative mt-8 flex w-full max-w-[450px] flex-col items-center">
+              {/* 말풍선: absolute 적용으로 레이아웃 흐름에서 제외 */}
               {isDimmed && (
-                <div className="z-80 flex flex-col items-center">
-                  <div className="rounded-S bg-gray-0/90 text-green-deep typo-label px-3 py-2 text-center whitespace-nowrap">
+                <div className="pointer-events-none absolute bottom-full left-1/2 z-[120] mb-2 flex -translate-x-1/2 flex-col items-center">
+                  <div className="rounded-S bg-gray-0/90 text-green-deep typo-label px-3 py-2 text-center whitespace-nowrap shadow-sm">
                     레시피를 채택하면
                     <br />
                     재료가 자동으로 소비돼요!
@@ -101,10 +104,14 @@ export default function GuestRecipe({
               )}
 
               <div
-                className={`w-full max-w-[450px] pt-3 ${
-                  isDimmed ? "z-90" : "z-20"
+                className={`w-full transition-all ${
+                  isDimmed
+                    ? "pointer-events-auto z-[110]"
+                    : "pointer-events-none z-20"
                 }`}
-                onClick={e => e.stopPropagation()}
+                onClick={e => {
+                  if (isDimmed) e.stopPropagation();
+                }}
               >
                 <RecipeActionButtons
                   retryCount={1}
