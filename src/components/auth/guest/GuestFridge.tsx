@@ -125,9 +125,7 @@ export default function GuestFridge({
         </div>
         <div className="relative w-full">
           {mode === "recipe" && (
-            <div className="absolute -top-30 left-1/2 z-130 flex w-full -translate-x-1/2 justify-center">
-              <FloatingNotice text="요리할 재료를 선택해 주세요" />
-            </div>
+            <FloatingNotice text="요리할 재료를 선택해 주세요" />
           )}
 
           <div className="relative z-0 flex w-full flex-col gap-[10px]">
@@ -223,7 +221,7 @@ export default function GuestFridge({
           </div>
         </div>
       ) : (
-        <div className="fixed right-0 bottom-[34px] left-0 z-[130] mx-auto flex w-full max-w-[450px] justify-center px-4">
+        <div className="fixed right-0 bottom-[env(safe-area-inset-bottom)] left-0 z-[130] mx-auto flex w-full max-w-[450px] justify-center px-4">
           <Button
             size="L"
             variant="black"
