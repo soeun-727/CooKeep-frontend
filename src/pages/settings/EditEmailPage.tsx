@@ -16,6 +16,7 @@ import { EditEmailType } from "@/types/modal";
 import { formatTime } from "@/utils/formateTime";
 import { validateEmail } from "@/utils/validateUtil";
 import { BackHeader } from "@/components/ui/BackHeader";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 export default function EditEmailPage() {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ export default function EditEmailPage() {
     requestVerifyCode,
     reset,
   } = useEmailUpdateStore();
+  const logout = useAuthStore(state => state.logout);
 
   const [code, setCode] = useState("");
   const [codeError, setCodeError] = useState<string>();
@@ -220,21 +222,22 @@ export default function EditEmailPage() {
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="bg-background absolute inset-0 z-50 flex min-h-full flex-col">
-          <div className="flex flex-1 flex-col items-center justify-center gap-4">
+        <div className="bg-background fixed inset-0 z-[200] flex flex-col">
+          <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
             <CheckIcon className="text-green h-10 w-10" />
-            <p className="typo-h2 text-gray-80 text-center">
-              이메일 주소 변경 완료
-            </p>
+            <h2 className="typo-h2">이메일 주소 변경 완료</h2>
           </div>
 
-          <div className="from-background bg-gradient-to-t to-transparent px-4 pt-6 pb-[34px]">
+          <div className="bg-blur-to-t p-4">
             <Button
               size="L"
               variant="green"
-              onClick={() => navigate("/settings")}
+              onClick={async () => {
+                await logout();
+                navigate("/login", { replace: true });
+              }}
             >
-              확인
+              로그인
             </Button>
           </div>
         </div>
