@@ -18,6 +18,7 @@ import EditIcon from "@/assets/fridge/edit_memo.svg?react";
 import MemoIcon from "@/assets/fridge/memo.svg?react";
 
 import EditModal from "@/components/ui/EditModal";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 import { getKoreanUnit } from "@/utils/mapping";
 
@@ -25,7 +26,6 @@ import ExpiryEditor from "../addItems/components/edit/ExpiryEditor";
 import MemoEditor from "../addItems/components/edit/MemoEditor";
 import QuantityEditor from "../addItems/components/edit/QuantityEditor";
 import StorageEditor from "../addItems/components/edit/StorageEditor";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 
 interface IngredientDetailModalProps {
   ingredient: Ingredient;

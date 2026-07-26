@@ -49,7 +49,7 @@ export const ProfileContent = () => {
             setIsEditModalOpen(true);
           }}
         >
-          <EditIcon className="h-[18px] w-[18px]" />
+          <EditIcon className="text-gray-30 h-6 w-6" />
         </button>
       </div>
 

@@ -54,7 +54,7 @@ export const MyCookeepGoal = () => {
           })
         }
       >
-        <EditIcon className="text-gray-30 h-[18px] w-[18px]" />
+        <EditIcon className="text-gray-30 h-6 w-6" />
       </button>
 
       {!profile?.weeklyGoal?.goalActionType && (
