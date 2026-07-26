@@ -53,7 +53,9 @@ export default function SettingsMain() {
   const handleWithdraw = async () => {
     try {
       await unsubscribePush();
-    } catch (e) {}
+    } catch {
+      // ignore unsubscribe failure
+    }
     navigate("/settings/withdraw");
   };
 
@@ -101,7 +103,7 @@ export default function SettingsMain() {
             </div>
           </div>
         </div>
-        <footer className="mt-auto flex flex-col items-center px-4 pt-[30px] pb-[34px]">
+        <footer className="mt-auto flex flex-col items-center px-4 pt-[30px]">
           <p className="typo-caption text-gray-50"> ver {__APP_VERSION__}</p>
         </footer>
       </main>

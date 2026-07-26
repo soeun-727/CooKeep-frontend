@@ -253,7 +253,7 @@ export default function WithdrawPage() {
           </button>
         </div>
 
-        <div className="flex w-full flex-col items-center px-4 pt-6 pb-[calc(env(safe-area-inset-bottom)+16px)]">
+        <div className="flex w-full flex-col items-center px-4 pt-6 pb-[env(safe-area-inset-bottom)]">
           <Button
             size="L"
             disabled={!canSubmit || isSubmitting}

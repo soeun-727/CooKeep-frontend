@@ -27,7 +27,7 @@ export default function AgreementDetailPage() {
         onBack={() => navigate(-1)}
       />
       <div className="no-scrollbar flex-1 overflow-y-auto">
-        <div className="mx-auto flex w-full max-w-[450px] flex-col gap-3 py-4 pb-[34px]">
+        <div className="mx-auto flex w-full max-w-[450px] flex-col gap-3 py-4 pb-4">
           <AgreementReadCard agreement={agreement} />
           {agreement.notice && (
             <div className="flex flex-col items-start gap-2 self-stretch">

@@ -40,7 +40,7 @@ export default function WithdrawDonePage() {
         </div>
       </div>
 
-      <div className="w-full pt-6 pb-[34px]">
+      <div className="w-full pt-6">
         <Button
           size="L"
           variant="green"

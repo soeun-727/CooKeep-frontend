@@ -56,7 +56,7 @@ export default function NoticePage() {
           )}
         </div>
 
-        <div className="px-4 pb-2">
+        <div className="px-4">
           <p className="typo-caption-strong text-center text-gray-50">
             오늘 한 끼부터, 쿠킵으로 이어가볼까요?
           </p>
