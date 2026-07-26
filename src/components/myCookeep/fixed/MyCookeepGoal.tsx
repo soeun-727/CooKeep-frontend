@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
@@ -10,11 +11,22 @@ import { SpeechBubble } from "@/components/ui/SpeechBubble";
 import { GOAL_TYPE_MAP } from "@/utils/getGoalDescription";
 import { getGoalDescription } from "@/utils/getGoalDescription";
 
-// TODO: 스피치 버블 7초 뒤에 사라지게 하기
+const SPEECH_BUBBLE_DURATION_MS = 7000;
 
 export const MyCookeepGoal = () => {
   const navigate = useNavigate();
   const profile = useMyCookeepStore(s => s.profile);
+
+  const [isSpeechBubbleVisible, setIsSpeechBubbleVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => setIsSpeechBubbleVisible(false),
+      SPEECH_BUBBLE_DURATION_MS,
+    );
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const currentGoalEntry = Object.entries(GOAL_TYPE_MAP).find(
     ([, g]) => g.value === profile?.weeklyGoal?.goalActionType,
@@ -59,7 +71,7 @@ export const MyCookeepGoal = () => {
         </button>
       </section>
 
-      {!profile?.weeklyGoal?.goalActionType && (
+      {isSpeechBubbleVisible && !profile?.weeklyGoal?.goalActionType && (
         <div className="absolute top-full left-1/2 mt-[3px] -translate-x-1/2">
           <SpeechBubble
             text="이번 주 달성하고 싶은 목표를 세워보세요!"
