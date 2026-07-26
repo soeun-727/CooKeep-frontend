@@ -139,7 +139,7 @@ export default function MyCookeepPage() {
   const cookieCount = useCookeepsStore(s => s.cookie);
 
   return (
-    <div className="relative mb-[56px] flex flex-col gap-[30px] px-4">
+    <div className="relative mb-6 flex flex-col gap-[30px] px-4">
       <AppBar cookieCount={cookieCount} />
       <section className="flex flex-col gap-6">
         <ProfileContent />
