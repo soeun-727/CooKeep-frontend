@@ -14,8 +14,8 @@ import {
 } from "@/stores/useIngredientStore";
 
 import character from "@/assets/character/tip_char.svg";
-import EditIcon from "@/assets/fridge/edit_memo.svg?react";
 import MemoIcon from "@/assets/fridge/memo.svg?react";
+import EditIcon from "@/assets/icons/rename.svg?react";
 
 import EditModal from "@/components/ui/EditModal";
 import LoadingScreen from "@/components/ui/LoadingScreen";
@@ -96,7 +96,6 @@ export default function IngredientDetailModal({
     }
   };
 
-  if (isLoading) return <LoadingScreen />;
   const handleUpdateField = async (type: EditorType, value: any) => {
     try {
       const id = Number(ingredient.id);
@@ -129,15 +128,7 @@ export default function IngredientDetailModal({
     return dateString.replace(/-/g, ".");
   }, [rawDate]);
 
-  if (isLoading) {
-    return (
-      <div className="bg-gray-80/40 fixed inset-0 z-60 flex items-center justify-center">
-        <div className="bg-gray-0 rounded-lg p-6 text-sm shadow-md">
-          정보 로딩 중...
-        </div>
-      </div>
-    );
-  }
+  if (isLoading) return <LoadingScreen />;
 
   const infoRows: {
     label: string;
