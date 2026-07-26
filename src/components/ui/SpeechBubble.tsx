@@ -10,9 +10,9 @@ export const SpeechBubble = ({
 }: SpeechBubbleProps) => {
   const triangle =
     trianglePosition === "bottom" ? (
-      <div className="border-t-gray-0 absolute -bottom-[12px] mx-auto h-0 w-0 border-x-[8px] border-t-[16px] border-x-transparent" />
+      <div className="border-t-gray-0 -mt-1 h-0 w-0 border-x-[8px] border-t-[16px] border-x-transparent" />
     ) : (
-      <div className="border-b-gray-0 absolute -top-[12px] mx-auto h-0 w-0 border-x-[8px] border-b-[16px] border-x-transparent" />
+      <div className="border-b-gray-0 -mb-1 h-0 w-0 border-x-[8px] border-b-[16px] border-x-transparent" />
     );
 
   return (
