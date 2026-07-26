@@ -1,6 +1,6 @@
 import CookieIcon from "@/assets/cookie_icon.svg?react";
-import MailNotiIcon from "@/assets/fridge/AppBar/mail_notification.svg?react";
-import SettingIcon from "@/assets/fridge/AppBar/setting.svg?react";
+import MailNotiIcon from "@/assets/fixed/AppBar/mail_notification.svg?react";
+import SettingIcon from "@/assets/fixed/AppBar/setting.svg?react";
 
 interface AppBarProps {
   cookieCount?: number;
