@@ -10,11 +10,25 @@ import { formatCalendarDate, getDateKey } from "@/utils/formatDate";
 
 interface CalendarProps {
   onDateClick: (date: string) => void;
+  onMonthChange?: () => void;
 }
 
-export default function Calendar({ onDateClick }: CalendarProps) {
+export default function Calendar({
+  onDateClick,
+  onMonthChange,
+}: CalendarProps) {
   const { year, month, firstDayOfMonth, daysInMonth, prevMonth, nextMonth } =
     useCalendar();
+
+  const handlePrevMonth = () => {
+    prevMonth();
+    onMonthChange?.();
+  };
+
+  const handleNextMonth = () => {
+    nextMonth();
+    onMonthChange?.();
+  };
 
   const [apiRecords, setApiRecords] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -34,7 +48,6 @@ export default function Calendar({ onDateClick }: CalendarProps) {
           });
 
           setApiRecords(formatted);
-          console.log("매핑된 데이터:", formatted);
         }
       } catch (error) {
         console.error("캘린더 데이터 로드 실패:", error);
@@ -116,8 +129,8 @@ export default function Calendar({ onDateClick }: CalendarProps) {
       isLoading={isLoading}
       firstDayOfMonth={firstDayOfMonth}
       daysInMonth={daysInMonth}
-      prevMonth={prevMonth}
-      nextMonth={nextMonth}
+      prevMonth={handlePrevMonth}
+      nextMonth={handleNextMonth}
       renderDay={renderDay}
     />
   );

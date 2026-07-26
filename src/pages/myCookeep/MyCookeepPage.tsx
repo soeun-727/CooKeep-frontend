@@ -1,25 +1,20 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { getDailyRecipesByDate } from "@/api/myRecipe";
-import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
 
-import Calendar from "@/components/myCookeep/contents/Calendar";
-import Statistics from "@/components/myCookeep/contents/Statistics";
 import { ExcludedIngredientContent } from "@/components/myCookeep/fixed/ExcludedIngredientContent";
 import { MyCookeepGoal } from "@/components/myCookeep/fixed/MyCookeepGoal";
 import MyCookeepTabBar from "@/components/myCookeep/fixed/MyCookeepTabBar";
 import { ProfileContent } from "@/components/myCookeep/fixed/ProfileContent";
+import { RenderContent, TabType } from "@/components/myCookeep/main/RenderContent";
 import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
-import RecordCard from "@/components/myCookeep/record/RecordCard";
-import RecordEntry from "@/components/myCookeep/record/RecordEntry";
 import { AppBar } from "@/components/ui/AppHeader";
 
-import { hasTodayRecord } from "@/utils/record";
+import { useCalendarRecordSelection } from "@/hooks/useCalendarRecordSelection";
 
-type TabType = "record" | "calendar" | "statistics";
+import { hasTodayRecord } from "@/utils/record";
 
 const getKstToday = () => {
   return new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
@@ -33,9 +28,14 @@ export default function MyCookeepPage() {
 
   const [activeTab, setActiveTab] = useState<TabType>("record");
   const [dismissed, setDismissed] = useState(false);
-  const [selectedDate, setSelectedDate] = useState<string>("");
-  const records = useCookeepRecordStore(s => s.records);
-  const setRecords = useCookeepRecordStore(s => s.setRecords);
+  const {
+    selectedDate,
+    records,
+    fetchDailyData,
+    handleCalendarDateClick,
+    handleCalendarMonthChange,
+    reset: resetCalendarSelection,
+  } = useCalendarRecordSelection();
   const [enteredByBottomTab, setEnteredByBottomTab] = useState(
     location.state?.fromTab === true,
   );
@@ -47,59 +47,31 @@ export default function MyCookeepPage() {
     fetchProfile();
   }, [fetchCookies, fetchProfile]);
 
-  const fetchDailyData = useCallback(
-    async (dateStr: string) => {
-      try {
-        const response = await getDailyRecipesByDate(dateStr);
-        if (response.status === "OK") {
-          setRecords(response.data);
-        }
-      } catch (error) {
-        console.error("레시피 조회 실패:", error);
-        setRecords([]);
-      }
-    },
-    [setRecords],
-  );
-
   useEffect(() => {
     if (activeTab === "record") {
       fetchDailyData(getKstToday());
     }
   }, [activeTab, fetchDailyData]);
 
-  const handleDateClick = useCallback(
-    (dateStr: string) => {
-      const requestDate = dateStr.replaceAll(".", "-");
-      fetchDailyData(requestDate);
+  const handleTabChange = useCallback(
+    (tab: string) => {
+      if (tab === "record" || tab === "calendar" || tab === "statistics") {
+        setActiveTab(tab as TabType);
+        resetCalendarSelection();
+        setDismissed(false);
+        setEnteredByBottomTab(false);
+      }
     },
-    [fetchDailyData],
+    [resetCalendarSelection],
   );
-
-  const handleTabChange = useCallback((tab: string) => {
-    if (tab === "record" || tab === "calendar" || tab === "statistics") {
-      setActiveTab(tab as TabType);
-      setSelectedDate("");
-      setDismissed(false);
-      setEnteredByBottomTab(false);
-    }
-  }, []);
 
   const handleActiveTabClick = useCallback(
     (tab: string) => {
       if (tab === "calendar") {
-        setRecords([]);
+        resetCalendarSelection();
       }
     },
-    [setRecords],
-  );
-
-  const handleCalendarDateClick = useCallback(
-    (date: string) => {
-      setSelectedDate(date);
-      handleDateClick(date);
-    },
-    [handleDateClick],
+    [resetCalendarSelection],
   );
 
   const handleDismiss = useCallback(() => setDismissed(true), []);
@@ -114,27 +86,6 @@ export default function MyCookeepPage() {
     enteredByBottomTab &&
     hasTodayRecord() &&
     !dismissed;
-
-  const renderContent = () => {
-    switch (activeTab) {
-      case "calendar":
-        return (
-          <div className="flex flex-col">
-            <Calendar onDateClick={handleCalendarDateClick} />
-            {records.map(record => (
-              <RecordCard key={record.dailyRecipeId} record={record} />
-            ))}
-          </div>
-        );
-
-      case "statistics":
-        return <Statistics />;
-
-      case "record":
-      default:
-        return <RecordEntry records={records} />;
-    }
-  };
 
   const cookieCount = useCookeepsStore(s => s.cookie);
 
@@ -158,7 +109,15 @@ export default function MyCookeepPage() {
             onActiveTabClick={handleActiveTabClick}
           />
 
-          <div className="">{renderContent()}</div>
+          <div className="">
+            <RenderContent
+              activeTab={activeTab}
+              records={records}
+              selectedDate={selectedDate}
+              onCalendarDateClick={handleCalendarDateClick}
+              onCalendarMonthChange={handleCalendarMonthChange}
+            />
+          </div>
         </div>
       </section>
 
