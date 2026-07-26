@@ -118,22 +118,14 @@ export default function MyCookeepPage() {
   const renderContent = () => {
     switch (activeTab) {
       case "calendar":
-        if (selectedDate && records.length > 0) {
-          return (
-            <div className="animate-in fade-in slide-in-from-bottom-4 flex flex-col items-center gap-6 px-4 duration-300">
-              <button
-                onClick={() => setSelectedDate("")}
-                className="self-start text-sm text-gray-500"
-              >
-                ← 캘린더로 돌아가기
-              </button>
-              {records.map(record => (
-                <RecordCard key={record.dailyRecipeId} record={record} />
-              ))}
-            </div>
-          );
-        }
-        return <Calendar onDateClick={handleCalendarDateClick} />;
+        return (
+          <div className="flex flex-col">
+            <Calendar onDateClick={handleCalendarDateClick} />
+            {records.map(record => (
+              <RecordCard key={record.dailyRecipeId} record={record} />
+            ))}
+          </div>
+        );
 
       case "statistics":
         return <Statistics />;
@@ -147,7 +139,7 @@ export default function MyCookeepPage() {
   const cookieCount = useCookeepsStore(s => s.cookie);
 
   return (
-    <div className="relative flex flex-col gap-[30px] px-4">
+    <div className="relative mb-[56px] flex flex-col gap-[30px] px-4">
       <AppBar cookieCount={cookieCount} />
       <section className="flex flex-col gap-6">
         <ProfileContent />
@@ -166,9 +158,7 @@ export default function MyCookeepPage() {
             onActiveTabClick={handleActiveTabClick}
           />
 
-          <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
-            {renderContent()}
-          </div>
+          <div className="">{renderContent()}</div>
         </div>
       </section>
 
