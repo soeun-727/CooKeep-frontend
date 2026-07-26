@@ -8,7 +8,10 @@ import { ExcludedIngredientContent } from "@/components/myCookeep/fixed/Excluded
 import { MyCookeepGoal } from "@/components/myCookeep/fixed/MyCookeepGoal";
 import MyCookeepTabBar from "@/components/myCookeep/fixed/MyCookeepTabBar";
 import { ProfileContent } from "@/components/myCookeep/fixed/ProfileContent";
-import { RenderContent, TabType } from "@/components/myCookeep/main/RenderContent";
+import {
+  RenderContent,
+  TabType,
+} from "@/components/myCookeep/main/RenderContent";
 import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
 import { AppBar } from "@/components/ui/AppHeader";
 
@@ -109,15 +112,13 @@ export default function MyCookeepPage() {
             onActiveTabClick={handleActiveTabClick}
           />
 
-          <div className="">
-            <RenderContent
-              activeTab={activeTab}
-              records={records}
-              selectedDate={selectedDate}
-              onCalendarDateClick={handleCalendarDateClick}
-              onCalendarMonthChange={handleCalendarMonthChange}
-            />
-          </div>
+          <RenderContent
+            activeTab={activeTab}
+            records={records}
+            selectedDate={selectedDate}
+            onCalendarDateClick={handleCalendarDateClick}
+            onCalendarMonthChange={handleCalendarMonthChange}
+          />
         </div>
       </section>
 
