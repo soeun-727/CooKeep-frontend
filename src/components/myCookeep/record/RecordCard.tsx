@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { DailyRecipe } from "@/api/myRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
-import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import PrivateIcon from "@/assets/mycookeep/record/one_person.svg?react";
 import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
+import PublicIcon from "@/assets/mycookeep/record/two_people.svg?react";
+
+import { formatDate } from "@/utils/formatDate";
 
 import SelectViewTypeModal from "./SelectViewTypeModal";
 
@@ -23,16 +25,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
         r => String(r.dailyRecipeId) === String(initialRecord.dailyRecipeId),
       ),
     ) || initialRecord;
-  const [isOptionOpen, setIsOptionOpen] = useState(false);
   const isPublic = record.isPublic;
-
-  const formatDateDot = (dateStr: string) => {
-    return dateStr.split("T")[0].replaceAll("-", ".");
-  };
-
-  const toggleOption = () => {
-    setIsOptionOpen(prev => !prev);
-  };
 
   // 모달
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
@@ -41,10 +34,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
   const handleTryChangeVisibility = (next: boolean) => {
     setNextVisibility(next);
     setIsConfirmOpen(true);
-    setIsOptionOpen(false);
   };
-
-  // RecordCard.tsx 수정본 일부
 
   const handleConfirmChange = async () => {
     if (nextVisibility !== null) {
@@ -55,7 +45,6 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
     }
     setIsConfirmOpen(false);
     setNextVisibility(null);
-    setIsOptionOpen(false);
   };
 
   const handleCancelChange = () => {
@@ -66,89 +55,49 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
   const confirmMessage = isPublic ? "나만보기" : "쿠킵스에 공개";
 
   return (
-    <>
-      <div className="mx-auto flex w-full max-w-[360px] flex-col gap-[9px]">
-        {/* 이미지 */}
-        <div
-          className="shadow-plant relative h-[160px] w-full cursor-pointer overflow-hidden rounded-[6px]"
-          onClick={() => navigate(`/mycookeep/record/${record.dailyRecipeId}`)}
-        >
-          <img
-            loading="lazy"
-            src={record.recipeImageUrl || tempFoodPhoto}
-            alt="요리 이미지"
-            className="h-full w-full object-cover transition-opacity duration-300"
-          />
-
-          {/* 상단 그라데이션 */}
-          <div className="pointer-events-none absolute top-0 right-0 left-0 h-[35%] bg-gradient-to-b from-black/25 to-transparent" />
-
-          {/* 날짜 */}
-          <span className="text-gray-0 absolute top-1 left-1 px-1 py-1 text-[12px] font-medium">
-            만든 날짜: {formatDateDot(record.createdAt)}
-          </span>
-
-          {/* 공개 / 비공개 아이콘 컨트롤 */}
-          <div className="absolute right-2 bottom-2 flex flex-col items-center">
-            {/* 옵션 버튼 (위에서 쑥 내려옴) */}
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                handleTryChangeVisibility(!isPublic);
-              }}
-              className={`bg-gray-0 shadow-search mb-2 flex h-9 w-9 items-center justify-center rounded-full duration-200 ease-out ${
-                isOptionOpen
-                  ? "translate-y-0 scale-100 opacity-100"
-                  : "pointer-events-none translate-y-2 scale-95 opacity-0"
-              } `}
-            >
-              <img
-                src={isPublic ? privateIcon : publicIcon}
-                alt="옵션 변경"
-                className={isPublic ? "h-[24px] w-[24px]" : "h-[36px] w-[36px]"}
-              />
-            </button>
-
-            {/* 현재 상태 버튼 */}
-            <button
-              onClick={e => {
-                e.stopPropagation();
-                toggleOption();
-              }}
-              className="bg-gray-0 shadow-search flex h-9 w-9 items-center justify-center rounded-full"
-            >
-              <img
-                src={isPublic ? publicIcon : privateIcon}
-                alt="공개 여부"
-                className={isPublic ? "h-[36px] w-[36px]" : "h-[24px] w-[24px]"}
-              />
-            </button>
-          </div>
+    <div
+      className="border-gray-10 bg-gray-0 flex w-full gap-4 rounded-[16px] border px-3 py-4"
+      onClick={() => navigate(`/mycookeep/record/${record.dailyRecipeId}`)}
+    >
+      {/* 요리 이미지 */}
+      <img
+        loading="lazy"
+        src={record.recipeImageUrl || tempFoodPhoto}
+        alt="요리 이미지"
+        className="h-25 w-25 rounded-[8px] object-cover"
+      />
+      {/* 요리 정보 */}
+      <div className="flex w-full flex-col justify-between">
+        <div className="flex flex-col gap-[2px]">
+          <p className="typo-l-strong text-gray-80"> {record.title}</p>
+          <p className="typo-m text-gray-50">
+            {formatDate(new Date(record.createdAt))}
+          </p>
         </div>
-
-        {/* 제목 + 메뉴 변경 */}
-        <div className="flex flex-col items-center self-stretch">
-          <div
-            className="bg-gray-10 flex h-[56px] w-full cursor-pointer items-center justify-center rounded-[10px] px-4"
-            onClick={() =>
-              navigate(`/mycookeep/record/${record.dailyRecipeId}`)
-            }
+        <div className="flex gap-3">
+          {isPublic ? (
+            <div className="flex gap-2">
+              <PublicIcon className="h-5 w-5 text-gray-50" />
+              <p className="typo-m text-gray-80">쿠킵스에 공개</p>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <PrivateIcon className="h-5 w-5 text-gray-50" />
+              <p className="typo-m text-gray-80">나만보기</p>
+            </div>
+          )}
+          <button
+            className="typo-m cursor-pointer text-gray-50"
+            onClick={e => {
+              e.stopPropagation();
+              handleTryChangeVisibility(!isPublic);
+            }}
           >
-            <span className="text-gray-80 line-clamp-2 text-center text-[16px] leading-[24px] font-bold">
-              {record.title}
-            </span>
-          </div>
-
-          {/* <button
-            className="w-[77px] h-[30px] text-gray-50 text-[14px] font-medium"
-            onClick={() =>
-              navigate(`/mycookeep/record/${record.dailyRecipeId}`)
-            }
-          >
-            메뉴 변경하기
-          </button> */}
+            변경
+          </button>
         </div>
       </div>
+
       {isConfirmOpen && (
         <SelectViewTypeModal
           message={confirmMessage}
@@ -156,7 +105,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
           onCancel={handleCancelChange}
         />
       )}
-    </>
+    </div>
   );
 }
 
