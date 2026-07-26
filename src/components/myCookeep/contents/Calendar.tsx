@@ -13,15 +13,8 @@ interface CalendarProps {
 }
 
 export default function Calendar({ onDateClick }: CalendarProps) {
-  const {
-    year,
-    month,
-    monthName,
-    firstDayOfMonth,
-    daysInMonth,
-    prevMonth,
-    nextMonth,
-  } = useCalendar();
+  const { year, month, firstDayOfMonth, daysInMonth, prevMonth, nextMonth } =
+    useCalendar();
 
   const [apiRecords, setApiRecords] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
@@ -77,7 +70,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
     return (
       <div className="relative flex justify-center">
         {isToday && (
-          <div className="absolute -top-8 z-10">
+          <div className="absolute -top-10 z-10">
             <SpeechBubble text="TODAY" />
           </div>
         )}
@@ -92,7 +85,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
         {/* 날짜 버튼 */}
         <button
           onClick={() => onDateClick(dateStr)}
-          className={`relative z-10 flex h-10 w-10 items-center justify-center rounded-full ${hasRecord ? "scale-105" : "hover:bg-gray-10"} ${hasRecord && !photoUrl ? "bg-green-light" : ""} `}
+          className={`hover:bg-gray-10 group relative z-10 flex h-9 w-9 items-center justify-center rounded-full ${hasRecord && !photoUrl ? "bg-green-medium" : ""} `}
         >
           {photoUrl && (
             <div className="absolute inset-0 overflow-hidden rounded-full">
@@ -105,7 +98,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
           )}
 
           <span
-            className={`typo-h2 relative z-20 !font-normal ${
+            className={`${isToday ? "typo-l-strong" : "typo-l"} group-hover:text-gray-80 group-hover:typo-l-strong relative z-20 ${
               hasRecord ? "text-gray-0" : "text-gray-80"
             }`}
           >
@@ -118,19 +111,9 @@ export default function Calendar({ onDateClick }: CalendarProps) {
 
   return (
     <CalendarShell
-      containerClassName={`bg-gray-0/10 mx-auto flex w-[357px] flex-col items-center justify-center rounded-[6px] p-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"} `}
-      headerClassName="mt-[13px] mb-2 flex w-full items-center justify-between px-2"
-      title={
-        <>
-          {monthName} {year}
-        </>
-      }
-      titleClassName="typo-h3 text-gray-80"
-      navClassName="flex gap-1"
-      navIconClassName="text-gray-30 h-4 w-4"
-      weekdayRowClassName="mb-2 grid w-full grid-cols-7"
-      weekdayItemClassName="typo-body2 text-green text-center"
-      gridClassName="relative mb-[13px] grid w-full grid-cols-7 gap-y-[6px]"
+      year={year}
+      month={month}
+      isLoading={isLoading}
       firstDayOfMonth={firstDayOfMonth}
       daysInMonth={daysInMonth}
       prevMonth={prevMonth}
