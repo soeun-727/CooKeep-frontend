@@ -6,7 +6,7 @@ import { useIngredientStore } from "@/stores/useIngredientStore";
 
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
-import { BackHeader } from "@/components/fixed/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
@@ -85,6 +85,12 @@ export default function FridgeTab() {
   useEffect(() => {
     loadData();
   }, []);
+
+  useEffect(() => {
+    return () => {
+      setViewCategory(null);
+    };
+  }, [setViewCategory]);
 
   const { filteredIngredients, sortedIngredients } = useSortedIngredients();
 

@@ -6,7 +6,7 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
 import SelectedIngredientList from "@/components/recipe/main/confirm/SelectedIngredientList";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 export default function RecipeConfirmPage() {
@@ -42,7 +42,7 @@ export default function RecipeConfirmPage() {
 
   return (
     <div className="flex w-full flex-col">
-      <BackHeader title="재료선택" onBack={() => navigate(-1)} />
+      <BackHeader title="재료선택" />
 
       {/* Backheader는 fixed라서 flexbox 내 무시됨, 상단 기준 70px */}
       <div className="no-scrollbar mt-[70px] flex w-full flex-col gap-[30px] overflow-y-auto px-4">

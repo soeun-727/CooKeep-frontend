@@ -17,7 +17,7 @@ import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
 import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
 import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
@@ -146,7 +146,7 @@ export default function RecordWritePage() {
     <>
       <div className="no-scrollbar bg-background flex h-full flex-1 flex-col overflow-y-auto">
         <div className="bg-background sticky top-0 z-[120] shrink-0">
-          <BackHeader title="레시피 선택" onBack={() => navigate(-1)} />
+          <BackHeader title="레시피 선택" />
         </div>
 
         <div className="mx-auto mt-10 flex min-h-0 w-full max-w-[450px] flex-1 flex-col px-4">

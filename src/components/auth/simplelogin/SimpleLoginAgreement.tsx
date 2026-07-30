@@ -7,7 +7,7 @@ import { registerPushNotification } from "@/api/push";
 import shadow from "@/assets/character/char_shadow.svg";
 import illustration from "@/assets/character/default_char.svg";
 
-import BackHeader from "@/components/ui/BackHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import { AuthAgreements } from "@/types/auth";
@@ -43,7 +43,7 @@ export default function SimpleLoginAgreement() {
 
   return (
     <>
-      <BackHeader title="약관 동의" onBack={() => navigate(-1)} />
+      <BackHeader title="약관 동의" />
 
       {/* 회원가입과 동일한 컨테이너 */}
       <div className="flex min-h-screen flex-col">
