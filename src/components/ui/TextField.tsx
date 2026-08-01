@@ -33,7 +33,11 @@ export default function TextField({
     <div className="w-full">
       {label && <label className="typo-m mb-1 block">{label}</label>}
 
-      <div className="bg-gray-10 border-gray-10 flex h-[48px] gap-3 rounded-[12px] p-3">
+      <div
+        className={`border-gray-10 flex h-[48px] gap-3 rounded-[12px] border p-3 ${
+          value ? "bg-gray-0" : "bg-gray-10"
+        }`}
+      >
         {leftIcon && <div>{leftIcon}</div>}
 
         <input

@@ -1,5 +1,5 @@
 // components/cookeeps/RecipeListItem.tsx
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect, useRef, useState } from "react";
 
 import LikeIcon from "@/assets/cookeeps/like.svg?react";
 import BookmarkIcon from "@/assets/cookeeps/bookmark.svg?react";
@@ -17,7 +17,6 @@ interface RecipeListItemProps {
   isPlaceholder?: boolean; // "레시피를 등록해주세요" 상태
   badge: Badge; // 항상 표시용 (좋아요 수 or 북마크 아이콘)
   onDelete?: (e: MouseEvent) => void; // 있으면 케밥 버튼 렌더링
-  isSelected?: boolean;
   onSelect?: () => void;
 }
 
@@ -29,11 +28,30 @@ export default function RecipeListItem({
   isPlaceholder = false,
   badge,
   onDelete,
-  isSelected = false,
   onSelect,
 }: RecipeListItemProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const handleOutside = (e: PointerEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setIsMenuOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", handleOutside);
+    return () => document.removeEventListener("pointerdown", handleOutside);
+  }, [isMenuOpen]);
+
+  const handleKebabClick = (e: MouseEvent) => {
+    e.stopPropagation();
+    setIsMenuOpen(prev => !prev);
+  };
+
   const handleDeleteClick = (e: MouseEvent) => {
     e.stopPropagation();
+    setIsMenuOpen(false);
     onDelete?.(e);
   };
 
@@ -45,9 +63,7 @@ export default function RecipeListItem({
   return (
     <div
       onClick={!isPlaceholder ? onSelect : undefined}
-      className={`flex items-center gap-3 self-stretch rounded-2xl ${
-        isSelected ? "bg-gray-10" : ""
-      } ${onSelect && !isPlaceholder ? "cursor-pointer" : ""}`}
+      className={`flex items-center gap-3 self-stretch rounded-2xl ${onSelect && !isPlaceholder ? "cursor-pointer" : ""}`}
     >
       {/* 사진 + 순위뱃지 */}
       <div className="relative flex-shrink-0">
@@ -102,12 +118,28 @@ export default function RecipeListItem({
           )}
 
           {onDelete && (
-            <button
-              onClick={handleDeleteClick}
-              className="flex h-8 w-8 flex-shrink-0 items-center justify-center transition-transform active:scale-90"
-            >
-              <DotsVerticalIcon className="text-gray-30 h-6 w-6" />
-            </button>
+            <div className="relative" ref={menuRef}>
+              <button
+                onClick={handleKebabClick}
+                className="flex h-8 w-8 flex-shrink-0 items-center justify-center transition-transform active:scale-90"
+              >
+                <DotsVerticalIcon className="text-gray-30 h-6 w-6" />
+              </button>
+
+              {isMenuOpen && (
+                <div
+                  onClick={e => e.stopPropagation()}
+                  className="border-gray-10 absolute top-full right-1 z-10 mt-1 flex w-[124px] flex-col items-center rounded-2xl border bg-white/90 py-2 shadow-[0_4px_16px_0_rgba(17,17,17,0.10)] backdrop-blur-[1px]"
+                >
+                  <button
+                    onClick={handleDeleteClick}
+                    className="typo-m text-semantic-negative flex h-9 w-full items-center gap-2 rounded-b-2xl px-3 py-2"
+                  >
+                    삭제하기
+                  </button>
+                </div>
+              )}
+            </div>
           )}
         </div>
       )}
