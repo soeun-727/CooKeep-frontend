@@ -7,7 +7,9 @@ import EditIcon from "@/assets/icons/rename.svg?react";
 import { groundImg } from "@/assets/index";
 import PlantIcon from "@/assets/mycookeep/plant.svg?react";
 
-import ProfileEditModal from "../modals/ProfileEditModal";
+import { BottomTabBar } from "@/components/ui/BottomTabBar";
+
+import { ProfileEdit } from "../bottomTabBarContent/ProfileEdit";
 
 export const ProfileContent = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -18,8 +20,9 @@ export const ProfileContent = () => {
   const setProfilePlant = useCookeepsStore(s => s.setProfilePlant);
   const setProfileAuto = useCookeepsStore(s => s.setProfileAuto);
 
-  const handleSaveProfile = async (userPlantId: number) => {
-    await setProfilePlant(userPlantId);
+  // TODO: 프로필 이미지 변경 수정된 API로 변경하기
+  const handleSaveProfile = async (profileImageId: number) => {
+    await setProfilePlant(profileImageId);
     setProfileAuto(false);
     await fetchProfile();
     setIsEditModalOpen(false);
@@ -77,12 +80,13 @@ export const ProfileContent = () => {
         </p>
       </span>
 
-      {/* 프로필 수정 모달 (바텀 시트) */}
-      <ProfileEditModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSave={handleSaveProfile}
-      />
+      {isEditModalOpen && (
+        <BottomTabBar
+          title="프로필로 설정할 이미지를 선택해주세요"
+          onClose={() => setIsEditModalOpen(false)}
+          BottomTabBarContent={<ProfileEdit onSave={handleSaveProfile} />}
+        />
+      )}
     </div>
   );
 };
