@@ -25,6 +25,7 @@ import WeeklyRecipeSection from "@/components/cookeeps/recipe/WeeklyRecipeSectio
 import { PLANT_DATA } from "@/constants/plantData";
 
 import { preloadImage } from "@/utils/preloadImage";
+import RecipeFilterButtons from "@/components/cookeeps/recipe/RecipeFilterButtons";
 
 type ActiveModal =
   | "onboarding"
@@ -323,6 +324,10 @@ export default function CookeepsPage() {
             users={ranking?.wateringRanking ?? []}
             myCount={ranking?.myWateringCount ?? 0}
           />
+          {/* 중간 좋아요 / 북마크 필터 영역 */}
+          <RecipeFilterButtons />
+
+          {/* 주간 레시피 섹션 (내부에 전체보기 포함) */}
           <WeeklyRecipeSection topRecipes={ranking?.recipeRanking ?? []} />
         </section>
       </main>
