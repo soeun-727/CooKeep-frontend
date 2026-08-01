@@ -226,7 +226,7 @@ export default function CookeepsPage() {
   };
 
   return (
-    <div className="no-scrollbar relative flex min-h-0 flex-1 flex-col">
+    <div className="flex flex-1 flex-col gap-3">
       <OnboardingModal
         isOpen={derivedModal === "onboarding"}
         onClose={handleOnboardingConfirm}
@@ -293,43 +293,45 @@ export default function CookeepsPage() {
         onClose={handleHarvestModalClose}
       />
 
-      <div className="relative -mt-[35px] shrink-0">
-        <PlantBackground
-          showToast={toastVisible}
-          message="물 주기에 성공했어요!"
-          plant={currentPlant?.plantName}
-          isLoading={isPlantLoading}
-          overridePlantStage={
-            showHarvestModal ? 4 : activeModal === "wilted" ? 1 : undefined
-          }
-        />
+      <header className="px-4">
+        {/* TODO 나중에 마이쿠킵 머지되면 같은거(AppHeader)로 바꾸기 */}
         <CookeepsHeader />
-      </div>
+      </header>
 
-      <div className="relative z-50 shrink-0 px-4">
-        <PlantGrowthCard
-          plant={currentPlant?.plantName}
-          onWaterSuccess={handleWaterSuccess}
-          onRefresh={fetchRankingData}
-          overridePlantStage={
-            showHarvestModal ? 4 : activeModal === "wilted" ? 1 : undefined
-          }
-        />
-      </div>
+      <main className="flex w-full flex-col">
+        <section className="flex w-full flex-col">
+          <PlantBackground
+            showToast={toastVisible}
+            message="물 주기에 성공했어요!"
+            plant={currentPlant?.plantName}
+            isLoading={isPlantLoading}
+            overridePlantStage={
+              showHarvestModal ? 4 : activeModal === "wilted" ? 1 : undefined
+            }
+          />
+          <PlantGrowthCard
+            plant={currentPlant?.plantName}
+            onWaterSuccess={handleWaterSuccess}
+            onRefresh={fetchRankingData}
+            overridePlantStage={
+              showHarvestModal ? 4 : activeModal === "wilted" ? 1 : undefined
+            }
+          />
+        </section>
+        <section className="flex flex-col gap-6 px-4 pb-15">
+          <WeeklyTop3Section
+            users={ranking?.wateringRanking ?? []}
+            myCount={ranking?.myWateringCount ?? 0}
+          />
+          <WeeklyRecipeSection topRecipes={ranking?.recipeRanking ?? []} />
+        </section>
+      </main>
 
       {isFreeWaterMode && (
         <div className="pointer-events-none absolute inset-0 z-40">
           <div className="bg-gray-80 absolute inset-0" />
         </div>
       )}
-
-      <div className="no-scrollbar flex-1 space-y-6 overflow-y-auto px-4 pt-5 pb-12">
-        <WeeklyTop3Section
-          users={ranking?.wateringRanking ?? []}
-          myCount={ranking?.myWateringCount ?? 0}
-        />
-        <WeeklyRecipeSection topRecipes={ranking?.recipeRanking ?? []} />
-      </div>
     </div>
   );
 }

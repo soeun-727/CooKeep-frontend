@@ -14,8 +14,8 @@ export default function GrowthProgressBar({
   const percent = currentPlant ? (stageToShow / 4) * 100 : 0;
 
   return (
-    <div className="flex h-[34px] w-full items-center">
-      <div className="bg-gray-10 relative h-[12px] w-full rounded-full">
+    <div className="flex h-8 w-full items-center">
+      <div className="bg-gray-10 relative h-[10px] w-full rounded-full">
         {/* 진행 바 */}
         <div
           className="bg-green-gradient h-full rounded-full"
@@ -27,8 +27,8 @@ export default function GrowthProgressBar({
           className="absolute top-1/2 -translate-y-1/2 duration-300"
           style={{ left: `calc(${percent}% - 16px)` }}
         >
-          <div className="bg-gray-0 flex h-8 w-8 items-center justify-center rounded-full shadow">
-            <img src={treeIcon} alt="tree" className="h-4 w-4" />
+          <div className="bg-gray-0/90 drop-shadow-container flex h-8 w-8 items-center justify-center rounded-full backdrop-blur-[1px]">
+            <img src={treeIcon} alt="tree" className="h-[21px] w-[18px]" />
           </div>
         </div>
       </div>

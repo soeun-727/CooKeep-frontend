@@ -2,8 +2,6 @@ import { useEffect } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg";
-
 import { PLANT_NAME_KR } from "@/constants/plantNames";
 import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
 
@@ -20,7 +18,6 @@ interface PlantGrowthCardProps {
 
 export default function PlantGrowthCard({
   onWaterSuccess,
-  onRefresh,
   overridePlantStage,
 }: PlantGrowthCardProps) {
   const currentPlant = useCookeepsStore(s => s.currentPlant);
@@ -51,44 +48,42 @@ export default function PlantGrowthCard({
     .toString()
     .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
 
-  const handleRefreshClick = () => {
-    refreshGrowth();
-    onRefresh?.();
-  };
-
   return (
-    <div className="-mt-[46px] flex justify-center">
-      <div className="plant relative z-50 w-full max-w-[450px]">
-        <div className="absolute -top-[20px] left-1/2 z-50 -translate-x-1/2">
-          <WaterButton
-            onSuccess={() => {
-              onWaterSuccess?.();
-              refreshGrowth();
-            }}
-          />
-        </div>
+    <div className="flex w-full justify-center">
+      {/* 식물카드*/}
+      <div className="flex w-full flex-col items-center gap-4 self-stretch px-4 pb-6">
+        {/* 진행바 + 이름/날짜 묶음*/}
+        <div className="flex w-full flex-col items-start gap-1 self-stretch">
+          {/* 이름 + 날짜 */}
+          <div className="flex w-full flex-col items-start gap-0.5 self-stretch px-1">
+            {/* 식물 이름 */}
+            <span className="typo-h3 text-gray-80 line-clamp-1 self-stretch">
+              {plantName}
+            </span>
 
-        <div className="bg-gray-0 rounded-xl px-[15px] pt-[23px] pb-2 shadow">
-          <div className="mx-auto flex max-w-[360px] flex-col items-center">
-            <div className="flex h-9 w-full items-center justify-between">
-              <div className="flex h-[26px] items-center justify-center gap-2">
-                <span className="text-gray-80 text-[18px] font-semibold">
-                  {plantName}
-                </span>
-                <span className="mt-1 text-xs text-gray-50">
-                  {dateText} 기준
-                </span>
-              </div>
+            {/* 날짜 시간 */}
+            <span className="typo-caption self-stretch text-gray-50">
+              {dateText} 기준
+            </span>
+          </div>
 
-              {/* 여기를 handleRefreshClick으로 수정했습니다 */}
-              <button onClick={handleRefreshClick}>
-                <img src={RefreshIcon} alt="새로고침" className="h-4 w-4" />
-              </button>
-            </div>
-
+          <div className="w-full self-stretch">
             <GrowthProgressBar overridePlantStage={overridePlantStage} />
           </div>
         </div>
+
+        {/* 안내 글씨 */}
+        <p className="typo-caption self-stretch text-center text-gray-50">
+          다음 수확까지 더 건강하게 키워보아요!
+        </p>
+
+        {/* 물 주기 버튼 */}
+        <WaterButton
+          onSuccess={() => {
+            onWaterSuccess?.();
+            refreshGrowth();
+          }}
+        />
       </div>
     </div>
   );

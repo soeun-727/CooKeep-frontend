@@ -13,52 +13,45 @@ export default function MyPlantPage() {
   );
 
   return (
-    <div className="bg-background relative min-h-screen pt-[110px]">
+    <div className="relative flex min-h-screen flex-col gap-[30px] px-4">
       <BackHeader title="내가 키운 식재료" />
 
-      {grownPlants.length === 0 ? (
-        <p className="mt-20 text-center text-gray-400">
-          아직 다 키운 식물이 없어요
-        </p>
-      ) : (
-        <>
-          {/* 3열 그리드 */}
-          <div className="mx-auto grid w-[294px] grid-cols-3 justify-items-center gap-x-[12px] gap-y-[8px]">
-            {grownPlants.map(plant => (
-              <div
-                key={plant.userPlantId}
-                className="border-gray-10 bg-gray-0 flex w-[90px] flex-col items-center justify-center rounded-[6px] border p-[12.504px_16px_13.496px_16px]"
-              >
-                <div className="flex w-[58px] flex-col items-center gap-[4px]">
+      {/* 전체 컨테이너 */}
+      <div className="mx-auto flex w-full max-w-[375px] flex-col items-start">
+        {grownPlants.length === 0 ? (
+          <p className="typo-m mt-20 w-full text-center text-gray-50">
+            아직 다 키운 식물이 없어요
+          </p>
+        ) : (
+          /* 내용 영역 */
+          <div className="flex flex-col items-start gap-6 self-stretch">
+            {/* 3열 그리드 */}
+            <div className="grid grid-cols-3 gap-2 self-stretch">
+              {grownPlants.map(plant => (
+                <div
+                  key={plant.userPlantId}
+                  className="rounded-L border-gray-10 bg-gray-0 flex flex-col items-center justify-center gap-1 self-stretch justify-self-stretch border p-2"
+                >
                   <img
                     src={plantImageMap[plant.plantName]}
                     alt={plant.plantName}
-                    className="h-[48px] w-[48px]"
+                    className="aspect-square h-[48px] w-[48px]"
                     loading="lazy"
                   />
-                  <span
-                    className="text-gray-80 overflow-hidden text-center text-[12px] leading-[16px] font-bold"
-                    style={{
-                      display: "-webkit-box",
-                      WebkitLineClamp: 1,
-                      WebkitBoxOrient: "vertical",
-                    }}
-                  >
+                  <span className="typo-label text-gray-80 line-clamp-1 w-full overflow-hidden text-center text-ellipsis">
                     {plant.plantName}
                   </span>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
 
-          {/* 카드와 하단 안내 간격 32px */}
-          <div className="bg-gray-30 mx-auto mt-[32px] flex h-[32px] w-[137px] items-center justify-center rounded-[6px]">
-            <span className="text-gray-0 text-center text-[12px] leading-[16px] font-normal">
+            {/* 하단 글자 */}
+            <p className="typo-caption self-stretch text-center text-gray-50">
               키우기를 끝낸 식재료예요
-            </span>
+            </p>
           </div>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 }

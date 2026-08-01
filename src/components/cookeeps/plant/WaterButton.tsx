@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import CookieIcon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
+import WaterIcon from "@/assets/cookeeps/main/waterdrop.svg";
 
 import WaterModal from "../modals/WaterModal";
 
@@ -59,7 +59,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
 
   return (
     <>
-      <div className="relative flex flex-col items-center">
+      <div className="relative flex w-full flex-col items-center">
         {isFreeWaterMode && showTooltip && (
           <div className="absolute -top-10 flex flex-col items-center">
             {/* 말풍선 본문 */}
@@ -90,19 +90,31 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
 
             setModalOpen(true);
           }}
-          className={`flex h-[40px] w-full max-w-[280px] min-w-[211px] items-center justify-center gap-1 rounded-full text-[16px] font-bold ${
+          className={`flex w-full max-w-[300px] items-center justify-center gap-1 rounded-full border px-4 py-2 backdrop-blur-[1px] ${
             disabled
-              ? "bg-gray-300 text-gray-400"
-              : "bg-gray-80 text-green shadow active:scale-95"
+              ? "bg-gray-0/60 border-gray-300"
+              : "border-green bg-gray-0/90 shadow-container active:scale-95"
           }`}
         >
-          물 주기( -{/* 2. 이모지 대신 img 태그 삽입 */}
           <img
-            src={CookieIcon}
-            alt="cookie"
-            className="h-4 w-4 object-contain"
+            src={WaterIcon}
+            alt="water"
+            className="h-[23px] w-[23px] object-contain"
           />
-          10)
+          <span
+            className={`typo-l-strong ${
+              disabled ? "text-gray-400" : "text-gray-80"
+            }`}
+          >
+            물 주기
+          </span>
+          <span
+            className={`typo-l-strong ${
+              disabled ? "text-gray-400" : "text-green"
+            }`}
+          >
+            · 쿠키 10개 사용
+          </span>
         </button>
 
         <WaterModal
