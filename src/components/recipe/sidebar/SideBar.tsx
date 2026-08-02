@@ -5,13 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { AiRecipeSessionItem } from "@/api/aiSession";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
-import { SearchIcon } from "@/assets/index";
 import XIcon from "@/assets/icons/x.svg?react";
+import { SearchIcon } from "@/assets/index";
+
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
+import { InputModal } from "@/components/fridge/modals/InputModal";
 import TextField from "@/components/ui/TextField";
 
 import Recipe from "./Recipe";
-import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
-import { InputModal } from "@/components/fridge/modals/InputModal";
 
 interface SidebarProps {
   isOpen: boolean;

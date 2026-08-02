@@ -7,6 +7,7 @@ import { useIngredientStore } from "@/stores/useIngredientStore";
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
 import { BackHeader } from "@/components/ui/BackHeader";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
@@ -18,7 +19,6 @@ import NoResultView from "../items/NoResultView";
 import ExpiryAlertModal from "../modals/ExpiryAlertModal";
 import IngredientDetailModal from "../modals/IngredientDetailModal";
 import Storage from "./Storage";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function FridgeTab() {
   const {
