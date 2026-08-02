@@ -91,28 +91,22 @@ export default function Guide({ onNext }: GuideProps) {
       <div className="relative pb-8">
         {/* 이미지 */}
         <div className="overflow-hidden">
-          <div
-            className="flex items-end transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-          >
-            {ONBOARDING_DATA.map((data, index) => (
-              <div
-                key={data.id}
-                className="relative flex min-w-full items-end justify-center"
-              >
-                <object
-                  className="pointer-events-none h-[61.6vh] max-h-[520px] min-h-[320px] border-none object-contain outline-none"
-                  data={data.img}
-                />
+          <div className="relative flex items-end justify-center">
+            <img
+              src={ONBOARDING_DATA[currentIndex].img}
+              alt=""
+              decoding="async"
+              className="pointer-events-none h-[61.6vh] max-h-[520px] min-h-[320px] w-auto object-contain"
+            />
 
-                {index === 0 && (
-                  <object
-                    data={image1_2}
-                    className="absolute right-[8%] bottom-[17%] z-10 w-[38%]"
-                  />
-                )}
-              </div>
-            ))}
+            {currentIndex === 0 && (
+              <img
+                src={image1_2}
+                alt=""
+                decoding="async"
+                className="pointer-events-none absolute right-[8%] bottom-[17%] z-10 w-[38%]"
+              />
+            )}
           </div>
         </div>
 
