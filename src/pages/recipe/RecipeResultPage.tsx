@@ -62,7 +62,7 @@ export default function RecipeResultPage() {
     }
   }, [recipeHistory.length]);
 
-  if (isLoading || (sessionId && !recipeHistory.length)) {
+  if (sessionId && !recipeHistory.length) {
     return <LoadingScreen />;
   }
 
@@ -82,7 +82,6 @@ export default function RecipeResultPage() {
       <RecipeHeader title="오늘의 레시피" />
 
       <div className="flex w-full flex-col items-center gap-3">
-        {/* 🚀 onPageChange 콜백 전달해서 페이지 전환 이벤트 연결 */}
         <RecipePagination
           currentPage={currentPage}
           totalPage={totalPage}
@@ -155,11 +154,13 @@ export default function RecipeResultPage() {
                         <br />
                         관련 정보를 확인 후 활용해주세요
                       </div>
+
+                      {/* 레시피 생성 로딩 시 아래 점 3개 표시 */}
                       {isLoading && (
-                        <div className="flex h-[28.8px] w-[28.8px] items-center justify-center gap-[3.6px]">
-                          <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full" />
-                          <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full delay-200" />
-                          <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full delay-400" />
+                        <div className="mt-2 flex h-[28.8px] w-[28.8px] items-center justify-center gap-[3.6px]">
+                          <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full" />
+                          <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full delay-200" />
+                          <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full delay-400" />
                         </div>
                       )}
                     </div>
