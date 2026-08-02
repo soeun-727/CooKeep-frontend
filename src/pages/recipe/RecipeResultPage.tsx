@@ -30,7 +30,7 @@ export default function RecipeResultPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleRetry = async () => {
-    if (isLoading) return <LoadingScreen />;
+    if (isLoading) return;
     if (retryCount >= 5) return;
 
     try {
@@ -78,11 +78,16 @@ export default function RecipeResultPage() {
   const currentData = recipeHistory[currentPage - 1];
 
   return (
-    <div className="flex w-full flex-col px-4">
+    <div className="flex w-full flex-col gap-3 px-4">
       <RecipeHeader title="오늘의 레시피" />
 
-      <div className="mt-13 flex w-full flex-col items-center gap-3">
-        <RecipePagination currentPage={currentPage} totalPage={totalPage} />
+      <div className="flex w-full flex-col items-center gap-3">
+        {/* 🚀 onPageChange 콜백 전달해서 페이지 전환 이벤트 연결 */}
+        <RecipePagination
+          currentPage={currentPage}
+          totalPage={totalPage}
+          onPageChange={newPage => setCurrentPage(newPage)}
+        />
 
         <div
           ref={scrollRef}
