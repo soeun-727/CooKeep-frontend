@@ -5,14 +5,14 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import RecipeHeader from "@/components/recipe/main/RecipeHeader";
 import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
-import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
-import RecipePagination from "@/components/recipe/main/result/RecipePagination";
-import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
-import LoadingScreen from "@/components/ui/LoadingScreen";
+import RecipePagination from "@/components/recipe/main/result/RecipePagination";
+import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
+import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
 
 import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function RecipeResultPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -78,10 +78,10 @@ export default function RecipeResultPage() {
   const currentData = recipeHistory[currentPage - 1];
 
   return (
-    <div className="flex w-full flex-col gap-3 px-4">
+    <div className="flex w-full flex-col px-4">
       <RecipeHeader title="오늘의 레시피" />
 
-      <div className="flex w-full flex-col items-center gap-3">
+      <div className="mt-13 flex w-full flex-col items-center gap-3">
         <RecipePagination currentPage={currentPage} totalPage={totalPage} />
 
         <div
@@ -98,9 +98,12 @@ export default function RecipeResultPage() {
                 recipe.ingredients.additional_ingredients || [];
               const optionalIngredients =
                 recipe.ingredients.optional_ingredients || [];
-              const steps = recipe.steps.map((step: string, idx: number) => ({
+
+              const rawSteps = recipe.steps || [];
+              const steps = rawSteps.map((step: any, idx: number) => ({
                 order: idx + 1,
-                description: step,
+                description:
+                  typeof step === "string" ? step : step.content || "",
               }));
 
               const rawFeature = difficulty || currentData.feature || "ANY";
