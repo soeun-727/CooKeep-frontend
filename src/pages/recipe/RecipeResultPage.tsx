@@ -5,14 +5,14 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import RecipeHeader from "@/components/recipe/main/RecipeHeader";
 import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
+import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
+import RecipePagination from "@/components/recipe/main/result/RecipePagination";
+import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
-import RecipePagination from "@/components/recipe/main/result/RecipePagination";
-import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
-import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function RecipeResultPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
