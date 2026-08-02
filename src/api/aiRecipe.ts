@@ -38,13 +38,20 @@ export const generateAiRecipe = async (
   return extractData<AiRecipeResponse>(response);
 };
 
+export interface CompleteAiRecipeResponse {
+  reward?: {
+    types?: string[];
+  };
+}
+
 /** [POST] AI 레시피 채택 (MAIN05-03) */
-export const completeAiRecipe = async (sessionId: number) => {
-  const response = await api.post<ApiResponseEnvelope<void>>(
-    `/api/users/me/ai/recipes/${sessionId}/complete`,
-    { sessionId },
-  );
-  return extractData<void>(response);
+export const completeAiRecipe = async (
+  sessionId: number,
+): Promise<CompleteAiRecipeResponse> => {
+  const response = await api.post<
+    ApiResponseEnvelope<CompleteAiRecipeResponse>
+  >(`/api/users/me/ai/recipes/${sessionId}/complete`, { sessionId });
+  return extractData<CompleteAiRecipeResponse>(response);
 };
 
 /** [POST] AI 레시피 재요청 (MAIN05-02) - ⚠️ 경로 수정됨 */
@@ -81,10 +88,6 @@ export const retryRandomAiRecipe = async (
   );
   return extractData<AiRecipeResponse>(response);
 };
-
-/* ==========================================================================
-   💡 명세에 추가된 [AI 레시피 대화 세션 API (MAIN06, MAIN07)] 
-   ========================================================================== */
 
 /** [GET] AI 레시피 대화 세션 목록 조회 (MAIN06-1) */
 export const getAiRecipeSessions = async () => {
