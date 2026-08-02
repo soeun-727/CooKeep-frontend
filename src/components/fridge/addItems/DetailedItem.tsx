@@ -5,8 +5,8 @@ import type { MasterItem } from "@/stores/useAddIngredientStore";
 
 import DeleteIcon from "@/assets/fridge/delete.svg?react";
 import MemoIcon from "@/assets/fridge/memo.svg?react";
-import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 import RenameIcon from "@/assets/icons/rename.svg?react";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
 import EditModal from "@/components/ui/EditModal";
 

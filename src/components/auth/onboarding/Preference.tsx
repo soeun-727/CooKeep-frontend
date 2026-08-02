@@ -9,10 +9,10 @@ import { useOnboardingStore } from "@/stores/useOnboardingStore";
 import { SearchIcon } from "@/assets/index";
 import xIcon from "@/assets/onboarding/x.svg";
 
+import LoadingScreen from "@/components/ui/LoadingScreen";
 import TextField from "@/components/ui/TextField";
 
 import InputModal from "./InputModal";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function Preference() {
   const [searchTerm, setSearchTerm] = useState("");
