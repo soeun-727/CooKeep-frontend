@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 
 import ViewAllHeader from "@/components/cookeeps/lists/ViewAllHeader";
-import ViewListHeader from "@/components/cookeeps/lists/ViewListHeader";
 import { BackHeader } from "@/components/ui/BackHeader";
+import RecipeSearchField from "@/components/cookeeps/recipe/RecipeSearchField";
 
 export default function ListLayout() {
   const location = useLocation();
@@ -26,7 +26,7 @@ export default function ListLayout() {
     ? "좋아요한 레시피"
     : isBookmarked
       ? "저장한 레시피"
-      : "레시피 보기";
+      : "레시피 전체보기";
 
   // 라우트 변경 시 스크롤 초기화
   useEffect(() => {
@@ -34,7 +34,11 @@ export default function ListLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex h-[100dvh] flex-col gap-6 overflow-hidden px-4">
+    <div
+      className={`flex h-[100dvh] flex-col overflow-hidden px-4 ${
+        isViewAll ? "gap-4" : "gap-6"
+      }`}
+    >
       {/* 항상 고정 */}
       <div className="flex flex-col gap-3">
         <BackHeader title={backHeaderTitle} />
@@ -52,10 +56,7 @@ export default function ListLayout() {
         )}
 
         {isViewList && (
-          <ViewListHeader
-            searchTerm={searchTerm}
-            onSearchChange={setSearchTerm}
-          />
+          <RecipeSearchField value={searchTerm} onChange={setSearchTerm} />
         )}
       </div>
       <main
