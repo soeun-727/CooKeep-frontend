@@ -37,7 +37,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   });
 
   const currentMonth = new Date().getMonth() + 1;
-  const isRankingEmpty = users.length === 0;
+  const isRankingEmpty = users.length <= 2;
 
   return (
     <div className="flex w-full flex-col gap-2 self-stretch">
