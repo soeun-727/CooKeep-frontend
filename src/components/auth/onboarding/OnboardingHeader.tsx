@@ -18,8 +18,8 @@ export default function OnboardingHeader({
 
   return (
     <header className="bg-background z-50 flex w-full max-w-[450px] items-center justify-between py-2">
-      <button type="button" onClick={() => handleBack()}>
-        <img src={backIcon} alt="뒤로 가기" className="h-5 w-5" />
+      <button type="button" onClick={() => handleBack()} className="h-10 w-10">
+        <img src={backIcon} alt="뒤로 가기" className="h-5" />
       </button>
 
       <button

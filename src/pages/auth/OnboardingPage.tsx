@@ -132,7 +132,7 @@ export default function Onboarding() {
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
 
   return (
-    <div className="bg-background flex h-[100dvh] w-full flex-col items-center gap-15 px-4">
+    <div className="bg-background flex h-screen w-full flex-col items-center gap-15 px-4">
       {step === 0 ? (
         <AuthHeader />
       ) : (

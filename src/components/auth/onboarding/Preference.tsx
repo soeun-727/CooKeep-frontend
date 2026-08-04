@@ -4,11 +4,12 @@ import {
   OnboardingIngredient,
   getOnboardingIngredients,
 } from "../../../api/onboarding";
-import { SearchIcon, loadingChar } from "../../../assets";
+import { SearchIcon } from "../../../assets";
 import xIcon from "../../../assets/onboarding/x.svg";
 import { useOnboardingStore } from "../../../stores/useOnboardingStore";
 import TextField from "../../ui/TextField";
 import InputModal from "./InputModal";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function Preference() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -100,25 +101,19 @@ export default function Preference() {
     );
   };
 
-  if (isLoading)
-    return (
-      <div className="mt-50 flex flex-col items-center justify-center text-center">
-        <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-body2 text-zinc-500">로딩 중...</div>
-      </div>
-    );
+  if (isLoading) return <LoadingScreen />;
 
   return (
-    <div className="flex w-full flex-col items-center">
-      <div className="mt-[46px] w-[361px]">
-        <h1 className="typo-h1 !text-[22px]">먹지 못하는 식재료가 있나요?</h1>
-        <h3 className="typo-h3 text-gray-500">
+    <div className="flex w-full flex-col items-center gap-6">
+      <div className="w-full gap-2">
+        <h1 className="typo-h2">먹지 못하는 식재료가 있나요?</h1>
+        <h3 className="typo-l text-gray-500">
           해당 재료는 레시피에서 제외할게요
         </h3>
       </div>
-      <div className="relative mt-[46px] flex flex-col items-center">
+      <div className="relative flex w-full flex-col items-center">
         <div
-          className={`relative w-[361px] transition-all duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} [&>div>div]:!border-gray-10 [&>div>div]:bg-gray-0 [&_input]:bg-gray-0 typo-body2 overflow-hidden [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-[#7D7D7D] [&_p]:hidden [&>div>div]:border ${
+          className={`relative w-full ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} [&>div>div]:!border-gray-10 [&>div>div]:bg-gray-0 [&_input]:bg-gray-0 typo-body2 overflow-hidden [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-[#7D7D7D] [&_p]:hidden [&>div>div]:border ${
             isDropdownOpen
               ? `[&>div>div]:rounded-b-none [&>div>div]:!border-b-0`
               : ""
@@ -145,7 +140,7 @@ export default function Preference() {
         </div>
 
         {/* 선택된 재료 */}
-        <div className="mt-[18px] flex w-[361px] flex-wrap gap-[6px]">
+        <div className="mt-[18px] flex w-full flex-wrap gap-[6px]">
           {selectedIngredients.map(ingredient => (
             <div
               key={ingredient.defaultIngredientId}
@@ -161,7 +156,7 @@ export default function Preference() {
         </div>
 
         {hasText && filteredIngredients.length > 0 && (
-          <ul className="typo-body2 absolute top-12 z-50 max-h-[200px] w-[361px] overflow-y-auto rounded-b-[6px] border !border-t-0 border-[#DDDDDD] bg-white">
+          <ul className="typo-body2 absolute top-12 z-50 max-h-[200px] w-full overflow-y-auto rounded-b-[6px] border !border-t-0 border-[#DDDDDD] bg-white">
             {filteredIngredients.map(item => (
               <li
                 key={item.defaultIngredientId}
