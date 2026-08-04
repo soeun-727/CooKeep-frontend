@@ -1,33 +1,34 @@
-// src/pages/settings/sections/ProfileSection.tsx
 import { useEffect, useRef, useState } from "react";
-import SettingsInputItem from "../components/SettingsInputItem";
+
+import { MyProfileResponse, updateNickname } from "@/api/user";
 import axios from "axios";
-import { MyProfileResponse, updateNickname } from "../../../api/user";
+
+import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
+import SingleButtonModal from "@/components/ui/SingleButtonModal";
 
 const MASKED_PASSWORD = "********";
 
-type ProfileInfo = {
+interface ProfileInfo {
   nickname: string;
-  phone: string;
   email: string;
-};
+}
 
-type Props = {
+interface ProfileSectionProps {
   profile: MyProfileResponse["data"];
-};
+}
 
-export default function ProfileSection({ profile }: Props) {
+export default function ProfileSection({ profile }: ProfileSectionProps) {
   const MAX_NICKNAME_LENGTH = 10;
 
   const [isEditingNickname, setIsEditingNickname] = useState(false);
   const nicknameInputRef = useRef<HTMLInputElement>(null);
+  const [openDuplicateModal, setOpenDuplicateModal] = useState(false);
 
   const isSocialLogin = profile.authProvider !== "LOCAL";
 
   // 최초 1회 초기화
   const [account, setAccount] = useState<ProfileInfo>(() => ({
     nickname: profile.Nickname || "",
-    phone: profile.phoneNumber || "",
     email: profile.email || "",
   }));
 
@@ -52,16 +53,17 @@ export default function ProfileSection({ profile }: Props) {
       await updateNickname(trimmedNickname);
 
       // 4. 내 로컬 상태도 깔끔한 값으로 동기화
-      setAccount((prev) => ({ ...prev, nickname: trimmedNickname }));
+      setAccount(prev => ({ ...prev, nickname: trimmedNickname }));
 
       setIsEditingNickname(false);
     } catch (err) {
       if (axios.isAxiosError(err)) {
+        const status = err.response?.status;
         const code = err.response?.data?.code;
 
-        if (code === "DUPLICATE_NICKNAME") {
-          alert("이미 사용 중인 닉네임입니다.");
-        } else if (code === "UNAUTHORIZED") {
+        if (status === 409 || code === "USER-001") {
+          setOpenDuplicateModal(true);
+        } else if (status === 401) {
           alert("로그인이 필요합니다.");
         } else {
           alert("닉네임 변경 중 오류가 발생했습니다.");
@@ -72,81 +74,45 @@ export default function ProfileSection({ profile }: Props) {
     }
   };
 
-  const formatPhoneNumber = (phone: string) => {
-    if (!phone) return "";
-    // 숫자만 남기기
-    const digits = phone.replace(/[^\d]/g, "");
-    // 11자리 기준 (010-1234-5678)
-    return digits.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
-  };
-
   return (
     <section className="px-4">
       <div className="flex flex-col gap-[22px]">
         {/* ===== 닉네임 (inline edit) ===== */}
-        <div className="flex flex-col h-20 gap-2 w-full relative">
-          <span className="typo-body text-[#202020] px-3">닉네임</span>
+        <div className="relative flex h-20 w-full flex-col gap-2">
+          <span className="typo-body text-gray-80 px-3">닉네임</span>
 
           <div
-            className={`
-            flex items-center justify-between w-full h-[44px] px-3 border rounded-[6px] transition-colors
-            ${isNicknameError ? "border-[#D91F1F]" : "border-[#DDD]"}
-          `}
+            className={`flex h-[44px] w-full items-center justify-between rounded-[6px] border px-3 transition-colors ${isNicknameError ? "border-semantic-negative" : "border-gray-10"} `}
           >
             {isEditingNickname ? (
               <>
                 <input
                   ref={nicknameInputRef}
                   value={account?.nickname || ""}
-                  onChange={(e) =>
-                    setAccount((prev) =>
+                  onChange={e =>
+                    setAccount(prev =>
                       prev ? { ...prev, nickname: e.target.value } : prev,
                     )
                   }
-                  className="
-                    flex-1
-                    h-full
-                    w-45
-                    outline-none
-                    typo-body2
-                    text-[#202020]
-                  "
+                  className="typo-body2 text-gray-80 h-full w-45 flex-1 outline-none"
                 />
                 <button
                   onClick={handleNicknameSave}
                   disabled={!account.nickname?.trim() || isNicknameError}
-                  className="
-                    w-[115px]
-                    px-[18px]
-                    py-1
-                    rounded-full
-                    bg-[#202020]
-                    text-white
-                    typo-caption
-                    font-medium
-                  "
+                  className="bg-gray-80 text-gray-0 typo-caption w-[115px] rounded-full px-[18px] py-1 font-medium"
                 >
                   변경 완료
                 </button>
               </>
             ) : (
               <>
-                <span className="typo-body2 text-[#AEAEAE]">
+                <span className="typo-body2 text-gray-50">
                   {account.nickname}
                 </span>
 
                 <button
                   onClick={() => setIsEditingNickname(true)}
-                  className="
-                    w-[115px]
-                    px-[18px]
-                    py-1
-                    rounded-full
-                    bg-[#202020]
-                    text-white
-                    typo-caption
-                    font-medium
-                  "
+                  className="bg-gray-80 text-gray-0 typo-caption w-[115px] rounded-full px-[18px] py-1 font-medium"
                 >
                   닉네임 변경
                 </button>
@@ -158,14 +124,14 @@ export default function ProfileSection({ profile }: Props) {
               <>
                 {/* 1. 글자 수 초과 에러 */}
                 {isNicknameError && (
-                  <span className="text-[#D91F1F] typo-caption leading-0">
-                    닉네임은 {MAX_NICKNAME_LENGTH}글자 이하로 입력해주세요
+                  <span className="text-semantic-negative typo-caption leading-0">
+                    {MAX_NICKNAME_LENGTH}글자 이내로 설정해주세요
                   </span>
                 )}
 
                 {/* 2. 빈 값 에러 (추가) */}
                 {!account.nickname.trim() && (
-                  <span className="text-[#D91F1F] typo-caption leading-0">
+                  <span className="text-semantic-negative typo-caption leading-0">
                     닉네임을 입력해주세요
                   </span>
                 )}
@@ -173,14 +139,6 @@ export default function ProfileSection({ profile }: Props) {
             )}
           </div>
         </div>
-
-        <SettingsInputItem
-          label="휴대전화"
-          value={isSocialLogin ? "" : formatPhoneNumber(account.phone)}
-          buttonText="휴대폰 번호 변경"
-          to="/settings/phone"
-          disabled={isSocialLogin}
-        />
 
         <SettingsInputItem
           label="이메일"
@@ -199,6 +157,12 @@ export default function ProfileSection({ profile }: Props) {
           disabled={isSocialLogin}
         />
       </div>
+      {openDuplicateModal && (
+        <SingleButtonModal
+          message="이미 사용 중인 닉네임입니다."
+          onClose={() => setOpenDuplicateModal(false)}
+        />
+      )}
     </section>
   );
 }

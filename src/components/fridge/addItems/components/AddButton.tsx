@@ -1,9 +1,10 @@
-// src/components/fridge/FloatingAddButton.tsx
-import { useNavigate } from "react-router-dom";
-import { useIngredientStore } from "../../../../stores/useIngredientStore";
-import plusIcon from "../../../../assets/fridge/items/plus.svg";
-import inactivePlusIcon from "../../../../assets/fridge/items/plusInactive.svg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useIngredientStore } from "@/stores/useIngredientStore";
+
+import plusIcon from "@/assets/fridge/items/plus.svg";
+import inactivePlusIcon from "@/assets/fridge/items/plusInactive.svg";
 
 export default function AddButton() {
   const navigate = useNavigate();
@@ -17,23 +18,12 @@ export default function AddButton() {
       onClick={() => navigate("/fridge/add")}
       onTouchStart={() => setIsSelected(true)}
       onTouchEnd={() => setIsSelected(false)}
-      className="
-        absolute
-        bottom-[calc(84px+env(safe-area-inset-bottom))] 
-        right-[31px]
-        z-40
-        w-12 h-12 bg-black
-        rounded-full flex items-center justify-center
-        active:scale-95 
-        active:bg-stone-300
-        transition-all
-        shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25)]
-      "
+      className="active:bg-gray-30 shadow-add-button absolute right-[31px] bottom-[calc(84px+env(safe-area-inset-bottom))] z-40 flex h-12 w-12 items-center justify-center rounded-full bg-black active:scale-95"
     >
       <img
         src={isSelected ? inactivePlusIcon : plusIcon}
         alt="add"
-        className="w-6 h-6"
+        className="h-6 w-6"
       />
     </button>
   );

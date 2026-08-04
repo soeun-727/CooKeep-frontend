@@ -1,10 +1,9 @@
-// src/pages/settings/components/SettingsLinkItem.tsx
 import { useNavigate } from "react-router-dom";
 
-type SettingsLinkItemProps = {
+interface SettingsLinkItemProps {
   label: string;
   to: string;
-};
+}
 
 export default function SettingsLinkItem({ label, to }: SettingsLinkItemProps) {
   const navigate = useNavigate();
@@ -12,15 +11,7 @@ export default function SettingsLinkItem({ label, to }: SettingsLinkItemProps) {
   return (
     <button
       onClick={() => navigate(to)}
-      className="
-        flex justify-center items-center
-        w-full max-w-[164px]
-        pt-[12px] pb-[12px]
-        rounded-[10px]
-        bg-[var(--color-green)]
-        text-white
-        typo-body
-      "
+      className="bg-green text-gray-0 typo-body flex w-full items-center justify-center rounded-[10px] pt-[12px] pb-[12px]"
     >
       {label}
     </button>

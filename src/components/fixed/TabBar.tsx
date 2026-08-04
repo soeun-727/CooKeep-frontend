@@ -1,54 +1,66 @@
-import Tab from "./Tab";
-import fridgeIcon from "../../assets/fixed/fridge.svg";
-import fridgeOnIcon from "../../assets/fixed/fridgeTab.svg";
-import recipeIcon from "../../assets/fixed/recipe.svg";
-import recipeOnIcon from "../../assets/fixed/recipeTab.svg";
-import cookeepsIcon from "../../assets/fixed/cookeeps.svg";
-import cookeepsOnIcon from "../../assets/fixed/cookeepsTab.svg";
-import mycookeepIcon from "../../assets/fixed/mycookeep.svg";
-import mycookeepOnIcon from "../../assets/fixed/mycookeepTab.svg";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+
+import CookeepsIcon from "@/assets/fixed/cookeepsTab.svg?react";
+import FridgeIcon from "@/assets/fixed/fridgeTab.svg?react";
+import MycookeepIcon from "@/assets/fixed/mycookeepTab.svg?react";
+import RecipeIcon from "@/assets/fixed/recipeTab.svg?react";
+
+import Tab from "./Tab";
 
 interface TabBarProps {
   selectedTab: string;
   onSelect: (tabName: string) => void;
 }
 
+const TABS = [
+  { title: "냉장고", Icon: FridgeIcon },
+  { title: "레시피", Icon: RecipeIcon },
+  { title: "쿠킵스", Icon: CookeepsIcon },
+  { title: "마이쿠킵", Icon: MycookeepIcon },
+] as const;
+
+const ROUTE_MAP: Record<string, string> = {
+  냉장고: "/fridge",
+  레시피: "/recipe",
+  쿠킵스: "/cookeeps",
+};
+
 export default function TabBar({ selectedTab, onSelect }: TabBarProps) {
   const navigate = useNavigate();
-  const handleSelect = (name: string) => {
-    onSelect(name);
 
-    if (name === "냉장고") navigate("/fridge");
-    else if (name === "레시피") navigate("/recipe");
-    else if (name === "쿠킵스") navigate("/cookeeps");
-    else if (name === "MY쿠킵") {
-      navigate("/mycookeep", {
-        state: { fromTab: true },
-      });
-    }
-  };
-
-  const tabs = [
-    { title: "냉장고", image: fridgeIcon, selectedImage: fridgeOnIcon },
-    { title: "레시피", image: recipeIcon, selectedImage: recipeOnIcon },
-    { title: "쿠킵스", image: cookeepsIcon, selectedImage: cookeepsOnIcon },
-    { title: "MY쿠킵", image: mycookeepIcon, selectedImage: mycookeepOnIcon },
-  ];
+  const handleSelect = useCallback(
+    (name: string) => {
+      onSelect(name);
+      if (name === "마이쿠킵") {
+        navigate("/mycookeep", { state: { fromTab: true } });
+      } else {
+        navigate(ROUTE_MAP[name]);
+      }
+    },
+    [navigate, onSelect],
+  );
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-150 mx-auto w-full max-w-[450px] bg-white border-t border-gray-100 pb-[env(safe-area-inset-bottom)]">
-      <div className="h-14 flex justify-around items-center">
-        {tabs.map((tab) => (
-          <Tab
-            key={tab.title}
-            image={tab.image}
-            selectedImage={tab.selectedImage}
-            title={tab.title}
-            isSelected={selectedTab === tab.title}
-            onClick={() => handleSelect(tab.title)}
-          />
-        ))}
+    <nav className="bg-gray-0 border-gray-0 pb-sab fixed right-0 bottom-0 left-0 z-[50] mx-auto w-full max-w-[450px] border-t">
+      <div className="flex h-14 items-center justify-around">
+        {TABS.map(tab => {
+          const isSelected = selectedTab === tab.title;
+          const iconColor = isSelected
+            ? "var(--color-green)"
+            : "var(--color-gray-30)";
+
+          return (
+            <Tab
+              key={tab.title}
+              title={tab.title}
+              isSelected={isSelected}
+              onClick={handleSelect}
+              Icon={tab.Icon}
+              iconColor={iconColor}
+            />
+          );
+        })}
       </div>
     </nav>
   );

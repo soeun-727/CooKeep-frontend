@@ -1,5 +1,6 @@
-import React from "react";
-import deleteIcon from "../../../../assets/recipe/delete.svg";
+import { memo } from "react";
+
+import deleteIcon from "@/assets/icons/delete.svg";
 
 interface ItemProps {
   image: string;
@@ -10,43 +11,42 @@ interface ItemProps {
   onDelete?: (e: React.MouseEvent) => void;
 }
 
-const Item: React.FC<ItemProps> = React.memo(
-  ({
-    image,
-    name,
-    isSelected = false,
-    isCustom = false,
-    onSelect,
-    onDelete,
-  }) => {
-    return (
-      <button
-        type="button"
-        onClick={onSelect}
-        className={`relative flex flex-col w-[90px] h-[90px] rounded-[6px] border items-center justify-center px-4 py-[13px]
-        ${isSelected ? "bg-[var(--color-green-light)] border-[var(--color-green-deep)]" : "bg-white border-[#D1D1D1]"}`}
-      >
-        {isCustom && (
-          <img
-            src={deleteIcon}
-            alt="delete"
-            className="absolute right-[10px] top-[9px] h-3 z-10 cursor-pointer"
-            onClick={(e) => {
-              e.stopPropagation();
-              onDelete?.(e);
-            }}
-          />
-        )}
-        <div className="flex flex-col gap-[2px] items-center justify-center">
-          <img src={image} className="w-12 h-12" />
+function Item({
+  image,
+  name,
+  isSelected = false,
+  isCustom = false,
+  onSelect,
+  onDelete,
+}: ItemProps) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className={`relative flex h-[90px] w-[90px] flex-col items-center justify-center rounded-[6px] border px-4 py-[13px] ${isSelected ? "bg-green-light border-green-deep" : "bg-gray-0 border-gray-10"}`}
+    >
+      {isCustom && (
+        <img
+          src={deleteIcon}
+          alt="delete"
+          className="absolute top-[9px] right-[10px] z-10 h-3 cursor-pointer"
+          onClick={e => {
+            e.stopPropagation();
+            onDelete?.(e);
+          }}
+        />
+      )}
+      <div className="flex flex-col items-center justify-center gap-[2px]">
+        <img src={image} className="h-12 w-12" />
 
-          <span className="typo-caption !font-bold truncate whitespace-nowrap w-[58px]">
-            {name}
-          </span>
-        </div>
-      </button>
-    );
-  },
-);
-Item.displayName = "Item";
-export default Item;
+        <span
+          className={`typo-m-strong w-[58px] truncate whitespace-nowrap ${isSelected ? "text-green-deep" : "text-gray-80"}`}
+        >
+          {name}
+        </span>
+      </div>
+    </button>
+  );
+}
+
+export default memo(Item);

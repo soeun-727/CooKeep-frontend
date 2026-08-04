@@ -1,6 +1,7 @@
+import { useEffect, useRef } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import BackHeader from "../components/ui/BackHeader";
-import { useRef } from "react";
+
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function SettingsLayout() {
   const navigate = useNavigate();
@@ -8,6 +9,14 @@ export default function SettingsLayout() {
 
   // 최초 진입 경로 저장
   const initialFrom = useRef(location.state?.from);
+
+  // 스크롤 컨테이너 참조
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  // 페이지 변경 시 스크롤 맨 위로
+  useEffect(() => {
+    scrollRef.current?.scrollTo(0, 0);
+  }, [location.pathname]);
 
   const handleBack = () => {
     if (location.pathname === "/settings") {
@@ -22,15 +31,10 @@ export default function SettingsLayout() {
   };
 
   return (
-    // <div className="min-h-screen">
-    //   <BackHeader title="회원정보" onBack={handleBack} />
-    //   <Outlet />
-    // </div>
-    <div className="h-screen flex flex-col">
+    <div className="flex h-screen flex-col">
       <BackHeader title="회원정보" onBack={handleBack} />
 
-      {/* 여기가 핵심 */}
-      <div className="flex-1 overflow-y-auto no-scrollbar">
+      <div className="no-scrollbar flex-1 overflow-y-auto">
         <Outlet />
       </div>
     </div>

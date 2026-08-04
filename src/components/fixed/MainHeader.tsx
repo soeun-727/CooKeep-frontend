@@ -1,13 +1,16 @@
-// src/components/auth/AuthHeader.tsx
-import { mainLogo } from "../../assets";
-import settings from "../../assets/fixed/settings.svg";
 import { useNavigate } from "react-router-dom";
-import backIcon from "../../assets/back.svg";
-import { useIngredientStore } from "../../stores/useIngredientStore";
+
+import { useIngredientStore } from "@/stores/useIngredientStore";
+
+import backIcon from "@/assets/back.svg";
+import settings from "@/assets/fixed/settings.svg";
+import { mainLogo } from "@/assets/index";
+
 interface MainHeaderProps {
   isAllView: boolean;
 }
-const MainHeader = ({ isAllView }: MainHeaderProps) => {
+
+export default function MainHeader({ isAllView }: MainHeaderProps) {
   const navigate = useNavigate();
   const { setViewCategory } = useIngredientStore();
   const handleSettings = () => {
@@ -20,10 +23,10 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
   };
 
   return (
-    <header className="top-0 left-0 z-50 pointer-events-none w-full max-w-[450px]">
-      <div className="mx-auto max-w-[450px] pointer-events-auto">
-        <div className="h-12 flex items-center justify-between pb-1 bg-[#FAFAFA]">
-          <div className="flex-1 flex">
+    <header className="pointer-events-none fixed top-0 z-50 w-full max-w-[450px]">
+      <div className="pointer-events-auto mx-auto max-w-[450px]">
+        <div className="bg-background flex items-center justify-between">
+          <div className="flex h-12 flex-1">
             {isAllView ? (
               <button onClick={handleBack}>
                 <img className="ml-[18px] h-9" src={backIcon} />
@@ -32,12 +35,12 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
               <img
                 src={mainLogo}
                 alt="CooKeep logo"
-                className="w-24 object-contain pb-1 ml-[31px] mt-1"
+                className="ml-[31px] w-24 object-contain pb-1"
               />
             )}
           </div>
 
-          <div className="w-9 h-9 flex items-center justify-end mr-[15px]">
+          <div className="mr-[15px] flex h-9 w-9 items-center justify-end">
             <button className="" onClick={handleSettings}>
               <img src={settings} alt="settings" className="w-9" />
             </button>
@@ -46,6 +49,4 @@ const MainHeader = ({ isAllView }: MainHeaderProps) => {
       </div>
     </header>
   );
-};
-
-export default MainHeader;
+}

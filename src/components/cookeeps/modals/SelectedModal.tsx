@@ -1,6 +1,4 @@
-import React from "react";
-
-interface Props {
+interface SelectedModalProps {
   isOpen: boolean;
   onClose: () => void;
   plant: string;
@@ -9,50 +7,45 @@ interface Props {
   onConfirm: () => void;
 }
 
-const SelectedModal: React.FC<Props> = ({
+export default function SelectedModal({
   isOpen,
   onClose,
   plant,
   image,
   description,
   onConfirm,
-}) => {
+}: SelectedModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]">
+    <div className="bg-black-overlay fixed inset-0 z-[150] flex items-center justify-center">
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
       {/* modal */}
-      <div className="relative w-70 h-64 bg-white rounded-[10px] flex flex-col items-center pt-[35px] px-7 pb-[25x]">
+      <div className="bg-gray-0 relative flex h-64 w-70 flex-col items-center rounded-[10px] px-7 pt-[35px] pb-[25px]">
         <h2 className="typo-body text-center">
-          <span className="text-(--color-green-deep)">{plant} </span>
+          <span className="text-green-deep">{plant} </span>
           <span>을/를 키워볼까요?</span>
         </h2>
         <img src={image} alt={plant} className="w-25 object-contain" />
-        <div className="flex flex-col items-center -mt-2">
-          <div
-            className="w-0 h-0 border-gray-200 
-            border-l-[6px] border-l-transparent
-            border-r-[6px] border-r-transparent
-            border-b-[8px] "
-          />
-          <div className="bg-gray-200 rounded-[3px] h-[14px] flex items-center justify-center px-[10px]">
-            <span className="text-center text-zinc-500 text-[8px] h-[10px]">
+        <div className="-mt-2 flex flex-col items-center">
+          <div className="h-0 w-0 border-r-[6px] border-b-[8px] border-l-[6px] border-gray-200 border-r-transparent border-l-transparent" />
+          <div className="flex items-center justify-center rounded-[3px] bg-gray-200 px-[10px] py-[3px]">
+            <span className="text-center text-[8px] leading-tight text-gray-50">
               {description}
             </span>
           </div>
         </div>
-        <div className="flex gap-2 mt-4">
+        <div className="mt-4 flex gap-2">
           <button
             onClick={onConfirm}
-            className="typo-label w-27 h-11 text-white bg-(--color-green) rounded-[10px]"
+            className="typo-label text-gray-0 bg-green h-11 w-27 rounded-[10px]"
           >
             시작하기
           </button>
           <button
             onClick={onClose}
-            className="typo-label w-27 h-11 text-white bg-black rounded-[10px]"
+            className="typo-label text-gray-0 bg-gray-80 h-11 w-27 rounded-[10px]"
           >
             다시 고를래요
           </button>
@@ -60,6 +53,4 @@ const SelectedModal: React.FC<Props> = ({
       </div>
     </div>
   );
-};
-
-export default SelectedModal;
+}

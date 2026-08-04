@@ -1,11 +1,15 @@
-import MyCookeepHeader from "./MyCookeepHeader";
-import { groundImg, refreshIcon, renameIcon } from "../../../assets";
+import { memo, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import React, { useCallback, useEffect, useState } from "react";
+
+import { type ProfileData, getProfileInfo } from "@/api/user";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import { groundImg, refreshIcon, renameIcon } from "@/assets/index";
+
+import { GOAL_TYPE_MAP } from "@/utils/mapping";
+
 import ProfileEditModal from "../modals/ProfileEditModal";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
-import { getProfileInfo, type ProfileData } from "../../../api/user";
-import { GOAL_TYPE_MAP } from "../../../utils/mapping";
+import MyCookeepHeader from "./MyCookeepHeader";
 
 function Profile() {
   const navigate = useNavigate();
@@ -16,19 +20,6 @@ function Profile() {
   const [showBubble, setShowBubble] = useState(false);
   const [imgLoaded, setImgLoaded] = useState(false);
 
-  // const fetchProfile = useCallback(async () => {
-  //   // setIsLoading(true);
-  //   try {
-  //     const response = await getProfileInfo();
-  //     if (response.status === "OK") {
-  //       setProfile(response.data);
-  //     }
-  //   } catch (error) {
-  //     console.error("프로필 로딩 실패:", error);
-  //   } finally {
-  //     // setIsLoading(false);
-  //   }
-  // }, []);
   const fetchProfile = useCallback(async () => {
     try {
       const response = await getProfileInfo();
@@ -41,16 +32,13 @@ function Profile() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   fetchProfile();
-  // }, [fetchProfile, location.key]);
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchProfile();
   }, [fetchProfile]);
 
   useEffect(() => {
-    if (profile && !profile.weeklyGoal) {
+    if (profile && !profile.weeklyGoal?.goalActionType) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowBubble(true);
       const timer = setTimeout(() => {
@@ -61,8 +49,8 @@ function Profile() {
     }
   }, [profile]); //isLoading, , location.key
 
-  const setProfilePlant = useCookeepsStore((s) => s.setProfilePlant);
-  const setProfileAuto = useCookeepsStore((s) => s.setProfileAuto);
+  const setProfilePlant = useCookeepsStore(s => s.setProfilePlant);
+  const setProfileAuto = useCookeepsStore(s => s.setProfileAuto);
 
   const handleSaveProfile = async (userPlantId: number) => {
     await setProfilePlant(userPlantId);
@@ -70,17 +58,6 @@ function Profile() {
     await fetchProfile();
     setIsEditModalOpen(false);
   };
-
-  // if (isLoading)
-  //   return (
-  //     <div className="flex justify-center pt-20">유저 데이터 로딩 중...</div>
-  //   );
-  // if (!profile)
-  //   return (
-  //     <div className="flex justify-center pt-20">
-  //       데이터를 불러올 수 없습니다.
-  //     </div>
-  //   );
 
   const currentGoalEntry = Object.entries(GOAL_TYPE_MAP).find(
     ([, g]) => g.value === profile?.weeklyGoal?.goalActionType,
@@ -91,7 +68,7 @@ function Profile() {
     : "목표를 설정해주세요";
   if (!profile) {
     return (
-      <div className="w-full h-[260px] bg-gradient-to-b from-[#32E389] to-[#1FC16F] rounded-b-[36px] animate-pulse" />
+      <div className="bg-green-gradient h-[260px] w-full animate-pulse rounded-b-[36px]" />
     );
   }
   const goalId = currentGoalEntry ? currentGoalEntry[0] : "cook";
@@ -101,32 +78,25 @@ function Profile() {
     <>
       <div className="flex flex-col items-center justify-center">
         {/* 헤더 섹션 */}
-        <div className="w-full h-[260px] bg-gradient-to-b from-[#32E389] to-[#1FC16F] rounded-b-[36px] flex flex-col items-center justify-center">
+        <div className="from-green to-green-deep flex h-[260px] w-full flex-col items-center justify-center rounded-b-[36px] bg-gradient-to-b">
           <MyCookeepHeader />
 
-          <div className="flex w-[361px] mt-5 items-center justify-start">
+          <div className="mt-5 flex w-[361px] items-center justify-start">
             {/* 식물 사진 및 수정 버튼 */}
-            <div className="relative w-31 h-31 -ml-[7.5px] shrink-0 inline-block">
-              {/* <img
-                src={profile?.profilePlantImageUrl || groundImg}
-                alt="profileBackground"
-                loading="eager"
-                decoding="async"
-                className="w-full p-6 rounded-full object-cover"
-              /> */}
+            <div className="relative -ml-[7.5px] inline-block h-31 w-31 shrink-0">
               <img
                 src={profile.profilePlantImageUrl || groundImg}
                 alt="profileBackground"
                 loading="eager"
                 decoding="async"
                 onLoad={() => setImgLoaded(true)}
-                className={`w-full p-6 rounded-full object-cover transition-opacity duration-200 ${
+                className={`w-full rounded-full object-cover p-6 transition-opacity duration-200 ${
                   imgLoaded ? "opacity-100" : "opacity-0"
                 }`}
               />
 
               <button
-                className="absolute bottom-4.5 right-5 transition-transform active:scale-90"
+                className="absolute right-5 bottom-4.5 transition-transform active:scale-90"
                 onClick={() => {
                   console.log("프로필 수정 버튼 클릭됨");
                   setIsEditModalOpen(true);
@@ -137,19 +107,19 @@ function Profile() {
             </div>
             {/* 유저 정보 */}
             <div className="flex flex-col">
-              <p className="typo-h2 text-white">
+              <p className="typo-h2 text-gray-0">
                 {profile?.nickname || "쿠킵이"}
               </p>
-              <div className="typo-caption text-white">
+              <div className="typo-caption text-gray-0">
                 <span>
                   지금은 {profile?.growingPlantName || "요리 실력을"} 키우는 중!
                 </span>
               </div>
-              <div className="flex -ml-[0.5px] items-center justify-center gap-[2px] h-5 px-3 bg-[#E6FBEB] rounded-[100px] mt-3 w-fit mx-auto">
-                <span className="typo-caption text-(--color-green) leading-none flex items-center">
+              <div className="bg-green-light mx-auto mt-3 -ml-[0.5px] flex h-5 w-fit items-center justify-center gap-[2px] rounded-[100px] px-3">
+                <span className="typo-caption text-green flex items-center leading-none">
                   {profile?.daysSinceJoined}
                 </span>
-                <span className="typo-caption text-zinc-500 leading-none flex items-center">
+                <span className="typo-caption flex items-center leading-none text-gray-50">
                   일째 CooKeep
                 </span>
               </div>
@@ -157,11 +127,11 @@ function Profile() {
           </div>
 
           {/* 목표 요약 바 */}
-          <div className="bg-[#1DAD64] p-3 w-[361px] h-12 flex items-center justify-between gap-3 rounded-[12px] shadow-[0px_4px_16px_-10px_rgba(0,0,0,0.25)]">
+          <div className="bg-green-deep shadow-search flex h-12 w-[361px] items-center justify-between gap-3 rounded-[12px] p-3">
             <span
-              className={`typo-body2 truncate ${profile?.weeklyGoal ? "text-white" : "text-green-300"}`}
+              className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-gray-0" : "text-green-300"}`}
             >
-              {profile?.weeklyGoal ? (
+              {profile?.weeklyGoal?.goalActionType ? (
                 <>
                   이번 주 목표는... 주 {targetCount}회 {goalLabel}!
                 </>
@@ -178,33 +148,30 @@ function Profile() {
                   },
                 })
               }
-              className="w-6 flex items-center justify-center h-full"
+              className="flex h-full w-6 items-center justify-center"
             >
               <img
                 src={renameIcon}
                 alt="rename"
-                className="brightness-0 invert-[100%] w-4"
+                className="w-4 brightness-0 invert-[100%]"
               />
             </button>
           </div>
 
           {/* 말풍선 섹션: showBubble 여부에 따라 투명도만 조절 */}
-          {!profile?.weeklyGoal && (
+          {!profile?.weeklyGoal?.goalActionType && (
             <div
-              className={`absolute top-[245px] flex justify-center animate-float-bubble shrink-0 transition-opacity duration-1000 ease-in-out ${
-                showBubble ? "opacity-100" : "opacity-0 pointer-events-none"
+              className={`animate-float-bubble absolute top-[245px] flex shrink-0 justify-center transition-opacity duration-1000 ease-in-out ${
+                showBubble ? "opacity-100" : "pointer-events-none opacity-0"
               }`}
             >
               <div
-                className="relative z-10 inline-flex text-center justify-center items-center px-[16px] py-[9px] rounded-[3px] bg-white text-zinc-500 text-[12px] font-medium shadow-[0_4px_16px_rgba(0,0,0,0.13)]"
+                className="bg-gray-0 shadow-container relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium text-gray-50"
                 style={{ width: 227, height: 28 }}
               >
                 이번 주 달성하고 싶은 목표를 세워보세요!
               </div>
-              <div
-                className="absolute top-0 translate-y-[-50%] w-[12px] h-[12px] bg-white rotate-45 z-0"
-                style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.13)" }}
-              />
+              <div className="bg-gray-0 shadow-tooltip-tail absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45" />
             </div>
           )}
         </div>
@@ -220,4 +187,4 @@ function Profile() {
   );
 }
 
-export default React.memo(Profile);
+export default memo(Profile);

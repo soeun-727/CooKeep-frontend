@@ -1,26 +1,41 @@
-import RecipeActionButtons from "../../components/recipe/main/result/RecipeActionButtons";
-import RecipeContentSection from "../../components/recipe/main/result/RecipeContentSection";
-import RecipeHeader from "../../components/recipe/main/RecipeHeader";
-import RecipeTitle from "../../components/recipe/main/result/RecipeTitle";
-import RecipeYoutubeCard from "../../components/recipe/main/result/RecipeYoutubeCard";
-import { useRecipeFlowStore } from "../../stores/useRecipeFlowStore";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
+import RecipeHeader from "@/components/recipe/main/RecipeHeader";
+import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
+import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
+import RecipePagination from "@/components/recipe/main/result/RecipePagination";
+import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
+import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+
+import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
 export default function RecipeResultPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { sessionId } = useParams();
 
-  const { recipeHistory, difficulty, retryCount, generateRecipe, isLoading } =
-    useRecipeFlowStore();
+  const {
+    recipeHistory,
+    difficulty,
+    retryCount,
+    generateRecipe,
+    isLoading,
+    fetchSessionDetail,
+  } = useRecipeFlowStore();
+
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleRetry = async () => {
-    if (isLoading) return;
+    if (isLoading) return <LoadingScreen />;
     if (retryCount >= 5) return;
 
     try {
       await generateRecipe();
 
-      // 생성이 완료된 후 스크롤 이동
       setTimeout(() => {
         scrollRef.current?.scrollTo({
           top: scrollRef.current.scrollHeight,
@@ -33,12 +48,6 @@ export default function RecipeResultPage() {
     }
   };
 
-  const { sessionId } = useParams();
-  // const location = useLocation();
-  const { fetchSessionDetail } = useRecipeFlowStore();
-
-  // URL에 sessionId가 포함되어 들어왔다면 '상세보기 모드'로 간주
-  // (만약 생성 직후에도 URL에 sessionId가 붙는 구조라면, location.state 등을 활용해 구분 가능)
   const isHistoryMode = !!sessionId;
 
   useEffect(() => {
@@ -47,87 +56,118 @@ export default function RecipeResultPage() {
     }
   }, [sessionId]);
 
+  useEffect(() => {
+    if (recipeHistory.length > 0) {
+      setCurrentPage(recipeHistory.length);
+    }
+  }, [recipeHistory.length]);
+
+  if (isLoading || (sessionId && !recipeHistory.length)) {
+    return <LoadingScreen />;
+  }
+
   if (!recipeHistory.length) {
     return (
-      <div className="flex items-center justify-center h-full text-gray-400">
+      <div className="flex h-screen items-center justify-center text-gray-400">
         레시피를 찾을 수 없습니다.
       </div>
     );
   }
 
+  const totalPage = recipeHistory.length;
+  const currentData = recipeHistory[currentPage - 1];
+
   return (
-    <div className="flex flex-col bg-gray-50">
+    <div className="flex w-full flex-col gap-3 px-4">
       <RecipeHeader title="오늘의 레시피" />
 
-      <div
-        ref={scrollRef}
-        className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-9 px-4 pt-[75px]"
-      >
-        {recipeHistory.map((data, index) => {
-          const recipe = data.recipe;
-          if (!recipe || !recipe.ingredients) return null;
+      <div className="flex w-full flex-col items-center gap-3">
+        <RecipePagination currentPage={currentPage} totalPage={totalPage} />
 
-          const isLastRecipe = index === recipeHistory.length - 1;
+        <div
+          ref={scrollRef}
+          className="no-scrollbar flex flex-1 flex-col gap-9 overflow-y-auto"
+        >
+          {currentData &&
+            (() => {
+              const recipe = currentData.recipe;
+              if (!recipe || !recipe.ingredients) return null;
 
-          // 안전하게 데이터 추출
-          const userIngredients = recipe.ingredients.user_ingredients || [];
-          const additionalIngredients =
-            recipe.ingredients.additional_ingredients || [];
-          const optionalIngredients =
-            recipe.ingredients.optional_ingredients || [];
+              const userIngredients = recipe.ingredients.user_ingredients || [];
+              const additionalIngredients =
+                recipe.ingredients.additional_ingredients || [];
+              const optionalIngredients =
+                recipe.ingredients.optional_ingredients || [];
+              const steps = recipe.steps.map((step: string, idx: number) => ({
+                order: idx + 1,
+                description: step,
+              }));
 
-          return (
-            <div
-              key={index}
-              className="flex flex-col gap-2 w-full max-w-[361px] mx-auto"
-            >
-              <RecipeTitle name={recipe.title} />
+              const rawFeature = difficulty || currentData.feature || "ANY";
+              const activeFeature = String(rawFeature).trim().toUpperCase();
 
-              <RecipeContentSection
-                selectedIngredients={userIngredients}
-                requiredIngredients={additionalIngredients}
-                substitutions={optionalIngredients}
-                steps={recipe.steps.map((step, idx) => ({
-                  order: idx + 1,
-                  description: step,
-                }))}
-                difficulty={difficulty || "NORMAL"}
-              />
+              const matchedOption = DIFFICULTY_OPTIONS.find(
+                opt => String(opt.key).trim().toUpperCase() === activeFeature,
+              );
 
-              <RecipeYoutubeCard
-                videos={data.youtubeReferences || []}
-                tags={recipe.youtube_search_queries || []}
-              />
+              const categoryKorean =
+                matchedOption?.desc ||
+                (activeFeature === "ANY" || activeFeature === "RANDOM"
+                  ? "랜덤"
+                  : "추천 요리");
 
-              {isLastRecipe && (
-                <div className="flex flex-col items-center gap-[2px] self-stretch mt-[10px]">
-                  <div className="w-[361px] text-center text-[11px] leading-[14px] text-[#7D7D7D] font-pretendard">
-                    AI가 제공하는 정보에는 실수가 있을 수 있습니다
-                    <br />
-                    관련 정보를 확인 후 활용해주세요
+              return (
+                <div className="mx-auto flex w-full flex-col">
+                  <RecipeTitle
+                    name={recipe.title}
+                    category={categoryKorean}
+                    usedItems={userIngredients.length}
+                  />
+
+                  <div className="flex flex-col gap-3">
+                    <RecipeIngredientSection
+                      selectedIngredients={userIngredients}
+                      requiredIngredients={additionalIngredients}
+                      substitutions={optionalIngredients}
+                    />
+
+                    <RecipeStepSection
+                      steps={steps}
+                      difficulty={difficulty || "NORMAL"}
+                    />
+
+                    <RecipeYoutubeCard
+                      videos={currentData.youtubeReferences || []}
+                      tags={recipe.youtube_search_queries || []}
+                    />
+
+                    <div className="flex flex-col items-center gap-[2px]">
+                      <div className="typo-caption w-full text-center text-gray-50">
+                        AI가 제공하는 정보에는 실수가 있을 수 있습니다
+                        <br />
+                        관련 정보를 확인 후 활용해주세요
+                      </div>
+                      {isLoading && (
+                        <div className="flex h-[28.8px] w-[28.8px] items-center justify-center gap-[3.6px]">
+                          <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full" />
+                          <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full delay-200" />
+                          <div className="animate-dot h-[4.8px] w-[4.8px] rounded-full delay-400" />
+                        </div>
+                      )}
+                    </div>
                   </div>
 
-                  {isLoading && (
-                    <div className="flex w-[28.8px] h-[28.8px] justify-center items-center gap-[3.6px]">
-                      <div className="w-[4.8px] h-[4.8px] rounded-full animate-dot" />
-                      <div className="w-[4.8px] h-[4.8px] rounded-full animate-dot delay-200" />
-                      <div className="w-[4.8px] h-[4.8px] rounded-full animate-dot delay-400" />
-                    </div>
-                  )}
+                  <div className="mt-6 mb-7 w-full max-w-[450px]">
+                    <RecipeActionButtons
+                      retryCount={retryCount}
+                      onRetry={handleRetry}
+                      showRetryButton={!isHistoryMode}
+                      isLoading={isLoading}
+                    />
+                  </div>
                 </div>
-              )}
-            </div>
-          );
-        })}
-
-        {/* 버튼 영역 */}
-        <div className="p-4 w-full max-w-[450px] mx-auto mb-7">
-          <RecipeActionButtons
-            retryCount={retryCount}
-            onRetry={handleRetry}
-            showRetryButton={!isHistoryMode} // 히스토리 모드일 때는 false
-            isLoading={isLoading}
-          />
+              );
+            })()}
         </div>
       </div>
     </div>

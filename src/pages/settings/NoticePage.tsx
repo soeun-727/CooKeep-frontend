@@ -1,13 +1,14 @@
-// src/pages/settings/NoticePage.tsx
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import NoticeCategoryItem from "../../components/settings/components/NoticeCategoryItem";
-import { getNotices } from "../../api/notice";
-import { Notice, mapNotice } from "../../types/notice";
+
+import { getNotices } from "@/api/notice";
+
+import NoticeCategoryItem from "@/components/settings/components/NoticeCategoryItem";
+import { BackHeader } from "@/components/ui/BackHeader";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+
+import { Notice, mapNotice } from "@/types/notice";
 
 export default function NoticePage() {
-  const navigate = useNavigate();
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -32,14 +33,15 @@ export default function NoticePage() {
     fetchNotices();
   }, []);
 
+  // 로딩 중일 때
+  if (loading) return <LoadingScreen />;
+
   return (
     <>
-      <BackHeader title="공지사항" onBack={() => navigate(-1)} />
-      <main className="pt-[75px] px-4 pb-[34px] flex flex-col gap-[14px] min-h-screen">
-        {loading ? (
-          <p className="text-center text-gray-500">불러오는 중...</p>
-        ) : error ? (
-          <p className="text-center text-red-500">
+      <BackHeader title="공지사항" />
+      <main className="flex min-h-screen flex-col gap-[14px] px-4 pt-[75px] pb-[34px]">
+        {error ? (
+          <p className="text-semantic-negative text-center">
             공지사항을 불러오지 못했습니다.
           </p>
         ) : notices.length === 0 ? (
@@ -47,11 +49,11 @@ export default function NoticePage() {
             등록된 공지사항이 없습니다.
           </p>
         ) : (
-          notices.map((notice) => (
+          notices.map(notice => (
             <NoticeCategoryItem key={notice.id} category={notice} />
           ))
         )}
-        <p className="pt-[2px] text-center typo-label text-[#202020]">
+        <p className="typo-label text-gray-80 pt-[2px] text-center">
           오늘 한 끼부터, 쿠킵으로 이어가볼까요?
         </p>
       </main>

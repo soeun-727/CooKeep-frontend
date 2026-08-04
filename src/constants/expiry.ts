@@ -1,4 +1,3 @@
-// src/constants/expiry.ts
 export const DEFAULT_EXPIRY_DAYS: Record<string, number> = {
   VEGETABLE: 7,
   FRUIT: 10,

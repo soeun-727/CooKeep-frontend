@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { AGREEMENTS, AGREEMENT_NOTICE } from "../../../constants/agreements";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
-import type { AgreementItem } from "../../../constants/agreements";
+
+import arrowIcon from "@/assets/signup/arrowright.svg";
+
+import { AGREEMENTS, AGREEMENT_NOTICE } from "@/constants/agreements";
+
+import { AgreementItem, AuthAgreements } from "@/types/auth";
+
 import AgreementPage from "../signup/AgreementPage";
 
 interface AgreementListProps {
-  agreements: Record<AgreementItem["key"], boolean>;
-  updateAgreements: (
-    next: Partial<Record<AgreementItem["key"], boolean>>,
-  ) => void;
+  agreements: AuthAgreements;
+  updateAgreements: (next: Partial<AuthAgreements>) => void;
 }
 
 export default function AgreementList({
@@ -24,8 +26,8 @@ export default function AgreementList({
 
   if (agreementPage) {
     return (
-      <div className="fixed inset-0 z-50 bg-gray-100 flex items-center justify-center">
-        <div className="w-full max-w-[450px] min-h-[100dvh] bg-[#FAFAFA]">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-100">
+        <div className="bg-background min-h-[100dvh] w-full max-w-[450px]">
           {" "}
           {/*overflow-y-auto*/}
           <AgreementPage
@@ -33,7 +35,7 @@ export default function AgreementList({
             isChecked={agreements[agreementPage.key]}
             onBack={() => setAgreementPage(null)}
             updateAgreements={updateAgreements}
-            onConfirm={(key) => {
+            onConfirm={key => {
               updateAgreements({ [key]: true });
               setAgreementPage(null);
             }}
@@ -50,12 +52,12 @@ export default function AgreementList({
   return (
     <div className="mt-[26px]">
       {/* 전체 동의 */}
-      <label className="relative flex items-center px-4 h-[48px] max-w-[361px] w-full rounded-[6px] border border-[#D1D1D1] cursor-pointer">
+      <label className="border-gray-10 relative flex h-[48px] w-full max-w-[361px] cursor-pointer items-center rounded-[6px] border px-4">
         <input
           type="checkbox"
-          className="peer w-4 h-4 appearance-none border border-[#7D7D7D] rounded-sm checked:bg-(--color-green) cursor-pointer"
+          className="peer checked:bg-green h-4 w-4 cursor-pointer appearance-none rounded-sm border border-gray-50"
           checked={isAllChecked}
-          onChange={(e) =>
+          onChange={e =>
             updateAgreements({
               terms: e.target.checked,
               privacy: e.target.checked,
@@ -63,36 +65,34 @@ export default function AgreementList({
             })
           }
         />
-        <span className="ml-[16px] typo-label text-[#202020]">
-          약관 전체동의
-        </span>
-        <span className="absolute left-4 w-4 h-4 flex items-center justify-center pointer-events-none text-white text-lg font-bold peer-checked:visible invisible">
+        <span className="typo-label text-gray-80 ml-[16px]">약관 전체동의</span>
+        <span className="text-gray-0 pointer-events-none invisible absolute left-4 flex h-4 w-4 items-center justify-center text-lg font-bold peer-checked:visible">
           ✓
         </span>
       </label>
 
       {/* 개별 약관 */}
-      <div className="w-[361px] h-[138px] px-4 py-3 flex flex-col gap-[6px]">
-        {AGREEMENTS.map((item) => (
+      <div className="flex h-[138px] w-[361px] flex-col gap-[6px] px-4 py-3">
+        {AGREEMENTS.map(item => (
           <div
             key={item.key}
-            className="flex items-center justify-between w-[337px] h-[24px] mx-auto"
+            className="mx-auto flex h-[24px] w-[337px] items-center justify-between"
           >
-            <label className="flex items-center gap-4 cursor-pointer">
+            <label className="flex cursor-pointer items-center gap-4">
               {item.key !== "policy" ? (
                 <input
                   type="checkbox"
-                  className="w-4 h-4 accent-[#7D7D7D]"
+                  className="h-4 w-4 accent-gray-50"
                   checked={agreements[item.key]}
-                  onChange={(e) =>
+                  onChange={e =>
                     updateAgreements({ [item.key]: e.target.checked })
                   }
                 />
               ) : (
-                <span className="w-4 h-4 inline-block" />
+                <span className="inline-block h-4 w-4" />
               )}
 
-              <span className="typo-label text-[#7D7D7D]">{item.label}</span>
+              <span className="typo-label text-gray-50">{item.label}</span>
             </label>
 
             <button type="button" onClick={() => setAgreementPage(item)}>

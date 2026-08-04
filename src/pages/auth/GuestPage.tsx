@@ -1,25 +1,23 @@
-// src/pages/auth/GuestPage.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import GuestFridge from "../../components/auth/guest/GuestFridge";
-import GuestAddItem from "../../components/auth/guest/GuestAddItem";
-import GuestDetails from "../../components/auth/guest/GuestDetails";
-import GuestRecipeIntro from "../../components/auth/guest/GuestRecipeIntro";
-import GuestRecipeLevel from "../../components/auth/guest/GuestRecipeLevel";
-import GuestRecipeLoading from "../../components/auth/guest/GuestRecipeLoading";
-import GuestRecipe from "../../components/auth/guest/GuestRecipe";
-import GuestLast from "../../components/auth/guest/GuestLast";
+
+import GuestAddItem from "@/components/auth/guest/GuestAddItem";
+import GuestDetails from "@/components/auth/guest/GuestDetails";
+import GuestFridge from "@/components/auth/guest/GuestFridge";
+import GuestLast from "@/components/auth/guest/GuestLast";
+import GuestRecipe from "@/components/auth/guest/GuestRecipe";
+import GuestRecipeIntro from "@/components/auth/guest/GuestRecipeIntro";
+import GuestRecipeLevel from "@/components/auth/guest/GuestRecipeLevel";
+import GuestRecipeLoading from "@/components/auth/guest/GuestRecipeLoading";
 
 export default function GuestPage() {
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
 
-  // 다음 단계로 넘기는 공통 함수
   const handleNext = () => {
-    setIndex((prev) => prev + 1);
+    setIndex(prev => prev + 1);
   };
 
-  // 0: 냉장고 가이드, 1: 재료 추가 가이드, 2: ... 순서대로 배치
   const renderSlide = () => {
     switch (index) {
       case 0:
@@ -47,23 +45,18 @@ export default function GuestPage() {
   };
 
   return (
-    <div className="relative w-full h-dvh bg-[#FAFAFA] overflow-hidden">
-      <div className="flex flex-col items-center w-full">
-        <div className="w-full flex justify-center mt-[62px] pb-10 shrink-0">
-          {renderSlide()}
-        </div>
+    <div className="relative flex h-full w-full flex-1 flex-col overflow-hidden">
+      <div className="mt-[62px] w-full shrink-0" />
+      <div className="no-scrollbar w-full flex-1 overflow-y-auto">
+        <div className="flex w-full justify-center">{renderSlide()}</div>
       </div>
 
       <button
-        onClick={(e) => {
+        onClick={e => {
           e.stopPropagation();
           navigate("/");
         }}
-        className="absolute top-5 right-4 z-200
-                   inline-flex py-2 px-[22px]
-                   items-center justify-center gap-[8px]
-                   rounded-full bg-[rgba(235,235,235,0.8)]
-                   text-[#7D7D7D] text-[14px] font-medium"
+        className="bg-gray-10/80 absolute top-5 right-4 z-[200] inline-flex items-center justify-center gap-[8px] rounded-full px-[22px] py-2 text-[14px] font-medium text-gray-50"
       >
         메인으로 돌아가기
       </button>

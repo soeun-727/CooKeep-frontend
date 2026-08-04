@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Goal from "../../components/auth/onboarding/Goal";
-import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
-import BackHeader from "../../components/ui/BackHeader";
-import Button from "../../components/ui/Button";
-import GoalcheckModal from "../../components/myCookeep/modals/GoalCheckModal";
-import { GOAL_TYPE_MAP } from "../../utils/mapping";
-import { updateWeeklyGoal } from "../../api/user";
+
+import { updateWeeklyGoal } from "@/api/user";
+import axios from "axios";
+
+import Goal from "@/components/auth/onboarding/Goal";
+import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
+import GoalcheckModal from "@/components/myCookeep/modals/GoalCheckModal";
+import { BackHeader } from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+
+import { GOAL_TYPE_MAP } from "@/utils/mapping";
 
 export default function SetGoalPage() {
   const navigate = useNavigate();
@@ -43,7 +47,7 @@ export default function SetGoalPage() {
     if (isLastStep) {
       setIsModalOpen(true);
     } else {
-      setStep((prev) => prev + 1);
+      setStep(prev => prev + 1);
     }
   };
   const handleConfirm = async () => {
@@ -57,12 +61,23 @@ export default function SetGoalPage() {
 
       const response = await updateWeeklyGoal(requestBody);
 
-      if (response.status === "OK" || response.status === 200) {
+      if (response.status === "OK") {
         navigate("/mycookeep", { replace: true });
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("목표 수정 실패:", error);
-      alert("이번 주 목표가 이미 설정되어 있습니다");
+
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status;
+
+        if (status === 409) {
+          alert("이번 주 목표가 이미 설정되어 있습니다");
+        } else {
+          alert("목표 설정 중 오류가 발생했습니다");
+        }
+      } else {
+        alert("알 수 없는 오류가 발생했습니다");
+      }
     } finally {
       setIsLoading(false);
       setIsModalOpen(false);
@@ -75,8 +90,8 @@ export default function SetGoalPage() {
         onBack={() => (step === 0 ? navigate(-1) : setStep(0))}
       />
 
-      <div className="min-h-screen relative pb-32 flex flex-col items-center">
-        <main className="w-full max-w-[361px] mt-10">{STEPS[step]}</main>
+      <div className="relative flex min-h-screen flex-col items-center pb-32">
+        <main className="mt-10 w-full max-w-[361px]">{STEPS[step]}</main>
 
         <footer className="fixed bottom-0 pb-[34px]">
           <Button

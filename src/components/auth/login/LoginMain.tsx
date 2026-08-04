@@ -1,21 +1,24 @@
-import TextField from "../../ui/TextField";
-import phoneIcon from "../../../assets/login/phone.svg";
-import pwIcon from "../../../assets/login/key.svg";
-import pwImage from "../../../assets/login/pw.svg";
-import openpwImage from "../../../assets/login/openpw.svg";
-import Button from "../../ui/Button";
-import { useAuthStore } from "../../../stores/useAuthStore";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { useAuthStore } from "@/stores/useAuthStore";
+
+import pwIcon from "@/assets/login/key.svg";
+import openpwImage from "@/assets/login/openpw.svg";
+import pwImage from "@/assets/login/pw.svg";
+import mailIcon from "@/assets/signup/mail.svg";
+
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 
 export default function LoginMain() {
   const navigate = useNavigate();
   const {
-    phoneNumber,
-    setPhoneNumber,
+    email,
+    setEmail,
     password,
     setPassword,
-    isValidPhone,
+    isValidEmail,
     isValidPW,
     canLogin,
     login,
@@ -23,28 +26,6 @@ export default function LoginMain() {
   } = useAuthStore();
 
   const [showPassword, setShowPassword] = useState(false);
-
-  const handlePhoneChange = (value: string) => {
-    // 1. 숫자만 남기기
-    const input = value.replace(/\D/g, "");
-    const size = input.length;
-
-    // 2. 입력된 숫자 길이에 따라 실시간으로 하이픈 배치
-    let formatted = "";
-
-    if (size < 4) {
-      formatted = input;
-    } else if (size < 8) {
-      // 010-1234 형태
-      formatted = `${input.slice(0, 3)}-${input.slice(3)}`;
-    } else {
-      // 010-1234-5678 형태
-      formatted = `${input.slice(0, 3)}-${input.slice(3, 7)}-${input.slice(7, 11)}`;
-    }
-
-    // 3. Store 상태 업데이트 (최대 13자)
-    setPhoneNumber(formatted);
-  };
 
   const handleLogin = async () => {
     const result = await login();
@@ -60,21 +41,19 @@ export default function LoginMain() {
 
   return (
     <>
-      <div className="pt-[159px] w-[352px] mx-auto">
+      <div className="mx-auto w-[361px] pt-[159px]">
         <div className="typo-h1">로그인</div>
 
         {/* 입력 영역 */}
-        <div className="flex flex-col mt-[12px]">
+        <div className="mt-[12px] flex flex-col">
           <TextField
-            value={phoneNumber}
-            placeholder="휴대폰 번호(- 없이 숫자만 입력)"
-            onChange={handlePhoneChange}
+            value={email}
+            placeholder="이메일 주소 입력"
+            onChange={setEmail}
             errorMessage={
-              phoneNumber.length > 0 && !isValidPhone
-                ? "잘못된 휴대폰 번호입니다"
-                : undefined
+              email && !isValidEmail ? "잘못된 이메일 주소입니다" : undefined
             }
-            leftIcon={<img src={phoneIcon} alt="" />}
+            leftIcon={<img src={mailIcon} alt="" />}
           />
 
           <div className="mt-[5px]" />
@@ -94,7 +73,7 @@ export default function LoginMain() {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="flex items-center justify-center h-full"
+                className="flex h-full items-center justify-center"
               >
                 <img src={showPassword ? openpwImage : pwImage} alt="" />
               </button>
@@ -110,7 +89,7 @@ export default function LoginMain() {
           disabled={!canLogin || isSubmitting}
           onClick={handleLogin}
           className={`${
-            !canLogin || isSubmitting ? "!text-white" : "!text-[#32E389]"
+            !canLogin || isSubmitting ? "!text-gray-0" : "!text-green"
           }`}
         >
           로그인

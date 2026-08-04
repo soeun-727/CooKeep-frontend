@@ -1,6 +1,7 @@
-// src/stores/useCookeepsStore.ts
-import { create } from "zustand";
+import { getMyCookies } from "@/api/cookies";
+import { claimPendingReward } from "@/api/cookies";
 import {
+  type RegisterResponseData,
   deleteMyPlant,
   getGrowingPlant,
   getMyPlants,
@@ -8,15 +9,13 @@ import {
   reviveMyPlant,
   setProfileMyPlant,
   waterMyPlant,
-  type RegisterResponseData,
-} from "../api/myPlants";
-import type { MyPlant } from "../types/myPlant";
-import {
-  PLANT_ID_TO_NAME,
-  PLANT_NAME_TO_TYPE,
-} from "../constants/plantTypeMap";
-import { getMyCookies } from "../api/cookies";
-import type { ApiResponse } from "../api/types";
+} from "@/api/myPlants";
+import type { ApiResponse } from "@/api/types";
+import { create } from "zustand";
+
+import { PLANT_ID_TO_NAME, PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
+
+import type { MyPlant } from "@/types/myPlant";
 
 export type PlantType =
   | "apple"
@@ -38,11 +37,9 @@ interface CookeepsState {
   // 현재 키우는 식물 (서버 기준)
   currentPlant: MyPlant | null;
   // API 연동용
-  // 추가
   justHarvestedPlant: MyPlant | null;
   setJustHarvestedPlant: (plant: MyPlant | null) => void;
-  // fetchMyPlants: () => Promise<void>;
-  fetchMyPlants: (snapshotPlant?: MyPlant) => Promise<void>;
+  fetchMyPlants: () => Promise<void>;
 
   registerPlant: (
     plantId: number,
@@ -50,7 +47,6 @@ interface CookeepsState {
 
   selectedPlant: PlantType | null;
   plantStage: PlantStage;
-  // grownPlants: PlantType[]; // 다 키운 식물 목록
   lastRefreshedAt: Date | null;
   refreshGrowth: () => void;
 
@@ -63,7 +59,6 @@ interface CookeepsState {
   lastWateredAt: Date | null;
 
   selectPlant: (plant: PlantType) => void;
-  // growPlant: () => void;
   waterPlant: () => void;
   abandonPlant: () => Promise<void>;
   recoverPlant: () => void;
@@ -75,8 +70,6 @@ interface CookeepsState {
   freeWaterPlant: () => void; // 무료물주기
   isFreeWaterMode: boolean;
   setFreeWaterMode: (v: boolean) => void;
-
-  // addCookie: () => void;
 
   // 프로필
   setProfilePlant: (userPlantId: number) => Promise<void>;
@@ -91,6 +84,9 @@ interface CookeepsState {
 
   isPlantLoading: boolean;
   fetchGrowingPlant: () => Promise<void>;
+
+  pendingRewardId: number | null; // 추가
+  claimHarvestReward: () => Promise<void>; // 추가
 }
 
 export const useCookeepsStore = create<CookeepsState>((set, get) => ({
@@ -99,59 +95,10 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
 
   currentPlant: null,
   justHarvestedPlant: null,
-  setJustHarvestedPlant: (plant) => set({ justHarvestedPlant: plant }),
-  fetchMyPlants: async (snapshotPlant?: MyPlant) => {
+  setJustHarvestedPlant: plant => set({ justHarvestedPlant: plant }),
+  fetchMyPlants: async () => {
     try {
-      // const plants = await getMyPlants();
-      // const prevPlant = get().currentPlant;
       const plants = await getMyPlants();
-      const prevPlant = snapshotPlant ?? get().currentPlant;
-
-      if (prevPlant && !prevPlant.isHarvested) {
-        const harvestedVersion = plants.find(
-          (p: MyPlant) =>
-            p.userPlantId === prevPlant.userPlantId && p.isHarvested,
-        );
-
-        if (harvestedVersion) {
-          console.log("🌾 수확 감지!", harvestedVersion.plantName);
-
-          // 1. 잠깐 4단계 유지
-          const temp4thStage = {
-            ...harvestedVersion,
-            level: 4,
-            isHarvested: false,
-          };
-          set({ currentPlant: temp4thStage, plantStage: 4 });
-
-          // 2. await로 2초 대기
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-
-          // 3. 수확 상태 업데이트
-          // 수확 이벤트 발생 시점에 currentPlant를 null로 초기화
-          set((state) => ({
-            justHarvestedPlant: harvestedVersion,
-            currentPlant: null, // 이제 식물이 없음을 명시
-            selectedPlant: null,
-            harvestedPlantNames: Array.from(
-              new Set([
-                ...state.harvestedPlantNames,
-                harvestedVersion.plantName,
-              ]),
-            ),
-            // 수확된 식물은 더이상 프로필(현재 키우는 중)이 아니도록 초기화
-            // myPlants: get().myPlants.map((p) =>
-            //   p.userPlantId === harvestedVersion.userPlantId
-            //     ? { ...p, isProfile: false, isHarvested: true }
-            //     : p,
-            // ),
-            myPlants: plants,
-          }));
-          return; // 아래 로직 타지 않게
-        }
-      }
-
-      // 평소 로직
       const current = plants.find((p: MyPlant) => !p.isHarvested) ?? null;
 
       set({
@@ -185,7 +132,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
       const { myPlants, isProfileAuto } = get();
 
       const justRegistered = myPlants
-        .filter((p) => p.plantName === expectedPlantName && !p.isHarvested)
+        .filter(p => p.plantName === expectedPlantName && !p.isHarvested)
         .sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -220,7 +167,6 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
 
   selectedPlant: null,
   plantStage: 1,
-  // grownPlants: [],
   cookie: 0,
 
   fetchCookies: async () => {
@@ -233,7 +179,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
   },
 
   prevCookie: null,
-  setPrevCookie: (value) => set({ prevCookie: value }),
+  setPrevCookie: value => set({ prevCookie: value }),
 
   status: "normal",
   lastWateredAt: null,
@@ -253,7 +199,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
   },
 
   wantsToWater: false,
-  setWantsToWater: (v) => set({ wantsToWater: v }),
+  setWantsToWater: v => set({ wantsToWater: v }),
 
   selectPlant: async (plant: PlantType) => {
     const plantIdMap: Record<PlantType, number> = {
@@ -284,6 +230,11 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
       cookie,
     });
 
+    if (cookie < 10) {
+      console.log("쿠키 부족");
+      return;
+    }
+
     const beforeLevel = currentPlant.level;
     console.log("물주기 시작:", {
       plantName: currentPlant.plantName,
@@ -297,39 +248,46 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
       console.log("  → prevCookie 저장:", cookie);
     }
 
-    const snapshotPlant = currentPlant; // 👈 스냅샷 저장
-
-    if (cookie < 10) {
-      console.log("쿠키 부족");
-      return;
-    }
+    const snapshotPlant = currentPlant; // 스냅샷 저장
 
     try {
-      //       const response = await waterMyPlant(currentPlant.userPlantId);
-      //       console.log("물주기 API 응답:", response);
+      const waterResult = await waterMyPlant(snapshotPlant.userPlantId);
 
-      //       // 최종 상태 갱신
-      //       await get().fetchMyPlants();      // 먼저
-      // await get().fetchGrowingPlant();  // 나중
+      const hasHarvested =
+        waterResult.justHarvested || waterResult.isJustHarvested;
 
-      // ✅ 물주기 API는 딱 한 번만 호출
-      await waterMyPlant(snapshotPlant.userPlantId);
+      if (hasHarvested && waterResult.pendingRewardId !== null) {
+        // pendingRewardId 저장만 해두고 claim은 아직 안 함
+        set({
+          pendingRewardId: waterResult.pendingRewardId,
+          cookie: waterResult.cookieCnt, // -10 반영된 값
+        });
 
-      // ✅ 수확 감지 먼저
-      await get().fetchMyPlants(snapshotPlant);
+        // 4단계 애니메이션 연출
+        const temp4thStage = {
+          ...snapshotPlant,
+          level: 4 as const,
+          isHarvested: false,
+        };
+        set({ currentPlant: temp4thStage, plantStage: 4 });
 
-      // ✅ 그 다음 현재 성장 식물 동기화
-      await get().fetchGrowingPlant();
+        // 수확 상태로 전환 → HarvestModal 표시됨
+        set(state => ({
+          justHarvestedPlant: { ...snapshotPlant, isHarvested: true },
+          currentPlant: null,
+          selectedPlant: null,
+          harvestedPlantNames: Array.from(
+            new Set([...state.harvestedPlantNames, snapshotPlant.plantName]),
+          ),
+        }));
 
-      await get().fetchCookies();
-
-      const newPlant = get().currentPlant;
-      console.log("물주기 완료:", {
-        이전레벨: beforeLevel,
-        현재레벨: newPlant?.level,
-        식물: newPlant?.plantName,
-        userPlantId: newPlant?.userPlantId,
-      });
+        // 여기서 claim 안 함! 모달 확인 후에 호출
+      } else {
+        // 일반 물주기
+        set({ cookie: waterResult.cookieCnt });
+        await get().fetchMyPlants(); // snapshotPlant 제거
+        await get().fetchGrowingPlant();
+      }
     } catch (e) {
       console.error("물주기 실패:", e);
       throw e;
@@ -341,15 +299,19 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
     if (!currentPlant) return;
 
     try {
-      await waterMyPlant(currentPlant.userPlantId);
+      // await waterMyPlant(currentPlant.userPlantId);
+      // await get().fetchMyPlants();
+      // await get().fetchCookies();
+      const waterResult = await waterMyPlant(currentPlant.userPlantId);
+      set({ cookie: waterResult.cookieCnt });
       await get().fetchMyPlants();
-      await get().fetchCookies();
+      // fetchCookies 제거
     } catch (e) {
       console.error("무료 물주기 실패", e);
     }
   },
   isFreeWaterMode: false,
-  setFreeWaterMode: (v) => set({ isFreeWaterMode: v }),
+  setFreeWaterMode: v => set({ isFreeWaterMode: v }),
 
   // 포기하기
   abandonPlant: async () => {
@@ -390,13 +352,10 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
     }
   },
 
-  // addCookie: () => set((state) => ({ cookie: state.cookie + 1 })), // 쿠키 +1 함수 추가
-
-  // useCookeepsStore.ts 내부
   setProfilePlant: async (userPlantId: number) => {
     // 1. UI 먼저 즉시 변경 (말풍선 바로 이동)
-    set((state) => ({
-      myPlants: state.myPlants.map((p) => ({
+    set(state => ({
+      myPlants: state.myPlants.map(p => ({
         ...p,
         isProfile: p.userPlantId === userPlantId,
       })),
@@ -414,11 +373,11 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
     }
   },
   isProfileAuto: true,
-  setProfileAuto: (v) => set({ isProfileAuto: v }),
+  setProfileAuto: v => set({ isProfileAuto: v }),
 
   // 수확
   hasShownHarvestModal: false,
-  setHasShownHarvestModal: (v) => set({ hasShownHarvestModal: v }),
+  setHasShownHarvestModal: v => set({ hasShownHarvestModal: v }),
 
   resetCurrentPlant: () => {
     set({
@@ -457,6 +416,22 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
     } catch (e) {
       console.error("현재 식물 조회 실패", e);
       set({ isPlantLoading: false });
+    }
+  },
+
+  // 초기값 추가
+  pendingRewardId: null,
+  // claim 함수 추가
+  claimHarvestReward: async () => {
+    const { pendingRewardId } = get();
+    if (pendingRewardId === null) return;
+
+    try {
+      const finalCookieCnt = await claimPendingReward(pendingRewardId);
+      set({ cookie: finalCookieCnt, pendingRewardId: null });
+    } catch (e) {
+      console.error("보상 수령 실패:", e);
+      // 실패해도 pendingRewardId 유지 (재시도 가능하게)
     }
   },
 }));

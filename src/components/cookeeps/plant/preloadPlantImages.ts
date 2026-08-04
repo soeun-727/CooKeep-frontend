@@ -1,6 +1,6 @@
-// src/components/cookeeps/plant/preloadPlantImages.ts
+import type { PlantType } from "@/stores/useCookeepsStore";
+
 import { PLANT_IMAGES, type PlantStage } from "./PlantImages";
-import type { PlantType } from "../../../stores/useCookeepsStore";
 
 export function preloadNextStage(plant: PlantType, currentStage: number) {
   const nextStage = (currentStage + 1) as PlantStage;

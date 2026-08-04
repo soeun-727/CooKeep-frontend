@@ -1,18 +1,27 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import MyCookeepTabBar from "../../components/myCookeep/fixed/MyCookeepTabBar";
-import Profile from "../../components/myCookeep/fixed/Profile";
-import Statistics from "../../components/myCookeep/contents/Statistics";
-import Calendar from "../../components/myCookeep/contents/Calendar";
-import RecordEntry from "../../components/myCookeep/record/RecordEntry";
-import AddMoreModal from "../../components/myCookeep/record/AddMoreModal";
-import { hasTodayRecord } from "../../utils/record";
-import RecordCard from "../../components/myCookeep/record/RecordCard";
-import { getDailyRecipesByDate } from "../../api/myRecipe";
-import { useCookeepRecordStore } from "../../stores/useCookeepRecordStore";
-import { useCookeepsStore } from "../../stores/useCookeepsStore";
+
+import { getDailyRecipesByDate } from "@/api/myRecipe";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import Calendar from "@/components/myCookeep/contents/Calendar";
+import Statistics from "@/components/myCookeep/contents/Statistics";
+import MyCookeepTabBar from "@/components/myCookeep/fixed/MyCookeepTabBar";
+import Profile from "@/components/myCookeep/fixed/Profile";
+import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
+import RecordCard from "@/components/myCookeep/record/RecordCard";
+import RecordEntry from "@/components/myCookeep/record/RecordEntry";
+
+import { hasTodayRecord } from "@/utils/record";
 
 type TabType = "record" | "calendar" | "statistics";
+
+const getKstToday = () => {
+  return new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
+    .toISOString()
+    .split("T")[0];
+};
 
 export default function MyCookeepPage() {
   const location = useLocation();
@@ -20,23 +29,17 @@ export default function MyCookeepPage() {
 
   const [activeTab, setActiveTab] = useState<TabType>("record");
   const [dismissed, setDismissed] = useState(false);
-  const records = useCookeepRecordStore((s) => s.records);
-  const setRecords = useCookeepRecordStore((s) => s.setRecords);
+  const [selectedDate, setSelectedDate] = useState<string>("");
+  const records = useCookeepRecordStore(s => s.records);
+  const setRecords = useCookeepRecordStore(s => s.setRecords);
   const [enteredByBottomTab, setEnteredByBottomTab] = useState(
     location.state?.fromTab === true,
   );
-  // 쿠키 개수 표시
-  const fetchCookies = useCookeepsStore((s) => s.fetchCookies); // 추가
+  const fetchCookies = useCookeepsStore(s => s.fetchCookies);
 
   useEffect(() => {
-    fetchCookies(); // 추가
+    fetchCookies();
   }, [fetchCookies]);
-
-  const getKstToday = () => {
-    return new Date(new Date().getTime() + 9 * 60 * 60 * 1000)
-      .toISOString()
-      .split("T")[0];
-  };
 
   const fetchDailyData = useCallback(
     async (dateStr: string) => {
@@ -59,24 +62,46 @@ export default function MyCookeepPage() {
     }
   }, [activeTab, fetchDailyData]);
 
-  const handleDateClick = (dateStr: string) => {
-    const requestDate = dateStr.replaceAll(".", "-");
-    fetchDailyData(requestDate);
-  };
+  const handleDateClick = useCallback(
+    (dateStr: string) => {
+      const requestDate = dateStr.replaceAll(".", "-");
+      fetchDailyData(requestDate);
+    },
+    [fetchDailyData],
+  );
 
-  const handleTabChange = (tab: string) => {
+  const handleTabChange = useCallback((tab: string) => {
     if (tab === "record" || tab === "calendar" || tab === "statistics") {
-      // setRecords([]);
-      setActiveTab(tab);
+      setActiveTab(tab as TabType);
+      setSelectedDate("");
       setDismissed(false);
       setEnteredByBottomTab(false);
     }
-  };
-  const handleActiveTabClick = (tab: string) => {
-    if (tab === "calendar") {
-      setRecords([]);
-    }
-  };
+  }, []);
+
+  const handleActiveTabClick = useCallback(
+    (tab: string) => {
+      if (tab === "calendar") {
+        setRecords([]);
+      }
+    },
+    [setRecords],
+  );
+
+  const handleCalendarDateClick = useCallback(
+    (date: string) => {
+      setSelectedDate(date);
+      handleDateClick(date);
+    },
+    [handleDateClick],
+  );
+
+  const handleDismiss = useCallback(() => setDismissed(true), []);
+
+  const handleConfirm = useCallback(() => {
+    setDismissed(true);
+    navigate("/mycookeep/record/select");
+  }, [navigate]);
 
   const shouldShowAddMoreModal =
     activeTab === "record" &&
@@ -87,16 +112,22 @@ export default function MyCookeepPage() {
   const renderContent = () => {
     switch (activeTab) {
       case "calendar":
-        if (records.length > 0) {
+        if (selectedDate && records.length > 0) {
           return (
-            <div className="flex flex-col items-center gap-6 px-4 animate-in fade-in slide-in-from-bottom-4 duration-300">
-              {records.map((record) => (
+            <div className="animate-in fade-in slide-in-from-bottom-4 flex flex-col items-center gap-6 px-4 duration-300">
+              <button
+                onClick={() => setSelectedDate("")}
+                className="self-start text-sm text-gray-500"
+              >
+                ← 캘린더로 돌아가기
+              </button>
+              {records.map(record => (
                 <RecordCard key={record.dailyRecipeId} record={record} />
               ))}
             </div>
           );
         }
-        return <Calendar onDateClick={handleDateClick} />;
+        return <Calendar onDateClick={handleCalendarDateClick} />;
 
       case "statistics":
         return <Statistics />;
@@ -108,10 +139,9 @@ export default function MyCookeepPage() {
   };
 
   return (
-    <div className="relative flex flex-col h-full min-h-0">
+    <div className="relative flex h-full min-h-0 flex-col">
       <div className="shrink-0">
         <Profile />
-
         <div className="mt-6">
           <MyCookeepTabBar
             activeTab={activeTab}
@@ -121,18 +151,12 @@ export default function MyCookeepPage() {
         </div>
       </div>
 
-      <div className="flex-1 mt-[10px] pb-15 overflow-y-auto no-scrollbar">
+      <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
         {renderContent()}
       </div>
 
       {shouldShowAddMoreModal && (
-        <AddMoreModal
-          onCancel={() => setDismissed(true)}
-          onConfirm={() => {
-            setDismissed(true);
-            navigate("/mycookeep/record/select");
-          }}
-        />
+        <AddMoreModal onCancel={handleDismiss} onConfirm={handleConfirm} />
       )}
     </div>
   );

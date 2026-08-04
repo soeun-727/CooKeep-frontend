@@ -6,24 +6,28 @@ interface DoublecheckModalProps {
   onClose: () => void;
   title: React.ReactNode;
   description?: string;
+  inputValue?: string;
+  onInputChange?: (value: string) => void;
   onConfirm: () => void;
   confirmText?: string;
   cancelText?: string;
-  variant?: "black" | "green" | "singular";
-  closeOnOverlayClick?: boolean; // 🚀 배경 클릭 시 닫을지 여부 선택 옵션
+  variant?: "black" | "green" | "singular" | "opposite" | "singular-green";
+  closeOnOverlayClick?: boolean;
 }
 
-const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
+export default function DoublecheckModal({
   isOpen,
   onClose,
   title,
   description,
+  inputValue,
+  onInputChange,
   onConfirm,
   confirmText = "네",
   cancelText = "아니오",
   variant = "black",
   closeOnOverlayClick = false,
-}) => {
+}: DoublecheckModalProps) {
   useEffect(() => {
     if (isOpen) {
       const scrollY = window.scrollY;
@@ -37,42 +41,59 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
 
   if (!isOpen) return null;
 
-  const isSingular = variant === "singular";
+  const isSingular = variant === "singular" || variant === "singular-green";
+
   const confirmBtnColor =
-    variant === "green" ? "bg-(--color-green)" : "bg-black";
+    variant === "green" || variant === "singular-green"
+      ? "bg-green"
+      : variant === "opposite"
+        ? "bg-gray-30"
+        : "bg-black";
+
+  const cancelBtnColor = variant === "opposite" ? "bg-black" : "bg-gray-30";
+
   const buttonWidth = isSingular ? "w-[184px]" : "w-[95px]";
 
   return createPortal(
-    <div className="fixed inset-0 z-[999] flex items-center justify-center bg-[#11111180]">
+    <div className="bg-black-overlay fixed inset-0 z-[999] flex items-center justify-center">
       <div
         className="absolute inset-0 cursor-default"
         onClick={closeOnOverlayClick ? onClose : undefined}
-      ></div>
-
-      {/* 모달 박스 */}
-      <div className="relative w-[254px] bg-white rounded-[10px] shadow-xl flex flex-col items-center px-7 py-[25px] animate-popIn">
-        <h2 className="typo-body w-[198px] mb-2 text-center font-bold text-neutral-900">
-          {title}
-        </h2>
-        {description && (
-          <p className="mb-4 typo-body2 w-[198px] text-center font-medium text-neutral-900 whitespace-pre-wrap">
-            {description}
-          </p>
-        )}
-        <div className="flex gap-2">
+      />
+      <div className="bg-gray-0 animate-popIn rounded-L relative flex w-75 flex-col items-center gap-6 p-6">
+        <div className="text-gray-80 w-full gap-2 text-center">
+          <h2 className="typo-l-strong w-full">{title}</h2>
+          {description && (
+            <p className="typo-m w-full whitespace-pre-wrap">{description}</p>
+          )}
+          {onInputChange !== undefined && (
+            <input
+              type="text"
+              value={inputValue ?? ""}
+              onChange={e => onInputChange(e.target.value)}
+              onKeyDown={e => {
+                if (e.key === "Enter") onConfirm();
+                if (e.key === "Escape") onClose();
+              }}
+              autoFocus
+              className="text-gray-80 typo-m w-full text-center outline-none"
+            />
+          )}
+        </div>
+        <div className="flex w-full gap-2">
           <button
             onClick={() => {
               onConfirm();
               onClose();
             }}
-            className={`typo-label h-11 text-white rounded-[10px] transition-colors active:opacity-80 ${confirmBtnColor} ${buttonWidth}`}
+            className={`typo-l-strong text-gray-0 rounded-M h-11 w-full ${confirmBtnColor} ${buttonWidth}`}
           >
             {confirmText}
           </button>
           {!isSingular && (
             <button
               onClick={onClose}
-              className="typo-label w-[95px] h-11 text-white bg-stone-300 rounded-[10px] active:opacity-80"
+              className={`typo-l-strong text-gray-0 rounded-M h-11 w-full ${cancelBtnColor}`}
             >
               {cancelText}
             </button>
@@ -82,6 +103,4 @@ const DoublecheckModal: React.FC<DoublecheckModalProps> = ({
     </div>,
     document.body,
   );
-};
-
-export default DoublecheckModal;
+}

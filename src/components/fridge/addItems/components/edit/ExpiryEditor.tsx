@@ -1,6 +1,13 @@
 import { useState } from "react";
-import nextIcon from "../../../../../assets/fridge/addItem/forward.svg";
-import prevIcon from "../../../../../assets/fridge/addItem/backward.svg";
+
+import PrevIcon from "@/assets/fridge/addItem/backward.svg?react";
+
+import { SpeechBubble } from "@/components/ui/SpeechBubble";
+
+import { daysOfWeek } from "@/constants/dateOfWeek";
+
+import useCalendar from "@/utils/calendar";
+import { formatDate } from "@/utils/formatDate";
 
 interface ExpiryEditorProps {
   value: string; // "2026.01.20" 형식
@@ -9,61 +16,50 @@ interface ExpiryEditorProps {
 
 export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
   const currentDate = value ? new Date(value.replace(/\./g, "-")) : null;
+  const today = new Date();
   const initialDate = currentDate || new Date();
-  const [viewDate, setViewDate] = useState(
-    new Date(initialDate.getFullYear(), initialDate.getMonth(), 1),
-  );
+
+  const { year, month, firstDayOfMonth, daysInMonth, prevMonth, nextMonth } =
+    useCalendar(initialDate);
+
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-  const year = viewDate.getFullYear();
-  const month = viewDate.getMonth();
-  const firstDayOfMonth = new Date(year, month, 1).getDay();
-  const daysInMonth = new Date(year, month + 1, 0).getDate();
-  const prevMonth = () => setViewDate(new Date(year, month - 1, 1));
-  const nextMonth = () => setViewDate(new Date(year, month + 1, 1));
-  const monthName = viewDate.toLocaleString("en-US", { month: "long" });
 
   const handleDateClick = (day: number) => {
-    const newDate = new Date(year, month, day, 12, 0, 0);
+    const newDate = new Date(year, month - 1, day, 12);
+
     setSelectedDate(newDate);
 
-    const formattedDate = `${newDate.getFullYear()}.${String(
-      newDate.getMonth() + 1,
-    ).padStart(2, "0")}.${String(newDate.getDate()).padStart(2, "0")}`;
-    setTimeout(() => onSave(formattedDate), 250);
+    setTimeout(() => onSave(formatDate(newDate)), 250);
   };
 
   return (
-    <div className="flex flex-col w-[357px] mx-auto items-center justify-center rounded-[6px] py-[13px] px-4 mb-[34px] shadow-[0px_10px_60px_0px_rgba(0,0,0,0.1)] bg-white">
+    <div className="bg-gray-0 border-gray-10 mx-auto flex w-full flex-col items-center justify-center gap-2 rounded-[16px] border px-3 py-4">
       {/* 1. 달력 헤더 (월 이동) */}
-      <div className="flex items-center justify-between w-[325px] h-11">
-        <h2 className="typo-h3 font-semibold">
-          {monthName} {year}
+      <div className="flex w-full items-center justify-between">
+        <h2 className="typo-l-strong">
+          {year}년 {month}월
         </h2>
         <div>
-          <button onClick={prevMonth} className="p-2 text-zinc-400">
-            <img src={prevIcon} alt="back" />
+          <button onClick={prevMonth} className="p-2">
+            <PrevIcon className="h-4 w-4 text-gray-50" />
           </button>
-          <button onClick={nextMonth} className="p-2 text-zinc-400">
-            <img src={nextIcon} alt="next" />
+          <button onClick={nextMonth} className="p-2">
+            <PrevIcon className="h-4 w-4 rotate-180 text-gray-50" />
           </button>
         </div>
       </div>
 
       {/* 2. 요일 표시 */}
-      <div className="grid grid-cols-7 w-full mb-2">
-        {daysOfWeek.map((day) => (
-          <div
-            key={day}
-            className="text-center typo-body2 text-[var(--color-green)] py-2"
-          >
+      <div className="grid w-full grid-cols-7">
+        {daysOfWeek.map(day => (
+          <div key={day} className="typo-body text-green-deep text-center">
             {day}
           </div>
         ))}
       </div>
 
       {/* 3. 날짜 그리드 */}
-      <div className="grid grid-cols-7 w-full gap-y-1">
+      <div className="grid w-full grid-cols-7">
         {/* 1일 이전 빈칸 처리 */}
         {Array.from({ length: firstDayOfMonth }).map((_, i) => (
           <div key={`empty-${i}`} />
@@ -72,32 +68,57 @@ export default function ExpiryEditor({ value, onSave }: ExpiryEditorProps) {
         {/* 실제 날짜 버튼 */}
         {Array.from({ length: daysInMonth }).map((_, i) => {
           const day = i + 1;
+
           const isCurrent =
             currentDate &&
             currentDate.getFullYear() === year &&
-            currentDate.getMonth() === month &&
+            currentDate.getMonth() === month - 1 &&
             currentDate.getDate() === day;
+
+          const isToday =
+            today.getFullYear() === year &&
+            today.getMonth() === month - 1 &&
+            today.getDate() === day;
+
           const isNewlySelected =
             selectedDate &&
             selectedDate.getFullYear() === year &&
-            selectedDate.getMonth() === month &&
+            selectedDate.getMonth() === month - 1 &&
             selectedDate.getDate() === day;
 
+          const isSelected = isNewlySelected || (!selectedDate && isCurrent);
+
           return (
-            <button
-              key={day}
-              onClick={() => handleDateClick(day)}
-              className={`h-10 w-10 mx-auto flex items-center justify-center rounded-full typo-h2 text-zinc-800 transition-all !font-normal
-                ${
+            <div key={day} className="relative flex flex-col items-center">
+              {isToday && (
+                <div className="absolute -top-8 z-10">
+                  <SpeechBubble text="TODAY" />
+                </div>
+              )}
+
+              <button
+                onClick={() => handleDateClick(day)}
+                className={`flex h-8 w-8 items-center justify-center rounded-full transition-all ${
                   isNewlySelected
-                    ? "!bg-[var(--color-green-light)] !border !border-[var(--color-green-deep)] !font-semibold"
-                    : isNewlySelected || isCurrent
-                      ? "!bg-zinc-200 !text-zinc-500 !cursor-not-allowed"
-                      : "hover:bg-zinc-50"
+                    ? "border-green-deep bg-green-light border"
+                    : isCurrent
+                      ? "bg-gray-10"
+                      : ""
                 }`}
-            >
-              {day}
-            </button>
+              >
+                <p
+                  className={`${
+                    isSelected
+                      ? "typo-l text-gray-80"
+                      : isCurrent
+                        ? "typo-l text-gray-80"
+                        : ""
+                  } `}
+                >
+                  {day}
+                </p>
+              </button>
+            </div>
           );
         })}
       </div>

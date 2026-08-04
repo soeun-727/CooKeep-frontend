@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
-import PhoneSection from "./PhoneSection";
-import AccountSection from "./AccountSection";
-import SuccessSection from "./SuccessSection";
-import { useSignupStore } from "../../../stores/useSignupStore";
-import { signup } from "../../../api/auth";
-import { saveTokens } from "../../../utils/auth";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import PhoneAuthModal from "./PhoneAuthModal";
 
-interface Agreements {
-  terms: boolean;
-  privacy: boolean;
-  marketing: boolean;
-  policy: boolean;
-}
+import { signup } from "@/api/auth";
+import { registerPushNotification } from "@/api/push";
+import { useSignupStore } from "@/stores/useSignupStore";
+import axios from "axios";
+
+import { AuthAgreements } from "@/types/auth";
+
+import { saveTokens } from "@/utils/auth";
+import { validatePassword } from "@/utils/validateUtil";
+
+import AccountSection from "./AccountSection";
+import EmailAuthModal from "./EmailAuthModal";
+import EmailSection from "./EmailSection";
+import SuccessSection from "./SuccessSection";
 
 interface SignupFormProps {
   setHideHeader: (hide: boolean) => void;
@@ -28,24 +28,23 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
     setHideHeader(isFinished);
   }, [isFinished, setHideHeader]);
 
-  // 전화 인증 결과만 구독
-  const isVerified = useSignupStore((s) => s.isVerified);
+  // 인증 결과만 구독
+  const isVerified = useSignupStore(s => s.isVerified);
+  const storeEmail = useSignupStore(s => s.email); // store의 이메일 (인증에 사용된)
 
   // 계정 정보
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   // 약관 동의
-  const [agreements, setAgreements] = useState<Agreements>({
+  const [agreements, setAgreements] = useState<AuthAgreements>({
     terms: false,
     privacy: false,
     marketing: false,
     policy: false,
   });
 
-  const isPasswordValid =
-    password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
+  const isPasswordValid = validatePassword(password);
 
   const isPasswordMatch = password === passwordConfirm;
   const isRequiredAgreed = agreements.terms && agreements.privacy;
@@ -54,52 +53,53 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
     isVerified && isPasswordValid && isPasswordMatch && isRequiredAgreed;
 
   const navigate = useNavigate();
-  const rawPhoneNumber = useSignupStore((s) => s.phone);
-  const phoneNumber = rawPhoneNumber.replace(/-/g, "");
 
   const [loading, setLoading] = useState(false);
 
   const [emailAlreadyModal, setEmailAlreadyModal] = useState(false);
 
   const handleSubmit = async () => {
-    // 중복 클릭 + 조건 체크
     if (!isSignupEnabled || loading) {
       setServerError("모든 필수 항목을 확인해주세요.");
       return;
     }
 
     setServerError(undefined);
-    setLoading(true); // 로딩 시작
+    setLoading(true);
 
     try {
       const res = await signup({
-        phoneNumber,
-        email,
+        email: storeEmail,
         password,
         passwordConfirm,
         marketingConsent: agreements.marketing,
       });
 
-      // 토큰 저장
+      // GA 회원가입 이벤트
+      window.gtag?.("event", "sign_up", {
+        method: "email",
+      });
+
+      // 1. 토큰 저장
       saveTokens({
         accessToken: res.data.accessToken,
         refreshToken: res.data.refreshToken,
       });
 
-      // 성공 UI
       setIsFinished(true);
 
-      // 명세: 회원가입 성공 → 무조건 온보딩
-      // setTimeout(() => {
-      //   navigate("/onboarding");
-      // }, 500);
+      if (agreements.marketing) {
+        registerPushNotification().catch(err => {
+          console.error("회원가입 후 푸시 등록 실패 (비필수):", err);
+        });
+      }
     } catch (err) {
       if (axios.isAxiosError(err)) {
         const code = err.response?.data?.code;
-
-        if (code === "USER-002") {
-          setServerError("이미 사용 중인 전화번호입니다.");
-        } else if (code === "USER-003") {
+        // if (code === "USER-002") {
+        //   setServerError("이미 사용 중인 전화번호입니다.");
+        // } else
+        if (code === "USER-003") {
           setServerError(undefined);
           setEmailAlreadyModal(true);
         } else {
@@ -111,25 +111,24 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
         setServerError("알 수 없는 오류가 발생했습니다.");
       }
     } finally {
-      setLoading(false); // 성공/실패 상관없이 반드시 실행
+      setLoading(false);
     }
   };
 
-  const updateAgreements = (next: Partial<Agreements>) => {
+  const updateAgreements = (next: Partial<AuthAgreements>) => {
     setAgreements({ ...agreements, ...next });
   };
 
   if (isFinished) return <SuccessSection />;
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col gap-4">
-      {!isVerified && <PhoneSection />}
+    <div className="flex min-h-0 flex-1 flex-col gap-4">
+      {/* 이메일 인증 섹션 (전화번호 섹션 대체) */}
+      {!isVerified && <EmailSection />}
 
       {isVerified && (
         <>
           <AccountSection
-            email={email}
-            setEmail={setEmail}
             password={password}
             setPassword={setPassword}
             passwordConfirm={passwordConfirm}
@@ -143,15 +142,14 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
           />
 
           {serverError && (
-            <p className="text-red-500 text-sm text-center mt-2">
+            <p className="text-semantic-negative mt-2 text-center text-sm">
               {serverError}
             </p>
           )}
           {emailAlreadyModal && (
-            <PhoneAuthModal
+            <EmailAuthModal
               type="already"
-              email={email}
-              authType="email"
+              email={storeEmail}
               onConfirm={() => setEmailAlreadyModal(false)}
               onLogin={() => navigate("/login")}
             />

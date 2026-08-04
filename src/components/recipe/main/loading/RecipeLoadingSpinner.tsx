@@ -1,15 +1,13 @@
-// components/recipe/main/loading/RecipeLoadingSpinner.tsx
-
 export default function RecipeLoadingSpinner() {
   // 8개의 점 배열
   const dots = Array.from({ length: 8 });
 
   return (
-    <div className="relative flex justify-center items-center w-12 h-12 mb-10">
+    <div className="relative flex h-12 w-12 items-center justify-center">
       {dots.map((_, i) => (
         <div
           key={i}
-          className="absolute w-2 h-2 rounded-full animate-dot-chase"
+          className="animate-dot-chase absolute h-2 w-2 rounded-full"
           style={{
             // 1. 회전각도: 360도 / 8개 = 45도씩 회전
             // 2. 위치: 중심에서 위로 20px 밀어내어 원 형태 생성

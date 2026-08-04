@@ -2,10 +2,10 @@ import {
   apple,
   beans,
   lettuce,
-  tomato,
   potato,
   strawberry,
-} from "../assets/index";
+  tomato,
+} from "@/assets/index";
 
 export const PLANT_DATA = [
   {

@@ -1,5 +1,3 @@
-// src/utils/ingredientMapper.ts
-
 export const UNIT_MAP: Record<string, string> = {
   PIECE: "개",
   COUNT: "개",
@@ -45,8 +43,6 @@ export type GoalActionType =
 
 /** 서버에서 받은 "COOKING"을 "직접 요리하기"로 바꿔주는 헬퍼 */
 export const getGoalLabel = (serverValue: string): string => {
-  const goal = Object.values(GOAL_TYPE_MAP).find(
-    (g) => g.value === serverValue,
-  );
+  const goal = Object.values(GOAL_TYPE_MAP).find(g => g.value === serverValue);
   return goal ? goal.label : serverValue;
 };

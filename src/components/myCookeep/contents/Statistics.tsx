@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { carIcon, elecIcon, treeIcon, triButton } from "../../../assets";
+
+import { ConsumptionReport, getConsumptionReport } from "@/api/stats";
+
+import { carIcon, elecIcon, treeIcon, triButton } from "@/assets/index";
+
 import CircleGraph from "./CircleGraph";
-import { ConsumptionReport, getConsumptionReport } from "../../../api/stats";
 
 export default function Statistics() {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -33,48 +36,48 @@ export default function Statistics() {
 
   if (isLoading)
     return (
-      <div className="h-[354px] flex items-center justify-center">
+      <div className="flex h-[354px] items-center justify-center">
         데이터 로딩 중...
       </div>
     );
 
   return (
-    <div className="h-[354px] py-6 w-full flex flex-col items-center bg-white overflow-hidden relative">
+    <div className="bg-gray-0 relative flex h-[354px] w-full flex-col items-center overflow-hidden py-6">
       <div
-        className={`flex flex-col items-center w-full transition-transform duration-500 ease-in-out ${
+        className={`flex w-full flex-col items-center transition-transform duration-500 ease-in-out ${
           isExpanded ? "-translate-y-[230px]" : "translate-y-0"
         }`}
       >
-        <div className="flex flex-col items-center w-full h-[307px] shrink-0">
-          <div className="flex flex-col typo-caption text-white bg-black rounded-[6px] w-[157px] h-[26px] text-center justify-center mt-5">
+        <div className="flex h-[307px] w-full shrink-0 flex-col items-center">
+          <div className="typo-caption text-gray-0 mt-5 flex h-[26px] w-[157px] flex-col justify-center rounded-[6px] bg-black text-center">
             나의 식재료 소비 달성 현황
           </div>
 
-          <div className="flex w-77 mt-6 justify-between pt-[6.5px]">
-            <div className="flex flex-col gap-[6.5px] w-1/2 items-center justify-center">
+          <div className="mt-6 flex w-77 justify-between pt-[6.5px]">
+            <div className="flex w-1/2 flex-col items-center justify-center gap-[6.5px]">
               <CircleGraph percentage={stats.totalRate} />
-              <span className="typo-caption !text-[10px] text-zinc-500 text-center leading-tight">
+              <span className="typo-caption text-center !text-[10px] leading-tight text-gray-50">
                 (실제 소비 음식/전체 음식) %
               </span>
             </div>
-            <div className="flex flex-col gap-[6.5px] w-1/2 items-center justify-center">
+            <div className="flex w-1/2 flex-col items-center justify-center gap-[6.5px]">
               <CircleGraph percentage={stats.nearExpiryRate} />
-              <span className="typo-caption !text-[10px] text-zinc-500 text-center leading-tight">
+              <span className="typo-caption text-center !text-[10px] leading-tight text-gray-50">
                 (실제 소비 음식/폐기 임박 음식) %
               </span>
             </div>
           </div>
 
-          <div className="mt-[31px] typo-body2 text-center">
+          <div className="typo-body2 mt-[31px] text-center">
             유통기한 임박 식재료 3개를 요리하면
             <br />
-            <span className="text-(--color-green) font-bold">0.8kg</span>의 CO₂
-            배출을 줄일 수 있어요
+            <span className="text-green font-bold">0.8kg</span>의 CO₂ 배출을
+            줄일 수 있어요
           </div>
 
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="flex flex-col mt-2 w-[62px] h-[29px] items-center justify-start focus:outline-none"
+            className="mt-2 flex h-[29px] w-[62px] flex-col items-center justify-start focus:outline-none"
           >
             <img
               src={triButton}
@@ -87,15 +90,15 @@ export default function Statistics() {
         </div>
 
         {/* [영역 2]: 올라오면서 보여질 상세 화면 (애니메이션 컨테이너 '내부'로 이동) */}
-        <div className="flex flex-col items-center w-full px-4 pt-5 shrink-0">
-          <div className="flex gap-2 justify-center mb-6">
+        <div className="flex w-full shrink-0 flex-col items-center px-4 pt-5">
+          <div className="mb-6 flex justify-center gap-2">
             <div className="flex flex-col items-center gap-[14px]">
               <img
                 src={treeIcon}
                 alt="tree"
-                className="w-20 h-20 object-contain"
+                className="h-20 w-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-[#E6FBEB] text-[#1DAD64] font-medium">
+              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 나무 0.03그루 심기
               </div>
             </div>
@@ -103,9 +106,9 @@ export default function Statistics() {
               <img
                 src={carIcon}
                 alt="car"
-                className="w-20 h-20 object-contain"
+                className="h-20 w-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-[#E6FBEB] text-[#1DAD64] font-medium">
+              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 자동차 4km 미주행
               </div>
             </div>
@@ -113,15 +116,15 @@ export default function Statistics() {
               <img
                 src={elecIcon}
                 alt="elec"
-                className="w-20 h-20 object-contain"
+                className="h-20 w-20 object-contain"
               />
-              <div className="text-[10px] whitespace-nowrap rounded-[100px] px-3 py-1 bg-[#E6FBEB] text-[#1DAD64] font-medium">
+              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 자동차 4km 미주행
               </div>
             </div>
           </div>
 
-          <span className="typo-caption text-zinc-400 text-[10px] text-center">
+          <span className="typo-caption text-gray-30 text-center text-[10px]">
             국제 평균 식품 폐기물 탄소 배출 계수 기준 추정치
           </span>
         </div>

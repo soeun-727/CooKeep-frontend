@@ -1,11 +1,11 @@
-import { create } from "zustand";
 import {
-  getAiRecipeSessions,
   AiRecipeSessionItem,
+  deleteAiRecipeSession,
+  getAiRecipeSessions,
   toggleFavoriteSession,
   updateAiSessionTitle,
-  deleteAiRecipeSession,
-} from "../api/aiSession";
+} from "@/api/aiSession";
+import { create } from "zustand";
 
 interface RecipeState {
   pinned: AiRecipeSessionItem[];
@@ -19,7 +19,7 @@ interface RecipeState {
   deleteSession: (sessionId: number) => Promise<void>;
 }
 
-export const useRecipeStore = create<RecipeState>((set) => ({
+export const useRecipeStore = create<RecipeState>((set, get) => ({
   pinned: [],
   sessions: [],
   isLoading: false,
@@ -28,9 +28,7 @@ export const useRecipeStore = create<RecipeState>((set) => ({
   fetchSessions: async () => {
     try {
       set({ isLoading: true, error: null });
-
       const data = await getAiRecipeSessions();
-
       set({
         pinned: data.pinned,
         sessions: data.sessions,
@@ -46,18 +44,36 @@ export const useRecipeStore = create<RecipeState>((set) => ({
   },
 
   toggleLike: async (sessionId: number) => {
+    const previousPinned = get().pinned;
+    const previousSessions = get().sessions;
+
+    const isPinned = previousPinned.some(s => s.sessionId === sessionId);
+    const isSession = previousSessions.some(s => s.sessionId === sessionId);
+
+    let nextPinned = [...previousPinned];
+    let nextSessions = [...previousSessions];
+
+    if (isPinned) {
+      const target = previousPinned.find(s => s.sessionId === sessionId);
+      if (target) {
+        nextPinned = previousPinned.filter(s => s.sessionId !== sessionId);
+        nextSessions = [{ ...target, isPinned: false }, ...previousSessions];
+      }
+    } else if (isSession) {
+      const target = previousSessions.find(s => s.sessionId === sessionId);
+      if (target) {
+        nextSessions = previousSessions.filter(s => s.sessionId !== sessionId);
+        nextPinned = [{ ...target, isPinned: true }, ...previousPinned];
+      }
+    }
+
+    set({ pinned: nextPinned, sessions: nextSessions });
+
     try {
       await toggleFavoriteSession(sessionId);
-
-      // 서버에서 다시 데이터를 가져오거나 로컬에서 위치를 옮겨줍니다.
-      // 여기서는 가장 정확한 방법인 재조회(fetch) 방식을 권장합니다.
-      const data = await getAiRecipeSessions();
-      set({
-        pinned: data.pinned,
-        sessions: data.sessions,
-      });
     } catch (error) {
-      console.error("즐겨찾기 변경 실패:", error);
+      console.error("즐겨찾기 변경 실패, 원래대로 복구합니다:", error);
+      set({ pinned: previousPinned, sessions: previousSessions });
       alert("즐겨찾기 상태를 변경하지 못했습니다.");
     }
   },
@@ -66,8 +82,6 @@ export const useRecipeStore = create<RecipeState>((set) => ({
     try {
       set({ isLoading: true });
       await updateAiSessionTitle(sessionId, newTitle);
-
-      // 최신 목록을 다시 불러와서 UI를 동기화합니다.
       const data = await getAiRecipeSessions();
       set({
         pinned: data.pinned,
@@ -85,16 +99,9 @@ export const useRecipeStore = create<RecipeState>((set) => ({
     try {
       set({ isLoading: true });
       await deleteAiRecipeSession(sessionId);
-
-      // 서버에서 성공하면 로컬 상태를 최신화 (두 가지 방법 중 선택)
-
-      // 방법 1: API 다시 찌르기 (가장 확실함)
-      // await get().fetchSessions();
-
-      // 방법 2: 로컬 상태에서 직접 필터링 (네트워크 비용 아끼기)
-      set((state) => ({
-        pinned: state.pinned.filter((s) => s.sessionId !== sessionId),
-        sessions: state.sessions.filter((s) => s.sessionId !== sessionId),
+      set(state => ({
+        pinned: state.pinned.filter(s => s.sessionId !== sessionId),
+        sessions: state.sessions.filter(s => s.sessionId !== sessionId),
         isLoading: false,
       }));
     } catch (error) {

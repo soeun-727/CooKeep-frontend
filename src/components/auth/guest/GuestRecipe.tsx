@@ -1,9 +1,12 @@
 import { useRef, useState } from "react";
-import RecipeTitle from "../../recipe/main/result/RecipeTitle";
-import RecipeContentSection from "../../recipe/main/result/RecipeContentSection";
-import RecipeYoutubeCard from "../../recipe/main/result/RecipeYoutubeCard";
-import notice from "../../../assets/guest/recipe_notice.svg";
-import OnboardingRewardModal from "../../ui/OnboardingRewardModal";
+
+import notice from "@/assets/guest/recipe_notice.svg";
+
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
+import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
+import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
+import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
+import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
 
 interface GuestRecipeResultProps {
   onNext: () => void;
@@ -11,6 +14,9 @@ interface GuestRecipeResultProps {
 
 export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDimmed, setIsDimmed] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const recipeData = {
     title: "딸기 바나나 베이글 프렌치 토스트",
     ingredients: {
@@ -32,7 +38,7 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
           name: "딸기",
           quantity: 1,
           unit: "팩",
-          note: "이 재료는 생략 가능합니다",
+          description: "이 재료는 생략 가능합니다",
         },
         { name: "바나나", quantity: 1, unit: "개" },
         { name: "슈가파우더", quantity: 1, unit: "티스푼" },
@@ -52,79 +58,79 @@ export default function GuestRecipe({ onNext }: GuestRecipeResultProps) {
   };
 
   const { title, ingredients, steps, youtube_search_queries } = recipeData;
-  const [isDimmed, setIsDimmed] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleButtonClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsModalOpen(true);
   };
 
+  const formattedSteps = steps.map((step, idx) => ({
+    order: idx + 1,
+    description: step,
+  }));
+
   return (
     <div
-      className="flex flex-col h-screen bg-gray-50 overflow-hidden items-center"
+      className="flex w-full flex-col px-4"
       onClick={() => setIsDimmed(true)}
     >
       {isDimmed && (
-        <div className="fixed inset-0 z-10 bg-neutral-900/50 transition-opacity animate-fadeIn left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
+        <div className="bg-black-overlay animate-fadeIn fixed inset-0 left-1/2 z-10 w-full max-w-[450px] -translate-x-1/2 transition-opacity" />
       )}
-      <div className="typo-body">오늘의 레시피</div>
-      {/* 스크롤 영역 */}
-      <div
-        ref={scrollRef}
-        className="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-9 px-4 pt-[21px] pb-10"
-      >
-        <div className="flex flex-col gap-2 w-full max-w-[361px] mx-auto">
-          {/* 레시피 제목 */}
-          <RecipeTitle name={title} />
 
-          {/* 레시피 상세 내용 (재료, 순서) */}
-          <RecipeContentSection
-            selectedIngredients={ingredients.user_ingredients}
-            requiredIngredients={ingredients.additional_ingredients}
-            substitutions={ingredients.optional_ingredients}
-            steps={steps.map((step, idx) => ({
-              order: idx + 1,
-              description: step,
-            }))}
-            difficulty="EASY"
-          />
+      <div className="mt-13 flex w-full flex-col items-center gap-3">
+        <div
+          ref={scrollRef}
+          className="no-scrollbar flex flex-1 flex-col gap-9 overflow-y-auto"
+        >
+          <div className="mx-auto flex w-full flex-col">
+            <RecipeTitle
+              name={title}
+              category="간식/디저트"
+              usedItems={ingredients.user_ingredients.length}
+            />
 
-          {/* 유튜브 카드 */}
-          <RecipeYoutubeCard videos={[]} tags={youtube_search_queries} />
+            <div className="flex flex-col gap-3">
+              <RecipeIngredientSection
+                selectedIngredients={ingredients.user_ingredients}
+                requiredIngredients={ingredients.additional_ingredients}
+                substitutions={ingredients.optional_ingredients}
+              />
 
-          {/* AI 주의사항 문구 */}
-          <div className="flex flex-col items-center gap-[2px] self-stretch mt-[10px]">
-            <div className="w-[361px] text-center text-[11px] leading-[14px] text-[#7D7D7D] font-pretendard">
-              AI가 제공하는 정보에는 실수가 있을 수 있습니다
-              <br />
-              관련 정보를 확인 후 활용해주세요
+              <RecipeStepSection steps={formattedSteps} difficulty="EASY" />
+
+              <RecipeYoutubeCard videos={[]} tags={youtube_search_queries} />
+
+              <div className="flex flex-col items-center gap-[2px]">
+                <div className="typo-caption w-full text-center text-gray-50">
+                  AI가 제공하는 정보에는 실수가 있을 수 있습니다
+                  <br />
+                  관련 정보를 확인 후 활용해주세요
+                </div>
+              </div>
+            </div>
+
+            <div className="relative z-20 mx-auto mt-6 mb-7 flex w-full max-w-[450px] items-center justify-center p-4">
+              {isDimmed && (
+                <object
+                  data={notice}
+                  className="absolute bottom-15 left-1/2 w-[178px] -translate-x-1/2"
+                />
+              )}
+              <button
+                onClick={e => {
+                  if (!isDimmed) {
+                    setIsDimmed(true);
+                  } else {
+                    handleButtonClick(e);
+                  }
+                }}
+                className="typo-button text-gray-0 bg-green h-[38px] w-full rounded-[10px]"
+              >
+                이 레시피대로 요리할래요
+              </button>
             </div>
           </div>
-        </div>
-
-        {/* 하단 버튼 영역 */}
-        <div className="relative flex p-4 w-full max-w-[450px] mx-auto mb-10 z-20 items-center justify-center">
-          {isDimmed && (
-            <img
-              src={notice}
-              alt="click notice"
-              /* left-1/2와 -translate-x-1/2를 추가하여 가로 중앙 정렬 */
-              className="absolute w-[178px] bottom-15 left-1/2 -translate-x-1/2"
-            />
-          )}
-          <button
-            onClick={(e) => {
-              if (!isDimmed) {
-                setIsDimmed(true);
-              } else {
-                handleButtonClick(e);
-              }
-            }}
-            className="w-full rounded-[10px] h-[38px] typo-button text-white bg-[#32E389]"
-          >
-            이 레시피대로 요리할래요
-          </button>
         </div>
       </div>
 

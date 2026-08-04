@@ -1,87 +1,63 @@
-import type { Ingredient } from "../../../../stores/useIngredientStore";
+import { useNavigate } from "react-router-dom";
 
-interface Props {
+import type { Ingredient } from "@/stores/useIngredientStore";
+import PlusIcon from "@/assets/icons/plus.svg?react";
+import SelectedItem from "./SelectedItem";
+
+interface SelectedIngredientListProps {
   ingredients: Ingredient[];
+  onRemove: (id: number) => void;
 }
 
-export default function SelectedIngredientList({ ingredients }: Props) {
+export default function SelectedIngredientList({
+  ingredients,
+  onRemove,
+}: SelectedIngredientListProps) {
   const MAX_PER_ROW = 5;
-  const remainder = ingredients.length % MAX_PER_ROW;
-  const emptyCount = remainder === 0 ? 0 : MAX_PER_ROW - remainder;
-
+  const totalCountWithButton = ingredients.length + 1;
+  const emptyCount =
+    totalCountWithButton < 10
+      ? 10 - totalCountWithButton
+      : totalCountWithButton % MAX_PER_ROW === 0
+        ? 0
+        : MAX_PER_ROW - (totalCountWithButton % MAX_PER_ROW);
   const sortedIngredients = [...ingredients].sort((a, b) => a.dDay - b.dDay);
+  const navigate = useNavigate();
 
   return (
-    <section className="flex flex-col items-center gap-4 w-full max-w-[361px] mx-auto px-4">
+    <section className="flex w-full flex-col items-center gap-4">
       {/* 제목 / 설명 */}
-      <div className="flex flex-col items-center gap-[2px]">
-        <h2 className="text-[20px] font-semibold leading-[28px] text-[#1FC16F] text-center">
-          내가 선택한 재료
-        </h2>
-        <p className="text-[12px] leading-[16px] text-[#7D7D7D] text-center">
+      <div className="flex flex-col items-center gap-1">
+        <h2 className="text-gray-80 typo-h3 text-center">내가 선택한 재료</h2>
+        <p className="typo-m text-gray-50">
           보유한 재료로 AI가 레시피를 추천해줘요
         </p>
       </div>
 
       {/* 재료 컨테이너 */}
-      <div
-        className="
-    w-full
-    grid grid-cols-5
-    justify-items-center
-    gap-y-2
-    px-[5px] py-[9px]
-    rounded-[10px]
-    bg-white
-    shadow-[0_-1px_80px_-4px_rgba(32,32,32,0.1)]
-  "
-      >
-        {sortedIngredients.map((item) => {
-          const isUrgent = item.dDay <= 3;
-          console.log(item.name, item.expiryDate, item.dDay);
+      <div className="bg-gray-0 rounded-L border-gray-10 grid w-full grid-cols-5 justify-items-center gap-y-1 border px-2 py-3">
+        {sortedIngredients.map(item => (
+          <SelectedItem key={item.id} item={item} onRemove={onRemove} />
+        ))}
 
-          return (
-            <div key={item.id} className="relative">
-              {/* 유통기한 */}
-              <span
-                className={`
-          absolute bottom-[56px] right-[44px]
-          inline-flex items-center justify-center
-          px-[5px] py-[1px] whitespace-nowrap leading-2.5
-          text-[8px]
-          rounded-full border bg-white
-          ${
-            isUrgent
-              ? "border-[#D91F1F] text-[#D91F1F]"
-              : "border-[#D1D1D1] text-[#7D7D7D]"
-          }
-        `}
-              >
-                {item.dDay >= 0 ? `D-${item.dDay}` : `D+${Math.abs(item.dDay)}`}
-              </span>
+        {/* 재료 추가 버튼 */}
+        <button
+          onClick={() => navigate(-1)}
+          className="flex h-[70px] w-full flex-1 flex-col items-center justify-center p-1"
+        >
+          <div className="flex h-11 w-11 items-center justify-center">
+            <PlusIcon className="h-6 w-6" />
+          </div>
+          <div className="text-gray-30 typo-caption">재료 추가</div>
+        </button>
 
-              {/* 이미지 + 이름 */}
-              <div className="w-[70px] h-[70px] flex flex-col items-center">
-                <div className="flex flex-col items-center gap-1 w-[56px]">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-[44px] h-[44px] object-cover"
-                  />
-                  <span className="text-[12px] font-medium leading-[16px] text-[#202020] text-center line-clamp-1">
-                    {item.name}
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {/* 빈 원 슬롯들 */}
         {Array.from({ length: emptyCount }).map((_, idx) => (
           <div
             key={`empty-${idx}`}
-            className="w-[70px] h-[70px] flex items-center justify-center"
+            className="flex h-[70px] w-[70px] items-center justify-center"
           >
-            <div className="w-[8px] h-[8px] rounded-full bg-[#EBEBEB] shadow-[inset_0_2px_5.2px_-4px_rgba(0,0,0,0.25)]" />
+            <div className="bg-gray-10 h-2 w-2 rounded-full shadow-inner" />
           </div>
         ))}
       </div>

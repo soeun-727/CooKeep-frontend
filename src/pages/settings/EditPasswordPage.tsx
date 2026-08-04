@@ -1,25 +1,29 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
-import TextField from "../../components/ui/TextField";
-import Button from "../../components/ui/Button";
-import { verifyCurrentPassword, changePassword } from "../../api/user";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import pwIcon from "../../assets/login/key.svg";
-import pwImage from "../../assets/login/pw.svg";
-import openpwImage from "../../assets/signup/openpw.svg";
-import checkIcon from "../../assets/signup/check.svg";
+import { changePassword, verifyCurrentPassword } from "@/api/user";
+import axios from "axios";
+
+import pwIcon from "@/assets/login/key.svg";
+import pwImage from "@/assets/login/pw.svg";
+import checkIcon from "@/assets/signup/check.svg";
+import openpwImage from "@/assets/signup/openpw.svg";
+
+import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
+
+import { validatePassword } from "@/utils/validateUtil";
 
 export default function EditPasswordPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const verifiedFromPhone = location.state?.verifiedBy === "phone";
+  const verifiedFromEmail = location.state?.verifiedBy === "email";
 
   // 기존 비밀번호
   const [currentPassword, setCurrentPassword] = useState("");
   const [isCurrentPwValid, setIsCurrentPwValid] = useState<boolean | null>(
-    verifiedFromPhone ? true : null,
+    verifiedFromEmail ? true : null,
   );
 
   // UI 상태
@@ -37,15 +41,12 @@ export default function EditPasswordPage() {
   const [error, setError] = useState<string | undefined>();
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const validatePassword = (pw: string) =>
-    pw.length >= 8 && /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw);
-
   const isPasswordValid = password ? validatePassword(password) : false;
   const isPasswordMatch =
     password && confirmPassword ? password === confirmPassword : false;
 
   const isFormValid =
-    (isCurrentPwValid === true || verifiedFromPhone) &&
+    (isCurrentPwValid === true || verifiedFromEmail) &&
     isPasswordValid &&
     isPasswordMatch;
 
@@ -53,7 +54,7 @@ export default function EditPasswordPage() {
   const handleCurrentPasswordBlur = async () => {
     if (!currentPassword) return;
     if (isCurrentPwValid === true) return;
-    if (verifiedFromPhone) return; // 본인인증으로 이미 검증됨
+    if (verifiedFromEmail) return; // 본인인증으로 이미 검증됨
 
     if (currentPwFailCount >= MAX_ATTEMPTS) {
       setShowAuthModal(true);
@@ -114,14 +115,14 @@ export default function EditPasswordPage() {
   };
 
   useEffect(() => {
-    if (!location.state?.fromSettings && !verifiedFromPhone) {
+    if (!location.state?.fromSettings && !verifiedFromEmail) {
       navigate("/settings", { replace: true });
     }
-  }, [location.state, verifiedFromPhone, navigate]);
+  }, [location.state, verifiedFromEmail, navigate]);
 
   return (
-    <div className="relative min-h-screen bg-[#FAFAFA]">
-      <div className="pt-[241px] w-[352px] mx-auto">
+    <div className="bg-background relative min-h-screen">
+      <div className="mx-auto w-[361px] pt-[241px]">
         <div className="typo-h1">비밀번호 변경</div>
 
         {/* 기존 비밀번호 */}
@@ -129,7 +130,7 @@ export default function EditPasswordPage() {
           <TextField
             type={showCurrentPassword ? "text" : "password"}
             value={currentPassword}
-            onChange={(value) => {
+            onChange={value => {
               setCurrentPassword(value);
               setIsCurrentPwValid(null);
               setError(undefined);
@@ -137,15 +138,15 @@ export default function EditPasswordPage() {
             onBlur={handleCurrentPasswordBlur}
             placeholder="기존 비밀번호"
             autoComplete="current-password"
-            disabled={verifiedFromPhone} // 본인인증 완료 시 비활성화
+            disabled={verifiedFromEmail} // 본인인증 완료 시 비활성화
             errorMessage={
               isCurrentPwValid === false
-                ? `기존 비밀번호가 일치하지 않습니다 (${currentPwFailCount}/${MAX_ATTEMPTS})`
+                ? `기존 비밀번호를 다시 확인해 주세요 (${currentPwFailCount}/${MAX_ATTEMPTS})`
                 : undefined
             }
             successMessage={
               isCurrentPwValid === true
-                ? verifiedFromPhone
+                ? verifiedFromEmail
                   ? "본인인증이 완료되었습니다"
                   : "기존 비밀번호가 확인되었습니다"
                 : undefined
@@ -155,7 +156,7 @@ export default function EditPasswordPage() {
               <button
                 type="button"
                 onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                disabled={verifiedFromPhone}
+                disabled={verifiedFromEmail}
               >
                 <img
                   src={
@@ -251,15 +252,17 @@ export default function EditPasswordPage() {
         </div>
 
         {error && (
-          <p className="text-red-500 text-sm text-center mt-[8px]">{error}</p>
+          <p className="text-semantic-negative mt-[8px] text-center text-sm">
+            {error}
+          </p>
         )}
 
         <Button
           size="L"
-          variant="green"
+          variant="black"
           disabled={!isFormValid}
           onClick={handleSubmit}
-          className="mt-[31px]"
+          className={`mt-[31px] ${!isFormValid ? "" : "!text-green"}`}
         >
           비밀번호 재설정
         </Button>
@@ -267,10 +270,10 @@ export default function EditPasswordPage() {
 
       {/* 5회 실패 모달 */}
       {showAuthModal && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="w-[254px] flex flex-col items-center pt-[25px] px-[28px] pb-[25px] gap-[16px] rounded-[10px] bg-white">
-            <p className="typo-label text-[#111] text-center self-stretch">
-              비밀번호가 5회 일치하지 않았어요.
+        <div className="bg-gray-80 absolute inset-0 z-50 flex items-center justify-center">
+          <div className="bg-gray-0 flex w-[254px] flex-col items-center gap-[16px] rounded-[10px] px-[28px] pt-[25px] pb-[25px]">
+            <p className="typo-label text-gray-80 self-stretch text-center">
+              비밀번호가 5회 일치하지 않았어요
               <br />
               본인인증을 진행해 주세요
             </p>
@@ -294,16 +297,16 @@ export default function EditPasswordPage() {
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="absolute inset-0 z-50 flex justify-center bg-[#FAFAFA]">
-          <div className="w-[361px] flex flex-col items-center">
+        <div className="bg-background absolute inset-0 z-50 flex justify-center">
+          <div className="flex w-[361px] flex-col items-center">
             <p className="typo-result-title pt-[295px] pb-[18px]">
               비밀번호 변경 완료
             </p>
-            <img src={checkIcon} alt="성공" className="w-[40px] h-[40px]" />
+            <img src={checkIcon} alt="성공" className="h-[40px] w-[40px]" />
             <Button
               size="L"
               variant="black"
-              className="mt-[48px]"
+              className="!text-green mt-[48px]"
               onClick={() => navigate("/settings")}
             >
               확인

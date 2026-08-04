@@ -1,32 +1,35 @@
 import { useEffect, useState } from "react";
-import SettingsToggleItem from "../components/SettingsToggleItem";
-import ConfirmModal from "../../ui/ConfirmModal";
-import { updateMarketingPush } from "../../../api/user";
 
-type Props = {
+import { registerPushNotification, unsubscribePush } from "@/api/push";
+import { updateMarketingPush } from "@/api/user";
+
+import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
+import ConfirmModal from "@/components/ui/ConfirmModal";
+
+interface NotificationSectionProps {
   marketingPush: boolean;
-};
+  onStateChange: (isAgreed: boolean) => void;
+}
 
-export default function NotificationSection({ marketingPush }: Props) {
+export default function NotificationSection({
+  marketingPush,
+  onStateChange,
+}: NotificationSectionProps) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [enabled, setEnabled] = useState(marketingPush);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setEnabled(marketingPush);
   }, [marketingPush]);
 
-  // 토글 핸들러
   const handleToggle = (next: boolean) => {
     if (!enabled && next) {
       setShowConfirm(true);
       return;
     }
-
     updatePush(next);
   };
-
-  // 실제 API 호출
-  const [loading, setLoading] = useState(false);
 
   const updatePush = async (next: boolean) => {
     if (loading) return;
@@ -36,7 +39,20 @@ export default function NotificationSection({ marketingPush }: Props) {
     setLoading(true);
 
     try {
+      if (next) {
+        const isSuccess = await registerPushNotification();
+        if (!isSuccess) {
+          setEnabled(prev);
+          alert("알림 권한이 거부되었거나 등록에 실패했습니다.");
+          return;
+        }
+      } else {
+        await unsubscribePush();
+      }
+
       await updateMarketingPush(next);
+
+      onStateChange(next);
     } catch {
       setEnabled(prev);
       alert("푸시 설정 변경에 실패했습니다.");
@@ -55,16 +71,16 @@ export default function NotificationSection({ marketingPush }: Props) {
   };
 
   return (
-    <section className="px-4 mt-[26px]">
+    <section className="mt-[128px] px-4">
       <SettingsToggleItem
-        label="Push 수신 동의"
+        label="PUSH 수신 동의"
         checked={enabled}
         onChange={handleToggle}
       />
 
       {showConfirm && (
         <ConfirmModal
-          message="Push 수신에 동의하시겠습니까?"
+          message="PUSH 수신에 동의하시겠습니까?"
           onConfirm={handleConfirm}
           onCancel={handleCancel}
         />

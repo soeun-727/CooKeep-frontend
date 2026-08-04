@@ -1,15 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import tempFoodPhoto from "../../../assets/mycookeep/record/temp_food_photo.svg";
-import Button from "../../ui/Button";
-import { useCookeepRecordStore } from "../../../stores/useCookeepRecordStore";
-import RecordCard from "./RecordCard";
-import AddRecordButton from "./AddRecordButton";
-import { DailyRecipe } from "../../../api/myRecipe";
 
-interface Props {
+import { DailyRecipe } from "@/api/myRecipe";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+
+import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
+
+import Button from "@/components/ui/Button";
+
+import AddRecordButton from "./AddRecordButton";
+import RecordCard from "./RecordCard";
+
+interface RecordEntryProps {
   records: DailyRecipe[];
 }
-export default function RecordEntry({ records }: Props) {
+export default function RecordEntry({ records }: RecordEntryProps) {
   const navigate = useNavigate();
   const { resetRecord } = useCookeepRecordStore();
 
@@ -20,8 +24,8 @@ export default function RecordEntry({ records }: Props) {
 
   return (
     <div className="relative">
-      <div className="flex justify-center items-center px-4 pt-[50px] pb-[calc(72px+env(safe-area-inset-bottom))] bg-white rounded-b-[6px]">
-        <div className="flex flex-col w-full max-w-[361px] items-start gap-4">
+      <div className="bg-gray-0 flex items-center justify-center rounded-b-[6px] px-4 pt-[50px] pb-[calc(72px+env(safe-area-inset-bottom))]">
+        <div className="flex w-full max-w-[361px] flex-col items-start gap-4">
           {records.length === 0 ? (
             <>
               <img
@@ -29,23 +33,23 @@ export default function RecordEntry({ records }: Props) {
                 alt="임시 요리 이미지"
                 className="h-[160px] w-full object-contain"
               />
-              <div className="flex flex-col items-center gap-[6px] w-full">
+              <div className="flex w-full flex-col items-center gap-[6px]">
                 <Button size="L" variant="black" onClick={handleRecordClick}>
                   오늘 만든 요리 기록하기
                 </Button>
               </div>
             </>
           ) : (
-            records.map((record) => (
+            records.map(record => (
               <RecordCard key={record.dailyRecipeId} record={record} />
             ))
           )}
         </div>
       </div>
       {records.length > 0 && (
-        <div className="fixed bottom-[calc(84px+env(safe-area-inset-bottom))] inset-x-0 z-[100] pointer-events-none">
-          <div className="relative max-w-[450px] mx-auto w-full">
-            <div className="absolute bottom-0 right-[31px] pointer-events-auto">
+        <div className="pointer-events-none fixed inset-x-0 bottom-[calc(84px+env(safe-area-inset-bottom))] z-[100]">
+          <div className="relative mx-auto w-full max-w-[450px]">
+            <div className="pointer-events-auto absolute right-[31px] bottom-0">
               <AddRecordButton />
             </div>
           </div>

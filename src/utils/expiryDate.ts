@@ -1,4 +1,3 @@
-// src/utils/expiryDate.ts
 export const calculateExpiryDate = (days: number): string => {
   const date = new Date();
   date.setDate(date.getDate() + days);

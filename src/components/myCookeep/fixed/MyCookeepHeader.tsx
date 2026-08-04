@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import settings from "../../../assets/cookeeps/main/settings_cookeeps.svg";
-import { myLogo, cookieIcon } from "../../../assets";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import settings from "@/assets/cookeeps/main/settings_cookeeps.svg";
+import { cookieIcon, myLogo } from "@/assets/index";
+
+import { TOOLTIP_KEY } from "@/constants/cookeeps";
 
 export default function MyCookeepHeader() {
   const navigate = useNavigate();
   const location = useLocation();
-  const cookie = useCookeepsStore((s) => s.cookie);
-
-  const TOOLTIP_KEY = "cookeepsPlantShortcutSeen";
+  const cookie = useCookeepsStore(s => s.cookie);
 
   const [showTooltip, setShowTooltip] = useState(() => {
     return !localStorage.getItem(TOOLTIP_KEY);
@@ -27,7 +29,7 @@ export default function MyCookeepHeader() {
   }, [showTooltip]);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-10 flex h-12 items-center justify-between pr-4">
+    <header className="absolute top-0 right-0 left-0 z-10 flex h-12 items-center justify-between pr-4">
       {/* 왼쪽 */}
       <div className="flex-1 px-[31px]">
         <img
@@ -40,9 +42,9 @@ export default function MyCookeepHeader() {
       {/* 오른쪽 */}
       <div className="flex items-center gap-2">
         {/* 쿠키 */}
-        <button className="flex h-[28px] items-center gap-1 rounded-full bg-white px-3 py-[2px] text-black">
+        <button className="bg-gray-0 flex h-[28px] items-center gap-1 rounded-full px-3 py-[2px] text-black">
           <img src={cookieIcon} alt="cookie" className="h-4 w-4" />
-          <span className="text-[12px] font-medium leading-4">{cookie} 개</span>
+          <span className="text-[12px] leading-4 font-medium">{cookie} 개</span>
         </button>
 
         {/* 설정 */}

@@ -1,59 +1,58 @@
-import {
-  calendar,
-  calendarOn,
-  record,
-  recordOn,
-  stats,
-  statsOn,
-} from "../../../assets";
+import { memo, useCallback } from "react";
 
-interface Props {
+import { CalendarIcon, RecordIcon, StatsIcon } from "@/assets/index";
+
+const TABS = [
+  { id: "record", Icon: RecordIcon },
+  { id: "calendar", Icon: CalendarIcon },
+  { id: "statistics", Icon: StatsIcon },
+] as const;
+interface MyCookeepTabBarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
   onActiveTabClick?: (tab: string) => void;
 }
 
-export default function MyCookeepTabBar({
+export default memo(function MyCookeepTabBar({
   activeTab,
   onTabChange,
   onActiveTabClick,
-}: Props) {
-  const tabs = [
-    { id: "record", img: record, onImg: recordOn },
-    { id: "calendar", img: calendar, onImg: calendarOn },
-    { id: "statistics", img: stats, onImg: statsOn },
-  ];
-  const handleTabClick = (tabId: string) => {
-    if (activeTab === tabId) {
-      // 이미 활성화된 탭을 클릭했을 때
-      onActiveTabClick?.(tabId);
-    } else {
-      // 새로운 탭을 클릭했을 때
-      onTabChange(tabId);
-    }
-  };
+}: MyCookeepTabBarProps) {
+  const handleTabClick = useCallback(
+    (tabId: string) => {
+      if (activeTab === tabId) {
+        onActiveTabClick?.(tabId);
+      } else {
+        onTabChange(tabId);
+      }
+    },
+    [activeTab, onTabChange, onActiveTabClick],
+  );
+
   return (
-    <div className="w-full flex bg-white h-13 justify-around items-center">
-      {tabs.map((tab) => {
+    <div className="bg-gray-0 flex h-13 w-full items-center justify-around">
+      {TABS.map(tab => {
         const isActive = activeTab === tab.id;
+        const Icon = tab.Icon;
         return (
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
-            className="flex-1 py-3 flex justify-center items-center relative transition-all"
+            className="relative flex flex-1 items-center justify-center py-3"
           >
-            <img
-              src={isActive ? tab.onImg : tab.img}
-              alt={tab.id}
-              className="w-6 h-6 object-contain"
+            <Icon
+              className={`h-6 w-6 transition-colors duration-200 ${
+                isActive ? "text-gray-80" : "text-gray-10"
+              }`}
+              aria-label={tab.id}
             />
 
             {isActive && (
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[114px] h-[2px] bg-gray-800 rounded-full" />
+              <div className="absolute bottom-0 left-1/2 h-[2px] w-[114px] -translate-x-1/2 rounded-full bg-gray-800" />
             )}
           </button>
         );
       })}
     </div>
   );
-}
+});

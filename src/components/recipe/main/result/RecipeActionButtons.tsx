@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
 
-interface Props {
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import Button from "@/components/ui/Button";
+
+interface RecipeActionButtonsProps {
   retryCount: number;
   maxRetry?: number;
   onRetry: () => void;
@@ -15,12 +17,10 @@ export default function RecipeActionButtons({
   onRetry,
   showRetryButton = true, // 기본값은 true
   isLoading = false,
-}: Props) {
+}: RecipeActionButtonsProps) {
   const navigate = useNavigate();
 
   const {
-    // increaseRetry,
-    // generateRecipe,
     selectedIngredients,
     difficulty,
     recipeHistory,
@@ -31,17 +31,13 @@ export default function RecipeActionButtons({
   const latestRecipe = recipeHistory.at(-1);
 
   const isMaxed = retryCount >= maxRetry;
+  const leftRetry = maxRetry - retryCount;
 
   // 로딩 중이거나 횟수 초과 시 비활성화 로직
   const isRetryDisabled = isMaxed || isLoading;
   const retryBtnText = isLoading
     ? "레시피 생성 중..."
-    : `다른 레시피 받기 (${retryCount}/${maxRetry})`;
-
-  // const handleRetry = () => {
-  //   increaseRetry();
-  //   generateRecipe();
-  // };
+    : `다른 레시피 보기 · ${leftRetry}회 남음`;
 
   const handleCookClick = async () => {
     // async 추가
@@ -66,33 +62,25 @@ export default function RecipeActionButtons({
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 w-full">
+    <div className="flex w-full flex-col items-center gap-2">
       {/* 요리할래요 버튼 */}
-      <button
+      <Button
         onClick={handleCookClick}
         disabled={!latestRecipe || isLoading || isCompleted}
-        className={`w-full rounded-[10px] h-[38px] typo-button text-white ${
-          !latestRecipe || isLoading || isCompleted
-            ? "bg-gray-300"
-            : "bg-[#32E389]"
-        }`}
+        size="L"
+        variant="green"
       >
         이 레시피대로 요리할래요
-      </button>
-
-      {/* 히스토리 조회 모드가 아닐 때만 '다른 레시피' 버튼 표시 */}
+      </Button>
       {showRetryButton && (
-        <button
+        <Button
+          size="S"
+          variant="black"
           onClick={onRetry}
           disabled={isRetryDisabled}
-          className={`w-full rounded-[10px] h-[38px] typo-button transition-colors ${
-            isRetryDisabled
-              ? "bg-gray-300 text-[#7D7D7D] cursor-not-allowed"
-              : "bg-[#202020] text-white"
-          }`}
         >
           {retryBtnText}
-        </button>
+        </Button>
       )}
     </div>
   );

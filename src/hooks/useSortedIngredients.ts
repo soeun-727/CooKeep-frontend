@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { useIngredientStore } from "../stores/useIngredientStore";
+
+import { useIngredientStore } from "@/stores/useIngredientStore";
 
 export function useSortedIngredients() {
   const { ingredients, searchTerm, viewCategory, sortOrder } =
@@ -7,7 +8,7 @@ export function useSortedIngredients() {
 
   // 1. 검색어 필터링 (검색 결과 뷰에서 사용)
   const filteredIngredients = useMemo(() => {
-    return ingredients.filter((item) =>
+    return ingredients.filter(item =>
       item.name.toLowerCase().includes(searchTerm.toLowerCase()),
     );
   }, [ingredients, searchTerm]);
@@ -18,7 +19,7 @@ export function useSortedIngredients() {
     const categoryFiltered =
       viewCategory === null
         ? filteredIngredients
-        : filteredIngredients.filter((item) => item.category === viewCategory);
+        : filteredIngredients.filter(item => item.category === viewCategory);
 
     // 정렬 로직 적용
     return [...categoryFiltered].sort((a, b) => {

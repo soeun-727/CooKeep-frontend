@@ -1,3 +1,5 @@
+import { ONBOARDING_GOALS } from "@/constants/onboarding";
+
 interface SpecificGoalProps {
   selectedGoal: { id: string; title: string };
   count: string; // 부모로부터 받은 현재 숫자 값
@@ -9,9 +11,10 @@ export default function SpecificGoal({
   count,
   onCountChange,
 }: SpecificGoalProps) {
-  const displayTitle = selectedGoal.title || "주 n회 요리하기";
+  const DEFAULT_GOAL = ONBOARDING_GOALS[0].title;
 
-  // displayTitle을 기준으로 글자를 자릅니다.
+  const displayTitle = selectedGoal.title || DEFAULT_GOAL;
+
   const titleParts = displayTitle.split("n");
 
   const numValue = parseInt(count, 10);
@@ -25,23 +28,21 @@ export default function SpecificGoal({
   };
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div className="w-[361px] mt-[46px]">
-        <h1 className="typo-h1 !text-[22px]">
-          이번 주 달성하고 싶은 목표를 세워보세요!
-        </h1>
-        <h3 className="typo-h3 text-gray-500">
+    <div className="flex w-full flex-col items-center px-4">
+      <div className="mt-[46px] w-full gap-2">
+        <h1 className="typo-h2">이번 주 목표부터 정해볼까요?</h1>
+        <h3 className="typo-l text-gray-50">
           목표를 이룰 수 있도록 쿠킵이 도와줄게요
         </h3>
       </div>
 
-      <div className="w-[361px] mt-[46px] flex flex-col items-start">
+      <div className="mt-[46px] flex w-full flex-col items-start">
         <div
-          className={`w-full h-12 px-3 flex items-center border rounded-md bg-white transition-all ${
-            isError ? "border-red-500" : "border-[#D1D1D1]"
+          className={`bg-gray-0 flex h-12 w-full items-center rounded-md border px-3 ${
+            isError ? "border-semantic-negative" : "border-gray-10"
           }`}
         >
-          <span className="typo-body2 whitespace-pre text-neutral-900">
+          <span className="typo-m text-gray-80 whitespace-pre">
             {titleParts[0]}
           </span>
           <input
@@ -50,16 +51,16 @@ export default function SpecificGoal({
             value={count}
             onChange={handleChange}
             placeholder="3"
-            className={`typo-body2 font-bold underline outline-none bg-transparent w-5 text-center transition-colors ${
-              isError ? "text-red-500" : "text-green-500"
+            className={`typo-m w-5 bg-transparent text-center underline underline-offset-2 transition-colors outline-none ${
+              isError ? "text-semantic-negative" : "text-green-deep"
             }`}
           />
-          <span className="typo-body2 text-neutral-900">{titleParts[1]}</span>
+          <span className="typo-m text-gray-80">{titleParts[1]}</span>
         </div>
 
         {/* 에러 메시지: 범위가 벗어났거나 비어있지 않을 때만 표시 */}
         {isError && (
-          <p className="text-red-500 text-[10px] mt-[5px] ml-3 animate-fadeIn">
+          <p className="text-semantic-negative animate-fadeIn typo-caption mt-[5px] ml-3">
             1~10 사이의 숫자로 입력해주세요
           </p>
         )}

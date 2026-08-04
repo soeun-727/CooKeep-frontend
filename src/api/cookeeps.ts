@@ -129,7 +129,7 @@ export const getWeeklyRanking = async () => {
 
 /** [GET] 온보딩 완료 여부 조회 */
 export const getOnboardingStatus = () => {
-  return api.get<{ status: string; data: { isCookeepsOnboarded: boolean } }>(
+  return api.get<{ status: string; data: { cookeepsOnboarded: boolean } }>(
     "/api/cookeeps/onboarding",
   );
 };

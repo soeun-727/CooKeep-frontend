@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../../stores/useAuthStore";
-import { loadingChar } from "../../../assets";
+
+import { useAuthStore } from "@/stores/useAuthStore";
+
+import { loadingChar } from "@/assets/index";
 
 export default function KakaoLoginCallback() {
   const navigate = useNavigate();
-  const loginSocial = useAuthStore((state) => state.loginSocial);
+  const loginSocial = useAuthStore(state => state.loginSocial);
   const hasCalledAPI = useRef(false);
 
   useEffect(() => {
@@ -15,7 +17,7 @@ export default function KakaoLoginCallback() {
 
       // 환경 변수 로드
       const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-      const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+      const REDIRECT_URI = `${window.location.origin}/kakao/callback`;
 
       if (!code || hasCalledAPI.current) return;
       hasCalledAPI.current = true;
@@ -43,6 +45,7 @@ export default function KakaoLoginCallback() {
             refreshToken: data.refreshToken || "",
             nextStep: data.nextStep,
             userStatus: data.userStatus,
+            isRewarded: data.isRewarded,
           });
 
           if (data.userStatus === "BLOCKED") {
@@ -52,6 +55,10 @@ export default function KakaoLoginCallback() {
           }
 
           if (data.nextStep === "TERMS") {
+            // 신규 회원가입 이벤트
+            window.gtag?.("event", "sign_up", {
+              method: "kakao",
+            });
             navigate("/simplelogin", { replace: true });
           } else if (data.nextStep === "ONBOARDING") {
             navigate("/onboarding", { replace: true });
@@ -71,8 +78,8 @@ export default function KakaoLoginCallback() {
   }, [navigate, loginSocial]);
 
   return (
-    <div className="flex flex-col items-center justify-center text-center mt-50">
-      <img className="opacity-70 w-30 p-5" src={loadingChar} alt="loading" />
+    <div className="mt-50 flex flex-col items-center justify-center text-center">
+      <img className="w-30 p-5 opacity-70" src={loadingChar} alt="loading" />
       <div className="typo-body2 text-zinc-500">로그인 중...</div>
     </div>
   );
