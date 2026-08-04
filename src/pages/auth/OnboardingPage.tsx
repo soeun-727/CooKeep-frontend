@@ -14,6 +14,8 @@ import Preference from "../../components/auth/onboarding/Preference";
 
 import { saveOnboardingData } from "../../api/onboarding";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
+import OnboardingHeader from "../../components/auth/onboarding/OnboardingHeader";
+import { GOAL_TYPE_MAP } from "../../utils/mapping";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -35,12 +37,19 @@ export default function Onboarding() {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const isValidCount = (count: string) => {
+    const num = Number(count);
+    return !Number.isNaN(num) && num >= 1 && num <= 10;
+  };
+
   // --- 유효성 검사 로직 ---
   const getIsValid = () => {
     if (step === 0) return true;
     if (step === 1) return true; // 기피 재료는 선택 사항
     if (step === 2) return selectedGoal.id !== "";
-    if (step === 3) return goalCount !== "";
+    if (step === 3) {
+      return isValidCount(goalCount);
+    }
     return false;
   };
 
@@ -51,7 +60,6 @@ export default function Onboarding() {
     if (step === 2 || step === 3) {
       // 목표 설정을 건너뛸 경우 초기화 후 바로 저장
       setSelectedGoal({ id: "COOKING", title: "주 n회 요리하기" }); // 기본값 혹은 서버 스펙에 따른 처리
-      setGoalCount("0");
       handleSaveOnboarding(true);
       return;
     }
@@ -61,13 +69,40 @@ export default function Onboarding() {
   const handleSaveOnboarding = async (isForcedSkip: boolean = false) => {
     setIsLoading(true);
     try {
-      const requestBody = {
-        dislikedIngredients: selectedIngredients.map((item) => item.ingredient),
-        goalActionType: isForcedSkip
-          ? "COOKING"
-          : selectedGoal.id.toUpperCase(),
-        targetCount: isForcedSkip ? 0 : parseInt(goalCount || "0", 10),
-      };
+      let requestBody;
+
+      if (isForcedSkip) {
+        requestBody = {
+          dislikedIngredients: selectedIngredients.map(
+            (item) => item.ingredient,
+          ),
+          goalActionType: null,
+          targetCount: null,
+        };
+
+        await saveOnboardingData(requestBody);
+        setSelectedGoal({ id: "", title: "" });
+        setGoalCount("");
+        setIsFinished(true);
+        return;
+      } else {
+        const count = Number(goalCount);
+
+        if (!isValidCount(goalCount)) {
+          alert("목표 횟수는 1~10 사이로 입력해주세요.");
+          setIsLoading(false);
+          return;
+        }
+
+        requestBody = {
+          dislikedIngredients: selectedIngredients.map(
+            (item) => item.ingredient,
+          ),
+          goalActionType:
+            GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
+          targetCount: count,
+        };
+      }
 
       const response = await saveOnboardingData(requestBody);
 
@@ -102,37 +137,44 @@ export default function Onboarding() {
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
 
   return (
-    <div className="flex flex-col h-[100dvh] items-center bg-[#FAFAFA]">
-      <AuthHeader />
-      {step !== 0 && (
-        <div className="w-full max-w-[361px] mx-auto">
-          <Progress currentStep={step} />
-        </div>
+    <div className="bg-background flex h-[100dvh] w-full flex-col items-center gap-15 px-4">
+      {step === 0 ? (
+        <AuthHeader />
+      ) : (
+        <OnboardingHeader onSkip={skipStep} isLoading={isLoading} />
       )}
-      <div
-        className={`flex-1 flex flex-col items-center w-full ${step === 0 ? "" : "px-1"}`}
-      >
-        <div className="w-full h-full">
-          {step === 0 && <Guide onNext={nextStep} />}
-          {step === 1 && <Preference />}
-          {step === 2 && (
-            <Goal selectedGoal={selectedGoal} onSelect={setSelectedGoal} />
-          )}
-          {step === 3 && (
-            <SpecificGoal
-              selectedGoal={selectedGoal}
-              count={goalCount}
-              onCountChange={setGoalCount}
-            />
-          )}
+
+      <div className="flex w-full flex-col gap-6">
+        {step !== 0 && (
+          <div className="mx-auto flex w-full max-w-[450px] justify-center">
+            <Progress currentStep={step} />
+          </div>
+        )}
+        <div
+          className={`flex w-full flex-1 flex-col ${step === 0 ? "" : "px-1"}`}
+        >
+          <div className="h-full w-full">
+            {step === 0 && <Guide onNext={nextStep} />}
+            {step === 1 && <Preference />}
+            {step === 2 && (
+              <Goal selectedGoal={selectedGoal} onSelect={setSelectedGoal} />
+            )}
+            {step === 3 && (
+              <SpecificGoal
+                selectedGoal={selectedGoal}
+                count={goalCount}
+                onCountChange={setGoalCount}
+              />
+            )}
+          </div>
         </div>
       </div>
+
       {step !== 0 && (
         <div className="shrink-0">
           <Footer
             onNext={nextStep}
             onPrev={prevStep}
-            onSkip={skipStep}
             isFirstStep={step === 1}
             isLastStep={step === 3}
             isValid={getIsValid()}

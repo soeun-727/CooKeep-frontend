@@ -122,14 +122,18 @@ export default function Preference() {
             relative w-[361px] transition-all duration-200
             ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"}
             overflow-hidden
+            [&>div>div]:border
+            [&>div>div]:!border-gray-10
+            [&>div>div]:bg-gray-0
             [&_p]:hidden
             [&_input]:w-full
+            [&_input]:bg-gray-0
             typo-body2
             [&_input]:outline-none 
             [&_input::placeholder]:text-[#7D7D7D]
             ${
               isDropdownOpen
-                ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
+                ? `[&>div>div]:rounded-b-none [&>div>div]:!border-b-0`
                 : ""
             }
           `}
@@ -157,7 +161,7 @@ export default function Preference() {
             <div
               key={ingredient.defaultIngredientId}
               onClick={() => handleRemove(ingredient.defaultIngredientId)}
-              className="bg-gray-200 px-3 px-1 h-7 flex gap-1 rounded-[100px] items-center"
+              className="flex h-7 items-center gap-1 rounded-[100px] bg-gray-200 px-3"
             >
               <img src={xIcon} className="w-3 h-3" />
               <span className="typo-caption !font-medium text-zinc-500">
@@ -182,7 +186,7 @@ export default function Preference() {
               onClick={() => {
                 setIsModalOpen(true);
               }}
-              className={`h-12 p-3 hover:bg-gray-100 cursor-pointer flex items-center gap-2`}
+              className="flex h-12 cursor-pointer items-center gap-2 p-3 hover:bg-gray-100"
             >
               직접 입력하기
             </li>

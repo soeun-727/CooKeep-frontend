@@ -17,8 +17,8 @@ export interface OnboardingResponse {
 
 export interface OnboardingSaveRequest {
   dislikedIngredients: string[]; // 기피 식재료 이름 리스트
-  goalActionType: string; // 예: "COOKING", "PHOTO" 등
-  targetCount: number; // 목표 횟수 (숫자)
+  goalActionType: string | null; // 목표 설정을 건너뛰면 null
+  targetCount: number | null; // 목표 설정을 건너뛰면 null
 }
 
 /** --- API 함수들 --- */

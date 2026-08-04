@@ -10,7 +10,7 @@ const Progress = ({ currentStep }: ProgressProps) => {
   const progressWidth = ((currentStep + 1) / visualTotalSteps) * 100;
 
   return (
-    <div className="mt-[93px]">
+    <div className="w-full">
       {/* 바 컨테이너 */}
       <div className="w-[361px] h-1 bg-gray-200 rounded-full overflow-hidden">
         {/* 실제 채워지는 게이지 */}
