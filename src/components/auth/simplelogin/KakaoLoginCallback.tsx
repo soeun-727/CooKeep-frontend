@@ -26,6 +26,7 @@ export default function KakaoLoginCallback() {
         // 주소를 직접 넣지 않고 환경 변수를 조합하여 호출
         const res = await fetch(
           `${BASE_URL}/api/auth/login/kakao?code=${code}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`,
+          { credentials: "include" },
         );
 
         if (!res.ok) {
@@ -42,7 +43,6 @@ export default function KakaoLoginCallback() {
           loginSocial({
             userId: data.userId,
             accessToken: data.accessToken || "",
-            refreshToken: data.refreshToken || "",
             nextStep: data.nextStep,
             userStatus: data.userStatus,
             isRewarded: data.isRewarded,

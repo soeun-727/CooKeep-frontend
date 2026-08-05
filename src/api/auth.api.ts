@@ -2,17 +2,13 @@
 import { useRewardStore } from "@/stores/useRewardStore";
 import axios from "axios";
 
-import { getRefreshToken, saveTokens } from "@/utils/auth";
+import { saveTokens } from "@/utils/auth";
 
 export async function refreshAccessToken() {
-  const refreshToken = getRefreshToken();
   const baseURL = import.meta.env.VITE_API_BASE_URL;
 
-  if (!refreshToken) {
-    throw new Error("No refresh token found");
-  }
-  const res = await axios.post(`${baseURL}/api/auth/refresh`, {
-    refreshToken,
+  const res = await axios.post(`${baseURL}/api/auth/refresh`, undefined, {
+    withCredentials: true,
   });
 
   // const newAccessToken = res.data.data.accessToken;
@@ -24,7 +20,6 @@ export async function refreshAccessToken() {
   }
   saveTokens({
     accessToken,
-    refreshToken,
   });
 
   return accessToken;

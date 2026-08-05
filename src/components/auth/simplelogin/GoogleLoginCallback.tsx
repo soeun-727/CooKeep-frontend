@@ -26,6 +26,7 @@ export default function GoogleLoginCallback() {
         // 직접적인 주소 노출 제거
         const res = await fetch(
           `${BASE_URL}/api/auth/login/google?code=${code}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`,
+          { credentials: "include" },
         );
 
         if (!res.ok) throw new Error();
@@ -35,7 +36,6 @@ export default function GoogleLoginCallback() {
         loginSocial({
           userId: data.userId,
           accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
           nextStep: data.nextStep,
           userStatus: data.userStatus,
           isRewarded: data.isRewarded,
