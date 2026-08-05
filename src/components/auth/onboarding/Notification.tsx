@@ -71,7 +71,7 @@ export default function Notification({ onNext }: NotificationProps) {
         <div className="bg-blur-to-b absolute bottom-0 left-0 z-10 h-12 w-full" />
       </div>
 
-      <div className="bg-background fixed bottom-0 left-1/2 z-50 w-full -translate-x-1/2 pb-[34px]">
+      <div className="bg-background fixed bottom-[env(safe-area-inset-bottom)] left-1/2 z-50 w-full -translate-x-1/2 px-4">
         <div className="flex flex-col gap-2">
           <Button
             size="L"

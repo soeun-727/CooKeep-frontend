@@ -22,7 +22,7 @@ export default function Last({ onStart }: LastProps) {
         <img src={checkChar} className="mt-[86px] w-[184px]" />
         <img src={shadow} className="w-42 brightness-93" />
 
-        <div className="fixed bottom-0 left-1/2 w-full -translate-x-1/2 pb-[34px]">
+        <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 w-full -translate-x-1/2">
           <div className="fixed -right-3 bottom-16 flex justify-end">
             <img src={calendarImage} className="w-30 shrink-0" />
           </div>

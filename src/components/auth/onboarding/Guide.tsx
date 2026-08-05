@@ -120,7 +120,7 @@ export default function Guide({ onNext }: GuideProps) {
 
         {/* 버튼 */}
         <div
-          className={`absolute bottom-10 z-20 w-full transition-opacity duration-300 ${
+          className={`absolute bottom-[env(safe-area-inset-bottom)] z-20 w-full transition-opacity duration-300 ${
             currentIndex === 3 ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >

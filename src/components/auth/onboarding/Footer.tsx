@@ -18,7 +18,7 @@ export default function Footer({
   isLoading,
 }: FooterProps) {
   return (
-    <div className="fixed bottom-0 left-1/2 w-full max-w-[450px] -translate-x-1/2 px-4 pb-[34px]">
+    <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 w-full max-w-[450px] -translate-x-1/2 px-4">
       <div className="mx-auto flex w-full flex-col gap-2">
         <Button
           size="L"

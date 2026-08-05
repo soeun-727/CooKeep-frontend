@@ -1,45 +1,23 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
-import {
-  OnboardingIngredient,
-  getOnboardingIngredients,
-} from "../../../api/onboarding";
+import { OnboardingIngredient } from "../../../api/onboarding";
 import { SearchIcon } from "../../../assets";
 import xIcon from "../../../assets/onboarding/x.svg";
 import { useOnboardingStore } from "../../../stores/useOnboardingStore";
 import TextField from "../../ui/TextField";
 import InputModal from "./InputModal";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 
-export default function Preference() {
+interface PreferenceProps {
+  allIngredients: OnboardingIngredient[];
+}
+
+export default function Preference({ allIngredients }: PreferenceProps) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [allIngredients, setAllIngredients] = useState<OnboardingIngredient[]>(
-    [],
-  );
-  const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { selectedIngredients, setSelectedIngredients } = useOnboardingStore();
 
   const hasText = searchTerm.length > 0;
-
-  useEffect(() => {
-    const fetchIngredients = async () => {
-      try {
-        setIsLoading(true);
-        const res = await getOnboardingIngredients();
-        const ingredientsList = res.data?.data?.ingredients;
-        if (ingredientsList && Array.isArray(ingredientsList)) {
-          setAllIngredients(ingredientsList);
-        }
-      } catch (error) {
-        console.error("재료 로드 실패:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchIngredients();
-  }, []);
 
   const filteredIngredients = useMemo(() => {
     if (!searchTerm.trim()) return [];
@@ -100,8 +78,6 @@ export default function Preference() {
       </span>
     );
   };
-
-  if (isLoading) return <LoadingScreen />;
 
   return (
     <div className="flex w-full flex-col items-center gap-6">

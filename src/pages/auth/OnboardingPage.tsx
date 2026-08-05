@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { saveOnboardingData } from "../../api/onboarding";
+import {
+  OnboardingIngredient,
+  getOnboardingIngredients,
+  saveOnboardingData,
+} from "../../api/onboarding";
 import AuthHeader from "../../components/auth/AuthHeader";
 import Footer from "../../components/auth/onboarding/Footer";
 import Goal from "../../components/auth/onboarding/Goal";
@@ -13,6 +17,7 @@ import OnboardingHeader from "../../components/auth/onboarding/OnboardingHeader"
 import Preference from "../../components/auth/onboarding/Preference";
 import Progress from "../../components/auth/onboarding/Progress";
 import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
+import LoadingScreen from "../../components/ui/LoadingScreen";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
 import { GOAL_TYPE_MAP } from "../../utils/mapping";
 
@@ -35,6 +40,37 @@ export default function Onboarding() {
   } = useOnboardingStore();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [allIngredients, setAllIngredients] = useState<OnboardingIngredient[]>(
+    [],
+  );
+  const [areIngredientsLoaded, setAreIngredientsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (step !== 1 || areIngredientsLoaded) return;
+
+    let isActive = true;
+
+    const fetchIngredients = async () => {
+      try {
+        const res = await getOnboardingIngredients();
+        const ingredients = res.data?.data?.ingredients;
+
+        if (isActive && Array.isArray(ingredients)) {
+          setAllIngredients(ingredients);
+        }
+      } catch (error) {
+        console.error("재료 로드 실패:", error);
+      } finally {
+        if (isActive) setAreIngredientsLoaded(true);
+      }
+    };
+
+    fetchIngredients();
+
+    return () => {
+      isActive = false;
+    };
+  }, [step, areIngredientsLoaded]);
 
   const isValidCount = (count: string) => {
     const num = Number(count);
@@ -130,6 +166,7 @@ export default function Onboarding() {
   if (showNotification)
     return <Notification onNext={() => setShowInstallGuide(true)} />;
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
+  if (step === 1 && !areIngredientsLoaded) return <LoadingScreen />;
 
   return (
     <div className="bg-background flex h-screen w-full flex-col items-center gap-15 px-4">
@@ -150,7 +187,7 @@ export default function Onboarding() {
         >
           <div className="h-full w-full">
             {step === 0 && <Guide onNext={nextStep} />}
-            {step === 1 && <Preference />}
+            {step === 1 && <Preference allIngredients={allIngredients} />}
             {step === 2 && (
               <Goal selectedGoal={selectedGoal} onSelect={setSelectedGoal} />
             )}
