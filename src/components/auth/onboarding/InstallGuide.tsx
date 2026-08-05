@@ -13,33 +13,37 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center px-4">
-      <button
-        onClick={() =>
-          navigate("/settings/faq", {
-            state: { openCategoryId: 4 },
-          })
-        }
-        className="typo-m-strong text-green-deep absolute top-0 right-4 py-[10px]"
-      >
-        자세한 설명 보기
-      </button>
-      {/* ================= 상단 (로고 + 제목 + 소제목) ================= */}
-      <div className="mt-25 flex w-full flex-col items-center gap-2">
-        <div className="flex w-full flex-col items-center gap-[2px]">
-          <img src={mainLogo} alt="CooKeep Logo" className="h-7" />
-          <h1 className="typo-h2">홈 화면에서 편하게 만나보세요!</h1>
+    <div className="relative flex min-h-screen flex-col items-center gap-[90px] px-4">
+      <div className="flex w-full flex-col items-center gap-15">
+        <header className="flex w-full justify-end">
+          <button
+            onClick={() =>
+              navigate("/settings/faq", {
+                state: { openCategoryId: 4 },
+              })
+            }
+            className="typo-m-strong text-green-deep py-[10px]"
+          >
+            자세한 설명 보기
+          </button>
+        </header>
+        {/* ================= 상단 (로고 + 제목 + 소제목) ================= */}
+        <div className="flex w-full flex-col items-center gap-2">
+          <div className="flex w-full flex-col items-center gap-[2px]">
+            <img src={mainLogo} alt="CooKeep Logo" className="h-7" />
+            <h1 className="typo-h2">홈 화면에서 편하게 만나보세요!</h1>
+          </div>
+          <p className="typo-l-strong text-green-deep w-full text-center">
+            더 쉽고 빠르게 서비스를 이용할 수 있어요
+          </p>
         </div>
-        <p className="typo-l-strong text-green-deep w-full text-center">
-          더 쉽고 빠르게 서비스를 이용할 수 있어요
-        </p>
-      </div>
 
-      <img
-        src={installGuideImage}
-        alt="Install Guide"
-        className="mt-15 mb-15 h-[202px] w-full object-contain"
-      />
+        <img
+          src={installGuideImage}
+          alt="Install Guide"
+          className="h-[202px] w-full object-contain"
+        />
+      </div>
 
       {/* ================= 설명 영역 ================= */}
       <div className="flex w-full flex-col items-center gap-3 self-stretch text-center text-gray-50">
@@ -54,12 +58,10 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
       </div>
 
       {/* ================= 하단 버튼 ================= */}
-      <div className="fixed bottom-0 left-1/2 w-full -translate-x-1/2 px-4 pt-6 pb-[34px]">
-        <div className="flex w-full flex-col items-center gap-[8px]">
-          <Button size="L" variant="green" onClick={onFinish}>
-            확인
-          </Button>
-        </div>
+      <div className="fixed bottom-0 left-1/2 w-full -translate-x-1/2 px-4">
+        <Button size="L" variant="green" onClick={onFinish}>
+          확인
+        </Button>
       </div>
     </div>
   );
