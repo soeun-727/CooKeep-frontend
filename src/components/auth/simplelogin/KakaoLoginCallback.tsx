@@ -16,7 +16,9 @@ export default function KakaoLoginCallback() {
       const code = params.get("code");
 
       // 환경 변수 로드
-      const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+      const BASE_URL = import.meta.env.DEV
+        ? ""
+        : import.meta.env.VITE_API_BASE_URL;
       const REDIRECT_URI = `${window.location.origin}/kakao/callback`;
 
       if (!code || hasCalledAPI.current) return;

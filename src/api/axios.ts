@@ -4,7 +4,7 @@ import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 import { clearTokens, getAccessToken } from "@/utils/auth";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.DEV ? "" : import.meta.env.VITE_API_BASE_URL,
   timeout: Number(import.meta.env.VITE_API_TIMEOUT) || 10000,
   withCredentials: true,
 });

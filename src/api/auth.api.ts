@@ -5,7 +5,7 @@ import axios from "axios";
 import { saveTokens } from "@/utils/auth";
 
 export async function refreshAccessToken() {
-  const baseURL = import.meta.env.VITE_API_BASE_URL;
+  const baseURL = import.meta.env.DEV ? "" : import.meta.env.VITE_API_BASE_URL;
 
   const res = await axios.post(`${baseURL}/api/auth/refresh`, undefined, {
     withCredentials: true,

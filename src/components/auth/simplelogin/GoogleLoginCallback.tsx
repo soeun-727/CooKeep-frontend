@@ -16,7 +16,9 @@ export default function GoogleLoginCallback() {
       const code = params.get("code");
 
       // 환경 변수 활용
-      const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+      const BASE_URL = import.meta.env.DEV
+        ? ""
+        : import.meta.env.VITE_API_BASE_URL;
       const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI || "";
 
       if (!code || hasCalledAPI.current) return;
