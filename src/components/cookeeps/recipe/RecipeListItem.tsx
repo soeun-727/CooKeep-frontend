@@ -80,11 +80,7 @@ export default function RecipeListItem({
       </div>
 
       {/* 텍스트 영역 */}
-      <div
-        className={`flex min-w-0 flex-1 flex-col items-start self-stretch ${
-          isPlaceholder ? "justify-between" : "justify-center gap-1"
-        }`}
-      >
+      <div className="flex min-w-0 flex-1 flex-col items-start justify-center gap-1 self-stretch">
         <p className="typo-l-strong text-gray-80 line-clamp-1 self-stretch">
           {title}
         </p>
@@ -92,57 +88,52 @@ export default function RecipeListItem({
         {!isPlaceholder && subtitle && (
           <p className="typo-m self-stretch text-gray-50">{subtitle}</p>
         )}
-
-        {isPlaceholder && (
-          <div className="flex items-center">
-            <LikeIcon className="text-gray-30 h-6 w-6" />
-            <span className="typo-l-strong text-gray-30 line-clamp-1">· 0</span>
-          </div>
-        )}
       </div>
 
       {/* 우측: 배지(표시용) + 케밥(삭제 액션, 있을 때만) */}
-      {!isPlaceholder && (
-        <div className="flex flex-shrink-0 items-center gap-1">
-          {badge.type === "like" && (
-            <div className="flex items-center">
-              <LikeIcon className="text-gray-30 h-6 w-6" />
-              <span className="typo-l text-green line-clamp-1">
-                · {badge.likes}
-              </span>
-            </div>
-          )}
+      <div className="flex flex-shrink-0 items-center gap-1">
+        {badge.type === "like" && (
+          <div className="flex items-center">
+            <LikeIcon
+              className={`h-6 w-6 fill-current ${isPlaceholder ? "text-gray-30" : "text-gray-30"}`}
+            />
+            <span
+              className={`typo-l line-clamp-1 ${isPlaceholder ? "text-gray-30" : "text-green"}`}
+            >
+              · {badge.likes}
+            </span>
+          </div>
+        )}
 
-          {badge.type === "bookmark" && (
-            <BookmarkIcon className="text-gray-30 h-6 w-6" />
-          )}
+        {!isPlaceholder && badge.type === "bookmark" && (
+          <BookmarkIcon className="text-gray-30 h-6 w-6" />
+        )}
 
-          {onDelete && (
-            <div className="relative" ref={menuRef}>
-              <button
-                onClick={handleKebabClick}
-                className="flex h-8 w-8 flex-shrink-0 items-center justify-center transition-transform active:scale-90"
+        {!isPlaceholder && onDelete && (
+          <div className="relative" ref={menuRef}>
+            <button
+              onClick={handleKebabClick}
+              className="flex h-8 w-8 flex-shrink-0 items-center justify-center transition-transform active:scale-90"
+            >
+              <DotsVerticalIcon className="text-gray-30 h-6 w-6" />
+            </button>
+
+            {isMenuOpen && (
+              <div
+                onClick={e => e.stopPropagation()}
+                className="border-gray-10 absolute top-full right-1 z-10 mt-1 flex w-[124px] flex-col items-center rounded-2xl border bg-white/90 py-2 shadow-[0_4px_16px_0_rgba(17,17,17,0.10)] backdrop-blur-[1px]"
               >
-                <DotsVerticalIcon className="text-gray-30 h-6 w-6" />
-              </button>
-
-              {isMenuOpen && (
-                <div
-                  onClick={e => e.stopPropagation()}
-                  className="border-gray-10 absolute top-full right-1 z-10 mt-1 flex w-[124px] flex-col items-center rounded-2xl border bg-white/90 py-2 shadow-[0_4px_16px_0_rgba(17,17,17,0.10)] backdrop-blur-[1px]"
+                <button
+                  onClick={handleDeleteClick}
+                  className="typo-m text-semantic-negative flex h-9 w-full items-center gap-2 rounded-b-2xl px-3 py-2"
                 >
-                  <button
-                    onClick={handleDeleteClick}
-                    className="typo-m text-semantic-negative flex h-9 w-full items-center gap-2 rounded-b-2xl px-3 py-2"
-                  >
-                    삭제하기
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
-        </div>
-      )}
+                  삭제하기
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
