@@ -9,7 +9,7 @@ import {
 import FAB from "@/assets/guest/fab.svg";
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 import Triangle from "@/assets/guest/triangle.svg?react";
-
+import Plus from "@/assets/icons/plus.svg?react";
 import Item from "@/components/fridge/items/Item";
 import Storage from "@/components/fridge/main/Storage";
 import FloatingNotice from "@/components/recipe/main/FloatingNotice";
@@ -155,7 +155,7 @@ export default function GuestFridge({
       {/* 하단 컨트롤 영역 */}
       {mode === "fridge" ? (
         <div className="pointer-events-none fixed right-0 bottom-[calc(72px+env(safe-area-inset-bottom))] left-0 z-[130] mx-auto w-full max-w-[450px] px-4">
-          <div className="pointer-events-auto flex flex-col items-end gap-2">
+          <div className="pointer-events-auto flex flex-col items-end gap-3">
             {isDimmed && (
               <div className="flex flex-col items-end">
                 <div className="rounded-S bg-gray-0 px-3 py-2">
@@ -170,6 +170,7 @@ export default function GuestFridge({
               </div>
             )}
 
+            {/* <img src={FAB} alt="재료 추가" /> */}
             <button
               onClick={e => {
                 if (!isDimmed) {
@@ -179,8 +180,9 @@ export default function GuestFridge({
                   onNext();
                 }
               }}
+              className="bg-gray-80 flex h-12 w-12 items-center justify-center rounded-full"
             >
-              <img src={FAB} alt="재료 추가" />
+              <Plus strokeWidth={3} className="text-green h-8 w-8" />
             </button>
           </div>
         </div>
