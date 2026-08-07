@@ -17,7 +17,7 @@ export { default as likeGray } from "./cookeeps/like_gray.svg";
 export { default as bookmark } from "./cookeeps/bookmark.svg";
 export { default as bookmarkGray } from "./cookeeps/bookmark_gray.svg";
 export { default as myLogo } from "./mycookeep/myCookeep_logo.svg";
-export { default as cookieIcon } from "./mycookeep/green_cookie.svg";
+export { default as cookieIcon } from "./cookie_bite.svg";
 export { default as groundImg } from "./cookeeps/plant/plant_before.svg";
 export { default as renameIcon } from "./icons/rename.svg";
 export { default as refreshIcon } from "./mycookeep/refresh.svg";
