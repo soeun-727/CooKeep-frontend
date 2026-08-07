@@ -13,6 +13,8 @@ interface TextFieldProps {
   rightIcon?: React.ReactNode;
   autoComplete?: string;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  bgColor?: string;
+  rounded?: string;
 }
 
 export default function TextField({
@@ -28,12 +30,16 @@ export default function TextField({
   rightIcon,
   autoComplete,
   onBlur,
+  bgColor = "bg-gray-10",
+  rounded = "rounded-[12px]",
 }: TextFieldProps) {
   return (
     <div className="w-full">
       {label && <label className="typo-m mb-1 block">{label}</label>}
 
-      <div className="bg-gray-10 border-gray-10 rounded-M flex h-[48px] gap-3 p-3">
+      <div
+        className={`${bgColor} border-gray-10 flex gap-3 ${rounded} border p-3`}
+      >
         {leftIcon && <div>{leftIcon}</div>}
 
         <input
@@ -44,13 +50,13 @@ export default function TextField({
           autoComplete={autoComplete}
           onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`text-gray-80 typo-m flex-1 placeholder:text-gray-50 focus:outline-none ${
+          className={`text-gray-80 typo-m flex-1 focus:outline-none ${
             errorMessage
               ? "border-semantic-negative"
               : successMessage
                 ? "border-semantic-positive"
                 : "border-gray-10"
-          } `}
+          } ${bgColor === "bg-gray-10" ? "placeholder:text-gray-50" : "placeholder:text-gray-80"}`}
         />
 
         {rightIcon && <div>{rightIcon}</div>}

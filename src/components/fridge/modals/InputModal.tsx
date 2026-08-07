@@ -8,7 +8,7 @@ interface InputModalProps {
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
-  onConfirm: () => void;
+  onConfirm: (value: string) => void;
   onClose: () => void;
 }
 export const InputModal = ({
@@ -50,7 +50,7 @@ export const InputModal = ({
             <Button
               key={text}
               variant={i === 0 ? "green" : "gray"}
-              onClick={i === 0 ? onConfirm : onClose}
+              onClick={i === 0 ? () => onConfirm(value) : onClose}
             >
               {text}
             </Button>

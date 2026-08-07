@@ -7,7 +7,7 @@ import {
 } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 
-import editIcon from "@/assets/icons/rename.svg";
+import EditIcon from "@/assets/icons/rename.svg?react";
 
 import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
 import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
@@ -116,7 +116,7 @@ export default function Custom({
                 onClick={() => setIsEditing(true)}
                 className="rounded-full p-1 transition-colors hover:bg-gray-100"
               >
-                <img src={editIcon} alt="edit" className="h-3 w-3" />
+                <EditIcon className="h-5 w-5 text-gray-50" />
               </button>
             </div>
           )}
