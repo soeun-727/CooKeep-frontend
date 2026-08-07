@@ -6,7 +6,7 @@ import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 import { groundImg, refreshIcon, renameIcon } from "@/assets/index";
 
-import { GOAL_TYPE_MAP } from "@/utils/mapping";
+import { GOAL_TYPE_MAP } from "@/utils/getGoalDescription";
 
 import ProfileEditModal from "../modals/ProfileEditModal";
 import MyCookeepHeader from "./MyCookeepHeader";
