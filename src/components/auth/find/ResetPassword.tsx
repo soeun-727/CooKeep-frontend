@@ -71,7 +71,7 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="bg-background flex min-h-screen w-full flex-col">
+    <div className="flex min-h-screen w-full flex-col">
       <main className="flex flex-1 flex-col gap-[120px] px-4">
         <BackHeader title="비밀번호 찾기" />
 
@@ -169,23 +169,26 @@ export default function ResetPassword() {
         </div>
       </main>
 
+      {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="bg-background fixed inset-0 z-[200] flex flex-col">
-          <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
-            <CheckIcon className="text-green h-10 w-10" />
-            <h2 className="typo-h2">비밀번호 변경 완료</h2>
-          </div>
-          <div className="bg-blur-to-t p-4">
-            <Button
-              size="L"
-              variant="green"
-              onClick={() => {
-                reset();
-                navigate("/login", { replace: true });
-              }}
-            >
-              로그인
-            </Button>
+        <div className="fixed inset-0 z-[200] flex justify-center">
+          <div className="bg-background flex h-full w-full max-w-[450px] flex-col">
+            <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
+              <CheckIcon className="text-green h-10 w-10" />
+              <h2 className="typo-h2">비밀번호 변경 완료</h2>
+            </div>
+            <div className="bg-blur-to-t p-4">
+              <Button
+                size="L"
+                variant="green"
+                onClick={() => {
+                  reset();
+                  navigate("/login", { replace: true });
+                }}
+              >
+                로그인
+              </Button>
+            </div>
           </div>
         </div>
       )}

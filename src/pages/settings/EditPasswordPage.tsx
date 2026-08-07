@@ -16,6 +16,7 @@ import { BackHeader } from "@/components/ui/BackHeader";
 import { validatePassword } from "@/utils/validateUtil";
 
 import { useAuthStore } from "@/stores/useAuthStore";
+import CautionModal from "@/components/ui/CautionModal";
 
 export default function EditPasswordPage() {
   const navigate = useNavigate();
@@ -269,53 +270,41 @@ export default function EditPasswordPage() {
       </main>
       {/* 5회 실패 모달 */}
       {showAuthModal && (
-        <>
-          {/* Overlay */}
-          <div className="bg-black-overlay fixed inset-0 z-[100]" />
-
-          {/* Modal */}
-          <div className="bg-gray-0 shadow-container fixed top-1/2 left-1/2 z-[110] flex w-[300px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-6 rounded-xl p-6">
-            <p className="typo-l-strong text-center whitespace-pre-wrap">
-              비밀번호가 5회 일치하지 않았어요
-              <br />
-              본인인증을 진행해 주세요
-            </p>
-
-            <Button
-              size="S"
-              variant="black"
-              className="w-full"
-              onClick={() => {
-                setShowAuthModal(false);
-                navigate("/settings/password/verify", {
-                  state: { fromPasswordFail: true },
-                });
-              }}
-            >
-              본인인증
-            </Button>
-          </div>
-        </>
+        <CautionModal
+          config={{
+            title: "비밀번호가 5회 일치하지 않았어요\n본인인증을 진행해 주세요",
+            buttonText: "본인인증",
+            variant: "black",
+          }}
+          onButtonClick={() => {
+            setShowAuthModal(false);
+            navigate("/settings/password/verify", {
+              state: { fromPasswordFail: true },
+            });
+          }}
+        />
       )}
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="bg-background fixed inset-0 z-[200] flex flex-col">
-          <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
-            <CheckIcon className="text-green h-10 w-10" />
-            <h2 className="typo-h2">비밀번호 변경 완료</h2>
-          </div>
-          <div className="bg-blur-to-t p-4">
-            <Button
-              size="L"
-              variant="green"
-              onClick={async () => {
-                await logout();
-                navigate("/login", { replace: true });
-              }}
-            >
-              로그인
-            </Button>
+        <div className="fixed inset-0 z-[200] flex justify-center">
+          <div className="bg-background flex h-full w-full max-w-[450px] flex-col">
+            <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
+              <CheckIcon className="text-green h-10 w-10" />
+              <h2 className="typo-h2">비밀번호 변경 완료</h2>
+            </div>
+            <div className="bg-blur-to-t p-4">
+              <Button
+                size="L"
+                variant="green"
+                onClick={async () => {
+                  await logout();
+                  navigate("/login", { replace: true });
+                }}
+              >
+                로그인
+              </Button>
+            </div>
           </div>
         </div>
       )}

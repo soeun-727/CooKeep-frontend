@@ -222,23 +222,25 @@ export default function EditEmailPage() {
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="bg-background fixed inset-0 z-[200] flex flex-col">
-          <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
-            <CheckIcon className="text-green h-10 w-10" />
-            <h2 className="typo-h2">이메일 주소 변경 완료</h2>
-          </div>
+        <div className="fixed inset-0 z-[200] flex justify-center">
+          <div className="bg-background flex h-full w-full max-w-[450px] flex-col">
+            <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
+              <CheckIcon className="text-green h-10 w-10" />
+              <h2 className="typo-h2">이메일 주소 변경 완료</h2>
+            </div>
 
-          <div className="bg-blur-to-t p-4">
-            <Button
-              size="L"
-              variant="green"
-              onClick={async () => {
-                await logout();
-                navigate("/login", { replace: true });
-              }}
-            >
-              로그인
-            </Button>
+            <div className="bg-blur-to-t p-4">
+              <Button
+                size="L"
+                variant="green"
+                onClick={async () => {
+                  await logout();
+                  navigate("/login", { replace: true });
+                }}
+              >
+                로그인
+              </Button>
+            </div>
           </div>
         </div>
       )}

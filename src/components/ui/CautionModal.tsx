@@ -11,7 +11,7 @@ export interface CautionModalConfig {
 
 interface CautionModalProps {
   config: CautionModalConfig;
-  onClose: () => void;
+  onClose?: () => void;
   onButtonClick: () => void;
 }
 
