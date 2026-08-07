@@ -5,8 +5,8 @@ import type { MasterItem } from "@/stores/useAddIngredientStore";
 
 import DeleteIcon from "@/assets/fridge/delete.svg?react";
 import MemoIcon from "@/assets/fridge/memo.svg?react";
-import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 import RenameIcon from "@/assets/icons/rename.svg?react";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
 import EditModal from "@/components/ui/EditModal";
 
@@ -208,7 +208,7 @@ export default function DetailedItem(item: DetailedItemProps) {
                 className="flex cursor-pointer items-center justify-between gap-2"
               >
                 {content}
-                {hasEditIcon && <RenameIcon className="w-3" />}
+                {hasEditIcon && <RenameIcon className="text-gray-30 h-5 w-5" />}
               </div>
             </div>
           ))}

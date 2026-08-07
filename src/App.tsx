@@ -13,6 +13,7 @@ import FindLayout from "@/components/auth/find/FindLayout";
 import RequireFindAuth from "@/components/auth/find/RequireFindAuth";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
+import ExcludedIngredientPage from "./pages/myCookeep/ExcludedIngrdientPage";
 import { useAuthStore } from "./stores/useAuthStore";
 
 const SplashPage = lazy(() => import("@/pages/SplashPage"));
@@ -259,6 +260,10 @@ export default function App() {
           <Route
             path="/mycookeep/record/:recordId"
             element={<RecordDetailPage />}
+          />
+          <Route
+            path="/mycookeep/excluded-ingredients"
+            element={<ExcludedIngredientPage />}
           />
         </Routes>
       </Suspense>
