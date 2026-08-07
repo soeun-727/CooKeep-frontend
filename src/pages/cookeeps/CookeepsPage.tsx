@@ -26,6 +26,7 @@ import { PLANT_DATA } from "@/constants/plantData";
 
 import { preloadImage } from "@/utils/preloadImage";
 import RecipeFilterButtons from "@/components/cookeeps/recipe/RecipeFilterButtons";
+import BalloonTip from "@/assets/cookeeps/balloon_tip.svg?react";
 
 type ActiveModal =
   | "onboarding"
@@ -138,6 +139,17 @@ export default function CookeepsPage() {
     }
   }, [justHarvestedPlant, hasShownHarvestModal]);
 
+  const [showFreeWaterTooltip, setShowFreeWaterTooltip] = useState(false);
+
+  useEffect(() => {
+    if (!isFreeWaterMode) return;
+
+    setShowFreeWaterTooltip(true);
+    const timer = setTimeout(() => setShowFreeWaterTooltip(false), 5000);
+
+    return () => clearTimeout(timer);
+  }, [isFreeWaterMode]);
+
   const handleOnboardingConfirm = async () => {
     try {
       await updateOnboardingStatus();
@@ -227,7 +239,7 @@ export default function CookeepsPage() {
   };
 
   return (
-    <div className="flex flex-1 flex-col gap-3">
+    <div className="relative flex flex-1 flex-col gap-3">
       <OnboardingModal
         isOpen={derivedModal === "onboarding"}
         onClose={handleOnboardingConfirm}
@@ -299,26 +311,45 @@ export default function CookeepsPage() {
         <CookeepsHeader />
       </header>
 
-      <main className="flex w-full flex-col">
-        <section className="flex w-full flex-col">
-          <PlantBackground
-            showToast={toastVisible}
-            message="물 주기에 성공했어요!"
-            plant={currentPlant?.plantName}
-            isLoading={isPlantLoading}
-            overridePlantStage={
-              showHarvestModal ? 4 : activeModal === "wilted" ? 1 : undefined
-            }
-          />
-          <PlantGrowthCard
-            plant={currentPlant?.plantName}
-            onWaterSuccess={handleWaterSuccess}
-            onRefresh={fetchRankingData}
-            overridePlantStage={
-              showHarvestModal ? 4 : activeModal === "wilted" ? 1 : undefined
-            }
-          />
-        </section>
+      <main className="flex w-full flex-col gap-6">
+        <div className="relative z-60 flex w-full flex-col items-center gap-2">
+          {/* 식물 카드 (PlantBackground + PlantGrowthCard) */}
+          <section className="shadow-container flex w-full flex-col items-center self-stretch overflow-hidden rounded-2xl bg-[#FAFAFA]">
+            <PlantBackground
+              showToast={toastVisible}
+              message="물 주기에 성공했어요!"
+              plant={currentPlant?.plantName}
+              isLoading={isPlantLoading}
+              overridePlantStage={
+                showHarvestModal ? 4 : activeModal === "wilted" ? 1 : undefined
+              }
+            />
+            <PlantGrowthCard
+              plant={currentPlant?.plantName}
+              onWaterSuccess={handleWaterSuccess}
+              onRefresh={fetchRankingData}
+              overridePlantStage={
+                showHarvestModal ? 4 : activeModal === "wilted" ? 1 : undefined
+              }
+            />
+          </section>
+
+          {/* 물주기 안내 툴팁 */}
+          {isFreeWaterMode && showFreeWaterTooltip && (
+            <div
+              className="flex w-[232px] flex-col items-center backdrop-blur-[1px]"
+              style={{ filter: "drop-shadow(0 4px 16px rgba(17,17,17,0.10))" }}
+            >
+              <BalloonTip className="block h-[9px] w-[11px] text-white/90" />
+              <div className="flex items-center justify-center rounded-[8px] bg-white/90 px-3 py-2">
+                <p className="typo-caption text-gray-80 text-center">
+                  버튼을 클릭하여 식물에게 물을 줄 수 있어요!
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
         <section className="flex flex-col gap-6 px-4 pb-15">
           <WeeklyTop3Section
             users={ranking?.wateringRanking ?? []}
@@ -333,8 +364,8 @@ export default function CookeepsPage() {
       </main>
 
       {isFreeWaterMode && (
-        <div className="pointer-events-none absolute inset-0 z-40">
-          <div className="bg-gray-80 absolute inset-0" />
+        <div className="absolute inset-0 z-55">
+          <div className="bg-gray-80/50 absolute inset-0" />
         </div>
       )}
     </div>

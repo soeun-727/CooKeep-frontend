@@ -11,7 +11,8 @@ export default function GrowthProgressBar({
   const currentPlant = useCookeepsStore(s => s.currentPlant);
   const stageToShow = overridePlantStage ?? currentPlant?.level ?? 1;
 
-  const percent = currentPlant ? (stageToShow / 4) * 100 : 0;
+  // 1단계 = 0%, 4단계 = 100%로 매핑 (1~4를 0~3으로 옮긴 뒤 3으로 나눔)
+  const percent = currentPlant ? ((stageToShow - 1) / 3) * 100 : 0;
 
   return (
     <div className="flex h-8 w-full items-center">

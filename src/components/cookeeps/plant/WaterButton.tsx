@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
@@ -41,39 +41,9 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
   const isModalOpenControlled =
     !isFreeWaterMode && (wantsToWater || isModalOpen);
 
-  // 5초만 보이게 하기
-  const [showTooltip, setShowTooltip] = useState(false);
-
-  useEffect(() => {
-    if (!isFreeWaterMode) return;
-
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setShowTooltip(true);
-
-    const timer = setTimeout(() => {
-      setShowTooltip(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [isFreeWaterMode]);
-
   return (
     <>
       <div className="relative flex w-full flex-col items-center">
-        {isFreeWaterMode && showTooltip && (
-          <div className="absolute -top-10 flex flex-col items-center">
-            {/* 말풍선 본문 */}
-            <div
-              className="bg-gray-0 shadow-plant inline-flex items-center justify-center rounded-[3px] px-[10px] py-[3px] text-center text-[8px] leading-[10px] font-medium whitespace-nowrap text-gray-50"
-              style={{ width: "164px", height: "23px" }}
-            >
-              아래 버튼을 클릭하여 식물에게 물을 줘보세요!
-            </div>
-
-            {/* ▼ 삼각형 */}
-            <div className="-mt-[1px] h-0 w-0 border-t-[10px] border-r-[5px] border-l-[5px] border-t-white border-r-transparent border-l-transparent" />
-          </div>
-        )}
         <button
           disabled={disabled}
           onClick={async () => {

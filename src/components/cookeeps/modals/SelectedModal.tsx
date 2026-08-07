@@ -56,7 +56,7 @@ export default function SelectedModal({
               </div>
 
               <div className="flex flex-col items-center">
-                <BalloonTip className="block h-[9px] w-[11px]" />
+                <BalloonTip className="text-gray-10 block h-[9px] w-[11px]" />
                 <div className="bg-gray-10 flex h-[35px] items-center justify-center rounded-[4px] px-4 py-1">
                   <span className="typo-caption text-center text-gray-50">
                     {description}
