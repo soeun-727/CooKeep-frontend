@@ -53,7 +53,11 @@ export default function GuestRecipeLevel({
         <div className="relative w-full">
           <DifficultySelector
             value={difficulty}
-            onChange={(val: string) => setDifficulty(val)}
+            onChange={(val: string) => {
+              if (val === dessertOption?.key) {
+                setDifficulty(val);
+              }
+            }}
           />
 
           {isDimmed && dessertOption && (
