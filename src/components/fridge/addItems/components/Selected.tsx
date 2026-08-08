@@ -33,7 +33,7 @@ export default function Selected({
         {allSlots.map((item, idx) => (
           <div
             key={item?.id || `empty-${idx}`}
-            className="flex w-[70px] flex-col items-center"
+            className="flex w-full flex-col items-center"
           >
             {item ? (
               <>
