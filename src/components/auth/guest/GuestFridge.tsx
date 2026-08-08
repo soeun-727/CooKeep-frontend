@@ -93,27 +93,33 @@ export default function GuestFridge({
             />
           </div>
           {mode === "recipe" && isDimmed && (
-            <div className="pointer-events-none absolute inset-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col items-center gap-22">
+            <div className="pointer-events-none absolute inset-0 left-1/2 z-[100] flex w-full -translate-x-1/2 flex-col items-center gap-[77px]">
               {/* 1. 냉장 영역 (우유:1, 딸기:2) */}
               <div className="flex w-full max-w-[375px] flex-col gap-2 px-4 py-2 pt-14">
                 <div className="grid grid-cols-3 gap-2">
                   {getIngredient(1) && (
-                    <Item
-                      image={getIngredient(1)!.image}
-                      name={getIngredient(1)!.name}
-                      leftDays={getIngredient(1)!.dDay}
-                      isSelected={selectedIds.includes(1)}
-                      onSelect={() => handleSelect(1)}
-                    />
+                    <div className="pointer-events-auto flex flex-col">
+                      <Item
+                        image={getIngredient(1)!.image}
+                        name={getIngredient(1)!.name}
+                        leftDays={getIngredient(1)!.dDay}
+                        isSelected={selectedIds.includes(1)}
+                        onSelect={() => handleSelect(1)}
+                      />
+                      <div className="-z-10 -mt-4 h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+                    </div>
                   )}
                   {getIngredient(2) && (
-                    <Item
-                      image={getIngredient(2)!.image}
-                      name={getIngredient(2)!.name}
-                      leftDays={getIngredient(2)!.dDay}
-                      isSelected={selectedIds.includes(2)}
-                      onSelect={() => handleSelect(2)}
-                    />
+                    <div className="pointer-events-auto flex flex-col">
+                      <Item
+                        image={getIngredient(2)!.image}
+                        name={getIngredient(2)!.name}
+                        leftDays={getIngredient(2)!.dDay}
+                        isSelected={selectedIds.includes(2)}
+                        onSelect={() => handleSelect(2)}
+                      />
+                      <div className="-z-10 -mt-4 h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+                    </div>
                   )}
                   <div className="h-20" />
                 </div>
@@ -123,13 +129,16 @@ export default function GuestFridge({
               <div className="flex w-full max-w-[375px] flex-col gap-2 px-4 py-2">
                 <div className="grid grid-cols-3 gap-2">
                   {getIngredient(6) && (
-                    <Item
-                      image={getIngredient(6)!.image}
-                      name={getIngredient(6)!.name}
-                      leftDays={getIngredient(6)!.dDay}
-                      isSelected={selectedIds.includes(6)}
-                      onSelect={() => handleSelect(6)}
-                    />
+                    <div className="pointer-events-auto flex flex-col">
+                      <Item
+                        image={getIngredient(6)!.image}
+                        name={getIngredient(6)!.name}
+                        leftDays={getIngredient(6)!.dDay}
+                        isSelected={selectedIds.includes(6)}
+                        onSelect={() => handleSelect(6)}
+                      />
+                      <div className="-z-10 -mt-4 h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+                    </div>
                   )}
                 </div>
               </div>
@@ -138,13 +147,16 @@ export default function GuestFridge({
               <div className="flex w-full max-w-[375px] flex-col gap-2 px-4 py-2">
                 <div className="grid grid-cols-3 gap-2">
                   {getIngredient(4) && (
-                    <Item
-                      image={getIngredient(4)!.image}
-                      name={getIngredient(4)!.name}
-                      leftDays={getIngredient(4)!.dDay}
-                      isSelected={selectedIds.includes(4)}
-                      onSelect={() => handleSelect(4)}
-                    />
+                    <div className="pointer-events-auto flex flex-col">
+                      <Item
+                        image={getIngredient(4)!.image}
+                        name={getIngredient(4)!.name}
+                        leftDays={getIngredient(4)!.dDay}
+                        isSelected={selectedIds.includes(4)}
+                        onSelect={() => handleSelect(4)}
+                      />
+                      <div className="-z-10 -mt-4 h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+                    </div>
                   )}
                 </div>
               </div>
