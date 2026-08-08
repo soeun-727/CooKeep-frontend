@@ -18,7 +18,7 @@ export const SpeechBubble = ({
   return (
     <section className="drop-shadow-container relative z-100 flex flex-col">
       <div className="bg-gray-0 rounded-S px-3 py-1">
-        <p className="typo-caption-strong text-green-deep">{text}</p>
+        <p className={textStyle}>{text}</p>
       </div>
       {trianglePosition === "bottom" && triangle}
     </section>
