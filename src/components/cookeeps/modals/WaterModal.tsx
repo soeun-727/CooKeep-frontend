@@ -23,8 +23,8 @@ export default function WaterModal({
       highlight="쿠키 -10 🍪"
       buttonTexts={["네", "아니오"]}
       buttonVariants={["green", "gray"]}
-      onConfirm={onConfirm}
-      onCancel={onClose}
+      buttonActions={[onConfirm, onClose]}
+      onBackdropClick={onClose}
     />
   );
 }

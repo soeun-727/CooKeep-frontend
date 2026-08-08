@@ -13,6 +13,12 @@ export default function FreeWaterModal({
   onClose,
 }: FreeWaterModalProps) {
   if (!isOpen) return null;
+
+  const handleConfirm = async () => {
+    await onConfirm();
+    onClose();
+  };
+
   return (
     <ImageModal
       imageSrc={characterImg}
@@ -21,11 +27,8 @@ export default function FreeWaterModal({
       title={"씨앗 등록 완료! 🌱 \n 무료 물주기 1회가 준비되어 있어요"}
       buttonTexts={["물 주러 가기"]}
       buttonVariants={["green"]}
-      onConfirm={async () => {
-        await onConfirm();
-        onClose();
-      }}
-      onCancel={onClose}
+      buttonActions={[handleConfirm]}
+      onBackdropClick={onClose}
     />
   );
 }

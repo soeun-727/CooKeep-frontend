@@ -11,8 +11,10 @@ interface ImageModalProps {
   highlight?: string; // 쿠키 모달 전용 초록 강조 텍스트
   buttonTexts?: string[];
   buttonVariants?: ("black" | "green" | "gray")[];
-  onConfirm: () => void;
-  onCancel?: () => void;
+  /** 버튼 개수와 동일한 길이로 */
+  buttonActions: (() => void)[];
+  /** backdrop 클릭 시 동작. 생략하면 닫히지 않음 */
+  onBackdropClick?: () => void;
 }
 
 export default function ImageModal({
@@ -25,14 +27,14 @@ export default function ImageModal({
   highlight,
   buttonTexts = ["확인"],
   buttonVariants = ["green"],
-  onConfirm,
-  onCancel,
+  buttonActions,
+  onBackdropClick,
 }: ImageModalProps) {
   return (
     <div className="fixed inset-0 z-100 mx-auto flex max-w-[450px] items-center justify-center">
       <div
         className="bg-gray-80/50 absolute inset-0"
-        onClick={onCancel ?? onConfirm}
+        onClick={onBackdropClick}
       />
 
       <section className="shadow-container rounded-L bg-gray-0 z-100 flex w-[300px] flex-col items-center justify-center gap-6 p-6">
@@ -77,14 +79,7 @@ export default function ImageModal({
             <Button
               key={text}
               variant={buttonVariants[index] ?? "black"}
-              onClick={() => {
-                const isConfirmButton = buttonTexts.length === 1 || index === 0;
-                if (isConfirmButton) {
-                  onConfirm();
-                } else {
-                  onCancel?.();
-                }
-              }}
+              onClick={() => buttonActions[index]?.()}
             >
               {text}
             </Button>
