@@ -19,7 +19,7 @@ export default function GuestLast({ onNext }: { onNext: () => void }) {
       <div className="typo-m mt-20 text-center text-gray-50">
         지금 쿠킵에 가입하고, 나만의 레시피를 저장해보세요!
       </div>
-      <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 z-100 w-full -translate-x-1/2 px-4 pt-6">
+      <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 z-100 w-full max-w-[450px] -translate-x-1/2 px-4 pt-6">
         <Button size="L" variant="green" onClick={onNext} className="w-full">
           시작하기
         </Button>

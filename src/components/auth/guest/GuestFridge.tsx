@@ -104,7 +104,6 @@ export default function GuestFridge({
                       leftDays={getIngredient(1)!.dDay}
                       isSelected={selectedIds.includes(1)}
                       onSelect={() => handleSelect(1)}
-                      className="pointer-events-auto shadow-[0_1px_8.2px_-2px_rgba(99,200,141,0.85)]"
                     />
                   )}
                   {getIngredient(2) && (
@@ -114,7 +113,6 @@ export default function GuestFridge({
                       leftDays={getIngredient(2)!.dDay}
                       isSelected={selectedIds.includes(2)}
                       onSelect={() => handleSelect(2)}
-                      className="pointer-events-auto shadow-[0_1px_8.2px_-2px_rgba(99,200,141,0.85)]"
                     />
                   )}
                   <div className="h-20" />
@@ -131,7 +129,6 @@ export default function GuestFridge({
                       leftDays={getIngredient(6)!.dDay}
                       isSelected={selectedIds.includes(6)}
                       onSelect={() => handleSelect(6)}
-                      className="pointer-events-auto shadow-[0_1px_8.2px_-2px_rgba(99,200,141,0.85)]"
                     />
                   )}
                 </div>
@@ -147,7 +144,6 @@ export default function GuestFridge({
                       leftDays={getIngredient(4)!.dDay}
                       isSelected={selectedIds.includes(4)}
                       onSelect={() => handleSelect(4)}
-                      className="pointer-events-auto shadow-[0_1px_8.2px_-2px_rgba(99,200,141,0.85)]"
                     />
                   )}
                 </div>
