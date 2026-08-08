@@ -6,11 +6,11 @@ import axios from "axios";
 
 import Goal from "@/components/auth/onboarding/Goal";
 import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
-import GoalcheckModal from "@/components/myCookeep/modals/GoalCheckModal";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
-import { GOAL_TYPE_MAP } from "@/utils/mapping";
+import { GOAL_TYPE_MAP } from "@/utils/getGoalDescription";
 
 export default function SetGoalPage() {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ export default function SetGoalPage() {
     id: "cook",
     title: "주 n회 요리하기",
   });
+
   const [goalCount, setGoalCount] = useState<string>("3");
 
   const isValid = (() => {
@@ -84,32 +85,32 @@ export default function SetGoalPage() {
     }
   };
   return (
-    <>
+    <div className="flex h-full flex-col gap-15 px-4">
       <BackHeader
         title="목표 수정"
         onBack={() => (step === 0 ? navigate(-1) : setStep(0))}
       />
 
-      <div className="relative flex min-h-screen flex-col items-center pb-32">
-        <main className="mt-10 w-full max-w-[361px]">{STEPS[step]}</main>
+      <main className="flex w-full flex-1">{STEPS[step]}</main>
 
-        <footer className="fixed bottom-0 pb-[34px]">
-          <Button
-            size="S"
-            variant="green"
-            onClick={handleNext}
-            disabled={!isValid || isLoading}
-          >
-            {isLastStep ? "확인" : "다음"}
-          </Button>
-        </footer>
-      </div>
-      <GoalcheckModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onConfirm={handleConfirm}
-        description={`${selectedGoal.title.replace("n", goalCount)}`}
-      />
-    </>
+      <Button
+        size="S"
+        variant="green"
+        onClick={handleNext}
+        disabled={!isValid || isLoading}
+      >
+        {isLastStep ? "확인" : "다음"}
+      </Button>
+
+      {isModalOpen && (
+        <ConfirmModal
+          title="이번 주 목표를 확정할까요?"
+          subtitle={`${selectedGoal.title.replace("n", goalCount)}`}
+          onCancel={() => setIsModalOpen(false)}
+          onConfirm={handleConfirm}
+          buttonVariants={["green", "gray"]}
+        />
+      )}
+    </div>
   );
 }

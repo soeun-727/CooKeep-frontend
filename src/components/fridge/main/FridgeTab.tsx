@@ -11,7 +11,7 @@ import LoadingScreen from "@/components/ui/LoadingScreen";
 
 import { useSortedIngredients } from "@/hooks/useSortedIngredients";
 
-import { AppBar } from "../AppBar";
+import { AppBar } from "../../ui/AppHeader";
 import { Search } from "../features/Search";
 import IngredientGrid from "../items/IngredientGrid";
 import ItemOption from "../items/ItemOption";

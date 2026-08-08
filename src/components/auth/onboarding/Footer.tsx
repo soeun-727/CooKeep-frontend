@@ -20,38 +20,36 @@ export default function Footer({
   isLoading,
 }: FooterProps) {
   return (
-    <div className="fixed bottom-0 left-1/2 w-full max-w-[450px] -translate-x-1/2 px-4 pb-[34px]">
-      <div className="mx-auto flex w-full flex-col gap-2">
+    <div className="mx-auto flex w-full flex-col items-center gap-2">
+      <Button
+        size="L"
+        variant="green"
+        onClick={() => isValid && onNext()}
+        disabled={!isValid || isLoading}
+      >
+        {isLastStep ? "쿠킵 시작하기" : "다음"}
+      </Button>
+
+      {!isFirstStep && (
         <Button
           size="S"
-          variant="green"
-          onClick={() => isValid && onNext()}
-          disabled={!isValid || isLoading}
-        >
-          {isLastStep ? "쿠킵 시작하기" : "다음"}
-        </Button>
-
-        {!isFirstStep && (
-          <Button
-            size="S"
-            className="w-full bg-gray-300"
-            disabled={isLoading}
-            onClick={onPrev}
-          >
-            이전
-          </Button>
-        )}
-
-        <button
-          className={`typo-caption text-gray-500 transition-opacity ${
-            isLastStep ? "invisible" : "visible"
-          }`}
-          onClick={onSkip}
+          className="bg-gray-300"
           disabled={isLoading}
+          onClick={onPrev}
         >
-          질문 건너뛰기
-        </button>
-      </div>
+          이전
+        </Button>
+      )}
+
+      <button
+        className={`typo-caption text-gray-500 transition-opacity ${
+          isLastStep ? "invisible" : "visible"
+        }`}
+        onClick={onSkip}
+        disabled={isLoading}
+      >
+        질문 건너뛰기
+      </button>
     </div>
   );
 }
