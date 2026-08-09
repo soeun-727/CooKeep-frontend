@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
 import Button from "@/components/ui/Button";
 
 interface RecipeActionButtonsProps {
@@ -35,12 +36,18 @@ export default function RecipeActionButtons({
 
   // 로딩 중이거나 횟수 초과 시 비활성화 로직
   const isRetryDisabled = isMaxed || isLoading;
-  const retryBtnText = isLoading
-    ? "레시피 생성 중..."
-    : `다른 레시피 보기 · ${leftRetry}회 남음`;
+
+  // leftRetry 숫자만 초록색(text-green-deep)으로 지정
+  const retryBtnText = isLoading ? (
+    "레시피 생성 중..."
+  ) : (
+    <span>
+      다른 레시피 보기 · <span className="text-green-deep">{leftRetry}</span>회
+      남음
+    </span>
+  );
 
   const handleCookClick = async () => {
-    // async 추가
     if (!latestRecipe) return;
 
     try {

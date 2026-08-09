@@ -41,19 +41,16 @@ export default function RecipeConfirmPage() {
   }, [selectedIngredients]);
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex w-full flex-col gap-[30px] px-4">
       <BackHeader title="재료선택" />
 
-      {/* Backheader는 fixed라서 flexbox 내 무시됨, 상단 기준 70px */}
-      <div className="no-scrollbar mt-[70px] flex w-full flex-col gap-[30px] overflow-y-auto px-4">
-        <SelectedIngredientList
-          ingredients={selectedIngredients}
-          onRemove={handleRemoveIngredient}
-        />
-        <DifficultySelector />
-      </div>
+      <SelectedIngredientList
+        ingredients={selectedIngredients}
+        onRemove={handleRemoveIngredient}
+      />
+      <DifficultySelector />
 
-      <div className="fixed bottom-[env(safe-area-inset-bottom)] flex w-full max-w-[450px] justify-center px-4">
+      <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 flex w-full max-w-[450px] -translate-x-1/2 justify-center px-4">
         <Button
           size="L"
           variant="green"

@@ -1,4 +1,5 @@
 import type { Feature } from "@/types/aiRecipe";
+
 import api from "./axios";
 
 export interface AiRecipeSessionItem {
