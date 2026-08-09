@@ -40,7 +40,7 @@ export const generateAiRecipe = async (
 
 export const generateRandomAiRecipe = async (): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
-    "/api/users/me/recipes/random",
+    "/api/users/me/ai/recipes/random",
     {},
     { timeout: 60000 },
   );

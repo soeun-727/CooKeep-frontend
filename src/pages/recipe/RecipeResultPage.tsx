@@ -98,9 +98,9 @@ export default function RecipeResultPage() {
                 recipe.ingredients.additional_ingredients || [];
               const optionalIngredients =
                 recipe.ingredients.optional_ingredients || [];
-              const steps = recipe.steps.map((step: string, idx: number) => ({
+              const steps = recipe.steps.map((step, idx) => ({
                 order: idx + 1,
-                description: step,
+                description: step.content,
               }));
 
               const rawFeature = difficulty || currentData.feature || "ANY";
