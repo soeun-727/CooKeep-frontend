@@ -19,7 +19,7 @@ import Progress from "../../components/auth/onboarding/Progress";
 import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
-import { GOAL_TYPE_MAP } from "../../utils/mapping";
+import { GOAL_TYPE_MAP } from "../../utils/getGoalDescription";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -93,8 +93,6 @@ export default function Onboarding() {
   // 1. 건너뛰기 클릭 시 처리 로직
   const skipStep = () => {
     if (step === 2 || step === 3) {
-      // 목표 설정을 건너뛸 경우 초기화 후 바로 저장
-      setSelectedGoal({ id: "COOKING", title: "주 n회 요리하기" }); // 기본값 혹은 서버 스펙에 따른 처리
       handleSaveOnboarding(true);
       return;
     }
@@ -127,10 +125,17 @@ export default function Onboarding() {
           return;
         }
 
+        const goalType =
+          GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP];
+
+        if (!goalType) {
+          alert("목표를 선택해주세요.");
+          return;
+        }
+
         requestBody = {
           dislikedIngredients: selectedIngredients.map(item => item.ingredient),
-          goalActionType:
-            GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
+          goalActionType: goalType.value,
           targetCount: count,
         };
       }
@@ -203,7 +208,7 @@ export default function Onboarding() {
       </div>
 
       {step !== 0 && (
-        <div className="shrink-0">
+        <div className="w-full">
           <Footer
             onNext={nextStep}
             onPrev={prevStep}

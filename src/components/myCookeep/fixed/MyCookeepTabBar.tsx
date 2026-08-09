@@ -1,12 +1,15 @@
 import { memo, useCallback } from "react";
 
-import { CalendarIcon, RecordIcon, StatsIcon } from "@/assets/index";
+import CalendarIcon from "@/assets/mycookeep/calendar.svg?react";
+import RecordIcon from "@/assets/mycookeep/record.svg?react";
+import StatsIcon from "@/assets/mycookeep/stats.svg?react";
 
-const TABS = [
-  { id: "record", Icon: RecordIcon },
-  { id: "calendar", Icon: CalendarIcon },
-  { id: "statistics", Icon: StatsIcon },
+const MYCOOKEEP_TABS = [
+  { id: "record", Icon: RecordIcon, name: "요리기록" },
+  { id: "calendar", Icon: CalendarIcon, name: "캘린더" },
+  { id: "statistics", Icon: StatsIcon, name: "리포트" },
 ] as const;
+
 interface MyCookeepTabBarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
@@ -30,26 +33,28 @@ export default memo(function MyCookeepTabBar({
   );
 
   return (
-    <div className="bg-gray-0 flex h-13 w-full items-center justify-around">
-      {TABS.map(tab => {
+    <div className="border-gray-30 flex w-full items-center border-b">
+      {MYCOOKEEP_TABS.map(tab => {
         const isActive = activeTab === tab.id;
         const Icon = tab.Icon;
+        const tabName = tab.name;
         return (
           <button
             key={tab.id}
             onClick={() => handleTabClick(tab.id)}
-            className="relative flex flex-1 items-center justify-center py-3"
+            className={`relative flex flex-1 items-center justify-center gap-2 px-2 py-3 ${isActive ? "border-green border-b-[2px]" : ""}`}
           >
             <Icon
-              className={`h-6 w-6 transition-colors duration-200 ${
-                isActive ? "text-gray-80" : "text-gray-10"
+              className={`h-5 w-5 ${
+                isActive ? "text-gray-80" : "text-gray-30"
               }`}
               aria-label={tab.id}
             />
-
-            {isActive && (
-              <div className="absolute bottom-0 left-1/2 h-[2px] w-[114px] -translate-x-1/2 rounded-full bg-gray-800" />
-            )}
+            <p
+              className={`typo-m-strong ${isActive ? "text-gray-80" : "text-gray-30"}`}
+            >
+              {tabName}
+            </p>
           </button>
         );
       })}

@@ -54,7 +54,7 @@ export default function Guide({ onNext }: GuideProps) {
 
   return (
     <div
-      className="flex h-screen flex-col overflow-hidden select-none"
+      className="flex h-full max-w-[450px] flex-col overflow-hidden select-none"
       onClick={() => currentIndex < 3 && handleNext()}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
