@@ -1,4 +1,4 @@
-import { IngredientsJson } from "@/api/dailyAiRecipe";
+import { IngredientsJson, RecipeStep } from "@/api/dailyAiRecipe";
 
 import RecipeDetailIngredientSection from "@/components/cookeeps/recipedetail/RecipeDetailIngredientSection";
 import RecipeDetailStepSection from "@/components/cookeeps/recipedetail/RecipeDetailStepSection";
@@ -6,7 +6,7 @@ import RecipeDetailStepSection from "@/components/cookeeps/recipedetail/RecipeDe
 interface RecipeRecordContentSectionProps {
   recipe: {
     ingredients: IngredientsJson;
-    steps: string[];
+    steps: RecipeStep[];
   };
 }
 

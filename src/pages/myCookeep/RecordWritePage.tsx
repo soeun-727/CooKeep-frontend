@@ -63,6 +63,8 @@ export default function RecordWritePage() {
     fetchDetail();
   }, [selectedRecipeId, setTitle, title]);
 
+  console.log(recipeDetail?.stepsJson);
+
   useEffect(() => {
     if (isSuccess) return;
     if (!selectedRecipeId && !editingRecordId) {
