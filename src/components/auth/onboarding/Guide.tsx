@@ -54,7 +54,7 @@ export default function Guide({ onNext }: GuideProps) {
 
   return (
     <div
-      className="flex h-full max-w-[450px] flex-col overflow-hidden select-none"
+      className="mx-auto flex h-full min-h-0 w-full max-w-[450px] flex-col overflow-hidden select-none"
       onClick={() => currentIndex < 3 && handleNext()}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
@@ -88,7 +88,7 @@ export default function Guide({ onNext }: GuideProps) {
       <div className="flex-1" />
 
       {/* 하단 영역 */}
-      <div className="relative pb-8">
+      <div className="relative mt-auto">
         {/* 이미지 */}
         <div className="overflow-hidden">
           <div

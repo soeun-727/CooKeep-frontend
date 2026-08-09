@@ -181,16 +181,16 @@ export default function Onboarding() {
         <OnboardingHeader onSkip={skipStep} isLoading={isLoading} />
       )}
 
-      <div className="flex w-full flex-col gap-6">
+      <div className="flex min-h-0 w-full flex-1 flex-col gap-6">
         {step !== 0 && (
           <div className="mx-auto flex w-full max-w-[450px] justify-center">
             <Progress currentStep={step} />
           </div>
         )}
         <div
-          className={`flex w-full flex-1 flex-col ${step === 0 ? "" : "px-1"}`}
+          className={`flex min-h-0 w-full flex-1 flex-col ${step === 0 ? "" : "px-1"}`}
         >
-          <div className="h-full w-full">
+          <div className="h-full min-h-0 w-full">
             {step === 0 && <Guide onNext={nextStep} />}
             {step === 1 && <Preference allIngredients={allIngredients} />}
             {step === 2 && (

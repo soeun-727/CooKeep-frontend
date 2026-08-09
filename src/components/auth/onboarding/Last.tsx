@@ -1,4 +1,4 @@
-import { calendarImage } from "@/assets/index";
+import { calendarImage, checkChar, shadow } from "@/assets/index";
 
 import Button from "@/components/ui/Button";
 
@@ -21,16 +21,17 @@ export default function Last({ onStart }: LastProps) {
         </div>
       </section>
 
-      <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 w-full -translate-x-1/2">
-        <div className="fixed -right-3 bottom-16 flex justify-end">
-          <img src={calendarImage} className="w-30 shrink-0" />
-        </div>
-        <div className="relative z-10 w-full px-4">
+      <section className="flex w-full flex-col items-center justify-center gap-20">
+        <figure className="flex flex-col">
+          <img src={checkChar} className="w-[184px]" />
+          <img src={shadow} className="w-42 brightness-93" />
+        </figure>
+        <div className="bg-button-blur-to-b-soft z-50 w-full px-4 pt-6">
           <Button size="L" onClick={onStart} variant="green">
             시작하기
           </Button>
         </div>
-      </div>
+      </section>
 
       <div className="absolute right-[-22.49px] bottom-[10.4px]">
         <img src={calendarImage} className="w-44" />
