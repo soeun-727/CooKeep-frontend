@@ -1,4 +1,4 @@
-import type { GoalActionType } from "@/utils/mapping";
+import type { GoalActionType } from "@/utils/getGoalDescription";
 
 import api from "./axios";
 

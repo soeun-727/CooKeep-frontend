@@ -4,14 +4,18 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { getDailyRecipesByDate } from "@/api/myRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
 
 import Calendar from "@/components/myCookeep/contents/Calendar";
 import Statistics from "@/components/myCookeep/contents/Statistics";
+import { ExcludedIngredientContent } from "@/components/myCookeep/fixed/ExcludedIngredientContent";
+import { MyCookeepGoal } from "@/components/myCookeep/fixed/MyCookeepGoal";
 import MyCookeepTabBar from "@/components/myCookeep/fixed/MyCookeepTabBar";
-import Profile from "@/components/myCookeep/fixed/Profile";
+import { ProfileContent } from "@/components/myCookeep/fixed/ProfileContent";
 import AddMoreModal from "@/components/myCookeep/record/AddMoreModal";
 import RecordCard from "@/components/myCookeep/record/RecordCard";
 import RecordEntry from "@/components/myCookeep/record/RecordEntry";
+import { AppBar } from "@/components/ui/AppHeader";
 
 import { hasTodayRecord } from "@/utils/record";
 
@@ -36,10 +40,12 @@ export default function MyCookeepPage() {
     location.state?.fromTab === true,
   );
   const fetchCookies = useCookeepsStore(s => s.fetchCookies);
+  const fetchProfile = useMyCookeepStore(s => s.fetchProfile);
 
   useEffect(() => {
     fetchCookies();
-  }, [fetchCookies]);
+    fetchProfile();
+  }, [fetchCookies, fetchProfile]);
 
   const fetchDailyData = useCallback(
     async (dateStr: string) => {
@@ -138,22 +144,33 @@ export default function MyCookeepPage() {
     }
   };
 
+  const cookieCount = useCookeepsStore(s => s.cookie);
+
   return (
-    <div className="relative flex h-full min-h-0 flex-col">
-      <div className="shrink-0">
-        <Profile />
-        <div className="mt-6">
+    <div className="relative flex flex-col gap-[30px] px-4">
+      <AppBar cookieCount={cookieCount} />
+      <section className="flex flex-col gap-6">
+        <ProfileContent />
+
+        {/* 이번 주 목표 및 못먹는 재료 */}
+        <div className="flex flex-col gap-2">
+          <MyCookeepGoal />
+          <ExcludedIngredientContent />
+        </div>
+
+        {/* 마이쿠킵 탭바 및 렌더페이지 */}
+        <div className="flex flex-col gap-4">
           <MyCookeepTabBar
             activeTab={activeTab}
             onTabChange={handleTabChange}
             onActiveTabClick={handleActiveTabClick}
           />
-        </div>
-      </div>
 
-      <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
-        {renderContent()}
-      </div>
+          <div className="no-scrollbar mt-[10px] flex-1 overflow-y-auto pb-15">
+            {renderContent()}
+          </div>
+        </div>
+      </section>
 
       {shouldShowAddMoreModal && (
         <AddMoreModal onCancel={handleDismiss} onConfirm={handleConfirm} />

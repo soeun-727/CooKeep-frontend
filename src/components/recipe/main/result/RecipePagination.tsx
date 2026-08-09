@@ -42,29 +42,13 @@ export default function RecipePagination({
       </button>
 
       <div className="flex items-center gap-3">
-        <button
-          type="button"
-          onClick={handlePrev}
-          disabled={isPrevDisabled}
-          className="disabled:opacity-50"
-        >
-          <LeftArrow className="text-gray-10 w-5" />
-        </button>
-
+        <LeftArrow className="text-gray-10 w-5 disabled:opacity-50" />
         <div className="typo-caption text-green-deep">
           <span>{currentPage}</span>
           <span>/</span>
           <span>{totalPage}</span>
         </div>
-
-        <button
-          type="button"
-          onClick={handleNext}
-          disabled={isNextDisabled}
-          className="disabled:opacity-50"
-        >
-          <RightArrow className="text-gray-10 w-5" />
-        </button>
+        <RightArrow className="text-gray-10 w-5 disabled:opacity-50" />
       </div>
 
       {/* 다음 버튼 */}
