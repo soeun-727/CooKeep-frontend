@@ -8,16 +8,9 @@ import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
 import XIcon from "@/assets/onboarding/x.svg?react";
 
-<<<<<<< HEAD
-import LoadingScreen from "@/components/ui/LoadingScreen";
-import TextField from "@/components/ui/TextField";
-
-import InputModal from "./InputModal";
-=======
 import { Search } from "@/components/fridge/features/Search";
 import { InputModal } from "@/components/fridge/modals/InputModal";
 import LoadingScreen from "@/components/ui/LoadingScreen";
->>>>>>> c9f261be9814ad62a7594877a9d6a583f92f9721
 
 export default function Preference() {
   const [searchTerm, setSearchTerm] = useState("");
