@@ -10,7 +10,7 @@ import PublicIcon from "@/assets/mycookeep/record/two_people.svg?react";
 
 import { formatDate } from "@/utils/formatDate";
 
-import SelectViewTypeModal from "./SelectViewTypeModal";
+import { ChangeVisibility } from "../bottomTabBarContent/ChangeVisibility";
 
 interface RecordCardProps {
   record: DailyRecipe;
@@ -18,7 +18,10 @@ interface RecordCardProps {
 
 function RecordCard({ record: initialRecord }: RecordCardProps) {
   const navigate = useNavigate();
-  const { updateRecordVisibility } = useCookeepRecordStore();
+  const updateRecordVisibility = useCookeepRecordStore(
+    state => state.updateRecordVisibility,
+  );
+
   const record =
     useCookeepRecordStore(state =>
       state.records.find(
@@ -27,32 +30,14 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
     ) || initialRecord;
   const isPublic = record.isPublic;
 
-  // 모달
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
-  const [nextVisibility, setNextVisibility] = useState<boolean | null>(null);
+  // 공개 여부 변경 바텀시트
+  const [isVisibilitySheetOpen, setVisibilitySheetOpen] = useState(false);
 
-  const handleTryChangeVisibility = (next: boolean) => {
-    setNextVisibility(next);
-    setIsConfirmOpen(true);
+  const handleSelectVisibility = async (nextIsPublic: boolean) => {
+    setVisibilitySheetOpen(false);
+    if (nextIsPublic === isPublic) return;
+    await updateRecordVisibility(String(record.dailyRecipeId), nextIsPublic);
   };
-
-  const handleConfirmChange = async () => {
-    if (nextVisibility !== null) {
-      await updateRecordVisibility(
-        String(record.dailyRecipeId),
-        nextVisibility,
-      );
-    }
-    setIsConfirmOpen(false);
-    setNextVisibility(null);
-  };
-
-  const handleCancelChange = () => {
-    setIsConfirmOpen(false);
-    setNextVisibility(null);
-  };
-
-  const confirmMessage = isPublic ? "나만보기" : "쿠킵스에 공개";
 
   return (
     <div
@@ -90,7 +75,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
             className="typo-m cursor-pointer text-gray-50"
             onClick={e => {
               e.stopPropagation();
-              handleTryChangeVisibility(!isPublic);
+              setVisibilitySheetOpen(true);
             }}
           >
             변경
@@ -98,11 +83,11 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
         </div>
       </div>
 
-      {isConfirmOpen && (
-        <SelectViewTypeModal
-          message={confirmMessage}
-          onConfirm={handleConfirmChange}
-          onCancel={handleCancelChange}
+      {isVisibilitySheetOpen && (
+        <ChangeVisibility
+          isPublic={isPublic}
+          onSelect={handleSelectVisibility}
+          onClose={() => setVisibilitySheetOpen(false)}
         />
       )}
     </div>
