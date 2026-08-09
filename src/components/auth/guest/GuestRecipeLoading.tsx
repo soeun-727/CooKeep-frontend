@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import CheckIcon from "@/assets/recipe/check.svg";
-
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
 
@@ -57,7 +55,7 @@ export default function GuestRecipeLoading({
             key={idx}
             className="animate-fadeIn translate-y-0 transform duration-500"
           >
-            <StepMessage message={msg} icon={CheckIcon} />
+            <StepMessage message={msg} />
           </div>
         ))}
       </div>

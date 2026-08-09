@@ -15,6 +15,8 @@ import {
 
 import defaultChar from "@/assets/character/default_char.svg";
 
+import LoadingScreen from "@/components/ui/LoadingScreen";
+
 import { INGREDIENT_CATEGORIES } from "@/constants/category";
 import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
 
@@ -25,7 +27,6 @@ import AddItemFooter from "./AddItemFooter";
 import Category from "./components/Category";
 import CustomIngredient from "./components/CustomIngredient";
 import ItemsGrid from "./components/ItemsGrid";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function AddItem() {
   const {

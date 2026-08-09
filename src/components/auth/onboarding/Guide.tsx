@@ -1,4 +1,4 @@
-import { TouchEvent, useState } from "react";
+import { TouchEvent, useRef, useState } from "react";
 
 import image1_2 from "@/assets/onboarding/guide_1_2.svg";
 
@@ -12,23 +12,27 @@ interface GuideProps {
 
 export default function Guide({ onNext }: GuideProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const touchStartRef = useRef<number | null>(null);
+  const touchEndRef = useRef<number | null>(null);
 
   const { title, text } = ONBOARDING_DATA[currentIndex];
   const minSwipeDistance = 50;
 
   const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
+    touchEndRef.current = null;
+    touchStartRef.current = e.targetTouches[0].clientX;
   };
 
   const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    touchEndRef.current = e.targetTouches[0].clientX;
   };
 
   const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
+    const touchStart = touchStartRef.current;
+    const touchEnd = touchEndRef.current;
+
+    if (touchStart === null || touchEnd === null) return;
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
@@ -100,15 +104,19 @@ export default function Guide({ onNext }: GuideProps) {
                 key={data.id}
                 className="relative flex min-w-full items-end justify-center"
               >
-                <object
-                  className="pointer-events-none h-[61.6vh] max-h-[520px] min-h-[320px] border-none object-contain outline-none"
-                  data={data.img}
+                <img
+                  src={data.img}
+                  alt=""
+                  decoding="async"
+                  className="pointer-events-none h-[61.6vh] max-h-[520px] min-h-[320px] w-auto object-contain"
                 />
 
                 {index === 0 && (
-                  <object
-                    data={image1_2}
-                    className="absolute right-[8%] bottom-[17%] z-10 w-[38%]"
+                  <img
+                    src={image1_2}
+                    alt=""
+                    decoding="async"
+                    className="pointer-events-none absolute right-[8%] bottom-[17%] z-10 w-[38%]"
                   />
                 )}
               </div>

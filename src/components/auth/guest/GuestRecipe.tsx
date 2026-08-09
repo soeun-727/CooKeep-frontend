@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
-import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
 import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
 import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
+import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
 import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
 import RecipePagination from "@/components/recipe/main/result/RecipePagination";
 import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";

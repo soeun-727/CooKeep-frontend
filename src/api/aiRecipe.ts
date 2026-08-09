@@ -25,8 +25,8 @@ const extractData = <T>(response: any): T => {
   return response?.data as T;
 };
 
+/** [POST] AI 레시피 생성 (MAIN05-01) */
 export const generateAiRecipe = async (
-  // TODO: 난이도 선택 값 없어서 오류남 추후 수정 필요
   body: GenerateAiRecipeRequest,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
@@ -38,9 +38,38 @@ export const generateAiRecipe = async (
   return extractData<AiRecipeResponse>(response);
 };
 
+export interface CompleteAiRecipeResponse {
+  reward?: {
+    types?: string[];
+  };
+}
+
+/** [POST] AI 레시피 채택 (MAIN05-03) */
+export const completeAiRecipe = async (
+  sessionId: number,
+): Promise<CompleteAiRecipeResponse> => {
+  const response = await api.post<
+    ApiResponseEnvelope<CompleteAiRecipeResponse>
+  >(`/api/users/me/ai/recipes/${sessionId}/complete`, { sessionId });
+  return extractData<CompleteAiRecipeResponse>(response);
+};
+
+/** [POST] AI 레시피 재요청 (MAIN05-02) - ⚠️ 경로 수정됨 */
+export const retryAiRecipe = async (
+  body: RetryAiRecipeRequest,
+): Promise<AiRecipeResponse> => {
+  const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
+    "/api/users/me/ai/recipes/retry",
+    body,
+    { timeout: 60000 },
+  );
+  return extractData<AiRecipeResponse>(response);
+};
+
+/** [POST] AI 랜덤 레시피 생성 (MAIN05-04) - ⚠️ 경로 수정됨 */
 export const generateRandomAiRecipe = async (): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
-    "/api/users/me/recipes/random",
+    "/api/users/me/ai/recipes/random",
     {},
     { timeout: 60000 },
   );
@@ -48,32 +77,58 @@ export const generateRandomAiRecipe = async (): Promise<AiRecipeResponse> => {
   return extractData<AiRecipeResponse>(response);
 };
 
-export const retryAiRecipe = async (
-  body: RetryAiRecipeRequest,
-): Promise<AiRecipeResponse> => {
-  const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
-    "/api/users/me/recipes/retry",
-    body,
-    { timeout: 60000 },
-  );
-  return extractData<AiRecipeResponse>(response);
-};
-
+/** [POST] AI 랜덤 레시피 재요청 (MAIN05-05) - ⚠️ 경로 수정됨 */
 export const retryRandomAiRecipe = async (
   body: RetryAiRecipeRequest,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
-    "/api/users/me/recipes/random/retry",
+    "/api/users/me/ai/recipes/random/retry",
     body,
     { timeout: 60000 },
   );
   return extractData<AiRecipeResponse>(response);
 };
 
-export const completeAiRecipe = async (sessionId: number) => {
-  const response = await api.post(
-    `/api/users/me/ai/recipes/${sessionId}/complete`,
-    { sessionId },
+/** [GET] AI 레시피 대화 세션 목록 조회 (MAIN06-1) */
+export const getAiRecipeSessions = async () => {
+  const response = await api.get<ApiResponseEnvelope<any>>(
+    "/api/users/me/ai/recipes/sessions",
   );
-  return response.data;
+  return extractData<any>(response);
+};
+
+/** [GET] AI 레시피 대화 세션 상세 조회 (MAIN06-2) */
+export const getAiRecipeSessionDetail = async (sessionId: number) => {
+  const response = await api.get<ApiResponseEnvelope<any>>(
+    `/api/users/me/ai/recipes/sessions/${sessionId}`,
+  );
+  return extractData<any>(response);
+};
+
+/** [DELETE] AI 레시피 대화 세션 삭제 (MAIN06-3) */
+export const deleteAiRecipeSession = async (sessionId: number) => {
+  const response = await api.delete<ApiResponseEnvelope<void>>(
+    `/api/users/me/ai/recipes/sessions/${sessionId}`,
+  );
+  return extractData<void>(response);
+};
+
+/** [PATCH] AI 대화 세션 즐겨찾기 추가/삭제 (MAIN07-1) */
+export const toggleAiSessionBookmark = async (sessionId: number) => {
+  const response = await api.patch<ApiResponseEnvelope<void>>(
+    `/api/users/me/ai/recipes/sessions/${sessionId}`,
+  );
+  return extractData<void>(response);
+};
+
+/** [PATCH] AI 대화 세션 제목 수정 (MAIN07-2) */
+export const updateAiSessionTitle = async (
+  sessionId: number,
+  title: string,
+) => {
+  const response = await api.patch<ApiResponseEnvelope<void>>(
+    `/api/users/me/ai/recipes/sessions/title/${sessionId}`,
+    { title },
+  );
+  return extractData<void>(response);
 };

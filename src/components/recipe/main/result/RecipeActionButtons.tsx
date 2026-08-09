@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
 import Button from "@/components/ui/Button";
 
 interface RecipeActionButtonsProps {
@@ -39,6 +40,7 @@ export default function RecipeActionButtons({
 
   const isRetryDisabled = isMaxed || isLoading;
 
+  // leftRetry 숫자만 초록색(text-green-deep)으로 지정
   const retryBtnText = isLoading ? (
     "레시피 생성 중..."
   ) : (
