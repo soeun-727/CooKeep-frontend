@@ -51,6 +51,6 @@ export const RenderContent = ({
 
     case "record":
     default:
-      return <RecordEntry records={records} />;
+      return <RecordEntry record={records[0]} />;
   }
 };
