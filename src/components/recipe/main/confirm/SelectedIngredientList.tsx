@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import type { Ingredient } from "@/stores/useIngredientStore";
+
 import PlusIcon from "@/assets/icons/plus.svg?react";
+
 import SelectedItem from "./SelectedItem";
 
 interface SelectedIngredientListProps {
