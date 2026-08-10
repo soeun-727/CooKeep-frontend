@@ -8,7 +8,7 @@ interface AppBarProps {
 export const AppBar = ({ cookieCount }: AppBarProps) => {
   return (
     <div className="flex justify-end">
-      {cookieCount && (
+      {cookieCount !== undefined && (
         <div className="bg-gray-0 border-gray-10 flex items-center gap-[5px] rounded-full border px-4 py-2">
           <CookieIcon className="h-[14px] w-[14px]" />
           <p className="typo-label text-gray-80">{cookieCount}개</p>
