@@ -1,21 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { saveOnboardingData } from "@/api/onboarding";
-import { useOnboardingStore } from "@/stores/useOnboardingStore";
-
-import AuthHeader from "@/components/auth/AuthHeader";
-import Footer from "@/components/auth/onboarding/Footer";
-import Goal from "@/components/auth/onboarding/Goal";
-import Guide from "@/components/auth/onboarding/Guide";
-import InstallGuide from "@/components/auth/onboarding/InstallGuide";
-import Last from "@/components/auth/onboarding/Last";
-import Notification from "@/components/auth/onboarding/Notification";
-import Preference from "@/components/auth/onboarding/Preference";
-import Progress from "@/components/auth/onboarding/Progress";
-import SpecificGoal from "@/components/auth/onboarding/SpecificGoal";
-
-import { GOAL_TYPE_MAP } from "@/utils/getGoalDescription";
+import {
+  OnboardingIngredient,
+  getOnboardingIngredients,
+  saveOnboardingData,
+} from "../../api/onboarding";
+import AuthHeader from "../../components/auth/AuthHeader";
+import Footer from "../../components/auth/onboarding/Footer";
+import Goal from "../../components/auth/onboarding/Goal";
+import Guide from "../../components/auth/onboarding/Guide";
+import InstallGuide from "../../components/auth/onboarding/InstallGuide";
+import Last from "../../components/auth/onboarding/Last";
+import Notification from "../../components/auth/onboarding/Notification";
+import OnboardingHeader from "../../components/auth/onboarding/OnboardingHeader";
+import Preference from "../../components/auth/onboarding/Preference";
+import Progress from "../../components/auth/onboarding/Progress";
+import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
+import LoadingScreen from "../../components/ui/LoadingScreen";
+import { useOnboardingStore } from "../../stores/useOnboardingStore";
+import { GOAL_TYPE_MAP } from "../../utils/getGoalDescription";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -36,6 +40,37 @@ export default function Onboarding() {
   } = useOnboardingStore();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [allIngredients, setAllIngredients] = useState<OnboardingIngredient[]>(
+    [],
+  );
+  const [areIngredientsLoaded, setAreIngredientsLoaded] = useState(false);
+
+  useEffect(() => {
+    if (step !== 1 || areIngredientsLoaded) return;
+
+    let isActive = true;
+
+    const fetchIngredients = async () => {
+      try {
+        const res = await getOnboardingIngredients();
+        const ingredients = res.data?.data?.ingredients;
+
+        if (isActive && Array.isArray(ingredients)) {
+          setAllIngredients(ingredients);
+        }
+      } catch (error) {
+        console.error("재료 로드 실패:", error);
+      } finally {
+        if (isActive) setAreIngredientsLoaded(true);
+      }
+    };
+
+    fetchIngredients();
+
+    return () => {
+      isActive = false;
+    };
+  }, [step, areIngredientsLoaded]);
 
   const isValidCount = (count: string) => {
     const num = Number(count);
@@ -47,7 +82,6 @@ export default function Onboarding() {
     if (step === 0) return true;
     if (step === 1) return true; // 기피 재료는 선택 사항
     if (step === 2) return selectedGoal.id !== "";
-    // NaN 안되게 수정
     if (step === 3) {
       return isValidCount(goalCount);
     }
@@ -71,14 +105,13 @@ export default function Onboarding() {
       let requestBody;
 
       if (isForcedSkip) {
-        // 건너뛰기: 둘 다 null
         requestBody = {
           dislikedIngredients: selectedIngredients.map(item => item.ingredient),
           goalActionType: null,
           targetCount: null,
         };
 
-        await saveOnboardingData(requestBody); // response 변수 제거
+        await saveOnboardingData(requestBody);
         setSelectedGoal({ id: "", title: "" });
         setGoalCount("");
         setIsFinished(true);
@@ -92,10 +125,17 @@ export default function Onboarding() {
           return;
         }
 
+        const goalType =
+          GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP];
+
+        if (!goalType) {
+          alert("목표를 선택해주세요.");
+          return;
+        }
+
         requestBody = {
           dislikedIngredients: selectedIngredients.map(item => item.ingredient),
-          goalActionType:
-            GOAL_TYPE_MAP[selectedGoal.id as keyof typeof GOAL_TYPE_MAP].value,
+          goalActionType: goalType.value,
           targetCount: count,
         };
       }
@@ -131,37 +171,47 @@ export default function Onboarding() {
   if (showNotification)
     return <Notification onNext={() => setShowInstallGuide(true)} />;
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
+  if (step === 1 && !areIngredientsLoaded) return <LoadingScreen />;
 
   return (
-    <div className="bg-background flex h-full flex-col items-center px-4">
-      <AuthHeader />
-
-      {step !== 0 && (
-        <div className="mt-25 mb-6 w-full">
-          <Progress currentStep={step} />
-        </div>
+    <div className="bg-background flex h-screen w-full flex-col items-center gap-15 px-4">
+      {step === 0 ? (
+        <AuthHeader />
+      ) : (
+        <OnboardingHeader onSkip={skipStep} isLoading={isLoading} />
       )}
 
-      <div className="flex w-full flex-1 flex-col items-center">
-        {step === 0 && <Guide onNext={nextStep} />}
-        {step === 1 && <Preference />}
-        {step === 2 && (
-          <Goal selectedGoal={selectedGoal} onSelect={setSelectedGoal} />
+      <div className="flex min-h-0 w-full flex-1 flex-col gap-6">
+        {step !== 0 && (
+          <div className="mx-auto flex w-full max-w-[450px] justify-center">
+            <Progress currentStep={step} />
+          </div>
         )}
-        {step === 3 && (
-          <SpecificGoal
-            selectedGoal={selectedGoal}
-            count={goalCount}
-            onCountChange={setGoalCount}
-          />
-        )}
+        <div
+          className={`flex min-h-0 w-full flex-1 flex-col ${step === 0 ? "" : "px-1"}`}
+        >
+          <div className="h-full min-h-0 w-full">
+            {step === 0 && <Guide onNext={nextStep} />}
+            {step === 1 && <Preference allIngredients={allIngredients} />}
+            {step === 2 && (
+              <Goal selectedGoal={selectedGoal} onSelect={setSelectedGoal} />
+            )}
+            {step === 3 && (
+              <SpecificGoal
+                selectedGoal={selectedGoal}
+                count={goalCount}
+                onCountChange={setGoalCount}
+              />
+            )}
+          </div>
+        </div>
       </div>
+
       {step !== 0 && (
         <div className="w-full">
           <Footer
             onNext={nextStep}
             onPrev={prevStep}
-            onSkip={skipStep}
             isFirstStep={step === 1}
             isLastStep={step === 3}
             isValid={getIsValid()}

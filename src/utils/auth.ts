@@ -1,20 +1,11 @@
-export function saveTokens(params: {
-  accessToken: string;
-  refreshToken: string;
-}) {
+export function saveTokens(params: { accessToken: string }) {
   localStorage.setItem("accessToken", params.accessToken);
-  localStorage.setItem("refreshToken", params.refreshToken);
 }
 
 export function getAccessToken() {
   return localStorage.getItem("accessToken");
 }
 
-export function getRefreshToken() {
-  return localStorage.getItem("refreshToken");
-}
-
 export function clearTokens() {
   localStorage.removeItem("accessToken");
-  localStorage.removeItem("refreshToken");
 }
