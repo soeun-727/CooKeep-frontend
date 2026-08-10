@@ -25,7 +25,7 @@ export default function ExpiryAlertModal({
     <div className="fixed inset-0 z-100 mx-auto flex max-w-[450px] items-center justify-center">
       <div className="bg-gray-80/50 absolute inset-0" onClick={onClose} />
 
-      <section className="bg-gray-0 relative flex w-[300px] flex-col items-center gap-6 rounded-[16px] p-6">
+      <section className="bg-gray-0 rounded-L relative flex w-[300px] flex-col items-center gap-6 p-6">
         <div className="flex w-full flex-col items-center gap-3">
           <img
             src={characterImg}

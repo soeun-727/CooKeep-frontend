@@ -46,7 +46,7 @@ export default function FindEmailAuthModal({
         onClick={onConfirm} // 배경 클릭 시 닫히게 하고 싶으면 유지
       />
       <div
-        className="bg-gray-0 fixed left-1/2 z-[110] -translate-x-1/2 rounded-[10px]"
+        className="bg-gray-0 rounded-L fixed left-1/2 z-[110] -translate-x-1/2"
         style={{
           top: isHelp ? 308 : isSend ? 359 : 343,
           width: isHelp ? 256 : 240,

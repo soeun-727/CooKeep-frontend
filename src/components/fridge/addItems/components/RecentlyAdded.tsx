@@ -41,7 +41,7 @@ export default function RecentlyAdded() {
 
       {/* 2. 메뉴바 (361px 너비) */}
       <div
-        className={`bg-gray-0 shadow-recent-b relative z-20 w-[361px] overflow-hidden rounded-t-[10px] duration-300 ease-in-out ${
+        className={`bg-gray-0 shadow-recent-b relative z-20 w-full overflow-hidden rounded-t-[10px] duration-300 ease-in-out ${
           isOpen
             ? "mt-[-1px] max-h-[100px] opacity-100" // 버튼과 겹치게 하여 경계선 제거
             : "pointer-events-none max-h-0 opacity-0"
