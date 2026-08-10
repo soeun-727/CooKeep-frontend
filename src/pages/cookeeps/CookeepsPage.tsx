@@ -9,7 +9,7 @@ import {
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { useLoadingStore } from "@/stores/useLoadingStore";
 
-import CookeepsHeader from "@/components/cookeeps/header/CookeepsHeader";
+import { AppBar } from "@/components/ui/AppHeader";
 import FreeWaterModal from "@/components/cookeeps/modals/FreeWaterModal";
 import HarvestModal from "@/components/cookeeps/modals/HarvestModal";
 import OnboardingModal from "@/components/cookeeps/modals/OnboardingModal";
@@ -59,6 +59,7 @@ export default function CookeepsPage() {
     recipeRanking: [],
   });
 
+  const cookie = useCookeepsStore(s => s.cookie);
   const status = useCookeepsStore(s => s.status);
   const abandonPlant = useCookeepsStore(s => s.abandonPlant);
   const recoverPlant = useCookeepsStore(s => s.recoverPlant);
@@ -307,8 +308,7 @@ export default function CookeepsPage() {
       />
 
       <header className="px-4">
-        {/* TODO 나중에 마이쿠킵 머지되면 같은거(AppHeader)로 바꾸기 */}
-        <CookeepsHeader />
+        <AppBar cookieCount={cookie} />
       </header>
 
       <main className="flex w-full flex-col gap-6">
