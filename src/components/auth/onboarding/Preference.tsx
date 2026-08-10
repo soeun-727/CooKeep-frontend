@@ -1,49 +1,24 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
-import {
-  OnboardingIngredient,
-  getOnboardingIngredients,
-} from "@/api/onboarding";
+import { OnboardingIngredient } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
-import { SearchIcon } from "@/assets/index";
-import xIcon from "@/assets/onboarding/x.svg";
+import XIcon from "@/assets/onboarding/x.svg?react";
 
-import TextField from "@/components/ui/TextField";
+import { Search } from "@/components/fridge/features/Search";
+import { InputModal } from "@/components/fridge/modals/InputModal";
+interface PreferenceProps {
+  allIngredients?: OnboardingIngredient[];
+}
 
-import InputModal from "./InputModal";
-import LoadingScreen from "@/components/ui/LoadingScreen";
-
-export default function Preference() {
+export default function Preference({ allIngredients = [] }: PreferenceProps) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [allIngredients, setAllIngredients] = useState<OnboardingIngredient[]>(
-    [],
-  );
-  const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [customIngredient, setCustomIngredient] = useState("");
 
   const { selectedIngredients, setSelectedIngredients } = useOnboardingStore();
 
-  const hasText = searchTerm.trim().length > 0;
-
-  useEffect(() => {
-    const fetchIngredients = async () => {
-      try {
-        setIsLoading(true);
-        const res = await getOnboardingIngredients();
-        const ingredientsList = res.data?.data?.ingredients;
-
-        if (ingredientsList && Array.isArray(ingredientsList)) {
-          setAllIngredients(ingredientsList);
-        }
-      } catch (error) {
-        console.error("재료 로드 실패:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchIngredients();
-  }, []);
+  const hasText = searchTerm.length > 0;
 
   const filteredIngredients = useMemo(() => {
     if (!searchTerm.trim()) return [];
@@ -61,7 +36,7 @@ export default function Preference() {
     });
   }, [searchTerm, allIngredients, selectedIngredients]);
 
-  const isDropdownOpen = hasText;
+  const isDropdownOpen = hasText && filteredIngredients.length > 0;
 
   const handleSelect = (item: OnboardingIngredient) => {
     setSelectedIngredients([...selectedIngredients, item]);
@@ -81,6 +56,7 @@ export default function Preference() {
     };
     setSelectedIngredients([...selectedIngredients, customItem]);
     setSearchTerm("");
+    setCustomIngredient("");
     setIsModalOpen(false);
   };
 
@@ -94,7 +70,7 @@ export default function Preference() {
             key={i}
             className={
               part.toLowerCase() === highlight.toLowerCase()
-                ? "text-green-deep"
+                ? "text-(--color-green-deep)"
                 : ""
             }
           >
@@ -105,50 +81,41 @@ export default function Preference() {
     );
   };
 
-  if (isLoading) return <LoadingScreen />;
-
   return (
-    <div className="flex w-full flex-col items-center px-4">
-      <div className="mt-[46px] w-full gap-2">
+    <div className="flex w-full flex-col items-center gap-6">
+      <div className="w-full gap-2">
         <h1 className="typo-h2">먹지 못하는 재료가 있나요?</h1>
         <h3 className="typo-l text-gray-50">
           해당 재료는 레시피에서 제외할게요
         </h3>
       </div>
-      <div className="relative mt-[46px] flex w-full flex-col items-center">
-        <div
-          className={`relative w-full duration-200 ${isDropdownOpen ? "rounded-t-[6px] rounded-b-none" : "rounded-[6px]"} typo-m [&_input]:w-full [&_input]:outline-none [&_input::placeholder]:text-gray-50 [&_p]:hidden ${
+      <div className="relative flex w-full flex-col items-center gap-4">
+        <Search
+          placeholder="ex. 고구마, 초코우유..."
+          value={searchTerm}
+          onChange={setSearchTerm}
+          bgColor="bg-gray-0"
+          rounded={
             isDropdownOpen
-              ? `[&_div]:rounded-b-none [&_div]:border-b-0 [&_input]:rounded-b-none [&_input]:border-b-0`
-              : ""
-          } `}
-        >
-          <TextField
-            value={searchTerm}
-            type="text"
-            placeholder="ex. 고구마, 초코우유..."
-            onChange={setSearchTerm}
-            rightIcon={
-              <div className="flex items-center justify-center transition-opacity duration-200">
-                <SearchIcon
-                  aria-label="search"
-                  className={`h-6 w-6 ${hasText ? "text-gray-80 cursor-pointer" : "cursor-default text-gray-50"}`}
-                />
-              </div>
-            }
-          />
-        </div>
+              ? "rounded-t-[12px] rounded-b-none"
+              : "rounded-[12px]"
+          }
+        />
 
         {/* 선택된 재료 */}
-        <div className="mt-[18px] flex w-full flex-wrap gap-[6px]">
+        <div className="flex w-full flex-wrap gap-[6px]">
           {selectedIngredients.map(ingredient => (
             <div
               key={ingredient.defaultIngredientId}
               onClick={() => handleRemove(ingredient.defaultIngredientId)}
-              className="flex h-7 items-center gap-1 rounded-[100px] bg-gray-200 px-1 px-3"
+              className="bg-gray-10 flex h-7 items-center gap-1 rounded-full px-1 px-3"
             >
-              <img src={xIcon} className="h-3 w-3" />
-              <span className="typo-m text-gray-50">
+              <XIcon
+                className={`h-3 w-3 ${ingredient.defaultIngredientId < 0 ? "text-green-deep" : "text-gray-50"}`}
+              />
+              <span
+                className={`typo-m ${ingredient.defaultIngredientId < 0 ? "text-green-deep" : "text-gray-50"}`}
+              >
                 {ingredient.ingredient}
               </span>
             </div>
@@ -156,7 +123,7 @@ export default function Preference() {
         </div>
 
         {hasText && (
-          <ul className="bg-gray-0 border-gray-10 typo-m absolute top-12 z-50 max-h-[200px] w-full overflow-y-auto rounded-b-[6px] border !border-t-0">
+          <ul className="bg-gray-0 border-gray-10 typo-m absolute top-12 z-50 max-h-[200px] w-full overflow-y-auto rounded-b-[12px] border !border-t-0">
             {filteredIngredients.map(item => (
               <li
                 key={item.defaultIngredientId}
@@ -165,7 +132,7 @@ export default function Preference() {
                     handleSelect(item);
                   }, 300);
                 }}
-                className="hover:bg-gray-10 active:bg-gray-10 h-12 cursor-pointer p-3 transition-colors"
+                className="hover:bg-gray-10 active:bg-gray-10 cursor-pointer p-3 transition-colors"
               >
                 {highlightText(item.ingredient, searchTerm.trim())}
               </li>
@@ -174,7 +141,7 @@ export default function Preference() {
               onClick={() => {
                 setIsModalOpen(true);
               }}
-              className={`flex h-12 cursor-pointer items-center gap-2 p-3 hover:bg-gray-100`}
+              className={`hover:bg-gray-10 flex cursor-pointer items-center gap-2 p-3`}
             >
               직접 입력하기
             </li>
@@ -183,8 +150,16 @@ export default function Preference() {
       </div>
       {isModalOpen && (
         <InputModal
-          onClose={() => setIsModalOpen(false)}
+          title="재료명을 직접 입력하세요"
+          placeholder="[ex. 땅콩 버터]"
+          value={customIngredient}
+          onChange={setCustomIngredient}
+          onClose={() => {
+            setCustomIngredient("");
+            setIsModalOpen(false);
+          }}
           onConfirm={handleAddCustom}
+          buttonTexts={["확인", "취소"]}
         />
       )}
     </div>

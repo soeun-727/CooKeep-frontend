@@ -6,7 +6,7 @@ import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 import { groundImg, refreshIcon, renameIcon } from "@/assets/index";
 
-import { GOAL_TYPE_MAP } from "@/utils/mapping";
+import { GOAL_TYPE_MAP } from "@/utils/getGoalDescription";
 
 import ProfileEditModal from "../modals/ProfileEditModal";
 import MyCookeepHeader from "./MyCookeepHeader";
@@ -127,7 +127,7 @@ function Profile() {
           </div>
 
           {/* 목표 요약 바 */}
-          <div className="bg-green-deep shadow-search flex h-12 w-[361px] items-center justify-between gap-3 rounded-[12px] p-3">
+          <div className="bg-green-deep shadow-search rounded-M flex h-12 w-[361px] items-center justify-between gap-3 p-3">
             <span
               className={`typo-body2 truncate ${profile?.weeklyGoal?.goalActionType ? "text-gray-0" : "text-green-300"}`}
             >

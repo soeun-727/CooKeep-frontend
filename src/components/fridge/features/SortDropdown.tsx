@@ -15,7 +15,7 @@ export const SortDropdown = ({ isOpen, onSelect }: SortDropdownProps) => {
   ];
 
   return (
-    <div className="bg-gray-0 border-gray-10 shadow-add-button absolute top-full right-0 z-50 mt-[3px] flex min-w-31 flex-col items-center justify-center overflow-hidden rounded-[12px] py-2">
+    <div className="bg-gray-0 border-gray-10 shadow-add-button rounded-M absolute top-full right-0 z-50 mt-[3px] flex min-w-31 flex-col items-center justify-center overflow-hidden py-2">
       {options.map(option => (
         <div key={option} className="flex w-full flex-col items-center">
           <button

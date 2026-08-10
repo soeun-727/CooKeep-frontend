@@ -1,18 +1,39 @@
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 
-export default function Selected() {
+interface SelectedProps {
+  isGuest?: boolean;
+  isGuestSelected?: boolean;
+  guestImage?: string;
+}
+
+export default function Selected({
+  isGuest = false,
+  isGuestSelected = false,
+  guestImage,
+}: SelectedProps) {
   const { selectedItems } = useAddIngredientStore();
-  const selectedDisplay = [...selectedItems].reverse().slice(0, 5);
+
+  let selectedDisplay = [];
+
+  if (isGuest) {
+    selectedDisplay =
+      isGuestSelected && guestImage
+        ? [{ id: "guest-bagel", name: "베이글", image: guestImage }]
+        : [];
+  } else {
+    selectedDisplay = [...selectedItems].reverse().slice(0, 5);
+  }
+
   const emptySlots = Array(5 - selectedDisplay.length).fill(null);
   const allSlots = [...selectedDisplay, ...emptySlots];
 
   return (
-    <div className="bg-gray-0 shadow-recent-b flex h-22 w-[361px] items-center justify-between rounded-[10px] px-5">
+    <div className="bg-gray-0 shadow-recent-b flex h-22 w-full items-center justify-between rounded-[10px] px-5">
       <div className="flex w-full items-center justify-center">
         {allSlots.map((item, idx) => (
           <div
             key={item?.id || `empty-${idx}`}
-            className="flex w-[70px] flex-col items-center"
+            className="flex w-full flex-col items-center"
           >
             {item ? (
               <>

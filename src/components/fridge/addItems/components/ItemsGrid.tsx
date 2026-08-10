@@ -89,7 +89,7 @@ export default function ItemsGrid({ items, onDeleteLocal }: ItemsGridProps) {
             onClick={() => setModalOpen(true)}
             className="animate-fadeIn items-center justify-center"
           >
-            <div className="bg-gray-80 flex items-center justify-center gap-2 rounded-[12px] px-4 py-2">
+            <div className="bg-gray-80 rounded-M flex items-center justify-center gap-2 px-4 py-2">
               <p className="typo-label text-gray-0 text-center">
                 직접 재료 추가하기
               </p>

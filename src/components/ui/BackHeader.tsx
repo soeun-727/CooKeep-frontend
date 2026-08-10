@@ -32,17 +32,23 @@ export const BackHeader = ({
   };
 
   return (
-    <section className="relative flex items-center justify-between py-2">
-      {/* 뒤로가기 버튼 */}
-      <button type="button" onClick={() => handleBack()}>
+    <section className="relative flex h-10 w-full items-center justify-between py-2">
+      {/* 1. 뒤로가기 버튼 */}
+      <button
+        type="button"
+        onClick={() => handleBack()}
+        className="z-10 flex h-10 w-10 items-center justify-center"
+      >
         <BackIcon className="h-5 w-5" />
       </button>
 
-      {/* 타이틀 */}
-      <p className="typo-l-strong">{title}</p>
+      {/* 2. 타이틀 (absolute 수평 중앙 정렬) */}
+      <p className="typo-l-strong pointer-events-none absolute inset-x-0 text-center">
+        {title}
+      </p>
 
-      {/* 정렬 영역 */}
-      <div className="relative flex h-10 w-10 items-center justify-center">
+      {/* 3. 정렬 영역 */}
+      <div className="relative z-10 flex h-10 w-10 items-center justify-center">
         {sortIcon && (
           <>
             <button
@@ -52,7 +58,6 @@ export const BackHeader = ({
               <SortIcon className="h-10 w-10" />
             </button>
 
-            {/* 분리한 드롭다운 컴포넌트 장착 */}
             <SortDropdown
               isOpen={isMenuOpen}
               onSelect={option => {

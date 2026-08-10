@@ -37,7 +37,7 @@ export default function RecipeHeader({ title }: RecipeHeaderProps) {
 
   return (
     <>
-      <header className="flex w-full max-w-[450px] items-center justify-between px-4 py-2">
+      <header className="relative flex w-full max-w-[450px] items-center justify-between py-2">
         {title && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <h1 className="typo-l-strong text-gray-80 whitespace-nowrap">
@@ -46,7 +46,7 @@ export default function RecipeHeader({ title }: RecipeHeaderProps) {
           </div>
         )}
 
-        {/* 왼쪽: 사이드바 버튼 */}
+        {/* 왼쪽: 뒤로가기 버튼 */}
         <button
           onClick={() => navigate("/recipe")}
           disabled={!currentSessionId}
@@ -57,6 +57,7 @@ export default function RecipeHeader({ title }: RecipeHeaderProps) {
           <BackIcon width={21} height={20} />
         </button>
 
+        {/* 오른쪽: 좋아요 & 메뉴 버튼 */}
         <div className="flex">
           {currentSessionId && (
             <button

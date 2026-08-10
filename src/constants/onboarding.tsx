@@ -1,7 +1,7 @@
 import image1 from "@/assets/onboarding/guide_1.svg";
-import image2 from "@/assets/onboarding/guide_2.svg";
-import image3 from "@/assets/onboarding/guide_3.svg";
-import image4 from "@/assets/onboarding/guide_4.svg";
+import image2 from "@/assets/onboarding/guide_2.webp";
+import image3 from "@/assets/onboarding/guide_3.webp";
+import image4 from "@/assets/onboarding/guide_4.webp";
 
 export const ONBOARDING_GOALS = [
   { id: "cook", title: "주 n회 요리하기" },

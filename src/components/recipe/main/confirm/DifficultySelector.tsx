@@ -1,25 +1,36 @@
 import { useState } from "react";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
-
 import randomImg from "@/assets/recipe/select/random.svg";
-
 import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
-export default function DifficultySelector() {
-  const { difficulty, setDifficulty } = useRecipeFlowStore();
+export type DifficultyType = "EASY" | "MEDIUM" | "HARD" | "RANDOM" | string;
+
+interface DifficultySelectorProps {
+  value?: DifficultyType | null;
+  onChange?: (value: DifficultyType) => void;
+}
+
+export default function DifficultySelector({
+  value,
+  onChange,
+}: DifficultySelectorProps) {
+  const store = useRecipeFlowStore();
+
+  const currentDifficulty = value !== undefined ? value : store.difficulty;
+  const setDifficulty = onChange ?? store.setDifficulty;
+
   const [isRandomPending, setIsRandomPending] = useState(false);
 
   const handleRandomClick = () => {
     setIsRandomPending(true);
-    setDifficulty("RANDOM" as any);
+    setDifficulty("RANDOM");
     setTimeout(() => {
       setIsRandomPending(false);
     }, 200);
   };
 
-  const isRandomSelected =
-    (difficulty as string) === "RANDOM" || isRandomPending;
+  const isRandomSelected = currentDifficulty === "RANDOM" || isRandomPending;
 
   return (
     <section className="mx-auto flex w-full flex-col items-center">
@@ -34,11 +45,12 @@ export default function DifficultySelector() {
       {/* 난이도 선택 리스트 */}
       <div className="grid w-full grid-cols-3 gap-1">
         {DIFFICULTY_OPTIONS.map(opt => {
-          const selected = difficulty === opt.key;
+          const selected = currentDifficulty === opt.key;
 
           return (
             <button
               key={opt.key}
+              type="button"
               onClick={() => setDifficulty(opt.key)}
               className={`rounded-S flex w-full cursor-pointer flex-col items-center justify-center border p-3 ${
                 selected
@@ -59,10 +71,11 @@ export default function DifficultySelector() {
         })}
       </div>
 
-      {/* TO DO: 랜덤 레시피 로직 추가 */}
+      {/* 랜덤 추천 버튼 */}
       <button
+        type="button"
         onClick={handleRandomClick}
-        className={`bg-green-exception border-gray-10 rounded-S mt-2 flex w-full gap-3 border p-3 ${
+        className={`rounded-S mt-2 flex w-full cursor-pointer gap-3 border p-3 ${
           isRandomSelected
             ? "border-green-deep bg-green-light"
             : "bg-green-exception border-gray-10"
@@ -71,7 +84,9 @@ export default function DifficultySelector() {
         <img src={randomImg} alt="random" className="w-[38px]" />
         <div className="text-left">
           <p
-            className={`typo-m-strong ${isRandomSelected ? "text-green-deep" : "text-gray-80"}`}
+            className={`typo-m-strong ${
+              isRandomSelected ? "text-green-deep" : "text-gray-80"
+            }`}
           >
             아무거나 추천받기
           </p>

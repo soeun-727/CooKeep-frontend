@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import type { Ingredient } from "@/stores/useIngredientStore";
+
 import PlusIcon from "@/assets/icons/plus.svg?react";
+
 import SelectedItem from "./SelectedItem";
 
 interface SelectedIngredientListProps {
@@ -16,8 +18,8 @@ export default function SelectedIngredientList({
   const MAX_PER_ROW = 5;
   const totalCountWithButton = ingredients.length + 1;
   const emptyCount =
-    totalCountWithButton < 10
-      ? 10 - totalCountWithButton
+    totalCountWithButton < MAX_PER_ROW
+      ? MAX_PER_ROW - totalCountWithButton
       : totalCountWithButton % MAX_PER_ROW === 0
         ? 0
         : MAX_PER_ROW - (totalCountWithButton % MAX_PER_ROW);

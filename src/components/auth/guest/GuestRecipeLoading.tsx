@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-import CheckIcon from "@/assets/recipe/check.svg";
-
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
 
@@ -41,23 +39,23 @@ export default function GuestRecipeLoading({
   }, [step, onComplete, onNext, messages.length]);
 
   return (
-    <div className="bg-background flex flex-col items-center pt-[139px] text-center">
+    <div className="bg-background mt-30 flex flex-col items-center gap-6 text-center">
       <RecipeLoadingSpinner />
 
-      <div className="mb-[49px] flex w-[361px] flex-col items-center gap-2">
+      <div className="flex w-full flex-col items-center gap-2">
         <h1 className="typo-result-title">오늘의 요리 준비 중...</h1>
         <p className="typo-button text-green-deep font-bold">
           나에게 딱 맞는 레시피를 찾고 있어요
         </p>
       </div>
 
-      <div className="flex w-[321px] flex-col gap-3">
+      <div className="flex w-full flex-col gap-3">
         {messages.slice(0, step).map((msg, idx) => (
           <div
             key={idx}
             className="animate-fadeIn translate-y-0 transform duration-500"
           >
-            <StepMessage message={msg} icon={CheckIcon} />
+            <StepMessage message={msg} />
           </div>
         ))}
       </div>
