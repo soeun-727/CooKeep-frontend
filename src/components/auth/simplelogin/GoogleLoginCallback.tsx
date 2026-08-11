@@ -16,7 +16,9 @@ export default function GoogleLoginCallback() {
       const code = params.get("code");
 
       // 환경 변수 활용
-      const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+      const BASE_URL = import.meta.env.DEV
+        ? ""
+        : import.meta.env.VITE_API_BASE_URL;
       const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI || "";
 
       if (!code || hasCalledAPI.current) return;
@@ -26,6 +28,7 @@ export default function GoogleLoginCallback() {
         // 직접적인 주소 노출 제거
         const res = await fetch(
           `${BASE_URL}/api/auth/login/google?code=${code}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`,
+          { credentials: "include" },
         );
 
         if (!res.ok) throw new Error();
@@ -35,7 +38,6 @@ export default function GoogleLoginCallback() {
         loginSocial({
           userId: data.userId,
           accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
           nextStep: data.nextStep,
           userStatus: data.userStatus,
           isRewarded: data.isRewarded,

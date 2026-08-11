@@ -155,7 +155,7 @@ export default function IngredientDetailModal({
         onClick={handleModalClose}
       />
 
-      <div className="bg-gray-0 z-50 w-[300px] rounded-[16px] p-6 shadow-xl">
+      <div className="bg-gray-0 rounded-L z-50 w-[300px] p-6 shadow-xl">
         <div className="mx-auto flex w-full max-w-[290px] flex-col items-center gap-5">
           <div className="flex flex-col items-center gap-2 self-stretch">
             <span className="text-gray-80 text-center text-[16px] leading-6 font-semibold">
@@ -184,7 +184,7 @@ export default function IngredientDetailModal({
                       : `D-${displayData.leftDays}`}
                   </span>
                   <span
-                    className={`typo-caption rounded-[8px] px-3 py-[2px] ${
+                    className={`typo-caption rounded-S px-3 py-[2px] ${
                       displayData.leftDays < 0
                         ? "text-semantic-negative bg-[#FFEAEA]"
                         : displayData.leftDays > 3
@@ -230,7 +230,7 @@ export default function IngredientDetailModal({
 
               {displayTip && (
                 <div className="mt-4 flex flex-col items-center gap-2">
-                  <div className="flex w-full items-end justify-center gap-6 rounded-[8px] bg-[#F4F9F4] px-3 py-4">
+                  <div className="rounded-S flex w-full items-end justify-center gap-6 bg-[#F4F9F4] px-3 py-4">
                     <div className="flex flex-1 flex-col gap-[2px]">
                       <p className="typo-caption-strong text-green-deep text-[11px]">
                         보관 TIP

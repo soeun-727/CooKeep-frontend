@@ -23,7 +23,7 @@ export default function RecipeGenerateButton({
     setTimeout(() => {
       onClick();
       setIsClicked(false);
-    }, 300);
+    }, 150);
   };
 
   return (

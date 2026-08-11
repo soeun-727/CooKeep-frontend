@@ -1,20 +1,31 @@
 import { refreshAccessToken } from "@/api/auth.api";
-import axios from "axios";
+import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
 
 import { clearTokens, getAccessToken } from "@/utils/auth";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: import.meta.env.DEV ? "" : import.meta.env.VITE_API_BASE_URL,
   timeout: Number(import.meta.env.VITE_API_TIMEOUT) || 10000,
+  withCredentials: true,
 });
 
 let isRefreshing = false;
-let failedQueue: any[] = [];
 
-const processQueue = (error: any, token: string | null = null) => {
+interface RetryRequestConfig extends InternalAxiosRequestConfig {
+  _retry?: boolean;
+}
+
+interface FailedQueueItem {
+  resolve: (token: string) => void;
+  reject: (error: unknown) => void;
+}
+
+let failedQueue: FailedQueueItem[] = [];
+
+const processQueue = (error: unknown, token: string | null = null) => {
   failedQueue.forEach(prom => {
     if (error) prom.reject(error);
-    else prom.resolve(token);
+    else if (token) prom.resolve(token);
   });
   failedQueue = [];
 };
@@ -30,11 +41,15 @@ api.interceptors.request.use(config => {
 
 api.interceptors.response.use(
   response => response,
-  async error => {
-    const originalRequest = error.config;
+  async (error: AxiosError<{ code?: string }>) => {
+    const originalRequest = error.config as RetryRequestConfig | undefined;
     const isUnauthorized =
       error.response?.status === 401 ||
       error.response?.data?.code === "AUTH-001";
+
+    if (!originalRequest) {
+      return Promise.reject(error);
+    }
 
     if (originalRequest.url?.includes("refresh") || originalRequest._retry) {
       return Promise.reject(error);
@@ -42,7 +57,7 @@ api.interceptors.response.use(
 
     if (isUnauthorized) {
       if (isRefreshing) {
-        return new Promise((resolve, reject) => {
+        return new Promise<string>((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })
           .then(token => {
@@ -64,7 +79,9 @@ api.interceptors.response.use(
         if (originalRequest.data && typeof originalRequest.data === "string") {
           try {
             originalRequest.data = JSON.parse(originalRequest.data);
-          } catch (e) {}
+          } catch {
+            // 직렬화된 요청 본문을 그대로 사용합니다.
+          }
         }
 
         return api(originalRequest);

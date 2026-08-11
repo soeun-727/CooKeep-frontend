@@ -10,7 +10,7 @@ export default function ExampleNotification({
   description,
 }: ExampleNotificationProps) {
   return (
-    <div className="bg-gray-0 shadow-container flex h-[71px] w-71 flex-col gap-[6px] rounded-[8px] px-3 py-2">
+    <div className="bg-gray-0 shadow-container rounded-S flex h-[71px] w-71 flex-col gap-[6px] px-3 py-2">
       <div className="flex gap-1">
         <img src={icon} className="w-[14px]" />
         <span className="text-[8px] leading-3 font-normal text-gray-50">

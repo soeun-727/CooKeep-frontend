@@ -35,7 +35,7 @@ export default function Initial() {
     window.location.href = GOOGLE_AUTH_URL;
   };
   return (
-    <div className="bg-background relative flex min-h-screen flex-col items-center">
+    <div className="bg-background no-scrollbar relative flex min-h-screen flex-col items-center">
       <div className="pointer-events-none absolute top-[3px] right-0 left-0 z-0 flex justify-center">
         <img src={confetti} className="w-86" />
       </div>

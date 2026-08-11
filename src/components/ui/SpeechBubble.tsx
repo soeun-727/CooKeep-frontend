@@ -16,10 +16,9 @@ export const SpeechBubble = ({
     );
 
   return (
-    <section className="drop-shadow-container relative z-100 flex flex-col items-center">
-      {trianglePosition === "top" && triangle}
-      <div className="bg-gray-0 rounded-[8px] px-3 py-2">
-        <p className={`whitespace-nowrap ${textStyle}`}>{text}</p>
+    <section className="drop-shadow-container relative z-100 flex flex-col">
+      <div className="bg-gray-0 rounded-S px-3 py-1">
+        <p className={textStyle}>{text}</p>
       </div>
       {trianglePosition === "bottom" && triangle}
     </section>
