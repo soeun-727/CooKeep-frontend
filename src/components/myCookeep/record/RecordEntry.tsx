@@ -29,8 +29,8 @@ export default function RecordEntry({ record }: RecordEntryProps) {
         {record ? (
           <RecordCard key={record.dailyRecipeId} record={record} />
         ) : (
-          <div className="border bg-gray-0 border-gray-10 rounded-L flex gap-4 px-3 py-4">
-            <figure className="bg-gray-10 flex py-[18px] pr-[15px] pl-[11px]">
+          <div className="bg-gray-0 border-gray-10 rounded-L flex w-full gap-4 border px-3 py-4">
+            <figure className="bg-gray-10 rounded-S flex py-[18px] pr-[25px] pl-[11px]">
               <PotIcon className="text-gray-30 h-16 w-16" />
             </figure>
 
@@ -47,7 +47,7 @@ export default function RecordEntry({ record }: RecordEntryProps) {
         )}
 
         <button
-          className="rounded-M flex w-full gap-3 bg-white p-3"
+          className="rounded-M hover:bg-gray-10 flex w-full gap-3 bg-white p-3"
           onClick={handleRecordClick}
         >
           <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white">
