@@ -1,5 +1,7 @@
+import { RecipeStep } from "@/api/cookeeps";
+
 interface RecipeDetailStepSectionProps {
-  steps: string[];
+  steps: RecipeStep[];
 }
 
 export default function RecipeDetailStepSection({
@@ -12,8 +14,8 @@ export default function RecipeDetailStepSection({
 
       {/* 단계 리스트 */}
       <div className="flex w-full flex-col items-start gap-[8px]">
-        {steps.map((description, index) => {
-          const cleanDescription = description.replace(/^\d+\.\s*/, "");
+        {steps.map((step, index) => {
+          const cleanDescription = step.content.replace(/^\d+\.\s*/, "");
           const stepOrder = index + 1;
 
           return (

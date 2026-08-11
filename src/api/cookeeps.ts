@@ -28,22 +28,35 @@ export interface WeeklyRecipesResponse {
   number: number; // 현재 페이지 번호
 }
 
-export interface IngredientItem {
+/** user_ingredients 전용: 유저가 보유한 재료 */
+export interface UserIngredientItem {
+  name: string;
+  unit: string;
+  quantity: number;
+  ingredientId: number;
+}
+
+/** optional_ingredients / additional_ingredients 공용 */
+export interface ExtraIngredientItem {
   name: string;
   unit: string;
   quantity: number;
   description?: string | null;
-  type?: string;
-  referenceId?: number;
+}
+
+export interface RecipeStep {
+  content: string;
+  legacyFormat: boolean;
+  usedIngredientIds: number[];
 }
 
 export interface RecipeDetailContent {
   ingredients: {
-    user_ingredients: IngredientItem[];
-    optional_ingredients: IngredientItem[];
-    additional_ingredients: IngredientItem[];
+    user_ingredients: UserIngredientItem[];
+    optional_ingredients: ExtraIngredientItem[];
+    additional_ingredients: ExtraIngredientItem[];
   };
-  steps: string[];
+  steps: RecipeStep[];
   youtubeReferences: {
     url: string;
     title: string;

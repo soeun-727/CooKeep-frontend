@@ -1,7 +1,11 @@
-import { Ingredient, IngredientsJson } from "@/api/dailyAiRecipe";
+import {
+  RecipeDetailContent,
+  UserIngredientItem,
+  ExtraIngredientItem,
+} from "@/api/cookeeps";
 
 interface RecipeDetailIngredientSectionProps {
-  ingredients: IngredientsJson;
+  ingredients: RecipeDetailContent["ingredients"];
 }
 
 export default function RecipeDetailIngredientSection({
@@ -11,7 +15,7 @@ export default function RecipeDetailIngredientSection({
     ingredients;
 
   // 단위+수량 포맷 함수
-  const formatIngredient = (item: Ingredient) => {
+  const formatIngredient = (item: UserIngredientItem | ExtraIngredientItem) => {
     if (!item.quantity) return item.name;
     if (!item.unit) return `${item.name} ${item.quantity}`;
     return `${item.name} ${item.quantity}${item.unit}`;
@@ -25,7 +29,7 @@ export default function RecipeDetailIngredientSection({
       acc[key].push(item);
       return acc;
     },
-    {} as Record<string, Ingredient[]>,
+    {} as Record<string, ExtraIngredientItem[]>,
   );
 
   return (
