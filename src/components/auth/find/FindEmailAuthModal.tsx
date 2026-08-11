@@ -5,6 +5,7 @@ export type FindEmailAuthModalType =
   | "send"
   | "verify"
   | "notRegistered"
+  | "mismatch"
   | "help";
 
 interface FindEmailAuthModalProps {
@@ -40,6 +41,12 @@ const buildConfig = (
           "해당 이메일로 가입된 계정을\n찾을 수 없어요\n회원가입을 먼저 진행해 주세요",
         buttonText: "회원가입하기",
         variant: "green",
+      };
+    case "mismatch":
+      return {
+        title: "존재하지 않는 이메일입니다",
+        buttonText: "확인",
+        variant: "black",
       };
     case "help":
       return {

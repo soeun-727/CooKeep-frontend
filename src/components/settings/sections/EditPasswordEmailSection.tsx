@@ -195,25 +195,7 @@ export default function EditPasswordEmailSection() {
         </button>
       </main>
 
-      {/* 불일치 모달 (피그마에 없는데 원래 있길래 확인 필요) */}
-      {modalType === "mismatch" && (
-        <>
-          {/* Overlay */}
-          <div className="bg-black-overlay fixed inset-0 z-[100]" />
-
-          {/* Modal */}
-          <div className="bg-gray-0 shadow-container fixed top-1/2 left-1/2 z-[110] flex w-[300px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-6 rounded-xl p-6">
-            <p className="typo-l-strong text-center whitespace-pre-wrap">
-              등록된 이메일과 일치하지 않습니다
-            </p>
-            <Button size="S" variant="black" onClick={() => setModalType(null)}>
-              확인
-            </Button>
-          </div>
-        </>
-      )}
-
-      {modalType && modalType !== "mismatch" && (
+      {modalType && (
         <FindEmailAuthModal
           type={modalType}
           email={email}
