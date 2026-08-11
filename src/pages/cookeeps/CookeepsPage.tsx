@@ -71,7 +71,6 @@ export default function CookeepsPage() {
   const harvestedPlantNames = useCookeepsStore(s => s.harvestedPlantNames);
   const justHarvestedPlant = useCookeepsStore(s => s.justHarvestedPlant);
   const registerPlant = useCookeepsStore(s => s.registerPlant);
-  const claimHarvestReward = useCookeepsStore(s => s.claimHarvestReward);
   const setLoading = useLoadingStore(s => s.setLoading);
 
   const [hideWiltingModal, setHideWiltingModal] = useState(false);
@@ -164,10 +163,15 @@ export default function CookeepsPage() {
     }
   };
 
+  const [rewardPoints, setRewardPoints] = useState<number | undefined>(
+    undefined,
+  );
+
   const handleHarvestModalClose = async () => {
     const store = useCookeepsStore.getState();
     // 모달 닫히는 시점에 claim 호출 → 쿠키 +20
-    await claimHarvestReward();
+    const reward = await store.claimHarvestReward();
+    if (reward) setRewardPoints(reward.points);
     store.setHasShownHarvestModal(true);
     store.setJustHarvestedPlant(null);
     store.resetCurrentPlant();
@@ -305,6 +309,7 @@ export default function CookeepsPage() {
       <HarvestModal
         isOpen={showHarvestModal}
         onClose={handleHarvestModalClose}
+        rewardPoints={rewardPoints}
       />
 
       <header className="px-4">

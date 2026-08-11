@@ -1,4 +1,4 @@
-import { getMyCookies } from "@/api/cookies";
+import { CookieReward, getMyCookies } from "@/api/cookies";
 import { claimPendingReward } from "@/api/cookies";
 import {
   type RegisterResponseData,
@@ -86,7 +86,7 @@ interface CookeepsState {
   fetchGrowingPlant: () => Promise<void>;
 
   pendingRewardId: number | null; // 추가
-  claimHarvestReward: () => Promise<void>; // 추가
+  claimHarvestReward: () => Promise<CookieReward | void>; // 추가
 }
 
 export const useCookeepsStore = create<CookeepsState>((set, get) => ({
@@ -427,8 +427,9 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
     if (pendingRewardId === null) return;
 
     try {
-      const finalCookieCnt = await claimPendingReward(pendingRewardId);
-      set({ cookie: finalCookieCnt, pendingRewardId: null });
+      const reward = await claimPendingReward(pendingRewardId);
+      set({ cookie: reward.currentCookieCount, pendingRewardId: null });
+      return reward;
     } catch (e) {
       console.error("보상 수령 실패:", e);
       // 실패해도 pendingRewardId 유지 (재시도 가능하게)
