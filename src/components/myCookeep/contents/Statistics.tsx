@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 
 import { ConsumptionReport, getConsumptionReport } from "@/api/stats";
 
-import { carIcon, elecIcon, treeIcon, triButton } from "@/assets/index";
-
-import CircleGraph from "./CircleGraph";
+import CarIcon from "@/assets/mycookeep/car.svg?react";
+import CloudIcon from "@/assets/mycookeep/cloud.svg?react";
+import ElecIcon from "@/assets/mycookeep/elec.svg?react";
+import TreeIcon from "@/assets/mycookeep/tree.svg?react";
 
 export default function Statistics() {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [report, setReport] = useState<ConsumptionReport | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchReport = async () => {
@@ -18,8 +17,6 @@ export default function Statistics() {
         setReport(data);
       } catch (error) {
         console.error("리포트 데이터 로드 실패:", error);
-      } finally {
-        setIsLoading(false);
       }
     };
     fetchReport();
@@ -34,101 +31,84 @@ export default function Statistics() {
     consumedNearExpiry: report?.consumedNearExpiryCount || 0,
   };
 
-  if (isLoading)
-    return (
-      <div className="flex h-[354px] items-center justify-center">
-        데이터 로딩 중...
-      </div>
-    );
-
   return (
-    <div className="bg-gray-0 relative flex h-[354px] w-full flex-col items-center overflow-hidden py-6">
-      <div
-        className={`flex w-full flex-col items-center transition-transform duration-500 ease-in-out ${
-          isExpanded ? "-translate-y-[230px]" : "translate-y-0"
-        }`}
-      >
-        <div className="flex h-[307px] w-full shrink-0 flex-col items-center">
-          <div className="typo-caption text-gray-0 mt-5 flex h-[26px] w-[157px] flex-col justify-center rounded-[6px] bg-black text-center">
-            나의 식재료 소비 달성 현황
-          </div>
+    <div className="relative flex w-full flex-col items-center gap-2">
+      <h1 className="text-gray-80 typo-l-strong w-full px-1 text-left">
+        나의 식재료 소비 달성 현황
+      </h1>
 
-          <div className="mt-6 flex w-77 justify-between pt-[6.5px]">
-            <div className="flex w-1/2 flex-col items-center justify-center gap-[6.5px]">
-              <CircleGraph percentage={stats.totalRate} />
-              <span className="typo-caption text-center !text-[10px] leading-tight text-gray-50">
-                (실제 소비 음식/전체 음식) %
-              </span>
-            </div>
-            <div className="flex w-1/2 flex-col items-center justify-center gap-[6.5px]">
-              <CircleGraph percentage={stats.nearExpiryRate} />
-              <span className="typo-caption text-center !text-[10px] leading-tight text-gray-50">
-                (실제 소비 음식/폐기 임박 음식) %
-              </span>
-            </div>
-          </div>
+      <section className="bg-gray-0 rounded-L border-gray-10 flex w-full gap-3 border px-3 py-4">
+        <div className="flex flex-1 flex-col items-center gap-1">
+          <p className="typo-h1 text-green">{stats.totalRate.toFixed(0)}%</p>
+          <span className="typo-caption text-gray-50">전체 식재료 소비율</span>
+        </div>
 
-          <div className="typo-body2 mt-[31px] text-center">
+        <div className="bg-gray-10 h-[62px] w-[1px]" />
+
+        <div className="flex flex-1 flex-col items-center gap-1">
+          <p className="typo-h1 text-green">
+            {stats.nearExpiryRate.toFixed(0)}%
+          </p>
+          <span className="typo-caption text-gray-50">임박 식재료 소비율</span>
+        </div>
+      </section>
+
+      <section className="bg-gray-0 rounded-L border-gray-10 flex w-full flex-col gap-3 border px-3 py-4">
+        <div className="flex gap-3">
+          <CloudIcon className="h-10 w-10" />
+          <p className="typo-m text-gray-80">
             유통기한 임박 식재료 3개를 요리하면
             <br />
-            <span className="text-green font-bold">0.8kg</span>의 CO₂ 배출을
+            <span className="text-green typo-m-strong">0.8kg</span>의 CO₂ 배출을
             줄일 수 있어요
-          </div>
-
-          <button
-            onClick={() => setIsExpanded(!isExpanded)}
-            className="mt-2 flex h-[29px] w-[62px] flex-col items-center justify-start focus:outline-none"
-          >
-            <img
-              src={triButton}
-              className={`p-2 transition-transform duration-500 ease-in-out ${
-                isExpanded ? "rotate-180" : "rotate-0"
-              }`}
-              alt="expand button"
-            />
-          </button>
+          </p>
         </div>
 
-        {/* [영역 2]: 올라오면서 보여질 상세 화면 (애니메이션 컨테이너 '내부'로 이동) */}
-        <div className="flex w-full shrink-0 flex-col items-center px-4 pt-5">
-          <div className="mb-6 flex justify-center gap-2">
-            <div className="flex flex-col items-center gap-[14px]">
-              <img
-                src={treeIcon}
-                alt="tree"
-                className="h-20 w-20 object-contain"
-              />
-              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
-                나무 0.03그루 심기
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-[14px]">
-              <img
-                src={carIcon}
-                alt="car"
-                className="h-20 w-20 object-contain"
-              />
-              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
-                자동차 4km 미주행
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-[14px]">
-              <img
-                src={elecIcon}
-                alt="elec"
-                className="h-20 w-20 object-contain"
-              />
-              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
-                자동차 4km 미주행
-              </div>
+        <div className="bg-gray-10 h-[1px] w-full" />
+
+        <h2 className="typo-m-strong text-gray-80 w-full px-1 text-left">
+          생활 속 효과로 알아보기
+        </h2>
+
+        <div className="flex w-full items-center justify-center gap-6">
+          <div className="flex flex-col items-center gap-3">
+            <figure className="bg-green-light flex h-[70px] w-[70px] items-center justify-center rounded-full">
+              <TreeIcon className="h-[50px] w-[50px]" />
+            </figure>
+
+            <div className="typo-label flex flex-col items-center">
+              <p className="text-green">0.03그루</p>
+              <p className="text-gray-50">나무 심기</p>
             </div>
           </div>
 
-          <span className="typo-caption text-gray-30 text-center text-[10px]">
-            국제 평균 식품 폐기물 탄소 배출 계수 기준 추정치
-          </span>
+          <div className="flex flex-col items-center gap-3">
+            <figure className="bg-green-light flex h-[70px] w-[70px] items-center justify-center rounded-full">
+              <CarIcon className="h-[50px] w-[50px]" />
+            </figure>
+
+            <div className="typo-label flex flex-col items-center">
+              <p className="text-green">4km</p>
+              <p className="text-gray-50">자동차 미주행</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center gap-3">
+            <figure className="bg-green-light flex h-[70px] w-[70px] items-center justify-center rounded-full">
+              <ElecIcon className="h-[50px] w-[50px]" />
+            </figure>
+
+            <div className="typo-label flex flex-col items-center">
+              <p className="text-green">약 2시간</p>
+              <p className="text-gray-50">전기 절약</p>
+            </div>
+          </div>
         </div>
-      </div>
+
+        <span className="typo-caption text-center text-gray-50">
+          국제 평균 식품 폐기물 탄소 배출 계수 기준 추정치
+        </span>
+      </section>
     </div>
   );
 }
