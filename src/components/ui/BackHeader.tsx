@@ -8,8 +8,9 @@ import SortIcon from "@/assets/fridge/sort.svg?react";
 import { SortDropdown } from "../fridge/features/SortDropdown";
 
 interface BackHeaderProps {
-  title: string;
+  title?: string;
   sortIcon?: boolean;
+  recipeOptionMenu?: boolean;
   onBack?: () => void;
 }
 
@@ -41,15 +42,15 @@ export const BackHeader = ({
       >
         <BackIcon className="h-5 w-5" />
       </button>
-
       {/* 2. 타이틀 (absolute 수평 중앙 정렬) */}
-      <p className="typo-l-strong pointer-events-none absolute inset-x-0 text-center">
-        {title}
-      </p>
-
+      {title && (
+        <p className="typo-l-strong pointer-events-none absolute inset-x-0 text-center">
+          {title}
+        </p>
+      )}
       {/* 3. 정렬 영역 */}
-      <div className="relative z-10 flex h-10 w-10 items-center justify-center">
-        {sortIcon && (
+      {sortIcon && (
+        <div className="relative z-10 flex h-10 w-10 items-center justify-center">
           <>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -66,8 +67,8 @@ export const BackHeader = ({
               }}
             />
           </>
-        )}
-      </div>
+        </div>
+      )}
     </section>
   );
 };
