@@ -1,4 +1,5 @@
 import type { Ingredient } from "@/stores/useIngredientStore";
+
 import XIcon from "@/assets/icons/x.svg?react";
 
 interface SelectedItemProps {

@@ -15,7 +15,6 @@ import { useSignupStore } from "./useSignupStore";
 interface SocialLoginPayload {
   userId: number;
   accessToken: string;
-  refreshToken: string;
   nextStep: "TERMS" | "ONBOARDING" | "HOME" | string;
   userStatus: string;
   isRewarded: boolean;
@@ -65,10 +64,9 @@ export const useAuthStore = create<AuthState>()(
 
       initializeAuth: () => {
         const accessToken = localStorage.getItem("accessToken");
-        const refreshToken = localStorage.getItem("refreshToken");
 
         // 토큰이 둘 다 없다면 확실히 로그아웃 상태
-        if (!accessToken || !refreshToken) {
+        if (!accessToken) {
           get().logout();
           set({ initialized: true });
           return;
@@ -95,7 +93,6 @@ export const useAuthStore = create<AuthState>()(
 
           saveTokens({
             accessToken: data.accessToken,
-            refreshToken: data.refreshToken,
           });
 
           if (data.isRewarded) {
@@ -184,7 +181,6 @@ export const useAuthStore = create<AuthState>()(
       loginSocial: data => {
         saveTokens({
           accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
         });
 
         set({
