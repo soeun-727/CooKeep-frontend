@@ -30,7 +30,7 @@ export default function RecordViewImageCard({
 
   return (
     <>
-      <div className="mx-auto flex w-full max-w-[450px] flex-col">
+      <div className="flex w-full flex-col">
         {/* 이미지 */}
         <div
           className="shadow-search relative h-[153px] w-full overflow-hidden rounded-t-[6px]"

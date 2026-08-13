@@ -14,9 +14,11 @@ import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
 
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
-import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
 import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
 import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
+import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
+import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
@@ -62,8 +64,6 @@ export default function RecordWritePage() {
 
     fetchDetail();
   }, [selectedRecipeId, setTitle, title]);
-
-  console.log(recipeDetail?.stepsJson);
 
   useEffect(() => {
     if (isSuccess) return;
@@ -187,12 +187,41 @@ export default function RecordWritePage() {
                 setImage(null);
               }}
             />
-            <RecipeRecordContentSection
-              recipe={{
-                ingredients: recipeDetail.ingredientsJson,
-                steps: recipeDetail.stepsJson,
-              }}
+            <RecipeTitle
+              name={title || recipeDetail.title}
+              category=""
+              usedItems={recipeDetail.ingredientsJson.user_ingredients.length}
             />
+
+            <div className="flex w-full shrink-0 flex-col items-center pt-4">
+              <textarea
+                value={memo}
+                onChange={e => setMemo(e.target.value.slice(0, 500))}
+                onInput={handleMemoInput}
+                placeholder="글자 수 최대 500자"
+                className="bg-gray-0 typo-body text-gray-80 w-full resize-none overflow-hidden rounded-[10px] px-[10px] py-3 text-center outline-none placeholder:text-gray-50"
+                rows={1}
+              />
+            </div>
+
+            <RecipeIngredientSection
+              selectedIngredients={
+                recipeDetail.ingredientsJson.user_ingredients
+              }
+              requiredIngredients={
+                recipeDetail.ingredientsJson.additional_ingredients
+              }
+              substitutions={recipeDetail.ingredientsJson.optional_ingredients}
+            />
+
+            <RecipeStepSection
+              steps={recipeDetail.stepsJson.map((step, idx) => ({
+                order: idx + 1,
+                description: step.content,
+              }))}
+              difficulty="NORMAL"
+            />
+
             {/* 유튜브 카드 추가 */}
             {recipeDetail.youtubeUrlJson &&
               recipeDetail.youtubeUrlJson.length > 0 && (
@@ -209,27 +238,6 @@ export default function RecordWritePage() {
                   })()}
                 />
               )}
-          </div>
-
-          <div className="flex w-full shrink-0 flex-col items-center pt-4">
-            <textarea
-              value={memo}
-              onChange={e => setMemo(e.target.value.slice(0, 500))}
-              onInput={handleMemoInput}
-              placeholder="글자 수 최대 500자"
-              className="bg-gray-0 typo-body text-gray-80 w-full resize-none overflow-hidden rounded-[10px] px-[10px] py-3 text-center outline-none placeholder:text-gray-50"
-              rows={1}
-            />
-          </div>
-
-          <div className="animate-float-bubble relative mt-[15px] flex shrink-0 justify-center">
-            <div
-              className="bg-gray-0 text-green shadow-container relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium"
-              style={{ width: 206, height: 36 }}
-            >
-              나만의 팁 작성하기
-            </div>
-            <div className="bg-gray-0 shadow-tooltip-tail absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45" />
           </div>
 
           <div className="mt-auto flex shrink-0 flex-col items-center gap-4 pt-[64px] pb-[20px]">
