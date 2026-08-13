@@ -4,6 +4,7 @@ import { DailyRecipe } from "@/api/myRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
 import PlusIcon from "@/assets/fridge/items/plus.svg?react";
+import ArrowRightIcon from "@/assets/icons/arrow_right.svg?react";
 import PotIcon from "@/assets/mycookeep/pot.svg?react";
 
 import RecordCard from "./RecordCard";
@@ -22,9 +23,17 @@ export default function RecordEntry({ record }: RecordEntryProps) {
   return (
     <div className="relative">
       <div className="flex w-full flex-col items-start gap-2">
-        <h1 className="typo-l-strong text-gray-80 w-full px-1">
-          최근에 한 요리
-        </h1>
+        <div className="flex w-full items-center justify-between px-1">
+          <h1 className="typo-l-strong text-gray-80">최근에 한 요리</h1>
+          {record && (
+            <button className="flex items-center text-gray-50">
+              <p className="typo-label">전체보기</p>
+              <figure className="px-[6px]">
+                <ArrowRightIcon className="h-[13px] w-2" />
+              </figure>
+            </button>
+          )}
+        </div>
 
         {record ? (
           <RecordCard key={record.dailyRecipeId} record={record} />

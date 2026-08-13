@@ -49,7 +49,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
         loading="lazy"
         src={record.recipeImageUrl || tempFoodPhoto}
         alt="요리 이미지"
-        className="h-25 w-25 rounded-[8px] object-cover"
+        className="h-25 w-25 flex-shrink-0 rounded-[8px] object-cover"
       />
       {/* 요리 정보 */}
       <div className="flex w-full flex-col justify-between">
