@@ -25,7 +25,6 @@ interface RecipeInfoDetailProps {
   difficulty: string;
   youtubeVideos?: YoutubeVideo[];
   youtubeTags?: string[];
-  children?: ReactNode;
 }
 
 export function RecipeInfoDetail({
@@ -36,11 +35,9 @@ export function RecipeInfoDetail({
   difficulty,
   youtubeVideos = [],
   youtubeTags,
-  children,
 }: RecipeInfoDetailProps) {
   return (
     <div className="flex w-full flex-col gap-3">
-      {children}
       <RecipeIngredientSection
         selectedIngredients={selectedIngredients}
         requiredIngredients={requiredIngredients}

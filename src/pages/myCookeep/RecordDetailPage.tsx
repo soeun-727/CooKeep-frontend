@@ -21,6 +21,7 @@ import Button from "@/components/ui/Button";
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import RecipeOptionMenu from "@/components/ui/OptionsMenu";
 import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
+
 import { compressAndUploadImage } from "@/utils/imageUpload";
 
 export default function RecordDetailPage() {
@@ -166,40 +167,43 @@ export default function RecordDetailPage() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-[10px]">
+      <div className="flex flex-col gap-3">
         <RecordImageContent
           imageSrc={currentImageUrl}
           onImageChange={handleImageFileSelect}
           editMode={isEditing}
         />
 
-        {/* 레시피 내용 */}
-        <RecipeTitle
-          name={record.title}
-          category=""
-          usedItems={record.content.ingredients.user_ingredients.length}
-        />
-
-        <RecipeInfoDetail
-          selectedIngredients={record.content.ingredients.user_ingredients}
-          requiredIngredients={
-            record.content.ingredients.additional_ingredients
-          }
-          substitutions={record.content.ingredients.optional_ingredients}
-          steps={record.content.steps.map((step, idx) => ({
-            order: idx + 1,
-            description: step.content,
-          }))}
-          difficulty="NORMAL"
-          youtubeVideos={record.content.youtubeReferences}
-          youtubeTags={record.content.youtubeSearchQueries ?? []}
-        >
-          <CookingTipsSection
-            cookingTips={isEditing ? tempDescription : record.description || ""}
-            onChangeCookingTips={isEditing ? setTempDescription : undefined}
-            readOnly={!isEditing}
+        <div className="flex flex-col gap-6">
+          <RecipeTitle
+            name={record.title}
+            category=""
+            usedItems={record.content.ingredients.user_ingredients.length}
           />
-        </RecipeInfoDetail>
+          <div className="flex flex-col gap-3">
+            <CookingTipsSection
+              cookingTips={
+                isEditing ? tempDescription : record.description || ""
+              }
+              onChangeCookingTips={isEditing ? setTempDescription : undefined}
+              readOnly={!isEditing}
+            />
+            <RecipeInfoDetail
+              selectedIngredients={record.content.ingredients.user_ingredients}
+              requiredIngredients={
+                record.content.ingredients.additional_ingredients
+              }
+              substitutions={record.content.ingredients.optional_ingredients}
+              steps={record.content.steps.map((step, idx) => ({
+                order: idx + 1,
+                description: step.content,
+              }))}
+              difficulty="NORMAL"
+              youtubeVideos={record.content.youtubeReferences}
+              youtubeTags={record.content.youtubeSearchQueries ?? []}
+            />
+          </div>
+        </div>
       </div>
 
       {isEditing && (

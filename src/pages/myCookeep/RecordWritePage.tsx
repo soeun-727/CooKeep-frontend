@@ -153,6 +153,8 @@ export default function RecordWritePage() {
           usedItems={recipeDetail.ingredientsJson.user_ingredients.length}
         />
 
+        <CookingTipsSection cookingTips={memo} onChangeCookingTips={setMemo} />
+
         <RecipeInfoDetail
           selectedIngredients={recipeDetail.ingredientsJson.user_ingredients}
           requiredIngredients={
@@ -174,12 +176,7 @@ export default function RecordWritePage() {
               return [];
             }
           })()}
-        >
-          <CookingTipsSection
-            cookingTips={memo}
-            onChangeCookingTips={setMemo}
-          />
-        </RecipeInfoDetail>
+        />
 
         <div className="mt-auto flex shrink-0 flex-col items-center gap-4 pt-[64px] pb-[20px]">
           <div className="flex w-full justify-center gap-[9px]">
