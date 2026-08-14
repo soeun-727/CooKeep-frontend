@@ -37,7 +37,7 @@ export const MyCookeepGoal = () => {
 
   return (
     <div className="relative">
-      <section className="border-gray-10 bg-gray-0 flex items-center justify-between gap-3 rounded-[12px] border px-3 py-4">
+      <section className="border-gray-10 bg-gray-0 rounded-M flex items-center justify-between gap-3 border px-3 py-4">
         <GoalImage className="h-11 w-11" />
         <div className="flex flex-1 flex-col items-start">
           <p className="typo-m text-gray-50">이번 주 목표</p>

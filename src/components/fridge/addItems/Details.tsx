@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import { addIngredients } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import { useRewardStore } from "@/stores/useRewardStore";
+import axios from "axios";
 
 import Button from "@/components/ui/Button";
 

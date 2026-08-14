@@ -115,7 +115,7 @@ function Profile() {
                   지금은 {profile?.growingPlantName || "요리 실력을"} 키우는 중!
                 </span>
               </div>
-              <div className="bg-green-light mx-auto mt-3 -ml-[0.5px] flex h-5 w-fit items-center justify-center gap-[2px] rounded-[100px] px-3">
+              <div className="bg-green-light mx-auto mt-3 -ml-[0.5px] flex h-5 w-fit items-center justify-center gap-[2px] rounded-full px-3">
                 <span className="typo-caption text-green flex items-center leading-none">
                   {profile?.daysSinceJoined}
                 </span>

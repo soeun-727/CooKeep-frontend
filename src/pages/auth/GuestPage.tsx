@@ -10,6 +10,7 @@ import GuestRecipeIntro from "@/components/auth/guest/GuestRecipeIntro";
 import GuestRecipeLevel from "@/components/auth/guest/GuestRecipeLevel";
 import GuestRecipeLoading from "@/components/auth/guest/GuestRecipeLoading";
 import TabBar from "@/components/fixed/TabBar";
+
 import { GUEST_INGREDIENTS } from "@/constants/guestIngredients";
 
 export default function GuestPage() {

@@ -1,8 +1,9 @@
+import type { MasterItem } from "@/stores/useAddIngredientStore";
+
 import milk from "@/assets/guest/bagel.svg";
 
 import DetailedItem from "@/components/fridge/addItems/DetailedItem";
 import Button from "@/components/ui/Button";
-import type { MasterItem } from "@/stores/useAddIngredientStore";
 
 interface GuestDetailsProps {
   onNext: () => void;

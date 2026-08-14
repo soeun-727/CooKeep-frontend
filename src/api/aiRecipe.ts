@@ -1,14 +1,15 @@
+import type { AxiosResponse } from "axios";
+
 import type {
   AiRecipeResponse,
   Feature,
   RetryAiRecipeRequest,
 } from "@/types/aiRecipe";
-import type { AxiosResponse } from "axios";
+
 import type {
   AiRecipeSessionListResponse,
   AiSessionDetailResponse,
 } from "./aiSession";
-
 import api from "./axios";
 
 export interface ApiResponseEnvelope<T> {
@@ -98,9 +99,7 @@ export const retryRandomAiRecipe = async (
 export const getAiRecipeSessions = async () => {
   const response = await api.get<
     ApiResponseEnvelope<AiRecipeSessionListResponse["data"]>
-  >(
-    "/api/users/me/ai/recipes/sessions",
-  );
+  >("/api/users/me/ai/recipes/sessions");
   return extractData(response);
 };
 
@@ -108,9 +107,7 @@ export const getAiRecipeSessions = async () => {
 export const getAiRecipeSessionDetail = async (sessionId: number) => {
   const response = await api.get<
     ApiResponseEnvelope<AiSessionDetailResponse["data"]>
-  >(
-    `/api/users/me/ai/recipes/sessions/${sessionId}`,
-  );
+  >(`/api/users/me/ai/recipes/sessions/${sessionId}`);
   return extractData(response);
 };
 

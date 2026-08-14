@@ -1,19 +1,21 @@
 import { useState } from "react";
 
 import { type Ingredient } from "@/stores/useIngredientStore";
-import {
-  GUEST_INGREDIENTS,
-  REQUIRED_RECIPE_IDS,
-} from "@/constants/guestIngredients";
 
-import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 import Triangle from "@/assets/guest/triangle.svg?react";
 import Plus from "@/assets/icons/plus.svg?react";
+import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
+
+import { Search } from "@/components/fridge/features/Search";
 import Item from "@/components/fridge/items/Item";
 import Storage from "@/components/fridge/main/Storage";
 import FloatingNotice from "@/components/recipe/main/FloatingNotice";
 import Button from "@/components/ui/Button";
-import { Search } from "@/components/fridge/features/Search";
+
+import {
+  GUEST_INGREDIENTS,
+  REQUIRED_RECIPE_IDS,
+} from "@/constants/guestIngredients";
 
 interface GuestFridgeProps {
   onNext: () => void;

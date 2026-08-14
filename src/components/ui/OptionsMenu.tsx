@@ -6,9 +6,7 @@ import optionIcon from "@/assets/mycookeep/record/options.svg";
 interface RecipeOptionMenuProps {
   isOpen: boolean;
   onToggle: (
-    e:
-      | React.MouseEvent<HTMLButtonElement>
-      | React.MouseEvent<HTMLDivElement>,
+    e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLDivElement>,
   ) => void;
   onEdit: () => void;
   onDelete: () => void;

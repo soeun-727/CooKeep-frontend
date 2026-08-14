@@ -199,9 +199,7 @@ export default function IngredientDetailModal({
                 </span>
                 <div className="flex items-center gap-2">
                   <span className="text-gray-80 typo-h3">
-                    {leftDays < 0
-                      ? `D+${Math.abs(leftDays)}`
-                      : `D-${leftDays}`}
+                    {leftDays < 0 ? `D+${Math.abs(leftDays)}` : `D-${leftDays}`}
                   </span>
                   <span
                     className={`typo-caption rounded-S px-3 py-[2px] ${

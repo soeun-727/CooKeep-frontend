@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 
 import {
-  IngredientType,
   type CustomIngredientResponse,
+  IngredientType,
   type MasterIngredientListResponse,
   StorageType,
   UnitType,
@@ -183,12 +183,9 @@ export default function AddItem() {
           onClose={() => setModalOpen(false)}
           categories={INGREDIENT_CATEGORIES}
           onConfirm={(serverData: CustomIngredientResponse) => {
-            const newId =
-              serverData.customIngredientId;
-            const finalName =
-              serverData.name || searchTerm;
-            const finalImage =
-              serverData.imageUrl || defaultChar;
+            const newId = serverData.customIngredientId;
+            const finalName = serverData.name || searchTerm;
+            const finalImage = serverData.imageUrl || defaultChar;
 
             if (!newId) {
               alert("식재료 등록 중 오류가 발생했습니다.");

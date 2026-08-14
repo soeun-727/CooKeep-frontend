@@ -1,7 +1,7 @@
 import {
+  type PrecacheEntry,
   cleanupOutdatedCaches,
   precacheAndRoute,
-  type PrecacheEntry,
 } from "workbox-precaching";
 
 // 서비스 워커 타입 정의

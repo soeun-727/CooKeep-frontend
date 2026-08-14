@@ -33,7 +33,7 @@ export default function AllItem({
     >
       {/* 순위 배지 */}
       <div
-        className={`typo-caption flex h-5 w-[30px] flex-shrink-0 items-center justify-center rounded-[100px] bg-gray-200 font-bold text-gray-50`} // ${getRankStyle()}
+        className={`typo-caption flex h-5 w-[30px] flex-shrink-0 items-center justify-center rounded-full bg-gray-200 font-bold text-gray-50`} // ${getRankStyle()}
       >
         {rank}
       </div>

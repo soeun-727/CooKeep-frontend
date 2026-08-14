@@ -12,7 +12,7 @@ export const ExcludedIngredientContent = () => {
 
   return (
     <button
-      className="border-gray-10 bg-gray-0 flex cursor-pointer items-center justify-center rounded-[8px] border px-3 py-2"
+      className="border-gray-10 bg-gray-0 rounded-S flex cursor-pointer items-center justify-center border px-3 py-2"
       onClick={handleExcludedIngredientsClick}
     >
       <p className="typo-label text-gray-50">못 먹는 재료 관리</p>

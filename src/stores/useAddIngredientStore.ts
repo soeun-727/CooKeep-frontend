@@ -42,7 +42,11 @@ interface AddIngredientState {
   toggleItem: (item: AddSourceItem) => void;
   resetSelected: () => void;
   setHistoryItems: (items: MasterItem[]) => void;
-  updateItemDetail: (id: string | number, type: EditorType, value: EditorValue) => void;
+  updateItemDetail: (
+    id: string | number,
+    type: EditorType,
+    value: EditorValue,
+  ) => void;
   setDetailedItemsFromPreview: (items: MasterItem[]) => void;
 }
 

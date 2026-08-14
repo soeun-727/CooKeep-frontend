@@ -98,7 +98,7 @@ export default function Statistics() {
                 alt="tree"
                 className="h-20 w-20 object-contain"
               />
-              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
+              <div className="bg-green-light text-green-deep rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 나무 0.03그루 심기
               </div>
             </div>
@@ -108,7 +108,7 @@ export default function Statistics() {
                 alt="car"
                 className="h-20 w-20 object-contain"
               />
-              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
+              <div className="bg-green-light text-green-deep rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 자동차 4km 미주행
               </div>
             </div>
@@ -118,7 +118,7 @@ export default function Statistics() {
                 alt="elec"
                 className="h-20 w-20 object-contain"
               />
-              <div className="bg-green-light text-green-deep rounded-[100px] px-3 py-1 text-[10px] font-medium whitespace-nowrap">
+              <div className="bg-green-light text-green-deep rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap">
                 자동차 4km 미주행
               </div>
             </div>
