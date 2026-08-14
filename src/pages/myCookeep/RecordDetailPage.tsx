@@ -17,7 +17,7 @@ import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
-import RecordViewImageCard from "@/components/myCookeep/record/RecordViewImageCard";
+import RecordImagePage from "@/components/myCookeep/record/RecordImagePage";
 import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
 import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
@@ -41,7 +41,6 @@ export default function RecordDetailPage() {
   const [currentImageUrl, setCurrentImageUrl] = useState<string | undefined>(
     undefined,
   );
-  const [isImageUploading, setIsImageUploading] = useState(false);
   const [tempIsPublic, setTempIsPublic] = useState<boolean>(false);
   const [showPhotoRewardModal, setShowPhotoRewardModal] = useState(false);
 
@@ -158,7 +157,6 @@ export default function RecordDetailPage() {
       alert("이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.");
       return;
     }
-    setIsImageUploading(true);
     try {
       const compressedBlob = await imageCompression(file, compressionOptions);
       const compressedFile = new File([compressedBlob], file.name, {
@@ -168,13 +166,7 @@ export default function RecordDetailPage() {
       setCurrentImageUrl(response.data.imageUrl);
     } catch {
       alert("이미지 업로드 중 오류가 발생했습니다.");
-    } finally {
-      setIsImageUploading(false);
     }
-  };
-
-  const handleImageDelete = () => {
-    setCurrentImageUrl(undefined);
   };
 
   if (!record) return null;
@@ -194,14 +186,10 @@ export default function RecordDetailPage() {
       </div>
 
       <div className="flex flex-col gap-[10px]">
-        <RecordViewImageCard
-          title={tempTitle}
+        <RecordImagePage
           imageSrc={currentImageUrl}
-          isEditing={isEditing}
-          isImageUploading={isImageUploading}
-          onChangeTitle={newTitle => setTempTitle(newTitle)}
-          onImageFileSelect={handleImageFileSelect}
-          onImageDelete={handleImageDelete}
+          onImageChange={handleImageFileSelect}
+          editMode={isEditing}
         />
 
         {/* 레시피 내용 */}

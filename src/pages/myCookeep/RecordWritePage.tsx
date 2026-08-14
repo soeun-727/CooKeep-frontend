@@ -15,7 +15,7 @@ import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
-import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
+import RecordImagePage from "@/components/myCookeep/record/RecordImagePage";
 import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
 import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
 import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
@@ -148,8 +148,7 @@ export default function RecordWritePage() {
 
         <div className="mx-auto mt-10 flex min-h-0 w-full max-w-[450px] flex-1 flex-col px-4">
           <div className="flex flex-col gap-[10px] pt-4">
-            <RecordWriteImageCard
-              title={title}
+            <RecordImagePage
               imageSrc={image?.url}
               onImageChange={async file => {
                 // onClickAddImage 대신
@@ -176,10 +175,6 @@ export default function RecordWritePage() {
                 } finally {
                   setIsUploading(false);
                 }
-              }}
-              onChangeTitle={setTitle}
-              onDeleteImage={async () => {
-                setImage(null);
               }}
             />
             <RecipeTitle
