@@ -3,8 +3,6 @@ import { useState } from "react";
 import { updatePushConsent } from "@/api/onboarding";
 import { registerPushNotification } from "@/api/push";
 
-// import char from "@/assets/character/noti_char.svg";
-
 import Button from "@/components/ui/Button";
 
 import { NOTI_EXAMPLE_DATA } from "@/constants/onboarding";
@@ -45,7 +43,7 @@ export default function Notification({ onNext }: NotificationProps) {
   };
 
   return (
-    <div className="bg-background relative mx-auto flex h-screen w-full flex-col overflow-hidden px-4">
+    <div className="bg-background relative mx-auto flex h-screen w-full flex-col gap-12 overflow-hidden px-4">
       <div className="mt-25 flex shrink-0 flex-col gap-2">
         <h1 className="typo-h2 text-left">
           쿠킵 루틴,
@@ -59,7 +57,7 @@ export default function Notification({ onNext }: NotificationProps) {
         </p>
       </div>
 
-      <div className="relative mt-14 flex h-75 flex-1 flex-col items-center justify-start overflow-hidden">
+      <div className="relative flex h-75 flex-col items-center justify-start overflow-hidden">
         <div className="bg-blur-to-t absolute top-0 left-0 z-10 h-12 w-full" />
         <div className="animate-roll flex flex-col gap-[6px]">
           {INFINITE_DATA.map((data, index) => (
@@ -73,10 +71,7 @@ export default function Notification({ onNext }: NotificationProps) {
         <div className="bg-blur-to-b absolute bottom-0 left-0 z-10 h-12 w-full" />
       </div>
 
-      <div className="bg-background fixed bottom-0 left-1/2 z-50 w-full max-w-[450px] -translate-x-1/2 px-4">
-        {/* <div className="flex justify-end">
-          <img src={char} className="mb-[26.5px] w-[95px]" alt="character" />
-        </div> */}
+      <div className="bg-background fixed bottom-[env(safe-area-inset-bottom)] left-1/2 z-50 w-full -translate-x-1/2 px-4">
         <div className="flex flex-col gap-2">
           <Button
             size="L"

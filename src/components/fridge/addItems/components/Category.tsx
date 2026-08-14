@@ -17,7 +17,7 @@ function Category({
     <button
       type="button"
       onClick={onSelect}
-      className={`flex h-12 rounded-[8px] px-4 py-2 ${isSelected ? "bg-gray-200" : "bg-gray-0"}`}
+      className={`rounded-S flex h-12 px-4 py-2 ${isSelected ? "bg-gray-200" : "bg-gray-0"}`}
     >
       <div className="flex items-center justify-center gap-[6px]">
         <img src={image} className="h-5 w-5" />

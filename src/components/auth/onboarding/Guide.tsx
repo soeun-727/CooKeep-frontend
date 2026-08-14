@@ -58,14 +58,14 @@ export default function Guide({ onNext }: GuideProps) {
 
   return (
     <div
-      className="flex h-full max-w-[450px] flex-col overflow-hidden select-none"
+      className="mx-auto flex h-full min-h-0 w-full max-w-[450px] flex-col overflow-hidden select-none"
       onClick={() => currentIndex < 3 && handleNext()}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
       {/* 상단 영역 */}
-      <div className="pt-[70px]">
+      <div className="flex flex-col items-center gap-6 pt-[70px]">
         {/* 인디케이터 */}
         <div className="flex justify-center gap-2">
           {ONBOARDING_DATA.map((_, index) => (
@@ -80,7 +80,7 @@ export default function Guide({ onNext }: GuideProps) {
         </div>
 
         {/* 텍스트 */}
-        <div className="mt-6 px-4 text-center">
+        <div className="text-center">
           <div className="typo-h2 tracking-[-0.6px]">{title}</div>
           <p className="typo-l-strong mt-2 whitespace-pre-wrap text-gray-50">
             {text}
@@ -92,7 +92,7 @@ export default function Guide({ onNext }: GuideProps) {
       <div className="flex-1" />
 
       {/* 하단 영역 */}
-      <div className="relative pb-8">
+      <div className="relative mt-auto">
         {/* 이미지 */}
         <div className="overflow-hidden">
           <div
@@ -128,7 +128,7 @@ export default function Guide({ onNext }: GuideProps) {
 
         {/* 버튼 */}
         <div
-          className={`absolute bottom-10 z-20 w-full px-6 transition-opacity duration-300 ${
+          className={`absolute bottom-[env(safe-area-inset-bottom)] z-20 w-full transition-opacity duration-300 ${
             currentIndex === 3 ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
         >

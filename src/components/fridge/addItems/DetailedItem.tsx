@@ -156,7 +156,7 @@ export default function DetailedItem(item: DetailedItemProps) {
   ];
 
   return (
-    <div className="bg-gray-0 shadow-plant relative min-h-[154px] w-full rounded-[16px] p-4">
+    <div className="bg-gray-0 shadow-plant rounded-L relative min-h-[154px] w-full p-4">
       <button
         onClick={e => {
           e.stopPropagation();
@@ -167,10 +167,10 @@ export default function DetailedItem(item: DetailedItemProps) {
         <DeleteIcon className="h-3 w-3" />
       </button>
 
-      <div className="flex gap-6">
+      <div className="flex h-full gap-6">
         {/* 이미지 + 메모 영역 */}
-        <section className="flex flex-col justify-between">
-          <div className="border-gray-10 flex h-[70px] w-[70px] items-center justify-between rounded-[8px] border p-[13px]">
+        <section className="flex h-full flex-col justify-between">
+          <div className="border-gray-10 rounded-S flex h-[70px] w-[70px] items-center justify-between border p-[13px]">
             <img
               src={item.image}
               className="h-full w-full object-contain"
@@ -185,7 +185,7 @@ export default function DetailedItem(item: DetailedItemProps) {
                 e.stopPropagation();
                 setModalType("memo");
               }}
-              className="group relative z-[20] flex h-6 w-full cursor-pointer items-center justify-center pl-[2px]"
+              className="group relative z-[20] flex w-full cursor-pointer items-center justify-center"
             >
               <MemoIcon className="text-gray-30 h-[18px] w-[18px]" />
               <span className="text-gray-30 typo-caption block w-[109px] truncate">
@@ -195,10 +195,12 @@ export default function DetailedItem(item: DetailedItemProps) {
           </div>
         </section>
 
-        {/* 💡 개선된 보관장소 + 유통기한 + 수량 + 단위 섹션 */}
         <section className="flex flex-1 flex-col items-start justify-between">
           {infoItems.map(({ label, type, content, hasEditIcon }) => (
-            <div key={label} className="flex w-full items-center gap-3">
+            <div
+              key={label}
+              className="flex h-[30px] w-full items-center gap-3"
+            >
               <span className="typo-m-strong min-w-[49px] text-left">
                 {label}
               </span>
