@@ -3,22 +3,26 @@ import { useRef } from "react";
 import CameraIcon from "@/assets/mycookeep/record/camera.svg?react";
 import tempFoodPhoto from "@/assets/mycookeep/record/temp_photo_large.svg";
 
-interface RecordImagePageProps {
+interface RecordImageContentProps {
   imageSrc?: string;
   onImageChange: (file: File) => void;
   editMode?: boolean;
 }
 
-export default function RecordImagePage({
+export default function RecordImageContent({
   imageSrc,
   onImageChange,
   editMode = true,
-}: RecordImagePageProps) {
+}: RecordImageContentProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <section className="relative h-30 w-40">
-      <img src={imageSrc ? imageSrc : tempFoodPhoto} alt="레시피 이미지" />
+    <section className="relative mx-auto h-30 w-40">
+      <img
+        src={imageSrc ? imageSrc : tempFoodPhoto}
+        className="rounded-S h-30 w-40 object-cover"
+        alt="레시피 이미지"
+      />
       {editMode && (
         <button
           type="button"
