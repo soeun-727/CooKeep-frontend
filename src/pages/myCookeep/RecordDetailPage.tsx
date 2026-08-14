@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { uploadImage } from "@/api/image";
 import {
   MyRecipeDetail,
   deleteDailyRecipe,
@@ -9,7 +8,6 @@ import {
   updateDailyRecipe,
   updateRecipeVisibility,
 } from "@/api/myRecipe";
-import imageCompression from "browser-image-compression";
 
 import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
 import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
@@ -23,6 +21,7 @@ import Button from "@/components/ui/Button";
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import RecipeOptionMenu from "@/components/ui/OptionsMenu";
 import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
+import { compressAndUploadImage } from "@/utils/imageUpload";
 
 export default function RecordDetailPage() {
   const navigate = useNavigate();
@@ -37,6 +36,9 @@ export default function RecordDetailPage() {
   const [tempDescription, setTempDescription] = useState("");
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [currentImageUrl, setCurrentImageUrl] = useState<string | undefined>(
+    undefined,
+  );
+  const [pendingImageFile, setPendingImageFile] = useState<File | undefined>(
     undefined,
   );
   const [tempIsPublic, setTempIsPublic] = useState<boolean>(false);
@@ -106,18 +108,18 @@ export default function RecordDetailPage() {
 
   const handleConfirmUpdate = async () => {
     if (!record || !recordId) return;
-    // const wasNoImage = !record.recipeImageUrl;
-    // const nowHasImage = !!currentImageUrl;
-    // const shouldGivePhotoReward = wasNoImage && nowHasImage;
     try {
-      const wasImageDeleted = !currentImageUrl && !!record.recipeImageUrl;
-      const isImageChanged =
-        currentImageUrl && currentImageUrl !== record.recipeImageUrl;
+      const imageUrl = pendingImageFile
+        ? await compressAndUploadImage(pendingImageFile)
+        : currentImageUrl;
+
+      const wasImageDeleted = !imageUrl && !!record.recipeImageUrl;
+      const isImageChanged = imageUrl && imageUrl !== record.recipeImageUrl;
 
       const response = await updateDailyRecipe(Number(recordId), {
         title: tempTitle,
         description: tempDescription,
-        ...(isImageChanged && { recipeImageUrl: currentImageUrl }),
+        ...(isImageChanged && { recipeImageUrl: imageUrl }),
         ...(wasImageDeleted && { deleteRecipeImage: true }),
       });
       if (tempIsPublic !== record.isPublic) {
@@ -127,44 +129,25 @@ export default function RecordDetailPage() {
       if (response.status === "OK") {
         setRecord({ ...response.data, isPublic: tempIsPublic });
         setCurrentImageUrl(response.data.recipeImageUrl || undefined);
+        setPendingImageFile(undefined);
         setIsEditing(false);
 
         if (response.data.photoCookieAwarded === true) {
           setShowPhotoRewardModal(true);
         }
-
-        // if (shouldGivePhotoReward) {
-        //   setShowPhotoRewardModal(true);
-        // }
       }
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
-      alert(err?.response?.data?.message || "수정에 실패했습니다.");
+      const message =
+        err?.response?.data?.message ||
+        (error instanceof Error ? error.message : "수정에 실패했습니다.");
+      alert(message);
     }
   };
 
-  const compressionOptions = {
-    maxSizeMB: 0.7,
-    maxWidthOrHeight: 720,
-    useWebWorker: true,
-    initialQuality: 0.7,
-  };
-
-  const handleImageFileSelect = async (file: File) => {
-    if (file.size > 15 * 1024 * 1024) {
-      alert("이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.");
-      return;
-    }
-    try {
-      const compressedBlob = await imageCompression(file, compressionOptions);
-      const compressedFile = new File([compressedBlob], file.name, {
-        type: compressedBlob.type,
-      });
-      const response = await uploadImage(compressedFile);
-      setCurrentImageUrl(response.data.imageUrl);
-    } catch {
-      alert("이미지 업로드 중 오류가 발생했습니다.");
-    }
+  const handleImageFileSelect = (file: File) => {
+    setCurrentImageUrl(URL.createObjectURL(file));
+    setPendingImageFile(file);
   };
 
   if (!record) return null;

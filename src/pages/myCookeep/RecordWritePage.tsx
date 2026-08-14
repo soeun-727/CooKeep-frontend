@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AiRecipeDetail, getAiRecipeDetail } from "@/api/dailyAiRecipe";
-import { uploadImage } from "@/api/image";
 import { createDailyRecipe } from "@/api/myRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { AxiosError } from "axios";
-import imageCompression from "browser-image-compression";
 
 import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
 import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
@@ -22,12 +20,12 @@ import Button from "@/components/ui/Button";
 import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
+import { compressAndUploadImage } from "@/utils/imageUpload";
+
 export default function RecordWritePage() {
   const navigate = useNavigate();
-  // const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [recipeDetail, setRecipeDetail] = useState<AiRecipeDetail | null>(null);
-  // const [showUploadModal, setShowUploadModal] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [rewardQueue, setRewardQueue] = useState<string[]>([]);
@@ -77,14 +75,6 @@ export default function RecordWritePage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const compressionOptions = {
-    maxSizeMB: 0.7,
-    maxWidthOrHeight: 720,
-    useWebWorker: true,
-    initialQuality: 0.7,
-    alwaysKeepResolution: false,
-  };
-
   const handleUpload = async () => {
     if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
       alert("레시피 정보가 로드되지 않았습니다.");
@@ -94,12 +84,16 @@ export default function RecordWritePage() {
     setIsUploading(true);
 
     try {
+      const imageUrl = image?.file
+        ? await compressAndUploadImage(image.file)
+        : image?.url || "";
+
       const requestData = {
         aiRecipeId: selectedRecipeId,
         isPublic: isPublic,
         title: title || recipeDetail.title,
         description: memo,
-        recipeImageUrl: image?.url || "",
+        recipeImageUrl: imageUrl,
       };
 
       const response = await createDailyRecipe(requestData);
@@ -114,7 +108,7 @@ export default function RecordWritePage() {
           rewards.push("WEEKLY_GOAL");
         }
         rewards.push("RECIPE_RECORD");
-        if (image?.url) {
+        if (imageUrl) {
           rewards.push("PHOTO_UPLOAD");
         }
 
@@ -124,11 +118,10 @@ export default function RecordWritePage() {
         alert("업로드에 실패했습니다.");
       }
     } catch (error: unknown) {
-      let errorMsg = "레시피 등록 실패";
-      if (error && typeof error === "object") {
-        const axiosError = error as AxiosError<{ message?: string }>;
-        errorMsg = axiosError.response?.data?.message ?? errorMsg;
-      }
+      const axiosError = error as AxiosError<{ message?: string }>;
+      const errorMsg =
+        axiosError.response?.data?.message ||
+        (error instanceof Error ? error.message : "레시피 등록 실패");
       alert(errorMsg);
     } finally {
       setIsUploading(false);
@@ -150,29 +143,8 @@ export default function RecordWritePage() {
 
         <RecordImageContent
           imageSrc={image?.url}
-          onImageChange={async file => {
-            // onClickAddImage 대신
-            if (file.size > 15 * 1024 * 1024) {
-              alert("이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.");
-              return;
-            }
-            setIsUploading(true);
-            try {
-              const compressedBlob = await imageCompression(
-                file,
-                compressionOptions,
-              );
-              const compressedFile = new File([compressedBlob], file.name, {
-                type: compressedBlob.type,
-              });
-              const response = await uploadImage(compressedFile);
-              const newUrl = response.data.imageUrl;
-              setImage({ url: newUrl });
-            } catch {
-              alert("이미지 업로드 중 오류가 발생했습니다.");
-            } finally {
-              setIsUploading(false);
-            }
+          onImageChange={file => {
+            setImage({ url: URL.createObjectURL(file), file });
           }}
         />
         <RecipeTitle
