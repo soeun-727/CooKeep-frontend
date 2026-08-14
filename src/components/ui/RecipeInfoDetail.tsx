@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
 import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
