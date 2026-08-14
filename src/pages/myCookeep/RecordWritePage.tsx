@@ -7,13 +7,11 @@ import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { AxiosError } from "axios";
 
-import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
-
 import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import RecordImageContent from "@/components/myCookeep/record/RecordImageContent";
 import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
+import { VisibleChangeSection } from "@/components/myCookeep/record/VisibleChangeSection";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
@@ -76,7 +74,7 @@ export default function RecordWritePage() {
   }, []);
 
   const handleUpload = async () => {
-    if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
+    if (!recipeDetail || selectedRecipeId === null) {
       alert("레시피 정보가 로드되지 않았습니다.");
       return;
     }
@@ -138,7 +136,7 @@ export default function RecordWritePage() {
 
   return (
     <>
-      <div className="flex flex-col gap-3">
+      <div className="mb-20 flex flex-col gap-3">
         <BackHeader title="레시피 등록" />
 
         <RecordImageContent
@@ -177,48 +175,18 @@ export default function RecordWritePage() {
             }
           })()}
         />
+        <VisibleChangeSection isPublic={isPublic} onChange={setIsPublic} />
+      </div>
 
-        <div className="mt-auto flex shrink-0 flex-col items-center gap-4 pt-[64px] pb-[20px]">
-          <div className="flex w-full justify-center gap-[9px]">
-            <button
-              onClick={() => setIsPublic(false)}
-              className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-green-light" : "bg-gray-10"}`}
-            >
-              <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                <img
-                  src={privateIcon}
-                  alt="private"
-                  className="h-[24px] w-[24px]"
-                />
-              </div>
-              <span className="typo-label text-gray-80">나만 보기</span>
-            </button>
-
-            <button
-              onClick={() => setIsPublic(true)}
-              className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-green-light" : "bg-gray-10"}`}
-            >
-              <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                <img
-                  src={publicIcon}
-                  alt="public"
-                  className="h-[36px] w-[36px]"
-                />
-              </div>
-              <span className="typo-label text-gray-80">쿠킵스에 공개하기</span>
-            </button>
-          </div>
-
-          <Button
-            size="L"
-            variant="black"
-            disabled={isPublic === null || isUploading}
-            className={`${isPublic === null ? "text-gray-0" : "!text-green"}`}
-            onClick={handleUpload}
-          >
-            레시피 업로드하기
-          </Button>
-        </div>
+      <div className="fixed bottom-0 mx-auto w-full max-w-[450px] pt-6">
+        <Button
+          size="L"
+          variant="green"
+          disabled={isUploading}
+          onClick={handleUpload}
+        >
+          레시피 업로드하기
+        </Button>
       </div>
 
       {/* 우선순위 A-3: 주간 목표 달성 모달 */}

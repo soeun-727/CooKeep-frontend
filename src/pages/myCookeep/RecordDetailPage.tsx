@@ -9,16 +9,14 @@ import {
   updateRecipeVisibility,
 } from "@/api/myRecipe";
 
-import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
-
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import RecordImageContent from "@/components/myCookeep/record/RecordImageContent";
+import { VisibleChangeSection } from "@/components/myCookeep/record/VisibleChangeSection";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
-import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import RecipeOptionMenu from "@/components/ui/OptionsMenu";
 import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 
@@ -132,6 +130,7 @@ export default function RecordDetailPage() {
         setCurrentImageUrl(response.data.recipeImageUrl || undefined);
         setPendingImageFile(undefined);
         setIsEditing(false);
+        setIsUpdateModalOpen(false);
 
         if (response.data.photoCookieAwarded === true) {
           setShowPhotoRewardModal(true);
@@ -154,7 +153,7 @@ export default function RecordDetailPage() {
   if (!record) return null;
 
   return (
-    <div className="flex w-full flex-col">
+    <div className="mb-20 flex w-full flex-col">
       <div className="relative">
         <BackHeader />
         <div className="absolute top-2 right-0 flex items-center">
@@ -202,50 +201,24 @@ export default function RecordDetailPage() {
               youtubeVideos={record.content.youtubeReferences}
               youtubeTags={record.content.youtubeSearchQueries ?? []}
             />
+            {isEditing && (
+              <VisibleChangeSection
+                isPublic={tempIsPublic}
+                onChange={setTempIsPublic}
+              />
+            )}
           </div>
         </div>
       </div>
 
       {isEditing && (
-        <>
-          {/* 공개 여부 수정 컨트롤 */}
-          <div className="mt-[32px] flex justify-center gap-[9px] pb-9">
-            {/* 나만 보기 버튼 */}
-            <button
-              disabled={!isEditing}
-              onClick={() => setTempIsPublic(false)}
-              className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === false ? "bg-green-light" : "bg-gray-10"}`}
-            >
-              <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                <img src={privateIcon} className="w-[24px]" alt="private" />
-              </div>
-              <span className="typo-label text-gray-80">나만 보기</span>
-            </button>
-
-            {/* 쿠킵스 공개 버튼 */}
-            <button
-              disabled={!isEditing}
-              onClick={() => setTempIsPublic(true)}
-              className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === true ? "bg-green-light" : "bg-gray-10"}`}
-            >
-              <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                <img src={publicIcon} className="w-[36px]" alt="public" />
-              </div>
-              <span className="typo-label text-gray-80">쿠킵스 공개</span>
-            </button>
-          </div>
-          <div className="mt-2 mb-2 flex">
-            <Button
-              size="L"
-              variant="black"
-              onClick={handleUpdateClick}
-              className="w-full"
-            >
-              수정 완료
-            </Button>
-          </div>
-        </>
+        <div className="fixed bottom-0 mx-auto w-full max-w-[450px] pt-6">
+          <Button size="L" variant="black" onClick={handleUpdateClick}>
+            수정 완료
+          </Button>
+        </div>
       )}
+
       {showPhotoRewardModal && (
         <PhotoRewardModal
           onConfirm={() => {
@@ -253,22 +226,25 @@ export default function RecordDetailPage() {
           }}
         />
       )}
-      <DoublecheckModal
-        isOpen={isUpdateModalOpen}
-        onClose={() => setIsUpdateModalOpen(false)}
-        title="수정이 완료되었어요"
-        onConfirm={handleConfirmUpdate}
-        confirmText="확인"
-        variant="singular"
-      />
-      <DoublecheckModal
-        isOpen={isDeleteModalOpen}
-        onClose={() => setIsDeleteModalOpen(false)}
-        title={tempTitle}
-        description="이 레시피를 삭제할까요?"
-        onConfirm={handleConfirmDelete}
-        variant="black"
-      />
+
+      {isUpdateModalOpen && (
+        <ConfirmModal
+          title="수정이 완료되었어요"
+          buttonTexts={["확인"]}
+          onConfirm={handleConfirmUpdate}
+        />
+      )}
+
+      {isDeleteModalOpen && (
+        <ConfirmModal
+          title="이 레시피를 삭제할까요?"
+          subtitle={tempTitle}
+          buttonTexts={["네", "아니오"]}
+          buttonVariants={["gray", "black"]}
+          onConfirm={handleConfirmDelete}
+          onCancel={() => setIsDeleteModalOpen(false)}
+        />
+      )}
     </div>
   );
 }
