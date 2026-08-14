@@ -13,6 +13,7 @@ import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
 import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
 
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
 import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
@@ -71,12 +72,6 @@ export default function RecordWritePage() {
       navigate("/mycookeep/record/select", { replace: true });
     }
   }, [selectedRecipeId, editingRecordId, navigate, isSuccess]);
-
-  const handleMemoInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const el = e.currentTarget;
-    el.style.height = "auto";
-    el.style.height = `${el.scrollHeight}px`;
-  };
 
   const compressionOptions = {
     maxSizeMB: 0.7,
@@ -193,16 +188,10 @@ export default function RecordWritePage() {
               usedItems={recipeDetail.ingredientsJson.user_ingredients.length}
             />
 
-            <div className="flex w-full shrink-0 flex-col items-center pt-4">
-              <textarea
-                value={memo}
-                onChange={e => setMemo(e.target.value.slice(0, 500))}
-                onInput={handleMemoInput}
-                placeholder="글자 수 최대 500자"
-                className="bg-gray-0 typo-body text-gray-80 w-full resize-none overflow-hidden rounded-[10px] px-[10px] py-3 text-center outline-none placeholder:text-gray-50"
-                rows={1}
-              />
-            </div>
+            <CookingTipsSection
+              cookingTips={memo}
+              onChangeCookingTips={setMemo}
+            />
 
             <RecipeIngredientSection
               selectedIngredients={

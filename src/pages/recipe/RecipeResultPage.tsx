@@ -124,7 +124,7 @@ export default function RecipeResultPage() {
                   : "추천 요리");
 
               return (
-                <div className="mx-auto flex w-full flex-col">
+                <div className="mx-auto flex w-full flex-col gap-6">
                   <RecipeTitle
                     name={recipe.title}
                     category={categoryKorean}

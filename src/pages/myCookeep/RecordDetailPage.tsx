@@ -15,6 +15,7 @@ import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
 import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
 
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import RecordViewImageCard from "@/components/myCookeep/record/RecordViewImageCard";
 import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
@@ -210,6 +211,12 @@ export default function RecordDetailPage() {
           usedItems={record.content.ingredients.user_ingredients.length}
         />
 
+        <CookingTipsSection
+          cookingTips={isEditing ? tempDescription : record.description || ""}
+          onChangeCookingTips={isEditing ? setTempDescription : undefined}
+          readOnly={!isEditing}
+        />
+
         <RecipeIngredientSection
           selectedIngredients={record.content.ingredients.user_ingredients}
           requiredIngredients={record.content.ingredients.additional_ingredients}
@@ -231,30 +238,6 @@ export default function RecordDetailPage() {
               tags={record.content.youtubeSearchQueries ?? []}
             />
           )}
-      </div>
-
-      {/* 메모 */}
-      <div className="mt-4 flex w-full flex-col items-center justify-center">
-        {isEditing ? (
-          <textarea
-            value={tempDescription}
-            onChange={e => setTempDescription(e.target.value)}
-            onInput={e => {
-              const el = e.currentTarget;
-              el.style.height = "auto";
-              el.style.height = `${el.scrollHeight}px`;
-            }}
-            placeholder="글자 수 최대 500자"
-            className="bg-gray-0 typo-body text-gray-80 w-full resize-none overflow-hidden rounded-[10px] px-[10px] py-3 text-center outline-none placeholder:text-gray-50"
-            rows={1}
-          />
-        ) : (
-          record.description && (
-            <div className="bg-gray-0 typo-body text-gray-80 w-full rounded-[10px] border border-gray-100 px-[15px] py-4 text-center break-words whitespace-pre-wrap">
-              {record.description}
-            </div>
-          )
-        )}
       </div>
 
       {isEditing && (

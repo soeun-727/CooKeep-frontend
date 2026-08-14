@@ -10,7 +10,7 @@ export default function RecipeTitle({
   usedItems,
 }: RecipeTitleProps) {
   return (
-    <div className="mx-auto flex w-full flex-col gap-2 px-1 pb-6">
+    <div className="mx-auto flex w-full flex-col gap-2 px-1">
       <span className="bg-green-light text-green-deep typo-caption rounded-S self-start px-3 py-[2px]">
         {category}
       </span>
