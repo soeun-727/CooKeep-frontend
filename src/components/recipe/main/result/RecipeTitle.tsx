@@ -1,6 +1,6 @@
 interface RecipeTitleProps {
   name: string;
-  category: string;
+  category?: string;
   usedItems: number;
 }
 
@@ -11,9 +11,12 @@ export default function RecipeTitle({
 }: RecipeTitleProps) {
   return (
     <div className="mx-auto flex w-full flex-col gap-2 px-1">
-      <span className="bg-green-light text-green-deep typo-caption rounded-S self-start px-3 py-[2px]">
-        {category}
-      </span>
+      {category && (
+        <span className="bg-green-light text-green-deep typo-caption rounded-S self-start px-3 py-[2px]">
+          {category}
+        </span>
+      )}
+
       {/* 레시피 이름 */}
       <h2 className="text-gray-80 typo-h2">{name}</h2>
       <p className="typo-l text-gray-50">
