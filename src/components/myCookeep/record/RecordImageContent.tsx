@@ -17,7 +17,15 @@ export default function RecordImageContent({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   return (
-    <section className="relative mx-auto h-30 w-40">
+    <figure className="relative mx-auto h-30 w-40">
+      {editMode && !imageSrc && (
+        <div className="rounded-S bg-gray-80/40 absolute inset-0 z-[100] flex h-30 w-40 items-center justify-center">
+          <p className="typo-caption-strong text-gray-0 text-center">
+            사진을 등록하고 <br />
+            추가 쿠키를 획득해요
+          </p>
+        </div>
+      )}
       <img
         src={imageSrc ? imageSrc : tempFoodPhoto}
         className="rounded-S h-30 w-40 object-cover"
@@ -27,7 +35,7 @@ export default function RecordImageContent({
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="bg-gray-0 absolute right-[5.5px] bottom-[5px] flex h-[30px] w-[30px] items-center justify-center rounded-full"
+          className="bg-gray-0 absolute right-[5.5px] bottom-[5px] z-[100] flex h-[30px] w-[30px] items-center justify-center rounded-full"
         >
           <CameraIcon className="text-gray-30 h-6 w-6" />
         </button>
@@ -43,6 +51,6 @@ export default function RecordImageContent({
           e.target.value = "";
         }}
       />
-    </section>
+    </figure>
   );
 }
