@@ -10,6 +10,7 @@ import { SearchIcon } from "@/assets/index";
 
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
+import TextField from "@/components/ui/TextField";
 
 export default function RecordSelectPage() {
   const navigate = useNavigate();
@@ -35,10 +36,10 @@ export default function RecordSelectPage() {
     );
   }, [recipes, searchTerm]);
 
-  const likedRecipes = filteredRecipes.filter(r => r.isPinned);
-  const normalRecipes = filteredRecipes.filter(r => !r.isPinned);
+  const pinned = filteredRecipes.filter(r => r.isPinned);
+  const sessions = filteredRecipes.filter(r => !r.isPinned);
 
-  const renderRecipeItem = (recipe: DailyAiRecipe) => {
+  const renderRecipeItem = (recipe: DailyAiRecipe, isPinned: boolean) => {
     const isSelected = selectedRecipeId === recipe.aiRecipeId;
 
     return (
@@ -50,10 +51,10 @@ export default function RecordSelectPage() {
         {/* 왼쪽: 좋아요 + 제목 */}
         <div className="flex items-center gap-3">
           <HeartIcon
-            className={`stroke-gray-10 h-[15px] w-[18px] shrink-0 fill-current stroke-[2px] ${recipe.isPinned ? "text-gray-30" : "text-transparent"}`}
+            className={`stroke-gray-10 h-[15px] w-[18px] shrink-0 fill-current stroke-[2px] ${isPinned ? "text-gray-30" : "text-transparent"}`}
           />
           <span
-            className={`typo-body2 flex-1 truncate ${isSelected ? "text-green-deep" : "text-gray-80"} `}
+            className={`typo-l flex-1 truncate ${isSelected ? "text-green-deep" : "text-gray-80"} `}
           >
             {recipe.title}
           </span>
@@ -62,56 +63,38 @@ export default function RecordSelectPage() {
     );
   };
 
-  return (
-    <div className="flex min-h-screen w-full flex-col items-center">
-      {/* 헤더 */}
-      <BackHeader title="레시피 선택" />
-      {/* 검색 */}
-      <div className="mt-1 w-full max-w-[390px] px-4 pt-[54px]">
-        <div className="bg-searchbar shadow-search flex w-full items-center justify-center rounded-[6px]">
-          <div className="flex w-full items-center gap-2 p-3">
-            <input
-              value={searchTerm}
-              onChange={e => setSearchTerm(e.target.value)}
-              placeholder="레시피를 검색하세요"
-              className="typo-body2 h-[24px] flex-1 bg-transparent text-gray-50 outline-none"
-            />
-            <SearchIcon
-              aria-label="검색"
-              className="text-gray-30 h-6 w-6 shrink-0"
-            />
-          </div>
-        </div>
-      </div>
+  const renderRecipeList = (list: DailyAiRecipe[], isPinned: boolean) => (
+    <div className="flex flex-col">
+      {list.map(recipe => renderRecipeItem(recipe, isPinned))}
+    </div>
+  );
 
-      <div className="mt-7 w-full px-4">
-        <div className="mx-auto flex max-w-[361px] justify-center">
-          <div className="bg-gray-80 flex h-[28px] items-center rounded-[6px] px-2">
-            <span className="typo-caption text-gray-0">
-              내가 요리한 레시피들이에요
-            </span>
-          </div>
-        </div>
+  return (
+    <div className="flex w-full flex-col items-center gap-6 px-4">
+      <div className="flex w-full flex-col gap-3">
+        {/* 헤더 */}
+        <BackHeader title="레시피 선택" />
+        {/* 검색 */}
+        <TextField
+          value={searchTerm}
+          placeholder="레시피를 검색하세요"
+          onChange={value => setSearchTerm(value)}
+          rightIcon={<SearchIcon className="h-6 w-6 text-gray-50" />}
+        />
       </div>
 
       {/* 리스트 영역 */}
-      <div className="no-scrollbar mt-4 w-full flex-1 overflow-y-auto">
-        <div className="mx-auto w-full max-w-[390px] px-4">
-          <div className="flex flex-col gap-6 pb-[140px]">
-            <div className="flex flex-col">
-              {likedRecipes.map(renderRecipeItem)}
-            </div>
-
-            <div className="flex flex-col">
-              {normalRecipes.map(renderRecipeItem)}
-            </div>
-          </div>
-        </div>
+      <div className="flex w-full flex-col justify-start">
+        <p className="typo-l-strong px-1">찜한 레시피</p>
+        {pinned.length > 0 && renderRecipeList(pinned, true)}
+        {pinned.length > 0 && sessions.length > 0}
+        <p className="typo-l-strong mt-6 px-1">다른 레시피</p>
+        {sessions.length > 0 && renderRecipeList(sessions, false)}
       </div>
 
       {/* 하단 고정 버튼 */}
       <div className="fixed right-0 bottom-[34px] left-0">
-        <div className="mx-auto w-full max-w-[390px] px-4">
+        <div className="mx-auto w-full max-w-[450px] px-4">
           <Button
             size="L"
             disabled={!selectedRecipeId}
