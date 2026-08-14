@@ -5,7 +5,11 @@ import optionIcon from "@/assets/mycookeep/record/options.svg";
 
 interface RecipeOptionMenuProps {
   isOpen: boolean;
-  onToggle: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onToggle: (
+    e:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLDivElement>,
+  ) => void;
   onEdit: () => void;
   onDelete: () => void;
   firstOption?: string;
@@ -38,7 +42,7 @@ export default function RecipeOptionMenu({
           <>
             <div
               className="fixed inset-0 z-[150] cursor-default"
-              onClick={e => onToggle(e as any)}
+              onClick={onToggle}
             />
             <div
               onClick={e => e.stopPropagation()}

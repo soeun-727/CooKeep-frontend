@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import type { MasterItem } from "@/stores/useAddIngredientStore";
+import type { EditorValue } from "@/stores/useAddIngredientStore";
 
 import DeleteIcon from "@/assets/fridge/delete.svg?react";
 import MemoIcon from "@/assets/fridge/memo.svg?react";
@@ -21,7 +22,7 @@ import QuantityEditor from "./components/edit/QuantityEditor";
 import StorageEditor from "./components/edit/StorageEditor";
 import UnitEditor from "./components/edit/UnitEditor";
 
-interface DetailedItemProps extends MasterItem {}
+type DetailedItemProps = MasterItem;
 
 const STORAGE_ICONS: Record<string, IconComponent> = {
   FRIDGE: FridgeIcon,
@@ -56,7 +57,7 @@ export default function DetailedItem(item: DetailedItemProps) {
   const CurrentIcon = STORAGE_ICONS[item.storageType] || FridgeIcon;
   const currentText = STORAGE_NAMES[item.storageType] || "냉장";
 
-  const handleUpdate = (value: any) => {
+  const handleUpdate = (value: EditorValue) => {
     if (modalType) {
       updateItemDetail(item.id, modalType, value);
       setModalType(null);

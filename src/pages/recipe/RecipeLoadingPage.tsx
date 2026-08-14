@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();
@@ -27,13 +29,15 @@ export default function RecipeLoadingPage() {
     try {
       setLocalError(null);
       if (isRandom) {
-        useRecipeFlowStore.setState({ difficulty: "RANDOM" as any });
+        useRecipeFlowStore.setState({ difficulty: "RANDOM" });
       }
       await generateRecipe();
       navigate("/recipe/result");
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      const errorCode = err?.response?.data?.code;
+      const errorCode = axios.isAxiosError<{ code?: string }>(err)
+        ? err.response?.data?.code
+        : undefined;
 
       if (
         errorCode === "INGREDIENTS_REQUIRED" ||
@@ -70,6 +74,8 @@ export default function RecipeLoadingPage() {
   }, []);
 
   const displayError = error || localError;
+
+  if (!displayError) return <LoadingScreen />;
 
   return (
     <div className="mt-40 flex h-screen w-full flex-col items-center gap-6 px-4 text-center">

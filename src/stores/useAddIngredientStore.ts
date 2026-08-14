@@ -15,7 +15,8 @@ export interface MasterItem {
   memo?: string;
 }
 
-type EditorType = "storage" | "expiry" | "quantity" | "unit" | "memo";
+export type EditorType = "storage" | "expiry" | "quantity" | "unit" | "memo";
+export type EditorValue = StorageType | UnitType | string | number;
 
 export interface AddSourceItem {
   id: number | string;
@@ -41,7 +42,7 @@ interface AddIngredientState {
   toggleItem: (item: AddSourceItem) => void;
   resetSelected: () => void;
   setHistoryItems: (items: MasterItem[]) => void;
-  updateItemDetail: (id: string | number, type: EditorType, value: any) => void;
+  updateItemDetail: (id: string | number, type: EditorType, value: EditorValue) => void;
   setDetailedItemsFromPreview: (items: MasterItem[]) => void;
 }
 

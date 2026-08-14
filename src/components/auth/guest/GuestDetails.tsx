@@ -2,6 +2,7 @@ import milk from "@/assets/guest/bagel.svg";
 
 import DetailedItem from "@/components/fridge/addItems/DetailedItem";
 import Button from "@/components/ui/Button";
+import type { MasterItem } from "@/stores/useAddIngredientStore";
 
 interface GuestDetailsProps {
   onNext: () => void;
@@ -18,7 +19,7 @@ const guestItem = {
   dDay: 1,
   createdAt: Date.now(),
   categoryId: 1,
-  type: "냉동" as any,
+  type: "DEFAULT",
   storageType: "냉동",
   expiration: "2026-12-31",
   onIncrease: () => {},
@@ -31,7 +32,7 @@ export default function GuestDetails({ onNext }: GuestDetailsProps) {
     <div className="bg-background relative flex h-[calc(100dvh-40px)] w-full flex-col items-center overflow-hidden">
       <div className="flex w-full flex-col items-center">
         <div className="mt-[30px] flex w-full justify-center px-5">
-          <DetailedItem {...(guestItem as any)} />
+          <DetailedItem {...(guestItem as MasterItem)} />
         </div>
 
         <div className="absolute bottom-0 z-[110] flex w-full justify-center px-4">

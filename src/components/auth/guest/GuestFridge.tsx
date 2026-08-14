@@ -106,7 +106,7 @@ export default function GuestFridge({
                         isSelected={selectedIds.includes(1)}
                         onSelect={() => handleSelect(1)}
                       />
-                      <div className="-z-10 -mt-4 h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+                      <div className="rounded-S -z-10 -mt-4 h-[26px] w-[109px] bg-[#63C88D] blur-[1px]" />
                     </div>
                   )}
                   {getIngredient(2) && (
@@ -118,7 +118,7 @@ export default function GuestFridge({
                         isSelected={selectedIds.includes(2)}
                         onSelect={() => handleSelect(2)}
                       />
-                      <div className="-z-10 -mt-4 h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+                      <div className="rounded-S -z-10 -mt-4 h-[26px] w-[109px] bg-[#63C88D] blur-[1px]" />
                     </div>
                   )}
                   <div className="h-20" />
@@ -137,7 +137,7 @@ export default function GuestFridge({
                         isSelected={selectedIds.includes(6)}
                         onSelect={() => handleSelect(6)}
                       />
-                      <div className="-z-10 -mt-4 h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+                      <div className="rounded-S -z-10 -mt-4 h-[26px] w-[109px] bg-[#63C88D] blur-[1px]" />
                     </div>
                   )}
                 </div>
@@ -155,7 +155,7 @@ export default function GuestFridge({
                         isSelected={selectedIds.includes(4)}
                         onSelect={() => handleSelect(4)}
                       />
-                      <div className="-z-10 -mt-4 h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+                      <div className="rounded-S -z-10 -mt-4 h-[26px] w-[109px] bg-[#63C88D] blur-[1px]" />
                     </div>
                   )}
                 </div>

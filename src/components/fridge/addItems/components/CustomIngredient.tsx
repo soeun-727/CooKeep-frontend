@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   type CategoryType,
   type CustomIngredientRequest,
+  type CustomIngredientResponse,
   registerCustomIngredient,
 } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
@@ -17,7 +18,7 @@ import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
 interface CustomProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: (serverData: any) => void;
+  onConfirm: (serverData: CustomIngredientResponse) => void;
   categories: {
     id: number;
     name: string;

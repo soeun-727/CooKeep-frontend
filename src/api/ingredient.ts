@@ -74,6 +74,12 @@ export interface HomeIngredient {
   name: string;
   leftDays: number;
   imageUrl: string;
+  id?: number;
+  ingredientId?: number;
+  quantity?: number;
+  unit?: string;
+  expirationDate?: string;
+  createdAt?: string;
 }
 
 export interface RefrigeratorHomeResponse {
@@ -134,6 +140,28 @@ export interface CustomIngredientRequest {
   category: CategoryType;
 }
 
+export interface CustomIngredientResponse {
+  customIngredientId: number;
+  name: string;
+  imageUrl: string;
+  id?: number;
+  ingredientId?: number;
+  quantity?: number;
+  unit?: string;
+  expirationDate?: string;
+  createdAt?: string;
+  memo?: string;
+  aiTip?: string;
+  category: string;
+}
+
+export interface SearchIngredientResponse {
+  ingredients: HomeIngredient[];
+  page?: number;
+  totalPages?: number;
+  totalElements?: number;
+}
+
 // --- 인터페이스 정의 추가 ---
 
 /** 최근 추가한 식재료 아이템 */
@@ -188,8 +216,8 @@ export const registerCustomIngredient = (data: CustomIngredientRequest) => {
 /** [POST] 식재료 냉장고 최종 추가 (Bulk) */
 export const addIngredients = (data: AddIngredientRequest) => {
   const sanitizedIngredients = data.ingredients.map(ing => {
-    const item: any = {
-      type: ing.type.toUpperCase(),
+    const item: Partial<AddIngredientRequest["ingredients"][number]> = {
+      type: ing.type,
       referenceId: Number(ing.referenceId),
     };
     if (ing.quantity) item.quantity = Number(ing.quantity);
@@ -241,7 +269,7 @@ export const getIngredientDetail = (ingredientId: number) => {
 export const updateIngredientDetail = (
   ingredientId: number,
   field: "storage" | "date" | "quantity" | "memo",
-  value: any,
+  value: StorageType | string | number,
 ) => {
   const fieldPathMap = {
     storage: "storage",
@@ -264,7 +292,7 @@ export const updateIngredientDetail = (
 
 /** [POST] 식재료 섭취 완료 (리워드 지급) */
 export const consumeIngredients = (userIngredientIds: number[]) => {
-  return api.post<{ status: string; data: any }>(
+  return api.post<{ status: string; data: ConsumeRewardResponse }>(
     "/api/users/me/ingredients/consume",
     { userIngredientIds },
   );
@@ -279,7 +307,7 @@ export const deleteIngredients = (userIngredientIds: number[]) => {
 
 /** [GET] 내 냉장고 식재료 검색 */
 export const searchIngredients = (term: string, page: number = 0) => {
-  return api.get<{ status: string; data: any }>(
+  return api.get<{ status: string; data: SearchIngredientResponse }>(
     `/api/users/me/ingredients/search`,
     {
       params: { name: term, page, size: 20 },
@@ -308,13 +336,15 @@ export const updateIngredientDate = (
 /** [PATCH] 식재료 보관 장소 변경 (기존 이름 호환) */
 export const updateIngredientStorage = (
   ingredientId: number,
-  storage: StorageType,
+  storage: StorageType | string,
 ) => updateIngredientDetail(ingredientId, "storage", storage);
 
 /** [POST] 식재료 냉장고 최종 추가 (이전 단일 등록 함수 호환용) */
-export const addIngredientToFridge = (data: any) => {
+export const addIngredientToFridge = (
+  data: AddIngredientRequest | AddIngredientRequest["ingredients"][number],
+) => {
   // 만약 단일 객체가 들어오면 배열로 감싸서 벌크 함수로 전달
-  const payload = data.ingredients ? data : { ingredients: [data] };
+  const payload = "ingredients" in data ? data : { ingredients: [data] };
   return addIngredients(payload);
 };
 

@@ -10,6 +10,7 @@ import arrowIcon from "@/assets/signup/arrowright.svg";
 
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function WithdrawPage() {
   const navigate = useNavigate();
@@ -79,14 +80,7 @@ export default function WithdrawPage() {
 
   // 로딩 중일 때
   if (loading) {
-    return (
-      <>
-        <BackHeader title="탈퇴하기" />
-        <main className="mx-auto max-w-[450px] px-4 pt-[161px] pb-[120px]">
-          <div className="text-center">로딩 중...</div>
-        </main>
-      </>
-    );
+    return <LoadingScreen />;
   }
 
   return (

@@ -3,6 +3,11 @@ import type {
   Feature,
   RetryAiRecipeRequest,
 } from "@/types/aiRecipe";
+import type { AxiosResponse } from "axios";
+import type {
+  AiRecipeSessionListResponse,
+  AiSessionDetailResponse,
+} from "./aiSession";
 
 import api from "./axios";
 
@@ -18,7 +23,7 @@ export interface GenerateAiRecipeRequest {
   ingredientIds: number[];
 }
 
-const extractData = <T>(response: any): T => {
+const extractData = <T>(response: AxiosResponse<ApiResponseEnvelope<T>>): T => {
   if (response?.data && "data" in response.data) {
     return response.data.data as T;
   }
@@ -91,18 +96,22 @@ export const retryRandomAiRecipe = async (
 
 /** [GET] AI 레시피 대화 세션 목록 조회 (MAIN06-1) */
 export const getAiRecipeSessions = async () => {
-  const response = await api.get<ApiResponseEnvelope<any>>(
+  const response = await api.get<
+    ApiResponseEnvelope<AiRecipeSessionListResponse["data"]>
+  >(
     "/api/users/me/ai/recipes/sessions",
   );
-  return extractData<any>(response);
+  return extractData(response);
 };
 
 /** [GET] AI 레시피 대화 세션 상세 조회 (MAIN06-2) */
 export const getAiRecipeSessionDetail = async (sessionId: number) => {
-  const response = await api.get<ApiResponseEnvelope<any>>(
+  const response = await api.get<
+    ApiResponseEnvelope<AiSessionDetailResponse["data"]>
+  >(
     `/api/users/me/ai/recipes/sessions/${sessionId}`,
   );
-  return extractData<any>(response);
+  return extractData(response);
 };
 
 /** [DELETE] AI 레시피 대화 세션 삭제 (MAIN06-3) */

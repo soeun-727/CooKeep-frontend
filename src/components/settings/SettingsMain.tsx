@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import { unsubscribePush } from "@/api/push";
 import { MyProfileResponse, getMyProfile } from "@/api/user";
-import { loadingChar } from "@/assets";
 import { useAuthStore } from "@/stores/useAuthStore";
 
 import logoutIcon from "@/assets/settings/logout.svg";
 
 import ConfirmModal from "@/components/ui/ConfirmModal";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 import NotificationSection from "./sections/NotificationSection";
 import ProfileSection from "./sections/ProfileSection";
@@ -56,15 +56,7 @@ export default function SettingsMain() {
     }
   };
 
-  if (loading || !profile)
-    return (
-      <div className="mt-50 flex flex-col items-center justify-center text-center">
-        <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-body2 text-zinc-500">
-          회원정보를 불러오는 중...
-        </div>
-      </div>
-    );
+  if (loading || !profile) return <LoadingScreen />;
 
   return (
     <>

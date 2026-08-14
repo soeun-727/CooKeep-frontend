@@ -26,10 +26,7 @@ export default function ViewAllHeader({
         <TextField
           value={searchTerm}
           placeholder="찾으시는 레시피가 있나요?"
-          onChange={(e: any) => {
-            const value = e.target ? e.target.value : e;
-            onSearchChange(value);
-          }}
+          onChange={onSearchChange}
           rightIcon={<SearchIcon className="h-6 w-6 text-gray-50" />}
         />
       </div>

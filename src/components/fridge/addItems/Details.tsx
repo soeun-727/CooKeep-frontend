@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { addIngredients } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
@@ -47,10 +48,13 @@ export default function Details() {
       resetSelected();
       // 성공 피드백을 주며 이동 (선택사항)
       navigate("/fridge", { state: { registered: true } });
-    } catch (error: any) {
-      console.error("등록 실패 상세 로그:", error.response?.data);
+    } catch (error: unknown) {
+      const responseData = axios.isAxiosError<{ message?: string }>(error)
+        ? error.response?.data
+        : undefined;
+      console.error("등록 실패 상세 로그:", responseData);
       const errorMessage =
-        error.response?.data?.message || "재료 등록 중 오류가 발생했습니다.";
+        responseData?.message || "재료 등록 중 오류가 발생했습니다.";
       alert(`등록 실패: ${errorMessage}`);
     } finally {
       setIsLoading(false);

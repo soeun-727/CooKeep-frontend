@@ -1,8 +1,12 @@
-import { cleanupOutdatedCaches, precacheAndRoute } from "workbox-precaching";
+import {
+  cleanupOutdatedCaches,
+  precacheAndRoute,
+  type PrecacheEntry,
+} from "workbox-precaching";
 
 // 서비스 워커 타입 정의
 declare const self: ServiceWorkerGlobalScope & {
-  __WB_MANIFEST: Array<any>;
+  __WB_MANIFEST: Array<PrecacheEntry | string>;
 };
 
 // 1. 초기화 및 프리캐싱
@@ -28,13 +32,13 @@ self.addEventListener("push", event => {
     }
   }
 
-  const options: NotificationOptions = {
+  const options: NotificationOptions & { vibrate: number[] } = {
     body: data.body,
     icon: "/appIcon.png",
     badge: "/appIcon.png",
     vibrate: [200, 100, 200],
     data: { url: data.url },
-  } as any;
+  };
 
   event.waitUntil(self.registration.showNotification(data.title, options));
 });

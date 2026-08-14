@@ -19,6 +19,7 @@ import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImage
 import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
 export default function RecordWritePage() {
@@ -135,11 +136,7 @@ export default function RecordWritePage() {
   };
 
   if (!recipeDetail) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <div className="border-green h-8 w-8 animate-spin rounded-full border-b-2"></div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   return (

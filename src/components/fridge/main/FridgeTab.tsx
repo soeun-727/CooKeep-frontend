@@ -1,8 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 
-import { getRefrigeratorHome } from "@/api/ingredient";
+import {
+  type HomeIngredient,
+  type RefrigeratorHomeResponse,
+  getRefrigeratorHome,
+} from "@/api/ingredient";
 import { getPushEligibility } from "@/api/user";
-import { useIngredientStore } from "@/stores/useIngredientStore";
+import {
+  type Ingredient,
+  useIngredientStore,
+} from "@/stores/useIngredientStore";
 
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
 
@@ -35,8 +42,11 @@ export default function FridgeTab() {
   const [isExpiryModalOpen, setIsExpiryModalOpen] = useState(false);
   const EXPIRY_MODAL_KEY = "expiry-alert-last-shown";
 
-  const parseServerData = useCallback((data: any) => {
-    const mapItem = (i: any, category: string) => ({
+  const parseServerData = useCallback((data: RefrigeratorHomeResponse) => {
+    const mapItem = (
+      i: HomeIngredient,
+      category: Ingredient["category"],
+    ): Ingredient => ({
       ...i,
       category,
       id: i.ingredientId || i.id || i.referenceId || 0,
@@ -46,11 +56,11 @@ export default function FridgeTab() {
       quantity: i.quantity || 1,
       unit: i.unit || "PIECE",
       expiryDate: i.expirationDate || new Date().toISOString().split("T")[0],
-      createdAt: i.createdAt || new Date().toISOString(),
+      createdAt: i.createdAt ? Date.parse(i.createdAt) : Date.now(),
     });
-    const fridge = (data.fridge || []).map((i: any) => mapItem(i, "냉장"));
-    const freezer = (data.freezer || []).map((i: any) => mapItem(i, "냉동"));
-    const pantry = (data.pantry || []).map((i: any) => mapItem(i, "상온"));
+    const fridge = (data.fridge || []).map(i => mapItem(i, "냉장"));
+    const freezer = (data.freezer || []).map(i => mapItem(i, "냉동"));
+    const pantry = (data.pantry || []).map(i => mapItem(i, "상온"));
     return [...fridge, ...freezer, ...pantry];
   }, []);
 

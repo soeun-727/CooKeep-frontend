@@ -24,6 +24,9 @@ export interface Ingredient {
   tip?: string;
 }
 
+const isIngredientCategory = (value: string): value is Ingredient["category"] =>
+  ["냉장", "냉동", "상온"].includes(value);
+
 export type SortOrder = "유통기한 임박 순" | "등록 최신 순" | "등록 오래된 순";
 
 interface IngredientState {
@@ -174,7 +177,9 @@ export const useIngredientStore = create<IngredientState>()((set, get) => ({
           item.id === ingredientId
             ? {
                 ...item,
-                category: newStorage as any, // 화면 표시용 (한글)
+                category: isIngredientCategory(newStorage)
+                  ? newStorage
+                  : item.category,
                 // item 객체에 storageType 필드가 있다면 업데이트
                 storageType: serverStorage,
               }
