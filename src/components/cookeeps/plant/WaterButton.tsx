@@ -64,7 +64,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
           <div className="absolute -top-10 flex flex-col items-center">
             {/* 말풍선 본문 */}
             <div
-              className="bg-gray-0 shadow-plant inline-flex items-center justify-center rounded-[3px] px-[10px] py-[3px] text-center text-[8px] leading-[10px] font-medium whitespace-nowrap text-gray-50"
+              className="bg-gray-0 shadow-plant rounded-XS inline-flex items-center justify-center px-[10px] py-[3px] text-center text-[8px] leading-[10px] font-medium whitespace-nowrap text-gray-50"
               style={{ width: "164px", height: "23px" }}
             >
               아래 버튼을 클릭하여 식물에게 물을 줘보세요!

@@ -186,11 +186,11 @@ export default function IngredientDetailModal({
 
           <div className="flex w-full flex-col items-center gap-4 self-stretch">
             <div className="flex w-full items-center gap-[14px]">
-              <div className="bg-green-light flex h-[86px] w-[86px] flex-shrink-0 items-center justify-center rounded-[10px]">
+              <div className="bg-green-light rounded-L flex h-[86px] w-[86px] flex-shrink-0 items-center justify-center">
                 <img
                   src={displayData.imageUrl || displayData.image}
                   alt={displayData.name}
-                  className="aspect-square h-[60px] w-[60px] rounded-[6px] object-cover"
+                  className="rounded-XS aspect-square h-[60px] w-[60px] object-cover"
                 />
               </div>
               <div className="flex flex-1 flex-col items-start gap-1">
@@ -273,7 +273,7 @@ export default function IngredientDetailModal({
                 </div>
               )}
               <div
-                className="border-gray-10 mt-4 flex w-full cursor-pointer items-center justify-between gap-3 rounded-[6px] border p-3"
+                className="border-gray-10 rounded-M mt-4 flex w-full cursor-pointer items-center justify-between gap-3 border p-3"
                 onClick={() => setOpenEditor("memo")}
               >
                 <span

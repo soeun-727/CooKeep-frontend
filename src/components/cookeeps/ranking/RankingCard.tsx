@@ -36,7 +36,7 @@ export default function RankingCard({
 
       {/* 카드 박스 */}
       <div
-        className={`shadow-plant relative flex flex-col items-center gap-1 rounded-[6px] p-[11px_11px_10px_12px] ${
+        className={`shadow-plant rounded-M relative flex flex-col items-center gap-1 p-[11px_11px_10px_12px] ${
           isFirst ? "bg-green-light" : "bg-gray-0"
         }`}
       >

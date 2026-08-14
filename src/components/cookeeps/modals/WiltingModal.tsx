@@ -23,7 +23,7 @@ export default function WiltingModal({
 
       {/* modal */}
       <div
-        className="bg-gray-0 relative flex h-[254px] w-70 flex-col items-center gap-7 rounded-[10px] px-7 pt-[35px] pb-[25px]"
+        className="bg-gray-0 rounded-L relative flex h-[254px] w-70 flex-col items-center gap-7 px-7 pt-[35px] pb-[25px]"
         onClick={e => e.stopPropagation()}
       >
         {/* content */}

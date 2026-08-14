@@ -20,7 +20,7 @@ export default function RecipeDetailYoutube({
   if (!videos || videos.length === 0) return null;
 
   return (
-    <section className="bg-gray-0 shadow-search flex w-full flex-col gap-2 rounded-[6px] p-[22px_15px]">
+    <section className="bg-gray-0 shadow-search rounded-M flex w-full flex-col gap-2 p-[22px_15px]">
       {/* 헤더 (항상 보임) */}
       <button
         type="button"
@@ -64,7 +64,7 @@ export default function RecipeDetailYoutube({
                 href={video.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-[68px] flex-1 overflow-hidden rounded-[6px] bg-gray-200"
+                className="rounded-S h-[68px] flex-1 overflow-hidden bg-gray-200"
               >
                 <img
                   src={video.thumbnail}

@@ -23,7 +23,7 @@ function Item({
     <button
       type="button"
       onClick={onSelect}
-      className={`relative flex h-[90px] w-[90px] flex-col items-center justify-center rounded-[6px] border px-4 py-[13px] ${isSelected ? "bg-green-light border-green-deep" : "bg-gray-0 border-gray-10"}`}
+      className={`rounded-S relative flex h-[90px] w-[90px] flex-col items-center justify-center border px-4 py-[13px] ${isSelected ? "bg-green-light border-green-deep" : "bg-gray-0 border-gray-10"}`}
     >
       {isCustom && (
         <img

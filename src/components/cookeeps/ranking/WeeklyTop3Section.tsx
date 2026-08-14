@@ -39,7 +39,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   const isRankingEmpty = users.length === 0;
 
   return (
-    <div className="bg-green-light shadow-plant flex min-h-[202px] w-full flex-col items-center gap-[26px] rounded-[6px] py-[18px]">
+    <div className="bg-green-light shadow-plant rounded-M flex min-h-[202px] w-full flex-col items-center gap-[26px] py-[18px]">
       <div className="flex flex-col items-center gap-[2px]">
         <h2 className="text-center text-[18px] font-semibold text-gray-800">
           {currentMonth}월 식물 돌봄
@@ -66,7 +66,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         })}
 
         {isRankingEmpty && (
-          <div className="bg-green-light/80 absolute inset-0 flex items-center justify-center rounded-[6px]">
+          <div className="bg-green-light/80 rounded-M absolute inset-0 flex items-center justify-center">
             <div className="flex h-[143px] w-full max-w-[343px] items-center justify-center gap-[24px] px-[20px] py-[18px]">
               <img
                 src={thinkingChar}

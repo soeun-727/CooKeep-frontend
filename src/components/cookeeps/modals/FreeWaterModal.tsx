@@ -20,7 +20,7 @@ export default function FreeWaterModal({
       <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
 
       {/* modal */}
-      <div className="bg-gray-0 relative flex w-[258px] flex-col items-center gap-5 rounded-[10px] px-7 pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 rounded-L relative flex w-[258px] flex-col items-center gap-5 px-7 pt-[35px] pb-[25px]">
         {/* content */}
         <div className="flex w-full flex-col items-center gap-7">
           <p className="typo-body2 text-gray-80 text-center whitespace-pre-line">

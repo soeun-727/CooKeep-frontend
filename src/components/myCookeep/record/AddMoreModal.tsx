@@ -17,7 +17,7 @@ export default function AddMoreModal({
       onClick={onCancel}
     >
       <div
-        className="bg-gray-0 flex w-[240px] flex-col items-center gap-2 rounded-[10px] px-[28px] pt-[35px] pb-[25px]"
+        className="bg-gray-0 rounded-L flex w-[240px] flex-col items-center gap-2 px-[28px] pt-[35px] pb-[25px]"
         onClick={e => e.stopPropagation()}
       >
         <div className="flex flex-col items-center justify-center gap-4 self-stretch">

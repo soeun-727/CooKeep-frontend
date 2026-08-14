@@ -9,7 +9,7 @@ export default function RecipeDetailMemo({
 }: RecipeDetailMemoProps) {
   return (
     <div className="flex w-full justify-center px-1">
-      <div className="bg-gray-0 flex w-full max-w-[450px] flex-col items-center justify-center gap-2 rounded-[10px] px-4 py-3">
+      <div className="bg-gray-0 rounded-M flex w-full max-w-[450px] flex-col items-center justify-center gap-2 px-4 py-3">
         <span className="text-[16px] font-semibold whitespace-nowrap text-gray-50">
           {userName}
         </span>

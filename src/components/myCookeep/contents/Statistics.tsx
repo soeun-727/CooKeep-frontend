@@ -49,7 +49,7 @@ export default function Statistics() {
         }`}
       >
         <div className="flex h-[307px] w-full shrink-0 flex-col items-center">
-          <div className="typo-caption text-gray-0 mt-5 flex h-[26px] w-[157px] flex-col justify-center rounded-[6px] bg-black text-center">
+          <div className="typo-caption text-gray-0 rounded-L mt-5 flex h-[26px] w-[157px] flex-col justify-center bg-black text-center">
             나의 식재료 소비 달성 현황
           </div>
 

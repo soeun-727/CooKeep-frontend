@@ -39,7 +39,7 @@ export default function PlantSelectModal({
       <div className="bg-gray-80 absolute inset-0" />
 
       {/* 모달 영역 */}
-      <div className="bg-gray-0 relative flex w-[258px] flex-col items-center gap-4 rounded-[10px] px-7 pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 rounded-L relative flex w-[258px] flex-col items-center gap-4 px-7 pt-[35px] pb-[25px]">
         <h2 className="typo-body text-center">
           키우고 싶은 식재료를
           <br />
@@ -64,7 +64,7 @@ export default function PlantSelectModal({
               >
                 {/* 아이콘 컨테이너 */}
                 <div
-                  className={`relative flex h-[60px] w-[60px] flex-col items-center justify-center gap-[2px] overflow-hidden rounded-[6px] ${
+                  className={`rounded-S relative flex h-[60px] w-[60px] flex-col items-center justify-center gap-[2px] overflow-hidden ${
                     selectedId === plant.id
                       ? "bg-green-light"
                       : "bg-gray-0 group-hover:bg-gray-100"
@@ -82,7 +82,7 @@ export default function PlantSelectModal({
                   </span>
                   {isHarvested && (
                     <div className="bg-black-overlay absolute inset-0 flex items-center justify-center">
-                      <div className="bg-green-light/90 border-green-deep flex h-5 w-[43px] items-center justify-center rounded-[3px] border-[0.5px]">
+                      <div className="bg-green-light/90 border-green-deep rounded-XS flex h-5 w-[43px] items-center justify-center border-[0.5px]">
                         <span className="text-green-deep text-[10px] leading-none font-semibold">
                           수확완료
                         </span>

@@ -166,7 +166,7 @@ function Profile() {
               }`}
             >
               <div
-                className="bg-gray-0 shadow-container relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium text-gray-50"
+                className="bg-gray-0 shadow-container rounded-XS relative z-10 inline-flex items-center justify-center px-[16px] py-[9px] text-center text-[12px] font-medium text-gray-50"
                 style={{ width: 227, height: 28 }}
               >
                 이번 주 달성하고 싶은 목표를 세워보세요!

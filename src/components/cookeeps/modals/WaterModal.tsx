@@ -21,7 +21,7 @@ export default function WaterModal({
       <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
 
       {/* modal */}
-      <div className="bg-gray-0 relative w-[254px] rounded-[10px] px-[28px] py-[25px]">
+      <div className="bg-gray-0 rounded-L relative w-[254px] px-[28px] py-[25px]">
         {/* 내용 */}
         <div className="flex flex-col items-center justify-center gap-[16px] self-stretch">
           {/* 이미지 + 텍스트 */}
@@ -47,14 +47,14 @@ export default function WaterModal({
           <div className="flex h-[44px] items-center gap-[8px] self-stretch">
             <button
               onClick={onConfirm}
-              className="bg-green text-gray-0 flex h-[44px] flex-1 items-center justify-center rounded-[10px] px-[12px] py-[12px] text-[14px] leading-[24px] font-semibold"
+              className="bg-green text-gray-0 rounded-M flex h-[44px] flex-1 items-center justify-center px-[12px] py-[12px] text-[14px] leading-[24px] font-semibold"
             >
               물을 줄게요
             </button>
 
             <button
               onClick={onClose}
-              className="bg-gray-30 text-gray-0 flex h-[44px] flex-1 items-center justify-center rounded-[10px] px-[12px] py-[12px] text-[14px] leading-[24px] font-semibold"
+              className="bg-gray-30 text-gray-0 rounded-M flex h-[44px] flex-1 items-center justify-center px-[12px] py-[12px] text-[14px] leading-[24px] font-semibold"
             >
               돌아가기
             </button>

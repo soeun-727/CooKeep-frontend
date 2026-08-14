@@ -57,7 +57,7 @@ export default function Calendar({ onDateClick }: CalendarProps) {
 
   return (
     <div
-      className={`bg-gray-0/10 mx-auto flex w-[357px] flex-col items-center justify-center rounded-[6px] p-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"} `}
+      className={`bg-gray-0/10 rounded-L mx-auto flex w-[357px] flex-col items-center justify-center p-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"} `}
     >
       {/* 1. 헤더 */}
       <div className="mt-[13px] mb-2 flex w-full items-center justify-between px-2">

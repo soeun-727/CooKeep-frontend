@@ -96,7 +96,7 @@ export default function Custom({
     <div className="bg-black-overlay fixed inset-0 z-[150] flex items-center justify-center">
       <div className="absolute inset-0" onClick={onClose}></div>
 
-      <div className="bg-gray-0 shadow-container relative flex h-[316px] w-[280px] flex-col items-center rounded-[10px] px-7 py-[35px]">
+      <div className="bg-gray-0 shadow-container rounded-L relative flex h-[316px] w-[280px] flex-col items-center px-7 py-[35px]">
         <div className="mb-4 flex w-full items-center justify-center gap-1">
           {isEditing ? (
             <input
@@ -134,7 +134,7 @@ export default function Custom({
               type="button"
               disabled={isLoading}
               onClick={() => setSelectedCategoryId(cat.id)}
-              className={`flex h-12 w-12 flex-col items-center gap-[2px] rounded-[6px] pt-2 ${
+              className={`rounded-S flex h-12 w-12 flex-col items-center gap-[2px] pt-2 ${
                 selectedCategoryId === cat.id
                   ? "bg-gray-100 ring-1 ring-gray-300 ring-inset"
                   : "bg-gray-0 hover:bg-gray-50"
@@ -157,7 +157,7 @@ export default function Custom({
         <button
           onClick={handleConfirm}
           disabled={selectedCategoryId === null || isLoading}
-          className={`typo-label text-gray-0 h-11 w-full rounded-[10px] transition-colors ${
+          className={`typo-label text-gray-0 rounded-M h-11 w-full transition-colors ${
             selectedCategoryId !== null && !isLoading
               ? "bg-green-deep"
               : "bg-gray-30 cursor-not-allowed"

@@ -16,7 +16,7 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
       <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
 
       {/* modal */}
-      <div className="bg-gray-0 relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 rounded-L relative flex w-[258px] flex-col items-center gap-[18px] px-[28px] pt-[35px] pb-[25px]">
         {/* content */}
         <div className="flex w-full flex-col items-center gap-[28px]">
           {/* image + text */}
@@ -44,7 +44,7 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
           {/* button */}
           <Button
             variant="green"
-            className="!h-[44px] !w-full !rounded-[10px]"
+            className="!rounded-M !h-[44px] !w-full"
             onClick={onClose}
           >
             확인
