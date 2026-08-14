@@ -5,12 +5,10 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import RecipeHeader from "@/components/recipe/main/RecipeHeader";
 import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
-import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
 import RecipePagination from "@/components/recipe/main/result/RecipePagination";
-import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
-import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 
 import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
@@ -131,39 +129,31 @@ export default function RecipeResultPage() {
                     usedItems={userIngredients.length}
                   />
 
-                  <div className="flex flex-col gap-3">
-                    <RecipeIngredientSection
-                      selectedIngredients={userIngredients}
-                      requiredIngredients={additionalIngredients}
-                      substitutions={optionalIngredients}
-                    />
+                  <RecipeInfoDetail
+                    selectedIngredients={userIngredients}
+                    requiredIngredients={additionalIngredients}
+                    substitutions={optionalIngredients}
+                    steps={steps}
+                    difficulty={difficulty || "NORMAL"}
+                    youtubeVideos={currentData.youtubeReferences || []}
+                    youtubeTags={recipe.youtube_search_queries || []}
+                  />
 
-                    <RecipeStepSection
-                      steps={steps}
-                      difficulty={difficulty || "NORMAL"}
-                    />
-
-                    <RecipeYoutubeCard
-                      videos={currentData.youtubeReferences || []}
-                      tags={recipe.youtube_search_queries || []}
-                    />
-
-                    <div className="flex flex-col items-center gap-[2px]">
-                      <div className="typo-caption w-full text-center text-gray-50">
-                        AI가 제공하는 정보에는 실수가 있을 수 있습니다
-                        <br />
-                        관련 정보를 확인 후 활용해주세요
-                      </div>
-
-                      {/* 레시피 생성 로딩 시 아래 점 3개 표시 */}
-                      {isLoading && (
-                        <div className="mt-2 flex h-[28.8px] w-[28.8px] items-center justify-center gap-[3.6px]">
-                          <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full" />
-                          <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full delay-200" />
-                          <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full delay-400" />
-                        </div>
-                      )}
+                  <div className="flex flex-col items-center gap-[2px]">
+                    <div className="typo-caption w-full text-center text-gray-50">
+                      AI가 제공하는 정보에는 실수가 있을 수 있습니다
+                      <br />
+                      관련 정보를 확인 후 활용해주세요
                     </div>
+
+                    {/* 레시피 생성 로딩 시 아래 점 3개 표시 */}
+                    {isLoading && (
+                      <div className="mt-2 flex h-[28.8px] w-[28.8px] items-center justify-center gap-[3.6px]">
+                        <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full" />
+                        <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full delay-200" />
+                        <div className="animate-dot bg-gray-40 h-[4.8px] w-[4.8px] rounded-full delay-400" />
+                      </div>
+                    )}
                   </div>
 
                   <div className="mt-6 mb-7 w-full max-w-[450px]">

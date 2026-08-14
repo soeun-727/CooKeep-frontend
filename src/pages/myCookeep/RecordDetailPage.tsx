@@ -14,17 +14,15 @@ import imageCompression from "browser-image-compression";
 import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
 import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
 
-import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
-import RecordImagePage from "@/components/myCookeep/record/RecordImagePage";
-import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
-import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
+import RecordImageContent from "@/components/myCookeep/record/RecordImageContent";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import DoublecheckModal from "@/components/ui/DoublecheckModal";
 import RecipeOptionMenu from "@/components/ui/OptionsMenu";
+import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 
 export default function RecordDetailPage() {
   const navigate = useNavigate();
@@ -186,7 +184,7 @@ export default function RecordDetailPage() {
       </div>
 
       <div className="flex flex-col gap-[10px]">
-        <RecordImagePage
+        <RecordImageContent
           imageSrc={currentImageUrl}
           onImageChange={handleImageFileSelect}
           editMode={isEditing}
@@ -199,33 +197,26 @@ export default function RecordDetailPage() {
           usedItems={record.content.ingredients.user_ingredients.length}
         />
 
-        <CookingTipsSection
-          cookingTips={isEditing ? tempDescription : record.description || ""}
-          onChangeCookingTips={isEditing ? setTempDescription : undefined}
-          readOnly={!isEditing}
-        />
-
-        <RecipeIngredientSection
+        <RecipeInfoDetail
           selectedIngredients={record.content.ingredients.user_ingredients}
-          requiredIngredients={record.content.ingredients.additional_ingredients}
+          requiredIngredients={
+            record.content.ingredients.additional_ingredients
+          }
           substitutions={record.content.ingredients.optional_ingredients}
-        />
-
-        <RecipeStepSection
           steps={record.content.steps.map((step, idx) => ({
             order: idx + 1,
             description: step.content,
           }))}
           difficulty="NORMAL"
-        />
-
-        {record.content.youtubeReferences &&
-          record.content.youtubeReferences.length > 0 && (
-            <RecipeDetailYoutube
-              videos={record.content.youtubeReferences}
-              tags={record.content.youtubeSearchQueries ?? []}
-            />
-          )}
+          youtubeVideos={record.content.youtubeReferences}
+          youtubeTags={record.content.youtubeSearchQueries ?? []}
+        >
+          <CookingTipsSection
+            cookingTips={isEditing ? tempDescription : record.description || ""}
+            onChangeCookingTips={isEditing ? setTempDescription : undefined}
+            readOnly={!isEditing}
+          />
+        </RecipeInfoDetail>
       </div>
 
       {isEditing && (
