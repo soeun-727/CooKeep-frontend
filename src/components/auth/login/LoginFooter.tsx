@@ -1,35 +1,28 @@
 import { useNavigate } from "react-router-dom";
 
-import line from "@/assets/login/Line.png";
-
 export default function LoginFooter() {
   const navigate = useNavigate();
 
   return (
     <>
       {/* 하단 메뉴 */}
-      <div className="mt-[39px] flex items-center justify-center gap-[18px]">
-        <button className="typo-label" onClick={() => navigate("/findpw")}>
+      <div className="flex items-center justify-center gap-[18px]">
+        <button
+          onClick={() => navigate("/findpw")}
+          className="typo-m text-gray-80 text-center"
+        >
           비밀번호 찾기
         </button>
-        <img src={line} alt="구분선" />
-        <button className="typo-label" onClick={() => navigate("/signup")}>
-          회원가입
+
+        <div className="bg-gray-30 h-[10px] w-px shrink-0" />
+
+        <button
+          onClick={() => navigate("/signup")}
+          className="typo-m text-gray-80 text-center"
+        >
+          회원가입하기
         </button>
       </div>
-
-      {/* 최하단 */}
-      {/* <div className="mt-8 flex flex-col items-center justify-center">
-        <div className="flex justify-center gap-4">
-          <span className="typo-caption">전화번호를 변경했어요</span>
-          <button
-            onClick={() => navigate("/support")}
-            className="typo-caption underline"
-          >
-            고객센터
-          </button>
-        </div>
-      </div> */}
     </>
   );
 }

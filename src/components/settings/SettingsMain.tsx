@@ -6,13 +6,12 @@ import { MyProfileResponse, getMyProfile } from "@/api/user";
 import { loadingChar } from "@/assets";
 import { useAuthStore } from "@/stores/useAuthStore";
 
-import logoutIcon from "@/assets/settings/logout.svg";
-
-import ConfirmModal from "@/components/ui/ConfirmModal";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 
 import NotificationSection from "./sections/NotificationSection";
 import ProfileSection from "./sections/ProfileSection";
-import SupportSection from "./sections/SupportSection";
+import SettingsMenuSection from "./components/SettingsMenuSection";
+import { settingsSections } from "./config/settingsMenuConfig";
 
 export default function SettingsMain() {
   const navigate = useNavigate();
@@ -50,6 +49,16 @@ export default function SettingsMain() {
     navigate("/", { replace: true });
   };
 
+  //추가
+  const handleWithdraw = async () => {
+    try {
+      await unsubscribePush();
+    } catch {
+      // ignore unsubscribe failure
+    }
+    navigate("/settings/withdraw");
+  };
+
   const handleNotificationChange = (isAgreed: boolean) => {
     if (profile) {
       setProfile({ ...profile, marketingPush: isAgreed });
@@ -60,7 +69,7 @@ export default function SettingsMain() {
     return (
       <div className="mt-50 flex flex-col items-center justify-center text-center">
         <img className="w-30 p-5 opacity-70" src={loadingChar} />
-        <div className="typo-body2 text-zinc-500">
+        <div className="text-caption text-gray-50">
           회원정보를 불러오는 중...
         </div>
       </div>
@@ -68,54 +77,44 @@ export default function SettingsMain() {
 
   return (
     <>
-      <main className="px-4 pt-[103px]">
-        <div className="space-y-6">
-          <ProfileSection profile={profile} />
-          <NotificationSection
-            marketingPush={profile.marketingPush}
-            onStateChange={handleNotificationChange}
-          />
-          <SupportSection />
-        </div>
+      {/* 헤더(84px)는 별도 컴포넌트, 여기서는 그만큼 여백만 확보 */}
+      <main className="flex min-h-screen w-full flex-col">
+        <div className="flex w-full flex-col items-start gap-[30px]">
+          {/* User Info Container: ProfileSection ~ 탈퇴하기 */}
+          <div className="flex w-full flex-col items-start gap-1">
+            <ProfileSection profile={profile} />
 
-        {/* ===== 하단 버튼 영역 ===== */}
-        <div className="mt-[14px] flex flex-col items-center">
-          {/* 로그아웃 */}
-          <button
-            onClick={() => setOpenLogoutModal(true)}
-            className="inline-flex items-center gap-1"
-          >
-            <img
-              src={logoutIcon}
-              alt="logout"
-              className="aspect-square h-6 w-6"
-            />
-            <span className="text-gray-80 text-[14px] leading-[20px] font-medium">
-              로그아웃
-            </span>
-          </button>
-
-          {/* 탈퇴하기 */}
-          <button
-            onClick={async () => {
-              try {
-                await unsubscribePush();
-              } catch (e) {}
-              navigate("/settings/withdraw");
-            }}
-            className="mt-[42px] text-[12px] leading-[16px] font-normal text-gray-50 underline"
-          >
-            탈퇴하기
-          </button>
+            {/* NotificationSection ~ 탈퇴하기 그룹 */}
+            <div className="flex w-full flex-col items-start gap-4 px-1">
+              <NotificationSection
+                marketingPush={profile.marketingPush}
+                onStateChange={handleNotificationChange}
+              />
+              {settingsSections.map(section => (
+                <SettingsMenuSection
+                  key={section.title}
+                  section={section}
+                  callbacks={{
+                    logout: () => setOpenLogoutModal(true),
+                    withdraw: handleWithdraw,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
         </div>
+        <footer className="mt-auto flex flex-col items-center px-4 pt-[30px]">
+          <p className="typo-caption text-gray-50"> ver {__APP_VERSION__}</p>
+        </footer>
       </main>
 
       {/* 로그아웃 모달 */}
       {openLogoutModal && (
         <ConfirmModal
-          message="로그아웃 하시겠습니까?"
+          title="로그아웃 하시겠습니까?"
           onConfirm={handleLogoutConfirm}
           onCancel={() => setOpenLogoutModal(false)}
+          buttonVariants={["gray", "black"]}
         />
       )}
     </>

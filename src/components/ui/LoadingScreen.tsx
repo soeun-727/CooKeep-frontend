@@ -1,4 +1,4 @@
-import loadingChar from "@/assets/character/char_loading.svg";
+import loadingChar from "@/assets/character/loading_char.svg";
 
 export default function LoadingScreen() {
   return (
@@ -9,16 +9,16 @@ export default function LoadingScreen() {
           <img
             src={loadingChar}
             alt="loading"
-            className="h-[91px] w-[110.375px]"
+            className="h-[89px] w-20 opacity-60"
           />
 
-          <p className="text-center text-[12px] leading-[16px] font-medium text-gray-50">
+          <p className="text-caption text-center text-gray-50">
             로딩중... 잠시만 기다려주세요!
           </p>
         </div>
 
         {/* 점 애니메이션 */}
-        <div className="flex h-[24px] items-end gap-[6px]">
+        <div className="flex h-6 items-end gap-[6px]">
           <span className="wave-dot" />
           <span className="wave-dot" />
           <span className="wave-dot" />
