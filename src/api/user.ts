@@ -169,3 +169,22 @@ export const verifyPasswordChangeCode = async (email: string, code: string) => {
   });
   return res.data;
 };
+
+export const getDislikeIngredientList = async () => {
+  const res = await api.get<{
+    status: string;
+    timestamp: string;
+    data: { dislikedIngredients: string[] };
+  }>("/api/users/me/dislike-ingredients");
+  return res.data.data;
+};
+
+export const updateDislikeIngredientList = async (
+  dislikedIngredients: string[],
+) => {
+  const res = await api.patch<{ dislikedIngredients: string[] }>(
+    "/api/users/me/dislike-ingredients",
+    { dislikedIngredients },
+  );
+  return res.status;
+};
