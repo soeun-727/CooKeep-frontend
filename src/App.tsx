@@ -80,7 +80,9 @@ const EditPasswordEmailSection = lazy(
 );
 const FaqPage = lazy(() => import("@/pages/settings/FaqPage"));
 const NoticePage = lazy(() => import("@/pages/settings/NoticePage"));
-const TermsPage = lazy(() => import("@/pages/settings/TermsPage"));
+const AgreementDetailPage = lazy(
+  () => import("@/pages/settings/AgreementDetailPage"),
+);
 const WithdrawPage = lazy(() => import("@/pages/settings/WithdrawPage"));
 const WithdrawDonePage = lazy(
   () => import("@/pages/settings/WithdrawDonePage"),
@@ -124,6 +126,7 @@ export default function App() {
       "/simplelogin",
       "/findpw",
       "/reset-password",
+      "/settings/withdraw/done", // 추가
     ];
     const isPublic = publicPaths.includes(path);
 
@@ -200,7 +203,7 @@ export default function App() {
             </Route>
             <Route path="faq" element={<FaqPage />} />
             <Route path="notice" element={<NoticePage />} />
-            <Route path="terms" element={<TermsPage />} />
+            <Route path=":agreementKey" element={<AgreementDetailPage />} />
             <Route path="withdraw" element={<WithdrawPage />} />
           </Route>
           <Route

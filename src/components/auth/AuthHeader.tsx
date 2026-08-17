@@ -1,21 +1,18 @@
 import { useNavigate } from "react-router-dom";
 
-import { mainLogo } from "@/assets/index";
+import BackIcon from "@/assets/back.svg?react";
 
 export default function AuthHeader() {
   const navigate = useNavigate();
 
-  const handleLogoClick = () => {
-    navigate("/", { replace: true }); // 최초 접속 화면 경로
-  };
-
   return (
-    <header className="bg-background absolute top-0 z-50 flex w-full max-w-[450px] items-center justify-between px-4 py-2">
+    <header className="flex w-full items-center justify-between py-2">
       <button
-        onClick={handleLogoClick}
-        className="cursor-pointer border-none bg-transparent p-0"
+        type="button"
+        onClick={() => navigate(-1)}
+        className="flex h-10 w-10 items-center"
       >
-        <img src={mainLogo} alt="CooKeep logo" className="h-[18px] w-24" />
+        <BackIcon className="h-5 w-5" />
       </button>
 
       <p className="typo-label flex items-center gap-[6px]">

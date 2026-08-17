@@ -5,15 +5,16 @@ import { resetPasswordApi } from "@/api/auth";
 import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 import axios from "axios";
 
-import pwIcon from "@/assets/login/key.svg";
-import pwImage from "@/assets/login/pw.svg";
-import checkIcon from "@/assets/signup/check.svg";
-import openpwImage from "@/assets/signup/openpw.svg";
+import PwIcon from "@/assets/login/key.svg?react";
+import EyeIcon from "@/assets/login/pw.svg?react";
+import EyeOpenIcon from "@/assets/signup/openpw.svg?react";
+import CheckIcon from "@/assets/signup/check.svg?react";
 
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import InputField from "@/components/ui/InputField";
 
 import { validatePassword } from "@/utils/validateUtil";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function ResetPassword() {
   const { email, isVerified, reset } = useFindPasswordStore();
@@ -35,16 +36,6 @@ export default function ResetPassword() {
   const isPasswordValid = password ? validatePassword(password) : false;
   const isPasswordMatch =
     password && confirmPassword ? password === confirmPassword : false;
-
-  const getPasswordIcon = () => {
-    if (password && confirmPassword && isPasswordMatch) return checkIcon;
-    return showPassword ? openpwImage : pwImage;
-  };
-
-  const getPasswordConfirmIcon = () => {
-    if (password && confirmPassword && isPasswordMatch) return checkIcon;
-    return showPasswordConfirm ? openpwImage : pwImage;
-  };
 
   const isFormValid = isPasswordValid && isPasswordMatch;
 
@@ -80,111 +71,124 @@ export default function ResetPassword() {
   };
 
   return (
-    <div className="mx-auto w-[361px] pt-[241px]">
-      <div className="typo-h1">비밀번호 변경하기</div>
-      <div className="mt-[12px]">
-        <TextField
-          type={showPassword ? "text" : "password"}
-          value={password}
-          onChange={setPassword}
-          placeholder="영문, 숫자 포함 8자 이상의 비밀번호"
-          autoComplete="new-password"
-          errorMessage={
-            password && !isPasswordValid
-              ? "영문, 숫자 포함 8자 이상의 비밀번호를 사용해 주세요"
-              : undefined
-          }
-          successMessage={
-            password && isPasswordValid
-              ? "사용 가능한 비밀번호입니다"
-              : undefined
-          }
-          leftIcon={<img src={pwIcon} alt="비밀번호 아이콘" />}
-          rightIcon={
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="flex h-full items-center justify-center"
-            >
-              <img src={getPasswordIcon()} alt="비밀번호 토글 아이콘" />
-            </button>
-          }
-        />
-      </div>
+    <div className="flex min-h-screen w-full flex-col">
+      <main className="flex flex-1 flex-col gap-[120px] px-4">
+        <BackHeader title="비밀번호 찾기" />
 
-      <div className="mt-[5px]">
-        <TextField
-          type={showPasswordConfirm ? "text" : "password"}
-          value={confirmPassword}
-          onChange={setConfirmPassword}
-          placeholder="비밀번호 확인"
-          autoComplete="new-password"
-          errorMessage={
-            confirmPassword && !isPasswordMatch
-              ? "비밀번호가 일치하지 않습니다"
-              : undefined
-          }
-          successMessage={
-            confirmPassword && isPasswordMatch
-              ? "비밀번호가 일치합니다"
-              : undefined
-          }
-          leftIcon={<img src={pwIcon} alt="비밀번호 확인 아이콘" />}
-          rightIcon={
-            <button
-              type="button"
-              onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
-              className="flex h-full items-center justify-center"
-            >
-              <img
-                src={getPasswordConfirmIcon()}
-                alt="비밀번호 확인 토글 아이콘"
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center gap-4">
+            <h2 className="typo-h2 w-full px-1 py-2">비밀번호 변경하기</h2>
+
+            {/* 새 비밀번호 */}
+            <div className="flex w-full flex-col">
+              <InputField
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={setPassword}
+                placeholder="영문, 숫자 포함 8자 이상의 새 비밀번호"
+                autoComplete="new-password"
+                errorMessage={
+                  password && !isPasswordValid
+                    ? "영문, 숫자 포함 8자 이상의 비밀번호를 사용해 주세요"
+                    : undefined
+                }
+                successMessage={
+                  password && isPasswordValid
+                    ? "사용 가능한 비밀번호입니다"
+                    : undefined
+                }
+                leftIcon={<PwIcon className="h-6 w-6" />}
+                rightIcon={
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="flex h-6 w-6 items-center justify-center"
+                  >
+                    {password && confirmPassword && isPasswordMatch ? (
+                      <CheckIcon className="text-semantic-positive h-6 w-6" />
+                    ) : showPassword ? (
+                      <EyeOpenIcon className="h-6 w-6" />
+                    ) : (
+                      <EyeIcon className="h-6 w-6" />
+                    )}
+                  </button>
+                }
               />
-            </button>
-          }
-        />
-      </div>
 
-      {error && (
-        <p className="text-semantic-negative text-center text-sm">{error}</p>
-      )}
+              {/* 새 비밀번호 확인 */}
+              <InputField
+                type={showPasswordConfirm ? "text" : "password"}
+                value={confirmPassword}
+                onChange={setConfirmPassword}
+                placeholder="비밀번호 확인"
+                autoComplete="new-password"
+                errorMessage={
+                  confirmPassword && !isPasswordMatch
+                    ? "비밀번호가 일치하지 않습니다"
+                    : undefined
+                }
+                successMessage={
+                  confirmPassword && isPasswordMatch
+                    ? "비밀번호가 일치합니다"
+                    : undefined
+                }
+                leftIcon={<PwIcon className="h-6 w-6" />}
+                rightIcon={
+                  <button
+                    type="button"
+                    onClick={() => setShowPasswordConfirm(!showPasswordConfirm)}
+                    className="flex h-6 w-6 items-center justify-center"
+                  >
+                    {password && confirmPassword && isPasswordMatch ? (
+                      <CheckIcon className="text-semantic-positive h-6 w-6" />
+                    ) : showPasswordConfirm ? (
+                      <EyeOpenIcon className="h-6 w-6" />
+                    ) : (
+                      <EyeIcon className="h-6 w-6" />
+                    )}
+                  </button>
+                }
+              />
+            </div>
 
-      <Button
-        type="submit"
-        size="L"
-        variant="black"
-        disabled={!isFormValid}
-        onClick={handleSubmit}
-        className="!text-green disabled:!text-gray-0 mt-[31px]"
-      >
-        비밀번호 재설정
-      </Button>
+            {error && (
+              <p className="text-semantic-negative mt-[8px] text-center text-sm">
+                {error}
+              </p>
+            )}
 
-      {/* AppLayout 영역 전체를 덮는 팝업 */}
-      {isSuccess && (
-        <div className="bg-background absolute inset-0 z-50 flex justify-center">
-          <div className="flex w-[361px] flex-col items-center">
-            <p className="typo-h1 text-gray-80 pt-[241px] pb-[18px] text-center text-[28px] leading-[36px] font-bold">
-              비밀번호 변경 완료
-            </p>
-            {/*중앙정렬 안하고 피그마 기준으로 pt-[241px] 이걸로 맞춤*/}
-
-            <img
-              src={checkIcon}
-              alt="성공 아이콘"
-              className="h-[40px] w-[40px]"
-            />
             <Button
               size="L"
               variant="black"
-              onClick={() => {
-                reset();
-                navigate("/login");
-              }}
-              className="!text-green mt-[48px]"
+              disabled={!isFormValid}
+              onClick={handleSubmit}
             >
-              로그인하기
+              비밀번호 재설정
             </Button>
+          </div>
+        </div>
+      </main>
+
+      {/* 성공 오버레이 */}
+      {isSuccess && (
+        <div className="fixed inset-0 z-[200] flex justify-center">
+          <div className="bg-background flex h-full w-full max-w-[450px] flex-col">
+            <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
+              <CheckIcon className="text-green h-10 w-10" />
+              <h2 className="typo-h2">비밀번호 변경 완료</h2>
+            </div>
+            <div className="bg-blur-to-t p-4">
+              <Button
+                size="L"
+                variant="green"
+                onClick={() => {
+                  reset();
+                  navigate("/login", { replace: true });
+                }}
+              >
+                로그인
+              </Button>
+            </div>
           </div>
         </div>
       )}

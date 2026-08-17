@@ -36,7 +36,7 @@ export { default as calendarImage } from "./onboarding/Calendar.svg";
 export { default as checkChar } from "./character/check_char.svg";
 export { default as shadow } from "./character/char_shadow.svg";
 export { default as lightbulb } from "./signup/lightbulb.svg";
-export { default as chatbox } from "./signup/textIcon.svg";
+export { default as chatbox } from "./signup/chatbox.svg";
 export { default as servingChar } from "./character/serve_char.svg";
 export { default as congratsChar } from "./character/congrats_char.svg";
 export { default as confetti } from "./signup/confetti.svg";
