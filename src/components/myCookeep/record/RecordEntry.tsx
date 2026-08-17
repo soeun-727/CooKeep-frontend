@@ -20,13 +20,20 @@ export default function RecordEntry({ record }: RecordEntryProps) {
     resetRecord();
     navigate("/mycookeep/record/select");
   };
+
+  const handleViewAllClick = () => {
+    navigate("/mycookeep/records");
+  };
   return (
     <div className="relative">
       <div className="flex w-full flex-col items-start gap-2">
         <div className="flex w-full items-center justify-between px-1">
           <h1 className="typo-l-strong text-gray-80">최근에 한 요리</h1>
           {record && (
-            <button className="flex items-center text-gray-50">
+            <button
+              className="flex items-center text-gray-50"
+              onClick={handleViewAllClick}
+            >
               <p className="typo-label">전체보기</p>
               <figure className="px-[6px]">
                 <ArrowRightIcon className="h-[13px] w-2" />
