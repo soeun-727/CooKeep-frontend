@@ -178,6 +178,8 @@ export default function RecordDetailPage() {
             name={record.title}
             category=""
             usedItems={record.content.ingredients.user_ingredients.length}
+            editMode={isEditing}
+            onNameChange={setTempTitle}
           />
           <div className="flex flex-col gap-3">
             <CookingTipsSection
