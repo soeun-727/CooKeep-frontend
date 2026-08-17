@@ -121,7 +121,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
   if (isFinished) return <SuccessSection />;
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-4">
+    <div className="flex min-h-0 w-full flex-1 flex-col">
       {/* 이메일 인증 섹션 (전화번호 섹션 대체) */}
       {!isVerified && <EmailSection />}
 

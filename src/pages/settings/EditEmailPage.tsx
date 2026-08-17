@@ -5,16 +5,18 @@ import { updateEmail } from "@/api/user";
 import { useEmailUpdateStore } from "@/stores/useEmailUpdateStore";
 import axios from "axios";
 
-import checkIcon from "@/assets/signup/check.svg";
+import CheckIcon from "@/assets/signup/check.svg?react";
 
 import EmailAuthModal from "@/components/auth/signup/EmailAuthModal";
 import Button from "@/components/ui/Button";
-import TextField from "@/components/ui/TextField";
+import InputField from "@/components/ui/InputField";
 
 import { EditEmailType } from "@/types/modal";
 
 import { formatTime } from "@/utils/formateTime";
 import { validateEmail } from "@/utils/validateUtil";
+import { BackHeader } from "@/components/ui/BackHeader";
+import { useAuthStore } from "@/stores/useAuthStore";
 
 export default function EditEmailPage() {
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ export default function EditEmailPage() {
     requestVerifyCode,
     reset,
   } = useEmailUpdateStore();
+  const logout = useAuthStore(state => state.logout);
 
   const [code, setCode] = useState("");
   const [codeError, setCodeError] = useState<string>();
@@ -114,6 +117,9 @@ export default function EditEmailPage() {
             alert("이메일 변경 중 오류가 발생했습니다.");
           }
         }
+        reset(); // ★ 실패 시에도 store 초기화 → 이메일 입력창 다시 활성화
+        setTimerActive(false);
+        setCode("");
       }
     } else {
       if (result.errorStatus === 400)
@@ -127,71 +133,78 @@ export default function EditEmailPage() {
   };
 
   return (
-    <div className="bg-background relative min-h-screen">
-      <div className="mx-auto w-[361px] pt-[241px]">
-        <div className="typo-h1">이메일 주소 변경</div>
+    <div className="relative flex min-h-screen flex-col gap-30 px-4">
+      <BackHeader title="이메일 주소 변경" onBack={() => navigate(-1)} />
 
-        <div className="relative mt-[12px]">
-          <TextField
-            value={email}
-            onChange={val => setEmail(val)}
-            placeholder="새 이메일 주소 입력"
-            disabled={isCodeSent}
-            errorMessage={
-              email && !isEmailValid
-                ? "이메일 주소를 다시 확인해 주세요"
-                : undefined
-            }
-            rightIcon={
-              <button
-                type="button"
-                onClick={handleSendCode}
-                disabled={!isEmailValid || isSending}
-                className={`typo-caption text-gray-0 h-[24px] w-[102px] rounded-full ${isEmailValid ? "bg-gray-80" : "bg-gray-30"}`}
-              >
-                {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
-              </button>
-            }
-          />
+      <main className="flex flex-1 flex-col">
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
+            <div className="w-full px-1 py-2">
+              <h1 className="typo-h2">이메일 인증</h1>
+            </div>
+
+            <div className="flex w-full flex-col">
+              <InputField
+                value={email}
+                onChange={val => setEmail(val)}
+                placeholder="새 이메일 주소 입력"
+                disabled={isCodeSent}
+                errorMessage={
+                  email && !isEmailValid
+                    ? "잘못된 이메일 주소입니다"
+                    : undefined
+                }
+                rightIcon={
+                  <button
+                    type="button"
+                    onClick={handleSendCode}
+                    disabled={!isEmailValid || isSending}
+                    className={`typo-caption text-gray-0 rounded-full px-3 py-1.5 whitespace-nowrap transition-colors disabled:cursor-not-allowed ${
+                      isEmailValid ? "bg-gray-80" : "bg-gray-30"
+                    } `}
+                  >
+                    {isCodeSent ? "인증번호 재발송" : "인증번호 발송"}
+                  </button>
+                }
+              />
+
+              <InputField
+                value={code}
+                onChange={v => {
+                  const onlyNumber = v.replace(/[^0-9]/g, "");
+                  setCode(onlyNumber);
+                  if (!onlyNumber) {
+                    setCodeError(undefined);
+                  } else if (onlyNumber.length !== 6) {
+                    setCodeError("인증번호를 다시 입력해 주세요");
+                  } else {
+                    setCodeError(undefined);
+                  }
+                }}
+                placeholder="인증번호 입력"
+                disabled={!isCodeSent || isVerified}
+                errorMessage={codeError}
+              />
+            </div>
+
+            <Button
+              size="L"
+              disabled={!isCodeSent || code.length !== 6 || timeLeft === 0}
+              onClick={handleVerify}
+            >
+              인증하기 {isCodeSent && `(${formatTime(timeLeft)})`}
+            </Button>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setModalType("help")} // 이제 동작함
+            className="typo-m w-full text-center text-gray-50 underline"
+          >
+            인증 번호가 발송되지 않나요?
+          </button>
         </div>
-
-        <div className="mt-[5px]">
-          <TextField
-            value={code}
-            onChange={v => {
-              const onlyNumber = v.replace(/[^0-9]/g, "");
-              setCode(onlyNumber);
-              if (!onlyNumber) {
-                setCodeError(undefined);
-              } else if (onlyNumber.length !== 6) {
-                setCodeError("인증번호를 다시 입력해 주세요");
-              } else {
-                setCodeError(undefined);
-              }
-            }}
-            placeholder="인증번호 입력"
-            disabled={!isCodeSent || isVerified}
-            errorMessage={codeError}
-          />
-        </div>
-
-        <Button
-          size="S"
-          className="mt-[31px]"
-          disabled={!isCodeSent || code.length !== 6 || timeLeft === 0}
-          onClick={handleVerify}
-        >
-          인증하기 {isCodeSent && `(${formatTime(timeLeft)})`}
-        </Button>
-
-        <button
-          type="button"
-          onClick={() => setModalType("help")} // 이제 동작함
-          className="typo-caption mt-6 w-[361px] cursor-pointer bg-transparent text-center text-gray-50 underline"
-        >
-          인증 번호가 발송되지 않나요?
-        </button>
-      </div>
+      </main>
 
       {/* 모달 */}
       {modalType && (
@@ -209,20 +222,25 @@ export default function EditEmailPage() {
 
       {/* 성공 오버레이 */}
       {isSuccess && (
-        <div className="bg-background absolute inset-0 z-50 flex justify-center">
-          <div className="flex w-[361px] flex-col items-center">
-            <p className="typo-result-title w-full pt-[295px] pb-[18px]">
-              이메일 주소 변경 완료
-            </p>
-            <img src={checkIcon} alt="성공" className="h-[40px] w-[40px]" />
-            <Button
-              size="L"
-              variant="black"
-              className="!text-green mt-[48px]"
-              onClick={() => navigate("/settings")}
-            >
-              확인
-            </Button>
+        <div className="fixed inset-0 z-[200] flex justify-center">
+          <div className="bg-background flex h-full w-full max-w-[450px] flex-col">
+            <div className="mt-[160px] flex flex-1 flex-col items-center gap-4 px-4">
+              <CheckIcon className="text-green h-10 w-10" />
+              <h2 className="typo-h2">이메일 주소 변경 완료</h2>
+            </div>
+
+            <div className="bg-blur-to-t p-4">
+              <Button
+                size="L"
+                variant="green"
+                onClick={async () => {
+                  await logout();
+                  navigate("/login", { replace: true });
+                }}
+              >
+                로그인
+              </Button>
+            </div>
           </div>
         </div>
       )}

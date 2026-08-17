@@ -1,4 +1,4 @@
-import image from "@/assets/settings/cs.svg";
+import Image from "@/assets/settings/cs.svg?react";
 
 import { BackHeader } from "@/components/ui/BackHeader";
 
@@ -12,36 +12,39 @@ export default function SupportPage() {
   return (
     <>
       {/* 헤더 */}
-      <BackHeader title="고객센터" />
+      <main className="flex min-h-screen flex-col gap-15 px-4 pb-8">
+        <BackHeader title="고객센터" />
 
-      <main className="relative flex flex-col gap-12 px-4 pt-[97px]">
-        {/* 상단 텍스트 */}
-        <section className="">
-          <h2 className="typo-h1 text-left !text-[22px]">
-            무엇을 도와드릴까요?
-          </h2>
+        <div className="flex flex-1 flex-col justify-between">
+          <div className="flex flex-col gap-6">
+            <section>
+              <div className="flex flex-col gap-2 px-1">
+                <h2 className="typo-h2 text-gray-80">무엇을 도와드릴까요?</h2>
 
-          <p className="typo-body2 text-gray-50">
-            아래 카카오톡 채널로 문의사항을 전송해 주시면
+                <p className="typo-m text-gray-80">
+                  아래 카카오톡 채널로 문의사항을 전송해 주시면
+                  <br />
+                  순차적으로 확인 후 안내드릴게요
+                </p>
+              </div>
+            </section>
+            <Image className="h-36 w-full" />
+            {/* 이메일 버튼 */}
+            <button
+              onClick={handleOpenKakao}
+              className="bg-gray-80 typo-l-strong text-gray-0 flex h-11 items-center justify-center self-stretch rounded-xl"
+            >
+              채널 문의 바로가기
+            </button>
+          </div>
+
+          {/* 운영 시간 안내 */}
+          <p className="typo-caption-strong mt-auto text-center text-gray-50">
+            운영 시간: 평일 10:00–18:00 (주말·공휴일 제외)
             <br />
-            순차적으로 확인 후 안내드릴게요
+            영업일 기준 2–3일 이내에 답변드려요
           </p>
-        </section>
-        <img src={image} className="h-35" />
-        {/* 이메일 버튼 */}
-        <button
-          onClick={handleOpenKakao}
-          className="bg-gray-80 typo-body flex h-[56px] items-center justify-center rounded-[10px] text-[white]"
-        >
-          채널 문의 바로가기
-        </button>
-
-        {/* 운영 시간 안내 */}
-        <p className="typo-caption -mt-[23px] text-gray-50">
-          운영 시간: 평일 10:00–18:00 (주말·공휴일 제외)
-          <br />
-          영업일 기준 2–3일 이내에 답변드려요
-        </p>
+        </div>
       </main>
     </>
   );

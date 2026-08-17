@@ -36,7 +36,7 @@ export default function Button({
   `;
 
   const variantStyles = {
-    black: "bg-gray-100 text-gray-0",
+    black: "bg-gray-80 text-gray-0",
     green: "bg-green text-gray-0",
     gray: "bg-gray-30 text-gray-0",
   };

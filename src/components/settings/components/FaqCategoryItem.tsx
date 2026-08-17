@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import arrowIcon from "@/assets/signup/arrowright.svg";
+import ArrowIcon from "@/assets/signup/arrowright.svg?react";
 
 import type { FaqItem } from "@/constants/faqData";
 
@@ -21,24 +21,24 @@ export default function FaqCategoryItem({
 
   return (
     <div
-      className={`border-gray-10 flex w-full flex-col items-start self-stretch rounded-[6px] border ${
+      className={`border-gray-10 flex w-full flex-col items-start self-stretch rounded-xl border px-3 ${
         open ? "bg-gray-10" : "bg-gray-0"
       }`}
     >
       {/* 카테고리 헤더 */}
       <div
-        className={`flex w-full cursor-pointer items-center justify-between px-[12px] ${open ? "pt-[12px] pb-[6px]" : "py-[12px]"}`}
         onClick={() => setOpen(prev => !prev)}
+        className={`flex h-12 w-full cursor-pointer items-center justify-between ${open ? "py-3" : "py-3"} `}
       >
         <p
-          className={`typo-label ${open ? "text-green-deep" : "text-gray-80"}`}
+          className={
+            open ? "typo-m-strong text-green-deep" : "typo-m text-gray-80"
+          }
         >
           {title}
         </p>
-        <img
-          src={arrowIcon}
-          alt="약관 보기 화살표"
-          className={`h-[24px] w-[24px] transition-transform ${
+        <ArrowIcon
+          className={`h-6 w-6 transition-transform ${
             open ? "-rotate-90" : "rotate-90"
           }`}
         />
@@ -46,15 +46,19 @@ export default function FaqCategoryItem({
 
       {/* Q/A 리스트 */}
       {open && (
-        <div className="flex w-full flex-col gap-[14px] px-[12px] pb-[12px]">
-          {items.map(item => (
-            <FaqItemComponent
-              key={item.id}
-              question={item.question}
-              answer={item.answer}
-            />
-          ))}
-        </div>
+        <>
+          <div className="bg-gray-30 h-[1.5px] w-full" />
+
+          <div className="flex w-full flex-col gap-3 py-3">
+            {items.map(item => (
+              <FaqItemComponent
+                key={item.id}
+                question={item.question}
+                answer={item.answer}
+              />
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
