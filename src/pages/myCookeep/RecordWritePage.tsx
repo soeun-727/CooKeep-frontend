@@ -149,6 +149,8 @@ export default function RecordWritePage() {
           name={title || recipeDetail.title}
           category=""
           usedItems={recipeDetail.ingredientsJson.user_ingredients.length}
+          editMode={true}
+          onNameChange={setTitle}
         />
 
         <CookingTipsSection cookingTips={memo} onChangeCookingTips={setMemo} />
