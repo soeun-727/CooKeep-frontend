@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { unsubscribePush } from "@/api/push";
 import { MyProfileResponse, getMyProfile } from "@/api/user";
-import { loadingChar } from "@/assets";
+import loadingChar from "@/assets/character/loading_char.svg";
 import { useAuthStore } from "@/stores/useAuthStore";
 
 import ConfirmModal from "@/components/fridge/modals/ConfirmModal";

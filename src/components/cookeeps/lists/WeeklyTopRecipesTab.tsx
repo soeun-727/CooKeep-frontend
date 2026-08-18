@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { RecipeRankItem, getWeeklyRanking } from "@/api/cookeeps";
-import { LikeGrayIcon } from "@/assets";
-
+import LikeGrayIcon from "@/assets/cookeeps/like_gray.svg?react";
 import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
 
 export default function WeeklyTopRecipesTab() {
