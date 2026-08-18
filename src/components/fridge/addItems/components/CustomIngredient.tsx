@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { type ComponentType, type SVGProps, useEffect, useState } from "react";
 
 import {
   type CategoryType,
@@ -21,7 +21,7 @@ interface CustomProps {
   categories: {
     id: number;
     name: string;
-    image: string;
+    image: ComponentType<SVGProps<SVGSVGElement>>;
     serverKey: string;
   }[];
   confirmText?: string;
@@ -125,9 +125,9 @@ export default function CustomIngredient({
                       : "bg-gray-0 hover:bg-gray-10"
                   } ${isLoading ? "cursor-not-allowed opacity-50" : ""}`}
                 >
-                  <img
-                    src={cat.image}
-                    alt={cat.name}
+                  <cat.image
+                    aria-label={cat.name}
+                    role="img"
                     className="h-5 w-5 object-contain"
                   />
 

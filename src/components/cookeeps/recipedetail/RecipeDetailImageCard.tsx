@@ -1,5 +1,5 @@
 import tempRecipeImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
-import tempIcon from "@/assets/recipe/main/temp_recipe_title.svg";
+import TempIcon from "@/assets/recipe/main/temp_recipe_title.svg?react";
 
 interface RecipeDetailImageCardProps {
   images?: string[];
@@ -27,9 +27,9 @@ export default function RecipeDetailImageCard({
       <div className="bg-gray-0 shadow-search flex w-full items-center justify-center self-stretch rounded-b-[6px] px-3 py-[12px]">
         <div className="flex w-full items-center gap-2 px-2">
           {/* 아이콘 */}
-          <img
-            src={tempIcon}
-            alt="레시피 아이콘"
+          <TempIcon
+            aria-label="레시피 아이콘"
+            role="img"
             className="aspect-square h-[36px] w-[36px] flex-shrink-0"
           />
 

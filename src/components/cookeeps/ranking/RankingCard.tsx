@@ -1,6 +1,6 @@
-import crownBronze from "@/assets/cookeeps/main/crown_bronze.svg";
-import crownGold from "@/assets/cookeeps/main/crown_gold.svg";
-import crownSilver from "@/assets/cookeeps/main/crown_silver.svg";
+import CrownBronze from "@/assets/cookeeps/main/crown_bronze.svg?react";
+import CrownGold from "@/assets/cookeeps/main/crown_gold.svg?react";
+import CrownSilver from "@/assets/cookeeps/main/crown_silver.svg?react";
 
 interface RankingCardProps {
   rank: number;
@@ -10,7 +10,7 @@ interface RankingCardProps {
   isFirst?: boolean;
 }
 
-const crownSVGs = [crownGold, crownSilver, crownBronze];
+const crownSVGs = [CrownGold, CrownSilver, CrownBronze];
 
 export default function RankingCard({
   rank,
@@ -27,11 +27,16 @@ export default function RankingCard({
     >
       {/* 왕관 영역 */}
       <div className="z-10 -mb-[7px] flex h-[26px] w-[26px] items-center justify-center p-[2px]">
-        <img
-          src={crownSVGs[rank - 1]}
-          alt={`${rank}등 왕관`}
-          className="h-[22px] w-[26px]"
-        />
+        {(() => {
+          const CrownIcon = crownSVGs[rank - 1];
+          return (
+            <CrownIcon
+              aria-label={`${rank}등 왕관`}
+              role="img"
+              className="h-[22px] w-[26px]"
+            />
+          );
+        })()}
       </div>
 
       {/* 카드 박스 */}

@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 
-import waterCookieImg from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
+import WaterCookieImg from "@/assets/cookeeps/main/water_cookie_cookeeps.svg?react";
 
 interface WaterModalProps {
   isOpen: boolean;
@@ -26,9 +26,9 @@ export default function WaterModal({
         <div className="flex flex-col items-center justify-center gap-[16px] self-stretch">
           {/* 이미지 + 텍스트 */}
           <div className="flex flex-col items-center gap-[12px] self-stretch">
-            <img
-              src={waterCookieImg}
-              alt="물 쿠키"
+            <WaterCookieImg
+              aria-label="물 쿠키"
+              role="img"
               className="aspect-square h-[48px] w-[48px]"
             />
 

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import confetti from "@/assets/signup/confetti.svg";
-import mainLogo from "@/assets/logos/mainLogo.svg";
+import MainLogo from "@/assets/logos/mainLogo.svg?react";
 import Google from "@/assets/login/Google.svg?react";
 import Kakao from "@/assets/login/Kakao.svg?react";
 
@@ -55,7 +55,7 @@ export default function Initial() {
           <span className="text-gray-80 text-[12px] leading-[19.2px] font-semibold">
             1인 가구 요리 루틴 플랫폼
           </span>
-          <img src={mainLogo} alt="로고" className="w-[218px]" />
+          <MainLogo aria-label="로고" role="img" className="w-[218px]" />
         </div>
       </div>
 
