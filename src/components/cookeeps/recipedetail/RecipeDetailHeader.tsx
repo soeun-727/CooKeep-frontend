@@ -14,7 +14,7 @@ interface RecipeDetailHeaderProps {
 }
 
 export const RecipeDetailHeader = ({
-    title,
+  title,
   isLiked,
   isBookmarked,
   onLike,
@@ -34,7 +34,7 @@ export const RecipeDetailHeader = ({
   };
 
   return (
-    <section className="flex h-10 w-full flex-shrink-0 items-center justify-between self-stretch py-2 bg-background">
+    <section className="bg-background flex h-10 w-full flex-shrink-0 items-center justify-between self-stretch py-2">
       {/* 뒤로가기 버튼 */}
       <button
         type="button"
@@ -44,7 +44,7 @@ export const RecipeDetailHeader = ({
         <BackIcon className="h-5 w-5" />
       </button>
 
-       {/* 2. 타이틀 (absolute 수평 중앙 정렬) */}
+      {/* 2. 타이틀 (absolute 수평 중앙 정렬) */}
       <p className="typo-l-strong pointer-events-none absolute inset-x-0 text-center">
         {title}
       </p>
@@ -56,7 +56,7 @@ export const RecipeDetailHeader = ({
           className="flex aspect-square h-10 w-10 items-center justify-end"
         >
           <LikeVector
-            className={`h-[21px] w-6 text-gray-30  stroke-2 ${
+            className={`text-gray-30 h-[21px] w-6 stroke-2 ${
               isLiked ? "fill-gray-30" : "fill-none"
             }`}
           />
@@ -67,7 +67,7 @@ export const RecipeDetailHeader = ({
           className="flex aspect-square h-10 w-10 items-center justify-end"
         >
           <BookmarkVector
-            className={`h-[21px] w-[22px] text-gray-30  stroke-2 ${
+            className={`text-gray-30 h-[21px] w-[22px] stroke-2 ${
               isBookmarked ? "fill-gray-30" : "fill-none"
             }`}
           />

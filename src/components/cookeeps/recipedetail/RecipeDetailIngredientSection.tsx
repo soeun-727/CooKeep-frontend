@@ -1,11 +1,16 @@
-import {
-  RecipeDetailContent,
-  UserIngredientItem,
-  ExtraIngredientItem,
-} from "@/api/cookeeps";
+interface IngredientLike {
+  name: string;
+  unit: string;
+  quantity: number;
+  description?: string | null;
+}
 
 interface RecipeDetailIngredientSectionProps {
-  ingredients: RecipeDetailContent["ingredients"];
+  ingredients: {
+    user_ingredients: IngredientLike[];
+    optional_ingredients: IngredientLike[];
+    additional_ingredients: IngredientLike[];
+  };
 }
 
 export default function RecipeDetailIngredientSection({
@@ -14,15 +19,13 @@ export default function RecipeDetailIngredientSection({
   const { user_ingredients, additional_ingredients, optional_ingredients } =
     ingredients;
 
-  // 단위+수량 포맷 함수
-  const formatIngredient = (item: UserIngredientItem | ExtraIngredientItem) => {
+  const formatIngredient = (item: IngredientLike) => {
     if (!item.quantity) return item.name;
     if (!item.unit) return `${item.name} ${item.quantity}`;
     return `${item.name} ${item.quantity}${item.unit}`;
   };
 
-
- return (
+  return (
     <div className="bg-gray-0 border-gray-10 rounded-L flex w-full flex-col items-start gap-4 border px-3 py-4">
       <p className="typo-l-strong text-gray-80">필요한 재료</p>
 
