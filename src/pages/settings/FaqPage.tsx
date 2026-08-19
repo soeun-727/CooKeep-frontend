@@ -11,16 +11,19 @@ export default function FaqPage() {
 
   return (
     <>
-      <BackHeader title="FAQ" />
-      <main className="flex flex-col gap-[14px] px-4 pt-[75px] pb-[50px]">
-        {faqCategories.map(category => (
-          <FaqCategoryItem
-            key={category.id}
-            title={category.title}
-            items={category.items}
-            defaultOpen={category.id === openCategoryId}
-          />
-        ))}
+      <main className="flex flex-col gap-3 px-4 pb-12">
+        <BackHeader title="자주 하는 질문 (FAQ)" />
+
+        <div className="flex flex-col gap-3">
+          {faqCategories.map(category => (
+            <FaqCategoryItem
+              key={category.id}
+              title={category.title}
+              items={category.items}
+              defaultOpen={category.id === openCategoryId}
+            />
+          ))}
+        </div>
       </main>
     </>
   );

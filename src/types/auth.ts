@@ -10,4 +10,6 @@ export type AgreementItem = {
   label: string;
   required: boolean;
   content: string;
+  consentNotice?: string; // 추가
+  notice: string;
 };
