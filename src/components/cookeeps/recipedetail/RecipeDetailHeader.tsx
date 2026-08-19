@@ -1,10 +1,10 @@
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
 import BackIcon from "@/assets/back.svg?react";
-// import LikeVector from "@/assets/cookeeps/like_vector.svg?react";
-// import BookmarkVector from "@/assets/cookeeps/bookmark_vector.svg?react";
-import LikeVector from "@/assets/cookeeps/like.svg?react";
-import BookmarkVector from "@/assets/cookeeps/bookmark.svg?react";
+import LikeVector from "@/assets/cookeeps/like_vector.svg?react";
+import BookmarkVector from "@/assets/cookeeps/bookmark_vector.svg?react";
+// import LikeVector from "@/assets/cookeeps/like.svg?react";
+// import BookmarkVector from "@/assets/cookeeps/bookmark.svg?react";
 
 interface RecipeDetailHeaderProps {
     title: string;
@@ -41,7 +41,7 @@ export const RecipeDetailHeader = ({
       <button
         type="button"
         onClick={handleBack}
-        className="flex h-10 w-10 items-center justify-center"
+        className="flex h-10 w-10 items-center justify-start"
       >
         <BackIcon className="h-5 w-5" />
       </button>
@@ -55,10 +55,10 @@ export const RecipeDetailHeader = ({
       <div className="flex items-center">
         <button
           onClick={onLike}
-          className="flex aspect-square h-10 w-10 items-center justify-center"
+          className="flex aspect-square h-10 w-10 items-center justify-end"
         >
           <LikeVector
-            className={`h-[21px] w-6 stroke-gray-30 stroke-2 ${
+            className={`h-[21px] w-6 text-gray-30  stroke-2 ${
               isLiked ? "fill-gray-30" : "fill-none"
             }`}
           />
@@ -66,10 +66,10 @@ export const RecipeDetailHeader = ({
 
         <button
           onClick={onBookmark}
-          className="flex aspect-square h-10 w-10 items-center justify-center"
+          className="flex aspect-square h-10 w-10 items-center justify-end"
         >
           <BookmarkVector
-            className={`h-[21px] w-[22px] stroke-gray-30 stroke-2 ${
+            className={`h-[21px] w-[22px] text-gray-30  stroke-2 ${
               isBookmarked ? "fill-gray-30" : "fill-none"
             }`}
           />
