@@ -16,8 +16,8 @@ import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDeta
 import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
 import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import { BackHeader } from "@/components/ui/BackHeader";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import { RecipeDetailHeader } from "@/components/cookeeps/recipedetail/RecipeDetailHeader";
 
 export default function RecipeDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -124,62 +124,65 @@ export default function RecipeDetailPage() {
   }
 
   return (
-    <div className="min-h-screen w-full">
-      <div className="sticky top-0">
-        <BackHeader title="레시피 보기" />
-      </div>
-      <div className="mx-auto w-full max-w-[450px] px-4">
-        <div className="mx-auto flex flex-col pt-[51px]">
-          <RecipeDetailUserMeta
-            userName={recipe.nickname}
-            isLiked={!!isLiked}
-            isBookmarked={!!isBookmarked}
-            onLike={handleLikeToggle}
-            onBookmark={handleBookmarkToggle}
+  <div className="flex min-h-screen w-full flex-col items-center gap-3 self-stretch px-4">
+    {/* 헤더 */}
+    <div className="sticky top-0 w-full">
+      <RecipeDetailHeader
+        title="레시피 보기"
+        isLiked={!!isLiked}
+        isBookmarked={!!isBookmarked}
+        onLike={handleLikeToggle}
+        onBookmark={handleBookmarkToggle}
+      />
+    </div>
+
+    {/* 나머지 내용부분들: 이미지 + 콘텐츠, gap 12px */}
+    <div className="flex w-full flex-col items-center gap-3 self-stretch pb-25">
+      <RecipeDetailImageCard
+        images={recipe.recipeImageUrl ? [recipe.recipeImageUrl] : []}
+      />
+
+      {/* 내용부분: UserMeta + 나머지, gap 24px */}
+      <div className="flex w-full flex-col items-start gap-6 self-stretch">
+        <RecipeDetailUserMeta
+          userName={recipe.nickname}
+          category={recipe.category}
+          title={recipe.title}
+          usedItems={recipe.content.ingredients.user_ingredients.length}
+        />
+
+        {/* 메모 + ContentSection + Youtube, gap 12px */}
+        <div className="flex w-full flex-col items-start gap-3 self-stretch">
+          {recipe.description && (
+            <RecipeDetailMemo
+              memo={recipe.description}
+            />
+          )}
+
+          <RecipeDetailContentSection
+            recipe={{
+              ingredients: {
+                user_ingredients:
+                  recipe.content.ingredients.user_ingredients,
+                optional_ingredients:
+                  recipe.content.ingredients.optional_ingredients,
+                additional_ingredients:
+                  recipe.content.ingredients.additional_ingredients,
+              },
+              steps: recipe.content.steps,
+            }}
           />
 
-          <div className="flex w-full flex-col items-start gap-4 self-stretch">
-            <div className="flex w-full flex-col items-center gap-[10px]">
-              <div className="flex w-full flex-col items-start self-stretch">
-                <RecipeDetailImageCard
-                  images={recipe.recipeImageUrl ? [recipe.recipeImageUrl] : []}
-                  title={recipe.title}
-                />
-              </div>
-
-              <RecipeDetailContentSection
-                recipe={{
-                  ingredients: {
-                    user_ingredients:
-                      recipe.content.ingredients.user_ingredients,
-                    optional_ingredients:
-                      recipe.content.ingredients.optional_ingredients,
-                    additional_ingredients:
-                      recipe.content.ingredients.additional_ingredients,
-                  },
-                  steps: recipe.content.steps,
-                }}
-              />
-              {recipe.content.youtubeReferences &&
-                recipe.content.youtubeReferences.length > 0 && (
-                  <RecipeDetailYoutube
-                    videos={recipe.content.youtubeReferences}
-                    tags={recipe.content.youtubeSearchQueries ?? []}
-                  />
-                )}
-            </div>
-          </div>
-
-          <div className="mt-4 flex w-full flex-col items-center gap-2 pb-25">
-            {recipe.description && (
-              <RecipeDetailMemo
-                userName={recipe.nickname}
-                memo={recipe.description}
+          {recipe.content.youtubeReferences &&
+            recipe.content.youtubeReferences.length > 0 && (
+              <RecipeDetailYoutube
+                videos={recipe.content.youtubeReferences}
+                tags={recipe.content.youtubeSearchQueries ?? []}
               />
             )}
-          </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }

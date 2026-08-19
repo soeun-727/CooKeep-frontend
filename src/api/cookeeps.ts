@@ -76,6 +76,7 @@ export interface WeeklyRecipeDetailResponse {
   title: string;
   liked: boolean;
   bookmarked: boolean;
+    category?: string; // TODO: 백엔드 응답에 추가되면 optional(?) 제거
 }
 
 /** [GET] 이번 주 공개 레시피 상세 조회 */
