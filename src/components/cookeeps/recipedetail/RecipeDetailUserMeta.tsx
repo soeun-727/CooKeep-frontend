@@ -1,5 +1,5 @@
-import likeIcon from "@/assets/cookeeps/main/like_cookeeps.svg";
-import saveIcon from "@/assets/cookeeps/main/save_cookeeps.svg";
+import LikeIcon from "@/assets/cookeeps/main/like_cookeeps.svg?react";
+import SaveIcon from "@/assets/cookeeps/main/save_cookeeps.svg?react";
 
 interface RecipeDetailUserMetaProps {
   userName: string;
@@ -30,9 +30,9 @@ export default function RecipeDetailUserMeta({
           onClick={onLike}
           className="flex h-[36px] w-[36px] items-center justify-center rounded-full"
         >
-          <img
-            src={likeIcon}
-            alt="좋아요"
+          <LikeIcon
+            aria-label="좋아요"
+            role="img"
             className={`h-8 w-8 ${isLiked ? "brightness-100 invert" : ""}`}
           />
         </button>
@@ -41,9 +41,9 @@ export default function RecipeDetailUserMeta({
           onClick={onBookmark}
           className="flex h-[36px] w-[36px] items-center justify-center rounded-full"
         >
-          <img
-            src={saveIcon}
-            alt="저장"
+          <SaveIcon
+            aria-label="저장"
+            role="img"
             className={`h-8 w-8 ${isBookmarked ? "brightness-100 invert" : ""}`}
           />
         </button>

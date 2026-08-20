@@ -1,7 +1,7 @@
 import { CSSProperties, ComponentType, SVGProps } from "react";
 import { createPortal } from "react-dom";
 
-import optionIcon from "@/assets/mycookeep/record/options.svg";
+import OptionIcon from "@/assets/mycookeep/record/options.svg?react";
 
 interface RecipeOptionMenuProps {
   isOpen: boolean;
@@ -73,7 +73,7 @@ export default function RecipeOptionMenu({
         {Icon ? (
           <Icon className={iconClassName} />
         ) : (
-          <img src={optionIcon} className="w-1" alt="option" />
+          <OptionIcon className="w-1" aria-label="option" role="img" />
         )}
       </button>
     </div>

@@ -1,6 +1,6 @@
 import { memo } from "react";
 
-import deleteIcon from "@/assets/icons/delete.svg";
+import DeleteIcon from "@/assets/icons/delete.svg?react";
 
 interface ItemProps {
   image: string;
@@ -26,9 +26,9 @@ function Item({
       className={`relative flex h-[90px] w-[90px] flex-col items-center justify-center rounded-[6px] border px-4 py-[13px] ${isSelected ? "bg-green-light border-green-deep" : "bg-gray-0 border-gray-10"}`}
     >
       {isCustom && (
-        <img
-          src={deleteIcon}
-          alt="delete"
+        <DeleteIcon
+          aria-label="delete"
+          role="img"
           className="absolute top-[9px] right-[10px] z-10 h-3 cursor-pointer"
           onClick={e => {
             e.stopPropagation();

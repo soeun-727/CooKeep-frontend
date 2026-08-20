@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg";
+import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg?react";
 
 import { PLANT_NAME_KR } from "@/constants/plantNames";
 import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
@@ -82,7 +82,7 @@ export default function PlantGrowthCard({
 
               {/* 여기를 handleRefreshClick으로 수정했습니다 */}
               <button onClick={handleRefreshClick}>
-                <img src={RefreshIcon} alt="새로고침" className="h-4 w-4" />
+                <RefreshIcon aria-label="새로고침" role="img" className="h-4 w-4" />
               </button>
             </div>
 

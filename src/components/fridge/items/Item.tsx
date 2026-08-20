@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 
-import check from "@/assets/fridge/check.svg";
-import checkOn from "@/assets/fridge/check_selected.svg";
+import Check from "@/assets/fridge/check.svg?react";
+import CheckOn from "@/assets/fridge/check_selected.svg?react";
 
 interface ItemProps {
   image: string;
@@ -55,11 +55,19 @@ export default memo(function Item({
         }}
         className="absolute bottom-0 left-0 z-10 h-8 w-8 flex-shrink-0"
       >
-        <img
-          src={isSelected ? checkOn : check}
-          className="w-full flex-shrink-0 object-contain"
-          alt="check"
-        />
+        {isSelected ? (
+          <CheckOn
+            className="w-full flex-shrink-0 object-contain"
+            aria-label="check"
+            role="img"
+          />
+        ) : (
+          <Check
+            className="w-full flex-shrink-0 object-contain"
+            aria-label="check"
+            role="img"
+          />
+        )}
       </button>
 
       <img
