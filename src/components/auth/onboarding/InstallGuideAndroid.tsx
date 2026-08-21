@@ -59,7 +59,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
           {/* 가이드 영역 */}
           <div className="flex w-full flex-col items-center gap-[30px]">
             {/* 아이콘 롤링 영역 */}
-            <div className="relative -mx-4 flex w-screen max-w-[450px] items-center justify-center overflow-hidden px-4 py-1">
+            <div className="relative -mx-4 flex w-screen max-w-[450px] items-center justify-center overflow-hidden py-1">
               {/* 화면 좌측 끝 그라데이션 블러 */}
               <div className="from-background pointer-events-none absolute top-0 left-0 z-20 h-full w-14 bg-gradient-to-r to-transparent" />
 
