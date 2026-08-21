@@ -1,4 +1,4 @@
-﻿/**
+/**
  * PWA/TWA/웹뷰 등 앱(Standalone) 환경인지 판별합니다.
  */
 export const checkIsApp = (): boolean => {
@@ -27,4 +27,11 @@ export const checkIsIOS = (): boolean => {
     /iPad|iPhone|iPod/.test(navigator.userAgent) ||
     (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
   );
+};
+
+/**
+ * 모바일(Android 또는 iOS) 환경인지 판별합니다.
+ */
+export const checkIsMobile = (): boolean => {
+  return checkIsAndroid() || checkIsIOS();
 };

@@ -20,7 +20,7 @@ import Progress from "../../components/auth/onboarding/Progress";
 import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
-import { checkIsAndroid, checkIsApp } from "@/utils/device";
+import { checkIsAndroid, checkIsApp, checkIsMobile } from "@/utils/device";
 import { GOAL_TYPE_MAP } from "../../utils/getGoalDescription";
 
 export default function Onboarding() {
@@ -169,7 +169,7 @@ export default function Onboarding() {
 
   // --- 조건부 렌더링 ---
   if (showInstallGuide) {
-    if (checkIsApp()) {
+    if (checkIsApp() || !checkIsMobile()) {
       navigate("/fridge", { replace: true });
       return null;
     }
@@ -183,7 +183,7 @@ export default function Onboarding() {
     return (
       <Notification
         onNext={() => {
-          if (checkIsApp()) {
+          if (checkIsApp() || !checkIsMobile()) {
             navigate("/fridge", { replace: true });
           } else {
             setShowInstallGuide(true);

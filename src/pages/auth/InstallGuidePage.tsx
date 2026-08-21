@@ -1,28 +1,29 @@
-﻿import { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import InstallGuideAndroid from "@/components/auth/onboarding/InstallGuideAndroid";
 import InstallGuideIOS from "@/components/auth/onboarding/InstallGuideIOS";
-import { checkIsAndroid, checkIsApp } from "@/utils/device";
+import { checkIsAndroid, checkIsApp, checkIsMobile } from "@/utils/device";
 
 export default function InstallGuidePage() {
   const navigate = useNavigate();
   const isApp = checkIsApp();
+  const isMobile = checkIsMobile();
   const isAndroid = checkIsAndroid();
 
   useEffect(() => {
-    if (isApp) {
+    // 앱(standalone) 환경이거나 PC 환경인 경우 설치 가이드 없이 바로 메인으로 이동
+    if (isApp || !isMobile) {
       navigate("/fridge", { replace: true });
     }
-  }, [isApp, navigate]);
+  }, [isApp, isMobile, navigate]);
 
-  if (isApp) return null;
+  if (isApp || !isMobile) return null;
 
   const handleFinish = () => {
     navigate("/fridge");
   };
 
-  // Android 기기인 경우 Android 가이드, iOS 및 PC 등 그 외 기기는 iOS 가이드 노출
   if (isAndroid) {
     return <InstallGuideAndroid onFinish={handleFinish} />;
   }
