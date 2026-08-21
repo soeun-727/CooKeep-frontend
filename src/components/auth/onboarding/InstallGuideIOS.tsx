@@ -50,12 +50,31 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
             </p>
           </div>
           {/* 가이드 영역 */}
-          <div className="w-[463px] overflow-hidden py-3">
-            <div className="animate-roll-left flex gap-[13.5px] pr-[13.5px]">
-              {INFINITE_ICONS.map((Icon, index) => (
-                <Icon key={index} className="h-19 w-19 shrink-0" />
-              ))}
+          <div className="relative -mx-4 flex w-screen max-w-[450px] items-center justify-center overflow-hidden py-1">
+            {/* 화면 좌측 끝 흰 그라데이션 블러 */}
+            <div className="from-background pointer-events-none absolute top-0 left-0 z-20 h-full w-14 bg-gradient-to-r to-transparent" />
+
+            {/* 글래스모피즘 테두리 컨테이너 */}
+            <div
+              className="w-full overflow-hidden py-3"
+              style={{
+                borderRadius: "15.556px",
+                border: "0.972px solid rgba(255, 255, 255, 0.40)",
+                background:
+                  "linear-gradient(129deg, rgba(255, 255, 255, 0.08) 1.91%, rgba(255, 255, 255, 0.43) 68.31%)",
+                backdropFilter: "blur(39.1764030456543px)",
+                WebkitBackdropFilter: "blur(39.1764030456543px)",
+              }}
+            >
+              <div className="animate-roll-left flex gap-[13.5px] pr-[13.5px]">
+                {INFINITE_ICONS.map((Icon, index) => (
+                  <Icon key={index} className="h-19 w-19 shrink-0" />
+                ))}
+              </div>
             </div>
+
+            {/* 화면 우측 끝 흰 그라데이션 블러 */}
+            <div className="from-background pointer-events-none absolute top-0 right-0 z-20 h-full w-14 bg-gradient-to-l to-transparent" />
           </div>
         </div>
       </div>
