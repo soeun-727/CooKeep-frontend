@@ -58,7 +58,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
       </div>
 
       {/* ================= 하단 버튼 ================= */}
-      <div className="fixed bottom-0 left-1/2 w-full -translate-x-1/2 px-4">
+      <div className="fixed bottom-0 left-1/2 w-full max-w-[450px] -translate-x-1/2 px-4">
         <Button size="L" variant="green" onClick={onFinish}>
           확인
         </Button>

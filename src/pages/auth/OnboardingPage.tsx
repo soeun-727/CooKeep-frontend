@@ -10,7 +10,7 @@ import AuthHeader from "../../components/auth/AuthHeader";
 import Footer from "../../components/auth/onboarding/Footer";
 import Goal from "../../components/auth/onboarding/Goal";
 import Guide from "../../components/auth/onboarding/Guide";
-import InstallGuide from "../../components/auth/onboarding/InstallGuide";
+import InstallGuide from "../../components/auth/onboarding/InstallGuideIOS";
 import Last from "../../components/auth/onboarding/Last";
 import Notification from "../../components/auth/onboarding/Notification";
 import OnboardingHeader from "../../components/auth/onboarding/OnboardingHeader";
