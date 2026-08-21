@@ -1,9 +1,16 @@
 import { useNavigate } from "react-router-dom";
 
 import MainLogo from "@/assets/logos/mainLogo.svg?react";
-import installGuideImage from "@/assets/onboarding/installGuideImage.svg";
+import SettingsIcon from "@/assets/onboarding/settingsIcon.svg?react";
+import AppstoreIcon from "@/assets/onboarding/appstoreIcon.svg?react";
+import AppIcon from "@/assets/onboarding/appIcon.svg?react";
+import MailIcon from "@/assets/onboarding/mailIcon.svg?react";
+import PhoneIcon from "@/assets/onboarding/phoneIcon.svg?react";
 
 import Button from "@/components/ui/Button";
+
+const ICONS = [SettingsIcon, AppstoreIcon, AppIcon, MailIcon, PhoneIcon];
+const INFINITE_ICONS = [...ICONS, ...ICONS];
 
 interface InstallGuideProps {
   onFinish: () => void;
@@ -13,8 +20,8 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative flex min-h-screen flex-col items-center gap-[90px] px-4">
-      <div className="flex w-full flex-col items-center gap-15">
+    <div className="relative flex min-h-screen flex-col items-center gap-[178px] px-4">
+      <div className="flex w-full flex-col items-center gap-[90px]">
         <header className="flex w-full justify-end">
           <button
             onClick={() =>
@@ -28,21 +35,29 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
           </button>
         </header>
         {/* ================= 상단 (로고 + 제목 + 소제목) ================= */}
-        <div className="flex w-full flex-col items-center gap-2">
-          <div className="flex w-full flex-col items-center gap-[2px]">
-            <MainLogo aria-label="CooKeep Logo" role="img" className="h-7" />
-            <h1 className="typo-h2">홈 화면에서 편하게 만나보세요!</h1>
+        <div className="flex w-full flex-col items-center gap-12">
+          <div className="gap-2">
+            <div className="flex w-full flex-col items-center gap-[2px]">
+              <MainLogo
+                aria-label="CooKeep Logo"
+                role="img"
+                className="h-7 w-full"
+              />
+              <h1 className="typo-h2">홈 화면에서 편하게 만나보세요!</h1>
+            </div>
+            <p className="typo-l-strong text-green-deep w-full text-center">
+              더 쉽고 빠르게 서비스를 이용할 수 있어요
+            </p>
           </div>
-          <p className="typo-l-strong text-green-deep w-full text-center">
-            더 쉽고 빠르게 서비스를 이용할 수 있어요
-          </p>
+          {/* 가이드 영역 */}
+          <div className="w-[463px] overflow-hidden py-3">
+            <div className="animate-roll-left flex gap-[13.5px] pr-[13.5px]">
+              {INFINITE_ICONS.map((Icon, index) => (
+                <Icon key={index} className="h-19 w-19 shrink-0" />
+              ))}
+            </div>
+          </div>
         </div>
-
-        <img
-          src={installGuideImage}
-          alt="Install Guide"
-          className="h-[202px] w-full object-contain"
-        />
       </div>
 
       {/* ================= 설명 영역 ================= */}
