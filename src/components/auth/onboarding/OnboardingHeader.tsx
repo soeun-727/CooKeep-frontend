@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import backIcon from "../../../assets/back.svg";
+import BackIcon from "../../../assets/back.svg?react";
 
 interface OnboardingHeaderProps {
   onSkip: () => void;
@@ -19,7 +19,7 @@ export default function OnboardingHeader({
   return (
     <header className="bg-background z-50 flex w-full max-w-[450px] items-center justify-between py-2">
       <button type="button" onClick={() => handleBack()} className="h-10 w-10">
-        <img src={backIcon} alt="뒤로 가기" className="h-5" />
+        <BackIcon aria-label="뒤로 가기" role="img" className="h-5" />
       </button>
 
       <button

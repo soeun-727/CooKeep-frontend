@@ -1,14 +1,14 @@
-import { memo } from "react";
+import { type ComponentType, type SVGProps, memo } from "react";
 
 interface CategoryProps {
-  image: string;
+  image: ComponentType<SVGProps<SVGSVGElement>>;
   name: string;
   isSelected: boolean;
   onSelect: () => void;
 }
 
 function Category({
-  image,
+  image: Image,
   name,
   isSelected = false,
   onSelect,
@@ -20,7 +20,7 @@ function Category({
       className={`rounded-S flex h-12 px-4 py-2 ${isSelected ? "bg-gray-200" : "bg-gray-0"}`}
     >
       <div className="flex items-center justify-center gap-[6px]">
-        <img src={image} className="h-5 w-5" />
+        <Image className="h-5 w-5" />
         <span className="typo-label whitespace-nowrap text-gray-50">
           {name}
         </span>

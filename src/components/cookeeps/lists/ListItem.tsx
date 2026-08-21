@@ -1,4 +1,4 @@
-import { bookmarkGray, likeGray } from "@/assets/index";
+import { BookmarkGrayIcon, LikeGrayIcon } from "@/assets/index";
 
 interface ItemProps {
   type: string;
@@ -39,7 +39,7 @@ export default function ListItem({
           onClick={handleIconClick}
           className="flex w-[38px] items-center justify-between transition-transform active:scale-90"
         >
-          <img src={likeGray} alt="like" className="w-4" />
+          <LikeGrayIcon aria-label="like" role="img" className="w-4" />
           <span className="typo-caption text-gray-50">{likes}</span>
         </button>
       ) : (
@@ -47,7 +47,7 @@ export default function ListItem({
           onClick={handleIconClick}
           className="pr-2 transition-transform active:scale-90"
         >
-          <img src={bookmarkGray} alt="bookmark" className="w-7" />
+          <BookmarkGrayIcon aria-label="bookmark" role="img" className="w-7" />
         </button>
       )}
     </div>

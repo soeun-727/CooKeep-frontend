@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import arrowRight from "@/assets/signup/arrowright.svg";
+import ArrowRight from "@/assets/signup/arrowright.svg?react";
 
 interface RecipeDetailYoutubeProps {
   videos: {
@@ -35,9 +35,9 @@ export default function RecipeDetailYoutube({
         </div>
 
         {/* 화살표 */}
-        <img
-          src={arrowRight}
-          alt="토글 버튼"
+        <ArrowRight
+          aria-label="토글 버튼"
+          role="img"
           className={`h-[24px] w-[24px] flex-shrink-0 transition-transform duration-200 ${isOpen ? "rotate-270" : "rotate-90"} `}
         />
       </button>

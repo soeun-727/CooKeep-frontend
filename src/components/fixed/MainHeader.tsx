@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
-import backIcon from "@/assets/back.svg";
-import settings from "@/assets/fixed/settings.svg";
-import { mainLogo } from "@/assets/index";
+import BackIcon from "@/assets/back.svg?react";
+import SettingsIcon from "@/assets/fixed/settings.svg?react";
+import { MainLogo } from "@/assets/index";
 
 interface MainHeaderProps {
   isAllView: boolean;
@@ -29,12 +29,12 @@ export default function MainHeader({ isAllView }: MainHeaderProps) {
           <div className="flex h-12 flex-1">
             {isAllView ? (
               <button onClick={handleBack}>
-                <img className="ml-[18px] h-9" src={backIcon} />
+                <BackIcon className="ml-[18px] h-9" />
               </button>
             ) : (
-              <img
-                src={mainLogo}
-                alt="CooKeep logo"
+              <MainLogo
+                aria-label="CooKeep logo"
+                role="img"
                 className="ml-[31px] w-24 object-contain pb-1"
               />
             )}
@@ -42,7 +42,7 @@ export default function MainHeader({ isAllView }: MainHeaderProps) {
 
           <div className="mr-[15px] flex h-9 w-9 items-center justify-end">
             <button className="" onClick={handleSettings}>
-              <img src={settings} alt="settings" className="w-9" />
+              <SettingsIcon aria-label="settings" role="img" className="w-9" />
             </button>
           </div>
         </div>

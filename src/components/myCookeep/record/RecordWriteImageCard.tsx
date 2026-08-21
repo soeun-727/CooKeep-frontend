@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import editIcon from "@/assets/fridge/edit_memo.svg";
+import EditIcon from "@/assets/fridge/edit_memo.svg?react";
 import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
 
 interface RecordWriteImageCardProps {
@@ -118,9 +118,9 @@ export default function RecordWriteImageCard({
               </h2>
             )}
             {/* 아이콘 */}
-            <img
-              src={editIcon}
-              alt="제목 수정"
+            <EditIcon
+              aria-label="제목 수정"
+              role="img"
               className="h-[18px] w-[18px] flex-shrink-0 cursor-pointer"
               onClick={() => setIsEditing(true)}
             />

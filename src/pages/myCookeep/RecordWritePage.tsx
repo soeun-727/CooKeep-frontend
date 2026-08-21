@@ -9,8 +9,8 @@ import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { AxiosError } from "axios";
 import imageCompression from "browser-image-compression";
 
-import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import PrivateIcon from "@/assets/mycookeep/record/private_icon.svg?react";
+import PublicIcon from "@/assets/mycookeep/record/public_icon.svg?react";
 
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
@@ -237,9 +237,9 @@ export default function RecordWritePage() {
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                  <img
-                    src={privateIcon}
-                    alt="private"
+                  <PrivateIcon
+                    aria-label="private"
+                    role="img"
                     className="h-[24px] w-[24px]"
                   />
                 </div>
@@ -251,9 +251,9 @@ export default function RecordWritePage() {
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                  <img
-                    src={publicIcon}
-                    alt="public"
+                  <PublicIcon
+                    aria-label="public"
+                    role="img"
                     className="h-[36px] w-[36px]"
                   />
                 </div>

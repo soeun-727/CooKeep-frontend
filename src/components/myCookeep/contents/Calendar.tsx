@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { CalendarRecipe, getCalendarRecipes } from "@/api/myRecipe";
 
 import PrevIcon from "@/assets/fridge/addItem/backward.svg?react";
-import todaySign from "@/assets/mycookeep/today.svg";
+import TodaySign from "@/assets/mycookeep/today.svg?react";
 
 import { daysOfWeek } from "@/constants/dateOfWeek";
 
@@ -122,9 +122,9 @@ export default function Calendar({ onDateClick }: CalendarProps) {
             <div key={dateStr} className="relative flex justify-center">
               {/* 오늘 표시 (생략) */}
               {isToday && (
-                <img
-                  src={todaySign}
-                  alt="today"
+                <TodaySign
+                  aria-label="today"
+                  role="img"
                   className="pointer-events-none absolute -top-3 z-40 w-18 max-w-none"
                 />
               )}
