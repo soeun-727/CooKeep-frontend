@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import fullLikeIcon from "@/assets/cookeeps/main/full_like_cookeeps.svg";
+import FullLikeIcon from "@/assets/cookeeps/main/full_like_cookeeps.svg?react";
 
 interface RecipeRankCardProps {
   rank: number;
@@ -39,7 +39,7 @@ export default function RecipeRankCard({
 
       {/* 좋아요 (고정 영역) */}
       <div className="mx-4 flex flex-shrink-0 items-center gap-1">
-        <img src={fullLikeIcon} alt="like" className="h-5 w-5" />
+        <FullLikeIcon aria-label="like" role="img" className="h-5 w-5" />
         <span className="text-[12px] whitespace-nowrap text-gray-400">
           {likes}
         </span>

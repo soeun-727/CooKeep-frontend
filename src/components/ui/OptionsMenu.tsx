@@ -73,7 +73,7 @@ export default function RecipeOptionMenu({
         {Icon ? (
           <Icon className={iconClassName} />
         ) : (
-          <OptionIcon className="text-gray-30 h-5 w-5" />
+          <OptionIcon className="w-1" aria-label="option" role="img" />
         )}
       </button>
     </div>

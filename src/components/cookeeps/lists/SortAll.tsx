@@ -1,4 +1,4 @@
-import sortIcon from "@/assets/fridge/sort.svg";
+import SortIcon from "@/assets/fridge/sort.svg?react";
 
 import { COOKEEPS_SORT_OPIONS } from "@/constants/cookeeps";
 
@@ -22,7 +22,7 @@ export default function SortAll({ currentOrder, onSortChange }: SortProps) {
       <span className="text-[12px] leading-[16px] font-medium text-gray-50">
         {currentOrder}
       </span>
-      <img src={sortIcon} className="h-[16px] w-[16px]" />
+      <SortIcon className="h-[16px] w-[16px]" />
     </button>
   );
 }

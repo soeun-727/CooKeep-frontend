@@ -1,6 +1,6 @@
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import treeIcon from "@/assets/cookeeps/main/tree_cookeeps.svg";
+import TreeIcon from "@/assets/cookeeps/main/tree_cookeeps.svg?react";
 
 export default function GrowthProgressBar({
   overridePlantStage,
@@ -28,7 +28,7 @@ export default function GrowthProgressBar({
           style={{ left: `calc(${percent}% - 16px)` }}
         >
           <div className="bg-gray-0 flex h-8 w-8 items-center justify-center rounded-full shadow">
-            <img src={treeIcon} alt="tree" className="h-4 w-4" />
+            <TreeIcon aria-label="tree" role="img" className="h-4 w-4" />
           </div>
         </div>
       </div>

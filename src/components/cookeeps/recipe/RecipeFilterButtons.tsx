@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import likeIcon from "@/assets/cookeeps/main/like_cookeeps.svg";
-import saveIcon from "@/assets/cookeeps/main/save_cookeeps.svg";
-import arrowRight from "@/assets/signup/arrowright.svg";
+import LikeIcon from "@/assets/cookeeps/main/like_cookeeps.svg?react";
+import SaveIcon from "@/assets/cookeeps/main/save_cookeeps.svg?react";
+import ArrowRight from "@/assets/signup/arrowright.svg?react";
 
 export default function RecipeFilterButtons() {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export default function RecipeFilterButtons() {
         className="flex items-center gap-1 text-[12px] font-semibold text-gray-400"
       >
         전체보기
-        <img src={arrowRight} alt="arrow" className="h-5 w-5" />
+        <ArrowRight aria-label="arrow" role="img" className="h-5 w-5" />
       </button>
 
       {/* 좋아요 / 북마크 */}
@@ -23,13 +23,13 @@ export default function RecipeFilterButtons() {
           onClick={() => navigate("/cookeeps/liked")}
           className="flex items-center"
         >
-          <img src={likeIcon} alt="likes" className="h-6 w-6" />
+          <LikeIcon aria-label="likes" role="img" className="h-6 w-6" />
         </button>
         <button
           onClick={() => navigate("/cookeeps/bookmarked")}
           className="flex items-center"
         >
-          <img src={saveIcon} alt="bookmarks" className="h-6 w-6" />
+          <SaveIcon aria-label="bookmarks" role="img" className="h-6 w-6" />
         </button>
       </div>
     </div>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import CookieIcon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
+import CookieIcon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg?react";
 
 import WaterModal from "../modals/WaterModal";
 
@@ -97,9 +97,9 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
           }`}
         >
           물 주기( -{/* 2. 이모지 대신 img 태그 삽입 */}
-          <img
-            src={CookieIcon}
-            alt="cookie"
+          <CookieIcon
+            aria-label="cookie"
+            role="img"
             className="h-4 w-4 object-contain"
           />
           10)
