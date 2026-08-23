@@ -34,7 +34,7 @@ export default function Statistics() {
   return (
     <div className="relative flex w-full flex-col items-center gap-2">
       <h1 className="text-gray-80 typo-l-strong w-full px-1 text-left">
-        나의 식재료 소비 달성 현황
+        이번 달 식재료 소비 현황
       </h1>
 
       <section className="bg-gray-0 rounded-L border-gray-10 flex w-full gap-3 border px-3 py-4">
