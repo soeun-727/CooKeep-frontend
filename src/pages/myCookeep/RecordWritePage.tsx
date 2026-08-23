@@ -7,6 +7,7 @@ import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { AxiosError } from "axios";
 
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
 import RecordImageContent from "@/components/myCookeep/record/RecordImageContent";
@@ -27,6 +28,7 @@ export default function RecordWritePage() {
   const [isUploading, setIsUploading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [rewardQueue, setRewardQueue] = useState<string[]>([]);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
 
   const {
     selectedRecipeId,
@@ -126,6 +128,11 @@ export default function RecordWritePage() {
     }
   };
 
+  const handleCancelConfirm = () => {
+    resetRecord();
+    navigate(-1);
+  };
+
   if (!recipeDetail) {
     return (
       <div className="flex h-full items-center justify-center">
@@ -136,8 +143,11 @@ export default function RecordWritePage() {
 
   return (
     <>
-      <div className="mb-20 flex flex-col gap-3">
-        <BackHeader title="레시피 등록" />
+      <div className="mb-20 flex flex-col gap-3 px-4">
+        <BackHeader
+          title="레시피 등록"
+          onBack={() => setIsCancelModalOpen(true)}
+        />
 
         <RecordImageContent
           imageSrc={image?.url}
@@ -180,7 +190,7 @@ export default function RecordWritePage() {
         <VisibleChangeSection isPublic={isPublic} onChange={setIsPublic} />
       </div>
 
-      <div className="fixed bottom-0 mx-auto w-full max-w-[450px] pt-6">
+      <div className="fixed bottom-0 mx-auto w-full max-w-[450px] px-4 pt-6">
         <Button
           size="L"
           variant="green"
@@ -245,6 +255,15 @@ export default function RecordWritePage() {
               }, 100);
             }
           }}
+        />
+      )}
+      {isCancelModalOpen && (
+        <ConfirmModal
+          title="레시피 등록을 취소하시겠어요?"
+          subtitle="기존에 입력한 정보는 저장되지 않아요"
+          onConfirm={handleCancelConfirm}
+          buttonVariants={["gray", "black"]}
+          onCancel={() => setIsCancelModalOpen(false)}
         />
       )}
     </>

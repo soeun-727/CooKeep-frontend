@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AxiosError } from "axios";
-
 import {
   OnboardingIngredient,
   getOnboardingIngredients,
@@ -12,6 +10,7 @@ import {
   updateDislikeIngredientList,
 } from "@/api/user";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
+import { AxiosError } from "axios";
 
 import Preference from "@/components/auth/onboarding/Preference";
 import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
@@ -97,14 +96,14 @@ const ExcludedIngredientPage = () => {
 
   return (
     <section className="flex h-full flex-col px-4">
-      <BackHeader title="못 먹는 재료 수정" />
+      <BackHeader title="못 먹는 재료 관리" />
       <div className="mt-15 flex flex-1">
         <Preference
           allIngredients={allIngredients}
           initialSelectedIngredients={dislikedIngredients}
         />
       </div>
-      <Button variant="black" size="L" onClick={() => setIsModalOpen(true)}>
+      <Button variant="green" size="L" onClick={() => setIsModalOpen(true)}>
         수정완료
       </Button>
 

@@ -156,14 +156,16 @@ export default function RecordDetailPage() {
     <div className="mb-20 flex w-full flex-col">
       <div className="relative">
         <BackHeader />
-        <div className="absolute top-2 right-0 flex items-center">
-          <RecipeOptionMenu
-            isOpen={isMenuOpen}
-            onToggle={() => setIsMenuOpen(!isMenuOpen)}
-            onEdit={handleEdit}
-            onDelete={handleDeleteClick}
-          />
-        </div>
+        {!isEditing && (
+          <div className="absolute top-2 right-0 flex items-center">
+            <RecipeOptionMenu
+              isOpen={isMenuOpen}
+              onToggle={() => setIsMenuOpen(!isMenuOpen)}
+              onEdit={handleEdit}
+              onDelete={handleDeleteClick}
+            />
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-3">

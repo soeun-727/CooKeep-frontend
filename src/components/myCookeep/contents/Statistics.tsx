@@ -59,8 +59,8 @@ export default function Statistics() {
           <p className="typo-m text-gray-80">
             유통기한 임박 식재료 3개를 요리하면
             <br />
-            <span className="text-green typo-m-strong">0.8kg</span>의 CO₂ 배출을
-            줄일 수 있어요
+            <span className="text-green-deep typo-m-strong">0.8kg</span>의 CO₂
+            배출을 줄일 수 있어요
           </p>
         </div>
 
@@ -77,7 +77,7 @@ export default function Statistics() {
             </figure>
 
             <div className="typo-label flex flex-col items-center">
-              <p className="text-green">0.03그루</p>
+              <p className="text-green-deep">0.03그루</p>
               <p className="text-gray-50">나무 심기</p>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function Statistics() {
             </figure>
 
             <div className="typo-label flex flex-col items-center">
-              <p className="text-green">4km</p>
+              <p className="text-green-deep">4km</p>
               <p className="text-gray-50">자동차 미주행</p>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function Statistics() {
             </figure>
 
             <div className="typo-label flex flex-col items-center">
-              <p className="text-green">약 2시간</p>
+              <p className="text-green-deep">약 2시간</p>
               <p className="text-gray-50">전기 절약</p>
             </div>
           </div>

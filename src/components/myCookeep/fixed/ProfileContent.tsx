@@ -67,7 +67,7 @@ export const ProfileContent = () => {
             <p className="text-green-deep">
               {profile?.growingPlantName || "요리 실력을"}
             </p>
-            <p className="text-gray-30">키우는 중!</p>
+            <p className="text-gray-30">키우는 중</p>
           </span>
         </div>
       </div>
