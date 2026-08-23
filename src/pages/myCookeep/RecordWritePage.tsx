@@ -20,6 +20,7 @@ import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
 import { compressAndUploadImage } from "@/utils/imageUpload";
+import { setTodayRecord } from "@/utils/record";
 
 export default function RecordWritePage() {
   const navigate = useNavigate();
@@ -112,6 +113,7 @@ export default function RecordWritePage() {
           rewards.push("PHOTO_UPLOAD");
         }
 
+        setTodayRecord();
         setRewardQueue(rewards);
         setIsSuccess(true);
       } else {

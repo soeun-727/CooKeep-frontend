@@ -39,9 +39,7 @@ export default function MyCookeepPage() {
     handleCalendarMonthChange,
     reset: resetCalendarSelection,
   } = useCalendarRecordSelection();
-  const [enteredByBottomTab, setEnteredByBottomTab] = useState(
-    location.state?.fromTab === true,
-  );
+  const [enteredByBottomTab, setEnteredByBottomTab] = useState(false);
   const fetchCookies = useCookeepsStore(s => s.fetchCookies);
   const fetchProfile = useMyCookeepStore(s => s.fetchProfile);
 
@@ -49,6 +47,14 @@ export default function MyCookeepPage() {
     fetchCookies();
     fetchProfile();
   }, [fetchCookies, fetchProfile]);
+
+  // /mycookeep는 단일 라우트라 하단 탭 재진입 시 컴포넌트가 리마운트되지 않아
+  // location.state 변화를 별도로 감지해야 함
+  useEffect(() => {
+    if (location.state?.fromTab) {
+      setEnteredByBottomTab(true);
+    }
+  }, [location.key, location.state]);
 
   useEffect(() => {
     if (activeTab === "record") {
