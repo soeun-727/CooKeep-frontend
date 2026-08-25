@@ -319,7 +319,7 @@ export default function CookeepsPage() {
       <main className="flex w-full flex-col gap-6">
         <div className="relative z-60 flex w-full flex-col items-center gap-2">
           {/* 식물 카드 (PlantBackground + PlantGrowthCard) */}
-          <section className="shadow-container flex w-full flex-col items-center self-stretch overflow-hidden rounded-2xl bg-[#FAFAFA]">
+          <section className="bg-background flex w-full flex-col items-center self-stretch overflow-hidden rounded-2xl">
             <PlantBackground
               showToast={toastVisible}
               message="물 주기에 성공했어요!"

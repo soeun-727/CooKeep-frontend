@@ -26,7 +26,7 @@ export default function GrowthProgressBar({
         {/* 핸들 */}
         <div
           className="absolute top-1/2 -translate-y-1/2 duration-300"
-          style={{ left: `calc(${percent}% - 16px)` }}
+          style={{ left: `calc(${percent}% - 2px)` }}
         >
           <div className="bg-gray-0/90 drop-shadow-container flex h-8 w-8 items-center justify-center rounded-full backdrop-blur-[1px]">
             <TreeIcon
