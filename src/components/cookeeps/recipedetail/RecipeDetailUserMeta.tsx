@@ -20,9 +20,7 @@ export default function RecipeDetailUserMeta({
           </span>
         )}
         <div className="bg-green-light text-green-deep typo-caption rounded-S px-3 py-[2px]">
-          <span>
-            {userName} 님의 레시피
-          </span>
+          <span>{userName} 님의 레시피</span>
         </div>
       </div>
 

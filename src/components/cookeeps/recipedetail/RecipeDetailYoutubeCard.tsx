@@ -1,7 +1,7 @@
 //TODO: 여기 일단 피그마에 맞게 바꿨는데 영상부분이 아예 안나와서 확인은 못해봄...
 import { useState } from "react";
 
-import arrowRight from "@/assets/signup/arrowright.svg";
+import ArrowRight from "@/assets/signup/arrowright.svg?react";
 
 interface RecipeDetailYoutubeProps {
   videos: {
@@ -20,7 +20,6 @@ export default function RecipeDetailYoutube({
 
   if (!videos || videos.length === 0) return null;
 
-  
   // 닫힌 상태
   if (!isOpen) {
     return (
@@ -32,9 +31,10 @@ export default function RecipeDetailYoutube({
         <span className="typo-l-strong text-gray-80 flex h-6 flex-1 flex-col justify-center overflow-hidden text-left text-ellipsis whitespace-nowrap">
           비슷한 레시피 영상 참고하기
         </span>
-        <img
-          src={arrowRight}
-          alt="펼치기"
+        {/* 화살표 */}
+        <ArrowRight
+          aria-label="토글 버튼"
+          role="img"
           className="h-6 w-6 flex-shrink-0 rotate-270"
         />
       </button>
@@ -53,7 +53,11 @@ export default function RecipeDetailYoutube({
         <span className="typo-l-strong text-gray-80 flex h-6 flex-1 flex-col justify-center overflow-hidden text-left text-ellipsis whitespace-nowrap">
           비슷한 레시피 영상 참고하기
         </span>
-        <img src={arrowRight} alt="접기" className="h-6 w-6 flex-shrink-0 rotate-90" />
+        <ArrowRight
+          aria-label="토글 버튼"
+          role="img"
+          className="h-6 w-6 flex-shrink-0 rotate-90"
+        />
       </button>
 
       {/* 태그 */}

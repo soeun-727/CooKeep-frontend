@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import foodIcon from "@/assets/mycookeep/record/fork_knife_plate.svg";
+import FoodIcon from "@/assets/mycookeep/record/fork_knife_plate.svg?react";
 import temp from "@/assets/mycookeep/record/temp_food_photo.svg";
 
 interface RecordViewImageCardProps {
@@ -122,9 +122,9 @@ export default function RecordViewImageCard({
           {/* 왼쪽 아이콘 + 제목 */}
           <div className="flex flex-1 items-center gap-[4px] px-2">
             {/* 기본 아이콘 */}
-            <img
-              src={foodIcon}
-              alt="요리 아이콘"
+            <FoodIcon
+              aria-label="요리 아이콘"
+              role="img"
               className="h-[38px] w-[38px] flex-shrink-0"
             />
 

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import mainLogo from "@/assets/logos/mainLogo.svg";
+import MainLogo from "@/assets/logos/mainLogo.svg?react";
 import installGuideImage from "@/assets/onboarding/installGuideImage.svg";
 
 import Button from "@/components/ui/Button";
@@ -30,7 +30,7 @@ export default function InstallGuide({ onFinish }: InstallGuideProps) {
         {/* ================= 상단 (로고 + 제목 + 소제목) ================= */}
         <div className="flex w-full flex-col items-center gap-2">
           <div className="flex w-full flex-col items-center gap-[2px]">
-            <img src={mainLogo} alt="CooKeep Logo" className="h-7" />
+            <MainLogo aria-label="CooKeep Logo" role="img" className="h-7" />
             <h1 className="typo-h2">홈 화면에서 편하게 만나보세요!</h1>
           </div>
           <p className="typo-l-strong text-green-deep w-full text-center">

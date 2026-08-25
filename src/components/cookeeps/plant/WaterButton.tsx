@@ -2,8 +2,7 @@ import { useState } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import WaterIcon from "@/assets/cookeeps/main/waterdrop.svg";
-
+import WaterIcon from "@/assets/cookeeps/main/waterdrop.svg?react";
 import WaterModal from "../modals/WaterModal";
 
 interface WaterButtonProps {
@@ -66,9 +65,9 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
               : "border-green bg-gray-0/90 shadow-container active:scale-95"
           }`}
         >
-          <img
-            src={WaterIcon}
-            alt="water"
+          <WaterIcon
+            aria-label="water"
+            role="img"
             className="h-[23px] w-[23px] object-contain"
           />
           <span

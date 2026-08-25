@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { DailyRecipe } from "@/api/myRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
-import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import PrivateIcon from "@/assets/mycookeep/record/private_icon.svg?react";
+import PublicIcon from "@/assets/mycookeep/record/public_icon.svg?react";
 import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
 
 import SelectViewTypeModal from "./SelectViewTypeModal";
@@ -102,11 +102,19 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
                   : "pointer-events-none translate-y-2 scale-95 opacity-0"
               } `}
             >
-              <img
-                src={isPublic ? privateIcon : publicIcon}
-                alt="옵션 변경"
-                className={isPublic ? "h-[24px] w-[24px]" : "h-[36px] w-[36px]"}
-              />
+              {isPublic ? (
+                <PrivateIcon
+                  aria-label="옵션 변경"
+                  role="img"
+                  className="h-[24px] w-[24px]"
+                />
+              ) : (
+                <PublicIcon
+                  aria-label="옵션 변경"
+                  role="img"
+                  className="h-[36px] w-[36px]"
+                />
+              )}
             </button>
 
             {/* 현재 상태 버튼 */}
@@ -117,11 +125,19 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
               }}
               className="bg-gray-0 shadow-search flex h-9 w-9 items-center justify-center rounded-full"
             >
-              <img
-                src={isPublic ? publicIcon : privateIcon}
-                alt="공개 여부"
-                className={isPublic ? "h-[36px] w-[36px]" : "h-[24px] w-[24px]"}
-              />
+              {isPublic ? (
+                <PublicIcon
+                  aria-label="공개 여부"
+                  role="img"
+                  className="h-[36px] w-[36px]"
+                />
+              ) : (
+                <PrivateIcon
+                  aria-label="공개 여부"
+                  role="img"
+                  className="h-[24px] w-[24px]"
+                />
+              )}
             </button>
           </div>
         </div>

@@ -1,50 +1,52 @@
-import bean from "@/assets/fridge/items/bean.svg";
-import bread from "@/assets/fridge/items/bread.svg";
-import candy from "@/assets/fridge/items/candy.svg";
-import drink from "@/assets/fridge/items/drink.svg";
-import egg from "@/assets/fridge/items/egg.svg";
-import elseIcon from "@/assets/fridge/items/else.svg";
-import ferment from "@/assets/fridge/items/fermented.svg";
-import fish from "@/assets/fridge/items/fish.svg";
-import fruit from "@/assets/fridge/items/fruit.svg";
-import meat from "@/assets/fridge/items/meat.svg";
-import rice from "@/assets/fridge/items/rice.svg";
-import salt from "@/assets/fridge/items/salt.svg";
-import simple from "@/assets/fridge/items/simple.svg";
-import veg from "@/assets/fridge/items/vegatable.svg";
+import type { ComponentType, SVGProps } from "react";
+
+import Bean from "@/assets/fridge/items/bean.svg?react";
+import Bread from "@/assets/fridge/items/bread.svg?react";
+import Candy from "@/assets/fridge/items/candy.svg?react";
+import Drink from "@/assets/fridge/items/drink.svg?react";
+import Egg from "@/assets/fridge/items/egg.svg?react";
+import ElseIcon from "@/assets/fridge/items/else.svg?react";
+import Ferment from "@/assets/fridge/items/fermented.svg?react";
+import Fish from "@/assets/fridge/items/fish.svg?react";
+import Fruit from "@/assets/fridge/items/fruit.svg?react";
+import Meat from "@/assets/fridge/items/meat.svg?react";
+import Rice from "@/assets/fridge/items/rice.svg?react";
+import Salt from "@/assets/fridge/items/salt.svg?react";
+import Simple from "@/assets/fridge/items/simple.svg?react";
+import Veg from "@/assets/fridge/items/vegatable.svg?react";
 
 export interface CategoryItem {
   id: number;
   name: string;
-  image: string;
+  image: ComponentType<SVGProps<SVGSVGElement>>;
   serverKey: string;
 }
 
 export const INGREDIENT_CATEGORIES: CategoryItem[] = [
-  { id: 1, name: "채소", image: veg, serverKey: "VEGETABLE" },
-  { id: 2, name: "과일", image: fruit, serverKey: "FRUIT" },
-  { id: 3, name: "육류", image: meat, serverKey: "MEAT" },
-  { id: 4, name: "해산물", image: fish, serverKey: "SEAFOOD" },
-  { id: 5, name: "유제품 · 계란", image: egg, serverKey: "DAIRY_EGG" },
+  { id: 1, name: "채소", image: Veg, serverKey: "VEGETABLE" },
+  { id: 2, name: "과일", image: Fruit, serverKey: "FRUIT" },
+  { id: 3, name: "육류", image: Meat, serverKey: "MEAT" },
+  { id: 4, name: "해산물", image: Fish, serverKey: "SEAFOOD" },
+  { id: 5, name: "유제품 · 계란", image: Egg, serverKey: "DAIRY_EGG" },
   {
     id: 6,
     name: "곡물 · 쌀 · 면",
-    image: rice,
+    image: Rice,
     serverKey: "GRAIN_RICE_NOODLE",
   },
-  { id: 7, name: "베이커리", image: bread, serverKey: "BAKERY" },
+  { id: 7, name: "베이커리", image: Bread, serverKey: "BAKERY" },
   {
     id: 8,
     name: "양념 · 소스 · 조미료",
-    image: salt,
+    image: Salt,
     serverKey: "SEASONING_SAUCE",
   },
-  { id: 9, name: "즉석 · 간편식", image: simple, serverKey: "READY_MEAL" },
-  { id: 10, name: "과자 · 디저트", image: candy, serverKey: "SNACK_DESSERT" },
-  { id: 11, name: "음료", image: drink, serverKey: "BEVERAGE" },
-  { id: 12, name: "절임 · 발효", image: ferment, serverKey: "FERMENTED" },
-  { id: 13, name: "콩류", image: bean, serverKey: "BEANS" },
-  { id: 14, name: "기타", image: elseIcon, serverKey: "ETC" },
+  { id: 9, name: "즉석 · 간편식", image: Simple, serverKey: "READY_MEAL" },
+  { id: 10, name: "과자 · 디저트", image: Candy, serverKey: "SNACK_DESSERT" },
+  { id: 11, name: "음료", image: Drink, serverKey: "BEVERAGE" },
+  { id: 12, name: "절임 · 발효", image: Ferment, serverKey: "FERMENTED" },
+  { id: 13, name: "콩류", image: Bean, serverKey: "BEANS" },
+  { id: 14, name: "기타", image: ElseIcon, serverKey: "ETC" },
 ];
 
 export const CATEGORY_ID_TO_SERVER_KEY = Object.fromEntries(

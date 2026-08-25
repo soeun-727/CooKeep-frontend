@@ -11,8 +11,8 @@ import {
 } from "@/api/myRecipe";
 import imageCompression from "browser-image-compression";
 
-import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
+import PrivateIcon from "@/assets/mycookeep/record/private_icon.svg?react";
+import PublicIcon from "@/assets/mycookeep/record/public_icon.svg?react";
 
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
@@ -256,7 +256,11 @@ export default function RecordDetailPage() {
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === false ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                  <img src={privateIcon} className="w-[24px]" alt="private" />
+                  <PrivateIcon
+                    className="w-[24px]"
+                    aria-label="private"
+                    role="img"
+                  />
                 </div>
                 <span className="typo-label text-gray-80">나만 보기</span>
               </button>
@@ -268,7 +272,11 @@ export default function RecordDetailPage() {
                 className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${tempIsPublic === true ? "bg-green-light" : "bg-gray-10"}`}
               >
                 <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                  <img src={publicIcon} className="w-[36px]" alt="public" />
+                  <PublicIcon
+                    className="w-[36px]"
+                    aria-label="public"
+                    role="img"
+                  />
                 </div>
                 <span className="typo-label text-gray-80">쿠킵스 공개</span>
               </button>

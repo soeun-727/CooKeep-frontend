@@ -2,6 +2,11 @@ import { useEffect } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
+<<<<<<< HEAD
+=======
+import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg?react";
+
+>>>>>>> develop
 import { PLANT_NAME_KR } from "@/constants/plantNames";
 import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
 
@@ -61,11 +66,31 @@ export default function PlantGrowthCard({
               {plantName}
             </span>
 
+<<<<<<< HEAD
             {/* 날짜 시간 */}
             <span className="typo-caption self-stretch text-gray-50">
               {dateText} 기준
             </span>
           </div>
+=======
+        <div className="bg-gray-0 rounded-xl px-[15px] pt-[23px] pb-2 shadow">
+          <div className="mx-auto flex max-w-[360px] flex-col items-center">
+            <div className="flex h-9 w-full items-center justify-between">
+              <div className="flex h-[26px] items-center justify-center gap-2">
+                <span className="text-gray-80 text-[18px] font-semibold">
+                  {plantName}
+                </span>
+                <span className="mt-1 text-xs text-gray-50">
+                  {dateText} 기준
+                </span>
+              </div>
+
+              {/* 여기를 handleRefreshClick으로 수정했습니다 */}
+              <button onClick={handleRefreshClick}>
+                <RefreshIcon aria-label="새로고침" role="img" className="h-4 w-4" />
+              </button>
+            </div>
+>>>>>>> develop
 
           <div className="w-full self-stretch">
             <GrowthProgressBar overridePlantStage={overridePlantStage} />
