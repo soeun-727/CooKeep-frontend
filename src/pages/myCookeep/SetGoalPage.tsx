@@ -48,8 +48,12 @@ export default function SetGoalPage() {
     if (isLastStep) {
       setIsModalOpen(true);
     } else {
-      setStep(prev => prev + 1);
+      setStep(step => step + 1);
     }
+  };
+
+  const handlePrev = () => {
+    setStep(step => step - 1);
   };
   const handleConfirm = async () => {
     setIsLoading(true);
@@ -93,14 +97,21 @@ export default function SetGoalPage() {
 
       <main className="flex w-full flex-1">{STEPS[step]}</main>
 
-      <Button
-        size="S"
-        variant="green"
-        onClick={handleNext}
-        disabled={!isValid || isLoading}
-      >
-        {isLastStep ? "확인" : "다음"}
-      </Button>
+      <div className="flex flex-col gap-1">
+        <Button
+          size="L"
+          variant="green"
+          onClick={handleNext}
+          disabled={!isValid || isLoading}
+        >
+          다음
+        </Button>
+        {isLastStep && (
+          <Button size="S" variant="gray" onClick={handlePrev}>
+            이전
+          </Button>
+        )}
+      </div>
 
       {isModalOpen && (
         <ConfirmModal
