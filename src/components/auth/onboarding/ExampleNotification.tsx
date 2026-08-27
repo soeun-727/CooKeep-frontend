@@ -17,10 +17,12 @@ export default function ExampleNotification({
           CooKeep
         </span>
       </div>
-      <span className="text-[10px] leading-3 font-semibold">{title}</span>
-      <span className="text-[8px] leading-2.5 font-normal break-keep whitespace-pre-wrap">
-        {description}
-      </span>
+      <div className="flex flex-1 flex-col justify-between">
+        <span className="text-[10px] leading-3 font-semibold">{title}</span>
+        <span className="text-[8px] leading-2.5 font-normal break-keep whitespace-pre-wrap">
+          {description}
+        </span>
+      </div>
     </div>
   );
 }

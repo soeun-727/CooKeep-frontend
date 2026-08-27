@@ -10,7 +10,8 @@ import AuthHeader from "../../components/auth/AuthHeader";
 import Footer from "../../components/auth/onboarding/Footer";
 import Goal from "../../components/auth/onboarding/Goal";
 import Guide from "../../components/auth/onboarding/Guide";
-import InstallGuide from "../../components/auth/onboarding/InstallGuide";
+import InstallGuideAndroid from "../../components/auth/onboarding/InstallGuideAndroid";
+import InstallGuideIOS from "../../components/auth/onboarding/InstallGuideIOS";
 import Last from "../../components/auth/onboarding/Last";
 import Notification from "../../components/auth/onboarding/Notification";
 import OnboardingHeader from "../../components/auth/onboarding/OnboardingHeader";
@@ -19,6 +20,7 @@ import Progress from "../../components/auth/onboarding/Progress";
 import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
+import { checkIsAndroid, checkIsApp, checkIsMobile } from "@/utils/device";
 import { GOAL_TYPE_MAP } from "../../utils/getGoalDescription";
 
 export default function Onboarding() {
@@ -166,10 +168,29 @@ export default function Onboarding() {
   };
 
   // --- 조건부 렌더링 ---
-  if (showInstallGuide)
-    return <InstallGuide onFinish={() => navigate("/fridge")} />;
+  if (showInstallGuide) {
+    if (checkIsApp() || !checkIsMobile()) {
+      navigate("/fridge", { replace: true });
+      return null;
+    }
+    return checkIsAndroid() ? (
+      <InstallGuideAndroid onFinish={() => navigate("/fridge")} />
+    ) : (
+      <InstallGuideIOS onFinish={() => navigate("/fridge")} />
+    );
+  }
   if (showNotification)
-    return <Notification onNext={() => setShowInstallGuide(true)} />;
+    return (
+      <Notification
+        onNext={() => {
+          if (checkIsApp() || !checkIsMobile()) {
+            navigate("/fridge", { replace: true });
+          } else {
+            setShowInstallGuide(true);
+          }
+        }}
+      />
+    );
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
   if (step === 1 && !areIngredientsLoaded) return <LoadingScreen />;
 
