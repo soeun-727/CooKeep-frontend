@@ -2,6 +2,7 @@ import { memo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { DailyRecipe } from "@/api/myRecipe";
+import { shadow } from "@/assets";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
 import PrivateIcon from "@/assets/mycookeep/record/one_person.svg?react";
@@ -14,9 +15,13 @@ import { ChangeVisibility } from "../bottomTabBarContent/ChangeVisibility";
 
 interface RecordCardProps {
   record: DailyRecipe;
+  haveShadow?: boolean;
 }
 
-function RecordCard({ record: initialRecord }: RecordCardProps) {
+function RecordCard({
+  record: initialRecord,
+  haveShadow = false,
+}: RecordCardProps) {
   const navigate = useNavigate();
   const updateRecordVisibility = useCookeepRecordStore(
     state => state.updateRecordVisibility,
@@ -41,7 +46,7 @@ function RecordCard({ record: initialRecord }: RecordCardProps) {
 
   return (
     <div
-      className="border-gray-10 bg-gray-0 flex w-full gap-4 rounded-[16px] border px-3 py-4"
+      className={`border-gray-10 bg-gray-0 flex w-full gap-4 rounded-[16px] border px-3 py-4 ${haveShadow && "shadow-container"}`}
       onClick={() => navigate(`/mycookeep/record/${record.dailyRecipeId}`)}
     >
       {/* 요리 이미지 */}

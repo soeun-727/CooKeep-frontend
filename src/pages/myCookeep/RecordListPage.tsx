@@ -40,7 +40,7 @@ export default function RecordListPage() {
       <BackHeader title="전체보기" />
       <div className="flex w-full flex-col gap-3">
         {records.map(record => (
-          <RecordCard key={record.dailyRecipeId} record={record} />
+          <RecordCard key={record.dailyRecipeId} record={record} haveShadow />
         ))}
       </div>
     </section>
