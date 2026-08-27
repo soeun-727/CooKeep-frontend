@@ -2,7 +2,6 @@ import { memo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { DailyRecipe } from "@/api/myRecipe";
-import { shadow } from "@/assets";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
 import PrivateIcon from "@/assets/mycookeep/record/one_person.svg?react";
