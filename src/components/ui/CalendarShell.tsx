@@ -45,7 +45,7 @@ export const CalendarShell = ({
 
       <div className="grid w-full grid-cols-7">
         {daysOfWeek.map(day => (
-          <div key={day} className="typo-m text-green text-center">
+          <div key={day} className="typo-m text-green-deep text-center">
             {day}
           </div>
         ))}
