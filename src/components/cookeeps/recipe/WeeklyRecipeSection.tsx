@@ -13,14 +13,7 @@ interface WeeklyRecipeSectionProps {
 function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
   const navigate = useNavigate();
 
-  const filledRecipes = Array.from({ length: 3 }, (_, i) => {
-    const recipe = topRecipes[i];
-    return {
-      recipe,
-      rank: i + 1,
-      isPlaceholder: !recipe,
-    };
-  });
+  const recipesToShow = topRecipes.slice(0, 3);
 
   const isEmpty = topRecipes.length === 0;
 
@@ -52,18 +45,15 @@ function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
         </div>
       ) : (
         <div className="border-gray-10 bg-gray-0 flex flex-col items-start gap-4 self-stretch rounded-2xl border px-3 py-4">
-          {filledRecipes.map(({ recipe, rank, isPlaceholder }) => (
+          {recipesToShow.map((recipe, index) => (
             <RecipeListItem
-              key={recipe?.dailyRecipeId ?? `placeholder-${rank}`}
-              rank={rank}
-              title={isPlaceholder ? "레시피를 등록해주세요" : recipe.title}
-              subtitle={recipe?.nickname}
-              image={recipe?.recipeImageUrl ?? undefined}
-              isPlaceholder={isPlaceholder}
-              badge={{ type: "like", likes: recipe?.likeCount ?? 0 }}
-              onSelect={() =>
-                recipe && navigate(`/cookeeps/${recipe.dailyRecipeId}`)
-              }
+              key={recipe.dailyRecipeId}
+              rank={index + 1}
+              title={recipe.title}
+              subtitle={recipe.nickname}
+              image={recipe.recipeImageUrl ?? undefined}
+              badge={{ type: "like", likes: recipe.likeCount ?? 0 }}
+              onSelect={() => navigate(`/cookeeps/${recipe.dailyRecipeId}`)}
             />
           ))}
         </div>
