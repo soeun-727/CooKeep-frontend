@@ -153,7 +153,7 @@ export default function RecordDetailPage() {
   if (!record) return null;
 
   return (
-    <div className="mb-20 flex w-full flex-col">
+    <div className="mb-20 flex w-full flex-col px-4">
       <div className="relative">
         <BackHeader />
         {!isEditing && (
