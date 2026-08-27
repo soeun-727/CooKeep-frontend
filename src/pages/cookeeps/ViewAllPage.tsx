@@ -62,7 +62,7 @@ export default function ViewAllPage() {
     setIsLast(false);
     setRecipes([]); //추가
     fetchRecipes(0, true);
-  }, [sortOrder]); // fetchRecipes를 넣으면 무한 루프 위험이 있어 정렬 조건만 감시
+  }, [sortOrder]);
 
   // 5. 페이지 번호 변경 감지
   useEffect(() => {
@@ -81,7 +81,7 @@ export default function ViewAllPage() {
           setPage(prev => prev + 1);
         }
       },
-      { threshold: 0.1 }, // 1.0 보다는 0.1 정도가 더 매끄럽게 작동합니다.
+      { threshold: 0.1 },
     );
 
     observer.observe(observerTarget.current);
@@ -111,7 +111,7 @@ export default function ViewAllPage() {
               key={item.dailyRecipeId}
               rank={index + 1}
               title={item.title}
-              // subtitle={item.nickname} // 백엔드 필드 추가되면 연결
+              subtitle={item.nickname}
               image={item.recipeImageUrl ?? undefined}
               badge={{ type: "like", likes: item.likeCount }}
               onSelect={() =>

@@ -91,7 +91,7 @@ export default function RecipeListItem({
         )}
 
         {badge.type === "bookmark" && (
-          <BookmarkIcon className="text-gray-30 h-6 w-6" />
+          <BookmarkIcon className="text-gray-30 h-6 w-6 fill-current" />
         )}
 
         {onDelete && (

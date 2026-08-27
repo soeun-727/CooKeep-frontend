@@ -34,6 +34,7 @@ export interface MyRecipeListItem {
   likeCount: number;
   recipeImageUrl: string | null;
   createdAt: string;
+  nickname: string;
 }
 export interface MyRecipePageResponse {
   content: MyRecipeListItem[];

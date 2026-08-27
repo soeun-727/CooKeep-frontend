@@ -43,7 +43,7 @@ export default function RecipeFilterButtons() {
             className="border-gray-10 bg-gray-0 flex h-12 w-full cursor-pointer items-center gap-3 rounded-[12px] border p-3 transition-colors"
           >
             {/* 왼쪽 아이콘 */}
-            <IconComponent className="text-green aspect-square h-6 w-6 flex-shrink-0" />
+            <IconComponent className="text-green aspect-square h-6 w-6 flex-shrink-0 fill-none" />
 
             {/* 텍스트 영역 */}
             <span className="typo-m-strong text-gray-80 flex h-6 flex-1 items-center justify-start overflow-hidden text-left text-ellipsis whitespace-nowrap">

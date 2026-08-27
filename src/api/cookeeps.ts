@@ -6,7 +6,7 @@ export interface RecipeRankItem {
   rank: number;
   recipeImageUrl: string | null;
   title: string;
-  nickname: string; // 추가
+  nickname: string;
 }
 
 export interface WateringRankItem {
@@ -76,7 +76,7 @@ export interface WeeklyRecipeDetailResponse {
   title: string;
   liked: boolean;
   bookmarked: boolean;
-    category?: string; // TODO: 백엔드 응답에 추가되면 optional(?) 제거
+  category?: string; // TODO: 백엔드 응답에 추가되면 optional(?) 제거
 }
 
 /** [GET] 이번 주 공개 레시피 상세 조회 */
@@ -105,6 +105,7 @@ export interface AllRecipeItem {
   likeCount: number;
   recipeImageUrl: string | null;
   createdAt: string;
+  nickname: string;
 }
 
 export interface AllRecipesResponse {
@@ -138,8 +139,6 @@ export const getWeeklyRanking = async () => {
   const res = await api.get<{ data: RankingResponse }>("/api/cookeeps/ranking");
   return res.data.data;
 };
-
-// api/cookeeps.ts
 
 /** [GET] 온보딩 완료 여부 조회 */
 export const getOnboardingStatus = () => {

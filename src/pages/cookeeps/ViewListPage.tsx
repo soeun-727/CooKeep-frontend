@@ -112,7 +112,7 @@ export default function ViewListPage({ type }: ViewListPageProps) {
               <RecipeListItem
                 key={item.dailyRecipeId}
                 title={item.title}
-                // subtitle={item.nickname} // 백엔드 필드 추가되면 연결
+                subtitle={item.nickname}
                 image={item.recipeImageUrl ?? undefined}
                 badge={
                   isLiked
