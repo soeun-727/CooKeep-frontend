@@ -3,12 +3,14 @@ import ImageModal from "@/components/ui/ImageModal";
 
 interface WaterModalProps {
   isOpen: boolean;
+  isLoading?: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
 
 export default function WaterModal({
   isOpen,
+  isLoading = false,
   onClose,
   onConfirm,
 }: WaterModalProps) {
@@ -24,6 +26,7 @@ export default function WaterModal({
       buttonTexts={["네", "아니오"]}
       buttonVariants={["green", "gray"]}
       buttonActions={[onConfirm, onClose]}
+      buttonDisabled={[isLoading, isLoading]}
       onBackdropClick={onClose}
     />
   );

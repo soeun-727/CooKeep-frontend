@@ -20,21 +20,29 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
     setFreeWaterMode,
   } = useCookeepsStore();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const disabled =
-    !selectedPlant || plantStage >= 4 || (!isFreeWaterMode && cookie < 10);
+    !selectedPlant ||
+    plantStage >= 4 ||
+    (!isFreeWaterMode && cookie < 10) ||
+    isSubmitting;
 
   const { wantsToWater, setWantsToWater } = useCookeepsStore();
 
   const handleConfirm = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     try {
       await waterPlant();
       if (onSuccess) onSuccess(); // 성공 시에만 toast
     } catch {
       alert("물 주기에 실패했습니다. 다시 시도해 주세요.");
+    } finally {
+      setIsSubmitting(false);
+      setWantsToWater(false);
+      setModalOpen(false);
     }
-    setWantsToWater(false);
-    setModalOpen(false);
   };
 
   const isModalOpenControlled =
@@ -46,13 +54,18 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
         <button
           disabled={disabled}
           onClick={async () => {
+            if (isSubmitting) return;
+
             if (isFreeWaterMode) {
+              setIsSubmitting(true);
               try {
                 await freeWaterPlant();
                 setFreeWaterMode(false);
                 onSuccess?.();
               } catch {
                 alert("무료 물주기에 실패했습니다.");
+              } finally {
+                setIsSubmitting(false);
               }
               return;
             }
@@ -88,7 +101,9 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
 
         <WaterModal
           isOpen={isModalOpenControlled}
+          isLoading={isSubmitting}
           onClose={() => {
+            if (isSubmitting) return;
             setModalOpen(false);
             setWantsToWater(false);
           }}
