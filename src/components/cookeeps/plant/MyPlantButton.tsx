@@ -1,4 +1,3 @@
-// components/cookeeps/plant/MyPlantButton.tsx
 import { useNavigate } from "react-router-dom";
 
 import bookIcon from "@/assets/cookeeps/main/cookeeps_bookmark.svg";

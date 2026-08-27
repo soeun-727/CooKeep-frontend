@@ -343,7 +343,7 @@ export default function CookeepsPage() {
           {isFreeWaterMode && showFreeWaterTooltip && (
             <div
               className="flex w-[232px] flex-col items-center backdrop-blur-[1px]"
-              style={{ filter: "drop-shadow(0 4px 16px rgba(17,17,17,0.10))" }}
+              style={{ filter: "drop-shadow-container" }}
             >
               <BalloonTip className="block h-[9px] w-[11px] text-white/90" />
               <div className="flex items-center justify-center rounded-[8px] bg-white/90 px-3 py-2">

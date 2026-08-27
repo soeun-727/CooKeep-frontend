@@ -1,4 +1,3 @@
-// components/cookeeps/recipe/RecipeSearchField.tsx
 import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
 import SearchIcon from "@/assets/fridge/search.svg?react";
 
