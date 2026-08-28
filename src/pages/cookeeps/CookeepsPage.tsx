@@ -15,8 +15,8 @@ import { PLANT_DATA } from "@/constants/plantData";
 import { preloadImage } from "@/utils/preloadImage";
 
 import { useCookeepsModals } from "@/hooks/useCookeepsModals";
-import BalloonTip from "@/assets/cookeeps/balloon_tip.svg?react";
 import { CookeepsModalManager } from "@/components/cookeeps/modals/CookeepsModalManager";
+import { SpeechBubble } from "@/components/ui/SpeechBubble";
 
 export default function CookeepsPage() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -129,16 +129,14 @@ export default function CookeepsPage() {
 
           {/* 물주기 안내 툴팁 */}
           {isFreeWaterMode && showFreeWaterTooltip && (
-            <div
-              className="flex w-[232px] flex-col items-center backdrop-blur-[1px]"
-              style={{ filter: "drop-shadow-container" }}
-            >
-              <BalloonTip className="block h-[9px] w-[11px] text-white/90" />
-              <div className="flex items-center justify-center rounded-[8px] bg-white/90 px-3 py-2">
-                <p className="typo-caption text-gray-80 text-center">
-                  버튼을 클릭하여 식물에게 물을 줄 수 있어요!
-                </p>
-              </div>
+            <div className="backdrop-blur-[1px]">
+              <SpeechBubble
+                text="버튼을 클릭하여 식물에게 물을 줄 수 있어요!"
+                textStyle="typo-caption text-gray-80 text-center"
+                trianglePosition="top"
+                bgClassName="bg-white/90"
+                paddingClassName="px-3 py-2"
+              />
             </div>
           )}
         </div>

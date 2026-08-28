@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import BalloonTip from "@/assets/cookeeps/balloon_tip.svg?react";
+import { SpeechBubble } from "@/components/ui/SpeechBubble";
 
 interface SelectedModalProps {
   isOpen: boolean;
@@ -56,12 +56,15 @@ export default function SelectedModal({
               </div>
 
               <div className="flex flex-col items-center">
-                <BalloonTip className="text-gray-10 block h-[9px] w-[11px]" />
-                <div className="bg-gray-10 flex h-[35px] items-center justify-center rounded-[4px] px-4 py-1">
-                  <span className="typo-caption text-center text-gray-50">
-                    {description}
-                  </span>
-                </div>
+                <SpeechBubble
+                  text={description}
+                  textStyle="typo-caption text-gray-50"
+                  trianglePosition="top"
+                  bgClassName="bg-gray-10"
+                  paddingClassName="px-4 py-1"
+                  radiusClassName="rounded-[4px]"
+                  triangleClassName="border-b-gray-10 -mb-1 h-0 w-0 border-x-[8px] border-b-[16px] border-x-transparent"
+                />
               </div>
             </div>
           </div>
