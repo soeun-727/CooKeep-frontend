@@ -48,7 +48,7 @@ export default function RecipeDetailYoutube({
       <button
         type="button"
         onClick={() => setIsOpen(false)}
-        className="flex w-full items-center justify-between self-stretch"
+        className="flex w-full items-center justify-between"
       >
         <span className="typo-l-strong text-gray-80 flex h-6 flex-1 flex-col justify-center overflow-hidden text-left text-ellipsis whitespace-nowrap">
           비슷한 레시피 영상 참고하기
@@ -60,9 +60,8 @@ export default function RecipeDetailYoutube({
         />
       </button>
 
-      {/* 태그 */}
       {tags.length > 0 && (
-        <div className="flex w-full flex-wrap content-start items-start gap-1 self-stretch">
+        <div className="flex w-full flex-wrap content-start items-start gap-1">
           {tags.map((tag, idx) => (
             <span key={idx} className="text-green-deep typo-caption">
               {`# ${tag}`}
@@ -72,7 +71,7 @@ export default function RecipeDetailYoutube({
       )}
 
       {/* 영상 3개 */}
-      <div className="flex w-full items-start gap-2 self-stretch">
+      <div className="flex w-full items-start gap-2">
         {videos.slice(0, 3).map((video, idx) => (
           <a
             key={idx}
@@ -81,14 +80,14 @@ export default function RecipeDetailYoutube({
             rel="noopener noreferrer"
             className="flex w-[101px] flex-col items-start gap-2"
           >
-            <div className="rounded-S bg-gray-10 h-15 w-full flex-shrink-0 self-stretch overflow-hidden">
+            <div className="rounded-S bg-gray-10 h-15 w-full flex-shrink-0 overflow-hidden">
               <img
                 src={video.thumbnail}
                 alt={video.title}
                 className="h-full w-full object-cover"
               />
             </div>
-            <p className="typo-caption-strong text-gray-80 line-clamp-1 w-full self-stretch">
+            <p className="typo-caption-strong text-gray-80 line-clamp-1 w-full">
               {video.title}
             </p>
           </a>

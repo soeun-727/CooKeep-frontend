@@ -41,7 +41,7 @@ export default function RankingCard({
 
       {/* 카드 박스 */}
       <div
-        className={`flex w-full flex-col items-center gap-2 self-stretch rounded-[12px] p-2 ${
+        className={`flex w-full flex-col items-center gap-2 rounded-[12px] p-2 ${
           isFirst ? "bg-green-light" : "bg-gray-0"
         }`}
       >
@@ -57,13 +57,13 @@ export default function RankingCard({
         </div>
 
         {/* 유저 이름 & 물준 횟수 */}
-        <div className="flex flex-col items-center self-stretch">
-          <p className="typo-m-strong text-gray-80 line-clamp-1 self-stretch text-center">
+        <div className="flex flex-col items-center">
+          <p className="typo-m-strong text-gray-80 line-clamp-1 text-center">
             {name}
           </p>
 
           <p
-            className={`line-clamp-1 self-stretch text-center ${
+            className={`line-clamp-1 text-center ${
               isFirst ? "typo-m text-green-deep" : "typo-m-strong text-gray-80"
             }`}
           >

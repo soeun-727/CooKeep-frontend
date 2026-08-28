@@ -40,18 +40,16 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   const isRankingEmpty = users.length <= 2;
 
   return (
-    <div className="flex w-full flex-col gap-2 self-stretch">
-      {/* 헤더 제목 영역 */}
-      <div className="flex items-center justify-between self-stretch px-1">
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex items-center justify-between px-1">
         <h2 className="typo-l-strong text-gray-80 flex-1">
           {currentMonth}월 식물 돌봄 TOP3 쿠킵이
         </h2>
       </div>
 
-      {/* 랭킹 카드 영역 OR Empty State */}
       {isRankingEmpty ? (
         /* Empty State */
-        <div className="bg-gray-0 flex items-center justify-center gap-6 self-stretch rounded-[16px] p-4">
+        <div className="bg-gray-0 rounded-L flex items-center justify-center gap-6 p-4">
           <img
             src={thinkingChar}
             alt="thinking"
@@ -66,7 +64,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         </div>
       ) : (
         /* 랭킹 카드 (2위 - 1위 - 3위 순 배치) */
-        <div className="relative flex items-center gap-2 self-stretch">
+        <div className="relative flex items-center gap-2">
           {order.map(idx => {
             const user = filledUsers[idx];
             const isFirst = user.rank === 1;
@@ -85,9 +83,7 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
         </div>
       )}
 
-      {/* 나의 물준 횟수 영역 */}
-      <div className="bg-green-exception flex items-center justify-center gap-[4px] self-stretch rounded-[12px] py-[4px]">
-        {/* 화분/새싹 아이콘 */}
+      <div className="bg-green-exception rounded-M flex items-center justify-center gap-1 py-1">
         <img
           src={seedlingPot}
           alt="seedling pot"
@@ -98,7 +94,6 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
           이번 달에 나는 총
         </span>
 
-        {/* 식물 캐릭터 + 횟수 */}
         <div className="flex items-center gap-[2px]">
           <img
             src={plantChar}

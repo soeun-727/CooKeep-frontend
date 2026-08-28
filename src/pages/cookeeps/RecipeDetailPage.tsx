@@ -136,8 +136,7 @@ export default function RecipeDetailPage() {
   }
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center gap-3 self-stretch px-4">
-      {/* 헤더 */}
+    <div className="flex min-h-screen w-full flex-col items-center gap-3 px-4">
       <div className="sticky top-0 w-full">
         <RecipeDetailHeader
           title="레시피 보기"
@@ -148,14 +147,12 @@ export default function RecipeDetailPage() {
         />
       </div>
 
-      {/* 나머지 내용부분들: 이미지 + 콘텐츠, gap 12px */}
-      <div className="flex w-full flex-col items-center gap-3 self-stretch pb-25">
+      <div className="flex w-full flex-col items-center gap-3 pb-25">
         <RecipeDetailImageCard
           images={recipe.recipeImageUrl ? [recipe.recipeImageUrl] : []}
         />
 
-        {/* 내용부분: UserMeta + 나머지, gap 24px */}
-        <div className="flex w-full flex-col items-start gap-6 self-stretch">
+        <div className="flex w-full flex-col items-start gap-6">
           <RecipeDetailUserMeta
             userName={recipe.nickname}
             category={recipe.category}
@@ -163,8 +160,7 @@ export default function RecipeDetailPage() {
             usedItems={recipe.content.ingredients.user_ingredients.length}
           />
 
-          {/* 메모 + ContentSection + Youtube, gap 12px */}
-          <div className="flex w-full flex-col items-start gap-3 self-stretch">
+          <div className="flex w-full flex-col items-start gap-3">
             {recipe.description && (
               <RecipeDetailMemo memo={recipe.description} />
             )}

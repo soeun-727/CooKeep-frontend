@@ -50,7 +50,7 @@ export default function WeeklyTopRecipesTab() {
           <div className="flex flex-1 flex-col items-end self-stretch">
             <div className="flex flex-1 flex-col items-start justify-between self-stretch py-1">
               <div className="flex flex-col items-start gap-0.5 self-stretch">
-                <p className="typo-l-strong text-gray-80 line-clamp-1 self-stretch">
+                <p className="typo-l-strong text-gray-80 line-clamp-1">
                   {item.title}
                 </p>
                 {/* TODO: 백엔드 수정 후 추가예정 */}

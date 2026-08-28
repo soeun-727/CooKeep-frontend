@@ -50,34 +50,25 @@ export default function PlantGrowthCard({
 
   return (
     <div className="flex w-full justify-center">
-      {/* 식물카드*/}
-      <div className="flex w-full flex-col items-center gap-4 self-stretch px-4 pb-6">
-        {/* 진행바 + 이름/날짜 묶음*/}
-        <div className="flex w-full flex-col items-start gap-1 self-stretch">
-          {/* 이름 + 날짜 */}
-          <div className="flex w-full flex-col items-start gap-0.5 self-stretch px-1">
-            {/* 식물 이름 */}
-            <span className="typo-h3 text-gray-80 line-clamp-1 self-stretch">
+      <div className="flex w-full flex-col items-center gap-4 px-4 pb-6">
+        <div className="flex w-full flex-col items-start gap-1">
+          <div className="flex w-full flex-col items-start gap-0.5 px-1">
+            <span className="typo-h3 text-gray-80 line-clamp-1">
               {plantName}
             </span>
 
-            {/* 날짜 시간 */}
-            <span className="typo-caption self-stretch text-gray-50">
-              {dateText} 기준
-            </span>
+            <span className="typo-caption text-gray-50">{dateText} 기준</span>
           </div>
 
-          <div className="w-full self-stretch">
+          <div className="w-full">
             <GrowthProgressBar overridePlantStage={overridePlantStage} />
           </div>
         </div>
 
-        {/* 안내 글씨 */}
-        <p className="typo-caption self-stretch text-center text-gray-50">
+        <p className="typo-caption text-center text-gray-50">
           다음 수확까지 더 건강하게 키워보아요!
         </p>
 
-        {/* 물 주기 버튼 */}
         <WaterButton
           onSuccess={() => {
             onWaterSuccess?.();

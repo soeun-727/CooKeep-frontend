@@ -34,8 +34,7 @@ export const RecipeDetailHeader = ({
   };
 
   return (
-    <section className="bg-background flex h-10 w-full flex-shrink-0 items-center justify-between self-stretch py-2">
-      {/* 뒤로가기 버튼 */}
+    <section className="bg-background flex h-10 w-full flex-shrink-0 items-center justify-between py-2">
       <button
         type="button"
         onClick={handleBack}
@@ -44,12 +43,10 @@ export const RecipeDetailHeader = ({
         <BackIcon className="h-5 w-5" />
       </button>
 
-      {/* 2. 타이틀 (absolute 수평 중앙 정렬) */}
       <p className="typo-l-strong pointer-events-none absolute inset-x-0 text-center">
         {title}
       </p>
 
-      {/* 좋아요 / 북마크 버튼 영역 */}
       <div className="flex items-center">
         <button
           onClick={onLike}

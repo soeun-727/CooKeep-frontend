@@ -17,7 +17,7 @@ export default function ViewAllHeader({
   onTabChange,
 }: ViewAllHeaderProps) {
   return (
-    <div className="flex flex-col items-start gap-6 self-stretch">
+    <div className="flex flex-col items-start gap-6">
       <RecipeSearchField value={searchTerm} onChange={onSearchChange} />
 
       {/* 탭 영역 */}

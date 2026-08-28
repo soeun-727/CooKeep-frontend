@@ -30,7 +30,7 @@ export default function MyPlantPage() {
               {grownPlants.map(plant => (
                 <div
                   key={plant.userPlantId}
-                  className="rounded-L border-gray-10 bg-gray-0 flex flex-col items-center justify-center gap-1 self-stretch justify-self-stretch border p-2"
+                  className="rounded-L border-gray-10 bg-gray-0 flex flex-col items-center justify-center gap-1 justify-self-stretch border p-2"
                 >
                   <img
                     src={plantImageMap[plant.plantName]}
