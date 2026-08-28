@@ -7,6 +7,7 @@ import WiltedModal from "./WiltedModal";
 import HarvestModal from "./HarvestModal";
 import { useCookeepsModals } from "@/hooks/useCookeepsModals";
 import type { MyPlant } from "@/types/myPlant";
+import WiltedNoCookieModal from "./WiltedNoCookieModal";
 
 type CookeepsModalManagerProps = ReturnType<typeof useCookeepsModals> & {
   currentPlant: MyPlant | null; // 페이지에서 내려받는 값
@@ -31,6 +32,7 @@ export function CookeepsModalManager(props: CookeepsModalManagerProps) {
     handleHarvestModalClose,
     handleAbandon,
     handleRecover,
+    canRecover,
     setFreeWaterMode,
   } = props;
 
@@ -73,13 +75,24 @@ export function CookeepsModalManager(props: CookeepsModalManagerProps) {
         onClose={() => setHideWiltingModal(true)}
       />
 
-      <WiltedModal
-        isOpen={status === "wilted"}
-        plant={currentPlant?.plantName ?? ""}
-        onClose={() => setActiveModal(null)}
-        onAbandon={handleAbandon}
-        onRecover={handleRecover}
-      />
+      {status === "wilted" && canRecover && (
+        <WiltedModal
+          isOpen={status === "wilted"}
+          plant={currentPlant?.plantName ?? ""}
+          onClose={() => setActiveModal(null)}
+          onAbandon={handleAbandon}
+          onRecover={handleRecover}
+        />
+      )}
+
+      {status === "wilted" && !canRecover && (
+        <WiltedNoCookieModal
+          isOpen={true}
+          plant={currentPlant?.plantName ?? ""}
+          onClose={() => setActiveModal(null)}
+          onAbandon={handleAbandon}
+        />
+      )}
 
       <HarvestModal
         isOpen={showHarvestModal}

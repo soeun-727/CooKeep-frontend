@@ -27,6 +27,11 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
   const recoverPlant = useCookeepsStore(s => s.recoverPlant);
   const setFreeWaterMode = useCookeepsStore(s => s.setFreeWaterMode);
 
+  const cookie = useCookeepsStore(s => s.cookie);
+  const RECOVER_COST = 5;
+
+  const canRecover = cookie >= RECOVER_COST;
+
   // 온보딩 여부 체크 (기존 로직 그대로)
   useEffect(() => {
     const checkOnboardingStatus = async () => {
@@ -168,6 +173,7 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
     handleHarvestModalClose,
     handleAbandon,
     handleRecover,
+    canRecover,
     setFreeWaterMode,
   };
 }
