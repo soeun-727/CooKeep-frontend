@@ -4,12 +4,18 @@ import Button from "@/components/ui/Button";
 
 import { PROFILE_IMAGES } from "@/constants/profileImages";
 
-export const ProfileEdit = ({ onSave }: { onSave: (id: number) => void }) => {
+export const ProfileEdit = ({
+  currentImageUrl,
+  onSave,
+}: {
+  currentImageUrl: string;
+  onSave: (id: number) => void;
+}) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const selectedImage =
     PROFILE_IMAGES.find(profile => profile.id === selectedId)?.imageUrl ??
-    PROFILE_IMAGES[0].imageUrl;
+    currentImageUrl;
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4">

@@ -80,7 +80,12 @@ export const ProfileContent = () => {
         <BottomTabBar
           title="프로필로 설정할 이미지를 선택해주세요"
           onClose={() => setIsEditModalOpen(false)}
-          BottomTabBarContent={<ProfileEdit onSave={handleSaveProfile} />}
+          BottomTabBarContent={
+            <ProfileEdit
+              currentImageUrl={profile.profileImageUrl}
+              onSave={handleSaveProfile}
+            />
+          }
         />
       )}
     </div>
