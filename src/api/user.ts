@@ -188,3 +188,11 @@ export const updateDislikeIngredientList = async (
   );
   return res.status;
 };
+
+export const updateProfileImage = async (imageId: number) => {
+  const res = await api.patch<{ imageId: number }>(
+    "/api/users/me/profile-images",
+    { imageId },
+  );
+  return res.data;
+};

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { updateProfileImage } from "@/api/user";
 import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
 
 import EditIcon from "@/assets/icons/rename.svg?react";
@@ -17,13 +17,9 @@ export const ProfileContent = () => {
 
   const profile = useMyCookeepStore(s => s.profile);
   const fetchProfile = useMyCookeepStore(s => s.fetchProfile);
-  const setProfilePlant = useCookeepsStore(s => s.setProfilePlant);
-  const setProfileAuto = useCookeepsStore(s => s.setProfileAuto);
 
-  // TODO: 프로필 이미지 변경 수정된 API로 변경하기
   const handleSaveProfile = async (profileImageId: number) => {
-    await setProfilePlant(profileImageId);
-    setProfileAuto(false);
+    await updateProfileImage(profileImageId);
     await fetchProfile();
     setIsEditModalOpen(false);
   };
@@ -38,7 +34,7 @@ export const ProfileContent = () => {
         {/* 식물 사진 및 수정 버튼 */}
         <div className="relative">
           <img
-            src={profile.profilePlantImageUrl || groundImg}
+            src={profile.profileImageUrl || groundImg}
             alt="profileBackground"
             loading="eager"
             decoding="async"
