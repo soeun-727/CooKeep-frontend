@@ -69,6 +69,7 @@ const RecordWritePage = lazy(() => import("@/pages/myCookeep/RecordWritePage"));
 const RecordDetailPage = lazy(
   () => import("@/pages/myCookeep/RecordDetailPage"),
 );
+const RecordListPage = lazy(() => import("@/pages/myCookeep/RecordListPage"));
 
 const SettingsPage = lazy(() => import("@/pages/settings/SettingsPage"));
 const EditEmailPage = lazy(() => import("@/pages/settings/EditEmailPage"));
@@ -253,6 +254,7 @@ export default function App() {
 
             {/* MYCooKeep */}
             <Route path="/mycookeep" element={<MyCookeepPage />} />
+            <Route path="/mycookeep/records" element={<RecordListPage />} />
           </Route>
           <Route path="/mycookeep/goals" element={<SetGoalPage />} />
           <Route

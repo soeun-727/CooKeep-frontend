@@ -7,7 +7,6 @@ import {
   getMyPlants,
   registerMyPlant,
   reviveMyPlant,
-  setProfileMyPlant,
   waterMyPlant,
 } from "@/api/myPlants";
 import type { ApiResponse } from "@/api/types";
@@ -71,11 +70,6 @@ interface CookeepsState {
   isFreeWaterMode: boolean;
   setFreeWaterMode: (v: boolean) => void;
 
-  // 프로필
-  setProfilePlant: (userPlantId: number) => Promise<void>;
-  isProfileAuto: boolean;
-  setProfileAuto: (v: boolean) => void;
-
   // 수확
   hasShownHarvestModal: boolean;
   setHasShownHarvestModal: (v: boolean) => void;
@@ -129,7 +123,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
       await get().fetchGrowingPlant();
       await get().fetchMyPlants(); // 도감용이면 유지
 
-      const { myPlants, isProfileAuto } = get();
+      const { myPlants } = get();
 
       const justRegistered = myPlants
         .filter(p => p.plantName === expectedPlantName && !p.isHarvested)
@@ -143,13 +137,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
       console.log("🆕 [REGISTER 직후 새 식물]", {
         plantName: justRegistered.plantName,
         userPlantId: justRegistered.userPlantId,
-        isProfileAuto,
       });
-
-      // A 시나리오일 때만 프로필 자동 변경
-      if (isProfileAuto) {
-        await setProfileMyPlant(justRegistered.userPlantId);
-      }
 
       // currentPlant는 항상 새 식물
       set({
@@ -351,29 +339,6 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
       throw e;
     }
   },
-
-  setProfilePlant: async (userPlantId: number) => {
-    // 1. UI 먼저 즉시 변경 (말풍선 바로 이동)
-    set(state => ({
-      myPlants: state.myPlants.map(p => ({
-        ...p,
-        isProfile: p.userPlantId === userPlantId,
-      })),
-    }));
-
-    try {
-      // 2. 그 다음 서버 통신 실행
-      await setProfileMyPlant(userPlantId);
-      // 3. 마지막으로 서버 데이터와 최종 동기화 (최신 정보 확정)
-      await get().fetchMyPlants();
-    } catch (e) {
-      console.error("프로필 변경 실패", e);
-      // (선택사항) 실패 시 다시 fetch해서 이전 상태로 롤백
-      await get().fetchMyPlants();
-    }
-  },
-  isProfileAuto: true,
-  setProfileAuto: v => set({ isProfileAuto: v }),
 
   // 수확
   hasShownHarvestModal: false,

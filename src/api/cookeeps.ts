@@ -1,4 +1,5 @@
 import api from "./axios";
+import { RecipeStep } from "./dailyAiRecipe";
 
 export interface RecipeRankItem {
   dailyRecipeId: number;
@@ -43,7 +44,7 @@ export interface RecipeDetailContent {
     optional_ingredients: IngredientItem[];
     additional_ingredients: IngredientItem[];
   };
-  steps: string[];
+  steps: RecipeStep[];
   youtubeReferences: {
     url: string;
     title: string;
