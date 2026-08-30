@@ -1,37 +1,24 @@
-// src/components/auth/AuthHeader.tsx
 import { useNavigate } from "react-router-dom";
-import { mainLogo } from "../../assets";
 
-const AuthHeader = () => {
+import BackIcon from "@/assets/back.svg?react";
+
+export default function AuthHeader() {
   const navigate = useNavigate();
 
-  const handleLogoClick = () => {
-    navigate("/", { replace: true }); // 최초 접속 화면 경로
-  };
-
   return (
-    <header
-      className="
-        absolute top-0 z-50
-        w-full max-w-[450px]
-        flex items-center justify-between
-        px-4 py-2 
-        bg-[#FAFAFA]
-      "
-    >
+    <header className="flex w-full items-center justify-between py-2">
       <button
-        onClick={handleLogoClick}
-        className="cursor-pointer p-0 border-none bg-transparent"
+        type="button"
+        onClick={() => navigate(-1)}
+        className="flex h-10 w-10 items-center"
       >
-        <img src={mainLogo} alt="CooKeep logo" className="w-24 h-[18px]" />
+        <BackIcon className="h-5 w-5" />
       </button>
 
-      <p className="flex items-center gap-[6px] typo-label">
-        <span className="text-[#7D7D7D]">맛있는 습관이 이어지는 곳,</span>
-        <span className="text-[var(--color-green-deep)]">쿠킵</span>
+      <p className="typo-label flex items-center gap-[6px]">
+        <span className="text-gray-50">맛있는 습관이 이어지는 곳,</span>
+        <span className="text-green-deep">쿠킵</span>
       </p>
     </header>
   );
-};
-
-export default AuthHeader;
+}

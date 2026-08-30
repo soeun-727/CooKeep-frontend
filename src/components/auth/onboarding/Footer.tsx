@@ -1,8 +1,8 @@
-import Button from "../../ui/Button";
+import Button from "@/components/ui/Button";
+
 interface FooterProps {
   onNext: () => void;
   onPrev: () => void;
-  onSkip: () => void;
   isFirstStep: boolean;
   isLastStep: boolean;
   isValid: boolean;
@@ -12,17 +12,16 @@ interface FooterProps {
 export default function Footer({
   onNext,
   onPrev,
-  onSkip,
   isFirstStep,
   isLastStep,
   isValid,
   isLoading,
 }: FooterProps) {
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 pb-[34px]">
-      <div className="w-[361px] mx-auto flex flex-col items-center gap-2">
+    <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 w-full max-w-[450px] -translate-x-1/2 px-4">
+      <div className="mx-auto flex w-full flex-col gap-2">
         <Button
-          size="S"
+          size="L"
           variant="green"
           onClick={() => isValid && onNext()}
           disabled={!isValid || isLoading}
@@ -33,23 +32,13 @@ export default function Footer({
         {!isFirstStep && (
           <Button
             size="S"
-            className="bg-gray-300"
+            className="w-full bg-gray-300"
             disabled={isLoading}
             onClick={onPrev}
           >
             이전
           </Button>
         )}
-
-        <button
-          className={`typo-caption text-gray-500 transition-opacity ${
-            isLastStep ? "invisible" : "visible"
-          }`}
-          onClick={onSkip}
-          disabled={isLoading}
-        >
-          질문 건너뛰기
-        </button>
       </div>
     </div>
   );

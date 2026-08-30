@@ -1,17 +1,11 @@
-// src/layouts/ListLayout.tsx
-import {
-  Outlet,
-  useNavigate,
-  useLocation,
-  useSearchParams,
-} from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import BackHeader from "../components/ui/BackHeader";
-import ViewListHeader from "../components/cookeeps/lists/ViewListHeader";
-import ViewAllHeader from "../components/cookeeps/lists/ViewAllHeader";
+import { Outlet, useLocation, useSearchParams } from "react-router-dom";
+
+import ViewAllHeader from "@/components/cookeeps/lists/ViewAllHeader";
+import ViewListHeader from "@/components/cookeeps/lists/ViewListHeader";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function ListLayout() {
-  const navigate = useNavigate();
   const location = useLocation();
   const mainRef = useRef<HTMLDivElement>(null);
 
@@ -40,9 +34,9 @@ export default function ListLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col h-[100dvh] overflow-hidden bg-[#FAFAFA]">
+    <div className="bg-background flex h-[100dvh] flex-col overflow-hidden">
       {/* 항상 고정 */}
-      <BackHeader title="레시피 보기" onBack={() => navigate(-1)} />
+      <BackHeader title="레시피 보기" />
 
       {/* 페이지별 고정 헤더 */}
       {isViewAll && (
@@ -50,7 +44,7 @@ export default function ListLayout() {
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
           activeTab={activeTab}
-          onTabChange={(tab) => {
+          onTabChange={tab => {
             setSearchParams({ tab });
           }}
         />
@@ -67,7 +61,7 @@ export default function ListLayout() {
 
       <main
         ref={mainRef}
-        className="flex-1 overflow-y-auto no-scrollbar flex justify-center"
+        className="no-scrollbar flex flex-1 justify-center overflow-y-auto"
       >
         <Outlet context={{ searchTerm, sortOrder, setSortOrder, activeTab }} />
       </main>

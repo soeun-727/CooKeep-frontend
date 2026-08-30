@@ -12,7 +12,6 @@ interface LoginResponse {
   data: {
     userId: number;
     accessToken: string;
-    refreshToken: string;
     userStatus: "CREATED" | "ACTIVE";
     isRewarded: boolean;
   };

@@ -1,35 +1,38 @@
-import React from "react";
-import icon from "../../assets/character/surprised_char.svg";
+import icon from "@/assets/character/surprised_char.svg";
+
 import Button from "./Button";
 
-interface Props {
+interface ComebackRewardModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
+export default function ComebackRewardModal({
+  isOpen,
+  onClose,
+}: ComebackRewardModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[170] flex items-center justify-center bg-[#11111180]">
+    <div className="bg-black-overlay fixed inset-0 z-[170] flex items-center justify-center">
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* 전체 */}
-      <div className="relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
         {/* 내용 + 버튼 */}
         <div className="flex w-full flex-col items-center gap-[28px]">
           {/* 내용 */}
           <div className="flex flex-col items-center gap-[20px]">
             {/* 🔥 텍스트1 (맨 위) */}
-            <div className="w-[202px] text-center typo-body2 text-[#202020]">
+            <div className="typo-body2 text-gray-80 w-[202px] text-center">
               쿠킵은 기다리고 있었어요!
             </div>
 
             {/* 🔥 이미지 */}
-            <img src={icon} className="w-[60px] h-[56px]" alt="comeback" />
+            <img src={icon} className="h-[56px] w-[60px]" alt="comeback" />
 
             {/* 🔥 텍스트2 */}
-            <div className="w-[202px] text-center typo-body2 text-[#202020]">
+            <div className="typo-body2 text-gray-80 w-[202px] text-center">
               오랜만에 오신 기념으로
               <br />
               쿠키를 준비했어요
@@ -49,6 +52,4 @@ const ComebackRewardModal: React.FC<Props> = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-};
-
-export default ComebackRewardModal;
+}

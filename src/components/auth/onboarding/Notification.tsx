@@ -1,93 +1,65 @@
 import { useState } from "react";
-import Button from "../../ui/Button";
+
+import { updatePushConsent } from "@/api/onboarding";
+import { registerPushNotification } from "@/api/push";
+
+import Button from "@/components/ui/Button";
+
+import { NOTI_EXAMPLE_DATA } from "@/constants/onboarding";
+
 import ExampleNotification from "./ExampleNotification";
-import char from "../../../assets/character/noti_char.svg";
-import { updatePushConsent } from "../../../api/onboarding";
-import { registerPushNotification } from "../../../api/push";
 
-const EXAMPLE_DATA = [
-  {
-    title: "유통기한 임박 🚨",
-    description: "두부 유통기한이 하루 남았어요!\n지금 요리하러 가볼까요?",
-  },
-  {
-    title: "주간 목표 달성 🎉",
-    description:
-      "'주 3회 요리하기' 목표를 달성했어요\n쿠키 리워드를 확인해보세요!",
-  },
-  {
-    title: "식물에 물 줄 시간 🌱",
-    description:
-      "토마토가 시들고 있어요\n보유하신 쿠키를 사용해 물을 줄 수 있어요",
-  },
-  {
-    title: "오늘의 쿠킵 레시피 🍳",
-    description:
-      "지금 있는 재료로 만들 수 있는 요리가 있어요\n지금 레시피를 확인해보세요!",
-  },
-];
-
-interface Props {
+interface NotificationProps {
   onNext: () => void;
 }
 
-export default function Notification({ onNext }: Props) {
+export default function Notification({ onNext }: NotificationProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const INFINITE_DATA = [...EXAMPLE_DATA, ...EXAMPLE_DATA];
+  const INFINITE_DATA = [...NOTI_EXAMPLE_DATA, ...NOTI_EXAMPLE_DATA];
 
   const handlePushConsent = async (isAgreed: boolean) => {
     setIsLoading(true);
     try {
       if (isAgreed) {
-        // 1️⃣ 브라우저 푸시 구독을 먼저 시도합니다.
         const isSuccess = await registerPushNotification();
 
         if (isSuccess) {
-          // 구독 성공 시에만 서버에 동의(true) 상태를 저장합니다.
           await updatePushConsent(true);
         } else {
-          // 권한 거절 등으로 실패 시, 서버에는 비동의(false) 상태로 저장하거나
-          // 알림을 띄워 사용자에게 알립니다.
           await updatePushConsent(false);
           alert(
             "알림 권한이 거부되었습니다. 원활한 이용을 위해 브라우저 설정을 확인해주세요.",
           );
         }
       } else {
-        // 2️⃣ 사용자가 '괜찮아요'를 누른 경우 바로 비동의 처리
         await updatePushConsent(false);
       }
     } catch (error) {
       console.error("알림 설정 중 오류 발생:", error);
     } finally {
       setIsLoading(false);
-      onNext(); // 성공하든 실패하든 다음 온보딩 단계로 이동
+      onNext();
     }
   };
 
   return (
-    <div className="flex flex-col w-[361px] mx-auto h-screen overflow-hidden relative bg-[#fafafa]">
-      <div className="mt-[107px] shrink-0">
-        <h1 className="typo-h1 text-left">
-          쿠킵 루틴, 알림으로 받아보시겠어요?
+    <div className="bg-background relative mx-auto flex h-screen w-full flex-col gap-12 overflow-hidden px-4">
+      <div className="mt-25 flex shrink-0 flex-col gap-2">
+        <h1 className="typo-h2 text-left">
+          쿠킵 루틴,
+          <br />
+          알림으로 받아보시겠어요?
         </h1>
-        <p className="typo-body2 text-gray-500 mt-1 text-left break-keep">
-          유통기한 임박, 주간 목표, 물 주기처럼 까먹지 않게
+        <p className="typo-l text-left break-keep text-gray-50">
+          까먹지 않게 필요한 순간에만 도와드릴게요
           <br />
-          필요한 순간에만 도와드릴게요.
-          <br />
-          언제든지 설정에서 변경할 수 있어요.
+          언제든지 설정에서 변경할 수 있어요!
         </p>
       </div>
 
-      <div
-        className="relative flex flex-col items-center justify-start overflow-hidden mt-14"
-        style={{
-          height: "calc(100dvh - 500px)",
-        }}
-      >
-        <div className="absolute top-0 left-0 w-full h-12 bg-gradient-to-b from-[#fafafa] to-transparent z-10" />
-        <div className="flex flex-col gap-[6px] animate-roll">
+      <div className="relative flex h-75 flex-col items-center justify-start overflow-hidden">
+        <div className="bg-blur-to-t absolute top-0 left-0 z-10 h-12 w-full" />
+        <div className="animate-roll flex flex-col gap-[6px]">
           {INFINITE_DATA.map((data, index) => (
             <ExampleNotification
               key={index}
@@ -96,17 +68,14 @@ export default function Notification({ onNext }: Props) {
             />
           ))}
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-[#fafafa] to-transparent z-10" />
+        <div className="bg-blur-to-b absolute bottom-0 left-0 z-10 h-12 w-full" />
       </div>
 
-      <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-[361px] bg-[#fafafa] z-50 pb-[34px]">
-        <div className="flex justify-end">
-          <img src={char} className="w-[95px] mb-[26.5px]" alt="character" />
-        </div>
+      <div className="bg-background fixed bottom-[env(safe-area-inset-bottom)] left-1/2 z-50 w-full max-w-[450px] -translate-x-1/2 px-4">
         <div className="flex flex-col gap-2">
           <Button
-            size="S"
-            variant="black"
+            size="L"
+            variant="green"
             onClick={() => handlePushConsent(true)}
             disabled={isLoading}
           >
@@ -114,7 +83,7 @@ export default function Notification({ onNext }: Props) {
           </Button>
           <Button
             size="S"
-            className="!bg-gray-300"
+            className="!bg-gray-30"
             onClick={() => handlePushConsent(false)}
             disabled={isLoading}
           >

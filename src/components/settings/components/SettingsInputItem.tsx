@@ -1,13 +1,12 @@
-// src/pages/settings/components/SettingsInputItem.tsx
 import { useLocation, useNavigate } from "react-router-dom";
 
-type SettingsInputItemProps = {
+interface SettingsInputItemProps {
   label: string;
   value: string;
   buttonText: string;
   to: string;
   disabled?: boolean;
-};
+}
 
 export default function SettingsInputItem({
   label,
@@ -33,51 +32,30 @@ export default function SettingsInputItem({
   };
 
   return (
-    <div className="flex flex-col gap-2 h-[80px] w-full">
-      {/* label */}
-      <span className="typo-body text-[#202020] px-3">{label}</span>
+    <div className="flex w-full flex-col items-start">
+      <div className="flex w-full items-center gap-1 p-1">
+        <span className="typo-l-strong text-gray-80">{label}</span>
+      </div>
 
-      {/* input-like box */}
-      <div
-        className="
-          flex
-          items-center
-          justify-between
-          w-full
-          h-[44px]
-          px-3
-          border
-          border-[#DDD]
-          rounded-[6px]
-        "
-      >
-        {/* value */}
-        <span className="typo-body2 text-[#AEAEAE]">{value}</span>
+      <div className="min-h-[70px] w-full">
+        <div className="border-gray-10 flex h-12 w-full min-w-0 items-center gap-3 rounded-xl border bg-white px-3">
+          <span className="typo-m min-w-0 flex-1 truncate text-gray-50">
+            {value}
+          </span>
 
-        {/* button */}
-        <button
-          type="button"
-          onClick={handleClick}
-          disabled={disabled}
-          className={`
-            flex
-            items-center
-            justify-center
-            w-[115px]
-            px-[18px]
-            py-1
-            rounded-full
-            transition-colors
-            typo-caption
-            ${
+          <button
+            type="button"
+            onClick={handleClick}
+            disabled={disabled}
+            className={`typo-caption shrink-0 rounded-full px-3 py-[6px] transition-colors ${
               disabled
-                ? "bg-stone-300 text-white cursor-not-allowed" // 비활성화 스타일
-                : "bg-[#202020] text-white cursor-pointer active:bg-[#404040]" // 활성화 스타일
-            }
-          `}
-        >
-          {buttonText}
-        </button>
+                ? "bg-gray-30 text-gray-0 cursor-not-allowed"
+                : "bg-gray-80 text-gray-0 cursor-pointer"
+            }`}
+          >
+            {buttonText}
+          </button>
+        </div>
       </div>
     </div>
   );

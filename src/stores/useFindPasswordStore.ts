@@ -1,7 +1,6 @@
-// src/stores/useFindPasswordStore.ts
-import { create } from "zustand";
-import { sendPasswordCodeApi, verifyPasswordCodeApi } from "../api/auth";
+import { sendPasswordCodeApi, verifyPasswordCodeApi } from "@/api/auth";
 import axios from "axios";
+import { create } from "zustand";
 
 interface FindPasswordState {
   email: string;
@@ -19,7 +18,7 @@ export const useFindPasswordStore = create<FindPasswordState>((set, get) => ({
   isCodeSent: false,
   isVerified: false,
 
-  setEmail: (email) => set({ email }),
+  setEmail: email => set({ email }),
 
   sendCode: async () => {
     const { email } = get();
@@ -42,7 +41,7 @@ export const useFindPasswordStore = create<FindPasswordState>((set, get) => ({
     }
   },
 
-  verifyCode: async (code) => {
+  verifyCode: async code => {
     const { email } = get();
 
     try {

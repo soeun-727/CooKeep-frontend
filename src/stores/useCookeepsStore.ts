@@ -1,6 +1,7 @@
-// src/stores/useCookeepsStore.ts
-import { create } from "zustand";
+import { getMyCookies } from "@/api/cookies";
+import { claimPendingReward } from "@/api/cookies";
 import {
+  type RegisterResponseData,
   deleteMyPlant,
   getGrowingPlant,
   getMyPlants,
@@ -8,15 +9,13 @@ import {
   reviveMyPlant,
   setProfileMyPlant,
   waterMyPlant,
-  type RegisterResponseData,
-} from "../api/myPlants";
-import type { MyPlant } from "../types/myPlant";
-import {
-  PLANT_ID_TO_NAME,
-  PLANT_NAME_TO_TYPE,
-} from "../constants/plantTypeMap";
-import { claimPendingReward, getMyCookies } from "../api/cookies";
-import type { ApiResponse } from "../api/types";
+} from "@/api/myPlants";
+import type { ApiResponse } from "@/api/types";
+import { create } from "zustand";
+
+import { PLANT_ID_TO_NAME, PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
+
+import type { MyPlant } from "@/types/myPlant";
 
 export type PlantType =
   | "apple"
@@ -96,7 +95,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
 
   currentPlant: null,
   justHarvestedPlant: null,
-  setJustHarvestedPlant: (plant) => set({ justHarvestedPlant: plant }),
+  setJustHarvestedPlant: plant => set({ justHarvestedPlant: plant }),
   fetchMyPlants: async () => {
     try {
       const plants = await getMyPlants();
@@ -133,7 +132,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
       const { myPlants, isProfileAuto } = get();
 
       const justRegistered = myPlants
-        .filter((p) => p.plantName === expectedPlantName && !p.isHarvested)
+        .filter(p => p.plantName === expectedPlantName && !p.isHarvested)
         .sort(
           (a, b) =>
             new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -180,7 +179,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
   },
 
   prevCookie: null,
-  setPrevCookie: (value) => set({ prevCookie: value }),
+  setPrevCookie: value => set({ prevCookie: value }),
 
   status: "normal",
   lastWateredAt: null,
@@ -200,7 +199,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
   },
 
   wantsToWater: false,
-  setWantsToWater: (v) => set({ wantsToWater: v }),
+  setWantsToWater: v => set({ wantsToWater: v }),
 
   selectPlant: async (plant: PlantType) => {
     const plantIdMap: Record<PlantType, number> = {
@@ -273,7 +272,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
         set({ currentPlant: temp4thStage, plantStage: 4 });
 
         // 수확 상태로 전환 → HarvestModal 표시됨
-        set((state) => ({
+        set(state => ({
           justHarvestedPlant: { ...snapshotPlant, isHarvested: true },
           currentPlant: null,
           selectedPlant: null,
@@ -312,7 +311,7 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
     }
   },
   isFreeWaterMode: false,
-  setFreeWaterMode: (v) => set({ isFreeWaterMode: v }),
+  setFreeWaterMode: v => set({ isFreeWaterMode: v }),
 
   // 포기하기
   abandonPlant: async () => {
@@ -355,8 +354,8 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
 
   setProfilePlant: async (userPlantId: number) => {
     // 1. UI 먼저 즉시 변경 (말풍선 바로 이동)
-    set((state) => ({
-      myPlants: state.myPlants.map((p) => ({
+    set(state => ({
+      myPlants: state.myPlants.map(p => ({
         ...p,
         isProfile: p.userPlantId === userPlantId,
       })),
@@ -374,11 +373,11 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
     }
   },
   isProfileAuto: true,
-  setProfileAuto: (v) => set({ isProfileAuto: v }),
+  setProfileAuto: v => set({ isProfileAuto: v }),
 
   // 수확
   hasShownHarvestModal: false,
-  setHasShownHarvestModal: (v) => set({ hasShownHarvestModal: v }),
+  setHasShownHarvestModal: v => set({ hasShownHarvestModal: v }),
 
   resetCurrentPlant: () => {
     set({

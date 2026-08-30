@@ -1,96 +1,98 @@
-import { useRecipeFlowStore } from "../../../../stores/useRecipeFlowStore";
+import { useState } from "react";
 
-import easyImg from "../../../../assets/recipe/main/easyImg.svg";
-import normalImg from "../../../../assets/recipe/main/normalImg.svg";
-import hardImg from "../../../../assets/recipe/main/hardImg.svg";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import randomImg from "@/assets/recipe/select/random.svg";
+import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
-const options = [
-  {
-    key: "EASY",
-    title: "Easy",
-    time: "10분 이내",
-    desc: "빠르고 간편하게",
-    image: easyImg,
-  },
-  {
-    key: "NORMAL",
-    title: "Normal",
-    time: "30분 이내",
-    desc: "적당히 차려먹기",
-    image: normalImg,
-  },
-  {
-    key: "HARD",
-    title: "Hard",
-    time: "30분 이상",
-    desc: "제대로 요리하기",
-    image: hardImg,
-  },
-] as const;
+export type DifficultyType = "EASY" | "MEDIUM" | "HARD" | "RANDOM" | string;
 
-export default function DifficultySelector() {
-  const { difficulty, setDifficulty } = useRecipeFlowStore();
+interface DifficultySelectorProps {
+  value?: DifficultyType | null;
+  onChange?: (value: DifficultyType) => void;
+}
+
+export default function DifficultySelector({
+  value,
+  onChange,
+}: DifficultySelectorProps) {
+  const store = useRecipeFlowStore();
+
+  const currentDifficulty = value !== undefined ? value : store.difficulty;
+  const setDifficulty = onChange ?? store.setDifficulty;
+
+  const [isRandomPending, setIsRandomPending] = useState(false);
+
+  const handleRandomClick = () => {
+    setIsRandomPending(true);
+    setDifficulty("RANDOM");
+    setTimeout(() => {
+      setIsRandomPending(false);
+    }, 200);
+  };
+
+  const isRandomSelected = currentDifficulty === "RANDOM" || isRandomPending;
 
   return (
-    <section className="flex flex-col items-center gap-4 w-full max-w-[361px] mx-auto mt-[38px]">
+    <section className="mx-auto flex w-full flex-col items-center">
       {/* 제목 영역 */}
-      <div className="flex flex-col items-center gap-[2px] w-[188px]">
-        <h2 className="w-full text-center text-[20px] font-semibold leading-[28px] text-[#202020]">
-          난이도 선택
-        </h2>
-        <p className="text-[12px] leading-[16px] text-[#7D7D7D] text-center">
-          선택한 난이도에 따라 요리가 달라져요
+      <div className="flex w-full flex-col items-center gap-1 pb-4">
+        <h2 className="text-gray-80 typo-h3 text-center">음식 종류 선택</h2>
+        <p className="typo-m text-center text-gray-50">
+          어떤 종류의 음식으로 레시피를 생성할까요?
         </p>
       </div>
 
       {/* 난이도 선택 리스트 */}
-      <div className="flex flex-col items-start gap-2 w-full">
-        {options.map((opt) => {
-          const selected = difficulty === opt.key;
+      <div className="grid w-full grid-cols-3 gap-1">
+        {DIFFICULTY_OPTIONS.map(opt => {
+          const selected = currentDifficulty === opt.key;
 
           return (
             <button
               key={opt.key}
+              type="button"
               onClick={() => setDifficulty(opt.key)}
-              className="w-full flex justify-center items-center rounded-[6px] bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]"
+              className={`rounded-S flex w-full cursor-pointer flex-col items-center justify-center border p-3 ${
+                selected
+                  ? "border-green-deep bg-green-light"
+                  : "bg-gray-0 border-gray-10"
+              }`}
             >
-              <div className="w-full flex items-center gap-2 p-3">
-                <div className="w-full flex items-center gap-3">
-                  {/* 왼쪽 이미지 */}
-                  <img
-                    src={opt.image}
-                    alt={opt.title}
-                    className="w-[36px] h-[36px] aspect-square flex-shrink-0"
-                  />
-
-                  {/* 텍스트 */}
-                  <div className="flex-1">
-                    <p className="text-[16px] text-left font-medium leading-[24px] text-[#202020]">
-                      <span className="text-[#1FC16F]">{opt.time}</span>{" "}
-                      {opt.desc}
-                    </p>
-                  </div>
-
-                  {/* 선택 버튼 */}
-                  <div className="w-[40px] h-[40px] flex items-center justify-center flex-shrink-0">
-                    <div
-                      className={`
-      w-[24px] h-[24px] rounded-full
-      border-2 flex items-center justify-center
-      ${selected ? "border-[#32E389]" : "border-[#C3C3C3]"}
-    `}
-                    >
-                      {selected && (
-                        <div className="w-[14px] h-[14px] rounded-full bg-[#32E389]" />
-                      )}
-                    </div>
-                  </div>
-                </div>
+              <div className="flex w-full flex-col items-center">
+                <img
+                  src={opt.image}
+                  alt={opt.title}
+                  className="aspect-square h-9 w-9 flex-shrink-0"
+                />
+                <p className="text-gray-80 typo-label">{opt.desc}</p>
               </div>
             </button>
           );
         })}
       </div>
+
+      {/* 랜덤 추천 버튼 */}
+      <button
+        type="button"
+        onClick={handleRandomClick}
+        className={`rounded-S mt-2 flex w-full cursor-pointer gap-3 border p-3 ${
+          isRandomSelected
+            ? "border-green-deep bg-green-light"
+            : "bg-green-exception border-gray-10"
+        }`}
+      >
+        <img src={randomImg} alt="random" className="w-[38px]" />
+        <div className="text-left">
+          <p
+            className={`typo-m-strong ${
+              isRandomSelected ? "text-green-deep" : "text-gray-80"
+            }`}
+          >
+            아무거나 추천받기
+          </p>
+          <p className="typo-m text-gray-50">쿠킵이 랜덤으로 골라드려요</p>
+        </div>
+      </button>
     </section>
   );
 }

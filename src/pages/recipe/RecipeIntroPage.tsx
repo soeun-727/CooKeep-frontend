@@ -1,11 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import cookChar from "../../assets/recipe/main/cook_char.svg";
-import Button from "../../components/ui/Button";
-import RecipeHeader from "../../components/recipe/main/RecipeHeader";
-import { useIngredientStore } from "../../stores/useIngredientStore";
-import { useRecipeFlowStore } from "../../stores/useRecipeFlowStore";
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
+import cookChar from "@/assets/character/cooking_hat_char.svg";
+import LightBulbIcon from "@/assets/recipe/main/lightbulb.svg?react";
+import randomIcon from "@/assets/recipe/main/randomIcon.svg";
+import selectIcon from "@/assets/recipe/main/selectIcon.svg";
+
+import RecipeGenerateButton from "@/components/recipe/main/RecipeGenerateButton";
+import RecipeHeader from "@/components/recipe/main/RecipeHeader";
 
 export default function RecipeIntroPage() {
   const navigate = useNavigate();
@@ -15,52 +20,42 @@ export default function RecipeIntroPage() {
     useRecipeFlowStore.getState().reset();
   }, []);
 
+  const handleRandomRecommend = () => {
+    navigate("/recipe/loading", { state: { isRandom: true } });
+  };
+
   return (
-    <div className="relative h-[calc(100vh-90px)] flex justify-center bg-[#FAFAFA]">
-      {/* 헤더 */}
-      <RecipeHeader transparent />
+    <div className="flex flex-col items-center gap-4 gap-[30px] px-4">
+      <RecipeHeader />
+      <div className="flex w-full flex-col items-start gap-1 px-1">
+        <img src={cookChar} alt="요리 캐릭터" className="w-25" />
+        <h1 className="text-gray-80 typo-h2 py-2 text-start">
+          오늘은 어떻게 요리해볼까요?
+        </h1>
+      </div>
 
-      {/* 배경 blur */}
-      <div
-        className="
-          absolute
-          top-[72px]
-          left-1/2
-          -translate-x-1/2
-          w-[450px]
-          h-[450px]
-          rounded-full 
-         bg-[#1FC16F]/15 blur-[100px]
-          pointer-events-none
-          z-0
-        "
-      />
-
-      {/* 콘텐츠 */}
-      <div className="flex flex-col items-center w-[361px] gap-[28px] mt-[203.62px] z-10">
-        <img
-          src={cookChar}
-          alt="요리 캐릭터"
-          className="w-[162.5px] h-[116.646px]"
+      <div className="flex w-full flex-col gap-2">
+        <RecipeGenerateButton
+          image={selectIcon}
+          title="재료 직접 선택"
+          description={"내가 고른 재료로\n레시피를 추천받아요"}
+          onClick={() => navigate("/recipe/select")}
         />
+        <RecipeGenerateButton
+          image={randomIcon}
+          title="랜덤 추천"
+          description={"오늘 뭐 먹지?\n가볍게 추천받아요"}
+          onClick={handleRandomRecommend}
+        />
+      </div>
 
-        <div className="flex flex-col items-center h-[144px] gap-[28px] self-stretch">
-          <h1 className="text-center text-[28px] font-semibold leading-[36px] text-[#202020]">
-            지금 있는 재료로
-            <br />
-            요리해볼까요?
-          </h1>
-
-          <div className="w-[249px] h-[44px]">
-            <Button
-              size="S"
-              variant="green"
-              onClick={() => navigate("/recipe/select")}
-              className="w-full h-full "
-            >
-              요리할 재료 선택하기
-            </Button>
-          </div>
+      <div className="rounded-M bg-gray-exception flex w-full gap-3 p-3">
+        <LightBulbIcon className="h-9 w-9" />
+        <div className="flex w-full flex-col items-start text-gray-50">
+          <span className="typo-caption-strong">쿠킵이 생성하는 레시피는</span>
+          <span className="typo-caption">
+            보유 재료와 취향을 반영해 추천해 드려요
+          </span>
         </div>
       </div>
     </div>

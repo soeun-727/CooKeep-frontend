@@ -1,13 +1,11 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import BackHeader from "../components/ui/BackHeader";
+import { Outlet } from "react-router-dom";
 
 export default function VerifyLayout() {
-  const navigate = useNavigate();
-
   return (
-    <div className="min-h-screen bg-[#FAFAFA]">
-      <BackHeader title="본인인증" onBack={() => navigate(-1)} />
-      <Outlet />
+    <div className="flex h-screen flex-col">
+      <div className="no-scrollbar flex-1 overflow-y-auto">
+        <Outlet />
+      </div>
     </div>
   );
 }

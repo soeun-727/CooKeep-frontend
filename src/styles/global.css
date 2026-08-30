@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-green-light: #e6fbeb;
+  --color-green-medium: #96e8be;
+  --color-green: #32e389;
+  --color-green-deep: #1fc16f;
+  --color-green-exception: #f4f9f4;
+
+  --color-gray-100: #111111;
+  --color-gray-80: #202020;
+  --color-gray-50: #7d7d7d;
+  --color-gray-30: #c3c3c3;
+  --color-gray-10: #ebebeb;
+  --color-gray-0: #ffffff;
+  --color-searchbar: #ebedf1;
+  --color-black-overlay: #11111180;
+  --color-background: #fafafa;
+  --color-gray-exception: #f1f1f1;
+
+  --color-semantic-positive: #1fa43c;
+  --color-semantic-negative: #d91f1f;
+
+  --background-image-blur-to-b: linear-gradient(
+    to bottom,
+    transparent,
+    #fafafa
+  );
+  --background-button-blur-to-b-soft: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0) 0%,
+    rgba(250, 250, 250, 0.5) 14.9%,
+    #fafafa 30.29%
+  );
+  --background-image-blur-to-t: linear-gradient(to top, transparent, #fafafa);
+  --background-image-green-gradient: linear-gradient(
+    to bottom,
+    #34d399,
+    #22c55e
+  );
+
+  --background-image-bottom-fade: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0) 0%,
+    rgba(250, 250, 250, 0.5) 14.9%,
+    #fafafa 30.29%
+  );
+
+  --radius-S: 8px;
+  --radius-M: 12px;
+  --radius-L: 16px;
+
+  /* x 0 y 4 흐림 16 스프레드 0 #111111 10% */
+  --shadow-container: 0 4px 16px 0 rgba(17, 17, 17, 0.1);
+  --drop-shadow-container: 0 4px 16px rgba(17, 17, 17, 0.1);
+  --shadow-hover: 0 -36px 30.6px rgba(0, 0, 0, 0.05);
+  --shadow-search: 0 4px 16px -10px rgba(0, 0, 0, 0.25);
+  --shadow-plant: 0 1px 8.2px -2px rgba(17, 17, 17, 0.25);
+  --shadow-add-button: 0 1px 8.2px -2px rgba(17, 17, 17, 0.25);
+  --shadow-recent-t: 0 4px 16px 0px rgba(17, 17, 17, 0.1);
+  --shadow-recent-b: 0 -1px 100px -4px rgba(17, 17, 17, 0.15);
+  --shadow-inner: 0 2px 5.2px -4px rgba(0, 0, 0, 0.25);
+  --shadow-tooltip-tail: 0 4px 16px rgba(0, 0, 0, 0.13);
+
+  --spacing-sab: calc(env(safe-area-inset-bottom, 0px));
+
+  --font-sans:
+    "Pretendard Variable", "Pretendard", ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}

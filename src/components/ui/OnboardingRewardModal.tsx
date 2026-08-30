@@ -1,57 +1,49 @@
-import React from "react";
-import icon from "../../assets/cookeeps/main/water_cookie_cookeeps.svg";
+import icon from "@/assets/character/congrats_char.svg";
+
 import Button from "./Button";
 
 type OnboardingType = "INGREDIENT" | "RECIPE";
 
-interface Props {
+interface OnboardingRewardModalProps {
   isOpen: boolean;
   onClose: () => void;
   type: OnboardingType;
 }
 
-const OnboardingRewardModal: React.FC<Props> = ({ isOpen, onClose, type }) => {
+export default function OnboardingRewardModal({
+  isOpen,
+  onClose,
+  type,
+}: OnboardingRewardModalProps) {
   if (!isOpen) return null;
-  const title = type === "RECIPE" ? "첫 요리 완료!" : "첫 재료 등록 완료!";
+  const title = type === "RECIPE" ? "첫 요리 기록 성공!" : "첫 재료 등록 완료!";
   return (
-    <div className="fixed inset-0 z-[170] flex items-center justify-center bg-[#11111180]">
+    <div className="bg-black-overlay fixed inset-0 z-100 flex items-center justify-center">
       {/* 배경 클릭 */}
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* 모달 */}
-      <div className="relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] bg-white px-[28px] pt-[35px] pb-[25px]">
-        <div className="flex w-full flex-col items-center gap-[16px]">
-          {/* 이미지 + 텍스트 */}
-          <div className="flex flex-col items-center gap-[12px]">
-            <img src={icon} className="w-[48px] h-[48px]" />
+      <div className="bg-gray-0 rounded-L relative flex w-75 flex-col items-center gap-6 p-6">
+        {/* 이미지 + 텍스트 */}
+        <div className="flex flex-col items-center gap-3 text-center">
+          <img src={icon} className="w-20" />
 
-            {/* 텍스트 묶음 */}
-            <div className="flex flex-col items-center gap-[2px] w-full">
-              <div className="text-center text-[16px] font-bold leading-[24px] text-[#1FC16F]">
-                쿠키 1개
-              </div>
-
-              <div className="text-center text-[14px] font-medium leading-[20px] text-[#202020]">
-                {title}
-                <br />
-                쿠키 선물이 도착했어요
-              </div>
+          {/* 텍스트 묶음 */}
+          <div className="flex w-full flex-col items-center gap-2">
+            <div className="text-gray-80 typo-l-strong">
+              {title}
+              <br />
+              축하 쿠키가 도착했어요
             </div>
+            <div className="text-green-deep typo-h3">쿠키 +1 🍪</div>
           </div>
-
-          {/* 버튼 */}
-          <Button
-            onClick={onClose}
-            size="S"
-            variant="green"
-            className="!w-[202px]"
-          >
-            확인
-          </Button>
         </div>
+
+        {/* 버튼 */}
+        <Button onClick={onClose} size="S" variant="green" className="w-full">
+          확인
+        </Button>
       </div>
     </div>
   );
-};
-
-export default OnboardingRewardModal;
+}

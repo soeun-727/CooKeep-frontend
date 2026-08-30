@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { AGREEMENTS, AGREEMENT_NOTICE } from "../../../constants/agreements";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
-import type { AgreementItem } from "../../../constants/agreements";
+
+import ArrowIcon from "@/assets/signup/arrowright.svg?react";
+import BlankCheck from "@/assets/signup/blankCheck.svg?react";
+import CheckboxCheckIcon from "@/assets/signup/checkboxCheck.svg?react";
+
+import { AGREEMENTS } from "@/constants/agreements";
+
+import { AgreementItem, AuthAgreements } from "@/types/auth";
+
 import AgreementPage from "../signup/AgreementPage";
 
 interface AgreementListProps {
-  agreements: Record<AgreementItem["key"], boolean>;
-  updateAgreements: (
-    next: Partial<Record<AgreementItem["key"], boolean>>,
-  ) => void;
+  agreements: AuthAgreements;
+  updateAgreements: (next: Partial<AuthAgreements>) => void;
 }
 
 export default function AgreementList({
@@ -24,79 +28,80 @@ export default function AgreementList({
 
   if (agreementPage) {
     return (
-      <div className="fixed inset-0 z-50 bg-gray-100 flex items-center justify-center">
-        <div className="w-full max-w-[450px] min-h-[100dvh] bg-[#FAFAFA]">
-          {" "}
-          {/*overflow-y-auto*/}
-          <AgreementPage
-            agreement={agreementPage}
-            isChecked={agreements[agreementPage.key]}
-            onBack={() => setAgreementPage(null)}
-            updateAgreements={updateAgreements}
-            onConfirm={(key) => {
-              updateAgreements({ [key]: true });
-              setAgreementPage(null);
-            }}
-          >
-            <p className="typo-label text-center whitespace-pre-line">
-              {AGREEMENT_NOTICE[agreementPage.key]}
-            </p>
-          </AgreementPage>
-        </div>
+      <div className="bg-background absolute inset-0 z-50 flex flex-col w-full">
+        {" "}
+        {/*overflow-y-auto*/}
+        <AgreementPage
+          agreement={agreementPage}
+          isChecked={agreements[agreementPage.key]}
+          onBack={() => setAgreementPage(null)}
+          updateAgreements={updateAgreements}
+          onConfirm={key => {
+            updateAgreements({ [key]: true });
+            setAgreementPage(null);
+          }}
+        ></AgreementPage>
       </div>
     );
   }
 
   return (
-    <div className="mt-[26px]">
+    <div className="mt-[26px] w-full">
       {/* 전체 동의 */}
-      <label className="relative flex items-center px-4 h-[48px] max-w-[361px] w-full rounded-[6px] border border-[#D1D1D1] cursor-pointer">
-        <input
-          type="checkbox"
-          className="peer w-4 h-4 appearance-none border border-[#7D7D7D] rounded-sm checked:bg-(--color-green) cursor-pointer"
-          checked={isAllChecked}
-          onChange={(e) =>
-            updateAgreements({
-              terms: e.target.checked,
-              privacy: e.target.checked,
-              marketing: e.target.checked,
-            })
-          }
-        />
-        <span className="ml-[16px] typo-label text-[#202020]">
-          약관 전체동의
-        </span>
-        <span className="absolute left-4 w-4 h-4 flex items-center justify-center pointer-events-none text-white text-lg font-bold peer-checked:visible invisible">
-          ✓
-        </span>
+      <label className="border-gray-10 flex h-12 w-full items-center gap-3 rounded-xl border bg-white px-3">
+        <div className="relative flex h-6 w-6 shrink-0 items-center justify-center">
+          <input
+            type="checkbox"
+            checked={isAllChecked}
+            onChange={e =>
+              updateAgreements({
+                terms: e.target.checked,
+                privacy: e.target.checked,
+                marketing: e.target.checked,
+              })
+            }
+            className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none"
+          />
+
+          <BlankCheck className="pointer-events-none h-6 w-6 peer-checked:hidden" />
+
+          <CheckboxCheckIcon className="text-green pointer-events-none hidden h-6 w-6 peer-checked:block" />
+        </div>
+        <span className="typo-m-strong text-gray-80 flex-1">약관 전체동의</span>
       </label>
 
       {/* 개별 약관 */}
-      <div className="w-[361px] h-[138px] px-4 py-3 flex flex-col gap-[6px]">
-        {AGREEMENTS.map((item) => (
+      <div className="mt-4 flex w-full flex-col gap-1">
+        {AGREEMENTS.map(item => (
           <div
             key={item.key}
-            className="flex items-center justify-between w-[337px] h-[24px] mx-auto"
+            className="flex w-full items-center justify-between rounded-xl px-3 py-2"
           >
-            <label className="flex items-center gap-4 cursor-pointer">
+            <label className="flex cursor-pointer items-center gap-4">
               {item.key !== "policy" ? (
-                <input
-                  type="checkbox"
-                  className="w-4 h-4 accent-[#7D7D7D]"
-                  checked={agreements[item.key]}
-                  onChange={(e) =>
-                    updateAgreements({ [item.key]: e.target.checked })
-                  }
-                />
+                <div className="relative flex h-6 w-6 shrink-0 items-center justify-center">
+                  <input
+                    type="checkbox"
+                    checked={agreements[item.key]}
+                    onChange={e =>
+                      updateAgreements({ [item.key]: e.target.checked })
+                    }
+                    className="peer absolute inset-0 h-full w-full cursor-pointer appearance-none"
+                  />
+
+                  <BlankCheck className="pointer-events-none h-6 w-6 peer-checked:hidden" />
+
+                  <CheckboxCheckIcon className="pointer-events-none hidden h-6 w-6 text-gray-50 peer-checked:block" />
+                </div>
               ) : (
-                <span className="w-4 h-4 inline-block" />
+                <span className="inline-block h-6 w-6" />
               )}
 
-              <span className="typo-label text-[#7D7D7D]">{item.label}</span>
+              <span className="typo-m flex-1 text-gray-50">{item.label}</span>
             </label>
 
             <button type="button" onClick={() => setAgreementPage(item)}>
-              <img src={arrowIcon} alt="약관 보기 화살표" />
+              <ArrowIcon className="h-6 w-6" />
             </button>
           </div>
         ))}

@@ -1,11 +1,15 @@
-import WaterButton from "./WaterButton";
-import RefreshIcon from "../../../assets/cookeeps/main/refresh_cookeeps.svg";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
-import GrowthProgressBar from "./GrowthProgressBar";
-import { PLANT_NAME_KR } from "../../../constants/plantNames";
 import { useEffect } from "react";
+
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg?react";
+
+import { PLANT_NAME_KR } from "@/constants/plantNames";
+import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
+
+import GrowthProgressBar from "./GrowthProgressBar";
+import WaterButton from "./WaterButton";
 import { preloadNextStage } from "./preloadPlantImages";
-import { PLANT_NAME_TO_TYPE } from "../../../constants/plantTypeMap";
 
 interface PlantGrowthCardProps {
   onWaterSuccess?: () => void;
@@ -19,9 +23,9 @@ export default function PlantGrowthCard({
   onRefresh,
   overridePlantStage,
 }: PlantGrowthCardProps) {
-  const currentPlant = useCookeepsStore((s) => s.currentPlant);
-  const lastRefreshedAt = useCookeepsStore((s) => s.lastRefreshedAt);
-  const refreshGrowth = useCookeepsStore((s) => s.refreshGrowth);
+  const currentPlant = useCookeepsStore(s => s.currentPlant);
+  const lastRefreshedAt = useCookeepsStore(s => s.lastRefreshedAt);
+  const refreshGrowth = useCookeepsStore(s => s.refreshGrowth);
 
   useEffect(() => {
     refreshGrowth();
@@ -54,8 +58,8 @@ export default function PlantGrowthCard({
 
   return (
     <div className="-mt-[46px] flex justify-center">
-      <div className="relative w-full max-w-[450px] shadow-[0px_1px_8px_-2px_rgba(17,17,17,0.25)] z-50">
-        <div className="absolute -top-[20px] left-1/2 -translate-x-1/2 z-50">
+      <div className="plant relative z-50 w-full max-w-[450px]">
+        <div className="absolute -top-[20px] left-1/2 z-50 -translate-x-1/2">
           <WaterButton
             onSuccess={() => {
               onWaterSuccess?.();
@@ -64,21 +68,21 @@ export default function PlantGrowthCard({
           />
         </div>
 
-        <div className="bg-white rounded-xl shadow px-[15px] pt-[23px] pb-2">
-          <div className="flex flex-col items-center max-w-[360px] mx-auto">
-            <div className="flex justify-between items-center w-full h-9">
-              <div className="flex items-center justify-center gap-2 h-[26px]">
-                <span className="text-[18px] font-semibold text-[#202020]">
+        <div className="bg-gray-0 rounded-xl px-[15px] pt-[23px] pb-2 shadow">
+          <div className="mx-auto flex max-w-[360px] flex-col items-center">
+            <div className="flex h-9 w-full items-center justify-between">
+              <div className="flex h-[26px] items-center justify-center gap-2">
+                <span className="text-gray-80 text-[18px] font-semibold">
                   {plantName}
                 </span>
-                <span className="text-xs text-[#7D7D7D] mt-1">
+                <span className="mt-1 text-xs text-gray-50">
                   {dateText} 기준
                 </span>
               </div>
 
               {/* 여기를 handleRefreshClick으로 수정했습니다 */}
               <button onClick={handleRefreshClick}>
-                <img src={RefreshIcon} alt="새로고침" className="w-4 h-4" />
+                <RefreshIcon aria-label="새로고침" role="img" className="h-4 w-4" />
               </button>
             </div>
 

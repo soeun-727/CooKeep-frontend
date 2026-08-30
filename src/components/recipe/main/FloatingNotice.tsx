@@ -1,4 +1,5 @@
-// src/components/ui/FloatingNotice.tsx
+import "@/components/recipe/main/recipe.css";
+
 interface FloatingNoticeProps {
   text: string;
 }

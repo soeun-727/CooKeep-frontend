@@ -1,24 +1,28 @@
-import icon from "../../../assets/onboarding/appIcon.svg";
+import AppIcon from "@/assets/onboarding/appIcon.svg?react";
 
-interface Props {
+interface ExampleNotificationProps {
   title: string;
   description: string;
 }
 
-export default function ExampleNotification({ title, description }: Props) {
+export default function ExampleNotification({
+  title,
+  description,
+}: ExampleNotificationProps) {
   return (
-    <div
-      className="w-[259px] h-[81px] rounded-[4.32px] p-[7px] bg-white flex flex-col
-    shadow-[0px_1.4px_6.6px_0px_rgba(17,17,17,0.20)] gap-[5px]"
-    >
-      <div className="flex gap-[5px]">
-        <img src={icon} className="w-3" />
-        <span className="text-[#616164] text-[9.5px] font-normal">CooKeep</span>
+    <div className="bg-gray-0 shadow-container rounded-S flex h-[71px] w-71 flex-col gap-[6px] px-3 py-2">
+      <div className="flex gap-1">
+        <AppIcon className="w-[14px]" />
+        <span className="text-[8px] leading-3 font-normal text-gray-50">
+          CooKeep
+        </span>
       </div>
-      <span className="text-[10px] font-medium">{title}</span>
-      <span className="text-[8.5px] font-normal leading-snug whitespace-pre-wrap break-keep">
-        {description}
-      </span>
+      <div className="flex flex-1 flex-col justify-between">
+        <span className="text-[10px] leading-3 font-semibold">{title}</span>
+        <span className="text-[8px] leading-2.5 font-normal break-keep whitespace-pre-wrap">
+          {description}
+        </span>
+      </div>
     </div>
   );
 }

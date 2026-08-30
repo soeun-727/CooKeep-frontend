@@ -1,41 +1,61 @@
-import Button from "../../ui/Button";
-import char from "../../../assets/character/congrats_char.svg";
 import { useNavigate } from "react-router-dom";
-import { chatbox, lightbulb, shadow } from "../../../assets";
+
+import Char from "@/assets/character/congrats_char.svg?react";
+import shadow from "@/assets/character/char_shadow.svg";
+import chatbox from "@/assets/signup/chatbox.svg";
+import lightbulb from "@/assets/signup/lightbulb.svg";
+
+import Button from "@/components/ui/Button";
 
 export default function SuccessSection() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-start animate-fade-in">
-      {/* 상단 간격 */}
-      <div className="mt-[102px] flex flex-col items-center gap-[10px]  text-center">
-        <h1 className="w-[361px] typo-h1 !text-[28px] !leading-[36px] !font-bold text-center">
-          반가워요! 오늘부터 지속 가능한 요리 루틴을 만들어볼까요?
-        </h1>
+    <div className="animate-fade-in relative flex min-h-dvh w-full max-w-[450px] flex-col items-center">
+      {/* 헤더 + 텍스트 영역 */}
+      <div className="flex w-full flex-col items-center gap-[60px] px-4">
+        <div className="h-10 w-full" />
 
-        <p className="typo-button text-[var(--color-green-deep)] text-center">
-          쿠킵과 함께 냉장고 속 재료부터 채워봐요
-        </p>
+        <div className="flex flex-col items-center gap-4 self-stretch">
+          <h1 className="typo-h2 text-gray-80 self-stretch text-center">
+            반가워요! 오늘부터 지속 가능한
+            <br />
+            요리 루틴을 만들어볼까요?
+          </h1>
+          <p className="typo-l-strong text-green-deep self-stretch text-center">
+            쿠킵과 함께 냉장고 속 재료부터 채워봐요
+          </p>
+        </div>
       </div>
 
-      {/* 이미지 */}
-      <img src={char} alt="임시" className="mt-20 w-49" />
-      <img src={shadow} className="w-[154px] brightness-95 mt-3" />
+      <img
+        src={chatbox}
+        alt=""
+        className="pointer-events-none absolute -right-1 bottom-[250px] w-[55px]"
+      />
 
-      <img src={chatbox} className="fixed -left-5 bottom-35" />
-      <img src={lightbulb} className="fixed -right-5 bottom-54" />
+      <img
+        src={lightbulb}
+        alt=""
+        className="pointer-events-none absolute bottom-[151px] -left-1 w-[91px]"
+      />
+      {/* 캐릭터 + 버튼: fixed 대신 mt-auto로 하단에 붙이기 */}
+      <div className="mt-auto flex w-full flex-col items-center gap-20">
+        <div className="flex flex-col items-center">
+          <Char className="h-[252px] w-[197px]" />
+          <img src={shadow} className="mt-3 w-[154px] brightness-95" />
+        </div>
 
-      {/* 버튼 */}
-      <div className="fixed bottom-0 mb-[34px] -translate-x-1/2 left-1/2">
-        <Button
-          size="L"
-          className="w-[361px]"
-          variant="green"
-          onClick={() => navigate("/onboarding")}
-        >
-          시작하기
-        </Button>
+        <div className="background-image-bottom-fade flex w-full flex-col items-center px-4 pt-6 pb-[34px]">
+          <Button
+            size="L"
+            variant="green"
+            className="w-full"
+            onClick={() => navigate("/onboarding")}
+          >
+            시작하기
+          </Button>
+        </div>
       </div>
     </div>
   );

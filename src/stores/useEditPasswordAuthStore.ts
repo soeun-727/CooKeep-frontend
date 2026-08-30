@@ -1,5 +1,5 @@
+import { sendPasswordChangeCode, verifyPasswordChangeCode } from "@/api/user";
 import { create } from "zustand";
-import { sendPasswordChangeCode, verifyPasswordChangeCode } from "../api/user";
 
 interface EditPasswordAuthState {
   email: string;
@@ -18,7 +18,7 @@ export const useEditPasswordAuthStore = create<EditPasswordAuthState>(
     isCodeSent: false,
     isVerified: false,
 
-    setEmail: (email) => set({ email }),
+    setEmail: email => set({ email }),
 
     sendCode: async () => {
       const { email } = get();

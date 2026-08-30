@@ -1,29 +1,35 @@
-import Button from "../../ui/Button";
-import characterImg from "../../../assets/character/kijul_char.svg";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-interface Props {
+import characterImg from "@/assets/character/kijul_char.svg";
+
+import Button from "@/components/ui/Button";
+
+interface WiltingModalProps {
   plant: string;
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function WiltingModal({ plant, isOpen, onClose }: Props) {
+export default function WiltingModal({
+  plant,
+  isOpen,
+  onClose,
+}: WiltingModalProps) {
   if (!isOpen) return null;
   return (
     <div className="absolute inset-0 z-60 flex items-center justify-center">
       {/* backdrop */}
-      <div className="absolute inset-0 bg-black/40" onClick={onClose} />
+      <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
 
       {/* modal */}
       <div
-        className="relative w-70 h-[254px] px-7 pt-[35px] pb-[25px] rounded-[10px] bg-white flex flex-col items-center gap-7"
-        onClick={(e) => e.stopPropagation()}
+        className="bg-gray-0 relative flex h-[254px] w-70 flex-col items-center gap-7 rounded-[10px] px-7 pt-[35px] pb-[25px]"
+        onClick={e => e.stopPropagation()}
       >
         {/* content */}
-        <div className="w-full flex flex-col items-center gap-7">
-          <p className="typo-body text-[#202020] text-center whitespace-pre-line">
-            <span className="text-(--color-green-deep)">{plant} </span>
+        <div className="flex w-full flex-col items-center gap-7">
+          <p className="typo-body text-gray-80 text-center whitespace-pre-line">
+            <span className="text-green-deep">{plant} </span>
             이/가 시들고 있어요
             {"\n"}
             지금 쿠키를 사용해 물을 주세요
@@ -35,7 +41,7 @@ export default function WiltingModal({ plant, isOpen, onClose }: Props) {
 
         <Button
           variant="green"
-          className="!w-[224px] !bg-(--color-green) !font-semibold"
+          className="!bg-green !w-[224px] !font-semibold"
           onClick={() => {
             // 물 주러 가기 클릭
             useCookeepsStore.setState({ wantsToWater: true });

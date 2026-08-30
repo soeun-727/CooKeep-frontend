@@ -1,36 +1,73 @@
-// src/components/header/BackHeader.tsx
-import BackIcon from "../../assets/back.svg";
+import { useState } from "react";
 
-type BackHeaderProps = {
+import { useIngredientStore } from "@/stores/useIngredientStore";
+
+import BackIcon from "@/assets/back.svg?react";
+import SortIcon from "@/assets/fridge/sort.svg?react";
+
+import { SortDropdown } from "../fridge/features/SortDropdown";
+
+interface BackHeaderProps {
   title: string;
-  onBack: () => void;
-};
+  sortIcon?: boolean;
+  onBack?: () => void;
+}
 
-const BackHeader = ({ title, onBack }: BackHeaderProps) => {
+export const BackHeader = ({
+  title,
+  sortIcon = false,
+  onBack,
+}: BackHeaderProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { viewCategory, setViewCategory, setSortOrder } = useIngredientStore();
+
+  const handleBack = () => {
+    if (onBack) {
+      onBack();
+    } else if (viewCategory) {
+      setViewCategory("");
+    } else {
+      window.history.back();
+    }
+  };
+
   return (
-    <header
-      className="
-    fixed top-0 z-50
-    w-full max-w-[450px]
-    h-12
-    flex items-center
-    px-4 py-4
-    bg-[#FAFAFA]
-  "
-    >
+    <section className="relative flex h-10 w-full items-center justify-between py-2">
+      {/* 1. 뒤로가기 버튼 */}
       <button
         type="button"
-        onClick={onBack}
-        className="w-8 h-8 flex items-center justify-center"
+        onClick={() => handleBack()}
+        className="z-10 flex h-10 w-10 items-center justify-center"
       >
-        <img src={BackIcon} alt="뒤로가기" />
+        <BackIcon className="h-5 w-5" />
       </button>
 
-      <h1 className="absolute left-1/2 -translate-x-1/2 text-[16px] font-semibold">
+      {/* 2. 타이틀 (absolute 수평 중앙 정렬) */}
+      <p className="typo-l-strong pointer-events-none absolute inset-x-0 text-center">
         {title}
-      </h1>
-    </header>
+      </p>
+
+      {/* 3. 정렬 영역 */}
+      <div className="relative z-10 flex h-10 w-10 items-center justify-center">
+        {sortIcon && (
+          <>
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="relative z-10 focus:outline-none"
+            >
+              <SortIcon className="h-10 w-10" />
+            </button>
+
+            <SortDropdown
+              isOpen={isMenuOpen}
+              onSelect={option => {
+                setSortOrder(option);
+                setIsMenuOpen(false);
+              }}
+            />
+          </>
+        )}
+      </div>
+    </section>
   );
 };
-
-export default BackHeader;

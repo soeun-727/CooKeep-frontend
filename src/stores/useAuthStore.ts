@@ -1,18 +1,20 @@
+import { loginApi, logoutApi } from "@/api/auth";
+import axios from "axios";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { saveTokens, clearTokens } from "../utils/auth";
-import { loginApi, logoutApi } from "../api/auth";
-import axios from "axios";
-import { useSignupStore } from "./useSignupStore";
+
+import { clearTokens, saveTokens } from "@/utils/auth";
+import { validateEmail, validatePassword } from "@/utils/validateUtil";
+
+import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
 import { useEmailUpdateStore } from "./useEmailUpdateStore";
 import { useFindPasswordStore } from "./useFindPasswordStore";
-import { useEditPasswordAuthStore } from "./useEditPasswordAuthStore";
 import { useRewardStore } from "./useRewardStore";
+import { useSignupStore } from "./useSignupStore";
 
 interface SocialLoginPayload {
   userId: number;
   accessToken: string;
-  refreshToken: string;
   nextStep: "TERMS" | "ONBOARDING" | "HOME" | string;
   userStatus: string;
   isRewarded: boolean;
@@ -62,10 +64,9 @@ export const useAuthStore = create<AuthState>()(
 
       initializeAuth: () => {
         const accessToken = localStorage.getItem("accessToken");
-        const refreshToken = localStorage.getItem("refreshToken");
 
         // 토큰이 둘 다 없다면 확실히 로그아웃 상태
-        if (!accessToken || !refreshToken) {
+        if (!accessToken) {
           get().logout();
           set({ initialized: true });
           return;
@@ -92,7 +93,6 @@ export const useAuthStore = create<AuthState>()(
 
           saveTokens({
             accessToken: data.accessToken,
-            refreshToken: data.refreshToken,
           });
 
           if (data.isRewarded) {
@@ -157,31 +157,30 @@ export const useAuthStore = create<AuthState>()(
         }
       },
 
-      setEmail: (email) => {
-        const trimmed = email.trim();
+      setEmail: email => {
+        const emailTrimmed = email.trim();
 
-        const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+        const isValidEmail = validateEmail(emailTrimmed);
 
-        set((state) => ({
-          email: trimmed,
+        set(state => ({
+          email: emailTrimmed,
           isValidEmail,
           canLogin: isValidEmail && state.isValidPW,
         }));
       },
 
-      setPassword: (password) => {
-        const isValidPW = /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(password);
-        set((state) => ({
+      setPassword: password => {
+        const isValidPW = validatePassword(password);
+        set(state => ({
           password,
           isValidPW,
           canLogin: state.isValidEmail && isValidPW,
         }));
       },
 
-      loginSocial: (data) => {
+      loginSocial: data => {
         saveTokens({
           accessToken: data.accessToken,
-          refreshToken: data.refreshToken,
         });
 
         set({
@@ -200,7 +199,7 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: "cookeep-auth",
-      partialize: (state) => ({
+      partialize: state => ({
         isLoggedIn: state.isLoggedIn,
         userId: state.userId,
         userStatus: state.userStatus,

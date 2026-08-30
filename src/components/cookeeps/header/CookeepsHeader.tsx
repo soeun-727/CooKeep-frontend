@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import BookIcon from "@/assets/cookeeps/main/cookeeps_book.svg?react";
+import CookieIcon from "@/assets/cookeeps/main/cookeeps_cookie.svg?react";
+import Logo from "@/assets/cookeeps/main/logo_cookeeps_black.svg?react";
+import SettingsIcon from "@/assets/cookeeps/main/settings_cookeeps.svg?react";
+
+import { TOOLTIP_KEY } from "@/constants/cookeeps";
+
 import PlantShortcutTooltip from "./PlantShortcutTooltip";
-import settings from "../../../assets/cookeeps/main/settings_cookeeps.svg";
-import Logo from "../../../assets/cookeeps/main/logo_cookeeps_black.svg";
-import cookieIcon from "../../../assets/cookeeps/main/cookeeps_cookie.svg";
-import bookIcon from "../../../assets/cookeeps/main/cookeeps_book.svg";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
 
 export default function CookeepsHeader() {
   const navigate = useNavigate();
   const location = useLocation();
-  const cookie = useCookeepsStore((s) => s.cookie);
-
-  const TOOLTIP_KEY = "cookeepsPlantShortcutSeen";
+  const cookie = useCookeepsStore(s => s.cookie);
 
   const [showTooltip, setShowTooltip] = useState(() => {
     return !localStorage.getItem(TOOLTIP_KEY);
@@ -37,31 +40,31 @@ export default function CookeepsHeader() {
   };
 
   return (
-    <header className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50  w-full max-w-[450px] flex items-center h-12">
+    <header className="absolute top-[35px] left-1/2 z-50 flex h-12 w-full max-w-[450px] -translate-x-1/2 items-center">
       {/* 왼쪽 */}
       <div className="flex-1">
-        <img
-          src={Logo}
-          alt="CooKeep logo"
-          className="w-24 object-contain  ml-[31px] pb-1"
+        <Logo
+          aria-label="CooKeep logo"
+          role="img"
+          className="ml-[31px] w-24 object-contain pb-1"
         />
       </div>
 
       {/* 오른쪽 */}
       <div className="flex items-center gap-2">
         {/* 쿠키 */}
-        <button className="flex h-[28px] items-center gap-1 rounded-full bg-[#202020] px-3 py-[2px] text-white shadow">
-          <img src={cookieIcon} alt="cookie" className="h-4 w-4" />
-          <span className="text-[12px] font-medium leading-4">{cookie} </span>
+        <button className="bg-gray-80 text-gray-0 flex h-[28px] items-center gap-1 rounded-full px-3 py-[2px] shadow">
+          <CookieIcon aria-label="cookie" role="img" className="h-4 w-4" />
+          <span className="text-[12px] leading-4 font-medium">{cookie} </span>
         </button>
 
         {/* 내 식물 + 툴팁 */}
         <div className="relative">
           <button
             onClick={handleMyPlantClick}
-            className="flex h-[28px] w-[28px] items-center justify-center rounded-full bg-[#202020]"
+            className="bg-gray-80 flex h-[28px] w-[28px] items-center justify-center rounded-full"
           >
-            <img src={bookIcon} alt="my plant" className="h-4 w-4" />
+            <BookIcon aria-label="my plant" role="img" className="h-4 w-4" />
           </button>
 
           <PlantShortcutTooltip visible={showTooltip} />
@@ -74,11 +77,11 @@ export default function CookeepsHeader() {
               state: { from: location.pathname },
             })
           }
-          className="flex mr-3 h-[28px] w-[28px] items-center justify-center rounded-full bg-[#202020]"
+          className="bg-gray-80 mr-3 flex h-[28px] w-[28px] items-center justify-center rounded-full"
         >
-          <img
-            src={settings}
-            alt="settings"
+          <SettingsIcon
+            aria-label="settings"
+            role="img"
             className="h-[16px] w-[16px] brightness-0 invert-[92%]"
           />
         </button>

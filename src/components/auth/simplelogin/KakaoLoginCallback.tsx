@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthStore } from "../../../stores/useAuthStore";
-import LoadingScreen from "../../ui/LoadingScreen";
+
+import { useAuthStore } from "@/stores/useAuthStore";
+
+import { loadingChar } from "@/assets/index";
 
 export default function KakaoLoginCallback() {
   const navigate = useNavigate();
-  const loginSocial = useAuthStore((state) => state.loginSocial);
+  const loginSocial = useAuthStore(state => state.loginSocial);
   const hasCalledAPI = useRef(false);
 
   useEffect(() => {
@@ -14,7 +16,9 @@ export default function KakaoLoginCallback() {
       const code = params.get("code");
 
       // 환경 변수 로드
-      const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+      const BASE_URL = import.meta.env.DEV
+        ? ""
+        : import.meta.env.VITE_API_BASE_URL;
       const REDIRECT_URI = `${window.location.origin}/kakao/callback`;
 
       if (!code || hasCalledAPI.current) return;
@@ -24,6 +28,7 @@ export default function KakaoLoginCallback() {
         // 주소를 직접 넣지 않고 환경 변수를 조합하여 호출
         const res = await fetch(
           `${BASE_URL}/api/auth/login/kakao?code=${code}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`,
+          { credentials: "include" },
         );
 
         if (!res.ok) {
@@ -40,7 +45,6 @@ export default function KakaoLoginCallback() {
           loginSocial({
             userId: data.userId,
             accessToken: data.accessToken || "",
-            refreshToken: data.refreshToken || "",
             nextStep: data.nextStep,
             userStatus: data.userStatus,
             isRewarded: data.isRewarded,
@@ -75,5 +79,10 @@ export default function KakaoLoginCallback() {
     handleLogin();
   }, [navigate, loginSocial]);
 
-  return <LoadingScreen />;
+  return (
+    <div className="mt-50 flex flex-col items-center justify-center text-center">
+      <img className="w-30 p-5 opacity-70" src={loadingChar} alt="loading" />
+      <div className="text-caption text-zinc-500">로그인 중...</div>
+    </div>
+  );
 }

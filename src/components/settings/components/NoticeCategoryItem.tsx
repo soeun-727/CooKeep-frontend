@@ -1,38 +1,42 @@
-// src/pages/settings/components/NoticeCategoryItem.tsx
 import { useState } from "react";
+
+import ArrowIcon from "@/assets/signup/arrowright.svg?react";
+
+import { Notice } from "@/types/notice";
+
 import NoticeItem from "./NoticeItem";
-import arrowIcon from "../../../assets/signup/arrowright.svg";
-import { Notice } from "../../../types/notice";
 
-type Props = {
+interface NoticeCategoryItemProps {
   category: Notice;
-};
+}
 
-export default function NoticeCategoryItem({ category }: Props) {
+export default function NoticeCategoryItem({
+  category,
+}: NoticeCategoryItemProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <div
-      className={`flex flex-col items-start self-stretch w-full rounded-[6px] border border-[#D1D1D1] ${
-        open ? "bg-[#ECECEC]" : "bg-white"
+      className={`border-gray-10 flex flex-col self-stretch rounded-xl border px-3 ${
+        open ? "bg-gray-10" : "bg-gray-0"
       }`}
     >
       {/* 헤더 */}
       <div
-        className={`flex w-full items-center justify-between px-[12px] cursor-pointer ${
-          open ? "pt-[12px] pb-[6px]" : "py-[12px]"
+        onClick={() => setOpen(!open)}
+        className={`flex h-12 cursor-pointer items-center gap-5 ${
+          open ? "py-3" : ""
         }`}
-        onClick={() => setOpen((prev) => !prev)}
       >
         <p
-          className={`typo-label ${open ? "text-[#1FC16F]" : "text-[#202020]"}`}
+          className={`flex-1 truncate ${
+            open ? "typo-m-strong text-green-deep" : "typo-m text-gray-80"
+          }`}
         >
           {category.title}
         </p>
-        <img
-          src={arrowIcon}
-          alt="공지사항 열기 화살표"
-          className={`w-[24px] h-[24px] transition-transform ${
+        <ArrowIcon
+          className={`h-6 w-6 transition-transform ${
             open ? "-rotate-90" : "rotate-90"
           }`}
         />
@@ -40,9 +44,12 @@ export default function NoticeCategoryItem({ category }: Props) {
 
       {/* 내용 */}
       {open && (
-        <div className="flex w-full flex-col gap-[14px] px-[12px] pb-[12px]">
-          <NoticeItem title={category.title} content={category.content} />
-        </div>
+        <>
+          <div className="bg-gray-30 h-[1.5px] w-full" />
+          <div className="flex w-full flex-col gap-3 py-3">
+            <NoticeItem notice={category} />
+          </div>
+        </>
       )}
     </div>
   );

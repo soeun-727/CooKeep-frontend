@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
-import SettingsToggleItem from "../components/SettingsToggleItem";
-import ConfirmModal from "../../ui/ConfirmModal";
-import { updateMarketingPush } from "../../../api/user";
-import { registerPushNotification, unsubscribePush } from "../../../api/push";
 
-type Props = {
+import { registerPushNotification, unsubscribePush } from "@/api/push";
+import { updateMarketingPush } from "@/api/user";
+
+import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
+
+interface NotificationSectionProps {
   marketingPush: boolean;
   onStateChange: (isAgreed: boolean) => void;
-};
+}
 
 export default function NotificationSection({
   marketingPush,
   onStateChange,
-}: Props) {
+}: NotificationSectionProps) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [enabled, setEnabled] = useState(marketingPush);
   const [loading, setLoading] = useState(false);
@@ -37,7 +39,6 @@ export default function NotificationSection({
     setLoading(true);
 
     try {
-      // 1️⃣ [수정] 푸시 연동/해제를 먼저 시도합니다.
       if (next) {
         const isSuccess = await registerPushNotification();
         if (!isSuccess) {
@@ -46,11 +47,9 @@ export default function NotificationSection({
           return;
         }
       } else {
-        // 🚀 토글을 끌 때 서버 DB에서 구독 정보를 먼저 확실히 지웁니다.
         await unsubscribePush();
       }
 
-      // 2️⃣ [수정] 위 작업이 성공했을 때만 마케팅 동의 상태를 업데이트합니다.
       await updateMarketingPush(next);
 
       onStateChange(next);
@@ -72,18 +71,24 @@ export default function NotificationSection({
   };
 
   return (
-    <section className="px-4 mt-[128px]">
-      <SettingsToggleItem
-        label="PUSH 수신 동의"
-        checked={enabled}
-        onChange={handleToggle}
-      />
+    <section className="flex w-full flex-col items-start gap-1">
+      {/* 알림 라벨 */}
+      <div className="flex w-full items-center py-1">
+        <span className="typo-l-strong text-gray-30 flex-1">알림 설정</span>
+      </div>
+
+      {/* 내용 + 토글 */}
+      <div className="flex h-10 w-full items-center justify-between py-[2px]">
+        <span className="typo-l-strong text-gray-80">PUSH 수신 동의</span>
+        <SettingsToggleItem checked={enabled} onChange={handleToggle} />
+      </div>
 
       {showConfirm && (
         <ConfirmModal
-          message="PUSH 수신에 동의하시겠습니까?"
+          title="마케팅 수신에 동의하시겠습니까?"
           onConfirm={handleConfirm}
           onCancel={handleCancel}
+          buttonVariants={["green", "gray"]}
         />
       )}
     </section>

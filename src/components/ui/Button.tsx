@@ -1,7 +1,7 @@
 import React from "react";
 
 type ButtonSize = "S" | "L";
-type ButtonVariant = "black" | "green";
+type ButtonVariant = "black" | "green" | "gray";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -13,7 +13,7 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({
+export default function Button({
   children,
   size = "S",
   variant = "black",
@@ -21,42 +21,36 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
   type = "button",
-}) => {
+}: ButtonProps) {
   const sizeStyles = {
-    S: "w-[361px] h-[44px]",
-    L: "w-[361px] h-[56px]",
+    S: "h-[44px]",
+    L: "h-[56px]",
   };
 
   const baseStyle = `
     inline-flex items-center justify-center gap-2
-    rounded-[10px]
+    rounded-M
     transition
     whitespace-nowrap
+    typo-l-strong
   `;
 
   const variantStyles = {
-    black: "bg-[#111111] text-white",
-    green: "bg-[#32E389] text-white",
+    black: "bg-gray-80 text-gray-0",
+    green: "bg-green text-gray-0",
+    gray: "bg-gray-30 text-gray-0",
   };
 
-  const disabledStyle = "bg-[#C3C3C3] text-white cursor-not-allowed";
+  const disabledStyle = "bg-gray-30 text-gray-0 cursor-not-allowed";
 
   return (
     <button
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={`
-        ${baseStyle}
-        ${sizeStyles[size]}
-        ${disabled ? disabledStyle : variantStyles[variant]}
-        button-text typo-button
-        ${className}
-      `}
+      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-button w-full ${className} `}
     >
       {children}
     </button>
   );
-};
-
-export default Button;
+}

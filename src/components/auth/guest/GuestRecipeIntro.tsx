@@ -1,68 +1,65 @@
-import Button from "../../ui/Button";
-import cookChar from "../../../assets/recipe/main/cook_char.svg";
-import { useState } from "react";
+import cookChar from "@/assets/character/cooking_hat_char.svg";
+import LightBulbIcon from "@/assets/recipe/main/lightbulb.svg?react";
+import randomIcon from "@/assets/recipe/main/randomIcon.svg";
+import selectIcon from "@/assets/recipe/main/selectIcon.svg";
 
-interface Props {
+import RecipeGenerateButton from "@/components/recipe/main/RecipeGenerateButton";
+
+interface GuestRecipeIntroProps {
   onNext: () => void;
+  isDimmed: boolean;
+  setIsDimmed: (isDimmed: boolean) => void;
 }
 
-export default function GuestRecipeIntro({ onNext }: Props) {
-  const [isDimmed, setIsDimmed] = useState(false);
-
+export default function GuestRecipeIntro({
+  onNext,
+  isDimmed,
+  setIsDimmed,
+}: GuestRecipeIntroProps) {
   return (
-    <div onClick={() => setIsDimmed(true)} className="flex justify-center">
-      {/* 배경 장식 */}
-      <div
-        className="
-          absolute
-          top-[72px]
-          left-1/2
-          -translate-x-1/2
-          w-[450px]
-          h-[450px]
-          rounded-full 
-          bg-[#1FC16F]/15 blur-[100px]
-          pointer-events-none
-          z-0
-        "
-      />
+    <div
+      onClick={() => setIsDimmed(true)}
+      className="flex h-[calc(100dvh-40px)] w-full flex-col gap-4 px-4"
+    >
+      <div className="pointer-events-none mt-[30px] flex w-full flex-col items-start gap-1 px-1 select-none">
+        <img src={cookChar} alt="요리 캐릭터" className="w-25" />
+        <h1 className="text-gray-80 typo-h2 py-2 text-start">
+          오늘은 어떻게 요리해볼까요?
+        </h1>
+      </div>
 
-      {/* 딤드 레이어 (z-90) */}
-      {isDimmed && (
-        <div className="fixed inset-0 z-90 bg-neutral-900/50 left-1/2 -translate-x-1/2 max-w-[450px] w-full" />
-      )}
-
-      {/* 컨텐츠 영역: 부모의 z-index를 제거해야 자식의 z-index가 딤드(z-90)와 직접 경쟁할 수 있습니다. */}
-      <div className="flex flex-col items-center w-[361px] gap-[28px] mt-[203.62px] relative">
-        {/* 캐릭터와 타이틀: 딤드보다 뒤에 있어야 하므로 낮은 z-index 부여 */}
-        <div className="flex flex-col items-center gap-[28px] relative z-10">
-          <img
-            src={cookChar}
-            alt="요리 캐릭터"
-            className="w-[162.5px] h-[116.646px]"
+      <div className="flex w-full flex-col gap-2">
+        <div
+          className={`relative ${isDimmed ? "z-[110]" : "z-20"}`}
+          onClick={e => {
+            if (isDimmed) e.stopPropagation();
+          }}
+        >
+          <RecipeGenerateButton
+            image={selectIcon}
+            title="재료 직접 선택"
+            description={"내가 고른 재료로\n레시피를 추천받아요"}
+            onClick={onNext}
           />
-          <h1 className="text-center text-[28px] font-semibold leading-[36px] text-[#202020]">
-            지금 있는 재료로
-            <br />
-            요리해볼까요?
-          </h1>
         </div>
 
-        {/* 버튼 영역: isDimmed일 때 딤드(z-90)보다 높은 z-index 부여 */}
-        <div
-          className={`w-[249px] h-[44px] relative ${isDimmed ? "z-[100]" : "z-20"}`}
-        >
-          <Button
-            size="S"
-            variant="green"
-            onClick={() => {
-              if (!isDimmed) return;
-              onNext();
-            }}
-            className="w-full h-full"
-          >
-            요리할 재료 선택하기
-          </Button>
+        <div className="pointer-events-none opacity-80 select-none">
+          <RecipeGenerateButton
+            image={randomIcon}
+            title="랜덤 추천"
+            description={"오늘 뭐 먹지?\n가볍게 추천받아요"}
+            onClick={() => {}}
+          />
+        </div>
+      </div>
+
+      <div className="rounded-M bg-gray-exception pointer-events-none flex w-full gap-3 p-3 select-none">
+        <LightBulbIcon className="h-9 w-9" />
+        <div className="flex w-full flex-col items-start text-gray-50">
+          <span className="typo-caption-strong">쿠킵이 생성하는 레시피는</span>
+          <span className="typo-caption">
+            보유 재료와 취향을 반영해 추천해 드려요
+          </span>
         </div>
       </div>
     </div>

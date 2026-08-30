@@ -1,9 +1,10 @@
-// src/components/layout/Layout.tsx
+import { useCallback, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import TabBar from "../components/fixed/TabBar";
-import { useState, useEffect } from "react";
-import { useIngredientStore } from "../stores/useIngredientStore";
-import { useRecipeFlowStore } from "../stores/useRecipeFlowStore";
+
+import { useIngredientStore } from "@/stores/useIngredientStore";
+import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
+import TabBar from "@/components/fixed/TabBar";
 
 export default function Layout() {
   const location = useLocation();
@@ -16,7 +17,8 @@ export default function Layout() {
     (isRecipe &&
       (location.pathname.startsWith("/recipe/select") ||
         location.pathname.startsWith("/recipe/confirm") ||
-        location.pathname.startsWith("/recipe/loading")));
+        location.pathname.startsWith("/recipe/loading") ||
+        location.pathname.startsWith("/recipe/result")));
 
   const showTabBar = !hideTabBar;
   useEffect(() => {
@@ -31,25 +33,22 @@ export default function Layout() {
     if (path.includes("fridge")) setActiveTab("냉장고");
     else if (path.includes("recipe")) setActiveTab("레시피");
     else if (path.includes("cookeeps")) setActiveTab("쿠킵스");
-    else if (path.includes("mycookeep")) setActiveTab("MY쿠킵");
+    else if (path.includes("mycookeep")) setActiveTab("마이쿠킵");
   }, [location.pathname]);
 
+  const handleSelect = useCallback((name: string) => {
+    setActiveTab(name);
+  }, []);
+
   return (
-    <div className="flex flex-col w-full h-dvh bg-[#FAFAFA] overflow-hidden">
+    <div className="bg-background flex h-dvh w-full flex-col overflow-hidden">
       <main
-        className={` flex-1 flex flex-col overflow-y-auto no-scrollbar
-          ${showTabBar ? "pb-[56px]" : ""}
-        `}
+        className={`no-scrollbar flex flex-1 flex-col overflow-y-auto ${showTabBar ? "pb-[56px]" : ""} `}
       >
         <Outlet />
       </main>
 
-      {showTabBar && (
-        <TabBar
-          selectedTab={activeTab}
-          onSelect={(name) => setActiveTab(name)}
-        />
-      )}
+      {showTabBar && <TabBar selectedTab={activeTab} onSelect={handleSelect} />}
     </div>
   );
 }

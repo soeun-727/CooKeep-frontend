@@ -1,21 +1,20 @@
-import { useState, useEffect } from "react";
-import AccountSection from "./AccountSection";
-import SuccessSection from "./SuccessSection";
-import { useSignupStore } from "../../../stores/useSignupStore";
-import { signup } from "../../../api/auth";
-import { saveTokens } from "../../../utils/auth";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { registerPushNotification } from "../../../api/push";
-import EmailSection from "./EmailSection";
-import EmailAuthModal from "./EmailAuthModal";
 
-interface Agreements {
-  terms: boolean;
-  privacy: boolean;
-  marketing: boolean;
-  policy: boolean;
-}
+import { signup } from "@/api/auth";
+import { registerPushNotification } from "@/api/push";
+import { useSignupStore } from "@/stores/useSignupStore";
+import axios from "axios";
+
+import { AuthAgreements } from "@/types/auth";
+
+import { saveTokens } from "@/utils/auth";
+import { validatePassword } from "@/utils/validateUtil";
+
+import AccountSection from "./AccountSection";
+import EmailAuthModal from "./EmailAuthModal";
+import EmailSection from "./EmailSection";
+import SuccessSection from "./SuccessSection";
 
 interface SignupFormProps {
   setHideHeader: (hide: boolean) => void;
@@ -30,23 +29,22 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
   }, [isFinished, setHideHeader]);
 
   // 인증 결과만 구독
-  const isVerified = useSignupStore((s) => s.isVerified);
-  const storeEmail = useSignupStore((s) => s.email); // store의 이메일 (인증에 사용된)
+  const isVerified = useSignupStore(s => s.isVerified);
+  const storeEmail = useSignupStore(s => s.email); // store의 이메일 (인증에 사용된)
 
   // 계정 정보
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   // 약관 동의
-  const [agreements, setAgreements] = useState<Agreements>({
+  const [agreements, setAgreements] = useState<AuthAgreements>({
     terms: false,
     privacy: false,
     marketing: false,
     policy: false,
   });
 
-  const isPasswordValid =
-    password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password);
+  const isPasswordValid = validatePassword(password);
 
   const isPasswordMatch = password === passwordConfirm;
   const isRequiredAgreed = agreements.terms && agreements.privacy;
@@ -85,13 +83,12 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
       // 1. 토큰 저장
       saveTokens({
         accessToken: res.data.accessToken,
-        refreshToken: res.data.refreshToken,
       });
 
       setIsFinished(true);
 
       if (agreements.marketing) {
-        registerPushNotification().catch((err) => {
+        registerPushNotification().catch(err => {
           console.error("회원가입 후 푸시 등록 실패 (비필수):", err);
         });
       }
@@ -117,14 +114,14 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
     }
   };
 
-  const updateAgreements = (next: Partial<Agreements>) => {
+  const updateAgreements = (next: Partial<AuthAgreements>) => {
     setAgreements({ ...agreements, ...next });
   };
 
   if (isFinished) return <SuccessSection />;
 
   return (
-    <div className="flex-1 min-h-0 flex flex-col gap-4">
+    <div className="flex min-h-0 w-full flex-1 flex-col">
       {/* 이메일 인증 섹션 (전화번호 섹션 대체) */}
       {!isVerified && <EmailSection />}
 
@@ -144,7 +141,7 @@ export default function SignupForm({ setHideHeader }: SignupFormProps) {
           />
 
           {serverError && (
-            <p className="text-red-500 text-sm text-center mt-2">
+            <p className="text-semantic-negative mt-2 text-center text-sm">
               {serverError}
             </p>
           )}

@@ -1,36 +1,33 @@
-// src/pages/settings/components/SettingsToggleItem.tsx
-
-type SettingsToggleItemProps = {
-  label: string;
+interface SettingsToggleItemProps {
+  // label: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
-};
+}
 
 export default function SettingsToggleItem({
-  label,
+  // label,
   checked,
   onChange,
 }: SettingsToggleItemProps) {
   return (
-    <div className="flex items-center justify-between w-full px-3">
-      <span className="typo-body text-[#202020]">{label}</span>
-
-      <button
-        onClick={() => onChange(!checked)}
-        className={`
-          relative flex items-center
-          w-[50px] h-[26px] rounded-full transition-colors
-          ${checked ? "bg-gray-200" : "bg-gray-200"}
-        `}
-      >
-        <div
-          className={`
-            absolute top-[2px]
-            w-[22px] h-[22px] rounded-full  transition-transform
-            ${checked ? "translate-x-[26px] bg-(--color-green-deep)" : "translate-x-[2px] bg-stone-300"}
-          `}
-        />
-      </button>
-    </div>
+    <button
+      type="button"
+      onClick={() => onChange(!checked)}
+      aria-pressed={checked}
+      className="relative h-9 w-[52px] shrink-0"
+    >
+      {/* track: 40x20, 중앙 정렬 */}
+      <span
+        className={`absolute top-2 left-[6px] h-5 w-10 rounded-full transition-colors ${
+          checked ? "bg-gray-10" : "bg-gray-10"
+        }`}
+      />
+      {/* thumb: 28x28 */}
+      <span
+        className={`shadow-search absolute top-1 left-[2px] h-7 w-7 rounded-full transition-transform ${
+          checked ? "bg-green translate-x-[20px]" : "bg-gray-30 translate-x-0"
+        }`}
+      />
+    </button>
   );
 }

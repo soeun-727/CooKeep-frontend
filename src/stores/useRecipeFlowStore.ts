@@ -1,17 +1,19 @@
-// src/stores/useRecipeFlowStore.ts
-import { create } from "zustand";
-import type { Ingredient } from "./useIngredientStore";
-import type { AiRecipeResponse, Difficulty } from "../types/aiRecipe";
 import {
   completeAiRecipe,
   generateAiRecipe,
+  generateRandomAiRecipe,
   retryAiRecipe,
-} from "../api/aiRecipe";
-import { getAiSessionDetail } from "../api/aiSession";
+  retryRandomAiRecipe,
+} from "@/api/aiRecipe";
+import { getAiSessionDetail } from "@/api/aiSession";
+import axios from "axios";
+import { create } from "zustand";
+
+import type { AiRecipeResponse, RecipeCategory } from "@/types/aiRecipe";
+
+import type { Ingredient } from "./useIngredientStore";
 import { useRewardStore } from "./useRewardStore";
 import type { RewardType } from "./useRewardStore";
-
-import axios from "axios";
 
 const parseAiError = (error: unknown): string => {
   if (!axios.isAxiosError(error)) {
@@ -25,7 +27,9 @@ const parseAiError = (error: unknown): string => {
     return "AI 요청 횟수를 초과했어요. 잠시 후 다시 시도해주세요.";
   }
 
-  if (status === 400 && code === "AI_RECIPE_CHANGE_LIMIT_EXCEEDED") {
+  const isLimitExceeded =
+    status === 400 && code === "AI_RECIPE_CHANGE_LIMIT_EXCEEDED";
+  if (isLimitExceeded) {
     return "레시피 재생성은 최대 5번까지 가능합니다.";
   }
 
@@ -39,15 +43,14 @@ const parseAiError = (error: unknown): string => {
 const PRIORITY: Record<RewardType, number> = {
   ONBOARDING_INGREDIENT: 0,
   ONBOARDING_RECIPE: 0,
-
-  WEEKLY: 1, // A
-  EXPIRING: 2, // B
-  COMEBACK: -1, // 우선순위 제일 높음
+  WEEKLY: 1,
+  EXPIRING: 2,
+  COMEBACK: -1,
 };
 
 type RecipeFlowState = {
   selectedIngredients: Ingredient[];
-  difficulty: Difficulty | null;
+  difficulty: RecipeCategory | null;
 
   sessionId: number | null;
   retryCount: number;
@@ -59,17 +62,15 @@ type RecipeFlowState = {
   isCompleted: boolean;
 
   setSelectedIngredients: (items: Ingredient[]) => void;
-  setDifficulty: (d: Difficulty) => void;
+  setDifficulty: (d: RecipeCategory | null) => void;
+
   generateRecipe: () => Promise<void>;
   reset: () => void;
 
   fetchSessionDetail: (sessionId: number) => Promise<void>;
-  completeSession: () => Promise<void>; // 타입 정의 추가
+  completeSession: () => Promise<void>;
 
   hasExpiringIngredient: boolean;
-
-  // 작동안해서 넣어놓음
-  // clearSelection: () => void;
 };
 
 export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
@@ -86,14 +87,16 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
   isCompleted: false,
   hasExpiringIngredient: false,
 
-  setSelectedIngredients: (items) => set({ selectedIngredients: items }),
+  setSelectedIngredients: items => set({ selectedIngredients: items }),
 
-  setDifficulty: (difficulty) => set({ difficulty }),
+  setDifficulty: difficulty => set({ difficulty }),
 
   generateRecipe: async () => {
+    set({ error: null });
+
     const { selectedIngredients, difficulty, sessionId, recipeHistory } = get();
 
-    const hasDdayIngredient = selectedIngredients.some((i) => i.dDay === 0);
+    const hasDdayIngredient = selectedIngredients.some(i => i.dDay === 0);
 
     set({
       hasExpiringIngredient: hasDdayIngredient,
@@ -102,30 +105,38 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
     if (!difficulty) return;
 
     try {
-      set({ isLoading: true, error: null }); // 로딩 시작
+      set({ isLoading: true });
 
       let response: AiRecipeResponse;
+      const apiDifficulty =
+        (difficulty as string) === "RANDOM" ? undefined : difficulty;
 
       if (sessionId === null) {
-        // 처음 생성 시
-        response = await generateAiRecipe({
-          ingredientIds: selectedIngredients.map((i) => i.id),
-          difficulty,
-        });
+        if (difficulty === ("RANDOM" as any)) {
+          response = await generateRandomAiRecipe();
+        } else {
+          response = await generateAiRecipe({
+            ingredientIds: selectedIngredients.map(i => i.id),
+            feature: apiDifficulty as any,
+          });
+        }
       } else {
-        // 재요청(Retry) 시
-        response = await retryAiRecipe({
-          sessionId,
-          difficulty,
-          ingredientIds: selectedIngredients.map((i) => i.id),
-        });
+        if (difficulty === ("RANDOM" as any)) {
+          response = await retryRandomAiRecipe({
+            sessionId,
+          });
+        } else {
+          response = await retryAiRecipe({
+            sessionId,
+          });
+        }
       }
 
       set({
         sessionId: response.sessionId,
         retryCount: response.changeCount,
         recipeHistory: [...recipeHistory, response],
-        isLoading: false, // 로딩 종료
+        isLoading: false,
       });
     } catch (error) {
       const message = parseAiError(error);
@@ -152,21 +163,18 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
 
   fetchSessionDetail: async (sessionId: number) => {
     try {
-      set({ isLoading: true });
+      set({ isLoading: true, error: null });
       const data = await getAiSessionDetail(sessionId);
 
-      // AI가 응답한 content(JSON 문자열)를 AiRecipeResponse 구조로 변환
       const parsedHistory: AiRecipeResponse[] = data.messages
-        .filter((msg) => msg.role === "AI")
-        .map((msg) => {
+        .filter(msg => msg.role === "AI")
+        .map(msg => {
           try {
             const parsed = JSON.parse(msg.content);
-
-            // API 응답의 content 내부에 이미 sessionId 등이 포함되어 있다면 그대로 사용,
-            // 만약 recipe 정보만 들어있다면 형식을 맞춰줍니다.
             return {
               sessionId: data.sessionId,
-              changeCount: 0, // 상세 조회 시점에서는 기본값 설정
+              changeCount: 0,
+              feature: data.feature ?? parsed.feature ?? "ANY",
               recipe: parsed.recipe || parsed,
               youtubeReferences:
                 parsed.youtubeReferences ?? parsed.youtube_references ?? [],
@@ -178,10 +186,16 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
         })
         .filter((item): item is AiRecipeResponse => item !== null);
 
+      const finalFeature =
+        data.feature ??
+        parsedHistory[parsedHistory.length - 1]?.feature ??
+        "ANY";
+
       set({
         sessionId,
         recipeHistory: parsedHistory,
         isCompleted: data.completed,
+        difficulty: finalFeature as RecipeCategory,
         isLoading: false,
       });
     } catch (error) {
@@ -198,31 +212,27 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
     }
 
     try {
-      set({ isLoading: true });
+      set({ isLoading: true, error: null });
       const response = await completeAiRecipe(sessionId);
 
       const rewards: RewardType[] = [];
+      const types = response?.reward?.types || [];
 
-      // 1. 온보딩 (최우선)
-      if (response?.recipeRewardGranted) {
+      if (types.includes("ONBOARDING_RECIPE")) {
         rewards.push("ONBOARDING_RECIPE");
       }
 
-      // 2. 주간 목표
-      if (response?.weeklyGoalAchieved) {
+      if (types.includes("BONUS_WEEKLY_GOAL_ACHIEVE")) {
         rewards.push("WEEKLY");
       }
 
-      // 3. 유통기한 임박
-      if (response?.urgentIngredientRewardGranted) {
+      if (types.includes("BONUS_URGENT_INGREDIENT_USE")) {
         rewards.push("EXPIRING");
       }
 
-      // 우선순위 정렬
       rewards.sort((a, b) => PRIORITY[a] - PRIORITY[b]);
 
-      // 순서대로 enqueue
-      rewards.forEach((r) => {
+      rewards.forEach(r => {
         useRewardStore.getState().enqueue(r);
       });
 
@@ -233,8 +243,4 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
       throw error;
     }
   },
-  // clearSelection: () =>
-  //   set({
-  //     selectedIngredients: [],
-  //   }),
 }));

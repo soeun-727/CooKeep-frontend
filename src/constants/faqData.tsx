@@ -1,5 +1,3 @@
-// src/pages/settings/faqData.ts
-
 export type FaqItem = {
   id: number;
   question: string;
@@ -128,7 +126,7 @@ export const faqCategories: FaqCategory[] = [
               <p>3. 「홈 화면에 추가」 선택</p>
               <p>4. 아이콘 이름 확인/수정 → 추가</p>
             </div>
-            <p className="font-bold mt-3">갤럭시(Android)</p>
+            <p className="mt-3 font-bold">갤럭시(Android)</p>
             <div className="pl-2">
               <p>1. Chrome에서 웹사이트 접속</p>
               <p>2. 우측 상단 ⋮ (더보기) 터치</p>

@@ -1,8 +1,10 @@
-// WaterButton.tsx
 import { useEffect, useState } from "react";
-import { useCookeepsStore } from "../../../stores/useCookeepsStore";
+
+import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
+import CookieIcon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg?react";
+
 import WaterModal from "../modals/WaterModal";
-import CookieIcon from "../../../assets/cookeeps/main/water_cookie_cookeeps.svg";
 
 interface WaterButtonProps {
   onSuccess?: () => void; // prop 추가
@@ -62,30 +64,14 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
           <div className="absolute -top-10 flex flex-col items-center">
             {/* 말풍선 본문 */}
             <div
-              className="
-        inline-flex items-center justify-center
-        px-[10px] py-[3px]
-        bg-white rounded-[3px]
-        text-[8px] font-medium text-[#7D7D7D]
-        leading-[10px] text-center
-        whitespace-nowrap
-        shadow-sm
-      "
+              className="bg-gray-0 shadow-plant inline-flex items-center justify-center rounded-[3px] px-[10px] py-[3px] text-center text-[8px] leading-[10px] font-medium whitespace-nowrap text-gray-50"
               style={{ width: "164px", height: "23px" }}
             >
               아래 버튼을 클릭하여 식물에게 물을 줘보세요!
             </div>
 
             {/* ▼ 삼각형 */}
-            <div
-              className="
-        w-0 h-0
-        border-l-[5px] border-l-transparent
-        border-r-[5px] border-r-transparent
-        border-t-[10px] border-t-white
-        -mt-[1px]
-      "
-            />
+            <div className="-mt-[1px] h-0 w-0 border-t-[10px] border-r-[5px] border-l-[5px] border-t-white border-r-transparent border-l-transparent" />
           </div>
         )}
         <button
@@ -104,20 +90,17 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
 
             setModalOpen(true);
           }}
-          className={`w-full max-w-[280px] min-w-[211px] h-[40px]
-        rounded-full font-bold text-[16px]
-        flex items-center justify-center gap-1
-        ${
-          disabled
-            ? "bg-gray-300 text-gray-400"
-            : "bg-[#202020] text-[#32E389] shadow active:scale-95"
-        }`}
+          className={`flex h-[40px] w-full max-w-[280px] min-w-[211px] items-center justify-center gap-1 rounded-full text-[16px] font-bold ${
+            disabled
+              ? "bg-gray-300 text-gray-400"
+              : "bg-gray-80 text-green shadow active:scale-95"
+          }`}
         >
           물 주기( -{/* 2. 이모지 대신 img 태그 삽입 */}
-          <img
-            src={CookieIcon}
-            alt="cookie"
-            className="w-4 h-4 object-contain"
+          <CookieIcon
+            aria-label="cookie"
+            role="img"
+            className="h-4 w-4 object-contain"
           />
           10)
         </button>

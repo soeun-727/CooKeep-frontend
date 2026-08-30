@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../ui/BackHeader";
-import Button from "../../ui/Button";
-import illustration from "../../../assets/character/default_char.svg";
-import shadow from "../../../assets/character/char_shadow.svg";
+
+import { updateAgreements } from "@/api/onboarding";
+import { registerPushNotification } from "@/api/push";
+
+import Shadow from "@/assets/character/char_shadow.svg?react";
+import Character from "@/assets/character/default_char.svg?react";
+
+import { BackHeader } from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+
+import { AuthAgreements } from "@/types/auth";
+
 import AgreementList from "./AgreementList";
-import { updateAgreements } from "../../../api/onboarding";
-import { registerPushNotification } from "../../../api/push";
 
 export default function SimpleLoginAgreement() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [agreements, setAgreements] = useState<Record<string, boolean>>({
+  const [agreements, setAgreements] = useState<AuthAgreements>({
     terms: false,
     privacy: false,
     marketing: false,
@@ -36,52 +42,46 @@ export default function SimpleLoginAgreement() {
   };
 
   return (
-    <>
-      <BackHeader title="약관 동의" onBack={() => navigate(-1)} />
+    // 헤더 + 본문을 하나로 감싸고, px-4 / gap-10을 여기서 적용
+    <div className="relative flex min-h-dvh flex-col gap-10 px-4">
+      <BackHeader title="간편로그인" onBack={() => navigate(-1)} />
 
-      {/* 회원가입과 동일한 컨테이너 */}
-      <div className="flex flex-col min-h-screen">
-        <div className="flex-1 flex flex-col justify-end mx-auto w-[361px] pb-14">
-          {/* 일러스트 */}
-          <div className="flex flex-col gap-2">
-            <img
-              src={illustration}
-              className="w-[75px]"
-              alt="약관 동의 일러스트"
-            />
-            <img src={shadow} className="w-[75px]" />
+      <main className="flex flex-1 flex-col">
+        {/* 일러스트 + 타이틀: flex-1로 감싸서 아래 영역이 자동으로 하단에 붙게 함 */}
+        <div className="flex flex-1 flex-col gap-4">
+          <div className="flex flex-col gap-2 pt-[120px]">
+            <Character className="h-[60px] w-[75px]" />
+            <Shadow className="h-[11px] w-[75px]" />
           </div>
 
-          {/* 타이틀 */}
-          <h1 className="typo-h2 mt-[29.5px]">
-            서비스 이용을 위해 <br />
+          <h1 className="typo-h2 text-gray-80">
+            서비스 이용을 위해
+            <br />
             약관 동의가 필요해요
           </h1>
+        </div>
 
-          {/* 약관 영역 */}
-          <div className="flex items-center justify-center">
-            <AgreementList
-              agreements={agreements}
-              updateAgreements={(next) =>
-                setAgreements((prev) => ({ ...prev, ...next }))
-              }
-            />
-          </div>
+        {/* 약관 + 버튼: gap-4로 간격 처리, 개별 padding 제거 */}
+        <div className="flex flex-col gap-4">
+          <AgreementList
+            agreements={agreements}
+            updateAgreements={next =>
+              setAgreements(prev => ({ ...prev, ...next }))
+            }
+          />
 
-          {/* 버튼 */}
-          <div className="mt-[10px] ">
+          <div className="bg-blur-to-t pb-[34px]">
             <Button
               size="L"
               variant="green"
               disabled={!(agreements.terms && agreements.privacy) || isLoading}
               onClick={handleStart}
-              className="mt-[8px]"
             >
               시작하기
             </Button>
           </div>
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   );
 }

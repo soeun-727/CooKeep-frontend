@@ -1,13 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BackHeader from "../../components/ui/BackHeader";
-import Button from "../../components/ui/Button";
-import arrowIcon from "../../assets/signup/arrowright.svg";
-import characterImg from "../../assets/character/sad_char_faded.svg";
-import { useAuthStore } from "../../stores/useAuthStore";
-import { withdrawUser } from "../../api/auth";
-import { getMyProfile } from "../../api/user";
-import LoadingScreen from "../../components/ui/LoadingScreen";
+
+import { withdrawUser } from "@/api/auth";
+import { getMyProfile } from "@/api/user";
+import { useAuthStore } from "@/stores/useAuthStore";
+
+import CharacterImg from "@/assets/character/sad_char_faded.svg?react";
+import ArrowIcon from "@/assets/signup/arrowright.svg?react";
+import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
+import Shadow from "@/assets/character/char_shadow.svg?react";
+import AgreeUnchecked from "@/assets/signup/blankCheck.svg?react";
+import AgreeChecked from "@/assets/signup/checkboxCheck.svg?react";
+
+import { BackHeader } from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+import { flushSync } from "react-dom";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+
+const REASONS = [
+  "자주 사용하지 않아요",
+  "서비스가 기대와 달라요",
+  "사용이 불편해요",
+  "다른 서비스를 이용하고 있어요",
+  "기타 (직접 입력하기)",
+];
+
+const CUSTOM_REASON = "기타 (직접 입력하기)";
 
 export default function WithdrawPage() {
   const navigate = useNavigate();
@@ -18,11 +36,15 @@ export default function WithdrawPage() {
   const [reasonOpen, setReasonOpen] = useState(false);
   const [selectedReason, setSelectedReason] = useState<string | null>(null);
   const [customReason, setCustomReason] = useState("");
+  const [isReasonFocused, setIsReasonFocused] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // 사용자 정보 가져오기
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const isCustom = selectedReason === CUSTOM_REASON;
+  const showClear = isReasonFocused && customReason.length > 0;
+
   useEffect(() => {
     const fetchUserInfo = async () => {
       try {
@@ -38,30 +60,44 @@ export default function WithdrawPage() {
     fetchUserInfo();
   }, []);
 
-  // 임시
-  const reasons = [
-    "사용을 잘 하지 않아요",
-    "원하는 기능이 없어요",
-    "서비스가 불편해요",
-    "오류가 많아요",
-    "직접 입력",
-  ];
-  const isCustom = selectedReason === "직접 입력";
+  // 커스텀 입력창 높이 자동 조절
+  useEffect(() => {
+    if (isCustom && textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [customReason, isCustom]);
 
-  // 탈퇴 버튼 클릭
+  const reasonValid =
+    !!selectedReason && (!isCustom || customReason.trim().length > 0);
+  const canSubmit = agree && reasonValid;
+
+  // 사유 선택 (기타 선택 시 동기적으로 렌더 후 바로 포커스 → iOS에서도 키보드 확실히 뜸)
+  const handleSelectReason = (reason: string) => {
+    flushSync(() => {
+      setSelectedReason(reason);
+      setReasonOpen(false);
+      if (reason === CUSTOM_REASON) setCustomReason("");
+    });
+
+    if (reason === CUSTOM_REASON) {
+      textareaRef.current?.focus();
+    }
+  };
+
+  const handleClearCustomReason = () => {
+    setCustomReason("");
+    textareaRef.current?.focus(); // 삭제 후에도 포커스 유지
+  };
+
   const handleWithdraw = async () => {
     if (isSubmitting) return;
 
     try {
       setIsSubmitting(true);
-
-      // 1. 탈퇴 API 호출
       await withdrawUser();
-
-      // 2. 로그아웃 처리 (토큰 삭제 등)
       await logout();
 
-      // 3. 탈퇴 완료 페이지로 이동
       navigate("/settings/withdraw/done", {
         replace: true,
         state: { fromWithdraw: true },
@@ -80,170 +116,161 @@ export default function WithdrawPage() {
 
   return (
     <>
-      <BackHeader title="탈퇴하기" onBack={() => navigate(-1)} />
+      <main className="flex min-h-dvh w-full flex-col gap-[120px] px-4 pb-[220px]">
+        <BackHeader title="탈퇴하기" />
 
-      {/* 스크롤 영역 */}
-      <main className="pt-[161px] px-4 pb-[120px] max-w-[450px] mx-auto">
-        {/* ===== 상단 문구 ===== */}
-        <div className="flex justify-between items-start">
-          <div>
-            <p className="text-[22px] font-bold leading-[32px] text-[#202020]">
-              Cookeep을 <span className="text-[#D91F1F]">탈퇴</span>하시나요?
-            </p>
+        <div className="flex w-full flex-col items-center gap-3">
+          {/* 이미지 + 글자 */}
+          <div className="flex w-full flex-col items-center gap-2 px-1">
+            {/* 이미지 — 항상 가운데 정렬 */}
+            <div className="flex w-full flex-col">
+              <CharacterImg className="h-[57.736px] w-[76.286px]" />
+              <Shadow className="-mt-1 h-[19px] w-[83px]" />
+            </div>
 
-            <p className="mt-1 text-[14px] font-medium leading-[20px] text-[#7D7D7D]">
-              <span className="font-semibold">{username}</span> 님,
-              이별인가요..?? 너무 아쉬워요...
-            </p>
+            {/* 글자 */}
+            <div className="flex w-full flex-col items-start gap-4">
+              <div className="flex w-full items-start gap-2">
+                <p className="typo-h2 text-gray-80">
+                  쿠킵을
+                  <br />
+                  탈퇴하시나요?
+                </p>
+              </div>
+
+              <div className="flex w-full flex-wrap items-start gap-1">
+                <span className="typo-m-strong text-gray-50">{username}</span>
+                <span className="typo-m flex-1 text-gray-50">
+                  님, 이별인가요..?? 너무 아쉬워요...
+                </span>
+              </div>
+            </div>
           </div>
 
-          <img
-            src={characterImg}
-            alt="character"
-            className="w-[76px] h-[58px] ml-2"
-          />
-        </div>
-
-        {/* ===== 안내 박스 ===== */}
-        <div className="mt-[26px] rounded-[6px] border border-[#D1D1D1] bg-[#EBEBEB] p-[12px] space-y-[6px]">
-          <p className="text-[14px] font-medium leading-[20px] text-[#202020]">
-            - 회원 탈퇴 시 함께 쌓아온 냉장고 재료, 레시피, 요리 기록이 모두
-            삭제돼요. T_T
-          </p>
-          <p className="text-[14px] font-medium leading-[20px] text-[#202020]">
-            - 탈퇴일 포함 30일동안 재가입이 불가하며, 재가입 시 사용자의 이전
-            이용 내역은 복구되지 않습니다.
-          </p>
-          <p className="text-[14px] font-medium leading-[20px] text-[#202020]">
-            - 탈퇴 고객의 개인정보는 관련 법령에 따라 일정 기간 보관 후 자동
-            파기됩니다.
-          </p>
-        </div>
-
-        {/* ===== 체크 영역 ===== */}
-        <button
-          onClick={() => setAgree((v) => !v)}
-          className="mt-3 mx-2 flex items-center gap-2"
-        >
-          <span
-            className={`
-      w-[18px] h-[18px]
-      rounded-full
-      flex items-center justify-center
-      border
-      transition
-      ${agree ? "bg-[#1FC16F] border-[#1FC16F]" : "bg-white border-[#D1D1D1]"}
-    `}
-          >
-            {agree && (
-              <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                <path
-                  d="M1 4L4 7L9 1"
-                  stroke="white"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-          </span>
-
-          <span className="text-[14px] font-medium leading-[20px] text-[#7D7D7D] px-[12px]">
-            유의사항을 전부 확인했습니다
-          </span>
-        </button>
-
-        {/* ===== 탈퇴 사유 토글 ===== */}
-        <div className="mt-6">
-          <button
-            onClick={() => setReasonOpen((v) => !v)}
-            aria-expanded={reasonOpen}
-            className={`
-    flex w-full h-[48px] items-center gap-3 px-3
-    border border-[#D1D1D1] bg-white
-    ${reasonOpen ? "rounded-t-[6px] border-b-0" : "rounded-[6px]"}
-  `}
-          >
+          {/* ===== 탈퇴 사유 선택 (드롭다운은 아래 유의사항 위로 오버레이) ===== */}
+          <div className="relative w-full">
             {isCustom ? (
-              <input
-                value={customReason}
-                onChange={(e) => setCustomReason(e.target.value)}
-                placeholder="직접 입력하세요"
-                className="flex-1 text-[14px] outline-none"
-                onClick={(e) => e.stopPropagation()}
-              />
+              <div className="border-gray-10 bg-gray-0 flex w-full items-start gap-3 rounded-[12px] border p-3">
+                <textarea
+                  ref={textareaRef}
+                  value={customReason}
+                  onChange={e => setCustomReason(e.target.value)}
+                  onFocus={() => setIsReasonFocused(true)}
+                  onBlur={() => setIsReasonFocused(false)}
+                  placeholder="직접 입력하세요"
+                  rows={1}
+                  className="typo-m text-gray-80 max-h-[120px] flex-1 resize-none outline-none"
+                />
+                {showClear && (
+                  <button
+                    type="button"
+                    onMouseDown={e => e.preventDefault()} // blur보다 먼저 막아서 클릭이 확실히 먹히게
+                    onClick={handleClearCustomReason}
+                    className="shrink-0"
+                  >
+                    <ClearIcon className="h-6 w-6" />
+                  </button>
+                )}
+              </div>
             ) : (
-              <span className="flex-1 text-[14px] font-medium text-[#111] text-left">
-                {selectedReason ?? "탈퇴 사유를 알려주세요"}
-              </span>
-            )}
-
-            <img
-              src={arrowIcon}
-              alt="toggle"
-              className={`w-6 h-6 transition-transform ${
-                reasonOpen ? "-rotate-90" : "rotate-90"
-              }`}
-            />
-          </button>
-
-          {reasonOpen && (
-            <div
-              className="
-      w-full
-      flex flex-col
-      border border-[#D1D1D1]
-      border-t-0
-      rounded-b-[6px]
-      bg-white
-      overflow-hidden
-    "
-            >
-              {reasons.map((reason) => (
+              <>
                 <button
-                  key={reason}
-                  onClick={() => {
-                    setSelectedReason(reason);
-                    setReasonOpen(false);
-                  }}
-                  className={`
-          flex items-center px-3 py-3
-          text-[14px] font-medium text-left
-          ${selectedReason === reason ? "bg-[#EBEBEB]" : "bg-white"}
-        `}
+                  onClick={() => setReasonOpen(v => !v)}
+                  aria-expanded={reasonOpen}
+                  className={`border-gray-10 bg-gray-0 relative z-30 flex h-[48px] w-full items-center gap-3 border px-3 ${
+                    reasonOpen
+                      ? "rounded-t-[12px] border-b-0"
+                      : "rounded-[12px]"
+                  }`}
                 >
-                  {reason}
+                  <span className="typo-m text-gray-80 h-6 flex-1 overflow-hidden text-left text-ellipsis whitespace-nowrap">
+                    {selectedReason ?? "탈퇴 사유를 알려주세요"}
+                  </span>
+
+                  <ArrowIcon
+                    className={`h-6 w-6 transition-transform ${
+                      reasonOpen ? "-rotate-90" : "rotate-90"
+                    }`}
+                  />
                 </button>
-              ))}
-            </div>
-          )}
+
+                {/* 드롭다운: absolute + z-30 → 유의사항 영역 위로 겹쳐서 뜸 (레이아웃을 안 밀어냄) */}
+                {reasonOpen && (
+                  <div className="border-gray-10 bg-gray-0 absolute top-full right-0 left-0 z-30 flex flex-col overflow-hidden rounded-b-[12px] border-r border-b border-l shadow-md">
+                    {REASONS.map(reason => (
+                      <button
+                        key={reason}
+                        onClick={() => handleSelectReason(reason)}
+                        className={`border-gray-10 flex h-[48px] w-full items-center gap-3 border-r border-l px-3 text-left ${
+                          selectedReason === reason ? "bg-gray-10" : "bg-gray-0"
+                        }`}
+                      >
+                        <span className="typo-m text-gray-80 h-6 flex-1 overflow-hidden text-ellipsis whitespace-nowrap">
+                          {reason}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
         </div>
       </main>
 
-      {/* ===== 하단 고정 버튼 ===== */}
-      <div
-        className="
-    fixed bottom-[34px]
-    left-1/2 -translate-x-1/2
-    w-full max-w-[450px]
-    px-4
-    flex justify-center
-  "
-      >
-        <Button
-          size="L"
-          disabled={!agree || !selectedReason || isSubmitting}
-          onClick={() => setOpenModal(true)}
-          className="!w-full !max-w-[450px]"
-        >
-          {isSubmitting ? "처리 중..." : "탈퇴하기"}
-        </Button>
+      {/* ===== 하단 고정 영역 ===== */}
+      <div className="fixed bottom-0 left-1/2 z-20 flex w-full -translate-x-1/2 flex-col items-center">
+        <div className="flex w-full flex-col items-center px-4">
+          <div className="bg-gray-10 flex w-full flex-col items-start gap-2 rounded-[12px]">
+            <div className="flex w-full flex-col items-start gap-[6px] p-3">
+              <p className="typo-m text-gray-80 w-full">
+                - 회원 탈퇴 시 함께 쌓아온 냉장고 재료, 레시피, 요리 기록이 모두
+                삭제돼요. T_T
+              </p>
+              <p className="typo-m text-gray-80 w-full">
+                - 탈퇴일 포함 30일동안 재가입이 불가하며, 재가입 시 사용자의
+                이전 이용 내역은 복구되지 않습니다.
+              </p>
+              <p className="typo-m text-gray-80 w-full">
+                - 탈퇴 고객의 개인정보는 관련 법령에 따라 일정 기간 보관 후 자동
+                파기됩니다.
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setAgree(v => !v)}
+            className="flex w-full items-center gap-3 rounded-[12px] px-1 py-[6px]"
+          >
+            {agree ? (
+              <AgreeChecked className="h-6 w-6 shrink-0 text-gray-50" />
+            ) : (
+              <AgreeUnchecked className="h-6 w-6 shrink-0" />
+            )}
+            <span className="typo-m h-6 flex-1 overflow-hidden text-left text-ellipsis whitespace-nowrap text-gray-50">
+              유의사항을 전부 확인했습니다
+            </span>
+          </button>
+        </div>
+
+        <div className="flex w-full flex-col items-center px-4 pt-6 pb-[env(safe-area-inset-bottom)]">
+          <Button
+            size="L"
+            disabled={!canSubmit || isSubmitting}
+            onClick={() => setOpenModal(true)}
+            className={`!w-full !rounded-[12px] !font-semibold ${
+              canSubmit && !isSubmitting ? "!bg-gray-80" : ""
+            }`}
+          >
+            {isSubmitting ? "처리 중..." : "탈퇴하기"}
+          </Button>
+        </div>
       </div>
 
       {/* ===== 더블체크 모달 ===== */}
       {openModal && (
         <div
-          className="fixed inset-0 z-[150] flex items-center justify-center bg-[#11111180]"
+          className="bg-black-overlay fixed inset-0 z-[150] flex items-center justify-center"
           role="dialog"
           aria-modal="true"
         >
@@ -252,26 +279,26 @@ export default function WithdrawPage() {
             onClick={() => setOpenModal(false)}
           />
 
-          <div className="relative w-[254px] bg-white rounded-[10px] flex flex-col items-center">
-            <h2 className="mt-[35px] mb-4 font-bold text-[16px] text-[#202020]">
-              정말 탈퇴하시겠어요?
-            </h2>
+          <div className="bg-gray-0 shadow-container relative flex w-[300px] flex-col items-center justify-center gap-6 rounded-[16px] p-6">
+            <div className="flex w-full flex-col items-center gap-3">
+              <p className="typo-l-strong text-gray-80 w-full text-center">
+                정말 탈퇴하시겠어요?
+              </p>
+            </div>
 
-            <div className="flex gap-2 mb-[20px]">
-              {/* 탈퇴 진행 */}
+            <div className="flex w-full items-center justify-center gap-2">
               <button
                 onClick={handleWithdraw}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-[#C3C3C3] text-white"
+                className="bg-gray-30 typo-l-strong text-gray-0 flex h-[44px] flex-1 items-center justify-center rounded-[12px]"
               >
                 {isSubmitting ? "처리중" : "네"}
               </button>
 
-              {/* 취소 */}
               <button
                 onClick={() => setOpenModal(false)}
                 disabled={isSubmitting}
-                className="w-[95px] h-[44px] rounded-[10px] bg-[#32E389] text-white"
+                className="bg-gray-80 typo-l-strong text-gray-0 flex h-[44px] flex-1 items-center justify-center rounded-[12px]"
               >
                 아니오
               </button>

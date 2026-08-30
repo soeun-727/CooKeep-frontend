@@ -1,22 +1,26 @@
-import { useNavigate } from "react-router-dom";
 import { memo, useState } from "react";
-import privateIcon from "../../../assets/mycookeep/record/private_icon.svg";
-import publicIcon from "../../../assets/mycookeep/record/public_icon.svg";
-import { useCookeepRecordStore } from "../../../stores/useCookeepRecordStore";
+import { useNavigate } from "react-router-dom";
+
+import { DailyRecipe } from "@/api/myRecipe";
+import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
+
+import PrivateIcon from "@/assets/mycookeep/record/private_icon.svg?react";
+import PublicIcon from "@/assets/mycookeep/record/public_icon.svg?react";
+import tempFoodPhoto from "@/assets/mycookeep/record/temp_food_photo.svg";
+
 import SelectViewTypeModal from "./SelectViewTypeModal";
-import { DailyRecipe } from "../../../api/myRecipe";
-import tempFoodPhoto from "../../../assets/mycookeep/record/temp_food_photo.svg";
-interface Props {
+
+interface RecordCardProps {
   record: DailyRecipe;
 }
 
-function RecordCard({ record: initialRecord }: Props) {
+function RecordCard({ record: initialRecord }: RecordCardProps) {
   const navigate = useNavigate();
   const { updateRecordVisibility } = useCookeepRecordStore();
   const record =
-    useCookeepRecordStore((state) =>
+    useCookeepRecordStore(state =>
       state.records.find(
-        (r) => String(r.dailyRecipeId) === String(initialRecord.dailyRecipeId),
+        r => String(r.dailyRecipeId) === String(initialRecord.dailyRecipeId),
       ),
     ) || initialRecord;
   const [isOptionOpen, setIsOptionOpen] = useState(false);
@@ -27,7 +31,7 @@ function RecordCard({ record: initialRecord }: Props) {
   };
 
   const toggleOption = () => {
-    setIsOptionOpen((prev) => !prev);
+    setIsOptionOpen(prev => !prev);
   };
 
   // 모달
@@ -63,78 +67,77 @@ function RecordCard({ record: initialRecord }: Props) {
 
   return (
     <>
-      <div className="flex flex-col gap-[9px] w-full max-w-[360px] mx-auto">
+      <div className="mx-auto flex w-full max-w-[360px] flex-col gap-[9px]">
         {/* 이미지 */}
         <div
-          className="
-          relative w-full h-[160px] cursor-pointer
-          rounded-[6px] overflow-hidden
-          shadow-[0_1px_8.2px_-2px_rgba(17,17,17,0.25),0_4px_16px_-10px_rgba(0,0,0,0.25)]
-        "
+          className="shadow-plant relative h-[160px] w-full cursor-pointer overflow-hidden rounded-[6px]"
           onClick={() => navigate(`/mycookeep/record/${record.dailyRecipeId}`)}
         >
           <img
             loading="lazy"
             src={record.recipeImageUrl || tempFoodPhoto}
             alt="요리 이미지"
-            className="w-full h-full object-cover transition-opacity duration-300"
+            className="h-full w-full object-cover transition-opacity duration-300"
           />
 
           {/* 상단 그라데이션 */}
-          <div className="pointer-events-none absolute top-0 left-0 right-0 h-[35%] bg-gradient-to-b from-black/25 to-transparent" />
+          <div className="pointer-events-none absolute top-0 right-0 left-0 h-[35%] bg-gradient-to-b from-black/25 to-transparent" />
 
           {/* 날짜 */}
-          <span className="absolute top-1 left-1 px-1 py-1 text-white text-[12px] font-medium">
+          <span className="text-gray-0 absolute top-1 left-1 px-1 py-1 text-[12px] font-medium">
             만든 날짜: {formatDateDot(record.createdAt)}
           </span>
 
           {/* 공개 / 비공개 아이콘 컨트롤 */}
-          <div className="absolute bottom-2 right-2 flex flex-col items-center">
+          <div className="absolute right-2 bottom-2 flex flex-col items-center">
             {/* 옵션 버튼 (위에서 쑥 내려옴) */}
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 handleTryChangeVisibility(!isPublic);
               }}
-              className={`
-              mb-2
-              w-9 h-9
-              rounded-full bg-white
-              shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-              flex items-center justify-center
-              transition-all duration-200 ease-out
-              ${
+              className={`bg-gray-0 shadow-search mb-2 flex h-9 w-9 items-center justify-center rounded-full duration-200 ease-out ${
                 isOptionOpen
-                  ? "opacity-100 translate-y-0 scale-100"
-                  : "opacity-0 translate-y-2 scale-95 pointer-events-none"
-              }
-            `}
+                  ? "translate-y-0 scale-100 opacity-100"
+                  : "pointer-events-none translate-y-2 scale-95 opacity-0"
+              } `}
             >
-              <img
-                src={isPublic ? privateIcon : publicIcon}
-                alt="옵션 변경"
-                className={isPublic ? "w-[24px] h-[24px]" : "w-[36px] h-[36px]"}
-              />
+              {isPublic ? (
+                <PrivateIcon
+                  aria-label="옵션 변경"
+                  role="img"
+                  className="h-[24px] w-[24px]"
+                />
+              ) : (
+                <PublicIcon
+                  aria-label="옵션 변경"
+                  role="img"
+                  className="h-[36px] w-[36px]"
+                />
+              )}
             </button>
 
             {/* 현재 상태 버튼 */}
             <button
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 toggleOption();
               }}
-              className="
-              w-9 h-9
-              rounded-full bg-white
-              shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)]
-              flex items-center justify-center
-            "
+              className="bg-gray-0 shadow-search flex h-9 w-9 items-center justify-center rounded-full"
             >
-              <img
-                src={isPublic ? publicIcon : privateIcon}
-                alt="공개 여부"
-                className={isPublic ? "w-[36px] h-[36px]" : "w-[24px] h-[24px]"}
-              />
+              {isPublic ? (
+                <PublicIcon
+                  aria-label="공개 여부"
+                  role="img"
+                  className="h-[36px] w-[36px]"
+                />
+              ) : (
+                <PrivateIcon
+                  aria-label="공개 여부"
+                  role="img"
+                  className="h-[24px] w-[24px]"
+                />
+              )}
             </button>
           </div>
         </div>
@@ -142,26 +145,18 @@ function RecordCard({ record: initialRecord }: Props) {
         {/* 제목 + 메뉴 변경 */}
         <div className="flex flex-col items-center self-stretch">
           <div
-            className="
-            flex justify-center items-center
-            h-[56px]
-            w-full
-            px-4
-            rounded-[10px]
-            bg-[#EBEBEB]
-            cursor-pointer
-          "
+            className="bg-gray-10 flex h-[56px] w-full cursor-pointer items-center justify-center rounded-[10px] px-4"
             onClick={() =>
               navigate(`/mycookeep/record/${record.dailyRecipeId}`)
             }
           >
-            <span className="text-[#202020] text-[16px] font-bold leading-[24px] text-center line-clamp-2">
+            <span className="text-gray-80 line-clamp-2 text-center text-[16px] leading-[24px] font-bold">
               {record.title}
             </span>
           </div>
 
           {/* <button
-            className="w-[77px] h-[30px] text-[#7D7D7D] text-[14px] font-medium"
+            className="w-[77px] h-[30px] text-gray-50 text-[14px] font-medium"
             onClick={() =>
               navigate(`/mycookeep/record/${record.dailyRecipeId}`)
             }

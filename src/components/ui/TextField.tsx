@@ -13,9 +13,11 @@ interface TextFieldProps {
   rightIcon?: React.ReactNode;
   autoComplete?: string;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  bgColor?: string;
+  rounded?: string;
 }
 
-const TextField = ({
+export default function TextField({
   label,
   value,
   placeholder,
@@ -28,19 +30,17 @@ const TextField = ({
   rightIcon,
   autoComplete,
   onBlur,
-}: TextFieldProps) => {
+  bgColor = "bg-gray-10",
+  rounded = "rounded-[12px]",
+}: TextFieldProps) {
   return (
-    <div className="w-[361px]">
-      {label && (
-        <label className="block text-sm font-medium mb-1">{label}</label>
-      )}
+    <div className="w-full">
+      {label && <label className="typo-m mb-1 block">{label}</label>}
 
-      <div className="relative">
-        {leftIcon && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2">
-            {leftIcon}
-          </div>
-        )}
+      <div
+        className={`${bgColor} border-gray-10 flex gap-3 ${rounded} border p-3`}
+      >
+        {leftIcon && <div>{leftIcon}</div>}
 
         <input
           type={type}
@@ -48,59 +48,29 @@ const TextField = ({
           placeholder={placeholder}
           disabled={disabled}
           autoComplete={autoComplete}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={e => onChange(e.target.value)}
           onBlur={onBlur}
-          className={`
-    w-full h-[48px]
-    border
-    rounded-[6px]
-    px-3 py-2
-    bg-white
-    text-[#202020] 
-    font-['Pretendard'] text-sm leading-5
-    placeholder:font-medium
-    placeholder:text-stone-300
-    disabled:bg-[#ECECEC]
-    focus:outline-none
-    ${leftIcon ? "pl-11" : ""}
-        ${rightIcon ? "pr-10" : ""}
-    ${
-      errorMessage
-        ? "border-[#D91F1F]"
-        : successMessage
-          ? "border-[#1FA43C]"
-          : "border-[#DDDDDD]"
-    }
-  `}
+          className={`text-gray-80 typo-m flex-1 focus:outline-none ${
+            errorMessage
+              ? "border-semantic-negative"
+              : successMessage
+                ? "border-semantic-positive"
+                : "border-gray-10"
+          } ${bgColor === "bg-gray-10" ? "placeholder:text-gray-50" : "placeholder:text-gray-80"}`}
         />
 
-        {rightIcon && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2">
-            {rightIcon}
-          </div>
-        )}
+        {rightIcon && <div>{rightIcon}</div>}
       </div>
 
-      <p
-        className={`
-    mt-1
-    pl-2
-    text-[10px]
-    leading-[14px]
-    min-h-[14px]
-    ${
-      errorMessage
-        ? "text-[#D91F1F]"
-        : successMessage
-          ? "text-[#1FA43C]"
-          : "text-transparent"
-    }
-  `}
-      >
-        {errorMessage || successMessage || "placeholder"}
-      </p>
+      {(errorMessage || successMessage) && (
+        <p
+          className={`mt-1 min-h-[14px] pl-2 text-[10px] leading-[14px] ${
+            errorMessage ? "text-semantic-negative" : "text-semantic-positive"
+          } `}
+        >
+          {errorMessage || successMessage}
+        </p>
+      )}
     </div>
   );
-};
-
-export default TextField;
+}

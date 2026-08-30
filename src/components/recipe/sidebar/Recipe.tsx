@@ -1,43 +1,42 @@
-import React, { useState, useRef, useEffect } from "react";
-import liked from "../../../assets/recipe/liked.svg";
-import unliked from "../../../assets/recipe/unliked.svg";
-import rename from "../../../assets/recipe/rename.svg";
-import deleteIcon from "../../../assets/recipe/delete.svg";
+import { useState } from "react";
+
+import HeartIcon from "@/assets/icons/heart.svg?react";
+import KebabIcon from "@/assets/mycookeep/record/options.svg?react";
+
+import RecipeOptionMenu from "@/components/ui/OptionsMenu";
 
 interface RecipeProps {
   isLiked: boolean;
   name: string;
   searchTerm?: string;
+  isActive?: boolean;
   onLike?: () => void;
-  onRename?: (newName: string) => void;
+  onRename?: () => void;
   onDelete?: () => void;
   onSelect?: () => void;
 }
 
-const Recipe: React.FC<RecipeProps> = ({
+export default function Recipe({
   isLiked = false,
   name,
   searchTerm = "",
   onLike,
   onRename,
+  isActive,
   onDelete,
   onSelect,
-}) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editValue, setEditValue] = useState(name);
-  const inputRef = useRef<HTMLInputElement>(null);
+}: RecipeProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
 
-  useEffect(() => {
-    if (isEditing) {
-      inputRef.current?.focus();
+  const handleToggleMenu = (
+    e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLDivElement>,
+  ) => {
+    if (!isMenuOpen) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMenuPosition({ top: rect.bottom + 4, left: rect.left - 30 });
     }
-  }, [isEditing]);
-
-  const handleFinishRename = () => {
-    if (editValue.trim() !== "" && editValue !== name) {
-      onRename?.(editValue);
-    }
-    setIsEditing(false);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const highlightText = (text: string, highlight: string) => {
@@ -45,7 +44,7 @@ const Recipe: React.FC<RecipeProps> = ({
     const parts = text.split(new RegExp(`(${highlight})`, "gi"));
     return parts.map((part, i) =>
       part.toLowerCase() === highlight.toLowerCase() ? (
-        <span key={i} className="text-[var(--color-green-deep)] font-bold">
+        <span key={i} className="text-green-deep font-bold">
           {part}
         </span>
       ) : (
@@ -55,47 +54,48 @@ const Recipe: React.FC<RecipeProps> = ({
   };
 
   return (
-    <div className="flex w-[277px] h-[34px] items-center justify-between mx-auto">
-      <button onClick={onLike} className="px-2 flex-shrink-0">
-        <img src={isLiked ? liked : unliked} alt="like" className="w-[18px]" />
+    <div className="mx-auto flex w-full items-center justify-between px-3 py-1">
+      <button
+        onClick={onLike}
+        className="flex h-8 w-8 items-center justify-start"
+      >
+        <HeartIcon
+          className={`stroke-gray-10 w-[18px] fill-current stroke-[2px] ${isLiked ? "text-gray-30" : "text-transparent"}`}
+        />
       </button>
 
-      {isEditing ? (
-        <input
-          ref={inputRef}
-          type="text"
-          value={editValue}
-          onChange={(e) => setEditValue(e.target.value)}
-          onBlur={handleFinishRename}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleFinishRename();
-            if (e.key === "Escape") {
-              setEditValue(name);
-              setIsEditing(false);
-            }
-          }}
-          className="flex-1 min-w-0 mx-2 px-1 typo-body2 border border-stone-300 outline-none bg-white rounded-sm"
-        />
-      ) : (
-        <button onClick={onSelect} className="flex-1 min-w-0">
-          <span className="typo-body2 text-left block truncate px-2">
-            {highlightText(name, searchTerm)}
-          </span>
-        </button>
+      <button onClick={onSelect} className="min-w-0 flex-1">
+        <span className="typo-l block truncate text-left">
+          {highlightText(name, searchTerm)}
+        </span>
+      </button>
+
+      {isActive && (
+        <span className="text-green-deep typo-caption mr-1 pt-[2px] whitespace-nowrap select-none">
+          현재 보는 중
+        </span>
       )}
 
-      <button
-        onClick={() => setIsEditing(true)}
-        className="px-[10px] flex-shrink-0"
-      >
-        <img src={rename} alt="rename" className="w-[14px]" />
-      </button>
-
-      <button onClick={onDelete} className="px-[10px] flex-shrink-0">
-        <img src={deleteIcon} alt="delete" className="w-[14px]" />
-      </button>
+      <RecipeOptionMenu
+        isOpen={isMenuOpen}
+        onToggle={handleToggleMenu}
+        onEdit={() => {
+          onRename?.();
+          setIsMenuOpen(false);
+        }}
+        onDelete={() => {
+          onDelete?.();
+          setIsMenuOpen(false);
+        }}
+        firstOption="이름 바꾸기"
+        Icon={KebabIcon}
+        iconClassName="text-gray-30 w-full"
+        menuStyle={{
+          position: "fixed",
+          top: `${menuPosition.top}px`,
+          left: `${menuPosition.left}px`,
+        }}
+      />
     </div>
   );
-};
-
-export default Recipe;
+}

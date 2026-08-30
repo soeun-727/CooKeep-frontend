@@ -1,4 +1,4 @@
-interface Props {
+interface RecipeYoutubeCardProps {
   videos: {
     title: string;
     thumbnail: string;
@@ -7,20 +7,23 @@ interface Props {
   tags?: string[];
 }
 
-export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
+export default function RecipeYoutubeCard({
+  videos,
+  tags = [],
+}: RecipeYoutubeCardProps) {
   if (!videos || videos.length === 0) return null;
 
   return (
-    <section className="flex flex-col gap-2 p-[22px_15px] w-full rounded-[6px] bg-white shadow-[0_4px_16px_-10px_rgba(0,0,0,0.25)] mx-auto">
-      <span className="typo-body2 text-[#7D7D7D]">
+    <section className="bg-gray-0 border-gray-10 text-gray-80 rounded-L flex w-full flex-col items-start gap-2 border px-3 py-4">
+      <div className="typo-l-strong text-gray-80 w-full">
         비슷한 레시피 영상 참고하기
-      </span>
+      </div>
 
       {/* 태그 */}
       {tags.length > 0 && (
-        <div className="flex flex-wrap gap-x-2 gap-y-[2px]">
+        <div className="flex w-full flex-wrap gap-x-1 gap-y-[2px]">
           {tags.map((tag, idx) => (
-            <span key={idx} className="text-[#32E389] typo-body2 ">
+            <span key={idx} className="text-green-deep typo-caption">
               {`# ${tag}`}
             </span>
           ))}
@@ -28,21 +31,25 @@ export default function RecipeYoutubeCard({ videos, tags = [] }: Props) {
       )}
 
       {/* 썸네일 3개 */}
-      <div className="flex gap-2 w-full">
+      <div className="flex w-full gap-2">
         {videos.slice(0, 3).map((video, idx) => (
           <a
             key={idx}
             href={video.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 rounded-[6px] overflow-hidden bg-gray-200"
-            style={{ height: "68px" }}
+            className="flex flex-1 flex-col gap-2 overflow-hidden"
           >
-            <img
-              src={video.thumbnail}
-              alt={video.title}
-              className="w-full h-full object-cover"
-            />
+            <div className="rounded-S bg-gray-10 h-15 w-full overflow-hidden">
+              <img
+                src={video.thumbnail}
+                alt={video.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <p className="text-gray-80 typo-caption-strong truncate">
+              {video.title}
+            </p>
           </a>
         ))}
       </div>

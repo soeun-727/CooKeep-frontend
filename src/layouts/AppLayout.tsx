@@ -1,41 +1,34 @@
-import { useLoadingStore } from "../stores/useLoadingStore";
-import LoadingScreen from "../components/ui/LoadingScreen";
-import WeeklyGoalModal from "../components/ui/WeeklyGoalModal"; // 추가
-import ExpiringRewardModal from "../components/recipe/ExpiringRewardModal";
-import { useRewardStore } from "../stores/useRewardStore";
-import OnboardingRewardModal from "../components/ui/OnboardingRewardModal";
-import ComebackRewardModal from "../components/ui/ComebackRewardModal";
+import { useLoadingStore } from "@/stores/useLoadingStore";
+import { useRewardStore } from "@/stores/useRewardStore";
 
-type Props = {
+// 추가
+import ExpiringRewardModal from "@/components/recipe/ExpiringRewardModal";
+import ComebackRewardModal from "@/components/ui/ComebackRewardModal";
+import LoadingScreen from "@/components/ui/LoadingScreen";
+import OnboardingRewardModal from "@/components/ui/OnboardingRewardModal";
+import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
+
+interface AppLayoutProps {
   children: React.ReactNode;
-};
+}
 
-// AppLayout.tsx
-export default function AppLayout({ children }: Props) {
-  const isLoading = useLoadingStore((s) => s.isLoading);
+export default function AppLayout({ children }: AppLayoutProps) {
+  const isLoading = useLoadingStore(s => s.isLoading);
 
   const { current, dequeue } = useRewardStore();
 
   return (
-    <div className="flex justify-center bg-[#FAFAFA] min-h-dvh">
-      <div
-        className="
-          relative
-          w-full
-          max-w-[450px]
-          flex flex-col flex-1
-          transition-colors duration-300
-        "
-      >
+    <div className="bg-background flex min-h-dvh justify-center">
+      <div className="relative flex w-full max-w-[450px] flex-1 flex-col transition-colors duration-300">
         {children}
 
         {/* overlay 방식으로 변경 */}
         {isLoading && (
-          <div className="absolute inset-0 z-50 bg-white">
+          <div className="bg-gray-0 absolute inset-0 z-50">
             <LoadingScreen />
           </div>
         )}
-        {/* 추가 - z-index를 LoadingScreen(50)보다 높게 */}
+
         {current === "COMEBACK" && (
           <ComebackRewardModal isOpen={true} onClose={dequeue} />
         )}
