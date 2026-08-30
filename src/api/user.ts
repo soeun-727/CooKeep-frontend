@@ -12,7 +12,7 @@ export interface ProfileData {
   daysSinceJoined: number;
   growingPlantName: string;
   nickname: string;
-  profilePlantImageUrl: string;
+  profileImageUrl: string;
   weeklyGoal: {
     achieved: boolean;
     currentCount: number;
