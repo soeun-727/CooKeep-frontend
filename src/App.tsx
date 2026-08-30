@@ -22,6 +22,7 @@ const LoginPage = lazy(() => import("@/pages/auth/LoginPage"));
 const GuestPage = lazy(() => import("@/pages/auth/GuestPage"));
 const OnboardingPage = lazy(() => import("@/pages/auth/OnboardingPage"));
 const SignupPage = lazy(() => import("@/pages/auth/SignupPage"));
+const InstallGuidePage = lazy(() => import("@/pages/auth/InstallGuidePage"));
 const SimpleLoginAgreementPage = lazy(
   () => import("@/pages/auth/SimpleLoginAgreementPage"),
 );
@@ -122,6 +123,7 @@ export default function App() {
       "/login",
       "/signup",
       "/onboarding",
+      "/install-guide",
       "/guest",
       "/simplelogin",
       "/findpw",
@@ -174,6 +176,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/guest" element={<GuestPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/install-guide" element={<InstallGuidePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/simplelogin" element={<SimpleLoginAgreementPage />} />
           <Route path="/kakao/callback" element={<KakaoLoginCallback />} />
