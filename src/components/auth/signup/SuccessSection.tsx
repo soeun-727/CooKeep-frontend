@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import Char from "@/assets/character/congrats_char.svg?react";
 import shadow from "@/assets/character/char_shadow.svg";
+import Char from "@/assets/character/congrats_char.svg?react";
 import chatbox from "@/assets/signup/chatbox.svg";
 import lightbulb from "@/assets/signup/lightbulb.svg";
 

@@ -1,20 +1,20 @@
 import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { useNavigate } from "react-router-dom";
 
 import { withdrawUser } from "@/api/auth";
 import { getMyProfile } from "@/api/user";
 import { useAuthStore } from "@/stores/useAuthStore";
 
-import CharacterImg from "@/assets/character/sad_char_faded.svg?react";
-import ArrowIcon from "@/assets/signup/arrowright.svg?react";
-import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
 import Shadow from "@/assets/character/char_shadow.svg?react";
+import CharacterImg from "@/assets/character/sad_char_faded.svg?react";
+import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
+import ArrowIcon from "@/assets/signup/arrowright.svg?react";
 import AgreeUnchecked from "@/assets/signup/blankCheck.svg?react";
 import AgreeChecked from "@/assets/signup/checkboxCheck.svg?react";
 
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
-import { flushSync } from "react-dom";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 
 const REASONS = [

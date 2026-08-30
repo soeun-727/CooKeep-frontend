@@ -1,7 +1,7 @@
 import { MyProfileResponse } from "@/api/user";
 
-import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
 import NicknameEditItem from "@/components/settings/components/NicknameEditItem";
+import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
 
 const MASKED_PASSWORD = "********";
 

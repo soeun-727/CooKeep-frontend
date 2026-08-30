@@ -2,21 +2,20 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { changePassword, verifyCurrentPassword } from "@/api/user";
+import { useAuthStore } from "@/stores/useAuthStore";
 import axios from "axios";
 
 import PwIcon from "@/assets/login/key.svg?react";
 import EyeIcon from "@/assets/login/pw.svg?react";
-import EyeOpenIcon from "@/assets/signup/openpw.svg?react";
 import CheckIcon from "@/assets/signup/check.svg?react";
+import EyeOpenIcon from "@/assets/signup/openpw.svg?react";
 
-import Button from "@/components/ui/Button";
-import InputField from "@/components/ui/InputField";
 import { BackHeader } from "@/components/ui/BackHeader";
+import Button from "@/components/ui/Button";
+import CautionModal from "@/components/ui/CautionModal";
+import InputField from "@/components/ui/InputField";
 
 import { validatePassword } from "@/utils/validateUtil";
-
-import { useAuthStore } from "@/stores/useAuthStore";
-import CautionModal from "@/components/ui/CautionModal";
 
 export default function EditPasswordPage() {
   const navigate = useNavigate();

@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
 import MainLogo from "@/assets/logos/mainLogo.svg?react";
+
 import Button from "@/components/ui/Button";
+
 import { checkIsAndroid } from "@/utils/device";
 
 import InstallGuideBanner from "./InstallGuideBanner";

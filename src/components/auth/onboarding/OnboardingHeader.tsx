@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+
 import BackIcon from "../../../assets/back.svg?react";
 
 interface OnboardingHeaderProps {

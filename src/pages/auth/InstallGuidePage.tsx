@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import InstallGuide from "@/components/auth/onboarding/InstallGuide";
+
 import { checkIsApp, checkIsMobile } from "@/utils/device";
 
 export default function InstallGuidePage() {

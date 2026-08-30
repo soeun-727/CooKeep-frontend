@@ -7,6 +7,7 @@ import XIcon from "@/assets/onboarding/x.svg?react";
 
 import { Search } from "@/components/fridge/features/Search";
 import { InputModal } from "@/components/fridge/modals/InputModal";
+
 interface PreferenceProps {
   allIngredients?: OnboardingIngredient[];
 }

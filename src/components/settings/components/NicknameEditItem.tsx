@@ -1,8 +1,11 @@
 // src/components/settings/components/NicknameEditItem.tsx
-import { useState, useRef, useEffect } from "react";
-import axios from "axios";
+import { useEffect, useRef, useState } from "react";
+
 import { updateNickname } from "@/api/user";
+import axios from "axios";
+
 import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
+
 import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 
 interface NicknameEditItemProps {

@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "@/stores/useAuthStore";
 
 import PwIcon from "@/assets/login/key.svg?react";
-import MailIcon from "@/assets/signup/mail.svg?react";
-import EyeIcon from "@/assets/login/pw.svg?react";
 import EyeOpenIcon from "@/assets/login/openpw.svg?react";
+import EyeIcon from "@/assets/login/pw.svg?react";
 import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
+import MailIcon from "@/assets/signup/mail.svg?react";
 
-import InputField from "@/components/ui/InputField";
 import Button from "@/components/ui/Button";
+import InputField from "@/components/ui/InputField";
+
 import LoginFooter from "./LoginFooter";
 
 export default function LoginMain() {

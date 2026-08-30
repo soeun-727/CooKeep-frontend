@@ -82,7 +82,11 @@ export default function PlantGrowthCard({
 
               {/* 여기를 handleRefreshClick으로 수정했습니다 */}
               <button onClick={handleRefreshClick}>
-                <RefreshIcon aria-label="새로고침" role="img" className="h-4 w-4" />
+                <RefreshIcon
+                  aria-label="새로고침"
+                  role="img"
+                  className="h-4 w-4"
+                />
               </button>
             </div>
 

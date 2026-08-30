@@ -1,19 +1,19 @@
 // Assets - Ingredients
-import milk from "@/assets/guest/milk.svg";
-import strawberry from "@/assets/guest/strawberry.svg";
-import egg from "@/assets/guest/egg.svg";
-import banana from "@/assets/guest/banana.svg";
-import noodles from "@/assets/guest/noodles.svg";
-import bagel from "@/assets/guest/bagel.svg";
+import type { Ingredient } from "@/stores/useIngredientStore";
 
 // Assets - Thumbnails
 import thumbnail1 from "@/assets/guest/Thumbnail1.svg";
 import thumbnail2 from "@/assets/guest/Thumbnail2.svg";
 import thumbnail3 from "@/assets/guest/Thumbnail3.svg";
+import bagel from "@/assets/guest/bagel.svg";
+import banana from "@/assets/guest/banana.svg";
+import egg from "@/assets/guest/egg.svg";
+import milk from "@/assets/guest/milk.svg";
+import noodles from "@/assets/guest/noodles.svg";
+import strawberry from "@/assets/guest/strawberry.svg";
 
 // Constants & Types
 import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
-import type { Ingredient } from "@/stores/useIngredientStore";
 
 // ==========================================
 // 1. 게스트 레시피 상수 데이터

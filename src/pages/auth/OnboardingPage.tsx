@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { checkIsApp, checkIsMobile } from "@/utils/device";
+
 import {
   OnboardingIngredient,
   getOnboardingIngredients,
@@ -19,7 +21,6 @@ import Progress from "../../components/auth/onboarding/Progress";
 import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
-import { checkIsApp, checkIsMobile } from "@/utils/device";
 import { GOAL_TYPE_MAP } from "../../utils/getGoalDescription";
 
 export default function Onboarding() {

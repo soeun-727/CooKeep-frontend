@@ -1,4 +1,5 @@
 import CautionIcon from "@/assets/signup/icon_caution.svg?react";
+
 import Button from "@/components/ui/Button";
 
 export interface CautionModalConfig {

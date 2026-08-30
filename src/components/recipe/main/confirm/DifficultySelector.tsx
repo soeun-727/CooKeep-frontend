@@ -1,7 +1,9 @@
 import { useState } from "react";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+
 import randomImg from "@/assets/recipe/select/random.svg";
+
 import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
 export type DifficultyType = "EASY" | "MEDIUM" | "HARD" | "RANDOM" | string;

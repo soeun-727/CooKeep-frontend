@@ -1,6 +1,7 @@
 import { Notice } from "@/types/notice";
-import ServiceNotice from "./ServiceNotice";
+
 import FeatureNotice from "./FeatureNotice";
+import ServiceNotice from "./ServiceNotice";
 import TargetNotice from "./TargetNotice";
 
 interface Props {

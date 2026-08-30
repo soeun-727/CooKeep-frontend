@@ -1,8 +1,8 @@
-import SettingsIcon from "@/assets/onboarding/settingsIcon.svg?react";
-import AppstoreIcon from "@/assets/onboarding/appstoreIcon.svg?react";
 import AppIcon from "@/assets/onboarding/appIcon.svg?react";
+import AppstoreIcon from "@/assets/onboarding/appstoreIcon.svg?react";
 import MailIcon from "@/assets/onboarding/mailIcon.svg?react";
 import PhoneIcon from "@/assets/onboarding/phoneIcon.svg?react";
+import SettingsIcon from "@/assets/onboarding/settingsIcon.svg?react";
 
 const ICONS = [SettingsIcon, AppstoreIcon, AppIcon, MailIcon, PhoneIcon];
 const INFINITE_ICONS = [...ICONS, ...ICONS];

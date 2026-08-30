@@ -2,12 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { updateEmail } from "@/api/user";
+import { useAuthStore } from "@/stores/useAuthStore";
 import { useEmailUpdateStore } from "@/stores/useEmailUpdateStore";
 import axios from "axios";
 
 import CheckIcon from "@/assets/signup/check.svg?react";
 
 import EmailAuthModal from "@/components/auth/signup/EmailAuthModal";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import InputField from "@/components/ui/InputField";
 
@@ -15,8 +17,6 @@ import { EditEmailType } from "@/types/modal";
 
 import { formatTime } from "@/utils/formateTime";
 import { validateEmail } from "@/utils/validateUtil";
-import { BackHeader } from "@/components/ui/BackHeader";
-import { useAuthStore } from "@/stores/useAuthStore";
 
 export default function EditEmailPage() {
   const navigate = useNavigate();
