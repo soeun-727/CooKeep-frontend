@@ -182,7 +182,7 @@ export const getDislikeIngredientList = async () => {
 export const updateDislikeIngredientList = async (
   dislikedIngredients: string[],
 ) => {
-  const res = await api.patch<{ dislikedIngredients: string[] }>(
+  const res = await api.put<{ dislikedIngredients: string[] }>(
     "/api/users/me/dislike-ingredients",
     { dislikedIngredients },
   );
