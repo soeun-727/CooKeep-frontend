@@ -1,6 +1,7 @@
 // components/auth/signup/AgreementPage.tsx
 import React from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
+
 import remarkGfm from "remark-gfm";
 
 import BlankCheck from "@/assets/signup/blankCheck.svg?react";
@@ -10,6 +11,7 @@ import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 
 import type { AgreementItem, AuthAgreements } from "@/types/auth";
+
 import { splitAgreementSections } from "@/utils/splitAgreementSections";
 
 interface AgreementPageProps {

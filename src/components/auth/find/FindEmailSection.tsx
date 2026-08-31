@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useFindPasswordStore } from "@/stores/useFindPasswordStore";
 
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import InputField from "@/components/ui/InputField";
 
@@ -12,7 +13,6 @@ import { formatTime } from "@/utils/formateTime";
 import { validateEmail } from "@/utils/validateUtil";
 
 import FindEmailAuthModal from "./FindEmailAuthModal";
-import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function FindEmailSection() {
   const { email, setEmail, isCodeSent, sendCode, verifyCode } =

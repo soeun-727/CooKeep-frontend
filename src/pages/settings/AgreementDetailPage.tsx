@@ -1,10 +1,12 @@
 // pages/settings/AgreementDetailPage.tsx
 import { useNavigate, useParams } from "react-router-dom";
+
 import AgreementReadCard from "@/components/settings/components/AgreementReadCard";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 import { AGREEMENTS } from "@/constants/agreements";
+
 import type { AgreementItem } from "@/types/auth";
-import { BackHeader } from "@/components/ui/BackHeader";
 
 const PAGE_TITLE: Record<AgreementItem["key"], string> = {
   terms: "서비스 이용 약관",

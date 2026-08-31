@@ -5,7 +5,9 @@ export const checkIsApp = (): boolean => {
   if (typeof window === "undefined") return false;
   return (
     window.matchMedia("(display-mode: standalone)").matches ||
-    Boolean((window.navigator as unknown as { standalone?: boolean }).standalone) ||
+    Boolean(
+      (window.navigator as unknown as { standalone?: boolean }).standalone,
+    ) ||
     document.referrer.includes("android-app://")
   );
 };

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { checkIsApp, checkIsMobile } from "@/utils/device";
+
 import {
   OnboardingIngredient,
   getOnboardingIngredients,
@@ -10,8 +12,7 @@ import AuthHeader from "../../components/auth/AuthHeader";
 import Footer from "../../components/auth/onboarding/Footer";
 import Goal from "../../components/auth/onboarding/Goal";
 import Guide from "../../components/auth/onboarding/Guide";
-import InstallGuideAndroid from "../../components/auth/onboarding/InstallGuideAndroid";
-import InstallGuideIOS from "../../components/auth/onboarding/InstallGuideIOS";
+import InstallGuide from "../../components/auth/onboarding/InstallGuide";
 import Last from "../../components/auth/onboarding/Last";
 import Notification from "../../components/auth/onboarding/Notification";
 import OnboardingHeader from "../../components/auth/onboarding/OnboardingHeader";
@@ -20,7 +21,6 @@ import Progress from "../../components/auth/onboarding/Progress";
 import SpecificGoal from "../../components/auth/onboarding/SpecificGoal";
 import LoadingScreen from "../../components/ui/LoadingScreen";
 import { useOnboardingStore } from "../../stores/useOnboardingStore";
-import { checkIsAndroid, checkIsApp, checkIsMobile } from "@/utils/device";
 import { GOAL_TYPE_MAP } from "../../utils/getGoalDescription";
 
 export default function Onboarding() {
@@ -173,11 +173,7 @@ export default function Onboarding() {
       navigate("/fridge", { replace: true });
       return null;
     }
-    return checkIsAndroid() ? (
-      <InstallGuideAndroid onFinish={() => navigate("/fridge")} />
-    ) : (
-      <InstallGuideIOS onFinish={() => navigate("/fridge")} />
-    );
+    return <InstallGuide onFinish={() => navigate("/fridge")} />;
   }
   if (showNotification)
     return (

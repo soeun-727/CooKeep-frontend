@@ -1,7 +1,8 @@
-import SettingsMain from "@/components/settings/SettingsMain";
-import { BackHeader } from "@/components/ui/BackHeader";
 import { useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import SettingsMain from "@/components/settings/SettingsMain";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function SettingsPage() {
   const navigate = useNavigate();

@@ -1,7 +1,10 @@
 import React from "react";
 import ReactMarkdown, { type Components } from "react-markdown";
+
 import remarkGfm from "remark-gfm";
+
 import type { AgreementItem } from "@/types/auth";
+
 import { splitAgreementSections } from "@/utils/splitAgreementSections";
 
 interface AgreementReadCardProps {

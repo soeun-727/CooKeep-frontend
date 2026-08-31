@@ -1,14 +1,16 @@
 import { useEffect, useRef, useState } from "react";
+
 import bagel from "@/assets/guest/bagel.svg";
 import Triangle from "@/assets/guest/triangle.svg?react";
 
-import Button from "@/components/ui/Button";
-import { Search } from "@/components/fridge/features/Search";
-import { INGREDIENT_CATEGORIES } from "@/constants/category";
 import Category from "@/components/fridge/addItems/components/Category";
 import Item from "@/components/fridge/addItems/components/Item";
 import RecentlyAdded from "@/components/fridge/addItems/components/RecentlyAdded";
 import Selected from "@/components/fridge/addItems/components/Selected";
+import { Search } from "@/components/fridge/features/Search";
+import Button from "@/components/ui/Button";
+
+import { INGREDIENT_CATEGORIES } from "@/constants/category";
 
 interface GuestAddItemProps {
   onNext: () => void;

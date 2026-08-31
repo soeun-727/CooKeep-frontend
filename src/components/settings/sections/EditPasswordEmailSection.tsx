@@ -6,6 +6,7 @@ import { useEditPasswordAuthStore } from "@/stores/useEditPasswordAuthStore";
 import axios from "axios";
 
 import FindEmailAuthModal from "@/components/auth/find/FindEmailAuthModal";
+import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import InputField from "@/components/ui/InputField";
 
@@ -13,7 +14,6 @@ import { EditPasswordEmailType } from "@/types/modal";
 
 import { formatTime } from "@/utils/formateTime";
 import { validateEmail } from "@/utils/validateUtil";
-import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function EditPasswordEmailSection() {
   const navigate = useNavigate();
