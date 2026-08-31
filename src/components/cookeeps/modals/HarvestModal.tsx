@@ -35,7 +35,7 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
               </p>
 
               <p className="font-bold text-[16px] leading-[24px] text-[#1FC16F] text-center">
-                쿠키 +30 🍪
+                쿠키 +20 🍪
               </p>
             </div>
           </div>
