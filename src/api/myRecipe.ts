@@ -1,5 +1,5 @@
 import api from "./axios";
-import { IngredientsJson, YoutubeVideo } from "./dailyAiRecipe";
+import { IngredientsJson, RecipeStep, YoutubeVideo } from "./dailyAiRecipe";
 
 // --- 인터페이스 정의 ---
 
@@ -73,7 +73,7 @@ export interface MyRecipeDetail {
   photoCookieAwarded?: boolean;
   content: {
     ingredients: IngredientsJson;
-    steps: string[];
+    steps: RecipeStep[];
     youtubeReferences: YoutubeVideo[];
     youtubeSearchQueries: string[];
   };

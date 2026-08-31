@@ -8,7 +8,7 @@ export interface AiRecipeResponse {
       additional_ingredients: IngredientItem[];
       optional_ingredients: IngredientItem[];
     };
-    steps: string[];
+    steps: RecipeStep[];
     youtube_search_queries: string[];
   };
   youtubeReferences: {
@@ -17,6 +17,12 @@ export interface AiRecipeResponse {
     thumbnail: string;
   }[];
   feature: Feature;
+}
+
+export interface RecipeStep {
+  content: string;
+  legacyFormat: boolean;
+  usedIngredientIds: number[];
 }
 
 export interface IngredientItem {

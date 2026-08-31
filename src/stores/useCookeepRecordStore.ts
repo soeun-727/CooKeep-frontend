@@ -19,7 +19,7 @@ interface RecordState {
   editingRecordId: string | null;
   title: string;
   memo: string;
-  isPublic: boolean | null;
+  isPublic: boolean;
   // images: RecordImage[];
   image: RecordImage | null;
 
@@ -57,7 +57,7 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
   editingRecordId: null,
   title: "",
   memo: "",
-  isPublic: null,
+  isPublic: false,
   // images: [],
   image: null,
   records: [],
@@ -86,7 +86,7 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
       editingRecordId: null,
       title: "",
       memo: "",
-      isPublic: null,
+      isPublic: false,
       image: null,
     }),
 

@@ -18,6 +18,11 @@ export const parseDotDate = (value: string) =>
 export const getMonthName = (date: Date) =>
   date.toLocaleString("en-US", { month: "long" });
 
+export const formatMonthDayLabel = (dotDate: string) => {
+  const date = parseDotDate(dotDate);
+  return `${date.getMonth() + 1}월 ${date.getDate()}일`;
+};
+
 export const getDateKey = (date: Date) =>
   `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(
     date.getDate(),
