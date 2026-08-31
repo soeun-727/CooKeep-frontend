@@ -5,6 +5,7 @@ import InitialPage from "./pages/auth/InitialPage";
 import OnboardingPage from "./pages/auth/OnboardingPage";
 import LoginPage from "./pages/auth/LoginPage";
 import SignupPage from "./pages/auth/SignupPage";
+import InstallGuidePage from "./pages/auth/InstallGuidePage";
 import FindPage from "./pages/auth/FindPage";
 import ResetPassword from "./components/auth/find/ResetPassword";
 import RequireFindAuth from "./components/auth/find/RequireFindAuth";
@@ -91,6 +92,7 @@ export default function App() {
       "/login",
       "/signup",
       "/onboarding",
+      "/install-guide",
       "/guest",
       "/simplelogin",
       "/findpw", // 추가
@@ -138,6 +140,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/guest" element={<GuestPage />} />
         <Route path="/onboarding" element={<OnboardingPage />} />
+        <Route path="/install-guide" element={<InstallGuidePage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/simplelogin" element={<SimpleLoginAgreementPage />} />
         <Route path="/kakao/callback" element={<KakaoLoginCallback />} />
