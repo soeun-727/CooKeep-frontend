@@ -63,11 +63,11 @@ export default function PlantGrowthCard({
           <div className="w-full">
             <GrowthProgressBar overridePlantStage={overridePlantStage} />
           </div>
-        </div>
 
-        <p className="typo-caption text-center text-gray-50">
-          다음 수확까지 더 건강하게 키워보아요!
-        </p>
+          <p className="typo-caption w-full text-center text-gray-50">
+            다음 수확까지 더 건강하게 키워보아요!
+          </p>
+        </div>
 
         <WaterButton
           onSuccess={() => {
