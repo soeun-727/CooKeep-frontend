@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
-import SettingsMenuRow from "./SettingsMenuRow";
-import SettingsSectionLabel from "./SettingsSectionLabel";
 import {
   SettingsMenuItem,
   SettingsSectionConfig,
 } from "../config/settingsMenuConfig";
+import SettingsMenuRow from "./SettingsMenuRow";
+import SettingsSectionLabel from "./SettingsSectionLabel";
 
 interface SettingsMenuSectionProps {
   section: SettingsSectionConfig;

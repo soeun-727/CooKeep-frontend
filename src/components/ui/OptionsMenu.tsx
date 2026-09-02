@@ -68,7 +68,7 @@ export default function RecipeOptionMenu({
       {/* 옵션 아이콘 버튼 */}
       <button
         onClick={onToggle}
-        className="relative z-[110] flex h-9 w-9 cursor-pointer items-center justify-center"
+        className="relative z-[110] flex cursor-pointer items-center justify-center"
       >
         {Icon ? (
           <Icon className={iconClassName} />

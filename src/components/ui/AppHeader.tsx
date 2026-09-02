@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 import CookieIcon from "@/assets/cookie_icon.svg?react";
 import MailNotiIcon from "@/assets/fixed/AppBar/mail_notification.svg?react";
 import SettingIcon from "@/assets/fixed/AppBar/setting.svg?react";
-import { useNavigate } from "react-router-dom";
 
 interface AppBarProps {
   cookieCount?: number;

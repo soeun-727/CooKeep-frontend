@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 
-import {
-  GUEST_INGREDIENTS,
-  REQUIRED_RECIPE_IDS,
-} from "@/constants/guestIngredients";
-import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 import type { Ingredient } from "@/stores/useIngredientStore";
 
 import DifficultySelector from "@/components/recipe/main/confirm/DifficultySelector";
 import SelectedIngredientList from "@/components/recipe/main/confirm/SelectedIngredientList";
 import Button from "@/components/ui/Button";
+
+import {
+  GUEST_INGREDIENTS,
+  REQUIRED_RECIPE_IDS,
+} from "@/constants/guestIngredients";
+import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
 interface GuestRecipeLevelProps {
   onNext: () => void;

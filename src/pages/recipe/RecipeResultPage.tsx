@@ -5,12 +5,10 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 
 import RecipeHeader from "@/components/recipe/main/RecipeHeader";
 import RecipeActionButtons from "@/components/recipe/main/result/RecipeActionButtons";
-import RecipeIngredientSection from "@/components/recipe/main/result/RecipeIngredientSection";
 import RecipePagination from "@/components/recipe/main/result/RecipePagination";
-import RecipeStepSection from "@/components/recipe/main/result/RecipeStepSection";
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
-import RecipeYoutubeCard from "@/components/recipe/main/result/RecipeYoutubeCard";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 
 import { DIFFICULTY_OPTIONS } from "@/constants/recipeDifficulty";
 
@@ -124,7 +122,7 @@ export default function RecipeResultPage() {
                   : "추천 요리");
 
               return (
-                <div className="mx-auto flex w-full flex-col">
+                <div className="mx-auto flex w-full flex-col gap-6">
                   <RecipeTitle
                     name={recipe.title}
                     category={categoryKorean}
@@ -132,20 +130,14 @@ export default function RecipeResultPage() {
                   />
 
                   <div className="flex flex-col gap-3">
-                    <RecipeIngredientSection
+                    <RecipeInfoDetail
                       selectedIngredients={userIngredients}
                       requiredIngredients={additionalIngredients}
                       substitutions={optionalIngredients}
-                    />
-
-                    <RecipeStepSection
                       steps={steps}
                       difficulty={difficulty || "NORMAL"}
-                    />
-
-                    <RecipeYoutubeCard
-                      videos={currentData.youtubeReferences || []}
-                      tags={recipe.youtube_search_queries || []}
+                      youtubeVideos={currentData.youtubeReferences || []}
+                      youtubeTags={recipe.youtube_search_queries || []}
                     />
 
                     <div className="flex flex-col items-center gap-[2px]">

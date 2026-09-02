@@ -1,4 +1,5 @@
 import api from "./axios";
+import { RecipeStep } from "./dailyAiRecipe";
 
 export interface RecipeRankItem {
   dailyRecipeId: number;
@@ -42,12 +43,6 @@ export interface ExtraIngredientItem {
   unit: string;
   quantity: number;
   description?: string | null;
-}
-
-export interface RecipeStep {
-  content: string;
-  legacyFormat: boolean;
-  usedIngredientIds: number[];
 }
 
 export interface RecipeDetailContent {

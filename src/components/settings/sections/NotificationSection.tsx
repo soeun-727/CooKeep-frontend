@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { registerPushNotification, unsubscribePush } from "@/api/push";
 import { updateMarketingPush } from "@/api/user";
 
-import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
 import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
+import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
 
 interface NotificationSectionProps {
   marketingPush: boolean;

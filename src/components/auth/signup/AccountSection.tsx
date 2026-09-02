@@ -2,20 +2,22 @@ import { useState } from "react";
 
 import { useSignupStore } from "@/stores/useSignupStore";
 
-import MailIcon from "@/assets/signup/mail.svg?react";
 import PwIcon from "@/assets/login/key.svg?react";
 import EyeIcon from "@/assets/login/pw.svg?react";
-import EyeOpenIcon from "@/assets/signup/openpw.svg?react";
-import CheckIcon from "@/assets/signup/check.svg?react";
 import ArrowIcon from "@/assets/signup/arrowright.svg?react";
 import BlankCheck from "@/assets/signup/blankCheck.svg?react";
+import CheckIcon from "@/assets/signup/check.svg?react";
 import CheckboxCheckIcon from "@/assets/signup/checkboxCheck.svg?react";
+import MailIcon from "@/assets/signup/mail.svg?react";
+import EyeOpenIcon from "@/assets/signup/openpw.svg?react";
 
 import Button from "@/components/ui/Button";
 import InputField from "@/components/ui/InputField";
 
 import { AGREEMENTS } from "@/constants/agreements";
+
 import { AgreementItem, AuthAgreements } from "@/types/auth";
+
 import { validatePassword } from "@/utils/validateUtil";
 
 import AgreementPage from "./AgreementPage";

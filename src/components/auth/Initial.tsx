@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
 
-import confetti from "@/assets/signup/confetti.svg";
-import MainLogo from "@/assets/logos/mainLogo.svg?react";
 import Google from "@/assets/login/Google.svg?react";
 import Kakao from "@/assets/login/Kakao.svg?react";
-
+import MainLogo from "@/assets/logos/mainLogo.svg?react";
 import chars from "@/assets/onboarding/Frame 781.svg";
+import confetti from "@/assets/signup/confetti.svg";
 
 const CHAR = [chars];
 const INFINITE_CHAR = [...CHAR, ...CHAR];

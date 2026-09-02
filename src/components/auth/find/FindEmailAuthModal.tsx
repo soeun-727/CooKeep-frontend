@@ -1,4 +1,5 @@
 import CautionModal, { CautionModalConfig } from "@/components/ui/CautionModal";
+
 import { maskEmail } from "@/utils/maskEmail";
 
 export type FindEmailAuthModalType =

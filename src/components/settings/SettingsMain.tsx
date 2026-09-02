@@ -3,15 +3,16 @@ import { useNavigate } from "react-router-dom";
 
 import { unsubscribePush } from "@/api/push";
 import { MyProfileResponse, getMyProfile } from "@/api/user";
-import loadingChar from "@/assets/character/loading_char.svg";
 import { useAuthStore } from "@/stores/useAuthStore";
+
+import loadingChar from "@/assets/character/loading_char.svg";
 
 import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 
-import NotificationSection from "./sections/NotificationSection";
-import ProfileSection from "./sections/ProfileSection";
 import SettingsMenuSection from "./components/SettingsMenuSection";
 import { settingsSections } from "./config/settingsMenuConfig";
+import NotificationSection from "./sections/NotificationSection";
+import ProfileSection from "./sections/ProfileSection";
 
 export default function SettingsMain() {
   const navigate = useNavigate();

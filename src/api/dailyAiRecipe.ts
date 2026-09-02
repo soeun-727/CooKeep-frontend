@@ -30,12 +30,18 @@ export interface YoutubeVideo {
   thumbnail: string;
 }
 
+export interface RecipeStep {
+  content: string;
+  legacyFormat: boolean;
+  usedIngredientIds: number[];
+}
+
 export interface AiRecipeDetail {
   aiRecipeId: number;
   title: string;
   createdAt: string;
   ingredientsJson: IngredientsJson;
-  stepsJson: string[];
+  stepsJson: RecipeStep[];
   youtubeUrlJson: YoutubeVideo[];
   youtubeSearchQueries: string;
 }
