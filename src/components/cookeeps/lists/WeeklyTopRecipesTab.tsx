@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { RecipeRankItem, getWeeklyRanking } from "@/api/cookeeps";
+import { RecipeRankItem, getRecipeRanking } from "@/api/cookeeps";
 import LikeIcon from "@/assets/cookeeps/like.svg?react";
 import defaultRecipeImage from "@/assets/cookeeps/main/default_recipe_image.svg";
 
@@ -12,7 +12,7 @@ export default function WeeklyTopRecipesTab() {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await getWeeklyRanking();
+        const data = await getRecipeRanking();
         setRecipes(data.recipeRanking || []);
       } catch (e) {
         console.error(e);
@@ -53,12 +53,11 @@ export default function WeeklyTopRecipesTab() {
                 <p className="typo-l-strong text-gray-80 line-clamp-1">
                   {item.title}
                 </p>
-                {/* TODO: 백엔드 수정 후 추가예정 */}
-                {/* {item.memo && (
+                {item.description && (
                   <p className="typo-m line-clamp-2 self-stretch text-gray-50">
-                    {item.memo}
+                    {item.description}
                   </p>
-                )} */}
+                )}
               </div>
 
               <div className="flex items-center justify-end gap-2 self-stretch">

@@ -1,6 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { RankingResponse, getWeeklyRanking } from "@/api/cookeeps";
+import {
+  WateringRankItem,
+  RecipeRankItem,
+  getWateringRanking,
+  getRecipeRanking,
+} from "@/api/cookeeps";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { useLoadingStore } from "@/stores/useLoadingStore";
 
@@ -20,11 +25,11 @@ import { SpeechBubble } from "@/components/ui/SpeechBubble";
 
 export default function CookeepsPage() {
   const [toastVisible, setToastVisible] = useState(false);
-  const [ranking, setRanking] = useState<RankingResponse>({
-    myWateringCount: 0,
-    wateringRanking: [],
-    recipeRanking: [],
-  });
+  const [wateringRanking, setWateringRanking] = useState<WateringRankItem[]>(
+    [],
+  );
+  const [myWateringCount, setMyWateringCount] = useState(0);
+  const [recipeRanking, setRecipeRanking] = useState<RecipeRankItem[]>([]);
 
   const cookie = useCookeepsStore(s => s.cookie);
   const isFreeWaterMode = useCookeepsStore(s => s.isFreeWaterMode);
@@ -34,12 +39,22 @@ export default function CookeepsPage() {
   const currentPlant = useCookeepsStore(s => s.currentPlant);
   const modals = useCookeepsModals(currentPlant);
 
-  const fetchRankingData = useCallback(async () => {
+  const fetchWateringRanking = useCallback(async () => {
     try {
-      const rankingData = await getWeeklyRanking();
-      setRanking(rankingData);
+      const data = await getWateringRanking();
+      setWateringRanking(data.wateringRanking);
+      setMyWateringCount(data.myWateringCount);
     } catch (error) {
-      console.error("랭킹 데이터 로드 실패:", error);
+      console.error("물주기 랭킹 로드 실패:", error);
+    }
+  }, []);
+
+  const fetchRecipeRanking = useCallback(async () => {
+    try {
+      const data = await getRecipeRanking();
+      setRecipeRanking(data.recipeRanking);
+    } catch (error) {
+      console.error("레시피 랭킹 로드 실패:", error);
     }
   }, []);
 
@@ -48,14 +63,13 @@ export default function CookeepsPage() {
       useCookeepsStore.getState();
     setLoading(true);
     try {
-      const [, , , rankingData] = await Promise.all([
+      await Promise.all([
         fetchGrowingPlant(),
         fetchCookies(),
         fetchMyPlants(),
-        getWeeklyRanking(),
+        fetchWateringRanking(),
+        fetchRecipeRanking(),
       ]);
-
-      setRanking(rankingData);
 
       const store = useCookeepsStore.getState();
       const plantName = store.currentPlant?.plantName;
@@ -71,7 +85,7 @@ export default function CookeepsPage() {
     } finally {
       setLoading(false);
     }
-  }, [setLoading]);
+  }, [setLoading, fetchWateringRanking, fetchRecipeRanking]);
 
   useEffect(() => {
     fetchAllData();
@@ -91,7 +105,7 @@ export default function CookeepsPage() {
   const handleWaterSuccess = () => {
     setToastVisible(true);
     setTimeout(() => setToastVisible(false), 5000);
-    fetchRankingData();
+    fetchWateringRanking();
   };
 
   const overridePlantStage = modals.showHarvestModal
@@ -122,7 +136,7 @@ export default function CookeepsPage() {
             <PlantGrowthCard
               plant={currentPlant?.plantName}
               onWaterSuccess={handleWaterSuccess}
-              onRefresh={fetchRankingData}
+              onRefresh={fetchWateringRanking}
               overridePlantStage={overridePlantStage}
             />
           </section>
@@ -143,14 +157,14 @@ export default function CookeepsPage() {
 
         <section className="flex flex-col gap-6 px-4 pb-15">
           <WeeklyTop3Section
-            users={ranking?.wateringRanking ?? []}
-            myCount={ranking?.myWateringCount ?? 0}
+            users={wateringRanking}
+            myCount={myWateringCount}
           />
           {/* 중간 좋아요 / 북마크 필터 영역 */}
           <RecipeFilterButtons />
 
           {/* 주간 레시피 섹션 (내부에 전체보기 포함) */}
-          <WeeklyRecipeSection topRecipes={ranking?.recipeRanking ?? []} />
+          <WeeklyRecipeSection topRecipes={recipeRanking} />
         </section>
       </main>
 

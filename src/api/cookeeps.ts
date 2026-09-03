@@ -8,6 +8,7 @@ export interface RecipeRankItem {
   recipeImageUrl: string | null;
   title: string;
   nickname: string;
+  description?: string | null;
 }
 
 export interface WateringRankItem {
@@ -123,15 +124,29 @@ export const getAllRecipes = async (
   return res.data.data;
 };
 
-export interface RankingResponse {
-  myWateringCount: number;
-  recipeRanking: RecipeRankItem[];
+export interface WateringRankingResponse {
   wateringRanking: WateringRankItem[];
+  myWateringCount: number;
 }
 
-/** [GET] 이번 주 랭킹 조회 (물주기 Top 3, 레시피 좋아요 Top 3) */
-export const getWeeklyRanking = async () => {
-  const res = await api.get<{ data: RankingResponse }>("/api/cookeeps/ranking");
+export interface RecipeRankingResponse {
+  recipeRanking: RecipeRankItem[];
+}
+
+/** [GET] 이번 달 물주기 랭킹 조회 */
+export const getWateringRanking =
+  async (): Promise<WateringRankingResponse> => {
+    const res = await api.get<{ data: WateringRankingResponse }>(
+      "/api/cookeeps/ranking/watering",
+    );
+    return res.data.data;
+  };
+
+/** [GET] 이번 주 인기 레시피 랭킹 조회 */
+export const getRecipeRanking = async (): Promise<RecipeRankingResponse> => {
+  const res = await api.get<{ data: RecipeRankingResponse }>(
+    "/api/cookeeps/ranking/recipes",
+  );
   return res.data.data;
 };
 
