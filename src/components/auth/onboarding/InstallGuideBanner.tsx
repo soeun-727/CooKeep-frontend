@@ -30,7 +30,8 @@ export default function InstallGuideBanner() {
             <img
               key={index}
               src={iconSrc}
-              alt={`icon-${index}`}
+              alt=""
+              aria-hidden="true"
               className="h-19 w-19 shrink-0"
             />
           ))}
