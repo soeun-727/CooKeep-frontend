@@ -16,8 +16,6 @@ import AgreeChecked from "@/assets/signup/checkboxCheck.svg?react";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import LoadingScreen from "@/components/ui/LoadingScreen";
-<<<<<<< HEAD
-=======
 
 const REASONS = [
   "자주 사용하지 않아요",
@@ -28,7 +26,6 @@ const REASONS = [
 ];
 
 const CUSTOM_REASON = "기타 (직접 입력하기)";
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
 
 export default function WithdrawPage() {
   const navigate = useNavigate();
@@ -115,13 +112,9 @@ export default function WithdrawPage() {
   };
 
   // 로딩 중일 때
-<<<<<<< HEAD
   if (loading) {
     return <LoadingScreen />;
   }
-=======
-  if (loading) return <LoadingScreen />;
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
 
   return (
     <>

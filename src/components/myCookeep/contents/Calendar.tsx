@@ -59,31 +59,6 @@ export default function Calendar({
     fetchRecords();
   }, [year, month]);
 
-<<<<<<< HEAD
-  return (
-    <div
-      className={`bg-gray-0/10 rounded-L mx-auto flex w-[357px] flex-col items-center justify-center p-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"} `}
-    >
-      {/* 1. 헤더 */}
-      <div className="mt-[13px] mb-2 flex w-full items-center justify-between px-2">
-        <h2 className="typo-h3 text-gray-80">
-          {monthName} {year}
-        </h2>
-        <div className="flex gap-1">
-          <button onClick={prevMonth} className="p-2">
-            <PrevIcon className="text-gray-30 h-4 w-4" />
-          </button>
-          <button onClick={nextMonth} className="p-2">
-            <PrevIcon className="text-gray-30 h-4 w-4 rotate-180" />
-          </button>
-        </div>
-      </div>
-      {/* 2. 요일 */}
-      <div className="mb-2 grid w-full grid-cols-7">
-        {daysOfWeek.map(day => (
-          <div key={day} className="typo-body2 text-green text-center">
-            {day}
-=======
   const renderDay = (day: number) => {
     const dateStr = formatCalendarDate(year, month - 1, day);
     const hasRecord = Object.prototype.hasOwnProperty.call(apiRecords, dateStr);
@@ -110,7 +85,6 @@ export default function Calendar({
         {isToday && (
           <div className="absolute -top-10 z-10">
             <SpeechBubble text="TODAY" />
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
           </div>
         )}
 

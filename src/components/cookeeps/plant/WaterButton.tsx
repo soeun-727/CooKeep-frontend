@@ -50,25 +50,7 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
 
   return (
     <>
-<<<<<<< HEAD
-      <div className="relative flex flex-col items-center">
-        {isFreeWaterMode && showTooltip && (
-          <div className="absolute -top-10 flex flex-col items-center">
-            {/* 말풍선 본문 */}
-            <div
-              className="bg-gray-0 shadow-plant rounded-XS inline-flex items-center justify-center px-[10px] py-[3px] text-center text-[8px] leading-[10px] font-medium whitespace-nowrap text-gray-50"
-              style={{ width: "164px", height: "23px" }}
-            >
-              아래 버튼을 클릭하여 식물에게 물을 줘보세요!
-            </div>
-
-            {/* ▼ 삼각형 */}
-            <div className="-mt-[1px] h-0 w-0 border-t-[10px] border-r-[5px] border-l-[5px] border-t-white border-r-transparent border-l-transparent" />
-          </div>
-        )}
-=======
       <div className="relative flex w-full flex-col items-center">
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
         <button
           disabled={disabled}
           onClick={async () => {

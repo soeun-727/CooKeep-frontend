@@ -20,15 +20,9 @@ export default function RecipeDetailYoutube({
 
   if (!videos || videos.length === 0) return null;
 
-<<<<<<< HEAD
-  return (
-    <section className="bg-gray-0 shadow-search rounded-M flex w-full flex-col gap-2 p-[22px_15px]">
-      {/* 헤더 (항상 보임) */}
-=======
   // 닫힌 상태
   if (!isOpen) {
     return (
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
       <button
         type="button"
         onClick={() => setIsOpen(true)}
@@ -66,41 +60,6 @@ export default function RecipeDetailYoutube({
         />
       </button>
 
-<<<<<<< HEAD
-      {/* 펼쳐지는 영역 */}
-      {isOpen && (
-        <>
-          {/* 태그 */}
-          {tags.length > 0 && (
-            <div className="flex flex-wrap gap-x-2 gap-y-[2px]">
-              {tags.map((tag, idx) => (
-                <span key={idx} className="text-green text-[14px]">
-                  {`# ${tag}`}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {/* 썸네일 */}
-          <div className="flex w-full gap-2">
-            {videos.slice(0, 3).map((video, idx) => (
-              <a
-                key={idx}
-                href={video.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-S h-[68px] flex-1 overflow-hidden bg-gray-200"
-              >
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="h-full w-full object-cover"
-                />
-              </a>
-            ))}
-          </div>
-        </>
-=======
       {tags.length > 0 && (
         <div className="flex w-full flex-wrap content-start items-start gap-1">
           {tags.map((tag, idx) => (
@@ -109,7 +68,6 @@ export default function RecipeDetailYoutube({
             </span>
           ))}
         </div>
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
       )}
 
       {/* 영상 3개 */}

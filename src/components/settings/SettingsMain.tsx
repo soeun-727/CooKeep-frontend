@@ -7,12 +7,7 @@ import { useAuthStore } from "@/stores/useAuthStore";
 
 import loadingChar from "@/assets/character/loading_char.svg";
 
-<<<<<<< HEAD
-import ConfirmModal from "@/components/ui/ConfirmModal";
-import LoadingScreen from "@/components/ui/LoadingScreen";
-=======
 import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
 
 import SettingsMenuSection from "./components/SettingsMenuSection";
 import { settingsSections } from "./config/settingsMenuConfig";
@@ -71,9 +66,6 @@ export default function SettingsMain() {
     }
   };
 
-<<<<<<< HEAD
-  if (loading || !profile) return <LoadingScreen />;
-=======
   if (loading || !profile)
     return (
       <div className="mt-50 flex flex-col items-center justify-center text-center">
@@ -83,7 +75,6 @@ export default function SettingsMain() {
         </div>
       </div>
     );
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
 
   return (
     <>

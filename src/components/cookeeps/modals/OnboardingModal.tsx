@@ -38,11 +38,7 @@ export default function OnboardingModal({
 
       {/* Modal Container: 300px, padding 24, gap 24 */}
       <div
-<<<<<<< HEAD
-        className="bg-gray-0 rounded-L relative box-border flex max-h-[267px] min-h-[246px] w-[258px] max-w-[258px] min-w-[258px] flex-col gap-3 overflow-hidden px-7 py-[25px]"
-=======
         className="shadow-container rounded-L bg-gray-0 relative z-60 flex w-[300px] flex-col items-center justify-center gap-6 p-6"
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
         onClick={e => e.stopPropagation()}
       >
         {/* 내용부분: gap 12 */}

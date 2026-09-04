@@ -32,23 +32,10 @@ export default function Statistics() {
   };
 
   return (
-<<<<<<< HEAD
-    <div className="bg-gray-0 relative flex h-[354px] w-full flex-col items-center overflow-hidden py-6">
-      <div
-        className={`flex w-full flex-col items-center transition-transform duration-500 ease-in-out ${
-          isExpanded ? "-translate-y-[230px]" : "translate-y-0"
-        }`}
-      >
-        <div className="flex h-[307px] w-full shrink-0 flex-col items-center">
-          <div className="typo-caption text-gray-0 rounded-L mt-5 flex h-[26px] w-[157px] flex-col justify-center bg-black text-center">
-            나의 식재료 소비 달성 현황
-          </div>
-=======
     <div className="relative flex w-full flex-col items-center gap-2">
       <h1 className="text-gray-80 typo-l-strong w-full px-1 text-left">
         이번 달 식재료 소비 현황
       </h1>
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
 
       <section className="bg-gray-0 rounded-L border-gray-10 flex w-full gap-3 border px-3 py-4">
         <div className="flex flex-1 flex-col items-center gap-1">
@@ -77,40 +64,6 @@ export default function Statistics() {
           </p>
         </div>
 
-<<<<<<< HEAD
-        {/* [영역 2]: 올라오면서 보여질 상세 화면 (애니메이션 컨테이너 '내부'로 이동) */}
-        <div className="flex w-full shrink-0 flex-col items-center px-4 pt-5">
-          <div className="mb-6 flex justify-center gap-2">
-            <div className="flex flex-col items-center gap-[14px]">
-              <img
-                src={treeIcon}
-                alt="tree"
-                className="h-20 w-20 object-contain"
-              />
-              <div className="bg-green-light text-green-deep rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap">
-                나무 0.03그루 심기
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-[14px]">
-              <img
-                src={carIcon}
-                alt="car"
-                className="h-20 w-20 object-contain"
-              />
-              <div className="bg-green-light text-green-deep rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap">
-                자동차 4km 미주행
-              </div>
-            </div>
-            <div className="flex flex-col items-center gap-[14px]">
-              <img
-                src={elecIcon}
-                alt="elec"
-                className="h-20 w-20 object-contain"
-              />
-              <div className="bg-green-light text-green-deep rounded-full px-3 py-1 text-[10px] font-medium whitespace-nowrap">
-                자동차 4km 미주행
-              </div>
-=======
         <div className="bg-gray-10 h-[1px] w-full" />
 
         <h2 className="typo-m-strong text-gray-80 w-full px-1 text-left">
@@ -126,7 +79,6 @@ export default function Statistics() {
             <div className="typo-label flex flex-col items-center">
               <p className="text-green-deep">0.03그루</p>
               <p className="text-gray-50">나무 심기</p>
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
             </div>
           </div>
 
