@@ -16,6 +16,7 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
   const [rewardPoints, setRewardPoints] = useState<number | undefined>(
     undefined,
   );
+  const [isActionLoading, setIsActionLoading] = useState(false);
 
   const status = useCookeepsStore(s => s.status);
   const isPlantLoading = useCookeepsStore(s => s.isPlantLoading);
@@ -24,6 +25,7 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
   const harvestedPlantNames = useCookeepsStore(s => s.harvestedPlantNames);
   const registerPlant = useCookeepsStore(s => s.registerPlant);
   const abandonPlant = useCookeepsStore(s => s.abandonPlant);
+  const restartCurrentPlant = useCookeepsStore(s => s.restartCurrentPlant);
   const recoverPlant = useCookeepsStore(s => s.recoverPlant);
   const setFreeWaterMode = useCookeepsStore(s => s.setFreeWaterMode);
 
@@ -137,22 +139,45 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
   };
 
   const handleAbandon = async () => {
+    if (isActionLoading) return;
+    setIsActionLoading(true);
     try {
       await abandonPlant();
       setHideWiltingModal(false);
       setActiveModal("select");
     } catch {
       alert("식물 포기에 실패했습니다. 다시 시도해 주세요.");
+    } finally {
+      setIsActionLoading(false);
+    }
+  };
+
+  // WiltedModal("포기하기")용 - 같은 식물로 1단계 재시작
+  const handleRestart = async () => {
+    if (isActionLoading) return;
+    setIsActionLoading(true);
+    try {
+      await restartCurrentPlant();
+      setHideWiltingModal(false);
+      setActiveModal(null);
+    } catch {
+      alert("다시 키우기에 실패했습니다. 다시 시도해 주세요.");
+    } finally {
+      setIsActionLoading(false);
     }
   };
 
   const handleRecover = async () => {
+    if (isActionLoading) return;
+    setIsActionLoading(true);
     try {
       await recoverPlant();
       setHideWiltingModal(false);
       setActiveModal(null);
     } catch {
       alert("식물 회복에 실패했습니다. 다시 시도해 주세요.");
+    } finally {
+      setIsActionLoading(false);
     }
   };
 
@@ -172,7 +197,9 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
     handleFinalStart,
     handleHarvestModalClose,
     handleAbandon,
+    handleRestart,
     handleRecover,
+    isActionLoading,
     canRecover,
     setFreeWaterMode,
   };

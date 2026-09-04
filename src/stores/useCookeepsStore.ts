@@ -16,6 +16,10 @@ import { PLANT_ID_TO_NAME, PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
 
 import type { MyPlant } from "@/types/myPlant";
 
+const PLANT_NAME_TO_ID: Record<string, number> = Object.fromEntries(
+  Object.entries(PLANT_ID_TO_NAME).map(([id, name]) => [name, Number(id)]),
+);
+
 export type PlantType =
   | "apple"
   | "beans"
@@ -60,6 +64,7 @@ interface CookeepsState {
   selectPlant: (plant: PlantType) => void;
   waterPlant: () => void;
   abandonPlant: () => Promise<void>;
+  restartCurrentPlant: () => Promise<void>;
   recoverPlant: () => void;
 
   // 물주는거 버튼 전달때문
@@ -318,6 +323,26 @@ export const useCookeepsStore = create<CookeepsState>((set, get) => ({
       });
     } catch (e) {
       console.error("포기 실패", e);
+      throw e;
+    }
+  },
+
+  // 새로 추가: 같은 식물 종으로 삭제 후 재등록 → 1단계부터 재시작
+  restartCurrentPlant: async () => {
+    const { currentPlant } = get();
+    if (!currentPlant) return;
+
+    const plantId = PLANT_NAME_TO_ID[currentPlant.plantName];
+    if (!plantId) {
+      console.error("알 수 없는 plantName:", currentPlant.plantName);
+      return;
+    }
+
+    try {
+      await deleteMyPlant(currentPlant.userPlantId); // 기존 진행도 완전 삭제
+      await get().registerPlant(plantId); // 같은 종으로 재등록 (currentPlant, plantStage 자동 갱신)
+    } catch (e) {
+      console.error("다시 키우기 실패", e);
       throw e;
     }
   },

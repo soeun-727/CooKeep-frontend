@@ -5,15 +5,17 @@ import { getSubjectJosa } from "@/utils/josa";
 interface WiltedModalProps {
   plant: string;
   isOpen: boolean;
+  isLoading?: boolean;
   onClose: () => void;
-  onAbandon: () => void;
+  onRestart: () => void;
   onRecover: () => void;
 }
 export default function WiltedModal({
   plant,
   isOpen,
+  isLoading = false,
   onClose,
-  onAbandon,
+  onRestart,
   onRecover,
 }: WiltedModalProps) {
   if (!isOpen) return null;
@@ -29,8 +31,9 @@ export default function WiltedModal({
       highlight="쿠키 -5 🍪"
       buttonTexts={["회복하기", "포기하기"]}
       buttonVariants={["green", "gray"]}
-      buttonActions={[onRecover, onAbandon]}
-      onBackdropClick={onClose}
+      buttonActions={[onRecover, onRestart]}
+      buttonDisabled={[isLoading, isLoading]}
+      onBackdropClick={isLoading ? undefined : onClose}
     />
   );
 }

@@ -31,8 +31,10 @@ export function CookeepsModalManager(props: CookeepsModalManagerProps) {
     handleFinalStart,
     handleHarvestModalClose,
     handleAbandon,
+    handleRestart,
     handleRecover,
     canRecover,
+    isActionLoading,
     setFreeWaterMode,
   } = props;
 
@@ -79,8 +81,9 @@ export function CookeepsModalManager(props: CookeepsModalManagerProps) {
         <WiltedModal
           isOpen={status === "wilted"}
           plant={currentPlant?.plantName ?? ""}
+          isLoading={isActionLoading}
           onClose={() => setActiveModal(null)}
-          onAbandon={handleAbandon}
+          onRestart={handleRestart}
           onRecover={handleRecover}
         />
       )}
@@ -89,6 +92,7 @@ export function CookeepsModalManager(props: CookeepsModalManagerProps) {
         <WiltedNoCookieModal
           isOpen={true}
           plant={currentPlant?.plantName ?? ""}
+          isLoading={isActionLoading}
           onClose={() => setActiveModal(null)}
           onAbandon={handleAbandon}
         />
