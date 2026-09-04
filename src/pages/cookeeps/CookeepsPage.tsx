@@ -1,27 +1,28 @@
 import { useCallback, useEffect, useState } from "react";
 
 import {
-  WateringRankItem,
   RecipeRankItem,
-  getWateringRanking,
+  WateringRankItem,
   getRecipeRanking,
+  getWateringRanking,
 } from "@/api/cookeeps";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { useLoadingStore } from "@/stores/useLoadingStore";
 
-import { AppBar } from "@/components/ui/AppHeader";
+import { CookeepsModalManager } from "@/components/cookeeps/modals/CookeepsModalManager";
 import PlantBackground from "@/components/cookeeps/plant/PlantBackground";
 import PlantGrowthCard from "@/components/cookeeps/plant/PlantGrowthCard";
 import WeeklyTop3Section from "@/components/cookeeps/ranking/WeeklyTop3Section";
-import WeeklyRecipeSection from "@/components/cookeeps/recipe/WeeklyRecipeSection";
 import RecipeFilterButtons from "@/components/cookeeps/recipe/RecipeFilterButtons";
+import WeeklyRecipeSection from "@/components/cookeeps/recipe/WeeklyRecipeSection";
+import { AppBar } from "@/components/ui/AppHeader";
+import { SpeechBubble } from "@/components/ui/SpeechBubble";
 
 import { PLANT_DATA } from "@/constants/plantData";
-import { preloadImage } from "@/utils/preloadImage";
 
 import { useCookeepsModals } from "@/hooks/useCookeepsModals";
-import { CookeepsModalManager } from "@/components/cookeeps/modals/CookeepsModalManager";
-import { SpeechBubble } from "@/components/ui/SpeechBubble";
+
+import { preloadImage } from "@/utils/preloadImage";
 
 export default function CookeepsPage() {
   const [toastVisible, setToastVisible] = useState(false);

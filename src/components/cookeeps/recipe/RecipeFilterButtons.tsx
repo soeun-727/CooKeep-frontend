@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-import ArrowRightIcon from "@/assets/signup/arrowright.svg?react";
 import SaveIcon from "@/assets/cookeeps/bookmark.svg?react";
 import LikeIcon from "@/assets/cookeeps/like.svg?react";
+import ArrowRightIcon from "@/assets/signup/arrowright.svg?react";
 
 interface FilterButtonItem {
   id: string;

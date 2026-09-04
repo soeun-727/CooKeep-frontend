@@ -12,12 +12,12 @@ import {
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
 import RecipeDetailContentSection from "@/components/cookeeps/recipedetail/RecipeDetailContentSection";
+import { RecipeDetailHeader } from "@/components/cookeeps/recipedetail/RecipeDetailHeader";
 import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDetailImageCard";
 import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
 import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import LoadingScreen from "@/components/ui/LoadingScreen";
-import { RecipeDetailHeader } from "@/components/cookeeps/recipedetail/RecipeDetailHeader";
 
 export default function RecipeDetailPage() {
   const { id } = useParams<{ id: string }>();

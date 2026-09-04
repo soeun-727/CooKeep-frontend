@@ -40,18 +40,10 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   const isRankingEmpty = users.length <= 2;
 
   return (
-<<<<<<< HEAD
-    <div className="bg-green-light shadow-plant rounded-M flex min-h-[202px] w-full flex-col items-center gap-[26px] py-[18px]">
-      <div className="flex flex-col items-center gap-[2px]">
-        <h2 className="text-center text-[18px] font-semibold text-gray-800">
-          {currentMonth}월 식물 돌봄
-          <span className="text-green-deep"> TOP3 </span>쿠킵이
-=======
     <div className="flex w-full flex-col gap-2">
       <div className="flex items-center justify-between px-1">
         <h2 className="typo-l-strong text-gray-80 flex-1">
           {currentMonth}월 식물 돌봄 TOP3 쿠킵이
->>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
         </h2>
       </div>
 

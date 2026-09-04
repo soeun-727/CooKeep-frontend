@@ -1,3 +1,4 @@
+import ArrowRightIcon from "@/assets/icons/arrow_right.svg?react";
 import {
   cookingChar,
   earth,
@@ -6,7 +7,6 @@ import {
   seeds,
   tree,
 } from "@/assets/index";
-import ArrowRightIcon from "@/assets/icons/arrow_right.svg?react";
 
 export const TOOLTIP_KEY = "cookeepsPlantShortcutSeen";
 
