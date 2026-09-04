@@ -20,12 +20,8 @@ export default function InstallGuide({
   const navigate = useNavigate();
 
   return (
-    <div
-      className={`relative flex min-h-screen flex-col items-center px-4 ${
-        isAndroid ? "gap-39" : "gap-[178px]"
-      }`}
-    >
-      <div className="flex w-full flex-col items-center gap-[90px]">
+    <div className="relative flex min-h-dvh flex-col items-center px-4 pb-[calc(72px+env(safe-area-inset-bottom))]">
+      <div className="flex w-full flex-col items-center gap-[clamp(32px,8dvh,90px)]">
         <header className="flex w-full justify-end">
           <button
             onClick={() =>
@@ -68,10 +64,12 @@ export default function InstallGuide({
       </div>
 
       {/* ================= 설명 영역 ================= */}
-      <InstallGuideDescription isAndroid={isAndroid} />
+      <div className="mt-auto w-full pt-[clamp(24px,6dvh,64px)]">
+        <InstallGuideDescription isAndroid={isAndroid} />
+      </div>
 
       {/* ================= 하단 버튼 ================= */}
-      <div className="fixed bottom-0 left-1/2 w-full max-w-[450px] -translate-x-1/2 px-4">
+      <div className="fixed bottom-[env(safe-area-inset-bottom)] left-1/2 w-full max-w-[450px] -translate-x-1/2 px-4">
         <Button size="L" variant="green" onClick={onFinish}>
           확인
         </Button>
