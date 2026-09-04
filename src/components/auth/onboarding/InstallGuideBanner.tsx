@@ -25,7 +25,10 @@ export default function InstallGuideBanner() {
           WebkitBackdropFilter: "blur(39.1764px)",
         }}
       >
-        <div className="animate-roll-left flex gap-[13.61px]">
+        <div
+          className="animate-roll-left flex"
+          style={{ gap: "13.61px" }}
+        >
           {INFINITE_ICONS.map((iconSrc, index) => (
             <img
               key={index}
