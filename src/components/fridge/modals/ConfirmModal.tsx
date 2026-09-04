@@ -4,7 +4,7 @@ interface ConfirmModalProps {
   title: string;
   subtitle?: string;
   onConfirm: () => void;
-  onCancel: () => void;
+  onCancel?: () => void;
   buttonTexts?: string[];
   buttonVariants?: ("black" | "green" | "gray")[];
 }

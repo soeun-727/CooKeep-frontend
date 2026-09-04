@@ -4,6 +4,7 @@ import path from "path";
 import { defineConfig, loadEnv } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 import svgr from "vite-plugin-svgr";
+import pkg from "./package.json";
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
@@ -146,5 +147,8 @@ export default defineConfig(({ mode }) => {
         "@public": path.resolve(__dirname, "./public"),
       },
     },
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
+  },
   };
 });

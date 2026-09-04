@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-import { useCookeepsStore } from "@/stores/useCookeepsStore";
+import { updateProfileImage } from "@/api/user";
 import { useMyCookeepStore } from "@/stores/useMyCookeepStore";
 
 import EditIcon from "@/assets/icons/rename.svg?react";
 import { groundImg } from "@/assets/index";
 import PlantIcon from "@/assets/mycookeep/plant.svg?react";
 
-import ProfileEditModal from "../modals/ProfileEditModal";
+import { BottomTabBar } from "@/components/ui/BottomTabBar";
+
+import { ProfileEdit } from "../bottomTabBarContent/ProfileEdit";
 
 export const ProfileContent = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -15,12 +17,9 @@ export const ProfileContent = () => {
 
   const profile = useMyCookeepStore(s => s.profile);
   const fetchProfile = useMyCookeepStore(s => s.fetchProfile);
-  const setProfilePlant = useCookeepsStore(s => s.setProfilePlant);
-  const setProfileAuto = useCookeepsStore(s => s.setProfileAuto);
 
-  const handleSaveProfile = async (userPlantId: number) => {
-    await setProfilePlant(userPlantId);
-    setProfileAuto(false);
+  const handleSaveProfile = async (profileImageId: number) => {
+    await updateProfileImage(profileImageId);
     await fetchProfile();
     setIsEditModalOpen(false);
   };
@@ -35,7 +34,7 @@ export const ProfileContent = () => {
         {/* 식물 사진 및 수정 버튼 */}
         <div className="relative">
           <img
-            src={profile.profilePlantImageUrl || groundImg}
+            src={profile.profileImageUrl || groundImg}
             alt="profileBackground"
             loading="eager"
             decoding="async"
@@ -64,7 +63,7 @@ export const ProfileContent = () => {
             <p className="text-green-deep">
               {profile?.growingPlantName || "요리 실력을"}
             </p>
-            <p className="text-gray-30">키우는 중!</p>
+            <p className="text-gray-30">키우는 중</p>
           </span>
         </div>
       </div>
@@ -77,12 +76,18 @@ export const ProfileContent = () => {
         </p>
       </span>
 
-      {/* 프로필 수정 모달 (바텀 시트) */}
-      <ProfileEditModal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        onSave={handleSaveProfile}
-      />
+      {isEditModalOpen && (
+        <BottomTabBar
+          title="프로필로 설정할 이미지를 선택해주세요"
+          onClose={() => setIsEditModalOpen(false)}
+          BottomTabBarContent={
+            <ProfileEdit
+              currentImageUrl={profile.profileImageUrl}
+              onSave={handleSaveProfile}
+            />
+          }
+        />
+      )}
     </div>
   );
 };

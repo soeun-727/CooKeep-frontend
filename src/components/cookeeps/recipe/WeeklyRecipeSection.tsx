@@ -1,73 +1,63 @@
 import { memo } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { RecipeRankItem } from "@/api/cookeeps";
 
-import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
-
-import RecipeFilterButtons from "./RecipeFilterButtons";
-import RecipeRankCard from "./RecipeRankCard";
+import ArrowRightIcon from "@/assets/signup/arrowright.svg?react";
+import RecipeListItem from "./RecipeListItem";
 
 interface WeeklyRecipeSectionProps {
   topRecipes: RecipeRankItem[];
 }
 
 function WeeklyRecipeSection({ topRecipes }: WeeklyRecipeSectionProps) {
-  const fallbackRecipe = {
-    dailyRecipeId: 0,
-    rank: 0,
-    title: "레시피를 등록해주세요",
-    recipeImageUrl: tempImage,
-    likeCount: 0,
-  };
+  const navigate = useNavigate();
 
-  const filledRecipes = Array.from({ length: 3 }, (_, i) => {
-    const recipe = topRecipes[i];
-
-    return (
-      recipe ?? {
-        ...fallbackRecipe,
-        rank: i + 1,
-      }
-    );
-  });
+  const recipesToShow = topRecipes.slice(0, 3);
 
   const isEmpty = topRecipes.length === 0;
 
   return (
-    <div className="bg-gray-0 shadow-plant mx-auto flex min-h-[259px] w-full max-w-md flex-col items-center gap-4 rounded-lg p-4">
-      {/* 제목 */}
-      <h2 className="text-center text-[18px] leading-[26px] font-semibold">
-        <span className="text-green-deep">이번 주</span>{" "}
-        <span className="text-gray-800">쿠킵이들이 만든 레시피</span>
-      </h2>
+    <div className="flex w-full max-w-md flex-col items-start gap-2">
+      {/* 제목 + 전체보기 Header */}
+      <div className="flex items-center justify-between self-stretch px-1">
+        <h2 className="typo-l-strong text-gray-80 flex-1">
+          쿠킵이들의 레시피 둘러보기
+        </h2>
 
-      {/* 버튼 + 리스트 */}
-      <div className="relative flex w-full flex-col gap-2">
-        <RecipeFilterButtons />
+        <button
+          onClick={() => navigate("/cookeeps/all")}
+          className="typo-label flex items-center justify-end text-gray-50"
+        >
+          전체보기
+          <ArrowRightIcon className="h-5 w-5 text-gray-50" />
+        </button>
+      </div>
 
-        <div className="flex w-full flex-col gap-1">
-          {filledRecipes.map((recipe, idx) => (
-            <RecipeRankCard
-              key={`${recipe.dailyRecipeId}-${idx}`}
-              id={String(recipe.dailyRecipeId)}
-              rank={recipe.rank}
+      {/* 레시피 박스 */}
+      {isEmpty ? (
+        <div className="border-gray-10 bg-gray-0 flex flex-col items-center justify-center gap-3 self-stretch rounded-2xl border px-3 py-4">
+          <p className="typo-m-strong text-gray-30 text-center">
+            아직 등록된 레시피가 없어요
+            <br />
+            이번 주 첫 레시피를 등록해보세요!
+          </p>
+        </div>
+      ) : (
+        <div className="border-gray-10 bg-gray-0 flex flex-col items-start gap-4 self-stretch rounded-2xl border px-3 py-4">
+          {recipesToShow.map((recipe, index) => (
+            <RecipeListItem
+              key={recipe.dailyRecipeId}
+              rank={index + 1}
               title={recipe.title}
-              image={recipe.recipeImageUrl || tempImage}
-              likes={recipe.likeCount}
+              subtitle={recipe.nickname}
+              image={recipe.recipeImageUrl ?? undefined}
+              badge={{ type: "like", likes: recipe.likeCount ?? 0 }}
+              onSelect={() => navigate(`/cookeeps/${recipe.dailyRecipeId}`)}
             />
           ))}
         </div>
-
-        {isEmpty && (
-          <div className="bg-gray-0/80 absolute inset-0 flex items-center justify-center rounded-md">
-            <p className="text-gray-80 text-center text-[16px] leading-[24px] font-semibold">
-              아직 등록된 레시피가 없어요
-              <br />
-              이번 주 첫 레시피를 등록해보세요!
-            </p>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   );
 }

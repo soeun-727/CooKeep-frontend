@@ -5,7 +5,7 @@ import {
   useIngredientStore,
 } from "@/stores/useIngredientStore";
 
-import sortIcon from "@/assets/fridge/sort.svg";
+import SortIcon from "@/assets/fridge/sort.svg?react";
 
 import type { IconComponent } from "@/types/icon";
 
@@ -63,7 +63,7 @@ export default function Sort({
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="relative z-10 flex-shrink-0"
             >
-              <img src={sortIcon} className="w-[30px]" alt="sort" />
+              <SortIcon className="w-[30px]" aria-label="sort" role="img" />
             </button>
           </div>
         </div>

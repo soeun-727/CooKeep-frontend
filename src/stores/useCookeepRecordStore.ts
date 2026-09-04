@@ -19,7 +19,7 @@ interface RecordState {
   editingRecordId: string | null;
   title: string;
   memo: string;
-  isPublic: boolean | null;
+  isPublic: boolean;
   // images: RecordImage[];
   image: RecordImage | null;
 
@@ -57,7 +57,7 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
   editingRecordId: null,
   title: "",
   memo: "",
-  isPublic: null,
+  isPublic: false,
   // images: [],
   image: null,
   records: [],
@@ -86,7 +86,7 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
       editingRecordId: null,
       title: "",
       memo: "",
-      isPublic: null,
+      isPublic: false,
       image: null,
     }),
 
@@ -196,10 +196,12 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
             : r,
         ),
       }));
+      return res.data;
     } catch (error) {
       console.error("북마크 처리 실패:", error);
       set({ records: previousRecords }); // 실패 시 롤백
       alert("북마크 처리에 실패했습니다. (자신의 글은 북마크할 수 없습니다)");
+      throw error;
     }
   },
 }));

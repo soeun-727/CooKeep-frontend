@@ -12,7 +12,7 @@ export interface ProfileData {
   daysSinceJoined: number;
   growingPlantName: string;
   nickname: string;
-  profilePlantImageUrl: string;
+  profileImageUrl: string;
   weeklyGoal: {
     achieved: boolean;
     currentCount: number;
@@ -167,5 +167,32 @@ export const verifyPasswordChangeCode = async (email: string, code: string) => {
     email,
     code,
   });
+  return res.data;
+};
+
+export const getDislikeIngredientList = async () => {
+  const res = await api.get<{
+    status: string;
+    timestamp: string;
+    data: { dislikedIngredients: string[] };
+  }>("/api/users/me/dislike-ingredients");
+  return res.data.data;
+};
+
+export const updateDislikeIngredientList = async (
+  dislikedIngredients: string[],
+) => {
+  const res = await api.put<{ dislikedIngredients: string[] }>(
+    "/api/users/me/dislike-ingredients",
+    { dislikedIngredients },
+  );
+  return res.status;
+};
+
+export const updateProfileImage = async (imageId: number) => {
+  const res = await api.patch<{ imageId: number }>(
+    "/api/users/me/profile-images",
+    { imageId },
+  );
   return res.data;
 };

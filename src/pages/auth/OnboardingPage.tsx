@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { checkIsApp, checkIsMobile } from "@/utils/device";
+
 import {
   OnboardingIngredient,
   getOnboardingIngredients,
@@ -166,10 +168,25 @@ export default function Onboarding() {
   };
 
   // --- 조건부 렌더링 ---
-  if (showInstallGuide)
+  if (showInstallGuide) {
+    if (checkIsApp() || !checkIsMobile()) {
+      navigate("/fridge", { replace: true });
+      return null;
+    }
     return <InstallGuide onFinish={() => navigate("/fridge")} />;
+  }
   if (showNotification)
-    return <Notification onNext={() => setShowInstallGuide(true)} />;
+    return (
+      <Notification
+        onNext={() => {
+          if (checkIsApp() || !checkIsMobile()) {
+            navigate("/fridge", { replace: true });
+          } else {
+            setShowInstallGuide(true);
+          }
+        }}
+      />
+    );
   if (isFinished) return <Last onStart={() => setShowNotification(true)} />;
   if (step === 1 && !areIngredientsLoaded) return <LoadingScreen />;
 

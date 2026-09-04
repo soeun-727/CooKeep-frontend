@@ -13,7 +13,7 @@ export default function AddMoreModal({
 }: AddMoreModalProps) {
   return (
     <div
-      className="bg-gray-80 fixed inset-0 z-60 flex items-center justify-center"
+      className="bg-gray-80/50 fixed inset-0 z-60 flex items-center justify-center"
       onClick={onCancel}
     >
       <div

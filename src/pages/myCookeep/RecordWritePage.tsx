@@ -2,35 +2,35 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AiRecipeDetail, getAiRecipeDetail } from "@/api/dailyAiRecipe";
-import { uploadImage } from "@/api/image";
 import { createDailyRecipe } from "@/api/myRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 import { AxiosError } from "axios";
-import imageCompression from "browser-image-compression";
 
-import privateIcon from "@/assets/mycookeep/record/private_icon.svg";
-import publicIcon from "@/assets/mycookeep/record/public_icon.svg";
-
-import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
+import { CookingTipsSection } from "@/components/myCookeep/record/CookingTipsSection";
 import PhotoRewardModal from "@/components/myCookeep/record/PhotoRewardModal";
-import RecipeRecordContentSection from "@/components/myCookeep/record/RecipeRecordContentSection";
-import RecordWriteImageCard from "@/components/myCookeep/record/RecordWriteImageCard";
+import RecordImageContent from "@/components/myCookeep/record/RecordImageContent";
 import UploadCompleteModal from "@/components/myCookeep/record/UploadCompleteModal";
+import { VisibleChangeSection } from "@/components/myCookeep/record/VisibleChangeSection";
+import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
+
+import { compressAndUploadImage } from "@/utils/imageUpload";
+import { setTodayRecord } from "@/utils/record";
 
 export default function RecordWritePage() {
   const navigate = useNavigate();
-  // const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const [recipeDetail, setRecipeDetail] = useState<AiRecipeDetail | null>(null);
-  // const [showUploadModal, setShowUploadModal] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [rewardQueue, setRewardQueue] = useState<string[]>([]);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
 
   const {
     selectedRecipeId,
@@ -71,22 +71,14 @@ export default function RecordWritePage() {
     }
   }, [selectedRecipeId, editingRecordId, navigate, isSuccess]);
 
-  const handleMemoInput = (e: React.FormEvent<HTMLTextAreaElement>) => {
-    const el = e.currentTarget;
-    el.style.height = "auto";
-    el.style.height = `${el.scrollHeight}px`;
-  };
-
-  const compressionOptions = {
-    maxSizeMB: 0.7,
-    maxWidthOrHeight: 720,
-    useWebWorker: true,
-    initialQuality: 0.7,
-    alwaysKeepResolution: false,
-  };
+  // 재료선택 화면에 갔다가 다시 돌아오는 경우 작성 완료 전까지는 이미지가 남아있으면 안 됨
+  useEffect(() => {
+    setImage(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleUpload = async () => {
-    if (!recipeDetail || selectedRecipeId === null || isPublic === null) {
+    if (!recipeDetail || selectedRecipeId === null) {
       alert("레시피 정보가 로드되지 않았습니다.");
       return;
     }
@@ -94,12 +86,16 @@ export default function RecordWritePage() {
     setIsUploading(true);
 
     try {
+      const imageUrl = image?.file
+        ? await compressAndUploadImage(image.file)
+        : image?.url || "";
+
       const requestData = {
         aiRecipeId: selectedRecipeId,
         isPublic: isPublic,
         title: title || recipeDetail.title,
         description: memo,
-        recipeImageUrl: image?.url || "",
+        recipeImageUrl: imageUrl,
       };
 
       const response = await createDailyRecipe(requestData);
@@ -114,25 +110,30 @@ export default function RecordWritePage() {
           rewards.push("WEEKLY_GOAL");
         }
         rewards.push("RECIPE_RECORD");
-        if (image?.url) {
+        if (imageUrl) {
           rewards.push("PHOTO_UPLOAD");
         }
 
+        setTodayRecord();
         setRewardQueue(rewards);
         setIsSuccess(true);
       } else {
         alert("업로드에 실패했습니다.");
       }
     } catch (error: unknown) {
-      let errorMsg = "레시피 등록 실패";
-      if (error && typeof error === "object") {
-        const axiosError = error as AxiosError<{ message?: string }>;
-        errorMsg = axiosError.response?.data?.message ?? errorMsg;
-      }
+      const axiosError = error as AxiosError<{ message?: string }>;
+      const errorMsg =
+        axiosError.response?.data?.message ||
+        (error instanceof Error ? error.message : "레시피 등록 실패");
       alert(errorMsg);
     } finally {
       setIsUploading(false);
     }
+  };
+
+  const handleCancelConfirm = () => {
+    resetRecord();
+    navigate(-1);
   };
 
   if (!recipeDetail) {
@@ -141,136 +142,62 @@ export default function RecordWritePage() {
 
   return (
     <>
-      <div className="no-scrollbar bg-background flex h-full flex-1 flex-col overflow-y-auto">
-        <div className="bg-background sticky top-0 z-[120] shrink-0">
-          <BackHeader title="레시피 선택" />
-        </div>
+      <div className="mb-20 flex flex-col gap-3 px-4">
+        <BackHeader
+          title="레시피 등록"
+          onBack={() => setIsCancelModalOpen(true)}
+        />
 
-        <div className="mx-auto mt-10 flex min-h-0 w-full max-w-[450px] flex-1 flex-col px-4">
-          <div className="flex flex-col gap-[10px] pt-4">
-            <RecordWriteImageCard
-              title={title}
-              imageSrc={image?.url}
-              onImageChange={async file => {
-                // onClickAddImage 대신
-                if (file.size > 15 * 1024 * 1024) {
-                  alert(
-                    "이미지가 너무 큽니다. 해상도를 낮춰서 다시 시도해주세요.",
-                  );
-                  return;
-                }
-                setIsUploading(true);
-                try {
-                  const compressedBlob = await imageCompression(
-                    file,
-                    compressionOptions,
-                  );
-                  const compressedFile = new File([compressedBlob], file.name, {
-                    type: compressedBlob.type,
-                  });
-                  const response = await uploadImage(compressedFile);
-                  const newUrl = response.data.imageUrl;
-                  setImage({ url: newUrl });
-                } catch {
-                  alert("이미지 업로드 중 오류가 발생했습니다.");
-                } finally {
-                  setIsUploading(false);
-                }
-              }}
-              onChangeTitle={setTitle}
-              onDeleteImage={async () => {
-                setImage(null);
-              }}
-            />
-            <RecipeRecordContentSection
-              recipe={{
-                ingredients: recipeDetail.ingredientsJson,
-                steps: recipeDetail.stepsJson,
-              }}
-            />
-            {/* 유튜브 카드 추가 */}
-            {recipeDetail.youtubeUrlJson &&
-              recipeDetail.youtubeUrlJson.length > 0 && (
-                <RecipeDetailYoutube
-                  videos={recipeDetail.youtubeUrlJson}
-                  tags={(() => {
-                    try {
-                      return recipeDetail.youtubeSearchQueries
-                        ? JSON.parse(recipeDetail.youtubeSearchQueries)
-                        : [];
-                    } catch {
-                      return [];
-                    }
-                  })()}
-                />
-              )}
-          </div>
+        <RecordImageContent
+          imageSrc={image?.url}
+          onImageChange={file => {
+            setImage({ url: URL.createObjectURL(file), file });
+          }}
+        />
+        <RecipeTitle
+          name={title || recipeDetail.title}
+          category=""
+          usedItems={recipeDetail.ingredientsJson.user_ingredients.length}
+          editMode={true}
+          onNameChange={setTitle}
+        />
 
-          <div className="flex w-full shrink-0 flex-col items-center pt-4">
-            <textarea
-              value={memo}
-              onChange={e => setMemo(e.target.value.slice(0, 500))}
-              onInput={handleMemoInput}
-              placeholder="글자 수 최대 500자"
-              className="bg-gray-0 typo-body text-gray-80 w-full resize-none overflow-hidden rounded-[10px] px-[10px] py-3 text-center outline-none placeholder:text-gray-50"
-              rows={1}
-            />
-          </div>
+        <CookingTipsSection cookingTips={memo} onChangeCookingTips={setMemo} />
 
-          <div className="animate-float-bubble relative mt-[15px] flex shrink-0 justify-center">
-            <div
-              className="bg-gray-0 text-green shadow-container relative z-10 inline-flex items-center justify-center rounded-[3px] px-[16px] py-[9px] text-center text-[12px] font-medium"
-              style={{ width: 206, height: 36 }}
-            >
-              나만의 팁 작성하기
-            </div>
-            <div className="bg-gray-0 shadow-tooltip-tail absolute top-0 z-0 h-[12px] w-[12px] translate-y-[-50%] rotate-45" />
-          </div>
+        <RecipeInfoDetail
+          selectedIngredients={recipeDetail.ingredientsJson.user_ingredients}
+          requiredIngredients={
+            recipeDetail.ingredientsJson.additional_ingredients
+          }
+          substitutions={recipeDetail.ingredientsJson.optional_ingredients}
+          steps={recipeDetail.stepsJson.map((step, idx) => ({
+            order: idx + 1,
+            description: step.content,
+          }))}
+          difficulty="NORMAL"
+          youtubeVideos={recipeDetail.youtubeUrlJson}
+          youtubeTags={(() => {
+            try {
+              return recipeDetail.youtubeSearchQueries
+                ? JSON.parse(recipeDetail.youtubeSearchQueries)
+                : [];
+            } catch {
+              return [];
+            }
+          })()}
+        />
+        <VisibleChangeSection isPublic={isPublic} onChange={setIsPublic} />
+      </div>
 
-          <div className="mt-auto flex shrink-0 flex-col items-center gap-4 pt-[64px] pb-[20px]">
-            <div className="flex w-full justify-center gap-[9px]">
-              <button
-                onClick={() => setIsPublic(false)}
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === false ? "bg-green-light" : "bg-gray-10"}`}
-              >
-                <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                  <img
-                    src={privateIcon}
-                    alt="private"
-                    className="h-[24px] w-[24px]"
-                  />
-                </div>
-                <span className="typo-label text-gray-80">나만 보기</span>
-              </button>
-
-              <button
-                onClick={() => setIsPublic(true)}
-                className={`flex h-[44px] w-[161px] items-center gap-[10px] rounded-full p-1 transition-colors ${isPublic === true ? "bg-green-light" : "bg-gray-10"}`}
-              >
-                <div className="bg-gray-0 flex h-[36px] w-[36px] items-center justify-center rounded-full">
-                  <img
-                    src={publicIcon}
-                    alt="public"
-                    className="h-[36px] w-[36px]"
-                  />
-                </div>
-                <span className="typo-label text-gray-80">
-                  쿠킵스에 공개하기
-                </span>
-              </button>
-            </div>
-
-            <Button
-              size="L"
-              variant="black"
-              disabled={isPublic === null || isUploading}
-              className={`${isPublic === null ? "text-gray-0" : "!text-green"}`}
-              onClick={handleUpload}
-            >
-              레시피 업로드하기
-            </Button>
-          </div>
-        </div>
+      <div className="fixed bottom-0 mx-auto w-full max-w-[450px] px-4 pt-6">
+        <Button
+          size="L"
+          variant="green"
+          disabled={isUploading}
+          onClick={handleUpload}
+        >
+          레시피 업로드하기
+        </Button>
       </div>
 
       {/* 우선순위 A-3: 주간 목표 달성 모달 */}
@@ -327,6 +254,15 @@ export default function RecordWritePage() {
               }, 100);
             }
           }}
+        />
+      )}
+      {isCancelModalOpen && (
+        <ConfirmModal
+          title="레시피 등록을 취소하시겠어요?"
+          subtitle="기존에 입력한 정보는 저장되지 않아요"
+          onConfirm={handleCancelConfirm}
+          buttonVariants={["gray", "black"]}
+          onCancel={() => setIsCancelModalOpen(false)}
         />
       )}
     </>

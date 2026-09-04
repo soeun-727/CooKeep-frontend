@@ -1,6 +1,6 @@
 import characterIcon from "@/assets/character/crying_char.svg";
-
-import Button from "@/components/ui/Button";
+import ImageModal from "@/components/ui/ImageModal";
+import { getSubjectJosa } from "@/utils/josa";
 
 interface WiltedModalProps {
   plant: string;
@@ -18,7 +18,10 @@ export default function WiltedModal({
 }: WiltedModalProps) {
   if (!isOpen) return null;
 
+  const josa = getSubjectJosa(plant);
+
   return (
+<<<<<<< HEAD
     <div className="absolute inset-0 z-60 flex items-center justify-center">
       {/* backdrop */}
       <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
@@ -57,5 +60,18 @@ export default function WiltedModal({
         </div>
       </div>
     </div>
+=======
+    <ImageModal
+      imageSrc={characterIcon}
+      imageWidth={96}
+      imageHeight={80}
+      title={`${plant}${josa} 시들었어요 T.T\n쿠키를 사용해서 이어 키워볼까요?`}
+      highlight="쿠키 -5 🍪"
+      buttonTexts={["회복하기", "포기하기"]}
+      buttonVariants={["green", "gray"]}
+      buttonActions={[onRecover, onAbandon]}
+      onBackdropClick={onClose}
+    />
+>>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
   );
 }

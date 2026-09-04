@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { OnboardingIngredient } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
@@ -10,14 +10,25 @@ import { InputModal } from "@/components/fridge/modals/InputModal";
 
 interface PreferenceProps {
   allIngredients?: OnboardingIngredient[];
+  initialSelectedIngredients?: OnboardingIngredient[];
 }
 
-export default function Preference({ allIngredients = [] }: PreferenceProps) {
+export default function Preference({
+  allIngredients = [],
+  initialSelectedIngredients,
+}: PreferenceProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customIngredient, setCustomIngredient] = useState("");
 
   const { selectedIngredients, setSelectedIngredients } = useOnboardingStore();
+
+  useEffect(() => {
+    if (initialSelectedIngredients) {
+      setSelectedIngredients(initialSelectedIngredients);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialSelectedIngredients]);
 
   const hasText = searchTerm.length > 0;
 

@@ -1,53 +1,35 @@
-import likeIcon from "@/assets/cookeeps/main/like_cookeeps.svg";
-import saveIcon from "@/assets/cookeeps/main/save_cookeeps.svg";
-
 interface RecipeDetailUserMetaProps {
   userName: string;
-  isLiked: boolean;
-  isBookmarked: boolean;
-  onLike: () => void;
-  onBookmark: () => void;
+  category?: string;
+  title: string;
+  usedItems: number;
 }
 
 export default function RecipeDetailUserMeta({
   userName,
-  isLiked,
-  isBookmarked,
-  onLike,
-  onBookmark,
+  category,
+  title,
+  usedItems,
 }: RecipeDetailUserMetaProps) {
   return (
-    <div className="flex w-full items-center justify-between p-1">
-      {/* 유저 pill */}
-      <div className="bg-gray-80 flex h-[20px] items-center gap-1 rounded-full px-3">
-        <span className="text-green text-[12px] font-medium">{userName}</span>
-        <span className="text-gray-0 text-[12px] font-medium">님의 레시피</span>
+    <div className="mx-auto flex w-full flex-col gap-2 px-1">
+      <div className="flex items-center gap-2">
+        {category && (
+          <span className="bg-green-light text-green-deep typo-caption rounded-S px-3 py-[2px]">
+            {category}
+          </span>
+        )}
+        <div className="bg-green-light text-green-deep typo-caption rounded-S px-3 py-[2px]">
+          <span>{userName} 님의 레시피</span>
+        </div>
       </div>
 
-      {/* 버튼 영역 */}
-      <div className="flex items-center">
-        <button
-          onClick={onLike}
-          className="flex h-[36px] w-[36px] items-center justify-center rounded-full"
-        >
-          <img
-            src={likeIcon}
-            alt="좋아요"
-            className={`h-8 w-8 ${isLiked ? "brightness-100 invert" : ""}`}
-          />
-        </button>
-
-        <button
-          onClick={onBookmark}
-          className="flex h-[36px] w-[36px] items-center justify-center rounded-full"
-        >
-          <img
-            src={saveIcon}
-            alt="저장"
-            className={`h-8 w-8 ${isBookmarked ? "brightness-100 invert" : ""}`}
-          />
-        </button>
-      </div>
+      {/* 레시피 이름 */}
+      <h2 className="text-gray-80 typo-h2">{title}</h2>
+      <p className="typo-l text-gray-50">
+        보유한 재료 중 <span className="text-green-deep">{usedItems}개</span>를
+        사용했어요!
+      </p>
     </div>
   );
 }

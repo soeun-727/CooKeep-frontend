@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { registerPushNotification, unsubscribePush } from "@/api/push";
 import { updateMarketingPush } from "@/api/user";
 
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 import SettingsToggleItem from "@/components/settings/components/SettingsToggleItem";
-import ConfirmModal from "@/components/ui/ConfirmModal";
 
 interface NotificationSectionProps {
   marketingPush: boolean;
@@ -71,18 +71,24 @@ export default function NotificationSection({
   };
 
   return (
-    <section className="mt-[128px] px-4">
-      <SettingsToggleItem
-        label="PUSH 수신 동의"
-        checked={enabled}
-        onChange={handleToggle}
-      />
+    <section className="flex w-full flex-col items-start gap-1">
+      {/* 알림 라벨 */}
+      <div className="flex w-full items-center py-1">
+        <span className="typo-l-strong text-gray-30 flex-1">알림 설정</span>
+      </div>
+
+      {/* 내용 + 토글 */}
+      <div className="flex h-10 w-full items-center justify-between py-[2px]">
+        <span className="typo-l-strong text-gray-80">PUSH 수신 동의</span>
+        <SettingsToggleItem checked={enabled} onChange={handleToggle} />
+      </div>
 
       {showConfirm && (
         <ConfirmModal
-          message="PUSH 수신에 동의하시겠습니까?"
+          title="마케팅 수신에 동의하시겠습니까?"
           onConfirm={handleConfirm}
           onCancel={handleCancel}
+          buttonVariants={["green", "gray"]}
         />
       )}
     </section>

@@ -22,6 +22,7 @@ const LoginPage = lazy(() => import("@/pages/auth/LoginPage"));
 const GuestPage = lazy(() => import("@/pages/auth/GuestPage"));
 const OnboardingPage = lazy(() => import("@/pages/auth/OnboardingPage"));
 const SignupPage = lazy(() => import("@/pages/auth/SignupPage"));
+const InstallGuidePage = lazy(() => import("@/pages/auth/InstallGuidePage"));
 const SimpleLoginAgreementPage = lazy(
   () => import("@/pages/auth/SimpleLoginAgreementPage"),
 );
@@ -68,6 +69,7 @@ const RecordWritePage = lazy(() => import("@/pages/myCookeep/RecordWritePage"));
 const RecordDetailPage = lazy(
   () => import("@/pages/myCookeep/RecordDetailPage"),
 );
+const RecordListPage = lazy(() => import("@/pages/myCookeep/RecordListPage"));
 
 const SettingsPage = lazy(() => import("@/pages/settings/SettingsPage"));
 const EditEmailPage = lazy(() => import("@/pages/settings/EditEmailPage"));
@@ -79,7 +81,9 @@ const EditPasswordEmailSection = lazy(
 );
 const FaqPage = lazy(() => import("@/pages/settings/FaqPage"));
 const NoticePage = lazy(() => import("@/pages/settings/NoticePage"));
-const TermsPage = lazy(() => import("@/pages/settings/TermsPage"));
+const AgreementDetailPage = lazy(
+  () => import("@/pages/settings/AgreementDetailPage"),
+);
 const WithdrawPage = lazy(() => import("@/pages/settings/WithdrawPage"));
 const WithdrawDonePage = lazy(
   () => import("@/pages/settings/WithdrawDonePage"),
@@ -119,10 +123,12 @@ export default function App() {
       "/login",
       "/signup",
       "/onboarding",
+      "/install-guide",
       "/guest",
       "/simplelogin",
       "/findpw",
       "/reset-password",
+      "/settings/withdraw/done", // 추가
     ];
     const isPublic = publicPaths.includes(path);
 
@@ -170,6 +176,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/guest" element={<GuestPage />} />
           <Route path="/onboarding" element={<OnboardingPage />} />
+          <Route path="/install-guide" element={<InstallGuidePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/simplelogin" element={<SimpleLoginAgreementPage />} />
           <Route path="/kakao/callback" element={<KakaoLoginCallback />} />
@@ -199,7 +206,7 @@ export default function App() {
             </Route>
             <Route path="faq" element={<FaqPage />} />
             <Route path="notice" element={<NoticePage />} />
-            <Route path="terms" element={<TermsPage />} />
+            <Route path=":agreementKey" element={<AgreementDetailPage />} />
             <Route path="withdraw" element={<WithdrawPage />} />
           </Route>
           <Route
@@ -247,6 +254,7 @@ export default function App() {
 
             {/* MYCooKeep */}
             <Route path="/mycookeep" element={<MyCookeepPage />} />
+            <Route path="/mycookeep/records" element={<RecordListPage />} />
           </Route>
           <Route path="/mycookeep/goals" element={<SetGoalPage />} />
           <Route

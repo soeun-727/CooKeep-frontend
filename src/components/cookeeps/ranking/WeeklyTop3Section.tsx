@@ -3,6 +3,7 @@ import { memo } from "react";
 import { WateringRankItem } from "@/api/cookeeps";
 
 import thinkingChar from "@/assets/character/thinking_char.svg";
+import seedlingPot from "@/assets/cookeeps/main/seedling_pot.svg";
 import plantBefore from "@/assets/cookeeps/plant/plant_before.svg";
 import { plantChar } from "@/assets/index";
 
@@ -36,61 +37,83 @@ function WeeklyTop3Section({ users, myCount }: WeeklyTop3SectionProps) {
   });
 
   const currentMonth = new Date().getMonth() + 1;
-  const isRankingEmpty = users.length === 0;
+  const isRankingEmpty = users.length <= 2;
 
   return (
+<<<<<<< HEAD
     <div className="bg-green-light shadow-plant rounded-M flex min-h-[202px] w-full flex-col items-center gap-[26px] py-[18px]">
       <div className="flex flex-col items-center gap-[2px]">
         <h2 className="text-center text-[18px] font-semibold text-gray-800">
           {currentMonth}월 식물 돌봄
           <span className="text-green-deep"> TOP3 </span>쿠킵이
+=======
+    <div className="flex w-full flex-col gap-2">
+      <div className="flex items-center justify-between px-1">
+        <h2 className="typo-l-strong text-gray-80 flex-1">
+          {currentMonth}월 식물 돌봄 TOP3 쿠킵이
+>>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
         </h2>
       </div>
 
-      <div className="relative flex gap-[10px]">
-        {order.map(idx => {
-          const user = filledUsers[idx];
+      {isRankingEmpty ? (
+        /* Empty State */
+        <div className="bg-gray-0 rounded-L flex items-center justify-center gap-6 p-4">
+          <img
+            src={thinkingChar}
+            alt="thinking"
+            className="h-[79px] w-[82.999px] shrink-0"
+          />
 
-          const isFirst = user.rank === 1;
-
-          return (
-            <RankingCard
-              key={`${user.rank}-${idx}`}
-              rank={user.rank}
-              name={user.nickname || "쿠킵이"}
-              plantImage={user.profileImageUrl}
-              isFirst={isFirst}
-              score={user.wateringCount}
-            />
-          );
-        })}
-
-        {isRankingEmpty && (
-          <div className="bg-green-light/80 rounded-M absolute inset-0 flex items-center justify-center">
-            <div className="flex h-[143px] w-full max-w-[343px] items-center justify-center gap-[24px] px-[20px] py-[18px]">
-              <img
-                src={thinkingChar}
-                alt="thinking"
-                className="h-[79px] w-[83px] flex-shrink-0"
-              />
-
-              <div className="text-gray-80 text-center text-[16px] leading-[24px] font-semibold">
-                쿠킵이들의 식물 살펴보는 중..
-                <br />
-                순위가 곧 공개돼요
-              </div>
-            </div>
+          <div className="typo-m-strong text-gray-30 text-center">
+            쿠킵이들의 식물 살펴보는 중..
+            <br />
+            순위가 곧 공개돼요
           </div>
-        )}
-      </div>
-
-      <div className="typo-body2 -mt-[6px] flex gap-1 !font-semibold">
-        <span>이번 달에 나는 총</span>
-        <div className="flex gap-[2px]">
-          <img src={plantChar} className="w-4.5" />
-          <span className="text-green-deep">{myCount}회</span>
         </div>
-        <span>주었어요!</span>
+      ) : (
+        /* 랭킹 카드 (2위 - 1위 - 3위 순 배치) */
+        <div className="relative flex items-center gap-2">
+          {order.map(idx => {
+            const user = filledUsers[idx];
+            const isFirst = user.rank === 1;
+
+            return (
+              <RankingCard
+                key={`${user.rank}-${idx}`}
+                rank={user.rank}
+                name={user.nickname || "쿠킵이"}
+                plantImage={user.profileImageUrl}
+                score={user.wateringCount}
+                isFirst={isFirst}
+              />
+            );
+          })}
+        </div>
+      )}
+
+      <div className="bg-green-exception rounded-M flex items-center justify-center gap-1 py-1">
+        <img
+          src={seedlingPot}
+          alt="seedling pot"
+          className="aspect-square h-[20px] w-[20px] shrink-0"
+        />
+
+        <span className="typo-m text-gray-80 line-clamp-1">
+          이번 달에 나는 총
+        </span>
+
+        <div className="flex items-center gap-[2px]">
+          <img
+            src={plantChar}
+            alt="plant character"
+            className="h-[17.048px] w-[16.272px] shrink-0"
+          />
+          <span className="typo-m-strong text-green-deep line-clamp-1">
+            {myCount}회
+          </span>
+        </div>
+
+        <span className="typo-m text-gray-80 line-clamp-1">주었어요!</span>
       </div>
     </div>
   );

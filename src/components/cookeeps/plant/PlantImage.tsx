@@ -19,14 +19,14 @@ function PlantImage({ overridePlantStage }: PlantImageProps) {
     const imageSrc =
       PLANT_IMAGES[PLANT_NAME_TO_TYPE[justHarvestedPlant.plantName]][4];
     return (
-      <div className="relative h-full w-full">
+      <div className="absolute inset-0">
         <img
           src={imageSrc}
           alt="harvested plant"
           // loading="lazy"
           loading="eager"
           decoding="async"
-          className="h-full w-full object-contain"
+          className="absolute top-1/2 left-1/2 aspect-square w-[106.13%] max-w-none -translate-x-1/2 -translate-y-1/2"
         />
       </div>
     );
@@ -40,14 +40,14 @@ function PlantImage({ overridePlantStage }: PlantImageProps) {
     : EMPTY_PLANT_IMAGE;
 
   return (
-    <div className="relative h-full w-full">
+    <div className="absolute inset-0">
       <img
         src={imageSrc}
         alt="plant"
         // loading="lazy"
         loading="eager"
         decoding="async"
-        className="h-full w-full object-contain"
+        className="absolute top-1/2 left-1/2 h-auto w-[106.13%] max-w-none -translate-x-1/2 -translate-y-1/2"
       />
     </div>
   );

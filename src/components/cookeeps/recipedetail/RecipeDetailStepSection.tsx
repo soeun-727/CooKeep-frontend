@@ -1,34 +1,31 @@
+type StepLike = string | { content: string };
+
 interface RecipeDetailStepSectionProps {
-  steps: string[];
+  steps: StepLike[];
 }
 
 export default function RecipeDetailStepSection({
   steps,
 }: RecipeDetailStepSectionProps) {
-  return (
-    <div className="flex w-full flex-col items-start gap-[10px]">
-      {/* 제목 */}
-      <span className="typo-body2 self-stretch text-gray-50">레시피</span>
+  const formatDescription = (text: string) => {
+    return text.replace(/^\d+[.)\s:-]*/, "").trim();
+  };
 
-      {/* 단계 리스트 */}
-      <div className="flex w-full flex-col items-start gap-[8px]">
-        {steps.map((description, index) => {
-          const cleanDescription = description.replace(/^\d+\.\s*/, "");
+  return (
+    <div className="bg-gray-0 border-gray-10 text-gray-80 rounded-L flex w-full flex-col items-start gap-4 border px-3 py-4">
+      <span className="typo-l-strong">조리 방법</span>
+
+      <div className="flex w-full flex-col items-start gap-3">
+        {steps.map((step, index) => {
           const stepOrder = index + 1;
+          const content = typeof step === "string" ? step : step.content;
 
           return (
-            <div key={stepOrder} className="flex w-full items-start gap-3">
-              {/* 번호 */}
-              <div className="flex w-[30px] flex-shrink-0 items-start justify-center">
-                <div className="bg-gray-80 text-gray-0 flex h-[20px] w-[30px] items-center justify-center rounded-full text-xs leading-[16px] font-semibold">
-                  {stepOrder}
-                </div>
+            <div key={stepOrder} className="flex w-full items-start">
+              <div className="typo-m-strong text-gray-30 flex h-5 w-5 items-center justify-start">
+                <span className="h-full">{stepOrder}</span>
               </div>
-
-              {/* 설명 */}
-              <p className="text-gray-80 typo-body2 flex-1 leading-[24px]">
-                {cleanDescription}
-              </p>
+              <p className="typo-m flex-1">{formatDescription(content)}</p>
             </div>
           );
         })}

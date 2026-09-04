@@ -1,168 +1,37 @@
-import { useEffect, useRef, useState } from "react";
+import { MyProfileResponse } from "@/api/user";
 
-import { MyProfileResponse, updateNickname } from "@/api/user";
-import axios from "axios";
-
+import NicknameEditItem from "@/components/settings/components/NicknameEditItem";
 import SettingsInputItem from "@/components/settings/components/SettingsInputItem";
-import SingleButtonModal from "@/components/ui/SingleButtonModal";
 
 const MASKED_PASSWORD = "********";
-
-interface ProfileInfo {
-  nickname: string;
-  email: string;
-}
 
 interface ProfileSectionProps {
   profile: MyProfileResponse["data"];
 }
 
 export default function ProfileSection({ profile }: ProfileSectionProps) {
-  const MAX_NICKNAME_LENGTH = 10;
-
-  const [isEditingNickname, setIsEditingNickname] = useState(false);
-  const nicknameInputRef = useRef<HTMLInputElement>(null);
-  const [openDuplicateModal, setOpenDuplicateModal] = useState(false);
-
   const isSocialLogin = profile.authProvider !== "LOCAL";
 
-  // 최초 1회 초기화
-  const [account, setAccount] = useState<ProfileInfo>(() => ({
-    nickname: profile.Nickname || "",
-    email: profile.email || "",
-  }));
-
-  // 닉네임 포커스
-  useEffect(() => {
-    if (isEditingNickname) {
-      nicknameInputRef.current?.focus();
-    }
-  }, [isEditingNickname]);
-
-  const isNicknameError = account.nickname.length > MAX_NICKNAME_LENGTH;
-
-  const handleNicknameSave = async () => {
-    // 1. 앞뒤 공백 제거한 값을 변수에 담기
-    const trimmedNickname = account.nickname.trim();
-
-    // 2. 진짜 빈 값인지 최종 확인
-    if (!trimmedNickname || isNicknameError) return;
-
-    try {
-      // 3. 서버에는 공백이 제거된 깔끔한 값을 보냄
-      await updateNickname(trimmedNickname);
-
-      // 4. 내 로컬 상태도 깔끔한 값으로 동기화
-      setAccount(prev => ({ ...prev, nickname: trimmedNickname }));
-
-      setIsEditingNickname(false);
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        const status = err.response?.status;
-        const code = err.response?.data?.code;
-
-        if (status === 409 || code === "USER-001") {
-          setOpenDuplicateModal(true);
-        } else if (status === 401) {
-          alert("로그인이 필요합니다.");
-        } else {
-          alert("닉네임 변경 중 오류가 발생했습니다.");
-        }
-      } else {
-        alert("알 수 없는 오류가 발생했습니다.");
-      }
-    }
-  };
-
   return (
-    <section className="px-4">
-      <div className="flex flex-col gap-[22px]">
-        {/* ===== 닉네임 (inline edit) ===== */}
-        <div className="relative flex h-20 w-full flex-col gap-2">
-          <span className="typo-body text-gray-80 px-3">닉네임</span>
+    <section className="flex w-full flex-col items-start gap-[4px]">
+      <NicknameEditItem initialNickname={profile.Nickname || ""} />
 
-          <div
-            className={`flex h-[44px] w-full items-center justify-between rounded-[6px] border px-3 transition-colors ${isNicknameError ? "border-semantic-negative" : "border-gray-10"} `}
-          >
-            {isEditingNickname ? (
-              <>
-                <input
-                  ref={nicknameInputRef}
-                  value={account?.nickname || ""}
-                  onChange={e =>
-                    setAccount(prev =>
-                      prev ? { ...prev, nickname: e.target.value } : prev,
-                    )
-                  }
-                  className="typo-body2 text-gray-80 h-full w-45 flex-1 outline-none"
-                />
-                <button
-                  onClick={handleNicknameSave}
-                  disabled={!account.nickname?.trim() || isNicknameError}
-                  className="bg-gray-80 text-gray-0 typo-caption w-[115px] rounded-full px-[18px] py-1 font-medium"
-                >
-                  변경 완료
-                </button>
-              </>
-            ) : (
-              <>
-                <span className="typo-body2 text-gray-50">
-                  {account.nickname}
-                </span>
+      <SettingsInputItem
+        label="이메일"
+        value={profile.email}
+        buttonText="이메일 주소 변경"
+        to="/settings/email"
+        disabled={isSocialLogin}
+      />
 
-                <button
-                  onClick={() => setIsEditingNickname(true)}
-                  className="bg-gray-80 text-gray-0 typo-caption w-[115px] rounded-full px-[18px] py-1 font-medium"
-                >
-                  닉네임 변경
-                </button>
-              </>
-            )}
-          </div>
-          <div className="absolute top-19 px-2">
-            {isEditingNickname && (
-              <>
-                {/* 1. 글자 수 초과 에러 */}
-                {isNicknameError && (
-                  <span className="text-semantic-negative typo-caption leading-0">
-                    {MAX_NICKNAME_LENGTH}글자 이내로 설정해주세요
-                  </span>
-                )}
-
-                {/* 2. 빈 값 에러 (추가) */}
-                {!account.nickname.trim() && (
-                  <span className="text-semantic-negative typo-caption leading-0">
-                    닉네임을 입력해주세요
-                  </span>
-                )}
-              </>
-            )}
-          </div>
-        </div>
-
-        <SettingsInputItem
-          label="이메일"
-          value={account.email}
-          buttonText="이메일 주소 변경"
-          to="/settings/email"
-          disabled={isSocialLogin}
-        />
-
-        {/* 비밀번호는 항상 고정 */}
-        <SettingsInputItem
-          label="비밀번호"
-          value={isSocialLogin ? "" : MASKED_PASSWORD}
-          buttonText="비밀번호 변경"
-          to="/settings/password"
-          disabled={isSocialLogin}
-        />
-      </div>
-      {openDuplicateModal && (
-        <SingleButtonModal
-          message="이미 사용 중인 닉네임입니다."
-          onClose={() => setOpenDuplicateModal(false)}
-        />
-      )}
+      {/* 비밀번호는 항상 고정 */}
+      <SettingsInputItem
+        label="비밀번호"
+        value={isSocialLogin ? "" : MASKED_PASSWORD}
+        buttonText="비밀번호 변경"
+        to="/settings/password"
+        disabled={isSocialLogin}
+      />
     </section>
   );
 }

@@ -1,20 +1,22 @@
-import { createPortal } from "react-dom";
-
 import waterCookieImg from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
+import ImageModal from "@/components/ui/ImageModal";
 
 interface WaterModalProps {
   isOpen: boolean;
+  isLoading?: boolean;
   onClose: () => void;
   onConfirm: () => void;
 }
 
 export default function WaterModal({
   isOpen,
+  isLoading = false,
   onClose,
   onConfirm,
 }: WaterModalProps) {
   if (!isOpen) return null;
 
+<<<<<<< HEAD
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center">
       {/* backdrop */}
@@ -63,5 +65,20 @@ export default function WaterModal({
       </div>
     </div>,
     document.body,
+=======
+  return (
+    <ImageModal
+      imageSrc={waterCookieImg}
+      imageWidth={48}
+      imageHeight={48}
+      title="식물에게 물을 줄까요?"
+      highlight="쿠키 -10 🍪"
+      buttonTexts={["네", "아니오"]}
+      buttonVariants={["green", "gray"]}
+      buttonActions={[onConfirm, onClose]}
+      buttonDisabled={[isLoading, isLoading]}
+      onBackdropClick={onClose}
+    />
+>>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
   );
 }

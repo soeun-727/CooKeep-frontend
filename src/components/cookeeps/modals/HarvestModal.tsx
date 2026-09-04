@@ -1,16 +1,22 @@
 import congratsImg from "@/assets/character/congrats_happy_char.svg";
 
-import Button from "@/components/ui/Button";
+import ImageModal from "@/components/ui/ImageModal";
 
 interface HarvestModalProps {
   isOpen: boolean;
   onClose: () => void;
+  rewardPoints?: number;
 }
 
-export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
+export default function HarvestModal({
+  isOpen,
+  onClose,
+  rewardPoints,
+}: HarvestModalProps) {
   if (!isOpen) return null;
 
   return (
+<<<<<<< HEAD
     <div className="fixed inset-0 z-[200] flex items-center justify-center">
       {/* dim */}
       <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
@@ -52,5 +58,18 @@ export default function HarvestModal({ isOpen, onClose }: HarvestModalProps) {
         </div>
       </div>
     </div>
+=======
+    <ImageModal
+      imageSrc={congratsImg}
+      imageWidth={80}
+      imageHeight={84.803}
+      title={"축하해요 🎉\n정성 들여 키운 식물이\n드디어 다 자랐어요"}
+      highlight={`쿠키 +${rewardPoints ?? 30} 🍪`}
+      buttonTexts={["확인"]}
+      buttonVariants={["green"]}
+      buttonActions={[onClose]}
+      onBackdropClick={onClose}
+    />
+>>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
   );
 }

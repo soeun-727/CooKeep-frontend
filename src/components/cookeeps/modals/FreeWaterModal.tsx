@@ -1,6 +1,5 @@
 import characterImg from "@/assets/character/plant_char.svg";
-
-import Button from "@/components/ui/Button";
+import ImageModal from "@/components/ui/ImageModal";
 
 interface FreeWaterModalProps {
   isOpen: boolean;
@@ -14,7 +13,14 @@ export default function FreeWaterModal({
   onClose,
 }: FreeWaterModalProps) {
   if (!isOpen) return null;
+
+  const handleConfirm = async () => {
+    await onConfirm();
+    onClose();
+  };
+
   return (
+<<<<<<< HEAD
     <div className="absolute inset-0 z-60 flex items-center justify-center">
       {/* backdrop */}
       <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
@@ -44,5 +50,17 @@ export default function FreeWaterModal({
         </Button>
       </div>
     </div>
+=======
+    <ImageModal
+      imageSrc={characterImg}
+      imageWidth={76}
+      imageHeight={80}
+      title={"씨앗 등록 완료! 🌱 \n 무료 물주기 1회가 준비되어 있어요"}
+      buttonTexts={["물 주러 가기"]}
+      buttonVariants={["green"]}
+      buttonActions={[handleConfirm]}
+      onBackdropClick={onClose}
+    />
+>>>>>>> 788c5fb79e00830f3f8837280b9a28758dd09c6b
   );
 }

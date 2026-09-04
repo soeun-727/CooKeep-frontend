@@ -16,8 +16,8 @@ import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDeta
 import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
 import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
-import { BackHeader } from "@/components/ui/BackHeader";
 import LoadingScreen from "@/components/ui/LoadingScreen";
+import { RecipeDetailHeader } from "@/components/cookeeps/recipedetail/RecipeDetailHeader";
 
 export default function RecipeDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -40,6 +40,19 @@ export default function RecipeDetailPage() {
   const handleLikeToggle = async () => {
     if (!id || !recipe) return;
 
+    const prevLiked = recipe.liked;
+    const prevCount = recipe.likeCount;
+
+    setRecipe(prev =>
+      prev
+        ? {
+            ...prev,
+            liked: !prev.liked,
+            likeCount: prev.liked ? prev.likeCount - 1 : prev.likeCount + 1,
+          }
+        : prev,
+    );
+
     try {
       const updatedData = await updateRecordLike(id);
 
@@ -51,41 +64,40 @@ export default function RecipeDetailPage() {
                 liked: updatedData.liked,
                 likeCount: updatedData.likeCount,
               }
-            : null,
+            : prev,
         );
-      } else {
-        setRecipe(prev => {
-          if (!prev) return prev;
-          const nextLiked = !prev.liked;
-          return {
-            ...prev,
-            liked: nextLiked,
-            likeCount: nextLiked ? prev.likeCount + 1 : prev.likeCount - 1,
-          };
-        });
       }
     } catch (error) {
       console.error("좋아요 업데이트 실패:", error);
+      setRecipe(prev =>
+        prev ? { ...prev, liked: prevLiked, likeCount: prevCount } : prev,
+      );
     }
   };
 
   const handleBookmarkToggle = async () => {
     if (!id || !recipe) return;
 
+    const prevBookmarked = recipe.bookmarked;
+
+    setRecipe(prev =>
+      prev ? { ...prev, bookmarked: !prev.bookmarked } : prev,
+    );
+
     try {
       const updatedData = await updateRecordBookmark(id);
 
       if (updatedData) {
         setRecipe(prev =>
-          prev ? { ...prev, bookmarked: updatedData.bookmarked } : null,
-        );
-      } else {
-        setRecipe(prev =>
-          prev ? { ...prev, bookmarked: !prev.bookmarked } : null,
+          prev ? { ...prev, bookmarked: updatedData.bookmarked } : prev,
         );
       }
     } catch (error) {
       console.error("북마크 업데이트 실패:", error);
+      setRecipe(prev =>
+        prev ? { ...prev, bookmarked: prevBookmarked } : prev,
+      );
+      alert("본인의 레시피는 북마크할 수 없습니다.");
     }
   };
 
@@ -124,59 +136,55 @@ export default function RecipeDetailPage() {
   }
 
   return (
-    <div className="min-h-screen w-full">
-      <div className="sticky top-0">
-        <BackHeader title="레시피 보기" />
+    <div className="flex min-h-screen w-full flex-col items-center gap-3 px-4">
+      <div className="sticky top-0 w-full">
+        <RecipeDetailHeader
+          title="레시피 보기"
+          isLiked={!!isLiked}
+          isBookmarked={!!isBookmarked}
+          onLike={handleLikeToggle}
+          onBookmark={handleBookmarkToggle}
+        />
       </div>
-      <div className="mx-auto w-full max-w-[450px] px-4">
-        <div className="mx-auto flex flex-col pt-[51px]">
+
+      <div className="flex w-full flex-col items-center gap-3 pb-25">
+        <RecipeDetailImageCard
+          images={recipe.recipeImageUrl ? [recipe.recipeImageUrl] : []}
+        />
+
+        <div className="flex w-full flex-col items-start gap-6">
           <RecipeDetailUserMeta
             userName={recipe.nickname}
-            isLiked={!!isLiked}
-            isBookmarked={!!isBookmarked}
-            onLike={handleLikeToggle}
-            onBookmark={handleBookmarkToggle}
+            category={recipe.category}
+            title={recipe.title}
+            usedItems={recipe.content.ingredients.user_ingredients.length}
           />
 
-          <div className="flex w-full flex-col items-start gap-4 self-stretch">
-            <div className="flex w-full flex-col items-center gap-[10px]">
-              <div className="flex w-full flex-col items-start self-stretch">
-                <RecipeDetailImageCard
-                  images={recipe.recipeImageUrl ? [recipe.recipeImageUrl] : []}
-                  title={recipe.title}
-                />
-              </div>
-
-              <RecipeDetailContentSection
-                recipe={{
-                  ingredients: {
-                    user_ingredients:
-                      recipe.content.ingredients.user_ingredients,
-                    optional_ingredients:
-                      recipe.content.ingredients.optional_ingredients,
-                    additional_ingredients:
-                      recipe.content.ingredients.additional_ingredients,
-                  },
-                  steps: recipe.content.steps,
-                }}
-              />
-              {recipe.content.youtubeReferences &&
-                recipe.content.youtubeReferences.length > 0 && (
-                  <RecipeDetailYoutube
-                    videos={recipe.content.youtubeReferences}
-                    tags={recipe.content.youtubeSearchQueries ?? []}
-                  />
-                )}
-            </div>
-          </div>
-
-          <div className="mt-4 flex w-full flex-col items-center gap-2 pb-25">
+          <div className="flex w-full flex-col items-start gap-3">
             {recipe.description && (
-              <RecipeDetailMemo
-                userName={recipe.nickname}
-                memo={recipe.description}
-              />
+              <RecipeDetailMemo memo={recipe.description} />
             )}
+
+            <RecipeDetailContentSection
+              recipe={{
+                ingredients: {
+                  user_ingredients: recipe.content.ingredients.user_ingredients,
+                  optional_ingredients:
+                    recipe.content.ingredients.optional_ingredients,
+                  additional_ingredients:
+                    recipe.content.ingredients.additional_ingredients,
+                },
+                steps: recipe.content.steps,
+              }}
+            />
+
+            {recipe.content.youtubeReferences &&
+              recipe.content.youtubeReferences.length > 0 && (
+                <RecipeDetailYoutube
+                  videos={recipe.content.youtubeReferences}
+                  tags={recipe.content.youtubeSearchQueries ?? []}
+                />
+              )}
           </div>
         </div>
       </div>
