@@ -1,7 +1,16 @@
-import { Ingredient, IngredientsJson } from "@/api/dailyAiRecipe";
+interface IngredientLike {
+  name: string;
+  unit: string;
+  quantity: number;
+  description?: string | null;
+}
 
 interface RecipeDetailIngredientSectionProps {
-  ingredients: IngredientsJson;
+  ingredients: {
+    user_ingredients: IngredientLike[];
+    optional_ingredients: IngredientLike[];
+    additional_ingredients: IngredientLike[];
+  };
 }
 
 export default function RecipeDetailIngredientSection({
@@ -10,34 +19,29 @@ export default function RecipeDetailIngredientSection({
   const { user_ingredients, additional_ingredients, optional_ingredients } =
     ingredients;
 
-  // 단위+수량 포맷 함수
-  const formatIngredient = (item: Ingredient) => {
+  const formatIngredient = (item: IngredientLike) => {
     if (!item.quantity) return item.name;
     if (!item.unit) return `${item.name} ${item.quantity}`;
     return `${item.name} ${item.quantity}${item.unit}`;
   };
 
-  // description 기준으로 그룹화
-  const groupedOptional = optional_ingredients.reduce(
-    (acc, item) => {
-      const key = item.description || "생략/대체 가능";
-      if (!acc[key]) acc[key] = [];
-      acc[key].push(item);
-      return acc;
-    },
-    {} as Record<string, Ingredient[]>,
-  );
-
   return (
-    <div className="flex w-full flex-col gap-8">
-      {/* 내가 가진 재료 */}
-      <div>
-        <span className="typo-body2 text-gray-80">내가 가지고 있는 재료</span>
-        <div className="mt-2 flex flex-wrap gap-[5px]">
+    <div className="bg-gray-0 border-gray-10 rounded-L flex w-full flex-col items-start gap-4 border px-3 py-4">
+      <p className="typo-l-strong text-gray-80">필요한 재료</p>
+
+      {/* 내가 가지고 있는 재료 */}
+      <div className="flex w-full flex-col items-start gap-2">
+        <div className="flex w-full justify-center">
+          <div className="flex h-5 w-5 items-center justify-start">
+            <div className="bg-green h-2 w-2 rounded-full" />
+          </div>
+          <div className="typo-m-strong text-gray-80 flex-1">사용한 재료</div>
+        </div>
+        <div className="flex flex-wrap items-start gap-2">
           {user_ingredients.map((item, idx) => (
             <span
               key={idx}
-              className="bg-green-deep text-gray-0 h-[20px] rounded-full px-[12px] text-[12px]"
+              className="bg-green-light text-green-deep rounded-S typo-label flex h-7 items-center justify-center px-3 py-1"
             >
               {formatIngredient(item)}
             </span>
@@ -47,13 +51,20 @@ export default function RecipeDetailIngredientSection({
 
       {/* 추가로 필요한 재료 */}
       {additional_ingredients.length > 0 && (
-        <div>
-          <span className="typo-body2 text-gray-80">추가로 필요한 재료</span>
-          <div className="mt-2 flex flex-wrap gap-[5px]">
+        <div className="flex w-full flex-col items-start gap-2">
+          <div className="flex w-full justify-center">
+            <div className="flex h-5 w-5 items-center justify-start">
+              <div className="bg-gray-30 h-2 w-2 rounded-full" />
+            </div>
+            <div className="typo-m-strong text-gray-80 flex-1">
+              추가로 필요한 재료
+            </div>
+          </div>
+          <div className="flex flex-wrap items-start gap-[5px]">
             {additional_ingredients.map((item, idx) => (
               <span
                 key={idx}
-                className="bg-gray-10 h-[20px] rounded-full px-[12px] text-[12px] text-gray-50"
+                className="bg-gray-10 rounded-S typo-label flex h-7 items-center justify-center px-3 py-1 text-gray-50"
               >
                 {formatIngredient(item)}
               </span>
@@ -62,28 +73,32 @@ export default function RecipeDetailIngredientSection({
         </div>
       )}
 
+      {/* 대체/생략 가능 재료 */}
       {optional_ingredients.length > 0 && (
-        <div className="flex flex-col gap-4">
-          <span className="typo-body2 text-gray-50">대체 / 생략 가능 재료</span>
-          {Object.entries(groupedOptional).map(
-            ([description, items], groupIdx) => (
-              <div key={groupIdx} className="flex flex-col gap-2">
-                {/* description 먼저 */}
-                <span className="typo-body2 text-gray-80">{description}</span>
-                {/* 재료 태그들 */}
-                <div className="flex flex-wrap gap-[5px]">
-                  {items.map((item, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-gray-10 rounded-full px-3 py-[2px] text-[12px] text-gray-50"
-                    >
-                      {formatIngredient(item)}
-                    </span>
-                  ))}
+        <div className="flex w-full flex-col items-start gap-2">
+          <div className="flex w-full justify-center">
+            <div className="flex h-5 w-5 items-center justify-start">
+              <div className="bg-gray-30 h-2 w-2 rounded-full" />
+            </div>
+            <div className="typo-m-strong text-gray-80 flex-1">
+              재료가 없다면?
+            </div>
+          </div>
+          <div className="flex w-full flex-col items-start">
+            {optional_ingredients.map((item, idx) => (
+              <div
+                key={idx}
+                className="text-gray-80 border-gray-10 flex w-full flex-col items-start gap-1 border-b py-2 first:pt-0 last:border-none last:pb-0"
+              >
+                <div className="typo-m-strong w-full">
+                  {formatIngredient(item)}
                 </div>
+                {item.description && (
+                  <span className="typo-m w-full">{item.description}</span>
+                )}
               </div>
-            ),
-          )}
+            ))}
+          </div>
         </div>
       )}
     </div>

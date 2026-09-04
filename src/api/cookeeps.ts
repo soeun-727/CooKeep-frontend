@@ -7,7 +7,8 @@ export interface RecipeRankItem {
   rank: number;
   recipeImageUrl: string | null;
   title: string;
-  nickname: string; // 추가
+  nickname: string;
+  description?: string | null;
 }
 
 export interface WateringRankItem {
@@ -29,20 +30,27 @@ export interface WeeklyRecipesResponse {
   number: number; // 현재 페이지 번호
 }
 
-export interface IngredientItem {
+/** user_ingredients 전용: 유저가 보유한 재료 */
+export interface UserIngredientItem {
+  name: string;
+  unit: string;
+  quantity: number;
+  ingredientId: number;
+}
+
+/** optional_ingredients / additional_ingredients 공용 */
+export interface ExtraIngredientItem {
   name: string;
   unit: string;
   quantity: number;
   description?: string | null;
-  type?: string;
-  referenceId?: number;
 }
 
 export interface RecipeDetailContent {
   ingredients: {
-    user_ingredients: IngredientItem[];
-    optional_ingredients: IngredientItem[];
-    additional_ingredients: IngredientItem[];
+    user_ingredients: UserIngredientItem[];
+    optional_ingredients: ExtraIngredientItem[];
+    additional_ingredients: ExtraIngredientItem[];
   };
   steps: RecipeStep[];
   youtubeReferences: {
@@ -64,6 +72,7 @@ export interface WeeklyRecipeDetailResponse {
   title: string;
   liked: boolean;
   bookmarked: boolean;
+  category?: string; // TODO: 백엔드 응답에 추가되면 optional(?) 제거
 }
 
 /** [GET] 이번 주 공개 레시피 상세 조회 */
@@ -92,6 +101,7 @@ export interface AllRecipeItem {
   likeCount: number;
   recipeImageUrl: string | null;
   createdAt: string;
+  nickname: string;
 }
 
 export interface AllRecipesResponse {
@@ -114,19 +124,31 @@ export const getAllRecipes = async (
   return res.data.data;
 };
 
-export interface RankingResponse {
-  myWateringCount: number;
-  recipeRanking: RecipeRankItem[];
+export interface WateringRankingResponse {
   wateringRanking: WateringRankItem[];
+  myWateringCount: number;
 }
 
-/** [GET] 이번 주 랭킹 조회 (물주기 Top 3, 레시피 좋아요 Top 3) */
-export const getWeeklyRanking = async () => {
-  const res = await api.get<{ data: RankingResponse }>("/api/cookeeps/ranking");
+export interface RecipeRankingResponse {
+  recipeRanking: RecipeRankItem[];
+}
+
+/** [GET] 이번 달 물주기 랭킹 조회 */
+export const getWateringRanking =
+  async (): Promise<WateringRankingResponse> => {
+    const res = await api.get<{ data: WateringRankingResponse }>(
+      "/api/cookeeps/ranking/watering",
+    );
+    return res.data.data;
+  };
+
+/** [GET] 이번 주 인기 레시피 랭킹 조회 */
+export const getRecipeRanking = async (): Promise<RecipeRankingResponse> => {
+  const res = await api.get<{ data: RecipeRankingResponse }>(
+    "/api/cookeeps/ranking/recipes",
+  );
   return res.data.data;
 };
-
-// api/cookeeps.ts
 
 /** [GET] 온보딩 완료 여부 조회 */
 export const getOnboardingStatus = () => {

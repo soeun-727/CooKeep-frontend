@@ -12,7 +12,7 @@ export const PLANT_DATA = [
     id: 1,
     img: beans,
     text: "강낭콩",
-    description: "원빈(bean) 이 제 삼촌임",
+    description: "원빈(bean)이 내 삼촌임! 죄송",
     isHarvested: true,
   },
   {

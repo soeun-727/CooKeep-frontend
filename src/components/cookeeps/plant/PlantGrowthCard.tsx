@@ -2,8 +2,6 @@ import { useEffect } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import RefreshIcon from "@/assets/cookeeps/main/refresh_cookeeps.svg?react";
-
 import { PLANT_NAME_KR } from "@/constants/plantNames";
 import { PLANT_NAME_TO_TYPE } from "@/constants/plantTypeMap";
 
@@ -20,7 +18,6 @@ interface PlantGrowthCardProps {
 
 export default function PlantGrowthCard({
   onWaterSuccess,
-  onRefresh,
   overridePlantStage,
 }: PlantGrowthCardProps) {
   const currentPlant = useCookeepsStore(s => s.currentPlant);
@@ -51,48 +48,33 @@ export default function PlantGrowthCard({
     .toString()
     .padStart(2, "0")}:${date.getMinutes().toString().padStart(2, "0")}`;
 
-  const handleRefreshClick = () => {
-    refreshGrowth();
-    onRefresh?.();
-  };
-
   return (
-    <div className="-mt-[46px] flex justify-center">
-      <div className="plant relative z-50 w-full max-w-[450px]">
-        <div className="absolute -top-[20px] left-1/2 z-50 -translate-x-1/2">
-          <WaterButton
-            onSuccess={() => {
-              onWaterSuccess?.();
-              refreshGrowth();
-            }}
-          />
-        </div>
+    <div className="flex w-full justify-center">
+      <div className="flex w-full flex-col items-center gap-4 px-4 pb-6">
+        <div className="flex w-full flex-col items-start gap-1">
+          <div className="flex w-full flex-col items-start gap-0.5 px-1">
+            <span className="typo-h3 text-gray-80 line-clamp-1">
+              {plantName}
+            </span>
 
-        <div className="bg-gray-0 rounded-xl px-[15px] pt-[23px] pb-2 shadow">
-          <div className="mx-auto flex max-w-[360px] flex-col items-center">
-            <div className="flex h-9 w-full items-center justify-between">
-              <div className="flex h-[26px] items-center justify-center gap-2">
-                <span className="text-gray-80 text-[18px] font-semibold">
-                  {plantName}
-                </span>
-                <span className="mt-1 text-xs text-gray-50">
-                  {dateText} 기준
-                </span>
-              </div>
+            <span className="typo-caption text-gray-50">{dateText} 기준</span>
+          </div>
 
-              {/* 여기를 handleRefreshClick으로 수정했습니다 */}
-              <button onClick={handleRefreshClick}>
-                <RefreshIcon
-                  aria-label="새로고침"
-                  role="img"
-                  className="h-4 w-4"
-                />
-              </button>
-            </div>
-
+          <div className="w-full">
             <GrowthProgressBar overridePlantStage={overridePlantStage} />
           </div>
+
+          <p className="typo-caption w-full text-center text-gray-50">
+            다음 수확까지 더 건강하게 키워보아요!
+          </p>
         </div>
+
+        <WaterButton
+          onSuccess={() => {
+            onWaterSuccess?.();
+            refreshGrowth();
+          }}
+        />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 import {
   MyRecipeListItem,
@@ -9,10 +9,8 @@ import {
   toggleRecipeLike,
 } from "@/api/myRecipe";
 
-import temp from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
-
-import ListItem from "@/components/cookeeps/lists/ListItem";
-import DoublecheckModal from "@/components/ui/DoublecheckModal";
+import RecipeListItem from "@/components/cookeeps/recipe/RecipeListItem";
+import ConfirmModal from "@/components/fridge/modals/ConfirmModal";
 
 interface ViewListPageProps {
   type: string;
@@ -23,6 +21,7 @@ interface OutletContext {
 }
 
 export default function ViewListPage({ type }: ViewListPageProps) {
+  const navigate = useNavigate();
   const { searchTerm } = useOutletContext<OutletContext>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -35,17 +34,16 @@ export default function ViewListPage({ type }: ViewListPageProps) {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
+  const isLiked = type === "좋아요 누른 레시피";
+
   const fetchData = async (pageNum: number) => {
     if (isLoading || (isLast && pageNum !== 0)) return;
     setIsLoading(true);
 
     try {
-      let data;
-      if (type === "좋아요 누른 레시피") {
-        data = await getMyLikedRecipes(pageNum, 10);
-      } else {
-        data = await getMyBookmarkedRecipes(pageNum, 10);
-      }
+      const data = isLiked
+        ? await getMyLikedRecipes(pageNum, 10)
+        : await getMyBookmarkedRecipes(pageNum, 10);
 
       if (data && data.content) {
         setRecipes(prev =>
@@ -98,7 +96,7 @@ export default function ViewListPage({ type }: ViewListPageProps) {
         await toggleRecipeBookmark(selectedId);
       }
       setRecipes(prev => prev.filter(r => r.dailyRecipeId !== selectedId));
-    } catch (error) {
+    } catch {
       alert("처리에 실패했습니다.");
     } finally {
       setIsModalOpen(false);
@@ -108,18 +106,21 @@ export default function ViewListPage({ type }: ViewListPageProps) {
 
   return (
     <>
-      <div className="mx-auto mt-[18px] flex w-[361px] flex-col items-center pb-10">
+      <div className="flex w-full flex-col items-center gap-4 pb-10">
         {filteredData.length > 0
           ? filteredData.map(item => (
-              <ListItem
+              <RecipeListItem
                 key={item.dailyRecipeId}
-                type={type}
-                img={item.recipeImageUrl || temp}
                 title={item.title}
-                likes={item.likeCount}
-                isSelected={selectedId === item.dailyRecipeId}
-                onSelect={() => setSelectedId(item.dailyRecipeId)}
-                onIconClick={() => {
+                subtitle={item.nickname}
+                image={item.recipeImageUrl ?? undefined}
+                badge={
+                  isLiked
+                    ? { type: "like", likes: item.likeCount }
+                    : { type: "bookmark" }
+                }
+                onSelect={() => navigate(`/cookeeps/${item.dailyRecipeId}`)}
+                onDelete={() => {
                   setSelectedId(item.dailyRecipeId);
                   setIsModalOpen(true);
                 }}
@@ -133,20 +134,21 @@ export default function ViewListPage({ type }: ViewListPageProps) {
         <div ref={loadMoreRef} className="h-10" />
       </div>
 
-      {isModalOpen && (
-        <DoublecheckModal
-          title={selectedItem ? selectedItem.title : ""}
-          description={
-            type === "좋아요 누른 레시피"
-              ? "좋아요를 취소하시겠어요?"
-              : "북마크 목록에서 삭제할까요?"
+      {isModalOpen && selectedItem && (
+        <ConfirmModal
+          title={
+            isLiked
+              ? "좋아요한 레시피에서 삭제하시겠어요?"
+              : "저장한 레시피에서 삭제하시겠어요?"
           }
-          onClose={() => {
+          subtitle={selectedItem.title}
+          buttonTexts={["네", "아니오"]}
+          buttonVariants={["gray", "black"]}
+          onConfirm={handleConfirmDelete}
+          onCancel={() => {
             setIsModalOpen(false);
             setSelectedId(null);
           }}
-          onConfirm={handleConfirmDelete}
-          isOpen={isModalOpen}
         />
       )}
     </>

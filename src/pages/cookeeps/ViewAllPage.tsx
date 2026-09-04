@@ -3,11 +3,9 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 
 import { AllRecipeItem, getAllRecipes } from "@/api/cookeeps";
 
-import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
-
-import AllItem from "@/components/cookeeps/lists/AllItem";
 import SortAll from "@/components/cookeeps/lists/SortAll";
 import WeeklyTopRecipesTab from "@/components/cookeeps/lists/WeeklyTopRecipesTab";
+import RecipeListItem from "@/components/cookeeps/recipe/RecipeListItem";
 
 export default function ViewAllPage() {
   const navigate = useNavigate();
@@ -23,7 +21,6 @@ export default function ViewAllPage() {
   const [page, setPage] = useState(0);
   const [isLast, setIsLast] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const observerTarget = useRef<HTMLDivElement | null>(null);
 
@@ -65,7 +62,7 @@ export default function ViewAllPage() {
     setIsLast(false);
     setRecipes([]); //추가
     fetchRecipes(0, true);
-  }, [sortOrder]); // fetchRecipes를 넣으면 무한 루프 위험이 있어 정렬 조건만 감시
+  }, [sortOrder]);
 
   // 5. 페이지 번호 변경 감지
   useEffect(() => {
@@ -84,7 +81,7 @@ export default function ViewAllPage() {
           setPage(prev => prev + 1);
         }
       },
-      { threshold: 0.1 }, // 1.0 보다는 0.1 정도가 더 매끄럽게 작동합니다.
+      { threshold: 0.1 },
     );
 
     observer.observe(observerTarget.current);
@@ -101,47 +98,45 @@ export default function ViewAllPage() {
   }
 
   return (
-    <div className="mt-[18px] flex justify-center pb-10">
-      <div className="w-[361px]">
-        <div className="fixed bottom-[calc(74px+env(safe-area-inset-bottom))] left-1/2 z-50 flex w-[361px] -translate-x-1/2 justify-center">
-          <SortAll currentOrder={sortOrder} onSortChange={setSortOrder} />
-        </div>
-
-        {filteredData.length > 0 ? (
-          <div className="flex flex-col items-center gap-3">
-            {filteredData.map((item, index) => (
-              <AllItem
-                key={item.dailyRecipeId}
-                rank={index + 1}
-                img={item.recipeImageUrl || tempImage}
-                title={item.title}
-                likes={item.likeCount}
-                isSelected={selectedId === item.dailyRecipeId}
-                onSelect={() => {
-                  setSelectedId(item.dailyRecipeId);
-                  navigate(`/cookeeps/${item.dailyRecipeId}?tab=${activeTab}`);
-                }}
-              />
-            ))}
-
-            {/* 무한 스크롤 트리거 */}
-            <div
-              ref={observerTarget}
-              className="flex h-10 w-full items-center justify-center"
-            >
-              {isLoading && (
-                <div className="border-semantic-positive h-5 w-5 animate-spin rounded-full border-b-2" />
-              )}
-            </div>
-          </div>
-        ) : (
-          !isLoading && (
-            <p className="text-gray-30 typo-body mt-10 text-center">
-              검색 결과가 없습니다.
-            </p>
-          )
-        )}
+    <div className="flex w-full flex-col items-center gap-4 pb-10">
+      {/* TODO: navbar 바뀌면 다시 수정해야할 수도? */}
+      <div className="fixed bottom-[calc(74px+env(safe-area-inset-bottom))] left-1/2 z-50 flex -translate-x-1/2 justify-center">
+        <SortAll currentOrder={sortOrder} onSortChange={setSortOrder} />
       </div>
+
+      {filteredData.length > 0 ? (
+        <div className="flex w-full flex-col items-center gap-4 pt-1.5 pl-[5px]">
+          {filteredData.map((item, index) => (
+            <RecipeListItem
+              key={item.dailyRecipeId}
+              rank={index + 1}
+              title={item.title}
+              subtitle={item.nickname}
+              image={item.recipeImageUrl ?? undefined}
+              badge={{ type: "like", likes: item.likeCount }}
+              onSelect={() =>
+                navigate(`/cookeeps/${item.dailyRecipeId}?tab=${activeTab}`)
+              }
+            />
+          ))}
+
+          {/* 무한 스크롤 트리거 */}
+          <div
+            ref={observerTarget}
+            className="flex h-10 w-full items-center justify-center"
+          >
+            {isLoading && (
+              <div className="border-semantic-positive h-5 w-5 animate-spin rounded-full border-b-2" />
+            )}
+          </div>
+        </div>
+      ) : (
+        !isLoading && (
+          <p className="text-gray-30 typo-l mt-10 text-center">
+            검색 결과가 없습니다.
+          </p>
+        )
+      )}
     </div>
   );
 }

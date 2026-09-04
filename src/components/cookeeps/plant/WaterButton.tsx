@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
-import CookieIcon from "@/assets/cookeeps/main/water_cookie_cookeeps.svg?react";
-
+import WaterIcon from "@/assets/cookeeps/main/waterdrop.svg?react";
 import WaterModal from "../modals/WaterModal";
 
 interface WaterButtonProps {
@@ -21,93 +20,90 @@ export default function WaterButton({ onSuccess }: WaterButtonProps) {
     setFreeWaterMode,
   } = useCookeepsStore();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const disabled =
-    !selectedPlant || plantStage >= 4 || (!isFreeWaterMode && cookie < 10);
+    !selectedPlant ||
+    plantStage >= 4 ||
+    (!isFreeWaterMode && cookie < 10) ||
+    isSubmitting;
 
   const { wantsToWater, setWantsToWater } = useCookeepsStore();
 
   const handleConfirm = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     try {
       await waterPlant();
       if (onSuccess) onSuccess(); // 성공 시에만 toast
     } catch {
       alert("물 주기에 실패했습니다. 다시 시도해 주세요.");
+    } finally {
+      setIsSubmitting(false);
+      setWantsToWater(false);
+      setModalOpen(false);
     }
-    setWantsToWater(false);
-    setModalOpen(false);
   };
 
   const isModalOpenControlled =
     !isFreeWaterMode && (wantsToWater || isModalOpen);
 
-  // 5초만 보이게 하기
-  const [showTooltip, setShowTooltip] = useState(false);
-
-  useEffect(() => {
-    if (!isFreeWaterMode) return;
-
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setShowTooltip(true);
-
-    const timer = setTimeout(() => {
-      setShowTooltip(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [isFreeWaterMode]);
-
   return (
     <>
-      <div className="relative flex flex-col items-center">
-        {isFreeWaterMode && showTooltip && (
-          <div className="absolute -top-10 flex flex-col items-center">
-            {/* 말풍선 본문 */}
-            <div
-              className="bg-gray-0 shadow-plant inline-flex items-center justify-center rounded-[3px] px-[10px] py-[3px] text-center text-[8px] leading-[10px] font-medium whitespace-nowrap text-gray-50"
-              style={{ width: "164px", height: "23px" }}
-            >
-              아래 버튼을 클릭하여 식물에게 물을 줘보세요!
-            </div>
-
-            {/* ▼ 삼각형 */}
-            <div className="-mt-[1px] h-0 w-0 border-t-[10px] border-r-[5px] border-l-[5px] border-t-white border-r-transparent border-l-transparent" />
-          </div>
-        )}
+      <div className="relative flex w-full flex-col items-center">
         <button
           disabled={disabled}
           onClick={async () => {
+            if (isSubmitting) return;
+
             if (isFreeWaterMode) {
+              setIsSubmitting(true);
               try {
                 await freeWaterPlant();
                 setFreeWaterMode(false);
                 onSuccess?.();
               } catch {
                 alert("무료 물주기에 실패했습니다.");
+              } finally {
+                setIsSubmitting(false);
               }
               return;
             }
 
             setModalOpen(true);
           }}
-          className={`flex h-[40px] w-full max-w-[280px] min-w-[211px] items-center justify-center gap-1 rounded-full text-[16px] font-bold ${
+          className={`flex w-full max-w-[300px] items-center justify-center gap-1 rounded-full border px-4 py-2 backdrop-blur-[1px] ${
             disabled
-              ? "bg-gray-300 text-gray-400"
-              : "bg-gray-80 text-green shadow active:scale-95"
+              ? "bg-gray-0/60 border-gray-300"
+              : "border-green bg-gray-0/90 shadow-container active:scale-95"
           }`}
         >
-          물 주기( -{/* 2. 이모지 대신 img 태그 삽입 */}
-          <CookieIcon
-            aria-label="cookie"
+          <WaterIcon
+            aria-label="water"
             role="img"
-            className="h-4 w-4 object-contain"
+            className="h-[23px] w-[23px] object-contain"
           />
-          10)
+          <span
+            className={`typo-l-strong ${
+              disabled ? "text-gray-400" : "text-gray-80"
+            }`}
+          >
+            물 주기
+          </span>
+          <span
+            className={`typo-l-strong ${
+              disabled ? "text-gray-400" : "text-green"
+            }`}
+          >
+            · 쿠키 10개 사용
+          </span>
         </button>
 
         <WaterModal
           isOpen={isModalOpenControlled}
+          isLoading={isSubmitting}
           onClose={() => {
+            if (isSubmitting) return;
             setModalOpen(false);
             setWantsToWater(false);
           }}

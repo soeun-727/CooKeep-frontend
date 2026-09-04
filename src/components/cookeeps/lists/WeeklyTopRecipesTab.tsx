@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { RecipeRankItem, getWeeklyRanking } from "@/api/cookeeps";
-
-import LikeGrayIcon from "@/assets/cookeeps/like_gray.svg?react";
-import tempImage from "@/assets/cookeeps/main/temp_recipe_cookeeps.svg";
+import { RecipeRankItem, getRecipeRanking } from "@/api/cookeeps";
+import LikeIcon from "@/assets/cookeeps/like.svg?react";
+import defaultRecipeImage from "@/assets/cookeeps/main/default_recipe_image.svg";
 
 export default function WeeklyTopRecipesTab() {
   const [recipes, setRecipes] = useState<RecipeRankItem[]>([]);
@@ -13,7 +12,7 @@ export default function WeeklyTopRecipesTab() {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const data = await getWeeklyRanking();
+        const data = await getRecipeRanking();
         setRecipes(data.recipeRanking || []);
       } catch (e) {
         console.error(e);
@@ -24,75 +23,58 @@ export default function WeeklyTopRecipesTab() {
 
   const top3 = recipes.slice(0, 3);
 
-  const getRankStyle = (rank: number) => {
-    if (rank === 1) return "bg-green text-gray-0";
-    if (rank === 2 || rank === 3) return "bg-gray-80 text-gray-0";
-    return "bg-gray-200 text-gray-500";
-  };
+  if (recipes.length === 0) {
+    return (
+      <div className="flex h-[200px] w-full items-center justify-center">
+        <p className="typo-m text-gray-50">아직 등록된 레시피가 없어요</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="mt-[18px] flex justify-center">
-      <div className="flex w-[361px] flex-col">
-        {recipes.length === 0 ? (
-          // 레시피 없을 때
-          <div className="flex h-[200px] items-center justify-center text-[14px] text-gray-50">
-            아직 등록된 레시피가 없어요
-          </div>
-        ) : (
-          // 레시피 있을 때
-          top3.map(item => (
-            <div
-              key={item.dailyRecipeId}
-              onClick={() =>
-                navigate(`/cookeeps/${item.dailyRecipeId}?tab=weekly`)
-              }
-              className="flex cursor-pointer flex-col gap-[12px] rounded-[6px] p-[10px_8px]"
-            >
-              {/* 1. 제목 + 좋아요 */}
-              <div className="flex items-center gap-[14px]">
-                {/* 순위 */}
-                <div
-                  className={`flex h-[20px] w-[30px] items-center justify-center rounded-full text-[12px] font-semibold ${getRankStyle(item.rank)}`}
-                >
-                  {item.rank}
-                </div>
+    <div className="flex w-full flex-col items-start gap-3">
+      {top3.map(item => (
+        <div
+          key={item.dailyRecipeId}
+          onClick={() => navigate(`/cookeeps/${item.dailyRecipeId}?tab=weekly`)}
+          className="border-gray-10 bg-gray-0 flex h-[132px] cursor-pointer items-end gap-4 self-stretch rounded-2xl border px-3 py-4"
+        >
+          {/* 이미지 */}
+          <img
+            src={item.recipeImageUrl || defaultRecipeImage}
+            alt={item.title}
+            className="h-[100px] w-[100px] flex-shrink-0 rounded-lg object-cover"
+          />
 
-                {/* 제목 + 좋아요 */}
-                <div className="flex flex-1 items-center justify-between">
-                  <p className="text-gray-80 truncate text-[14px] font-medium">
-                    {item.title}
+          {/* 내용 */}
+          <div className="flex flex-1 flex-col items-end self-stretch">
+            <div className="flex flex-1 flex-col items-start justify-between self-stretch py-1">
+              <div className="flex flex-col items-start gap-0.5 self-stretch">
+                <p className="typo-l-strong text-gray-80 line-clamp-1">
+                  {item.title}
+                </p>
+                {item.description && (
+                  <p className="typo-m line-clamp-2 self-stretch text-gray-50">
+                    {item.description}
                   </p>
-
-                  <div className="flex items-center gap-[4px]">
-                    <LikeGrayIcon className="h-[18px] w-[18px]" />
-                    <span className="text-[12px] text-gray-50">
-                      {item.likeCount}
-                    </span>
-                  </div>
-                </div>
+                )}
               </div>
 
-              {/* 2. 이미지 */}
-              <div
-                className="relative h-[160px] rounded-[6px] bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${item.recipeImageUrl || tempImage})`,
-                }}
-              >
-                {/* 유저 뱃지 */}
-                <div className="bg-gray-80 absolute top-2 left-2 flex h-[20px] items-center gap-[4px] rounded-full px-[12px]">
-                  <span className="text-green text-[12px] font-medium">
-                    {item.nickname}
-                  </span>
-                  <span className="text-gray-0 text-[12px] font-medium">
-                    님의 레시피
+              <div className="flex items-center justify-end gap-2 self-stretch">
+                <span className="typo-m line-clamp-1 text-gray-50">
+                  {item.nickname}
+                </span>
+                <div className="flex items-center">
+                  <LikeIcon className="text-gray-30 h-5 w-5 fill-current" />
+                  <span className="typo-m text-green line-clamp-1">
+                    · {item.likeCount}
                   </span>
                 </div>
               </div>
             </div>
-          ))
-        )}
-      </div>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

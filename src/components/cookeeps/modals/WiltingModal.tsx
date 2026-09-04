@@ -1,8 +1,8 @@
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 import characterImg from "@/assets/character/kijul_char.svg";
-
-import Button from "@/components/ui/Button";
+import ImageModal from "@/components/ui/ImageModal";
+import { getSubjectJosa } from "@/utils/josa";
 
 interface WiltingModalProps {
   plant: string;
@@ -16,41 +16,24 @@ export default function WiltingModal({
   onClose,
 }: WiltingModalProps) {
   if (!isOpen) return null;
+  const handleWaterClick = () => {
+    // 물 주러 가기 클릭 시에만 상태 변경
+    useCookeepsStore.setState({ wantsToWater: true });
+    onClose();
+  };
+
+  const josa = getSubjectJosa(plant);
+
   return (
-    <div className="absolute inset-0 z-60 flex items-center justify-center">
-      {/* backdrop */}
-      <div className="bg-gray-80 absolute inset-0" onClick={onClose} />
-
-      {/* modal */}
-      <div
-        className="bg-gray-0 relative flex h-[254px] w-70 flex-col items-center gap-7 rounded-[10px] px-7 pt-[35px] pb-[25px]"
-        onClick={e => e.stopPropagation()}
-      >
-        {/* content */}
-        <div className="flex w-full flex-col items-center gap-7">
-          <p className="typo-body text-gray-80 text-center whitespace-pre-line">
-            <span className="text-green-deep">{plant} </span>
-            이/가 시들고 있어요
-            {"\n"}
-            지금 쿠키를 사용해 물을 주세요
-          </p>
-          <img src={characterImg} alt="알림 캐릭터" className="w-[86px]" />
-        </div>
-
-        {/* buttons */}
-
-        <Button
-          variant="green"
-          className="!bg-green !w-[224px] !font-semibold"
-          onClick={() => {
-            // 물 주러 가기 클릭
-            useCookeepsStore.setState({ wantsToWater: true });
-            onClose(); // status 변경 X
-          }}
-        >
-          물 주러 가기
-        </Button>
-      </div>
-    </div>
+    <ImageModal
+      imageSrc={characterImg}
+      imageWidth={86}
+      imageHeight={46}
+      title={`${plant}${josa} 시들고 있어요\n지금 쿠키를 사용하여 물을 주세요!`}
+      buttonTexts={["물 주러 가기"]}
+      buttonVariants={["green"]}
+      buttonActions={[handleWaterClick]}
+      onBackdropClick={onClose}
+    />
   );
 }

@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 
 import ViewAllHeader from "@/components/cookeeps/lists/ViewAllHeader";
-import ViewListHeader from "@/components/cookeeps/lists/ViewListHeader";
 import { BackHeader } from "@/components/ui/BackHeader";
+import RecipeSearchField from "@/components/cookeeps/recipe/RecipeSearchField";
 
 export default function ListLayout() {
   const location = useLocation();
@@ -22,11 +22,11 @@ export default function ListLayout() {
   const isBookmarked = location.pathname.endsWith("/bookmarked");
   const isViewList = isLiked || isBookmarked;
 
-  const type = isLiked ? "좋아요 누른 레시피" : "북마크한 레시피";
-
-  const description = isLiked
-    ? "좋아요가 많은 순서대로 노출됩니다"
-    : "저장한 레시피를 한 번에 확인할 수 있어요";
+  const backHeaderTitle = isLiked
+    ? "좋아요한 레시피"
+    : isBookmarked
+      ? "저장한 레시피"
+      : "레시피 전체보기";
 
   // 라우트 변경 시 스크롤 초기화
   useEffect(() => {
@@ -34,31 +34,31 @@ export default function ListLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="bg-background flex h-[100dvh] flex-col overflow-hidden">
+    <div
+      className={`flex h-[100dvh] flex-col overflow-hidden px-4 ${
+        isViewAll ? "gap-4" : "gap-6"
+      }`}
+    >
       {/* 항상 고정 */}
-      <BackHeader title="레시피 보기" />
+      <div className="flex flex-col gap-3">
+        <BackHeader title={backHeaderTitle} />
 
-      {/* 페이지별 고정 헤더 */}
-      {isViewAll && (
-        <ViewAllHeader
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
-          activeTab={activeTab}
-          onTabChange={tab => {
-            setSearchParams({ tab });
-          }}
-        />
-      )}
+        {/* 페이지별 고정 헤더 */}
+        {isViewAll && (
+          <ViewAllHeader
+            searchTerm={searchTerm}
+            onSearchChange={setSearchTerm}
+            activeTab={activeTab}
+            onTabChange={tab => {
+              setSearchParams({ tab });
+            }}
+          />
+        )}
 
-      {isViewList && (
-        <ViewListHeader
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
-          type={type}
-          description={description}
-        />
-      )}
-
+        {isViewList && (
+          <RecipeSearchField value={searchTerm} onChange={setSearchTerm} />
+        )}
+      </div>
       <main
         ref={mainRef}
         className="no-scrollbar flex flex-1 justify-center overflow-y-auto"

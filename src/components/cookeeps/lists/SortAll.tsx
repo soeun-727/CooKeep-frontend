@@ -17,12 +17,10 @@ export default function SortAll({ currentOrder, onSortChange }: SortProps) {
   return (
     <button
       onClick={handleClick}
-      className="bg-gray-0 shadow-hover inline-flex items-center gap-[2px] rounded-full px-[20px] py-[8px]"
+      className="shadow-container inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 backdrop-blur-[1px]"
     >
-      <span className="text-[12px] leading-[16px] font-medium text-gray-50">
-        {currentOrder}
-      </span>
-      <SortIcon className="h-[16px] w-[16px]" />
+      <span className="typo-label text-gray-50">{currentOrder}</span>
+      <SortIcon className="h-5 w-5 text-gray-50" />
     </button>
   );
 }

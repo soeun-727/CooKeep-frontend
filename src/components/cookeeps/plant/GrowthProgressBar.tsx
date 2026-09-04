@@ -11,11 +11,12 @@ export default function GrowthProgressBar({
   const currentPlant = useCookeepsStore(s => s.currentPlant);
   const stageToShow = overridePlantStage ?? currentPlant?.level ?? 1;
 
-  const percent = currentPlant ? (stageToShow / 4) * 100 : 0;
+  // 1단계 = 0%, 4단계 = 100%로 매핑 (1~4를 0~3으로 옮긴 뒤 3으로 나눔)
+  const percent = currentPlant ? ((stageToShow - 1) / 3) * 100 : 0;
 
   return (
-    <div className="flex h-[34px] w-full items-center">
-      <div className="bg-gray-10 relative h-[12px] w-full rounded-full">
+    <div className="flex h-8 w-full items-center">
+      <div className="bg-gray-10 relative h-[10px] w-full rounded-full">
         {/* 진행 바 */}
         <div
           className="bg-green-gradient h-full rounded-full"
@@ -25,10 +26,14 @@ export default function GrowthProgressBar({
         {/* 핸들 */}
         <div
           className="absolute top-1/2 -translate-y-1/2 duration-300"
-          style={{ left: `calc(${percent}% - 16px)` }}
+          style={{ left: `calc(${percent}% - 2px)` }}
         >
-          <div className="bg-gray-0 flex h-8 w-8 items-center justify-center rounded-full shadow">
-            <TreeIcon aria-label="tree" role="img" className="h-4 w-4" />
+          <div className="bg-gray-0/90 drop-shadow-container flex h-8 w-8 items-center justify-center rounded-full backdrop-blur-[1px]">
+            <TreeIcon
+              aria-label="tree"
+              role="img"
+              className="h-[21px] w-[18px]"
+            />
           </div>
         </div>
       </div>
