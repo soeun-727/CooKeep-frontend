@@ -38,7 +38,7 @@ export default function AllItem({
         {rank}
       </div>
 
-      <span className="typo-body flex-1 truncate px-[14px] text-left">
+      <span className="typo-l-strong flex-1 truncate px-[14px] text-left">
         {title}
       </span>
 

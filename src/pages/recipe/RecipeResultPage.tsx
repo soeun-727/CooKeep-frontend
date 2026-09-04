@@ -104,7 +104,7 @@ export default function RecipeResultPage() {
               const rawSteps = recipe.steps || [];
               const steps = rawSteps.map((step, idx: number) => ({
                 order: idx + 1,
-                description: step,
+                description: step.content,
               }));
 
               const rawFeature = difficulty || currentData.feature || "ANY";

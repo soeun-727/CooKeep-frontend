@@ -106,11 +106,11 @@ export default function Custom({
               onChange={e => setLocalName(e.target.value)}
               onBlur={finishEditing}
               onKeyDown={e => e.key === "Enter" && finishEditing()}
-              className="typo-body text-gray-80 border-gray-30 w-[180px] border-b text-center font-bold outline-none"
+              className="typo-l-strong text-gray-80 border-gray-30 w-[180px] border-b text-center font-bold outline-none"
             />
           ) : (
             <div className="group flex items-center justify-center gap-1">
-              <h2 className="typo-body text-gray-80 max-w-[180px] truncate text-center font-bold break-all">
+              <h2 className="typo-l-strong text-gray-80 max-w-[180px] truncate text-center font-bold break-all">
                 '{localName}'
               </h2>
               <button
