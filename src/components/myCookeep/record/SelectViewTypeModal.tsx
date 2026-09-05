@@ -23,12 +23,10 @@ export default function SelectViewTypeModal({
       {/* Modal */}
       <div className="bg-gray-0 relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
         {/* Text */}
-        <p className="typo-button text-green-deep text-center">{message}</p>
+        <p className="typo-l-strong text-green-deep text-center">{message}</p>
 
         {/* Text */}
-        <p className="typo-body2 text-center text-gray-50">
-          상태를 변경할까요?
-        </p>
+        <p className="typo-m text-center text-gray-50">상태를 변경할까요?</p>
 
         {/* Buttons */}
         <div className="mt-4 flex w-full gap-2">

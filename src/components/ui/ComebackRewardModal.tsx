@@ -24,7 +24,7 @@ export default function ComebackRewardModal({
           {/* 내용 */}
           <div className="flex flex-col items-center gap-[20px]">
             {/* 🔥 텍스트1 (맨 위) */}
-            <div className="typo-body2 text-gray-80 w-[202px] text-center">
+            <div className="typo-l-strong text-gray-80 w-[202px] text-center">
               쿠킵은 기다리고 있었어요!
             </div>
 
@@ -32,7 +32,7 @@ export default function ComebackRewardModal({
             <img src={icon} className="h-[56px] w-[60px]" alt="comeback" />
 
             {/* 🔥 텍스트2 */}
-            <div className="typo-body2 text-gray-80 w-[202px] text-center">
+            <div className="typo-l-strong text-gray-80 w-[202px] text-center">
               오랜만에 오신 기념으로
               <br />
               쿠키를 준비했어요

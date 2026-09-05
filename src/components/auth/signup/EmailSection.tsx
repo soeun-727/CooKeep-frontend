@@ -149,7 +149,7 @@ export default function EmailSection() {
             }
             onClick={handleVerify}
           >
-            <span className="typo-button">
+            <span className="typo-l-strong">
               인증하기{" "}
               {isCodeSent && !isVerified && `(${formatTime(timeLeft)})`}
             </span>
