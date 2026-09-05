@@ -27,7 +27,7 @@ export default function AllItem({
   return (
     <div
       onClick={onSelect}
-      className={`flex h-12 w-[361px] cursor-pointer items-center justify-between rounded-[6px] px-2 py-[10px] transition-colors ${
+      className={`rounded-L flex h-12 w-[361px] cursor-pointer items-center justify-between px-2 py-[10px] transition-colors ${
         isSelected ? "bg-gray-200" : "bg-background"
       }`}
     >
@@ -61,7 +61,7 @@ export default function AllItem({
         <img
           src={img}
           alt={title}
-          className="h-[42px] w-[65px] flex-shrink-0 rounded-[6px] object-cover"
+          className="rounded-S h-[42px] w-[65px] flex-shrink-0 object-cover"
         />
       </div>
     </div>

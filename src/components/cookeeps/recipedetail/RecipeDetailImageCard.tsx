@@ -12,7 +12,7 @@ export default function RecipeDetailImageCard({
   return (
     <div className="mx-auto flex w-full flex-col items-center">
       {/* 이미지 영역 */}
-      <div className="shadow-search h-[120px] w-[160px] overflow-hidden rounded-[8px]">
+      <div className="shadow-search rounded-S h-[120px] w-[160px] overflow-hidden">
         <img
           src={imageSrc}
           alt="레시피 이미지"

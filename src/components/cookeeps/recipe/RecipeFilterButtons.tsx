@@ -40,7 +40,7 @@ export default function RecipeFilterButtons() {
             key={btn.id}
             onClick={() => navigate(btn.path)}
             /* 각각 button */
-            className="border-gray-10 bg-gray-0 flex h-12 w-full cursor-pointer items-center gap-3 rounded-[12px] border p-3 transition-colors"
+            className="border-gray-10 bg-gray-0 rounded-M flex h-12 w-full cursor-pointer items-center gap-3 border p-3 transition-colors"
           >
             {/* 왼쪽 아이콘 */}
             <IconComponent className="text-green aspect-square h-6 w-6 flex-shrink-0 fill-none" />
