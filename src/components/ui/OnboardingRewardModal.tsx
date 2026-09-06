@@ -1,6 +1,6 @@
-import icon from "@/assets/character/congrats_char.svg";
-
-import Button from "./Button";
+import ImageModal from "@/components/ui/ImageModal";
+import congratsIcon from "@/assets/character/congrats_char.svg";
+import cookieBiteIcon from "@/assets/cookie_bite.svg";
 
 type OnboardingType = "INGREDIENT" | "RECIPE";
 
@@ -10,40 +10,41 @@ interface OnboardingRewardModalProps {
   type: OnboardingType;
 }
 
+const rewardContent = {
+  RECIPE: {
+    imageSrc: congratsIcon,
+    imageWidth: 80,
+    imageHeight: 85,
+    title: "첫 요리 기록 성공!\n축하 쿠키가 도착했어요",
+  },
+  INGREDIENT: {
+    imageSrc: cookieBiteIcon,
+    imageWidth: 48,
+    imageHeight: 48,
+    title: "첫 재료 등록 완료!\n쿠키 선물이 도착했어요",
+  },
+};
+
 export default function OnboardingRewardModal({
   isOpen,
   onClose,
   type,
 }: OnboardingRewardModalProps) {
   if (!isOpen) return null;
-  const title = type === "RECIPE" ? "첫 요리 기록 성공!" : "첫 재료 등록 완료!";
+
+  const content = rewardContent[type];
+
   return (
-    <div className="bg-black-overlay fixed inset-0 z-100 flex items-center justify-center">
-      {/* 배경 클릭 */}
-      <div className="absolute inset-0" onClick={onClose} />
-
-      {/* 모달 */}
-      <div className="bg-gray-0 rounded-L relative flex w-75 flex-col items-center gap-6 p-6">
-        {/* 이미지 + 텍스트 */}
-        <div className="flex flex-col items-center gap-3 text-center">
-          <img src={icon} className="w-20" />
-
-          {/* 텍스트 묶음 */}
-          <div className="flex w-full flex-col items-center gap-2">
-            <div className="text-gray-80 typo-l-strong">
-              {title}
-              <br />
-              축하 쿠키가 도착했어요
-            </div>
-            <div className="text-green-deep typo-h3">쿠키 +1 🍪</div>
-          </div>
-        </div>
-
-        {/* 버튼 */}
-        <Button onClick={onClose} size="S" variant="green" className="w-full">
-          확인
-        </Button>
-      </div>
-    </div>
+    <ImageModal
+      imageSrc={content.imageSrc}
+      imageWidth={content.imageWidth}
+      imageHeight={content.imageHeight}
+      title={content.title}
+      highlight="쿠키 +1 🍪"
+      buttonTexts={["확인"]}
+      buttonVariants={["green"]}
+      buttonActions={[onClose]}
+      onBackdropClick={onClose}
+    />
   );
 }
