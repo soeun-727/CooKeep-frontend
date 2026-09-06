@@ -30,6 +30,9 @@ export default function RecordWritePage() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [rewardQueue, setRewardQueue] = useState<string[]>([]);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const [rewardPoints, setRewardPoints] = useState<number | undefined>(
+    undefined,
+  );
 
   const {
     selectedRecipeId,
@@ -98,23 +101,20 @@ export default function RecordWritePage() {
       };
 
       const response = await createDailyRecipe(requestData);
-      if (
-        response &&
-        (response.data ||
-          String(response.status) === "200" ||
-          response.status === "OK")
-      ) {
+      if (response?.data) {
+        const reward = response.data.reward;
+        const types = response.data.reward?.types ?? [];
         const rewards: string[] = [];
-        if (response.data?.weeklyGoalAchieved) {
+
+        if (types.includes("BONUS_WEEKLY_GOAL_ACHIEVE"))
           rewards.push("WEEKLY_GOAL");
-        }
-        rewards.push("RECIPE_RECORD");
-        if (imageUrl) {
+        if (types.includes("BASIC_LOAD_RECIPE")) rewards.push("RECIPE_RECORD");
+        if (types.includes("BASIC_FOOD_PHOTO_REG"))
           rewards.push("PHOTO_UPLOAD");
-        }
 
         setTodayRecord();
         setRewardQueue(rewards);
+        setRewardPoints(reward?.points);
         setIsSuccess(true);
       } else {
         alert("업로드에 실패했습니다.");
@@ -223,6 +223,7 @@ export default function RecordWritePage() {
       {rewardQueue[0] === "RECIPE_RECORD" && (
         <UploadCompleteModal
           isOpen={true}
+          rewardPoints={rewardPoints}
           onConfirm={async () => {
             await useCookeepsStore.getState().fetchCookies();
 

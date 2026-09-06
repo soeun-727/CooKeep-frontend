@@ -21,6 +21,8 @@ import RecipeOptionMenu from "@/components/ui/OptionsMenu";
 import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 
 import { compressAndUploadImage } from "@/utils/imageUpload";
+import { enqueueGlobalRewards } from "@/utils/cookieReward";
+import { CookieReward } from "@/api/cookies";
 
 export default function RecordDetailPage() {
   const navigate = useNavigate();
@@ -42,6 +44,8 @@ export default function RecordDetailPage() {
   );
   const [tempIsPublic, setTempIsPublic] = useState<boolean>(false);
   const [showPhotoRewardModal, setShowPhotoRewardModal] = useState(false);
+
+  const [pendingReward, setPendingReward] = useState<CookieReward | null>(null);
 
   useEffect(() => {
     if (!recordId) return;
@@ -132,8 +136,14 @@ export default function RecordDetailPage() {
         setIsEditing(false);
         setIsUpdateModalOpen(false);
 
-        if (response.data.photoCookieAwarded === true) {
+        const reward = response.data.reward;
+        const types = reward?.types ?? [];
+
+        if (types.includes("BASIC_FOOD_PHOTO_REG")) {
+          setPendingReward(reward ?? null);
           setShowPhotoRewardModal(true);
+        } else {
+          enqueueGlobalRewards(reward);
         }
       }
     } catch (error: unknown) {
@@ -227,6 +237,8 @@ export default function RecordDetailPage() {
         <PhotoRewardModal
           onConfirm={() => {
             setShowPhotoRewardModal(false);
+            enqueueGlobalRewards(pendingReward);
+            setPendingReward(null);
           }}
         />
       )}
