@@ -8,6 +8,7 @@ interface OnboardingRewardModalProps {
   isOpen: boolean;
   onClose: () => void;
   type: OnboardingType;
+  rewardPoints?: number;
 }
 
 const rewardContent = {
@@ -29,6 +30,7 @@ export default function OnboardingRewardModal({
   isOpen,
   onClose,
   type,
+  rewardPoints,
 }: OnboardingRewardModalProps) {
   if (!isOpen) return null;
 
@@ -40,7 +42,7 @@ export default function OnboardingRewardModal({
       imageWidth={content.imageWidth}
       imageHeight={content.imageHeight}
       title={content.title}
-      highlight="쿠키 +1 🍪"
+      highlight={`쿠키 +${rewardPoints ?? 1} 🍪`}
       buttonTexts={["확인"]}
       buttonVariants={["green"]}
       buttonActions={[onClose]}

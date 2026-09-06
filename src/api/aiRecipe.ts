@@ -5,6 +5,7 @@ import type {
 } from "@/types/aiRecipe";
 
 import api from "./axios";
+import { CookieReward } from "./cookies";
 
 export interface ApiResponseEnvelope<T> {
   status: string;
@@ -39,9 +40,7 @@ export const generateAiRecipe = async (
 };
 
 export interface CompleteAiRecipeResponse {
-  reward?: {
-    types?: string[];
-  };
+  reward?: CookieReward;
 }
 
 /** [POST] AI 레시피 채택 (MAIN05-03) */

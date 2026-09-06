@@ -7,6 +7,7 @@ interface UploadCompleteModalProps {
   onConfirm: () => void;
   onCancel: () => void;
   closeOnOverlayClick?: boolean;
+  rewardPoints?: number;
 }
 
 export default function UploadCompleteModal({
@@ -14,6 +15,7 @@ export default function UploadCompleteModal({
   onConfirm,
   onCancel,
   closeOnOverlayClick = false,
+  rewardPoints,
 }: UploadCompleteModalProps) {
   if (!isOpen) return null;
 
@@ -28,7 +30,7 @@ export default function UploadCompleteModal({
       imageWidth={80}
       imageHeight={85}
       title="오늘의 레시피 등록 완료!"
-      highlight="쿠키 +1 🍪"
+      highlight={`쿠키 +${rewardPoints ?? 1} 🍪`}
       buttonTexts={["확인"]}
       buttonVariants={["green"]}
       buttonActions={[handleConfirm]}
