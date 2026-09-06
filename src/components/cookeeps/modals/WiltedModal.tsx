@@ -5,6 +5,7 @@ import { getSubjectJosa } from "@/utils/josa";
 interface WiltedModalProps {
   plant: string;
   isOpen: boolean;
+  isLoading?: boolean;
   onClose: () => void;
   onAbandon: () => void;
   onRecover: () => void;
@@ -12,6 +13,7 @@ interface WiltedModalProps {
 export default function WiltedModal({
   plant,
   isOpen,
+  isLoading = false,
   onClose,
   onAbandon,
   onRecover,
@@ -30,7 +32,8 @@ export default function WiltedModal({
       buttonTexts={["회복하기", "포기하기"]}
       buttonVariants={["green", "gray"]}
       buttonActions={[onRecover, onAbandon]}
-      onBackdropClick={onClose}
+      buttonDisabled={[isLoading, isLoading]}
+      onBackdropClick={isLoading ? undefined : onClose}
     />
   );
 }
