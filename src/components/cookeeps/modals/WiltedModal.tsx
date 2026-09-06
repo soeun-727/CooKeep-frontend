@@ -7,7 +7,7 @@ interface WiltedModalProps {
   isOpen: boolean;
   isLoading?: boolean;
   onClose: () => void;
-  onRestart: () => void;
+  onAbandon: () => void;
   onRecover: () => void;
 }
 export default function WiltedModal({
@@ -15,7 +15,7 @@ export default function WiltedModal({
   isOpen,
   isLoading = false,
   onClose,
-  onRestart,
+  onAbandon,
   onRecover,
 }: WiltedModalProps) {
   if (!isOpen) return null;
@@ -31,7 +31,7 @@ export default function WiltedModal({
       highlight="쿠키 -5 🍪"
       buttonTexts={["회복하기", "포기하기"]}
       buttonVariants={["green", "gray"]}
-      buttonActions={[onRecover, onRestart]}
+      buttonActions={[onRecover, onAbandon]}
       buttonDisabled={[isLoading, isLoading]}
       onBackdropClick={isLoading ? undefined : onClose}
     />

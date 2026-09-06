@@ -31,7 +31,6 @@ export function CookeepsModalManager(props: CookeepsModalManagerProps) {
     handleFinalStart,
     handleHarvestModalClose,
     handleAbandon,
-    handleRestart,
     handleRecover,
     canRecover,
     isActionLoading,
@@ -83,8 +82,8 @@ export function CookeepsModalManager(props: CookeepsModalManagerProps) {
           plant={currentPlant?.plantName ?? ""}
           isLoading={isActionLoading}
           onClose={() => setActiveModal(null)}
-          onRestart={handleRestart}
           onRecover={handleRecover}
+          onAbandon={handleAbandon}
         />
       )}
 
