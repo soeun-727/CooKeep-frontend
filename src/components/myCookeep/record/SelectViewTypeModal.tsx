@@ -21,7 +21,7 @@ export default function SelectViewTypeModal({
       />
 
       {/* Modal */}
-      <div className="bg-gray-0 relative z-10 flex w-[254px] flex-col items-center gap-2 rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 rounded-L relative z-10 flex w-[254px] flex-col items-center gap-2 px-[28px] pt-[35px] pb-[25px]">
         {/* Text */}
         <p className="typo-l-strong text-green-deep text-center">{message}</p>
 
@@ -33,7 +33,7 @@ export default function SelectViewTypeModal({
           {/* 확인(아니오) */}
           <button
             onClick={onConfirm}
-            className="bg-green flex h-[44px] flex-1 items-center justify-center rounded-[10px]"
+            className="bg-green rounded-M flex h-[44px] flex-1 items-center justify-center"
           >
             <span className="text-gray-0 text-[14px] leading-[24px] font-semibold">
               네
@@ -42,7 +42,7 @@ export default function SelectViewTypeModal({
           {/* 취소(아니오) */}
           <button
             onClick={onCancel}
-            className="bg-gray-30 flex h-[44px] flex-1 items-center justify-center rounded-[10px]"
+            className="bg-gray-30 rounded-M flex h-[44px] flex-1 items-center justify-center"
           >
             <span className="text-gray-0 text-[14px] leading-[24px] font-semibold">
               아니오

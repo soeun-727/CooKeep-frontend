@@ -46,7 +46,7 @@ export default function RecordSelectPage() {
       <div
         key={recipe.aiRecipeId}
         onClick={() => setSelectedRecipeId(recipe.aiRecipeId)}
-        className={`flex w-full cursor-pointer items-center justify-between rounded-[6px] px-3 py-2 transition ${isSelected ? "bg-gray-10" : ""} `}
+        className={`rounded-M flex w-full cursor-pointer items-center justify-between px-3 py-2 transition ${isSelected ? "bg-gray-10" : ""} `}
       >
         {/* 왼쪽: 좋아요 + 제목 */}
         <div className="flex items-center gap-3">

@@ -18,7 +18,7 @@ export default function ComebackRewardModal({
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* 전체 */}
-      <div className="bg-gray-0 relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 rounded-L relative flex w-[258px] flex-col items-center gap-[18px] px-[28px] pt-[35px] pb-[25px]">
         {/* 내용 + 버튼 */}
         <div className="flex w-full flex-col items-center gap-[28px]">
           {/* 내용 */}
