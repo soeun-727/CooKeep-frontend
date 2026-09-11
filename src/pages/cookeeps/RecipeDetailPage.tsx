@@ -178,13 +178,10 @@ export default function RecipeDetailPage() {
               }}
             />
 
-            {recipe.content.youtubeReferences &&
-              recipe.content.youtubeReferences.length > 0 && (
-                <RecipeDetailYoutube
-                  videos={recipe.content.youtubeReferences}
-                  tags={recipe.content.youtubeSearchQueries ?? []}
-                />
-              )}
+            <RecipeDetailYoutube
+              videos={recipe.content.youtubeReferences}
+              tags={recipe.content.youtubeSearchQueries ?? []}
+            />
           </div>
         </div>
       </div>
