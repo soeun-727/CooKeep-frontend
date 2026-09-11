@@ -162,7 +162,7 @@ export default function IngredientDetailModal({
     },
     {
       label: "수량",
-      value: `${displayData.quantity}${getKoreanUnit(displayData.unit)}`,
+      value: `${displayData.quantity}${displayData.customUnitName || getKoreanUnit(displayData.unit)}`,
       type: "quantity",
     },
     { label: "유통기한", value: expireDate || "정보 없음", type: "expiry" },

@@ -27,6 +27,7 @@ export default function Details() {
           referenceId: Number(item.id),
           quantity: item.quantity,
           unit: item.unit,
+          customUnitName: item.customUnitName,
           storage: item.storageType,
           // UI용 포맷(YYYY.MM.DD)을 서버용(YYYY-MM-DD)으로 변환
           expirationDate: item.expiration.replace(/\./g, "-"),

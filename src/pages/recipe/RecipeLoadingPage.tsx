@@ -6,7 +6,6 @@ import axios from "axios";
 
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
-import LoadingScreen from "@/components/ui/LoadingScreen";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();
@@ -74,8 +73,6 @@ export default function RecipeLoadingPage() {
   }, []);
 
   const displayError = error || localError;
-
-  if (!displayError) return <LoadingScreen />;
 
   return (
     <div className="mt-40 flex h-screen w-full flex-col items-center gap-6 px-4 text-center">

@@ -31,7 +31,7 @@ export default function QuantityEditor({ value, onSave }: QuantityEditorProps) {
   const handleCustomSubmit = () => {
     if (!customValue.trim()) return;
 
-    onSave(customValue);
+    onSave(customValue.trim());
     setIsCustomInput(false);
   };
 

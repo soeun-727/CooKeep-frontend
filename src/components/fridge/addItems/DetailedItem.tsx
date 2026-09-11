@@ -93,7 +93,12 @@ export default function DetailedItem(item: DetailedItemProps) {
       case "unit":
         return {
           title: "보관 단위를 선택해주세요",
-          component: <UnitEditor value={item.unit} onSave={handleUpdate} />,
+          component: (
+            <UnitEditor
+              value={item.customUnitName || item.unit}
+              onSave={handleUpdate}
+            />
+          ),
         };
       case "memo":
         return {
@@ -149,7 +154,7 @@ export default function DetailedItem(item: DetailedItemProps) {
       type: "unit" as ModalType,
       content: (
         <span className="text-m">
-          {UNIT_NAMES[item.unit] || item.unit || "개"}
+          {item.customUnitName || UNIT_NAMES[item.unit] || item.unit || "개"}
         </span>
       ),
       hasEditIcon: true,

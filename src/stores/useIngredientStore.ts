@@ -17,6 +17,7 @@ export interface Ingredient {
   category: "냉장" | "냉동" | "상온";
   quantity: number;
   unit: string;
+  customUnitName?: string | null;
   expiryDate: string;
   createdAt: number;
   dDay: number;

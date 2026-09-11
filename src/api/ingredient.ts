@@ -15,7 +15,8 @@ export type UnitType =
   | "BUNDLE"
   | "CAN"
   | "GRAM"
-  | "MILLILITER";
+  | "MILLILITER"
+  | "CUSTOM";
 
 // --- 매핑 사전 (내부 방어용) ---
 const STORAGE_MAP: Record<string, StorageType> = {
@@ -44,6 +45,7 @@ const UNIT_MAP: Record<string, UnitType> = {
   CAN: "CAN",
   GRAM: "GRAM",
   MILLILITER: "MILLILITER",
+  CUSTOM: "CUSTOM",
 };
 
 // --- 인터페이스 정의 ---
@@ -78,6 +80,7 @@ export interface HomeIngredient {
   ingredientId?: number;
   quantity?: number;
   unit?: string;
+  customUnitName?: string | null;
   expirationDate?: string;
   createdAt?: string;
 }
@@ -93,11 +96,12 @@ export interface AddIngredientRequest {
   ingredients: {
     type: IngredientType;
     referenceId: number;
-    quantity: number;
-    unit: UnitType | string;
-    storage: StorageType | string;
-    expirationDate: string;
-    memo: string;
+    quantity?: number;
+    unit?: UnitType | string;
+    customUnitName?: string;
+    storage?: StorageType | string;
+    expirationDate?: string;
+    memo?: string;
   }[];
 }
 
@@ -109,6 +113,7 @@ export interface IngredientDetailResponse {
   expirationDate: string;
   quantity: number;
   unit: UnitType;
+  customUnitName?: string | null;
   leftDays: number;
   memo: string;
   aiTip: string;
@@ -220,10 +225,17 @@ export const addIngredients = (data: AddIngredientRequest) => {
       type: ing.type,
       referenceId: Number(ing.referenceId),
     };
-    if (ing.quantity) item.quantity = Number(ing.quantity);
+    if (ing.quantity !== undefined) item.quantity = Number(ing.quantity);
 
-    if (ing.unit) {
-      item.unit = UNIT_MAP[ing.unit] || ing.unit;
+    const unit = ing.unit?.trim();
+    const customUnitName = ing.customUnitName?.trim();
+    if (unit) {
+      item.unit = Object.hasOwn(UNIT_MAP, unit) ? UNIT_MAP[unit] : "CUSTOM";
+      if (!Object.hasOwn(UNIT_MAP, unit)) item.customUnitName = unit;
+    }
+    if (customUnitName) {
+      item.unit = "CUSTOM";
+      item.customUnitName = customUnitName;
     }
 
     if (ing.storage) {

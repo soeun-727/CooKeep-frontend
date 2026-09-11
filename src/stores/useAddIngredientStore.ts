@@ -10,6 +10,7 @@ export interface MasterItem {
   type: IngredientType;
   storageType: StorageType;
   unit: UnitType;
+  customUnitName?: string;
   expiration: string;
   quantity: number;
   memo?: string;
@@ -129,6 +130,24 @@ export const useAddIngredientStore = create<AddIngredientState>(set => ({
 
   updateItemDetail: (id, type, value) =>
     set(state => {
+      if (type === "unit") {
+        const unitName = String(value).trim();
+        if (!unitName) return state;
+        const unit = Object.hasOwn(REVERSE_UNIT_MAP, unitName)
+          ? REVERSE_UNIT_MAP[unitName]
+          : undefined;
+        return {
+          selectedItems: state.selectedItems.map(item =>
+            item.id === id
+              ? {
+                  ...item,
+                  unit: unit ?? "CUSTOM",
+                  customUnitName: unit ? undefined : unitName,
+                }
+              : item,
+          ),
+        };
+      }
       const fieldMap: Record<EditorType, keyof MasterItem> = {
         storage: "storageType",
         expiry: "expiration",
@@ -139,7 +158,6 @@ export const useAddIngredientStore = create<AddIngredientState>(set => ({
 
       let finalValue = value;
       if (type === "storage") finalValue = REVERSE_STORAGE_MAP[value] || value;
-      if (type === "unit") finalValue = REVERSE_UNIT_MAP[value] || value;
       if (type === "expiry" && typeof value === "string")
         finalValue = value.replace(/\./g, "-");
 
