@@ -181,7 +181,7 @@ export default function EditPasswordEmailSection() {
             disabled={!isCodeSent || timeLeft === 0 || code.length !== 6}
             onClick={handleVerify}
           >
-            <span className="typo-button">
+            <span className="typo-l-strong">
               인증하기 {isCodeSent && `(${formatTime(timeLeft)})`}
             </span>
           </Button>

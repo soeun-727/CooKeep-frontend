@@ -4,7 +4,7 @@ import { useState } from "react";
 import ArrowRight from "@/assets/signup/arrowright.svg?react";
 
 interface RecipeDetailYoutubeProps {
-  videos: {
+  videos?: {
     title: string;
     thumbnail: string;
     url: string;
@@ -13,12 +13,23 @@ interface RecipeDetailYoutubeProps {
 }
 
 export default function RecipeDetailYoutube({
-  videos,
+  videos = [],
   tags = [],
 }: RecipeDetailYoutubeProps) {
   const [isOpen, setIsOpen] = useState(false);
 
-  if (!videos || videos.length === 0) return null;
+  if (videos.length === 0) {
+    return (
+      <section className="bg-gray-0 border-gray-10 rounded-M flex w-full flex-col items-start gap-2 border p-3">
+        <span className="typo-l-strong text-gray-80 flex h-6 w-full flex-col justify-center text-left">
+          비슷한 레시피 영상 참고하기
+        </span>
+        <p className="typo-m text-gray-30">
+          관련된 레시피 영상을 찾지 못했어요
+        </p>
+      </section>
+    );
+  }
 
   // 닫힌 상태
   if (!isOpen) {

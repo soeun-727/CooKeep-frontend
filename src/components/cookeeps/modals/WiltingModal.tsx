@@ -1,7 +1,9 @@
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
 
 import characterImg from "@/assets/character/kijul_char.svg";
+
 import ImageModal from "@/components/ui/ImageModal";
+
 import { getSubjectJosa } from "@/utils/josa";
 
 interface WiltingModalProps {

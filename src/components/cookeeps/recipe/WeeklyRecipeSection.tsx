@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { RecipeRankItem } from "@/api/cookeeps";
 
 import ArrowRightIcon from "@/assets/signup/arrowright.svg?react";
+
 import RecipeListItem from "./RecipeListItem";
 
 interface WeeklyRecipeSectionProps {

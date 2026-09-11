@@ -62,7 +62,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
       if (window.location.pathname.includes(String(recipeId))) {
         navigate("/recipe");
       }
-    } catch (err) {
+    } catch {
       setIsErrorModalOpen(true);
     }
   };

@@ -108,20 +108,19 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
       set({ isLoading: true });
 
       let response: AiRecipeResponse;
-      const apiDifficulty =
-        (difficulty as string) === "RANDOM" ? undefined : difficulty;
+      const apiDifficulty = difficulty === "RANDOM" ? undefined : difficulty;
 
       if (sessionId === null) {
-        if (difficulty === ("RANDOM" as any)) {
+        if (difficulty === "RANDOM") {
           response = await generateRandomAiRecipe();
         } else {
           response = await generateAiRecipe({
             ingredientIds: selectedIngredients.map(i => i.id),
-            feature: apiDifficulty as any,
+            feature: apiDifficulty,
           });
         }
       } else {
-        if (difficulty === ("RANDOM" as any)) {
+        if (difficulty === "RANDOM") {
           response = await retryRandomAiRecipe({
             sessionId,
           });

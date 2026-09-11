@@ -30,7 +30,7 @@ export default memo(function Item({
       onClick={onDetail}
       role="button"
       tabIndex={0}
-      className={`shadow-plant relative flex h-20 min-w-[109px] flex-col rounded-[6px] border px-[10px] pt-[10px] ${
+      className={`shadow-plant rounded-S relative flex h-20 min-w-[109px] flex-col border px-[10px] pt-[10px] ${
         isSelected
           ? "bg-green-light border-emerald-400"
           : "border-gray-10 bg-gray-0"

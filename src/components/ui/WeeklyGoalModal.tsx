@@ -19,7 +19,7 @@ export default function WeeklyGoalModal({
       <div className="absolute inset-0" onClick={onClose} />
 
       {/* 모달 */}
-      <div className="bg-gray-0 relative flex w-[258px] flex-col items-center gap-[18px] rounded-[10px] px-[28px] pt-[35px] pb-[25px]">
+      <div className="bg-gray-0 rounded-L relative flex w-[258px] flex-col items-center gap-[18px] px-[28px] pt-[35px] pb-[25px]">
         {/* 내부 wrapper (gap 28) */}
         <div className="flex w-full flex-col items-center gap-[28px]">
           {/* 이미지 + 텍스트 */}

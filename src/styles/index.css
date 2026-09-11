@@ -135,12 +135,6 @@ body,
    타이포그래피 유틸리티 클래스 정의 (@utility 사용)
    ========================================================================== */
 
-@utility typo-display {
-  font-weight: 700;
-  font-size: 40px;
-  line-height: 48px;
-}
-
 @utility typo-h1 {
   font-weight: 700;
   font-size: 32px;
@@ -183,18 +177,6 @@ body,
   line-height: 20px;
 }
 
-@utility typo-body {
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-}
-
-@utility typo-body2 {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-}
-
 @utility typo-label {
   font-weight: 600;
   font-size: 14px;
@@ -211,20 +193,6 @@ body,
   font-weight: 600;
   font-size: 12px;
   line-height: 18px;
-}
-
-@utility typo-button {
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-}
-
-@utility typo-result-title {
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 36px;
-  color: #202020;
-  text-align: center;
 }
 
 /* ==========================================================================

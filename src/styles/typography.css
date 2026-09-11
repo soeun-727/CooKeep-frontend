@@ -13,9 +13,6 @@ body,
 
 @theme {
   /* --- Font Sizes & Line Heights --- */
-  --font-size-typo-display: 40px;
-  --font-size-typo-display--line-height: 48px;
-
   --font-size-typo-h1: 32px;
   --font-size-typo-h1--line-height: 40px;
 
@@ -37,12 +34,6 @@ body,
   --font-size-typo-m-strong: 14px;
   --font-size-typo-m-strong--line-height: 20px;
 
-  --font-size-typo-body: 16px;
-  --font-size-typo-body--line-height: 24px;
-
-  --font-size-typo-body2: 14px;
-  --font-size-typo-body2--line-height: 20px;
-
   --font-size-typo-label: 14px;
   --font-size-typo-label--line-height: 20px;
 
@@ -52,14 +43,7 @@ body,
   --font-size-typo-caption-strong: 12px;
   --font-size-typo-caption-strong--line-height: 18px;
 
-  --font-size-typo-button: 16px;
-  --font-size-typo-button--line-height: 24px;
-
-  --font-size-typo-result-title: 28px;
-  --font-size-typo-result-title--line-height: 36px;
-
   /* --- Font Weights --- */
-  --font-weight-typo-display: 700;
   --font-weight-typo-h1: 700;
   --font-weight-typo-h2: 700;
   --font-weight-typo-h3: 600;
@@ -67,17 +51,7 @@ body,
   --font-weight-typo-l-strong: 600;
   --font-weight-typo-m: 400;
   --font-weight-typo-m-strong: 600;
-  --font-weight-typo-body: 500;
-  --font-weight-typo-body2: 500;
   --font-weight-typo-label: 600;
   --font-weight-typo-caption: 400;
   --font-weight-typo-caption-strong: 600;
-  --font-weight-typo-button: 700;
-  --font-weight-typo-result-title: 700;
-}
-
-/* TODO: 수정사항 반영시 없어질 경우 제거 하기 */
-.typo-result-title {
-  color: #202020;
-  text-align: center;
 }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { RecipeRankItem, getRecipeRanking } from "@/api/cookeeps";
+
 import LikeIcon from "@/assets/cookeeps/like.svg?react";
 import defaultRecipeImage from "@/assets/cookeeps/main/default_recipe_image.svg";
 

@@ -98,7 +98,7 @@ export default memo(function Storage({
                 }}
                 className={item.className}
               />
-              <div className="-z-10 mt-[-14px] h-[26px] w-[109px] rounded-[7px] bg-[#63C88D] blur-[1px]" />
+              <div className="rounded-S -z-10 mt-[-14px] h-[26px] w-[109px] bg-[#63C88D] blur-[1px]" />
             </div>
           ))}
         </div>

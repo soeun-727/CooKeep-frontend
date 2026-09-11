@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { addIngredients } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import { useRewardStore } from "@/stores/useRewardStore";
+import axios from "axios";
 
 import Button from "@/components/ui/Button";
 
@@ -26,6 +27,7 @@ export default function Details() {
           referenceId: Number(item.id),
           quantity: item.quantity,
           unit: item.unit,
+          customUnitName: item.customUnitName,
           storage: item.storageType,
           // UI용 포맷(YYYY.MM.DD)을 서버용(YYYY-MM-DD)으로 변환
           expirationDate: item.expiration.replace(/\./g, "-"),
@@ -47,10 +49,13 @@ export default function Details() {
       resetSelected();
       // 성공 피드백을 주며 이동 (선택사항)
       navigate("/fridge", { state: { registered: true } });
-    } catch (error: any) {
-      console.error("등록 실패 상세 로그:", error.response?.data);
+    } catch (error: unknown) {
+      const responseData = axios.isAxiosError<{ message?: string }>(error)
+        ? error.response?.data
+        : undefined;
+      console.error("등록 실패 상세 로그:", responseData);
       const errorMessage =
-        error.response?.data?.message || "재료 등록 중 오류가 발생했습니다.";
+        responseData?.message || "재료 등록 중 오류가 발생했습니다.";
       alert(`등록 실패: ${errorMessage}`);
     } finally {
       setIsLoading(false);

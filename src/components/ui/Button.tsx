@@ -48,7 +48,7 @@ export default function Button({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-button w-full ${className} `}
+      className={` ${baseStyle} ${sizeStyles[size]} ${disabled ? disabledStyle : variantStyles[variant]} button-text typo-l-strong w-full ${className} `}
     >
       {children}
     </button>

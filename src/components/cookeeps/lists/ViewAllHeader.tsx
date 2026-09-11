@@ -1,5 +1,5 @@
-import ThumbsUpIcon from "@/assets/cookeeps/thumbs_up_icon.svg?react";
 import RecipeBookIcon from "@/assets/cookeeps/recipe_book_icon.svg?react";
+import ThumbsUpIcon from "@/assets/cookeeps/thumbs_up_icon.svg?react";
 
 import RecipeSearchField from "../recipe/RecipeSearchField";
 

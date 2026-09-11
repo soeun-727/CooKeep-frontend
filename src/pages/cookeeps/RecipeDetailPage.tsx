@@ -12,12 +12,12 @@ import {
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 
 import RecipeDetailContentSection from "@/components/cookeeps/recipedetail/RecipeDetailContentSection";
+import { RecipeDetailHeader } from "@/components/cookeeps/recipedetail/RecipeDetailHeader";
 import RecipeDetailImageCard from "@/components/cookeeps/recipedetail/RecipeDetailImageCard";
 import RecipeDetailMemo from "@/components/cookeeps/recipedetail/RecipeDetailMemo";
 import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetailUserMeta";
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import LoadingScreen from "@/components/ui/LoadingScreen";
-import { RecipeDetailHeader } from "@/components/cookeeps/recipedetail/RecipeDetailHeader";
 
 export default function RecipeDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -178,13 +178,10 @@ export default function RecipeDetailPage() {
               }}
             />
 
-            {recipe.content.youtubeReferences &&
-              recipe.content.youtubeReferences.length > 0 && (
-                <RecipeDetailYoutube
-                  videos={recipe.content.youtubeReferences}
-                  tags={recipe.content.youtubeSearchQueries ?? []}
-                />
-              )}
+            <RecipeDetailYoutube
+              videos={recipe.content.youtubeReferences}
+              tags={recipe.content.youtubeSearchQueries ?? []}
+            />
           </div>
         </div>
       </div>

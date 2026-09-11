@@ -1,4 +1,5 @@
 import waterCookieImg from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
+
 import ImageModal from "@/components/ui/ImageModal";
 
 interface WaterModalProps {

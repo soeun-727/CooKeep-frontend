@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import axios from "axios";
 
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
@@ -27,13 +28,15 @@ export default function RecipeLoadingPage() {
     try {
       setLocalError(null);
       if (isRandom) {
-        useRecipeFlowStore.setState({ difficulty: "RANDOM" as any });
+        useRecipeFlowStore.setState({ difficulty: "RANDOM" });
       }
       await generateRecipe();
       navigate("/recipe/result");
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
-      const errorCode = err?.response?.data?.code;
+      const errorCode = axios.isAxiosError<{ code?: string }>(err)
+        ? err.response?.data?.code
+        : undefined;
 
       if (
         errorCode === "INGREDIENTS_REQUIRED" ||

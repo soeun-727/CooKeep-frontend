@@ -41,7 +41,7 @@ export default function RankingCard({
 
       {/* 카드 박스 */}
       <div
-        className={`flex w-full flex-col items-center gap-2 rounded-[12px] p-2 ${
+        className={`rounded-M flex w-full flex-col items-center gap-2 p-2 ${
           isFirst ? "bg-green-light" : "bg-gray-0"
         }`}
       >

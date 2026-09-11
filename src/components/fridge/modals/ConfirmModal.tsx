@@ -37,8 +37,10 @@ export default function ConfirmModal({
               onClick={() => {
                 if (buttonTexts.length === 1) {
                   onConfirm();
+                } else if (index === 0) {
+                  onConfirm();
                 } else {
-                  index === 0 ? onConfirm() : onCancel?.();
+                  onCancel?.();
                 }
               }}
             >
