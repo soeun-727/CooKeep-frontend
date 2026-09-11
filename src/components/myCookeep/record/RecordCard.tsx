@@ -45,7 +45,7 @@ function RecordCard({
 
   return (
     <div
-      className={`border-gray-10 bg-gray-0 flex w-full gap-4 rounded-[16px] border px-3 py-4 ${haveShadow && "shadow-container"}`}
+      className={`border-gray-10 bg-gray-0 rounded-L flex w-full gap-4 border px-3 py-4 ${haveShadow && "shadow-container"}`}
       onClick={() => navigate(`/mycookeep/record/${record.dailyRecipeId}`)}
     >
       {/* 요리 이미지 */}
@@ -53,7 +53,7 @@ function RecordCard({
         loading="lazy"
         src={record.recipeImageUrl || tempFoodPhoto}
         alt="요리 이미지"
-        className="h-25 w-25 flex-shrink-0 rounded-[8px] object-cover"
+        className="rounded-S h-25 w-25 flex-shrink-0 object-cover"
       />
       {/* 요리 정보 */}
       <div className="flex w-full flex-col justify-between">
