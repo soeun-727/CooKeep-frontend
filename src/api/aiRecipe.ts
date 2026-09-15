@@ -31,17 +31,34 @@ const extractData = <T>(response: AxiosResponse<ApiResponseEnvelope<T>>): T => {
   return response?.data as T;
 };
 
+export interface AiRecipeRequestOptions {
+  requestId?: string;
+  signal?: AbortSignal;
+}
+
 /** [POST] AI 레시피 생성 (MAIN05-01) */
 export const generateAiRecipe = async (
   body: GenerateAiRecipeRequest,
+  options?: AiRecipeRequestOptions,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
     "/api/users/me/ai/recipes",
     body,
-    { timeout: 60000 },
+    {
+      timeout: 60000,
+      signal: options?.signal,
+      headers: options?.requestId
+        ? { "X-Request-Id": options.requestId }
+        : undefined,
+    },
   );
 
   return extractData<AiRecipeResponse>(response);
+};
+
+/** [POST] AI 레시피 생성 취소 */
+export const cancelAiRecipe = async (requestId: string): Promise<void> => {
+  await api.post(`/api/users/me/ai/recipes/cancel/${requestId}`);
 };
 
 export interface CompleteAiRecipeResponse {
@@ -63,21 +80,36 @@ export const completeAiRecipe = async (
 /** [POST] AI 레시피 재요청 (MAIN05-02) - ⚠️ 경로 수정됨 */
 export const retryAiRecipe = async (
   body: RetryAiRecipeRequest,
+  options?: AiRecipeRequestOptions,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
     "/api/users/me/ai/recipes/retry",
     body,
-    { timeout: 60000 },
+    {
+      timeout: 60000,
+      signal: options?.signal,
+      headers: options?.requestId
+        ? { "X-Request-Id": options.requestId }
+        : undefined,
+    },
   );
   return extractData<AiRecipeResponse>(response);
 };
 
 /** [POST] AI 랜덤 레시피 생성 (MAIN05-04) - ⚠️ 경로 수정됨 */
-export const generateRandomAiRecipe = async (): Promise<AiRecipeResponse> => {
+export const generateRandomAiRecipe = async (
+  options?: AiRecipeRequestOptions,
+): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
     "/api/users/me/ai/recipes/random",
     {},
-    { timeout: 60000 },
+    {
+      timeout: 60000,
+      signal: options?.signal,
+      headers: options?.requestId
+        ? { "X-Request-Id": options.requestId }
+        : undefined,
+    },
   );
 
   return extractData<AiRecipeResponse>(response);
@@ -86,11 +118,18 @@ export const generateRandomAiRecipe = async (): Promise<AiRecipeResponse> => {
 /** [POST] AI 랜덤 레시피 재요청 (MAIN05-05) - ⚠️ 경로 수정됨 */
 export const retryRandomAiRecipe = async (
   body: RetryAiRecipeRequest,
+  options?: AiRecipeRequestOptions,
 ): Promise<AiRecipeResponse> => {
   const response = await api.post<ApiResponseEnvelope<AiRecipeResponse>>(
     "/api/users/me/ai/recipes/random/retry",
     body,
-    { timeout: 60000 },
+    {
+      timeout: 60000,
+      signal: options?.signal,
+      headers: options?.requestId
+        ? { "X-Request-Id": options.requestId }
+        : undefined,
+    },
   );
   return extractData<AiRecipeResponse>(response);
 };

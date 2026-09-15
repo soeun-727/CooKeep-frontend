@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
@@ -14,6 +14,7 @@ export default function RecipeLoadingPage() {
 
   const [step, setStep] = useState(0);
   const [localError, setLocalError] = useState<string | null>(null);
+  const isCancelledRef = useRef(false);
 
   const messages = [
     "선택한 재료를 보고 있어요...",
@@ -21,8 +22,13 @@ export default function RecipeLoadingPage() {
     "맞춤형 레시피가 완성됐어요!",
   ];
 
-  const { selectedIngredients, difficulty, generateRecipe, error } =
-    useRecipeFlowStore();
+  const {
+    selectedIngredients,
+    difficulty,
+    generateRecipe,
+    cancelRecipe,
+    error,
+  } = useRecipeFlowStore();
   const isRandom = location.state?.isRandom ?? false;
 
   const handleGenerateRecipe = async () => {
@@ -32,8 +38,13 @@ export default function RecipeLoadingPage() {
         useRecipeFlowStore.setState({ difficulty: "RANDOM" });
       }
       await generateRecipe();
-      navigate("/recipe/result");
+      if (!isCancelledRef.current) {
+        navigate("/recipe/result");
+      }
     } catch (err: unknown) {
+      if (axios.isCancel(err) || isCancelledRef.current) {
+        return;
+      }
       console.error(err);
       const errorCode = axios.isAxiosError<{ code?: string }>(err)
         ? err.response?.data?.code
@@ -56,6 +67,19 @@ export default function RecipeLoadingPage() {
     }
   };
 
+  const handleBack = () => {
+    isCancelledRef.current = true;
+    cancelRecipe();
+    navigate(-1);
+  };
+
+  useEffect(() => {
+    return () => {
+      isCancelledRef.current = true;
+      cancelRecipe();
+    };
+  }, [cancelRecipe]);
+
   useEffect(() => {
     if (step < messages.length) {
       const timer = setTimeout(() => setStep(step + 1), 2000);
@@ -77,9 +101,9 @@ export default function RecipeLoadingPage() {
 
   return (
     <div className="flex w-full flex-col px-4">
-      <BackHeader onBack={() => navigate(-1)} />
+      <BackHeader onBack={handleBack} />
 
-      <div className="mt-30 flex w-full flex-col items-center gap-6 text-center">
+      <div className="mt-[120px] flex w-full flex-col items-center gap-6 text-center">
         <RecipeLoadingSpinner />
 
         <div className="flex w-full flex-col items-center gap-2">
