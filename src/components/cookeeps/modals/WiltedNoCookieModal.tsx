@@ -5,6 +5,7 @@ import { getSubjectJosa } from "@/utils/josa";
 interface WiltedNoCookieModalProps {
   plant: string;
   isOpen: boolean;
+  isLoading?: boolean;
   onClose: () => void;
   onAbandon: () => void;
 }
@@ -12,24 +13,24 @@ interface WiltedNoCookieModalProps {
 export default function WiltedNoCookieModal({
   plant,
   isOpen,
+  isLoading = false,
   onClose,
   onAbandon,
 }: WiltedNoCookieModalProps) {
   if (!isOpen) return null;
 
   const josa = getSubjectJosa(plant);
-  // TODO: 멘트 임시임 정해지면 변경해야함
   return (
     <ImageModal
       imageSrc={characterIcon}
       imageWidth={96}
       imageHeight={80}
-      title={`${plant}${josa} 시들었어요 T.T\n쿠키가 부족해서 회복할 수 없어요`}
-      highlight="쿠키 5개 필요해요"
-      buttonTexts={["포기하기"]}
-      buttonVariants={["black"]}
+      title={`${plant}${josa} 시들었어요 T.T\n아쉽지만 다시 식재료를 심어볼까요?`}
+      buttonTexts={["새로 시작하기"]}
+      buttonVariants={["green"]}
       buttonActions={[onAbandon]}
-      onBackdropClick={onClose}
+      buttonDisabled={[isLoading]}
+      onBackdropClick={isLoading ? undefined : onClose}
     />
   );
 }
