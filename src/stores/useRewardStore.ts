@@ -7,11 +7,16 @@ export type RewardType =
   | "EXPIRING"
   | "COMEBACK";
 
-interface RewardState {
-  queue: RewardType[];
-  current: RewardType | null;
+export interface RewardQueueItem {
+  type: RewardType;
+  points?: number;
+}
 
-  enqueue: (type: RewardType) => void;
+interface RewardState {
+  queue: RewardQueueItem[];
+  current: RewardQueueItem | null;
+
+  enqueue: (type: RewardType, points?: number) => void;
   dequeue: () => void;
 }
 
@@ -19,24 +24,25 @@ export const useRewardStore = create<RewardState>((set, get) => ({
   queue: [],
   current: null,
 
-  enqueue: type => {
+  enqueue: (type, points) => {
     const { queue, current } = get();
 
     // 중복 방지
-    if (queue.includes(type) || current === type) return;
+    if (queue.some(q => q.type === type) || current?.type === type) return;
 
-    let newQueue;
+    const item: RewardQueueItem = { type, points };
+    let newQueue: RewardQueueItem[];
 
     // 핵심: 온보딩은 무조건 맨 앞
     if (type === "COMEBACK") {
-      newQueue = [type, ...queue];
+      newQueue = [item, ...queue];
     } else if (
       type === "ONBOARDING_INGREDIENT" ||
       type === "ONBOARDING_RECIPE"
     ) {
-      newQueue = [type, ...queue];
+      newQueue = [item, ...queue];
     } else {
-      newQueue = [...queue, type];
+      newQueue = [...queue, item];
     }
 
     set({

@@ -1,6 +1,7 @@
 import { CATEGORY_ID_TO_SERVER_KEY } from "@/constants/category";
 
 import api from "./axios";
+import { CookieReward } from "./cookies";
 
 // --- 공통 타입 정의 ---
 export type CategoryType =
@@ -185,6 +186,15 @@ export const registerCustomIngredient = (data: CustomIngredientRequest) => {
   }>("/api/users/me/ingredients/custom", data);
 };
 
+export interface AddIngredientsResponse {
+  status: string;
+  data: {
+    ingredients: unknown[];
+    count: number;
+    reward: CookieReward;
+  };
+}
+
 /** [POST] 식재료 냉장고 최종 추가 (Bulk) */
 export const addIngredients = (data: AddIngredientRequest) => {
   const sanitizedIngredients = data.ingredients.map(ing => {
@@ -218,7 +228,7 @@ export const addIngredients = (data: AddIngredientRequest) => {
     return item;
   });
 
-  return api.post("/api/users/me/ingredients", {
+  return api.post<AddIngredientsResponse>("/api/users/me/ingredients", {
     ingredients: sanitizedIngredients,
   });
 };
@@ -320,12 +330,7 @@ export const addIngredientToFridge = (data: any) => {
 
 // 섭취 완료 응답 타입이 필요한 경우를 위해 추가
 export interface ConsumeRewardResponse {
-  reward: {
-    granted: boolean;
-    points: number;
-    grantedTypes: string[];
-  };
-  weeklyGoalAchieved: boolean; // 추가
+  reward: CookieReward;
 }
 
 /** 커스텀 식재료 삭제 API */

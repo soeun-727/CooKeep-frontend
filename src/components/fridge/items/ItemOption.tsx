@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { useIngredientStore } from "@/stores/useIngredientStore";
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
-import { useRewardStore } from "@/stores/useRewardStore";
 
 import EatenIcon from "@/assets/fridge/eaten.svg?react";
 import ThrownIcon from "@/assets/fridge/thrown.svg?react";
@@ -11,12 +10,13 @@ import ThrownIcon from "@/assets/fridge/thrown.svg?react";
 import EatenModal from "@/components/fridge/modals/EatenModal";
 
 import ConfirmModal from "../modals/ConfirmModal";
+import { enqueueGlobalRewards } from "@/utils/cookieReward";
+import { CookieReward } from "@/api/cookies";
 
 export default function ItemOption() {
   const navigate = useNavigate();
   const { selectedIds, ingredients, deleteSelected } = useIngredientStore();
   const { setSelectedIngredients } = useRecipeFlowStore();
-  const enqueue = useRewardStore(s => s.enqueue);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [modalType, setModalType] = useState<"eaten" | "thrown">("eaten");
@@ -24,6 +24,8 @@ export default function ItemOption() {
     points: number;
     granted: boolean;
   } | null>(null);
+
+  const [pendingReward, setPendingReward] = useState<CookieReward | null>(null);
 
   if (selectedIds.length === 0 && !isModalOpen && !isAlertOpen) {
     return null;
@@ -54,12 +56,9 @@ export default function ItemOption() {
     const result = await deleteSelected(type);
     setIsModalOpen(false);
     if (type === "eaten") {
-      // 주간 목표 달성 체크 추가
-      if (result?.weeklyGoalAchieved) {
-        enqueue("WEEKLY"); // ← showWeeklyGoalModal() 대신 이걸 씀
-      }
+      setPendingReward(result?.reward ?? null);
 
-      if (result && result.reward.granted) {
+      if (result?.reward?.granted) {
         setRewardInfo({
           points: result.reward.points,
           granted: result.reward.granted,
@@ -137,6 +136,8 @@ export default function ItemOption() {
         onClose={() => {
           setIsAlertOpen(false);
           setRewardInfo(null);
+          enqueueGlobalRewards(pendingReward);
+          setPendingReward(null);
         }}
         rewardPoints={rewardInfo?.points}
       />

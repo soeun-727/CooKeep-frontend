@@ -12,8 +12,7 @@ import { create } from "zustand";
 import type { AiRecipeResponse, RecipeCategory } from "@/types/aiRecipe";
 
 import type { Ingredient } from "./useIngredientStore";
-import { useRewardStore } from "./useRewardStore";
-import type { RewardType } from "./useRewardStore";
+import { enqueueGlobalRewards } from "@/utils/cookieReward";
 
 const parseAiError = (error: unknown): string => {
   if (!axios.isAxiosError(error)) {
@@ -38,14 +37,6 @@ const parseAiError = (error: unknown): string => {
   }
 
   return "레시피 생성 중 문제가 발생했어요.";
-};
-
-const PRIORITY: Record<RewardType, number> = {
-  ONBOARDING_INGREDIENT: 0,
-  ONBOARDING_RECIPE: 0,
-  WEEKLY: 1,
-  EXPIRING: 2,
-  COMEBACK: -1,
 };
 
 type RecipeFlowState = {
@@ -215,26 +206,7 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
       set({ isLoading: true, error: null });
       const response = await completeAiRecipe(sessionId);
 
-      const rewards: RewardType[] = [];
-      const types = response?.reward?.types || [];
-
-      if (types.includes("ONBOARDING_RECIPE")) {
-        rewards.push("ONBOARDING_RECIPE");
-      }
-
-      if (types.includes("BONUS_WEEKLY_GOAL_ACHIEVE")) {
-        rewards.push("WEEKLY");
-      }
-
-      if (types.includes("BONUS_URGENT_INGREDIENT_USE")) {
-        rewards.push("EXPIRING");
-      }
-
-      rewards.sort((a, b) => PRIORITY[a] - PRIORITY[b]);
-
-      rewards.forEach(r => {
-        useRewardStore.getState().enqueue(r);
-      });
+      enqueueGlobalRewards(response?.reward);
 
       set({ isCompleted: true, isLoading: false });
     } catch (error) {
