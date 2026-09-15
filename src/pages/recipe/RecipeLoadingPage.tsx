@@ -7,6 +7,7 @@ import axios from "axios";
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
 import { BackHeader } from "@/components/ui/BackHeader";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export default function RecipeLoadingPage() {
 
   const [step, setStep] = useState(0);
   const [localError, setLocalError] = useState<string | null>(null);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   const isCancelledRef = useRef(false);
 
   const messages = [
@@ -68,6 +70,10 @@ export default function RecipeLoadingPage() {
   };
 
   const handleBack = () => {
+    setIsCancelModalOpen(true);
+  };
+
+  const handleConfirmCancel = () => {
     isCancelledRef.current = true;
     cancelRecipe();
     navigate(-1);
@@ -133,6 +139,16 @@ export default function RecipeLoadingPage() {
           </div>
         )}
       </div>
+
+      <DoublecheckModal
+        isOpen={isCancelModalOpen}
+        onClose={() => setIsCancelModalOpen(false)}
+        title="레시피 생성을 중단할까요?"
+        onConfirm={handleConfirmCancel}
+        variant="black"
+        confirmText="네"
+        cancelText="아니오"
+      />
     </div>
   );
 }
