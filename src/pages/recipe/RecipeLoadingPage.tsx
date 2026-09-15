@@ -6,6 +6,7 @@ import axios from "axios";
 
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
+import { BackHeader } from "@/components/ui/BackHeader";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();
@@ -75,33 +76,39 @@ export default function RecipeLoadingPage() {
   const displayError = error || localError;
 
   return (
-    <div className="mt-40 flex h-screen w-full flex-col items-center gap-6 px-4 text-center">
-      <RecipeLoadingSpinner />
+    <div className="flex w-full flex-col px-4">
+      <BackHeader onBack={() => navigate(-1)} />
 
-      <div className="flex w-full flex-col items-center gap-2">
-        <h1 className="typo-h2">오늘의 요리 준비 중...</h1>
-        <p className="typo-l text-green-deep">
-          나에게 딱 맞는 레시피를 찾고 있어요
-        </p>
-      </div>
+      <div className="mt-30 flex w-full flex-col items-center gap-6 text-center">
+        <RecipeLoadingSpinner />
 
-      <div className="flex w-full flex-col gap-3">
-        {messages.slice(0, step).map((msg, idx) => (
-          <StepMessage key={idx} message={msg} />
-        ))}
-      </div>
-      {displayError && (
-        <div className="mt-6 flex flex-col items-center gap-3">
-          <p className="text-semantic-negative typo-caption">{displayError}</p>
-
-          <button
-            onClick={handleGenerateRecipe}
-            className="typo-caption text-gray-500 underline"
-          >
-            다시 시도하기
-          </button>
+        <div className="flex w-full flex-col items-center gap-2">
+          <h1 className="typo-h2">오늘의 요리 준비 중...</h1>
+          <p className="typo-l text-green-deep">
+            나에게 딱 맞는 레시피를 찾고 있어요
+          </p>
         </div>
-      )}
+
+        <div className="flex w-full flex-col gap-3">
+          {messages.slice(0, step).map((msg, idx) => (
+            <StepMessage key={idx} message={msg} />
+          ))}
+        </div>
+        {displayError && (
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <p className="text-semantic-negative typo-caption">
+              {displayError}
+            </p>
+
+            <button
+              onClick={handleGenerateRecipe}
+              className="typo-caption text-gray-500 underline"
+            >
+              다시 시도하기
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
