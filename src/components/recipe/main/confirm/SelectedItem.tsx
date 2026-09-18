@@ -28,7 +28,7 @@ export default function SelectedItem({ item, onRemove }: SelectedItemProps) {
         onClick={() => onRemove(item.id)}
         className="absolute top-0 right-0 flex h-6 w-6 items-start justify-end px-1 py-[3px]"
       >
-        <XIcon className="h-2 w-2" />
+        <XIcon className="text-gray-30 h-[9px] w-[9px]" />
       </button>
 
       {/* 이미지 + 이름 */}
