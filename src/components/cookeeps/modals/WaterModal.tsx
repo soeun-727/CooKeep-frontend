@@ -1,4 +1,4 @@
-import waterCookieImg from "@/assets/cookeeps/main/water_cookie_cookeeps.svg";
+import cookieBiteIcon from "@/assets/cookie_bite.svg";
 import ImageModal from "@/components/ui/ImageModal";
 
 interface WaterModalProps {
@@ -18,7 +18,7 @@ export default function WaterModal({
 
   return (
     <ImageModal
-      imageSrc={waterCookieImg}
+      imageSrc={cookieBiteIcon}
       imageWidth={48}
       imageHeight={48}
       title="식물에게 물을 줄까요?"
