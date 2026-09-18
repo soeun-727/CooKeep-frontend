@@ -1,7 +1,7 @@
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
 import BackIcon from "@/assets/back.svg?react";
-import LikeVector from "@/assets/cookeeps/like_vector.svg?react";
+import HeartIcon from "@/assets/icons/heart_vector.svg?react";
 import BookmarkVector from "@/assets/cookeeps/bookmark_vector.svg?react";
 
 interface RecipeDetailHeaderProps {
@@ -52,9 +52,9 @@ export const RecipeDetailHeader = ({
           onClick={onLike}
           className="flex aspect-square h-10 w-10 items-center justify-end"
         >
-          <LikeVector
-            className={`text-gray-30 h-[21px] w-6 stroke-2 ${
-              isLiked ? "fill-gray-30" : "fill-none"
+          <HeartIcon
+            className={`stroke-gray-10 h-[21px] w-6 fill-current ${
+              isLiked ? "text-gray-30" : "text-transparent"
             }`}
           />
         </button>

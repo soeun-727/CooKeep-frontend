@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import HeartIcon from "@/assets/icons/heart.svg?react";
+import HeartIcon from "@/assets/icons/heart_vector.svg?react";
 import KebabIcon from "@/assets/mycookeep/record/options.svg?react";
 
 import RecipeOptionMenu from "@/components/ui/OptionsMenu";
