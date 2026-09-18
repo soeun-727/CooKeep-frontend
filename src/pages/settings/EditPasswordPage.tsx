@@ -8,7 +8,7 @@ import axios from "axios";
 import PwIcon from "@/assets/login/key.svg?react";
 import EyeIcon from "@/assets/login/pw.svg?react";
 import CheckIcon from "@/assets/signup/check.svg?react";
-import EyeOpenIcon from "@/assets/signup/openpw.svg?react";
+import EyeOpenIcon from "@/assets/login/openpw.svg?react";
 
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
