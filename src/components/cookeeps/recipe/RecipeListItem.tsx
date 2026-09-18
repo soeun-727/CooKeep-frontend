@@ -3,7 +3,7 @@ import { MouseEvent, useEffect, useRef, useState } from "react";
 import LikeIcon from "@/assets/cookeeps/like.svg?react";
 import BookmarkIcon from "@/assets/cookeeps/bookmark.svg?react";
 import DotsVerticalIcon from "@/assets/cookeeps/dots_vertical.svg?react";
-import defaultRecipeImage from "@/assets/cookeeps/main/default_recipe_image.svg";
+import defaultRecipeImage from "@/assets/mycookeep/record/temp_food_photo.svg";
 
 type Badge = { type: "like"; likes: number } | { type: "bookmark" };
 
