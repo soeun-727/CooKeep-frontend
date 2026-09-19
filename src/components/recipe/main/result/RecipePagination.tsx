@@ -1,4 +1,3 @@
-import LeftArrow from "@/assets/icons/arrow_left.svg?react";
 import RightArrow from "@/assets/icons/arrow_right.svg?react";
 
 interface PagenationProps {
@@ -42,7 +41,7 @@ export default function RecipePagination({
       </button>
 
       <div className="flex items-center gap-3">
-        <LeftArrow className="text-gray-10 w-5 disabled:opacity-50" />
+        <RightArrow className="text-gray-10 w-5 rotate-180 disabled:opacity-50" />
         <div className="typo-caption text-green-deep">
           <span>{currentPage}</span>
           <span>/</span>

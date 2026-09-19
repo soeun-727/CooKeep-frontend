@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { RecipeRankItem, getRecipeRanking } from "@/api/cookeeps";
 import LikeIcon from "@/assets/cookeeps/like.svg?react";
-import defaultRecipeImage from "@/assets/cookeeps/main/default_recipe_image.svg";
+import defaultRecipeImage from "@/assets/mycookeep/record/temp_food_photo.svg";
 
 export default function WeeklyTopRecipesTab() {
   const [recipes, setRecipes] = useState<RecipeRankItem[]>([]);

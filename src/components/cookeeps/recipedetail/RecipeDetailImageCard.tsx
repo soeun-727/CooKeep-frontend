@@ -1,4 +1,4 @@
-import defaultRecipeImage from "@/assets/cookeeps/main/default_recipe_image_full.svg";
+import defaultRecipeImage from "@/assets/mycookeep/record/temp_photo_large.svg";
 
 interface RecipeDetailImageCardProps {
   images?: string[];

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { OnboardingIngredient } from "@/api/onboarding";
 import { useOnboardingStore } from "@/stores/useOnboardingStore";
 
-import XIcon from "@/assets/onboarding/x.svg?react";
+import XIcon from "@/assets/icons/x.svg?react";
 
 import { Search } from "@/components/fridge/features/Search";
 import { InputModal } from "@/components/fridge/modals/InputModal";

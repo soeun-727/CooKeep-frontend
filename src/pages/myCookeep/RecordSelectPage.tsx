@@ -5,7 +5,7 @@ import type { DailyAiRecipe } from "@/api/dailyAiRecipe";
 import { useCookeepRecordStore } from "@/stores/useCookeepRecordStore";
 import { useDailyAiRecipeStore } from "@/stores/useDailyAiRecipeStore";
 
-import HeartIcon from "@/assets/icons/heart.svg?react";
+import HeartIcon from "@/assets/icons/heart_vector.svg?react";
 import { SearchIcon } from "@/assets/index";
 
 import { BackHeader } from "@/components/ui/BackHeader";
