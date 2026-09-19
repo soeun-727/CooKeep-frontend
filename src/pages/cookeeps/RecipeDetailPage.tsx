@@ -18,6 +18,7 @@ import RecipeDetailUserMeta from "@/components/cookeeps/recipedetail/RecipeDetai
 import RecipeDetailYoutube from "@/components/cookeeps/recipedetail/RecipeDetailYoutubeCard";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import { RecipeDetailHeader } from "@/components/cookeeps/recipedetail/RecipeDetailHeader";
+import { getFeatureLabel } from "@/constants/recipeDifficulty";
 
 export default function RecipeDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -155,7 +156,7 @@ export default function RecipeDetailPage() {
         <div className="flex w-full flex-col items-start gap-6">
           <RecipeDetailUserMeta
             userName={recipe.nickname}
-            category={recipe.category}
+            category={getFeatureLabel(recipe.feature, recipe.featureName)}
             title={recipe.title}
             usedItems={recipe.content.ingredients.user_ingredients.length}
           />
