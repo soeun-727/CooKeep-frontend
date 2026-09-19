@@ -5,8 +5,7 @@ import {
   updateRecipeVisibility,
 } from "@/api/myRecipe";
 import { create } from "zustand";
-
-import { useRewardStore } from "./useRewardStore";
+import { enqueueGlobalRewards } from "@/utils/cookieReward";
 
 export interface RecordImage {
   url: string;
@@ -20,7 +19,6 @@ interface RecordState {
   title: string;
   memo: string;
   isPublic: boolean;
-  // images: RecordImage[];
   image: RecordImage | null;
 
   // 상태 변경 함수
@@ -29,8 +27,6 @@ interface RecordState {
   setTitle: (title: string) => void;
   setMemo: (memo: string) => void;
   setIsPublic: (value: boolean) => void;
-  // addImages: (newImages: RecordImage[]) => void;
-  // removeImage: (index: number) => void;
   setImage: (image: RecordImage | null) => void;
   clearImage: () => void;
   resetRecord: () => void;
@@ -58,7 +54,6 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
   title: "",
   memo: "",
   isPublic: false,
-  // images: [],
   image: null,
   records: [],
 
@@ -67,16 +62,6 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
   setTitle: title => set({ title }),
   setMemo: memo => set({ memo }),
   setIsPublic: value => set({ isPublic: value }),
-
-  // addImages: (newImages) =>
-  //   set((state) => ({
-  //     images: [...state.images, ...newImages].slice(0, 2),
-  //   })),
-
-  // removeImage: (index) =>
-  //   set((state) => ({
-  //     images: state.images.filter((_, i) => i !== index),
-  //   })),
   setImage: image => set({ image }),
   clearImage: () => set({ image: null }),
 
@@ -130,10 +115,7 @@ export const useCookeepRecordStore = create<RecordState>((set, get) => ({
         }));
       }
 
-      // 4. 주간 목표 달성 체크
-      if (res.data.weeklyGoalAchieved) {
-        useRewardStore.getState().enqueue("WEEKLY");
-      }
+      enqueueGlobalRewards(res.data.reward);
 
       // 중요: 상세 페이지에서 이 결과값을 쓸 수 있도록 반환값을 전달해주면 좋습니다.
       return res.data;

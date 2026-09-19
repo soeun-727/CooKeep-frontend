@@ -3,12 +3,12 @@ import { useNavigate } from "react-router-dom";
 
 import { addIngredients } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
-import { useRewardStore } from "@/stores/useRewardStore";
 import axios from "axios";
 
 import Button from "@/components/ui/Button";
 
 import DetailedItem from "./DetailedItem";
+import { enqueueGlobalRewards } from "@/utils/cookieReward";
 
 export default function Details() {
   const navigate = useNavigate();
@@ -39,11 +39,7 @@ export default function Details() {
       // (인터페이스에 따라 addIngredients({ ingredients: payload }) 또는 addIngredients(payload)로 호출)
       // 1. response 받기
       const response = await addIngredients(payload);
-
-      // 2. 여기 추가
-      if (response.data?.data?.ingredientRewardGranted) {
-        useRewardStore.getState().enqueue("ONBOARDING_INGREDIENT");
-      }
+      enqueueGlobalRewards(response.data?.data?.reward);
 
       // 3. 성공 시 처리
       resetSelected();

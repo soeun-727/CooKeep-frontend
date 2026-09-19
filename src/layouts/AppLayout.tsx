@@ -29,30 +29,41 @@ export default function AppLayout({ children }: AppLayoutProps) {
           </div>
         )}
 
-        {current === "COMEBACK" && (
-          <ComebackRewardModal isOpen={true} onClose={dequeue} />
+        {current?.type === "COMEBACK" && (
+          <ComebackRewardModal
+            isOpen={true}
+            onClose={dequeue}
+            rewardPoints={current.points}
+          />
         )}
 
-        {current === "WEEKLY" && (
+        {current?.type === "WEEKLY" && (
           <WeeklyGoalModal isOpen={true} onClose={dequeue} />
         )}
-        {current === "ONBOARDING_INGREDIENT" && (
+        {current?.type === "ONBOARDING_INGREDIENT" && (
           <OnboardingRewardModal
             type="INGREDIENT"
             isOpen={true}
             onClose={dequeue}
+            rewardPoints={current.points}
           />
         )}
 
-        {current === "ONBOARDING_RECIPE" && (
+        {current?.type === "ONBOARDING_RECIPE" && (
           <OnboardingRewardModal
             type="RECIPE"
             isOpen={true}
             onClose={dequeue}
+            rewardPoints={current.points}
           />
         )}
 
-        {current === "EXPIRING" && <ExpiringRewardModal onConfirm={dequeue} />}
+        {current?.type === "EXPIRING" && (
+          <ExpiringRewardModal
+            onConfirm={dequeue}
+            rewardPoints={current.points}
+          />
+        )}
       </div>
     </div>
   );

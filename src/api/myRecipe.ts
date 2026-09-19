@@ -1,4 +1,5 @@
 import api from "./axios";
+import { CookieReward } from "./cookies";
 import { IngredientsJson, RecipeStep, YoutubeVideo } from "./dailyAiRecipe";
 
 // --- 인터페이스 정의 ---
@@ -60,7 +61,7 @@ export interface CreateDailyRecipeResponse {
     title: string;
     message: string;
     createdAt: string;
-    weeklyGoalAchieved: boolean; // 추가
+    reward: CookieReward;
   };
 }
 
@@ -71,7 +72,7 @@ export interface MyRecipeDetail {
   recipeImageUrl: string;
   isPublic: boolean;
   createdAt: string;
-  photoCookieAwarded?: boolean;
+  reward?: CookieReward | null;
   content: {
     ingredients: IngredientsJson;
     steps: RecipeStep[];
@@ -194,7 +195,7 @@ export const toggleRecipeLike = async (dailyRecipeId: number) => {
       dailyRecipeId: number;
       likeCount: number;
       liked: boolean;
-      weeklyGoalAchieved: boolean; // 추가
+      reward: CookieReward | null;
     };
   }>(`/api/daily-recipes/likes/${dailyRecipeId}/toggle`);
   return res.data;

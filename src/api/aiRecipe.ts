@@ -11,6 +11,7 @@ import type {
   AiSessionDetailResponse,
 } from "./aiSession";
 import api from "./axios";
+import { CookieReward } from "./cookies";
 
 export interface ApiResponseEnvelope<T> {
   status: string;
@@ -62,9 +63,7 @@ export const cancelAiRecipe = async (requestId: string): Promise<void> => {
 };
 
 export interface CompleteAiRecipeResponse {
-  reward?: {
-    types?: string[];
-  };
+  reward?: CookieReward;
 }
 
 /** [POST] AI 레시피 채택 (MAIN05-03) */

@@ -19,6 +19,7 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
   const [rewardPoints, setRewardPoints] = useState<number | undefined>(
     undefined,
   );
+  const [isActionLoading, setIsActionLoading] = useState(false);
 
   const status = useCookeepsStore(s => s.status);
   const isPlantLoading = useCookeepsStore(s => s.isPlantLoading);
@@ -140,22 +141,30 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
   };
 
   const handleAbandon = async () => {
+    if (isActionLoading) return;
+    setIsActionLoading(true);
     try {
       await abandonPlant();
       setHideWiltingModal(false);
       setActiveModal("select");
     } catch {
       alert("식물 포기에 실패했습니다. 다시 시도해 주세요.");
+    } finally {
+      setIsActionLoading(false);
     }
   };
 
   const handleRecover = async () => {
+    if (isActionLoading) return;
+    setIsActionLoading(true);
     try {
       await recoverPlant();
       setHideWiltingModal(false);
       setActiveModal(null);
     } catch {
       alert("식물 회복에 실패했습니다. 다시 시도해 주세요.");
+    } finally {
+      setIsActionLoading(false);
     }
   };
 
@@ -176,6 +185,7 @@ export function useCookeepsModals(currentPlant: MyPlant | null) {
     handleHarvestModalClose,
     handleAbandon,
     handleRecover,
+    isActionLoading,
     canRecover,
     setFreeWaterMode,
   };
