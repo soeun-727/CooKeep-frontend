@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 
 import {
+  type IngredientDetailResponse,
   getIngredientDetail,
   updateIngredientDate,
   updateIngredientMemo,
@@ -34,6 +35,14 @@ interface IngredientDetailModalProps {
 }
 
 type EditorType = "storage" | "expiry" | "quantity" | "memo";
+type EditorValue = string | number;
+type DetailData = Partial<
+  Omit<IngredientDetailResponse, "storage" | "unit" | "createdAt">
+> & {
+  storage?: string;
+  unit?: string;
+  createdAt?: string | number;
+};
 
 export default function IngredientDetailModal({
   ingredient,
@@ -41,12 +50,12 @@ export default function IngredientDetailModal({
   onUpdate,
 }: IngredientDetailModalProps) {
   const [isLoading, setIsLoading] = useState(true);
-  const [detailData, setDetailData] = useState<any>(null);
+  const [detailData, setDetailData] = useState<DetailData | null>(null);
   const [openEditor, setOpenEditor] = useState<null | EditorType>(null);
   const [isDirty, setIsDirty] = useState(false);
   const [memo, setMemo] = useState("");
 
-  const displayData = detailData || ingredient;
+  const displayData = { ...ingredient, ...detailData };
 
   const { changeStorage, changeExpiryDate, changeQuantity, changeMemo } =
     useIngredientStore();
@@ -85,8 +94,8 @@ export default function IngredientDetailModal({
       await changeMemo(ingredient.id, value);
 
       setMemo(value);
-      setDetailData((prev: any) => ({
-        ...prev,
+      setDetailData(prev => ({
+        ...(prev ?? displayData),
         memo: value,
       }));
 
@@ -96,21 +105,30 @@ export default function IngredientDetailModal({
     }
   };
 
-  const handleUpdateField = async (type: EditorType, value: any) => {
+  const handleUpdateField = async (type: EditorType, value: EditorValue) => {
     try {
       const id = Number(ingredient.id);
       if (type === "storage") {
-        await updateIngredientStorage(id, value);
-        await changeStorage(ingredient.id, value);
-        setDetailData((prev: any) => ({ ...prev, storage: value }));
+        await updateIngredientStorage(id, String(value));
+        await changeStorage(ingredient.id, String(value));
+        setDetailData(prev => ({
+          ...(prev ?? displayData),
+          storage: String(value),
+        }));
       } else if (type === "expiry") {
-        await updateIngredientDate(id, value);
-        await changeExpiryDate(ingredient.id, value);
-        setDetailData((prev: any) => ({ ...prev, expirationDate: value }));
+        await updateIngredientDate(id, String(value));
+        await changeExpiryDate(ingredient.id, String(value));
+        setDetailData(prev => ({
+          ...(prev ?? displayData),
+          expirationDate: String(value),
+        }));
       } else if (type === "quantity") {
         await updateIngredientQuantity(id, Number(value));
         await changeQuantity(ingredient.id, Number(value));
-        setDetailData((prev: any) => ({ ...prev, quantity: Number(value) }));
+        setDetailData(prev => ({
+          ...(prev ?? displayData),
+          quantity: Number(value),
+        }));
       }
       setIsDirty(true);
       setOpenEditor(null);
@@ -130,6 +148,8 @@ export default function IngredientDetailModal({
 
   if (isLoading) return <LoadingScreen />;
 
+  const leftDays = displayData.leftDays ?? ingredient.dDay;
+
   const infoRows: {
     label: string;
     value: string | number;
@@ -142,7 +162,7 @@ export default function IngredientDetailModal({
     },
     {
       label: "수량",
-      value: `${displayData.quantity}${getKoreanUnit(displayData.unit)}`,
+      value: `${displayData.quantity}${displayData.customUnitName || getKoreanUnit(displayData.unit)}`,
       type: "quantity",
     },
     { label: "유통기한", value: expireDate || "정보 없음", type: "expiry" },
@@ -166,11 +186,11 @@ export default function IngredientDetailModal({
 
           <div className="flex w-full flex-col items-center gap-4 self-stretch">
             <div className="flex w-full items-center gap-[14px]">
-              <div className="bg-green-light flex h-[86px] w-[86px] flex-shrink-0 items-center justify-center rounded-[10px]">
+              <div className="bg-green-light rounded-L flex h-[86px] w-[86px] flex-shrink-0 items-center justify-center">
                 <img
                   src={displayData.imageUrl || displayData.image}
                   alt={displayData.name}
-                  className="aspect-square h-[60px] w-[60px] rounded-[6px] object-cover"
+                  className="rounded-XS aspect-square h-[60px] w-[60px] object-cover"
                 />
               </div>
               <div className="flex flex-1 flex-col items-start gap-1">
@@ -179,22 +199,20 @@ export default function IngredientDetailModal({
                 </span>
                 <div className="flex items-center gap-2">
                   <span className="text-gray-80 typo-h3">
-                    {displayData.leftDays < 0
-                      ? `D+${Math.abs(displayData.leftDays)}`
-                      : `D-${displayData.leftDays}`}
+                    {leftDays < 0 ? `D+${Math.abs(leftDays)}` : `D-${leftDays}`}
                   </span>
                   <span
                     className={`typo-caption rounded-S px-3 py-[2px] ${
-                      displayData.leftDays < 0
+                      leftDays < 0
                         ? "text-semantic-negative bg-[#FFEAEA]"
-                        : displayData.leftDays > 3
+                        : leftDays > 3
                           ? "text-semantic-positive bg-green-light"
                           : "text-semantic-negative bg-[#FFEAEA]"
                     }`}
                   >
-                    {displayData.leftDays < 0
+                    {leftDays < 0
                       ? "유통기한 지남"
-                      : displayData.leftDays > 3
+                      : leftDays > 3
                         ? "여유있음"
                         : "유통기한 임박"}
                   </span>
@@ -255,7 +273,7 @@ export default function IngredientDetailModal({
                 </div>
               )}
               <div
-                className="border-gray-10 mt-4 flex w-full cursor-pointer items-center justify-between gap-3 rounded-[6px] border p-3"
+                className="border-gray-10 rounded-M mt-4 flex w-full cursor-pointer items-center justify-between gap-3 border p-3"
                 onClick={() => setOpenEditor("memo")}
               >
                 <span

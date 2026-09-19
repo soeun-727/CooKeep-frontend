@@ -36,7 +36,7 @@ export default function Sort({
 
           <div className="absolute right-0 flex items-center">
             {isMenuOpen && (
-              <div className="bg-gray-0 animate-fadeIn shadow-add-button absolute right-[34px] bottom-0 z-50 flex h-[104px] w-[130px] flex-col items-center justify-center overflow-hidden rounded-[10px]">
+              <div className="bg-gray-0 animate-fadeIn shadow-add-button rounded-L absolute right-[34px] bottom-0 z-50 flex h-[104px] w-[130px] flex-col items-center justify-center overflow-hidden">
                 {options.map((option, index) => (
                   <div
                     key={option}

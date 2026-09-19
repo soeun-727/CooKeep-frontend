@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
+
 import { getOnboardingStatus, updateOnboardingStatus } from "@/api/cookeeps";
 import { useCookeepsStore } from "@/stores/useCookeepsStore";
+
 import { PLANT_DATA } from "@/constants/plantData";
+
 import { ActiveModal, SelectedPlant } from "@/types/cookeeps";
 import type { MyPlant } from "@/types/myPlant";
 

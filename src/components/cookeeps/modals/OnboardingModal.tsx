@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Button from "@/components/ui/Button";
+
 import { COOKEEPS_ONBOARDING_DATA } from "@/constants/cookeeps";
 
 interface OnboardingModalProps {
