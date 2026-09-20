@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
+import axios from "axios";
 
 import RecipeLoadingSpinner from "@/components/recipe/main/loading/RecipeLoadingSpinner";
 import StepMessage from "@/components/recipe/main/loading/StepMessage";
+import { BackHeader } from "@/components/ui/BackHeader";
+import DoublecheckModal from "@/components/ui/DoublecheckModal";
 
 export default function RecipeLoadingPage() {
   const navigate = useNavigate();
@@ -12,6 +15,8 @@ export default function RecipeLoadingPage() {
 
   const [step, setStep] = useState(0);
   const [localError, setLocalError] = useState<string | null>(null);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const isCancelledRef = useRef(false);
 
   const messages = [
     "선택한 재료를 보고 있어요...",
@@ -19,21 +24,33 @@ export default function RecipeLoadingPage() {
     "맞춤형 레시피가 완성됐어요!",
   ];
 
-  const { selectedIngredients, difficulty, generateRecipe, error } =
-    useRecipeFlowStore();
+  const {
+    selectedIngredients,
+    difficulty,
+    generateRecipe,
+    cancelRecipe,
+    error,
+  } = useRecipeFlowStore();
   const isRandom = location.state?.isRandom ?? false;
 
   const handleGenerateRecipe = async () => {
     try {
       setLocalError(null);
       if (isRandom) {
-        useRecipeFlowStore.setState({ difficulty: "RANDOM" as any });
+        useRecipeFlowStore.setState({ difficulty: "RANDOM" });
       }
       await generateRecipe();
-      navigate("/recipe/result");
-    } catch (err: any) {
+      if (!isCancelledRef.current) {
+        navigate("/recipe/result");
+      }
+    } catch (err: unknown) {
+      if (axios.isCancel(err) || isCancelledRef.current) {
+        return;
+      }
       console.error(err);
-      const errorCode = err?.response?.data?.code;
+      const errorCode = axios.isAxiosError<{ code?: string }>(err)
+        ? err.response?.data?.code
+        : undefined;
 
       if (
         errorCode === "INGREDIENTS_REQUIRED" ||
@@ -51,6 +68,23 @@ export default function RecipeLoadingPage() {
       }
     }
   };
+
+  const handleBack = () => {
+    setIsCancelModalOpen(true);
+  };
+
+  const handleConfirmCancel = () => {
+    isCancelledRef.current = true;
+    cancelRecipe();
+    navigate(-1);
+  };
+
+  useEffect(() => {
+    return () => {
+      isCancelledRef.current = true;
+      cancelRecipe();
+    };
+  }, [cancelRecipe]);
 
   useEffect(() => {
     if (step < messages.length) {
@@ -72,33 +106,49 @@ export default function RecipeLoadingPage() {
   const displayError = error || localError;
 
   return (
-    <div className="mt-40 flex h-screen w-full flex-col items-center gap-6 px-4 text-center">
-      <RecipeLoadingSpinner />
+    <div className="flex w-full flex-col px-4">
+      <BackHeader onBack={handleBack} />
 
-      <div className="flex w-full flex-col items-center gap-2">
-        <h1 className="typo-h2">오늘의 요리 준비 중...</h1>
-        <p className="typo-l text-green-deep">
-          나에게 딱 맞는 레시피를 찾고 있어요
-        </p>
-      </div>
+      <div className="mt-[120px] flex w-full flex-col items-center gap-6 text-center">
+        <RecipeLoadingSpinner />
 
-      <div className="flex w-full flex-col gap-3">
-        {messages.slice(0, step).map((msg, idx) => (
-          <StepMessage key={idx} message={msg} />
-        ))}
-      </div>
-      {displayError && (
-        <div className="mt-6 flex flex-col items-center gap-3">
-          <p className="text-semantic-negative typo-caption">{displayError}</p>
-
-          <button
-            onClick={handleGenerateRecipe}
-            className="typo-caption text-gray-500 underline"
-          >
-            다시 시도하기
-          </button>
+        <div className="flex w-full flex-col items-center gap-2">
+          <h1 className="typo-h2">오늘의 요리 준비 중...</h1>
+          <p className="typo-l text-green-deep">
+            나에게 딱 맞는 레시피를 찾고 있어요
+          </p>
         </div>
-      )}
+
+        <div className="flex w-full flex-col gap-3">
+          {messages.slice(0, step).map((msg, idx) => (
+            <StepMessage key={idx} message={msg} />
+          ))}
+        </div>
+        {displayError && (
+          <div className="mt-6 flex flex-col items-center gap-3">
+            <p className="text-semantic-negative typo-caption">
+              {displayError}
+            </p>
+
+            <button
+              onClick={handleGenerateRecipe}
+              className="typo-caption text-gray-500 underline"
+            >
+              다시 시도하기
+            </button>
+          </div>
+        )}
+      </div>
+
+      <DoublecheckModal
+        isOpen={isCancelModalOpen}
+        onClose={() => setIsCancelModalOpen(false)}
+        title="레시피 생성을 중단할까요?"
+        onConfirm={handleConfirmCancel}
+        variant="black"
+        confirmText="네"
+        cancelText="아니오"
+      />
     </div>
   );
 }

@@ -62,7 +62,7 @@ export default function SelectedModal({
                   trianglePosition="top"
                   bgClassName="bg-gray-10"
                   paddingClassName="px-4 py-1"
-                  radiusClassName="rounded-[4px]"
+                  radiusClassName="rounded-XS"
                   triangleClassName="border-b-gray-10 -mb-1 h-0 w-0 border-x-[8px] border-b-[16px] border-x-transparent"
                 />
               </div>

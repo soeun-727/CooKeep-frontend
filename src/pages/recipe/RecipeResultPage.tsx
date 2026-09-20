@@ -41,8 +41,11 @@ export default function RecipeResultPage() {
         });
       }, 100);
     } catch (error) {
-      console.error("레시피 채택 실패:", error);
-      alert("레시피 재 생성 중 오류가 발생했습니다.");
+      console.error("레시피 재 생성 실패:", error);
+      const errorMessage =
+        useRecipeFlowStore.getState().error ||
+        "레시피 재 생성 중 오류가 발생했습니다.";
+      alert(errorMessage);
     }
   };
 
@@ -102,10 +105,10 @@ export default function RecipeResultPage() {
                 recipe.ingredients.optional_ingredients || [];
 
               const rawSteps = recipe.steps || [];
-              const steps = rawSteps.map((step: any, idx: number) => ({
+              const steps = rawSteps.map((step, idx: number) => ({
                 order: idx + 1,
                 description:
-                  typeof step === "string" ? step : step.content || "",
+                  typeof step === "string" ? step : step?.content || "",
               }));
 
               const rawFeature = difficulty || currentData.feature || "ANY";

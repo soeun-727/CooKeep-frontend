@@ -1,8 +1,8 @@
 import { useIngredientStore } from "@/stores/useIngredientStore";
 
 import BackIcon from "@/assets/back.svg?react";
-import LikeVector from "@/assets/cookeeps/like_vector.svg?react";
 import BookmarkVector from "@/assets/cookeeps/bookmark_vector.svg?react";
+import LikeVector from "@/assets/cookeeps/like_vector.svg?react";
 
 interface RecipeDetailHeaderProps {
   title: string;

@@ -28,7 +28,7 @@ export default function Selected({
   const allSlots = [...selectedDisplay, ...emptySlots];
 
   return (
-    <div className="bg-gray-0 shadow-recent-b flex h-22 w-full items-center justify-between rounded-[10px] px-5">
+    <div className="bg-gray-0 shadow-recent-b rounded-M flex h-22 w-full items-center justify-between px-5">
       <div className="flex w-full items-center justify-center">
         {allSlots.map((item, idx) => (
           <div

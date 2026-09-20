@@ -1,13 +1,15 @@
+import { useCookeepsModals } from "@/hooks/useCookeepsModals";
+
+import type { MyPlant } from "@/types/myPlant";
+
+import FreeWaterModal from "./FreeWaterModal";
+import HarvestModal from "./HarvestModal";
 import OnboardingModal from "./OnboardingModal";
 import PlantSelectModal from "./PlantSelectModal";
 import SelectedModal from "./SelectedModal";
-import FreeWaterModal from "./FreeWaterModal";
-import WiltingModal from "./WiltingModal";
 import WiltedModal from "./WiltedModal";
-import HarvestModal from "./HarvestModal";
-import { useCookeepsModals } from "@/hooks/useCookeepsModals";
-import type { MyPlant } from "@/types/myPlant";
 import WiltedNoCookieModal from "./WiltedNoCookieModal";
+import WiltingModal from "./WiltingModal";
 
 type CookeepsModalManagerProps = ReturnType<typeof useCookeepsModals> & {
   currentPlant: MyPlant | null; // 페이지에서 내려받는 값

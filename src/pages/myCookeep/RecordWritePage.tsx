@@ -16,6 +16,7 @@ import { VisibleChangeSection } from "@/components/myCookeep/record/VisibleChang
 import RecipeTitle from "@/components/recipe/main/result/RecipeTitle";
 import { BackHeader } from "@/components/ui/BackHeader";
 import Button from "@/components/ui/Button";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 import { RecipeInfoDetail } from "@/components/ui/RecipeInfoDetail";
 import WeeklyGoalModal from "@/components/ui/WeeklyGoalModal";
 
@@ -136,11 +137,7 @@ export default function RecordWritePage() {
   };
 
   if (!recipeDetail) {
-    return (
-      <div className="flex h-full items-center justify-center">
-        <div className="border-green h-8 w-8 animate-spin rounded-full border-b-2"></div>
-      </div>
-    );
+    return <LoadingScreen />;
   }
 
   return (

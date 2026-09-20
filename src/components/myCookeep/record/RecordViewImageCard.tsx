@@ -151,7 +151,7 @@ export default function RecordViewImageCard({
           onClick={() => setIsDeleteModalOpen(false)}
         >
           <div
-            className="bg-gray-0 flex w-[254px] flex-col items-center gap-4 rounded-[10px] px-[28px] py-[25px]"
+            className="bg-gray-0 rounded-L flex w-[254px] flex-col items-center gap-4 px-[28px] py-[25px]"
             onClick={e => e.stopPropagation()}
           >
             <p className="text-gray-80 text-center text-[14px] font-medium">
@@ -164,14 +164,14 @@ export default function RecordViewImageCard({
                   onImageDelete?.();
                   setIsDeleteModalOpen(false);
                 }}
-                className="bg-gray-80 text-gray-0 h-[44px] flex-1 rounded-[10px] font-semibold"
+                className="bg-gray-80 text-gray-0 rounded-M h-[44px] flex-1 font-semibold"
               >
                 네
               </button>
 
               <button
                 onClick={() => setIsDeleteModalOpen(false)}
-                className="bg-gray-30 text-gray-0 h-[44px] flex-1 rounded-[10px] font-semibold"
+                className="bg-gray-30 text-gray-0 rounded-M h-[44px] flex-1 font-semibold"
               >
                 아니오
               </button>
