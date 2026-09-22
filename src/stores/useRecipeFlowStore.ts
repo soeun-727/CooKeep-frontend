@@ -1,4 +1,5 @@
 import {
+  cancelAiRecipe,
   completeAiRecipe,
   generateAiRecipe,
   generateRandomAiRecipe,
@@ -22,12 +23,13 @@ const parseAiError = (error: unknown): string => {
   const status = error.response?.status;
   const code = error.response?.data?.code;
 
-  if (status === 429) {
-    return "AI 요청 횟수를 초과했어요. 잠시 후 다시 시도해주세요.";
+  if (status === 429 || code === "USER_RATE_LIMIT_EXCEEDED") {
+    return "AI 생성 횟수(1분당 3회)를 초과했어요. 잠시 후 다시 시도해주세요.";
   }
 
   const isLimitExceeded =
-    status === 400 && code === "AI_RECIPE_CHANGE_LIMIT_EXCEEDED";
+    (status === 400 || status === 403) &&
+    code === "AI_RECIPE_CHANGE_LIMIT_EXCEEDED";
   if (isLimitExceeded) {
     return "레시피 재생성은 최대 5번까지 가능합니다.";
   }
@@ -52,10 +54,14 @@ type RecipeFlowState = {
   error: string | null;
   isCompleted: boolean;
 
+  currentRequestId: string | null;
+  abortController: AbortController | null;
+
   setSelectedIngredients: (items: Ingredient[]) => void;
   setDifficulty: (d: RecipeCategory | null) => void;
 
   generateRecipe: () => Promise<void>;
+  cancelRecipe: () => Promise<void>;
   reset: () => void;
 
   fetchSessionDetail: (sessionId: number) => Promise<void>;
@@ -78,6 +84,9 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
   isCompleted: false,
   hasExpiringIngredient: false,
 
+  currentRequestId: null,
+  abortController: null,
+
   setSelectedIngredients: items => set({ selectedIngredients: items }),
 
   setDifficulty: difficulty => set({ difficulty }),
@@ -95,32 +104,61 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
 
     if (!difficulty) return;
 
+    const requestId = crypto.randomUUID();
+    const controller = new AbortController();
+
     try {
-      set({ isLoading: true });
+      set({
+        isLoading: true,
+        currentRequestId: requestId,
+        abortController: controller,
+      });
 
       let response: AiRecipeResponse;
-      const apiDifficulty =
-        (difficulty as string) === "RANDOM" ? undefined : difficulty;
+      const apiDifficulty = difficulty === "RANDOM" ? undefined : difficulty;
+      const options = { requestId, signal: controller.signal };
 
       if (sessionId === null) {
-        if (difficulty === ("RANDOM" as any)) {
-          response = await generateRandomAiRecipe();
+        if (difficulty === "RANDOM") {
+          response = await generateRandomAiRecipe(options);
         } else {
-          response = await generateAiRecipe({
-            ingredientIds: selectedIngredients.map(i => i.id),
-            feature: apiDifficulty as any,
-          });
+          response = await generateAiRecipe(
+            {
+              ingredientIds: selectedIngredients.map(i => i.id),
+              feature: apiDifficulty,
+            },
+            options,
+          );
         }
       } else {
-        if (difficulty === ("RANDOM" as any)) {
-          response = await retryRandomAiRecipe({
-            sessionId,
-          });
+        if (difficulty === "RANDOM") {
+          response = await retryRandomAiRecipe(
+            {
+              sessionId,
+            },
+            options,
+          );
         } else {
-          response = await retryAiRecipe({
-            sessionId,
-          });
+          response = await retryAiRecipe(
+            {
+              sessionId,
+            },
+            options,
+          );
         }
+      }
+
+      // 백엔드가 200 OK로 AI_GENERATION_CANCELLED 에러 응답을 내려준 경우 방어
+      if (
+        (response as unknown as { code?: string })?.code ===
+        "AI_GENERATION_CANCELLED"
+      ) {
+        set({
+          isLoading: false,
+          currentRequestId: null,
+          abortController: null,
+        });
+        return;
       }
 
       set({
@@ -128,20 +166,62 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
         retryCount: response.changeCount,
         recipeHistory: [...recipeHistory, response],
         isLoading: false,
+        currentRequestId: null,
+        abortController: null,
       });
     } catch (error) {
+      if (axios.isCancel(error)) {
+        set({
+          isLoading: false,
+          currentRequestId: null,
+          abortController: null,
+        });
+        throw error;
+      }
+
       const message = parseAiError(error);
 
       set({
         isLoading: false,
         error: message,
+        currentRequestId: null,
+        abortController: null,
       });
 
       throw error;
     }
   },
 
-  reset: () =>
+  cancelRecipe: async () => {
+    const { currentRequestId, abortController } = get();
+
+    // 1. 브라우저 네트워크 연결 즉시 중단 (Abort)
+    if (abortController) {
+      abortController.abort();
+    }
+
+    // 2. 백엔드 취소 API 호출 (진행 중인 Gemini/유튜브 검색 즉시 중단, 슬롯 반환, DB 롤백)
+    if (currentRequestId) {
+      try {
+        await cancelAiRecipe(currentRequestId);
+      } catch (err) {
+        console.error("레시피 생성 취소 요청 실패:", err);
+      }
+    }
+
+    set({
+      isLoading: false,
+      currentRequestId: null,
+      abortController: null,
+    });
+  },
+
+  reset: () => {
+    const { abortController } = get();
+    if (abortController) {
+      abortController.abort();
+    }
+
     set({
       selectedIngredients: [],
       difficulty: null,
@@ -150,7 +230,10 @@ export const useRecipeFlowStore = create<RecipeFlowState>((set, get) => ({
       recipeHistory: [],
       error: null,
       isCompleted: false,
-    }),
+      currentRequestId: null,
+      abortController: null,
+    });
+  },
 
   fetchSessionDetail: async (sessionId: number) => {
     try {

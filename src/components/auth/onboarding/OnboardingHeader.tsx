@@ -25,7 +25,7 @@ export default function OnboardingHeader({
 
       <button
         type="button"
-        className="typo-body-m py-[10px] disabled:cursor-not-allowed disabled:opacity-50"
+        className="typo-m py-[10px] disabled:cursor-not-allowed disabled:opacity-50"
         onClick={onSkip}
         disabled={isLoading}
       >

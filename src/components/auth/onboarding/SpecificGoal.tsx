@@ -48,7 +48,7 @@ export default function SpecificGoal({
 
       <div className="flex w-full flex-col items-start gap-1">
         <div
-          className={`bg-gray-0 flex h-12 w-full items-center rounded-[12px] border p-3 ${
+          className={`bg-gray-0 rounded-M flex h-12 w-full items-center border p-3 ${
             isError ? "border-semantic-negative" : "border-gray-10"
           }`}
         >

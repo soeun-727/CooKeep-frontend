@@ -112,7 +112,9 @@ export default function WithdrawPage() {
   };
 
   // 로딩 중일 때
-  if (loading) return <LoadingScreen />;
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>
@@ -150,7 +152,7 @@ export default function WithdrawPage() {
           {/* ===== 탈퇴 사유 선택 (드롭다운은 아래 유의사항 위로 오버레이) ===== */}
           <div className="relative w-full">
             {isCustom ? (
-              <div className="border-gray-10 bg-gray-0 flex w-full items-start gap-3 rounded-[12px] border p-3">
+              <div className="border-gray-10 bg-gray-0 rounded-M flex w-full items-start gap-3 border p-3">
                 <textarea
                   ref={textareaRef}
                   value={customReason}
@@ -178,9 +180,7 @@ export default function WithdrawPage() {
                   onClick={() => setReasonOpen(v => !v)}
                   aria-expanded={reasonOpen}
                   className={`border-gray-10 bg-gray-0 relative z-30 flex h-[48px] w-full items-center gap-3 border px-3 ${
-                    reasonOpen
-                      ? "rounded-t-[12px] border-b-0"
-                      : "rounded-[12px]"
+                    reasonOpen ? "rounded-t-M border-b-0" : "rounded-M"
                   }`}
                 >
                   <span className="typo-m text-gray-80 h-6 flex-1 overflow-hidden text-left text-ellipsis whitespace-nowrap">
@@ -221,7 +221,7 @@ export default function WithdrawPage() {
       {/* ===== 하단 고정 영역 ===== */}
       <div className="fixed bottom-0 left-1/2 z-20 flex w-full -translate-x-1/2 flex-col items-center">
         <div className="flex w-full flex-col items-center px-4">
-          <div className="bg-gray-10 flex w-full flex-col items-start gap-2 rounded-[12px]">
+          <div className="bg-gray-10 rounded-M flex w-full flex-col items-start gap-2">
             <div className="flex w-full flex-col items-start gap-[6px] p-3">
               <p className="typo-m text-gray-80 w-full">
                 - 회원 탈퇴 시 함께 쌓아온 냉장고 재료, 레시피, 요리 기록이 모두
@@ -240,7 +240,7 @@ export default function WithdrawPage() {
 
           <button
             onClick={() => setAgree(v => !v)}
-            className="flex w-full items-center gap-3 rounded-[12px] px-1 py-[6px]"
+            className="rounded-M flex w-full items-center gap-3 px-1 py-[6px]"
           >
             {agree ? (
               <AgreeChecked className="h-6 w-6 shrink-0 text-gray-50" />
@@ -258,7 +258,7 @@ export default function WithdrawPage() {
             size="L"
             disabled={!canSubmit || isSubmitting}
             onClick={() => setOpenModal(true)}
-            className={`!w-full !rounded-[12px] !font-semibold ${
+            className={`!rounded-M !w-full !font-semibold ${
               canSubmit && !isSubmitting ? "!bg-gray-80" : ""
             }`}
           >
@@ -279,7 +279,7 @@ export default function WithdrawPage() {
             onClick={() => setOpenModal(false)}
           />
 
-          <div className="bg-gray-0 shadow-container relative flex w-[300px] flex-col items-center justify-center gap-6 rounded-[16px] p-6">
+          <div className="bg-gray-0 shadow-container rounded-L relative flex w-[300px] flex-col items-center justify-center gap-6 p-6">
             <div className="flex w-full flex-col items-center gap-3">
               <p className="typo-l-strong text-gray-80 w-full text-center">
                 정말 탈퇴하시겠어요?
@@ -290,7 +290,7 @@ export default function WithdrawPage() {
               <button
                 onClick={handleWithdraw}
                 disabled={isSubmitting}
-                className="bg-gray-30 typo-l-strong text-gray-0 flex h-[44px] flex-1 items-center justify-center rounded-[12px]"
+                className="bg-gray-30 typo-l-strong text-gray-0 rounded-M flex h-[44px] flex-1 items-center justify-center"
               >
                 {isSubmitting ? "처리중" : "네"}
               </button>
@@ -298,7 +298,7 @@ export default function WithdrawPage() {
               <button
                 onClick={() => setOpenModal(false)}
                 disabled={isSubmitting}
-                className="bg-gray-80 typo-l-strong text-gray-0 flex h-[44px] flex-1 items-center justify-center rounded-[12px]"
+                className="bg-gray-80 typo-l-strong text-gray-0 rounded-M flex h-[44px] flex-1 items-center justify-center"
               >
                 아니오
               </button>

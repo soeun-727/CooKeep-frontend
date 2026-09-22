@@ -1,4 +1,5 @@
 import characterImg from "@/assets/character/plant_char.svg";
+
 import ImageModal from "@/components/ui/ImageModal";
 
 interface FreeWaterModalProps {

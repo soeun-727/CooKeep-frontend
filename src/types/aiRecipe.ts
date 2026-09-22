@@ -1,3 +1,5 @@
+export type StepItem = string | RecipeStep;
+
 export interface AiRecipeResponse {
   sessionId: number;
   changeCount: number;
@@ -8,7 +10,7 @@ export interface AiRecipeResponse {
       additional_ingredients: IngredientItem[];
       optional_ingredients: IngredientItem[];
     };
-    steps: RecipeStep[];
+    steps: StepItem[];
     youtube_search_queries: string[];
   };
   youtubeReferences: {

@@ -25,7 +25,7 @@ export default function Goal({ selectedGoal, onSelect }: GoalProps) {
         </h3>
       </div>
 
-      <div className="border-gray-10 bg-gray-0 overflow-hidden rounded-[12px] border">
+      <div className="border-gray-10 bg-gray-0 rounded-M overflow-hidden border">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="flex w-full items-center justify-between gap-3 p-3 text-left"
