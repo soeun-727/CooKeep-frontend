@@ -107,11 +107,7 @@ export default function Preference({
           value={searchTerm}
           onChange={setSearchTerm}
           bgColor="bg-gray-0"
-          rounded={
-            isDropdownOpen
-              ? "rounded-t-[12px] rounded-b-none"
-              : "rounded-[12px]"
-          }
+          rounded={isDropdownOpen ? "rounded-t-M rounded-b-none" : "rounded-M"}
         />
 
         {/* 선택된 재료 */}
@@ -135,7 +131,7 @@ export default function Preference({
         </div>
 
         {hasText && (
-          <ul className="bg-gray-0 border-gray-10 typo-m absolute top-12 z-50 max-h-[200px] w-full overflow-y-auto rounded-b-[12px] border !border-t-0">
+          <ul className="bg-gray-0 border-gray-10 typo-m rounded-b-M absolute top-12 z-50 max-h-[200px] w-full overflow-y-auto border !border-t-0">
             {filteredIngredients.map(item => (
               <li
                 key={item.defaultIngredientId}

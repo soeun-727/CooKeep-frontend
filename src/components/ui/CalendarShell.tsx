@@ -27,7 +27,7 @@ export const CalendarShell = ({
 }: CalendarShellProps) => {
   return (
     <div
-      className={`bg-gray-0 border-gray-10 mx-auto flex w-full flex-col items-center justify-center gap-2 rounded-[16px] border px-3 py-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"}`}
+      className={`bg-gray-0 border-gray-10 rounded-L mx-auto flex w-full flex-col items-center justify-center gap-2 border px-3 py-4 transition-opacity duration-200 ${isLoading ? "pointer-events-none opacity-50" : "opacity-100"}`}
     >
       <div className="flex w-full items-center justify-between">
         <h2 className="typo-l-strong text-gray-80">

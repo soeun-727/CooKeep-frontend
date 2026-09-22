@@ -31,7 +31,7 @@ export default function TextField({
   autoComplete,
   onBlur,
   bgColor = "bg-gray-10",
-  rounded = "rounded-[12px]",
+  rounded = "rounded-M",
 }: TextFieldProps) {
   return (
     <div className="w-full">

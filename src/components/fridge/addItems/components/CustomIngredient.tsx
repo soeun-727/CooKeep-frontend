@@ -3,6 +3,7 @@ import { type ComponentType, type SVGProps, useEffect, useState } from "react";
 import {
   type CategoryType,
   type CustomIngredientRequest,
+  type CustomIngredientResponse,
   registerCustomIngredient,
 } from "@/api/ingredient";
 import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
@@ -17,7 +18,7 @@ import { DEFAULT_EXPIRY_DAYS } from "@/constants/expiry";
 interface CustomProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: (serverData: any) => void;
+  onConfirm: (serverData: CustomIngredientResponse) => void;
   categories: {
     id: number;
     name: string;
@@ -100,7 +101,7 @@ export default function CustomIngredient({
       <div className="bg-gray-80/50 fixed inset-0 z-80 mx-auto flex max-w-[450px] items-center justify-center">
         <div className="absolute inset-0" onClick={handleClose} />
 
-        <div className="bg-gray-0 relative flex w-[300px] flex-col items-center gap-6 rounded-[10px] p-6 shadow-xl">
+        <div className="bg-gray-0 rounded-L relative flex w-[300px] flex-col items-center gap-6 p-6 shadow-xl">
           <section className="flex flex-col items-center gap-3">
             <div className="flex items-center justify-center gap-[11px]">
               <h2 className="typo-l-strong text-gray-80 max-w-[180px] truncate text-center break-all">
@@ -119,7 +120,7 @@ export default function CustomIngredient({
                   type="button"
                   disabled={isLoading}
                   onClick={() => setSelectedCategoryId(cat.id)}
-                  className={`flex items-center gap-1 rounded-[6px] px-3 py-2 transition-all ${
+                  className={`rounded-S flex items-center gap-1 px-3 py-2 transition-all ${
                     selectedCategoryId === cat.id
                       ? "bg-gray-10"
                       : "bg-gray-0 hover:bg-gray-10"
@@ -149,7 +150,7 @@ export default function CustomIngredient({
             type="button"
             onClick={handleConfirm}
             disabled={selectedCategoryId === null || isLoading}
-            className={`typo-label text-gray-0 h-11 w-full rounded-[10px] transition-colors ${
+            className={`typo-label text-gray-0 rounded-M h-11 w-full transition-colors ${
               selectedCategoryId !== null && !isLoading
                 ? "bg-green-deep"
                 : "bg-gray-30 cursor-not-allowed"
