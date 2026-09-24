@@ -43,3 +43,14 @@ export const DIFFICULTY_OPTIONS = [
     image: DessertImg,
   },
 ] as const;
+
+export const getFeatureLabel = (
+  feature?: string | null,
+  fallback?: string | null,
+): string | undefined => {
+  const key = String(feature ?? "")
+    .trim()
+    .toUpperCase();
+  const matched = DIFFICULTY_OPTIONS.find(opt => opt.key === key);
+  return matched?.desc ?? fallback ?? undefined;
+};

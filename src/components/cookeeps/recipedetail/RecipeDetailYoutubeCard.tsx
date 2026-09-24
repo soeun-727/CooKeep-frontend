@@ -1,4 +1,3 @@
-//TODO: 여기 일단 피그마에 맞게 바꿨는데 영상부분이 아예 안나와서 확인은 못해봄...
 import { useState } from "react";
 
 import ArrowRight from "@/assets/signup/arrowright.svg?react";
@@ -46,7 +45,7 @@ export default function RecipeDetailYoutube({
         <ArrowRight
           aria-label="토글 버튼"
           role="img"
-          className="h-6 w-6 flex-shrink-0 rotate-270"
+          className="h-6 w-6 flex-shrink-0 rotate-90"
         />
       </button>
     );
@@ -67,7 +66,7 @@ export default function RecipeDetailYoutube({
         <ArrowRight
           aria-label="토글 버튼"
           role="img"
-          className="h-6 w-6 flex-shrink-0 rotate-90"
+          className="h-6 w-6 flex-shrink-0 rotate-270"
         />
       </button>
 
@@ -89,7 +88,7 @@ export default function RecipeDetailYoutube({
             href={video.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex w-[101px] flex-col items-start gap-2"
+            className="flex w-full flex-col items-start gap-2"
           >
             <div className="rounded-S bg-gray-10 h-15 w-full flex-shrink-0 overflow-hidden">
               <img
