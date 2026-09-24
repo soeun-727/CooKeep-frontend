@@ -161,7 +161,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                           onClick={onClose}
                           className="flex h-7 w-7 items-center justify-end"
                         >
-                          <XIcon className="h-4 w-4" />
+                          <XIcon className="text-gray-30 h-4 w-4" />
                         </button>
                       </div>
                       <div

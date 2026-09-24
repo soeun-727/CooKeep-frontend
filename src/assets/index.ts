@@ -42,9 +42,7 @@ export { default as CheckboxCheckIcon } from "./signup/checkboxCheck.svg?react";
 export { default as blankCheck } from "./signup/blankCheck.svg";
 export { default as plantChar } from "./character/plant_char.svg";
 
-export { default as logoBlack } from "./splash/black_logo.svg";
 export { default as logoWhite } from "./splash/white_logo.svg";
-export { default as logoChar } from "./splash/logo_char.svg";
 export { default as TriangleArrowIcon } from "./cookeeps/abled_left.svg?react";
 export { default as loadingChar } from "./character/loading_char.svg";
 

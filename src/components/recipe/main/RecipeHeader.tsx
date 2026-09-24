@@ -5,7 +5,7 @@ import { useRecipeFlowStore } from "@/stores/useRecipeFlowStore";
 import { useRecipeStore } from "@/stores/useRecipeStore";
 
 import BackIcon from "@/assets/back.svg?react";
-import HeartIcon from "@/assets/icons/heart.svg?react";
+import HeartIcon from "@/assets/icons/heart_vector.svg?react";
 import MenuIcon from "@/assets/recipe/main/menu.svg?react";
 
 import Sidebar from "../sidebar/SideBar";

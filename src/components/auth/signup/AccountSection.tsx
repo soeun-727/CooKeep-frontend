@@ -9,7 +9,7 @@ import BlankCheck from "@/assets/signup/blankCheck.svg?react";
 import CheckIcon from "@/assets/signup/check.svg?react";
 import CheckboxCheckIcon from "@/assets/signup/checkboxCheck.svg?react";
 import MailIcon from "@/assets/signup/mail.svg?react";
-import EyeOpenIcon from "@/assets/signup/openpw.svg?react";
+import EyeOpenIcon from "@/assets/login/openpw.svg?react";
 
 import Button from "@/components/ui/Button";
 import InputField from "@/components/ui/InputField";

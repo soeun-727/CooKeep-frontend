@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-import BackSpaceIcon from "@/assets/onboarding/backspace_icon.svg?react";
+import ClearIcon from "@/assets/settings/clear_x_Icon.svg?react";
 
 import { ONBOARDING_GOALS } from "@/constants/onboarding";
 
@@ -72,7 +72,7 @@ export default function SpecificGoal({
           </span>
           {count && (
             <button onClick={() => onCountChange("")}>
-              <BackSpaceIcon className="h-6 w-6" />
+              <ClearIcon className="h-6 w-6" />
             </button>
           )}
         </div>

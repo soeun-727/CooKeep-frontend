@@ -4,7 +4,7 @@ import { useAddIngredientStore } from "@/stores/useAddIngredientStore";
 import type { MasterItem } from "@/stores/useAddIngredientStore";
 import type { EditorValue } from "@/stores/useAddIngredientStore";
 
-import DeleteIcon from "@/assets/fridge/delete.svg?react";
+import XIcon from "@/assets/icons/x.svg?react";
 import MemoIcon from "@/assets/fridge/memo.svg?react";
 import RenameIcon from "@/assets/icons/rename.svg?react";
 import { FreezerIcon, FridgeIcon, PantryIcon } from "@/assets/index";
@@ -170,7 +170,7 @@ export default function DetailedItem(item: DetailedItemProps) {
         }}
         className="absolute top-4 right-4 z-30"
       >
-        <DeleteIcon className="h-3 w-3" />
+        <XIcon className="text-gray-30 h-3.5 w-3.5" />
       </button>
 
       <div className="flex h-full gap-6">
