@@ -75,7 +75,7 @@ const ExcludedIngredientPage = () => {
     try {
       await updateDislikeIngredientList(dislikedNames);
       setIsModalOpen(false);
-      navigate("/myCookeep");
+      navigate("/mycookeep");
     } catch (error) {
       const axiosError = error as AxiosError<{
         code?: string;
