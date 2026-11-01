@@ -41,6 +41,11 @@ const FridgePage = lazy(() => import("@/pages/fridge/FridgePage"));
 const AddItemPage = lazy(() => import("@/pages/fridge/AddItemPage"));
 const Details = lazy(() => import("@/components/fridge/addItems/Details"));
 
+const ShoppingPage = lazy(() => import("@/pages/shopping/ShoppingPage"));
+const ShoppingSearchPage = lazy(
+  () => import("@/pages/shopping/ShoppingSearchPage"),
+);
+
 const RecipePage = lazy(() => import("@/pages/recipe/RecipePage"));
 const RecipeIntroPage = lazy(() => import("@/pages/recipe/RecipeIntroPage"));
 const RecipeSelectPage = lazy(() => import("@/pages/recipe/RecipeSelectPage"));
@@ -214,6 +219,11 @@ export default function App() {
             element={<WithdrawDonePage />}
           />
           <Route path="/support" element={<SupportPage />} />
+
+          <Route path="/shopping">
+            <Route index element={<ShoppingPage />} />
+            <Route path="search" element={<ShoppingSearchPage />} />
+          </Route>
 
           {/* 탭바 있는 모든 페이지는 이 안에 */}
           <Route element={<Layout />}>

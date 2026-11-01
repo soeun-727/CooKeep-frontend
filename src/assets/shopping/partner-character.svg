@@ -1,0 +1,69 @@
+<svg width="144" height="74" viewBox="0 0 144 74" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="144" height="74" fill="#1E1E1E"/>
+<g id="&#236;&#158;&#165;&#235;&#179;&#180;&#234;&#184;&#176; &#235;&#169;&#148;&#236;&#157;&#184;">
+<rect width="375" height="2322" transform="translate(-231 -154)" fill="white"/>
+<g id="Main Content">
+<g id="Content">
+<rect width="375" height="68" transform="translate(-231 6)" fill="#F8F8F8"/>
+<g id="Image" clip-path="url(#clip0_9727_77425)">
+<g id="Main Frame">
+<g id="Footer Container">
+<ellipse id="Ellipse 24" cx="40.4843" cy="84.4749" rx="15.0858" ry="12.0687" fill="url(#paint0_linear_9727_77425)"/>
+<ellipse id="Ellipse 23" cx="82.8475" cy="84.4749" rx="15.0858" ry="12.0687" fill="url(#paint1_linear_9727_77425)"/>
+</g>
+<path id="Subtract" d="M61.7129 0C66.4927 2.57717e-05 71.0988 0.703925 75.4229 2.00488C74.6596 3.27966 74.2207 4.77129 74.2207 6.36523C74.2209 10.006 76.5102 13.1112 79.7275 14.3223C79.64 14.8113 79.5928 15.3149 79.5928 15.8291C79.593 20.5236 83.3982 24.3299 88.0928 24.3301C89.2746 24.3301 90.4002 24.0882 91.4229 23.6523C92.9556 25.8788 95.5213 27.3398 98.4287 27.3398C100.21 27.3398 101.862 26.7901 103.229 25.8535C105.584 31.0295 106.89 36.7332 106.89 42.7256C106.889 66.3215 86.6634 85.4501 61.7129 85.4502C36.7622 85.4502 16.5354 66.3216 16.5352 42.7256C16.5352 19.1294 36.7621 0 61.7129 0Z" fill="url(#paint2_linear_9727_77425)"/>
+<g id="Image Container">
+<g id="Image Item">
+<circle id="Ellipse 2" cx="71.6218" cy="39.82" r="12.2458" fill="white"/>
+<g id="Mask Group">
+<mask id="mask0_9727_77425" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="59" y="27" width="25" height="26">
+<circle id="Ellipse 4" cx="71.6208" cy="39.82" r="12.2458" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_9727_77425)">
+<circle id="Ellipse 3" cx="75.6214" cy="42.8196" r="7.60085" fill="#202020"/>
+</g>
+</g>
+</g>
+<g id="Image Item_2">
+<circle id="Ellipse 2_2" cx="51.1403" cy="39.82" r="12.2458" fill="white"/>
+<g id="Mask Group_2">
+<mask id="mask1_9727_77425" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="38" y="27" width="26" height="26">
+<circle id="Ellipse 4_2" cx="51.1403" cy="39.82" r="12.2458" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask1_9727_77425)">
+<circle id="Ellipse 3_2" cx="55.1399" cy="42.8196" r="7.60085" fill="#202020"/>
+</g>
+</g>
+</g>
+</g>
+<g id="Check Circle Container">
+<circle id="Ellipse 64" cx="107.165" cy="65.0344" r="18.3234" fill="white"/>
+<path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M132.814 63.2265C132.814 77.3964 121.328 88.8826 107.158 88.8826C92.9882 88.8826 81.502 77.3964 81.502 63.2265C81.502 49.0566 92.9882 37.5703 107.158 37.5703C121.328 37.5703 132.814 49.0566 132.814 63.2265ZM119.509 57.0203C119.705 56.746 119.845 56.4359 119.92 56.1076C119.996 55.7793 120.007 55.4393 119.951 55.1069C119.896 54.7746 119.775 54.4564 119.597 54.1706C119.418 53.8848 119.185 53.637 118.911 53.4412C118.637 53.2455 118.327 53.1057 117.999 53.0298C117.67 52.9539 117.33 52.9434 116.998 52.9989C116.666 53.0544 116.347 53.1748 116.062 53.3533C115.776 53.5317 115.528 53.7648 115.332 54.039L104.264 69.5353L98.7095 63.9782C98.2257 63.5109 97.5776 63.2523 96.9049 63.2581C96.2322 63.264 95.5887 63.5338 95.113 64.0095C94.6373 64.4851 94.3675 65.1286 94.3617 65.8013C94.3558 66.474 94.6144 67.1221 95.0818 67.606L102.779 75.3028C103.042 75.5659 103.36 75.7685 103.709 75.8965C104.059 76.0245 104.432 76.0749 104.803 76.0441C105.174 76.0134 105.534 75.9022 105.858 75.7184C106.182 75.5345 106.462 75.2824 106.678 74.9796L119.509 57.0203Z" fill="#FFADAD"/>
+</g>
+<path id="Vector 2" d="M50.0469 55.7578C51.5825 63.3846 59.7523 66.5625 64.948 60.348" stroke="#202020" stroke-width="2.95559" stroke-linecap="round"/>
+<path id="Vector 3" d="M40.3099 19.825C42.5204 14.98 50.2596 13.7743 53.9277 18.2823" stroke="#202020" stroke-width="2.95559" stroke-linecap="round"/>
+<ellipse id="Ellipse 25" cx="12.3471" cy="69.3821" rx="11.0835" ry="8.83577" transform="rotate(-112.004 12.3471 69.3821)" fill="#1FC16F"/>
+<ellipse id="Ellipse 26" cx="11.0835" cy="8.83577" rx="11.0835" ry="8.83577" transform="matrix(0.930367 0.36663 0.36663 -0.930367 108.69 43.8203)" fill="#1FC16F"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_9727_77425" x1="40.4843" y1="72.4062" x2="40.4843" y2="96.5436" gradientUnits="userSpaceOnUse">
+<stop offset="0.5" stop-color="#202020"/>
+<stop offset="1" stop-color="#474747"/>
+</linearGradient>
+<linearGradient id="paint1_linear_9727_77425" x1="82.8475" y1="72.4062" x2="82.8475" y2="96.5436" gradientUnits="userSpaceOnUse">
+<stop offset="0.5" stop-color="#202020"/>
+<stop offset="1" stop-color="#474747"/>
+</linearGradient>
+<linearGradient id="paint2_linear_9727_77425" x1="61.7124" y1="0" x2="61.7124" y2="85.4502" gradientUnits="userSpaceOnUse">
+<stop stop-color="#32E389"/>
+<stop offset="1" stop-color="#1FC16F"/>
+</linearGradient>
+<clipPath id="clip0_9727_77425">
+<rect width="144" height="74" fill="white"/>
+</clipPath>
+</defs>
+</svg>

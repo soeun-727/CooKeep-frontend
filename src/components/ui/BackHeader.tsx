@@ -12,12 +12,14 @@ interface BackHeaderProps {
   sortIcon?: boolean;
   recipeOptionMenu?: boolean;
   onBack?: () => void;
+  onSortClick?: () => void;
 }
 
 export const BackHeader = ({
   title,
   sortIcon = false,
   onBack,
+  onSortClick,
 }: BackHeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { viewCategory, setViewCategory, setSortOrder } = useIngredientStore();
@@ -53,19 +55,25 @@ export const BackHeader = ({
         <div className="relative z-10 flex h-10 w-10 items-center justify-center">
           <>
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              type="button"
+              aria-label="정렬"
+              onClick={() =>
+                onSortClick ? onSortClick() : setIsMenuOpen(!isMenuOpen)
+              }
               className="relative z-10 focus:outline-none"
             >
               <SortIcon className="h-10 w-10" />
             </button>
 
-            <SortDropdown
-              isOpen={isMenuOpen}
-              onSelect={option => {
-                setSortOrder(option);
-                setIsMenuOpen(false);
-              }}
-            />
+            {!onSortClick && (
+              <SortDropdown
+                isOpen={isMenuOpen}
+                onSelect={option => {
+                  setSortOrder(option);
+                  setIsMenuOpen(false);
+                }}
+              />
+            )}
           </>
         </div>
       )}
