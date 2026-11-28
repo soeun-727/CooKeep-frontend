@@ -17,7 +17,13 @@ export const AppBar = ({ cookieCount }: AppBarProps) => {
           <p className="typo-label text-gray-80">{cookieCount}개</p>
         </div>
       )}
-      <MailNotiIcon className="h-10 w-10" />
+      <button
+        type="button"
+        onClick={() => navigate("/notifications")}
+        aria-label="알림"
+      >
+        <MailNotiIcon className="h-10 w-10" />
+      </button>
       <button
         type="button"
         onClick={() => navigate("/settings")}
