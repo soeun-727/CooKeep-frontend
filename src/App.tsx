@@ -90,6 +90,10 @@ const WithdrawDonePage = lazy(
 );
 const SupportPage = lazy(() => import("@/pages/settings/SupportPage"));
 
+const NotificationPage = lazy(
+  () => import("@/pages/notifications/NotificationPage"),
+);
+
 export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -214,6 +218,7 @@ export default function App() {
             element={<WithdrawDonePage />}
           />
           <Route path="/support" element={<SupportPage />} />
+          <Route path="/notifications" element={<NotificationPage />} />
 
           {/* 탭바 있는 모든 페이지는 이 안에 */}
           <Route element={<Layout />}>
