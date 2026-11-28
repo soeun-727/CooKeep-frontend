@@ -146,7 +146,14 @@ export default function IngredientDetailModal({
     return dateString.replace(/-/g, ".");
   }, [rawDate]);
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading) {
+    return createPortal(
+      <div className="fixed inset-0 z-[40]">
+        <LoadingScreen />
+      </div>,
+      document.body,
+    );
+  }
 
   const leftDays = displayData.leftDays ?? ingredient.dDay;
 

@@ -70,8 +70,6 @@ export default function RecipeSelectPage() {
   };
   return (
     <div className="flex w-full flex-col">
-      <BackHeader title="재료 선택" onBack={handleBack} />
-
       {!viewCategory && (
         <FloatingNotice
           text={
@@ -83,7 +81,8 @@ export default function RecipeSelectPage() {
       )}
 
       <div className="flex flex-col gap-6">
-        <div className="flex items-center px-4">
+        <div className="flex flex-col items-center px-4 gap-3">
+          <BackHeader title="재료 선택" onBack={handleBack} />
           <Search
             placeholder="찾으시는 재료가 있나요? (ex. 고구마, 초코우유...)"
             value={searchTerm}

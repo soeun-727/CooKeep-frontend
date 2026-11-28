@@ -19,7 +19,7 @@ export default function GoogleLoginCallback() {
       const BASE_URL = import.meta.env.DEV
         ? ""
         : import.meta.env.VITE_API_BASE_URL;
-      const REDIRECT_URI = import.meta.env.VITE_GOOGLE_REDIRECT_URI || "";
+      const REDIRECT_URI = `${window.location.origin}/google/callback`;
 
       if (!code || hasCalledAPI.current) return;
       hasCalledAPI.current = true;
