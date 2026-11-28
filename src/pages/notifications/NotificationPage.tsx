@@ -1,5 +1,7 @@
 import { useSearchParams } from "react-router-dom";
 
+import { NoticeNotificationList } from "@/components/notifications/NoticeList";
+import { ServiceNotificationList } from "@/components/notifications/ServiceNotificationList";
 import { BackHeader } from "@/components/ui/BackHeader";
 
 const TABS = [
@@ -16,7 +18,7 @@ const NotificationPage = () => {
     searchParams.get("tab") === "notice" ? "notice" : "service";
 
   return (
-    <main className="pb-safe flex min-h-screen flex-col gap-3">
+    <main className="pb-safe flex flex-col gap-3">
       <div className="flex flex-col gap-3 px-4">
         <BackHeader />
         <div role="tablist" className="flex gap-[2px]">
@@ -40,13 +42,15 @@ const NotificationPage = () => {
         </div>
       </div>
 
-      <section role="tabpanel" className="flex-1 py-3">
+      <section role="tabpanel" className="min-h-0 flex-1">
         {tab === "service" ? (
-          <div>서비스 알림 목록</div>
+          <ServiceNotificationList />
         ) : (
-          <div>공지사항 목록</div>
+          <NoticeNotificationList />
         )}
       </section>
+
+      <p className="typo-m text-gray-50 text-center">최근 30일간의 알림만 노출돼요</p>
     </main>
   );
 };
