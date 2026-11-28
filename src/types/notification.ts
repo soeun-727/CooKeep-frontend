@@ -1,7 +1,10 @@
 // 서버 enum은 @JsonValue로 displayName(한글)을 내려줌
 export type NotificationType = "유통기한임박" | "시듦" | "성장정지";
 
-// 알림함에 보여줄 제목 (서버 title과 다름)
+// 알림함 아이템 종류 (공지사항은 서버 enum에 없음)
+export type InboxItemType = NotificationType | "공지사항";
+
+// 알림함에 보여줄 제목 (서버 title과 다름, 공지사항은 서버 title 그대로)
 export const NOTIFICATION_TITLE: Record<NotificationType, string> = {
   유통기한임박: "유통기한 임박",
   시듦: "식물 상태 주의",
